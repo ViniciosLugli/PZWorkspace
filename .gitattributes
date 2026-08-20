@@ -1,0 +1,5 @@
+# Normalise text to LF in the repository regardless of the OS it was authored on.
+* text=auto eol=lf
+
+*.png binary
+*.jar binary
