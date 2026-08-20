@@ -1,0 +1,14 @@
+name=Lugli - Fast Loading
+id=Lugli_FastLoading
+author=ViniciosLugli
+description=Removes loading work Project Zomboid does not need to do. Main menu 52s to 23s (-55%) and world load 123s to 57s (-54%) on a 300+ mod list, Build 42.20.3, with loot tables byte-identical. Also draws the loading screen, which the game otherwise leaves frozen. Every part self-enables or skips itself; no dependencies.
+poster=preview.png
+icon=icon.png
+category=features
+versionMin=42.20
+modversion=1.3.0
+incompatible=PZFixPack
+javaJarFile=media/java/client/FastLoading.jar
+javaPkgName=lugli.fastloading
+javaPreload=true
+ZBVersionMin=2.3.2

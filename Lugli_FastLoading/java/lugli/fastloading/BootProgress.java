@@ -1,0 +1,119 @@
+package lugli.fastloading;
+
+import me.zed_0xff.zombie_buddy.Patch;
+import zombie.core.Core;
+import zombie.core.SpriteRenderer;
+import zombie.core.fonts.AngelCodeFont;
+import zombie.debug.DebugLog;
+import zombie.ui.TextManager;
+import zombie.ui.UIFont;
+
+/**
+ * Keeps the window alive while boot is loading.
+ *
+ * GameWindow.DoLoadingText only writes to the log; it draws nothing. So during
+ * ScriptManager.Load and LuaManager.LoadDirBase, about eleven seconds on a large mod list,
+ * the engine renders no frames at all and Windows greys the window as not responding. The
+ * only boot phase that does render is initAnimationMeshes, whose wait loop pumps two frames
+ * per turn.
+ *
+ * This draws that same two-frame pattern from inside the per-file Lua loop, throttled, with
+ * the current phase and a file count. It is the pattern GameWindow.doEpilepsyWarningText
+ * uses a few lines earlier in the same thread, so the GL state it needs is already set up.
+ *
+ * Failure is contained: any exception disables the display permanently and boot continues
+ * untouched, because a diagnostic that fails every frame is worse than no diagnostic.
+ */
+public final class BootProgress {
+
+    public static final String TAG = "[FastLoading/progress]";
+
+    /** Frame budget. Each frame costs about 4 ms, so this is well under 1% of the phase. */
+    public static final long INTERVAL_MS = 150L;
+
+    // public: these bodies are inlined into zombie.* classes, which then access them there.
+    public static volatile String phase = "";
+    public static volatile int counter;
+    public static volatile long lastFrame;
+    public static volatile boolean off;
+    public static volatile boolean drew;
+
+    private BootProgress() {}
+
+    /**
+     * How long after the engine last announced a loading phase this keeps drawing.
+     *
+     * RunLua is NOT boot-only -- require() and the full script/Lua reload on exit-to-menu go
+     * through it as well -- so a tick handler with no end condition would keep drawing a
+     * loading overlay during play. Rather than add another patch just to switch off, this
+     * follows the engine's own signal: DoLoadingText fires throughout a loading phase and
+     * never during gameplay, so the display goes quiet on its own shortly after loading ends
+     * and comes back by itself for the exit-to-menu reload, which IS a loading phase.
+     */
+    public static final long PHASE_IDLE_MS = 30000L;
+
+    public static volatile long lastPhaseAt;
+
+    /** Latches whatever the engine last announced, so the drawn text matches the log. */
+    public static void note(String text) {
+        if (text == null || text.isEmpty()) return;
+        phase = text;
+        counter = 0;
+        lastPhaseAt = System.currentTimeMillis();
+    }
+
+    public static void tick() {
+        if (off) return;
+        counter++;
+        long now = System.currentTimeMillis();
+        if (lastPhaseAt == 0L || now - lastPhaseAt > PHASE_IDLE_MS) return;
+        if (now - lastFrame < INTERVAL_MS) return;
+        lastFrame = now;
+        try {
+            draw();
+            if (!drew) {
+                drew = true;
+                DebugLog.log(TAG + " drawing loading frames during script and Lua load");
+            }
+        } catch (Throwable t) {
+            off = true;
+            DebugLog.log(TAG + " display disabled (" + t + ")");
+        }
+    }
+
+    public static void draw() {
+        TextManager tm = TextManager.instance;
+        if (tm == null) return;
+        AngelCodeFont font = tm.getFontFromEnum(UIFont.NewLarge);
+        if (font == null) return;
+
+        Core core = Core.getInstance();
+        int w = core.getScreenWidth();
+        int h = core.getScreenHeight();
+        if (w <= 0 || h <= 0) return;
+
+        core.StartFrame();
+        core.EndFrame();
+        core.StartFrameUI();
+        SpriteRenderer.instance.renderi(null, 0, 0, w, h, 0.0F, 0.0F, 0.0F, 1.0F, null);
+        tm.DrawStringCentre(font, w / 2.0, h / 2.0, phase + "   " + counter, 1.0, 1.0, 1.0, 1.0);
+        core.EndFrameUI();
+    }
+
+    @Patch(className = "zombie.GameWindow", methodName = "DoLoadingText")
+    public static class Phase {
+        @Patch.OnEnter
+        public static void enter(@Patch.Argument(0) String text) {
+            BootProgress.note(text);
+        }
+    }
+
+    /** Called once per Lua file, roughly 7,300 times, so the throttle does the real work. */
+    @Patch(className = "zombie.Lua.LuaManager", methodName = "RunLua")
+    public static class LuaFile {
+        @Patch.OnEnter
+        public static void enter() {
+            BootProgress.tick();
+        }
+    }
+}
