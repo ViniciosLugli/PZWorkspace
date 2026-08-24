@@ -39,8 +39,28 @@ local function deferParse()
     deferred = deferred + 1
 end
 
+-- Kill switch, same shape as the Gunworks one and nil-safe for the same reason: this file
+-- is under shared/, which a DEDICATED SERVER runs, and the jar that defines
+-- FastLoading_Switch never loads there. Server-side, set FastLoadingDisableLootInit = true
+-- from any server Lua file instead.
+--
+-- Read LAZILY, inside install(), not at file scope: shared/ runs at BOOT and the Java bridge
+-- is exposed from inside loadMods, so a file-scope read can land before the global exists.
+local function partDisabled()
+    if FastLoadingDisableLootInit == true then return true end
+    if type(FastLoading_Switch) == "function" then
+        return FastLoading_Switch("lootinit", "on") == "off"
+    end
+    return false
+end
+
 local function install()
     if broken or realParse ~= nil then return end
+    if partDisabled() then
+        broken = true
+        gwStatus(nil, "turned off (-Dfastloading.lootinit=off)", "dep")
+        return
+    end
 
     local ok, err = pcall(function()
         local p = ItemPickerJava.Parse

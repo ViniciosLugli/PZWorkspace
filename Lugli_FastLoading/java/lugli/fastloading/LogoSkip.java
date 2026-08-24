@@ -32,6 +32,9 @@ public class LogoSkip {
     @Patch.OnExit
     public static void exit(@Patch.This zombie.gameStates.TISLogoState state) {
         if (KEEP) return;
+        // With -Dfastloading.logowait set, LogoWait decides when to release instead: skipping
+        // here would end the state before it ever had a chance to hold.
+        if (LogoWait.WAIT_MS > 0) return;
         state.stage = 3;
         if (!announced) {
             announced = true;

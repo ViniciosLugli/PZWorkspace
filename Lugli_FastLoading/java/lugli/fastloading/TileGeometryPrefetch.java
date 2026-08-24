@@ -10,27 +10,17 @@ import zombie.gameStates.ChooseGameInfo;
 import zombie.tileDepth.TileGeometryManager;
 
 /**
- * Moves a 2.4 second file parse off the boot critical path.
+ * Moves a 2.4 s parse of media/tileGeometry.txt (6.4 MB, 331,376 lines) off the boot critical
+ * path. -Dfastloading.tilegeom=off.
  *
- * TileGeometryManager.init does one thing: parse media/tileGeometry.txt, 6.4 MB and 331,376
- * lines, on the main thread in the middle of initShared. It cannot be deferred forward,
- * because TileDepthTextureAssignmentManager.init runs immediately after and reads
- * TileGeometryManager.getTile while loading its own assignments.
+ * It cannot be deferred forward -- TileDepthTextureAssignmentManager.init runs immediately
+ * after and reads TileGeometryManager.getTile -- but nothing reads the manager before init(),
+ * so it can start as soon as the mod list exists and be joined where the engine would parse.
  *
- * It can be moved backward. Nothing reads TileGeometryManager before init() itself, so the
- * parse starts as soon as the mod list exists and is joined where the engine would have
- * parsed, hiding it behind ScriptManager.Load and the clothing phase.
+ * The mod list is resolved on the CALLING thread, never the worker: ChooseGameInfo.getModDetails
+ * populates a HashMap that ScriptManager.Load also writes, so resolving it off-thread races.
  *
- * The mod list is resolved on the CALLING thread, never the worker:
- * ChooseGameInfo.getModDetails populates a shared HashMap that ScriptManager.Load also
- * writes, so resolving it off-thread would race. The worker only parses files and appends to
- * TileGeometryManager.modData, which nothing else touches until the join.
- *
- * SELF-HEALING GUARD. If the join never runs, the background parse and the engine's own parse
- * would both append and every tileset would be loaded twice, silently. So the follow-on
- * manager checks whether the prefetch was consumed, and if it was not, resets the manager and
- * lets the engine parse normally. This exists because it actually happened during development:
- * a second patch class on the same method took the slot and the join was never invoked.
+ * docs/18-fastloading-internals.md#scriptparse-thread-safety
  */
 public final class TileGeometryPrefetch {
 
@@ -50,16 +40,11 @@ public final class TileGeometryPrefetch {
 
         // HARD DEPENDENCY, do not remove.
         //
-        // The parse path goes through ScriptParser.stripComments, which keeps ONE static
+        // This parse goes through ScriptParser.stripComments, which keeps ONE static
         // StringBuilder for every caller (ScriptParser.java:9). Running it on a worker while
-        // the main thread parses its own files corrupts both. That is not hypothetical: the
-        // 2026-08-20_12-32 boot log shows four tile geometry files failing with
-        // "Index 5295349 out of bounds for length 0" inside stripComments, called from this
-        // very lambda, and TileGeometryFile.read swallows the exception so boot continues with
-        // incomplete tile depth data.
-        //
-        // ScriptParse replaces stripComments with a version whose buffer belongs to the call,
-        // which removes the shared state. Without it this prefetch is unsafe, so it stays off.
+        // the main thread parses corrupts both, and TileGeometryFile.read SWALLOWS the
+        // exception, so boot continues with incomplete tile depth data and nothing looks wrong.
+        // ScriptParse gives the buffer to the call; without it this prefetch is unsafe.
         if (!ScriptParse.ON || ScriptParse.broken) {
             failed = true;
             DebugLog.log(TAG + " not started: the thread-safe script parser is unavailable");

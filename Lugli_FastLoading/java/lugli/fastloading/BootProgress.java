@@ -9,24 +9,29 @@ import zombie.ui.TextManager;
 import zombie.ui.UIFont;
 
 /**
- * Keeps the window alive while boot is loading.
+ * Keeps the window alive while boot is loading. -Dfastloading.progress=off.
  *
  * GameWindow.DoLoadingText only writes to the log; it draws nothing. So during
- * ScriptManager.Load and LuaManager.LoadDirBase, about eleven seconds on a large mod list,
- * the engine renders no frames at all and Windows greys the window as not responding. The
- * only boot phase that does render is initAnimationMeshes, whose wait loop pumps two frames
- * per turn.
+ * ScriptManager.Load and LuaManager.LoadDirBase -- about eleven seconds on a large mod list --
+ * the engine renders no frames and Windows greys the window as not responding. This draws two
+ * frames per turn from inside the per-file Lua loop, throttled, using the same pattern
+ * GameWindow.doEpilepsyWarningText uses on the same thread.
  *
- * This draws that same two-frame pattern from inside the per-file Lua loop, throttled, with
- * the current phase and a file count. It is the pattern GameWindow.doEpilepsyWarningText
- * uses a few lines earlier in the same thread, so the GL state it needs is already set up.
+ * Failure is contained: any exception disables the display permanently and boot continues.
  *
- * Failure is contained: any exception disables the display permanently and boot continues
- * untouched, because a diagnostic that fails every frame is worse than no diagnostic.
+ * docs/18-fastloading-internals.md#bootprogress-end
  */
 public final class BootProgress {
 
     public static final String TAG = "[FastLoading/progress]";
+
+    /**
+     * -Dfastloading.progress=off draws nothing. Separate from the `off` latch below, which is
+     * the failure containment: one is the operator's choice, the other is this class deciding
+     * it is unsafe to keep drawing, and collapsing them would make a crash look like a setting.
+     */
+    public static final boolean ON =
+            !"off".equals(System.getProperty("fastloading.progress", "on"));
 
     /** Frame budget. Each frame costs about 4 ms, so this is well under 1% of the phase. */
     public static final long INTERVAL_MS = 150L;
@@ -43,12 +48,10 @@ public final class BootProgress {
     /**
      * How long after the engine last announced a loading phase this keeps drawing.
      *
-     * RunLua is NOT boot-only -- require() and the full script/Lua reload on exit-to-menu go
-     * through it as well -- so a tick handler with no end condition would keep drawing a
-     * loading overlay during play. Rather than add another patch just to switch off, this
-     * follows the engine's own signal: DoLoadingText fires throughout a loading phase and
-     * never during gameplay, so the display goes quiet on its own shortly after loading ends
-     * and comes back by itself for the exit-to-menu reload, which IS a loading phase.
+     * RunLua is NOT boot-only -- require() and the exit-to-menu reload go through it -- so a
+     * handler with no end condition would draw a loading overlay during play. This follows the
+     * engine's own signal instead: DoLoadingText fires throughout a loading phase and never
+     * during gameplay.
      */
     public static final long PHASE_IDLE_MS = 30000L;
 
@@ -63,7 +66,7 @@ public final class BootProgress {
     }
 
     public static void tick() {
-        if (off) return;
+        if (!ON || off) return;
         counter++;
         long now = System.currentTimeMillis();
         if (lastPhaseAt == 0L || now - lastPhaseAt > PHASE_IDLE_MS) return;

@@ -7,7 +7,7 @@ are on the Steam Workshop — these are the sources behind them.
 
 | mod | what it does | workshop |
 |---|---|---|
-| [Lugli_FastLoading](Lugli_FastLoading) | Cuts launch-to-menu and world load on large mod lists. Main menu 52s → 23s, world load 123s → 57s on a 300+ mod list. | [3787104045](https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045) |
+| [Lugli_FastLoading](Lugli_FastLoading) | Cuts launch-to-menu and world load. Launch to playing 129s → 78s on a 300+ mod list; 20s → 13s to the menu on vanilla. | [3787104045](https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045) |
 
 ## Layout
 

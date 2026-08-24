@@ -6,68 +6,25 @@ import me.zed_0xff.zombie_buddy.Patch;
 import zombie.debug.DebugLog;
 
 /**
- * Two fixes to zombie.scripting.ScriptParser, the tokenizer every script file, tile
- * geometry file, seam file, seating file and font file goes through.
+ * Two fixes to zombie.scripting.ScriptParser, the tokenizer every script, tile geometry, seam,
+ * seating and font file passes through. -Dfastloading.parse=off restores the engine's.
  *
- * ---------------------------------------------------------------------------------
- * 1. stripComments is NOT THREAD SAFE, and that is a correctness bug, not a slow path.
- * ---------------------------------------------------------------------------------
+ * 1. stripComments is NOT THREAD SAFE -- a correctness bug, not a slow path. ScriptParser holds
+ *    ONE static StringBuilder (ScriptParser.java:9) cleared at :53, so two threads inside the
+ *    method destroy each other's buffer. Giving the buffer to the call removes the shared state,
+ *    so no lock is needed and nothing serialises. The algorithm is the original line for line.
  *
- * ScriptParser holds ONE static StringBuilder (ScriptParser.java:9) and clears it at :53
- * before appending the caller's file. Two threads inside the method therefore destroy each
- * other's buffer: A takes lastIndexOf on a full builder, B calls setLength(0), and A's next
- * lastIndexOf indexes an empty one.
+ *    ANY off-thread parse depends on this being active. TileGeometryPrefetch refuses to run
+ *    without it -- a hard dependency, not a preference.
  *
- * This is not theoretical. Our own TileGeometryPrefetch parses tileGeometry.txt on a worker
- * while the main thread parses its own files, and the 2026-08-20_12-32 boot log shows FOUR
- * tile geometry files failing:
+ * 2. parseTokens is O(tokens x filesize): it substrings the whole remaining file per token
+ *    (:87-116). The rewrite keeps a base offset instead. 428 ms -> 76 ms over the real corpus.
  *
- *   ArrayIndexOutOfBoundsException: Index 5295349 out of bounds for length 0
- *     at java.lang.AbstractStringBuilder.lastIndexOf
- *     at zombie.scripting.ScriptParser.stripComments(ScriptParser.java:256)
- *     at zombie.tileDepth.TileGeometryFile.parseFile -> TileGeometry.init
- *     at lugli.fastloading.TileGeometryPrefetch.lambda$start$0
+ * A wrong tokenizer does not crash, it silently changes what items are, so both rewrites run
+ * against the original and disable themselves permanently on any disagreement.
  *
- * It fails silently: TileGeometryFile.read catches and logs, so boot continues with
- * incomplete tile depth data. Reproduced deterministically in build/parseprobe/RaceProbe.java
- * over the real corpus, four threads:
- *
- *   shared static buffer : 260 correct, 3,141 WRONG OUTPUT, 3,159 EXCEPTIONS
- *   buffer local to call : 6,560 correct, 0 wrong, 0 exceptions
- *
- * Giving the buffer to the call removes the shared state entirely, so no lock is needed and
- * nothing serialises. The algorithm below is the original line for line.
- *
- * A fast path comes with it: the loop cannot do anything without a "*&#47;" to find, and only
- * 28 of 1,004 vanilla script files contain one.
- *
- * ---------------------------------------------------------------------------------
- * 2. parseTokens is O(tokens x filesize).
- * ---------------------------------------------------------------------------------
- *
- * ScriptParser.parseTokens (:87-116) ends each token with
- *
- *     totalFile = totalFile.substring(nextindexOfOpen + 1);
- *
- * copying the entire remaining file per token. ScriptManager.ParseScript's outer call is
- * harmless because a script file is a single "module Base { ... }" and yields one token; the
- * damage is ScriptModule.ParseScriptPP (objects/ScriptModule.java:726), which passes the whole
- * module body. The largest body on this machine is 795,803 chars.
- *
- * The rewrite keeps a base offset instead. Same scan, same order, same trim, same list.
- * Measured over the real corpus, 11,866 files and 60,031,266 chars, 96,460 inner tokens:
- *
- *   original 428 ms, rewritten 76 ms, zero mismatches on either stage
- *
- * ---------------------------------------------------------------------------------
- * Correctness gate
- * ---------------------------------------------------------------------------------
- *
- * A wrong tokenizer does not crash, it silently changes item definitions. So both rewrites
- * run against the original for the first calls and are disabled permanently on any
- * disagreement. The check is only treated as evidence once it has seen a genuinely large
- * input (VERIFY_CHARS): this project has twice shipped a self-test that "passed" on six
- * trivial entries and proved nothing.
+ * Evidence, race-probe results and the reasoning behind each gate constant:
+ * docs/18-fastloading-internals.md#scriptparse-thread-safety
  */
 public final class ScriptParse {
 
@@ -81,14 +38,11 @@ public final class ScriptParse {
     /**
      * Hard ceiling on differential checks, whatever else the gate says.
      *
-     * Without this, "keep going until a large input has been seen" never terminates on a
-     * setup that has no script file that big -- a small mod list, or vanilla. Every call
-     * would then run the original implementation as well, doubling the cost FOR THE WHOLE
-     * SESSION, because ScriptParser is not only a boot path: CustomSandboxOptions, SeamFile,
-     * SeatingFile, FontsFile and every exit-to-menu script reload go through it too.
-     *
-     * Reaching the ceiling without strong evidence is reported once rather than passed over
-     * in silence, since it means the fast path is running on weaker proof than intended.
+     * Without it, "keep going until a large input has been seen" never terminates on a setup
+     * with no script file that big -- a small mod list, or vanilla -- so every call would run
+     * the original as well, doubling parse cost FOR THE WHOLE SESSION. ScriptParser is not only
+     * a boot path: CustomSandboxOptions, SeamFile, SeatingFile, FontsFile and every
+     * exit-to-menu reload go through it too.
      */
     public static final int VERIFY_CEILING = 4000;
 

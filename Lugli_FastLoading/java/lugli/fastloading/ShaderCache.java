@@ -7,15 +7,25 @@ import zombie.core.skinnedmodel.model.Model;
 import zombie.core.skinnedmodel.shader.Shader;
 
 /**
- * Model.CreateShader hops to the render thread and blocks until its next queue flush,
- * about a frame, even when the shader is already compiled. loadAnimalDefinitions did
- * that ~894 times. A cache hit needs no GL context.
+ * Model.CreateShader hops to the render thread and blocks for about a frame even when the
+ * shader is already compiled; loadAnimalDefinitions did that ~894 times. A cache hit needs no
+ * GL context. 29.6 s -> 2.7 s. -Dfastloading.shadercache=off restores the blocking hop.
+ *
+ * The recording half keeps warming the cache even when the fast path is off, so switching back
+ * on mid-session is not a cold start.
+ *
+ * See docs/18-fastloading-internals.md#shadercache-nonissue for a GL-upload-queue mechanism
+ * that was blamed on this patch and does NOT exist.
  */
 public class ShaderCache {
 
     // public: both advice bodies are inlined into engine classes, which then access
     // these from their own class. Anything private throws IllegalAccessError.
     public static final ConcurrentHashMap<String, Shader> CACHE = new ConcurrentHashMap<>();
+
+    /** public: read by the advice body, which runs as zombie.core.skinnedmodel.model.Model. */
+    public static final boolean ON =
+            !"off".equals(System.getProperty("fastloading.shadercache", "on"));
 
     public static String key(String name, boolean isStatic, boolean instanced) {
         return name + (isStatic ? "|s" : "|d") + (instanced ? "|i" : "|n");
@@ -40,7 +50,7 @@ public class ShaderCache {
     public static class FastPath {
         @Patch.OnEnter(skipOn = true)
         public static boolean enter(@Patch.This Model model, @Patch.Argument(0) String name) {
-            if (name == null) return false;
+            if (!ON || name == null) return false;
             Shader cached = CACHE.get(key(name, model.isStatic, false));
             if (cached == null) return false;
             model.effect = cached;

@@ -5,43 +5,14 @@ import zombie.core.Core;
 import zombie.debug.DebugLog;
 
 /**
- * Skips the hot-reload file watcher's directory registration, which does nothing in normal
- * play and costs a full extra walk of every installed mod.
+ * Skips the hot-reload file watcher's recursive directory registration, which does nothing in
+ * normal play and costs a second full walk of every installed mod tree.
+ * -Dfastloading.watchergate=off; -Ddebug=true also disables it.
  *
- * DebugFileWatcher takes a Windows WatchKey on EVERY directory under media/ -- 1,704 of them
- * for the game alone -- and `ZomboidFileSystem.getAllModFoldersAux` then calls
- * `addDirectoryRecurse` on each mod's common and version media folder. That is a SECOND full
- * recursive traversal of all 338 mod trees, after `loadMod` has already walked them once,
- * plus a directory handle and a ReadDirectoryChangesW overlapped I/O per directory.
+ * The cut is at registerDirRecursive, NOT at init(): skipping init() leaves the `watcher` field
+ * null, and getAllModFoldersAux still calls addDirectory on it during loadMods.
  *
- * Every consumer of it is a hot-reload path, and hot reload only does anything when
- * `Core.debug` is set, so with debug off the whole structure is built and never read.
- *
- * Measured on a 338 mod list, two runs per arm:
- *
- *   DebugFileWatcher.init         228 ms  ->     1 ms
- *   ZomboidFileSystem.loadMods  6,226 ms  -> 5,512 ms
- *   boot                  25.42-25.88 s  -> 24.84-25.02 s     (mean 25.65 -> 24.93)
- *
- * THE CUT IS AT registerDirRecursive, NOT AT init(). Skipping init() would leave the
- * `watcher` field null. `update()` guards on that (`DebugFileWatcher:130`), but
- * `addDirectory` and `addDirectoryRecurse` are still called from `getAllModFoldersAux`
- * during loadMods and would dereference it. Gating the recursive registration instead keeps
- * the watcher object alive, keeps `isInitialized` true, and keeps every listener contract
- * intact -- there is simply nothing registered to watch.
- *
- * This was rejected in an earlier round on the strength of a 0.26 s measurement. That figure
- * was real but covered only the GAME's media tree; it never included the 338 mod trees, which
- * are where the time is.
- *
- * ONLY THE MEDIA TREES ARE SKIPPED. `init()` registers two roots: `getMediaRootPath()` (the
- * expensive one) and `getMessagingDir()`. The messaging directory is how `Trigger_*.xml` live
- * toggles reach a running game, it is a single small folder, and it costs nothing -- so it is
- * still registered. Anything else the engine ever asks to watch recursively is also left
- * alone, which keeps this safe against future engine changes rather than only against today's.
- *
- * Opt out with -Dfastloading.watchergate=off. Launching with -Ddebug=true also disables it,
- * because that is someone deliberately using hot reload.
+ * Rationale, measurements and scope: docs/18-fastloading-internals.md#watchergate-cutpoint
  */
 public final class WatcherGate {
 
