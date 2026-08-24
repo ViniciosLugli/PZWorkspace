@@ -12,53 +12,16 @@ import zombie.tileDepth.TileDepthTextures;
 import zombie.tileDepth.TilesetDepthTexture;
 
 /**
- * Moves the depth-map PNG decode out of one global monitor.
- * -Dfastloading.tiledepth=off to disable.
+ * Moves the depth-map PNG decode out of TileDepthTextures' global monitor.
+ * -Dfastloading.tiledepth=off.
  *
- * VALIDATED 2026-08-23. Correctness: the loaded tileset set is byte-identical to the stock
- * engine's -- 938 tilesets, fingerprint 881543175, zero diff on name/rows/columns/source across
- * merged and every per-mod TileDepthTextures (tools: Dev_TileDepthDump). Speed: world load 92 s
- * stock vs 83 s / 81 s with this, the difference landing in the asset barrier
- * (29.46 s -> 18.11 s), matching the loose hand-patched class it replaces (82 s / 18.49 s).
+ * The engine wraps the whole LoadTask body in synchronized (textures), so every tileset decodes
+ * one at a time. Only the map access needs the lock.
  *
- * TileDepthTextures$LoadTask.call is:
- *
- *     synchronized (this.textures) {                    // every worker, ONE object
- *         if (this.textures.tilesets.get(name) == null)
- *             this.textures.createTileset(name, true);  // decodes the PNG INSIDE the lock
- *     }
- *
- * Each task handles a different tileset, so the exclusion is only needed for the `tilesets`
- * HashMap access. The tasks are queued at priority 4 -- the lowest in the engine -- so they drain
- * last, i.e. inside the world-load barriers, with every pool thread piling onto that monitor.
- *
- * WORTH ~10 s OF WORLD LOAD, measured 2026-08-23 by un-shadowing the equivalent loose class:
- * 82 s patched vs 92 s stock, the difference landing in the asset barrier where these drain.
- *
- * WHY THIS IS SAFE TO SPLIT -- the part that had to be checked, not assumed:
- *   - `getTilesetRows(name, true)` is a pure read, but the map is NOT finished when workers run:
- *     `loadDepthTextureImages` puts entry k and submits task k in the SAME loop iteration
- *     (`TileDepthTextures.java:134-139`), so the main thread keeps inserting while earlier tasks
- *     execute. The read is therefore taken under `synchronized (textures)` -- the same monitor
- *     stock holds for the whole body -- so this patch is never a weaker guarantee than stock.
- *     (An earlier version of this comment claimed the map was fully populated before fan-out.
- *     That was wrong, and it would have widened a one-reader race to ten.)
- *   - That leaves `tilesets.put` as the single shared write on this path. It stays under
- *     `synchronized (textures)`, and so does every READ of that map -- reading a HashMap while
- *     another thread puts can spin forever during a resize.
- *   - The expensive `TilesetDepthTexture.load()` moves outside, guarded by a per-tileset lock so
- *     two workers never decode the same tileset.
- *
- * Semantics are preserved exactly, including the two easy-to-miss cases: rows == 0 stores NOTHING
- * (the engine's createTileset returns null without putting), and an exception from load() is
- * logged and the tileset is still stored.
- *
- * Reflection is needed for exactly three members: LoadTask.path and LoadTask.textures
- * (package-private fields of a package-private class) and TileDepthTextures.getTilesetRows /
- * .tilesets (private). Everything else -- TilesetDepthTexture's constructor, fileExists(), load(),
- * and getExistingTileset() -- is public API on public classes.
- *
- * See docs/09-world-load.md
+ * MUST still hold `textures` for the getTilesetRows read: loadDepthTextureImages puts into that
+ * map and submits the task in the same loop iteration, so narrowing the lock too far turns one
+ * concurrent reader into ten on a plain HashMap mid-resize. A wrong row count builds a
+ * wrong-sized tileset, which renders as a depth artefact rather than failing loudly.
  */
 @Patch(className = "zombie.tileDepth.TileDepthTextures$LoadTask", methodName = "call")
 public final class TileDepthLock {

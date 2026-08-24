@@ -4,37 +4,12 @@ import me.zed_0xff.zombie_buddy.Patch;
 import zombie.asset.Asset;
 
 /**
- * Queues the textures the FIRST drawn frame needs ahead of the rest.
- * -Dfastloading.uiprio=on   (default OFF, see below)
+ * Queues the textures the first drawn frame needs ahead of the rest.
+ * -Dfastloading.uiprio=on (default OFF).
  *
- * TextureIDAssetManager.startLoading sets EVERY texture task to priority 7, menu icons and world
- * tiles alike. FileSystemImpl serves strictly by descending priority, so the handful of UI
- * textures sit behind the whole ~7,968-task block and can still be unready when the menu draws --
- * which is what makes a checkbox tick or the menu background appear late, or briefly render as
- * the error texture.
- *
- * WHY A HINT AND NOT A DIRECT MATCH
- *   The obvious place is the existing MeshPriority advice on FileSystemImpl.runAsync, but the
- *   task that carries the menu background is FileTask_LoadPackImage, whose packName/imageName are
- *   PACKAGE-PRIVATE in zombie.asset and which does not override getErrorMessage(). Advice is
- *   inlined into zombie.fileSystem.FileSystemImpl, so those fields are unreadable there.
- *
- *   startLoading still has the answer, on the Asset itself: a pack texture's path is
- *   "@pack@/<packName>/<pageName>" (Texture.java:130) and Asset.getPath() is public. It calls
- *   assetTask.execute() SYNCHRONOUSLY on the same thread that reaches runAsync, so a
- *   thread-local hint set here is read by that advice a moment later.
- *
- * WHY CONSUME-ON-READ RATHER THAN A finally
- *   MeshPriority CLEARS the hint when it reads it. If this advice's OnExit were ever skipped, a
- *   stale hint could otherwise promote an unrelated task indefinitely; consuming bounds the
- *   damage to nothing, because the very next runAsync takes it. OnExit still clears it for the
- *   case where execute() never reaches runAsync.
- *
- * DEFAULT OFF, DELIBERATELY
- *   Reordering costs nothing in total work, but this project's own record is that removing a
- *   blocker MOVES the wait rather than deleting it, and this has NOT been A/B'd end to end yet
- *   (the machine was below its commit guard). Ship it off, measure both arms, then flip.
- *   See docs/18-fastloading-internals.md#uipriority
+ * startLoading gives every texture task the same priority, so the menu's own icons queue behind
+ * thousands of world textures. Only the packs the menu actually draws are promoted; promoting
+ * more would just move the whole texture block up and undo the mesh ordering.
  */
 @Patch(className = "zombie.core.textures.TextureIDAssetManager", methodName = "startLoading")
 public final class UiPriority {

@@ -14,7 +14,7 @@ import zombie.core.skinnedmodel.shader.Shader;
  * The recording half keeps warming the cache even when the fast path is off, so switching back
  * on mid-session is not a cold start.
  *
- * See docs/18-fastloading-internals.md#shadercache-nonissue for a GL-upload-queue mechanism
+ * for a GL-upload-queue mechanism
  * that was blamed on this patch and does NOT exist.
  */
 public class ShaderCache {

@@ -19,7 +19,6 @@ import zombie.ui.UIFont;
  *
  * Failure is contained: any exception disables the display permanently and boot continues.
  *
- * docs/18-fastloading-internals.md#bootprogress-end
  */
 public final class BootProgress {
 

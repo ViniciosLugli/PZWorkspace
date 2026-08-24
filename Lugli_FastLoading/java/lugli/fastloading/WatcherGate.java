@@ -12,7 +12,7 @@ import zombie.debug.DebugLog;
  * The cut is at registerDirRecursive, NOT at init(): skipping init() leaves the `watcher` field
  * null, and getAllModFoldersAux still calls addDirectory on it during loadMods.
  *
- * Rationale, measurements and scope: docs/18-fastloading-internals.md#watchergate-cutpoint
+ * Rationale, measurements and scope:
  */
 public final class WatcherGate {
 

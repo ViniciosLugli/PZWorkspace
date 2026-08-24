@@ -20,7 +20,6 @@ import zombie.tileDepth.TileGeometryManager;
  * The mod list is resolved on the CALLING thread, never the worker: ChooseGameInfo.getModDetails
  * populates a HashMap that ScriptManager.Load also writes, so resolving it off-thread races.
  *
- * docs/18-fastloading-internals.md#scriptparse-thread-safety
  */
 public final class TileGeometryPrefetch {
 

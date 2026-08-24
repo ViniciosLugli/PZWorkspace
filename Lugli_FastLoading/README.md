@@ -4,7 +4,7 @@ Project Zomboid B42 does a lot of loading work it does not need to do. This mod 
 in the engine and removes it. The item database, the loot tables and the tilesets are fingerprinted
 on every build and must match an unpatched run, or the build fails.
 
-![Launch to playing on a 300+ mod list, with and without Fast Loading](art/proof-race.gif)
+![Launch to playing on a 300+ mod list, with and without Fast Loading](art/loading-300mods.gif)
 
 *Real time at 40x, boot and world load shown separately. Vanilla is in the table below.*
 

@@ -7,88 +7,16 @@ import zombie.debug.DebugLog;
 import zombie.fileSystem.FileTask;
 
 /**
- * Fixes a priority inversion that cost about 11.6 s of every boot: animation meshes queue at
- * priority 6 while ~7,968 texture tasks queue at 7, and FileSystemImpl serves in descending
- * priority order, so the meshes starve for the whole initAnimationMeshes barrier.
- * DEFAULT OFF SINCE 2026-08-23 -- turn it on with -Dfastloading.meshprio=on.
+ * Queues animation meshes ahead of textures during boot.
+ * -Dfastloading.meshprio=on (default OFF).
  *
- * It is a TRADE, and measured end to end it is a LOSING one. Six interleaved runs, 5 s menu dwell:
+ * Meshes queue at priority 6 and textures at 7, and FileSystemImpl serves in descending
+ * priority, so the meshes starve for the whole initAnimationMeshes barrier. Raising them cuts
+ * ~12 s from boot but hands back more than that at world load, because the deferred textures
+ * become the backlog the world load waits on. Measured 10.6 s worse end to end, hence off.
  *
- *     arm            boot          world load   launch -> playing
- *     meshprio=off   35.2-35.7 s   54-55 s      89.2-90.7 s
- *     meshprio=on    23.4-24.2 s   77 s         100.4-101.2 s
- *
- * It buys 11.6 s of boot and hands back 22.4 s at world load: **a net 10.6 s loss** for a player
- * who reaches the menu and clicks Continue. Bands do not overlap anywhere.
- *
- * WHY. It raises 79 animation-mesh tasks above ~7,968 textures so `initAnimationMeshes` stops
- * starving -- but those textures do not disappear, they become a backlog the world load then waits
- * on (asset barrier #1). Boot looks better because the cost moved somewhere the boot timer cannot
- * see. Only a player who idles ~30 s at the menu comes out ahead, because the backlog drains in
- * that idle time; nobody can rely on that.
- *
- * Kept, off, because the boot-only win is real and someone measuring boot in isolation may want it.
- *
- * runAsync is overloaded (FileTask and AsyncItem) and ZombieBuddy matches by NAME, so the
- * argument is taken as Object and type-checked rather than declared.
- *
- * SCOPED TO BOOT. The raise is disarmed once the main menu is reached.
- *
- * Leaving it armed for the session costs far more than it saves. Measured 2026-08-22 on the
- * pinned world, three runs per arm:
- *     world load, meshprio off -> 59 s        boot, meshprio off -> ModelManager.create 12.9 s
- *     world load, meshprio on  -> 83, 83 s    boot, meshprio on  -> ModelManager.create 0.69 s
- * So it is worth about 12 s at boot and about -24 s at every world load. The merge and asset
- * barrier phases are nearly identical between arms, so the cost is not in either of them.
- *
- * The reason is structural: at boot the only thing blocking is initAnimationMeshes waiting on
- * 79 meshes, so promoting them above textures is pure win. At world load nothing waits on a
- * mesh that way, and promoting mesh tasks above priority-7 textures just reorders a queue whose
- * consumers do want the textures.
- *
- * This could not be measured until 2026-08-22, because the patch had no kill switch: every
- * earlier "MeshPriority is neutral at world load" claim compared two arms that were identical.
- *
- * SECOND BAND: CLOTHING XML AT PRIORITY 8. -Dfastloading.clothprio=off
- *
- * This class also fixes the priority inversion that MeshPriority itself creates, and which cost
- * far more than MeshPriority saved.
- *
- * World load parks on asset barrier #1 (`GameLoadingState.java:280-288`), released at `:962-971`
- * only when `OutfitManager.isLoadingClothingItems()` is false. That stays true while any cached
- * clothing item is still `Asset.State.EMPTY`, and those ~3,700 XMLs were queued back at boot by
- * `OutfitManager.init()`. `ClothingItemAssetManager.startLoading` (`:19-27`) never calls
- * `setPriority`, so they sit at the FileTask default of **5** -- behind the ~7,968 texture tasks
- * at 7 that this very class pushed past the menu.
- *
- * Measured across the A/B logs, as the silent gap between the engine's own `startTime`
- * (`GameLoadingState.java:231`) and the first metagrid line:
- *
- *     meshprio on, 5 s menu dwell     front gap 31.4 - 31.7 s
- *     meshprio off                    front gap 6.8 s
- *     30 s menu dwell                 front gap 0.9 s
- *     VehicleTextureWarm on vs off    no difference
- *
- * The whole MeshPriority world-load penalty is that gap, and `tools/loadscan.sh` never saw it
- * because its clock starts at the metagrid scan. An earlier revision of this comment said "the
- * cost is not in either of them", meaning the merge and barrier #2 -- true, and it was in
- * barrier #1 all along.
- *
- * Raising the clothing XMLs to 8 puts them above the textures they were stuck behind and below
- * the meshes. Barrier #1 then clears on ~3,700 small XML parses instead of on the entire texture
- * backlog, and the ~25 s of pure loader-thread CPU that follows it -- the distribution merge,
- * animal definitions, tile definitions, zones -- overlaps the texture decode instead of running
- * strictly after it.
- *
- * `FileTask_ParseXML` is constructed in exactly one place in the whole engine
- * (`ClothingItemAssetManager.java:21`), so matching the type is unambiguous.
- *
- * Reordering a queue changes nothing about WHAT is parsed: no loot, no item definitions, no
- * rendering. `TextureID.bindInternal` uploads inline on first bind, and barrier #2 still waits
- * for the entire queue regardless.
- *
- * Measurements, and the texture-artifact risk that was investigated and not reproduced:
- * docs/18-fastloading-internals.md#meshpriority-risk
+ * Also hosts the asset task census (-Dfastloading.census=on) and the priority hints used by
+ * UiPriority and PackPageWarm, since all three sit on the same runAsync advice.
  */
 @Patch(className = "zombie.fileSystem.FileSystemImpl", methodName = "runAsync")
 public class MeshPriority {

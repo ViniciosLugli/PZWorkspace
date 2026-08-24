@@ -5,34 +5,10 @@ import zombie.core.textures.Texture;
 import zombie.debug.DebugLog;
 
 /**
- * Holds the intro logos only until the menu's own textures are ready, capped.
- * -Dfastloading.logowait=<ms>   (default 0 = disabled, skip instantly as before)
+ * Holds the intro logos only until the menu's textures are ready, then skips them.
+ * -Dfastloading.logowait=<ms>, default 0 (disabled, skip immediately as LogoSkip does).
  *
- * WHY THIS EXISTS
- *   The red/white checkerboard is Texture.getErrorTexture() (Texture.java:322-347, an 8x8
- *   checkerboard of 0xFF0000FF and 0xFFFFFFFF), substituted by Texture.bind():686 whenever a
- *   texture is bound for drawing before its data is ready. MainScreenState.preloadBackgroundTextures
- *   (:496-516) queues media/ui/Title*.png, but queuing is not loading: in vanilla the 5.5 s of
- *   logo fade is when they actually drained. LogoSkip deletes that window, so the menu can draw
- *   its background before the background exists.
- *
- *   This gives back the smallest part of that window that is actually needed: hold while the menu
- *   textures are unready, up to a hard cap, then go regardless.
- *
- * WHY A CAP IS MANDATORY
- *   Waiting on readiness alone would reintroduce an unbounded boot barrier -- exactly what this
- *   mod exists to remove. The cap bounds the worst case to a partial logo.
- *
- * READINESS IS TESTED THE WAY THE ENGINE TESTS IT
- *   Texture.bind() gates on !isDestroyed() && isValid() && isReady(); anything looser would
- *   declare victory while bind() still substitutes. getSharedTexture() may legitimately return
- *   null for a path in the nullTextures set, which is NOT a reason to wait forever -- null counts
- *   as ready. (This is Texture.getSharedTexture, which returns the texture directly; it does not
- *   have the NinePatchTexture.getSharedTexture first-call-returns-null defect.)
- *
- * DEFAULT 0, DELIBERATELY
- *   Any non-zero value trades boot time for visual correctness, and neither side has been
- *   measured on this machine yet. See docs/18-fastloading-internals.md#logowait
+ * A compromise for machines where skipping outright shows an unpainted menu for a moment.
  */
 @Patch(className = "zombie.gameStates.TISLogoState", methodName = "update")
 public final class LogoWait {

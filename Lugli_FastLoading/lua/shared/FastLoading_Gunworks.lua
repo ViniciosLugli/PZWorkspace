@@ -30,26 +30,13 @@ gwStatus(nil, "checked when you load a world", "pending")
 local MODULE = "Distribution/Functions.lua"
 local patched = false
 
--- ---------------------------------------------------------------------------
--- Position cache.
+-- Position cache. Every Insert walks all four loot tables end to end, and the mod makes 230
+-- Insert calls naming only 48 distinct base items, so remember where each was found.
 --
--- Every Insert walks all four loot tables end to end (531,557 values), and
--- applyDistributionPass makes 230 Insert calls naming only 48 DISTINCT base
--- items -- "Base.AssaultRifle" alone is searched 46 times for the same answer.
--- So remember where each base item was found and reuse it.
---
--- WHY THE CACHED POSITIONS STAY VALID: Insert only ever APPENDS. It never
--- removes or reorders, so an index recorded earlier still points at the same
--- value, and appended entries land past the recorded range.
---
--- The one case that could go stale is a later Insert searching for a name an
--- earlier Insert appended. That does not happen in this mod (bases are
--- "Base.*", inserts are "MarzGuns.*"), but the framework is shared, so new
--- positions are pushed into any cache entry matching that name rather than
--- trusting the caller's naming convention.
---
--- Measurements: docs/18-fastloading-internals.md
--- ---------------------------------------------------------------------------
+-- Cached positions stay valid because Insert only ever APPENDS: it never removes or reorders,
+-- so a recorded index still points at the same value. The one way to go stale is a later Insert
+-- searching for a name an earlier one appended, so new positions are pushed into any matching
+-- cache entry rather than trusting the caller's naming convention.
 
 local cacheStore = {}
 local indexStore = {}

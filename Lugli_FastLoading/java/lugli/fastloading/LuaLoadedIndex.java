@@ -9,39 +9,11 @@ import zombie.Lua.LuaManager;
 import zombie.debug.DebugLog;
 
 /**
- * Gives `LuaManager.loaded` a hash index. -Dfastloading.luaindex=off
+ * Gives LuaManager.loaded a hash index. -Dfastloading.luaindex=off.
  *
- * `LuaManager.loaded` is a `public static ArrayList<String>` (`LuaManager.java:1044`) and
- * `RunLuaInternal` opens with `if (loaded.contains(filename))` (`:1345`) -- a LINEAR SCAN of a
- * list that grows to one entry per Lua file. Boot on this list runs 13,444 `RunLua` calls over
- * 6,358 distinct files, so the misses each pay a full scan and the `require()` re-entries pay
- * half of one. It also runs during play: every `require()` goes through the same check.
- *
- * The field is public and its type is `ArrayList<String>`, so it can simply be replaced with an
- * `ArrayList` SUBCLASS that keeps a parallel `HashSet` and answers `contains` from it. No engine
- * member is added or changed, which matters because retransformation cannot add fields.
- *
- * WHY A SUBCLASS AND NOT A DIFFERENT COLLECTION
- *   Every consumer uses the `List` contract, including two that are exposed to Lua:
- *   `:1079` clear, `:1345` contains, `:1393` add, `:3701` and `:3710` remove,
- *   `:3933` size and `:3938` get(n). A subclass keeps indexing, iteration order and
- *   duplicates-by-position exactly as they were.
- *
- * WHY REMOVE AND CLEAR REBUILD RATHER THAN UPDATE
- *   The list can hold the same string twice: the guard at `:1345` tests the SEPARATOR-NORMALISED
- *   `filename`, while `:1393` stores the ORIGINAL `orig`. When those differ the same file can be
- *   appended twice, and a plain `HashSet.remove` would then drop an entry the list still holds,
- *   making `contains` answer false for something present -- which would silently re-run a Lua
- *   file. Removals happen only on reload, so rebuilding there is cheap and exact.
- *
- * SELF-HEALING
- *   Anything that mutates the list through a path not overridden here (an iterator, a subList)
- *   would desynchronise the set. `contains` therefore compares sizes first and rebuilds on any
- *   disagreement, so the answer is always the list's answer.
- *
- * WHY IT IS INSTALLED AT init() EXIT
- *   `LuaManager.init` assigns `loaded = new ArrayList<>()` at `:1110`, which would discard an
- *   earlier replacement.
+ * loaded is a public static ArrayList<String> and RunLuaInternal opens with
+ * loaded.contains(filename), a linear scan that grows with every file already loaded.
+ * The index mirrors the list; if the two ever disagree the patch falls back to the scan.
  */
 public final class LuaLoadedIndex {
 

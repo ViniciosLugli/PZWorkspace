@@ -9,22 +9,13 @@ import zombie.debug.DebugLog;
  * Two fixes to zombie.scripting.ScriptParser, the tokenizer every script, tile geometry, seam,
  * seating and font file passes through. -Dfastloading.parse=off restores the engine's.
  *
- * 1. stripComments is NOT THREAD SAFE -- a correctness bug, not a slow path. ScriptParser holds
- *    ONE static StringBuilder (ScriptParser.java:9) cleared at :53, so two threads inside the
- *    method destroy each other's buffer. Giving the buffer to the call removes the shared state,
- *    so no lock is needed and nothing serialises. The algorithm is the original line for line.
+ * 1. stripComments is NOT THREAD SAFE: one static StringBuilder serves every caller, so two
+ *    threads inside it destroy each other's buffer. Most callers catch and log, so the failure
+ *    is silent. Any off-thread parsing anywhere depends on this fix being active.
+ * 2. parseTokens re-copies the remainder of the file per item, which is quadratic in file size.
  *
- *    ANY off-thread parse depends on this being active. TileGeometryPrefetch refuses to run
- *    without it -- a hard dependency, not a preference.
- *
- * 2. parseTokens is O(tokens x filesize): it substrings the whole remaining file per token
- *    (:87-116). The rewrite keeps a base offset instead. 428 ms -> 76 ms over the real corpus.
- *
- * A wrong tokenizer does not crash, it silently changes what items are, so both rewrites run
- * against the original and disable themselves permanently on any disagreement.
- *
- * Evidence, race-probe results and the reasoning behind each gate constant:
- * docs/18-fastloading-internals.md#scriptparse-thread-safety
+ * A wrong tokenizer does not crash, it changes what items are. The replacement is run against
+ * the engine's own on real input and disables itself on the first disagreement.
  */
 public final class ScriptParse {
 

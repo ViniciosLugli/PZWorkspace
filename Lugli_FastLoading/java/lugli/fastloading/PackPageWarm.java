@@ -8,39 +8,12 @@ import zombie.core.textures.Texture;
 import zombie.fileSystem.FileSystem;
 
 /**
- * Starts the world tile-pack page decode while the player is on the main menu.
- * -Dfastloading.packwarm=on   (default OFF, unmeasured)
+ * Decodes world tile-pack pages while the player is on the main menu.
+ * -Dfastloading.packwarm=on (default OFF: measured 17 s SLOWER at a realistic menu dwell).
  *
- * GameWindow.enter() (:633-656) only MOUNTS the world texture packs -- LoadTexturePack (:893-903)
- * calls fileSystem.mountTexturePack, which reads the pack INDEX and nothing else. The page PNGs
- * load lazily on the first getSharedTexture for a sub-texture, and the first thing that asks is
- * world load: IsoWorld.LoadTileDefinitions -> IsoSpriteManager -> IsoSprite.LoadSingleTexture
- * (:393-397) -> Texture.getSharedTexture. So 1,839 mounted 1024x1024 pages are queued ~9 s into
- * the load, and barrier #2 (GameLoadingState:973) waits for every one.
- *
- * That barrier was still 18.29 s on a run with a 71 s menu dwell and a 0.03 s front gap -- i.e.
- * with the entire boot backlog already drained. The residual is work the world load itself
- * queues, and this is the bulk of it.
- *
- * Same shape and same rationale as VehicleTextureWarm, which measured 63 -> 57.5 s with
- * non-overlapping bands: the work is not removed, it is started while the player is reading the
- * menu instead of while they are waiting for a world.
- *
- * WHY LUA-INVOKED AND NOT A @Patch: identical reason to VehicleTextureWarm -- a
- * MainScreenState.update advice silently never installed. Menu Lua always runs.
- *
- * ONE TASK PER PAGE, NOT PER TILE. The TextureID AssetPath is "@pack@/<pack>/<page>"
- * (Texture.java:132) and AssetManager.load dedupes by path, so touching a single sub-texture
- * pulls its whole page exactly once. This groups by (packName, pageName) and touches one
- * representative per page.
- *
- * RE-RUNNABLE ON PURPOSE. IngameState.exit() -> loadModPackFiles -> setTexturePackLookup ->
- * Texture.onTexturePacksChanged() (GameWindow.java:885) clears s_sharedTextureTable when you go
- * back to the menu. The decoded assets survive in AssetManager, so a second run is a cheap
- * lookup re-walk rather than a re-decode -- but it must be allowed to happen, so this does NOT
- * latch a done flag the way VehicleTextureWarm does.
- *
- * See docs/18-fastloading-internals.md#packwarm
+ * The engine mounts the packs at boot but decodes their pages lazily during world load. Warming
+ * them only helps if the warm COMPLETES first: the world-load barrier waits on every queue at
+ * every priority, so anything still in flight is time the load now waits for.
  */
 public final class PackPageWarm {
 
