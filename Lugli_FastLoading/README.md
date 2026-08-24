@@ -10,16 +10,22 @@ on every build and must match an unpatched run, or the build fails.
 
 | | without | with | delta |
 |---|---|---|---|
-| Vanilla, launch to main menu | 20.3 s | 12.8 s | **-37 %** |
-| 300+ mods, launch to main menu | 46.8 s | 35.1 s | **-25 %** |
-| 300+ mods, launch to playing | 127.8 s | 85.5 s | **-33 %** |
+| Vanilla, launch to main menu | 21.1 s | 13.7 s | **-35 %** |
+| Vanilla, world load | 19.0 s | 15.0 s | **-21 %** |
+| Vanilla, launch to playing | 40.1 s | 28.7 s | **-28 %** |
+| 300+ mods, launch to main menu | 46.8 s | 35.8 s | **-24 %** |
+| 300+ mods, world load | 81.0 s | 50.0 s | **-38 %** |
+| 300+ mods, launch to playing | 127.8 s | 85.8 s | **-33 %** |
 
-Build 42.20.3, same machine, same save, 5 s wait at the menu, arms interleaved, every run checked
-against its own log, and a stock engine with no local-only patches. Bands: 19.9-26.1 to 12.5-13.0,
-46.8-46.9 to 33.6-36.0, and 127.8-127.9 to 83.6-86.8.
-There is no vanilla launch-to-playing row because it has not been measured. The harness cannot
-load a pinned world on a mod-free profile, and the modded save cannot be opened without its mods,
-so the honest options were an unmeasured number or none. Vanilla boot above is measured.
+Build 42.20.3, 5 s wait at the menu, arms interleaved, every run checked against its own log, and
+a stock engine with no local-only patches. Each pair is the same machine and the same save; the
+two pairs are necessarily different worlds, since a vanilla install cannot open a 300-mod save.
+Launch-to-playing bands: 38.1-41.6 to 27.5-29.9, and 127.8-127.9 to 83.6-86.8.
+
+Boot and world load in each row come from **the same launches**, so the three rows of a pair add
+up. That is why the vanilla boot figures here are 21.1/13.7 rather than the 20.3/12.8 measured by
+the older boot-only harness: two campaigns, the same answer to within a few tenths, but a stacked
+total may only be built from launches that measured both halves.
 
 [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045).
 Needs [ZombieBuddy](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853) for the

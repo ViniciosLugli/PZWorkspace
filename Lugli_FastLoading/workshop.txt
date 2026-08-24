@@ -3,10 +3,9 @@ title=Lugli - Fast Loading
 description=Project Zomboid does a lot of loading work it does not need to do. This finds that work in the engine and removes it. Your loot, your items and your world are unchanged, and they are fingerprinted on every build to prove it.
 description=
 description=[b]300+ mods: 128s to 86s to be in the world (-33%).[/b]
-description=[b]300+ mods: 47s to 35s to the main menu (-25%).[/b]
-description=[b]Vanilla: 20s to 13s to the main menu (-37%).[/b]
+description=[b]300+ mods: 47s to 36s to the main menu (-24%).[/b]
+description=[b]Vanilla: 40s to 29s to be in the world (-28%).[/b]
 description=
-description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_FastLoading/art/loading-300mods.gif[/img]
 description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_FastLoading/art/loading-summary.png[/img]
 description=
 description=For Build 42.20 and later. Measured on 42.20.3: same machine, same save, arms interleaved, every run checked against its own log. It scales with your mod count, not your map size, so the bigger your list the more you get back.
@@ -66,9 +65,5 @@ description=[hr][/hr]
 description=Open source under MIT. Issues and pull requests welcome: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_FastLoading]github.com/ViniciosLugli/PZWorkspace[/url]
 description=
 description=Built alongside [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url], the 300+ mod list these numbers come from.
-description=
-description=[hr][/hr]
-description=Workshop ID: 3787104045
-description=Mod ID: Lugli_FastLoading
 tags=Build 42;QoL;Misc
 visibility=public
