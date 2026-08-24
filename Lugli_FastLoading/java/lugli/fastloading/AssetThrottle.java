@@ -8,15 +8,11 @@ import zombie.core.utils.DirectBufferAllocator;
 import zombie.debug.DebugLog;
 
 /**
- * Every image task waits in waitFileTask until live direct-buffer bytes fall under a budget.
- * Vanilla's is 50 MB polled every 20 ms, which serialises the asset workers: one 2048px RGBA
- * texture is ~22 MB with mipmaps, so four workers exceed it immediately. Budget and pool size
- * scale off heap and core count rather than this machine -- see Tuning.
+ * Sizes the direct-buffer gate every image task waits on, and the asset thread pool.
+ * -Dfastloading.assets=off restores the engine's 50 MB budget and 4 threads.
  *
- * -Dfastloading.assets=off. MIND THE POLARITY: this is OnEnter(skipOn = true), so "off" must
- * return FALSE. Returning true would skip the original and leave NO wait at all, which is not
- * vanilla behaviour but worse than either.
- *
+ * MIND THE POLARITY: this is OnEnter(skipOn = true), so "off" must return FALSE. Returning true
+ * would skip the engine's wait entirely, which is not vanilla behaviour and worse than either.
  */
 @Patch(className = "zombie.core.textures.TextureIDAssetManager", methodName = "waitFileTask")
 public class AssetThrottle {

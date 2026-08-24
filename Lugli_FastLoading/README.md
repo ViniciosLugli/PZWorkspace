@@ -11,10 +11,15 @@ on every build and must match an unpatched run, or the build fails.
 | | without | with | delta |
 |---|---|---|---|
 | Vanilla, launch to main menu | 20.3 s | 12.8 s | **-37 %** |
+| 300+ mods, launch to main menu | 49.2 s | 37.9 s | **-23 %** |
 | 300+ mods, launch to playing | 129.2 s | 77.9 s | **-40 %** |
 
 Build 42.20.3, same machine, same save, 5 s wait at the menu. 12 launches, arms interleaved,
-each run checked against its own log. Bands 128.3-130.2 to 76.9-78.0, and 19.9-26.1 to 12.5-13.0.
+each run checked against its own log. Bands: 19.9-26.1 to 12.5-13.0, 48.3-49.9 to 37.2-38.0,
+and 128.3-130.2 to 76.9-78.0.
+
+Vanilla launch-to-playing is not listed because it is not measured: a mod-free profile cannot
+load a pinned world through the benchmark harness, so there is no honest number for that cell.
 
 [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045).
 Needs [ZombieBuddy](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853) for the
@@ -128,13 +133,6 @@ folder, not Steam launch options, which never reach the JVM. Steam replaces that
 | `-Dfastloading.luaindex=off` | on | use the engine's linear scan of loaded Lua files |
 | `-Dfastloading.gunidx=off` | on | search the Gunworks tables per insert instead of indexing |
 | `-Dfastloading.lootinit=off` | on | let every mod re-run the loot parse from its own handler |
-| `-Dfastloading.meshprio=on` | off | meshes before textures: 12 s off boot, 22 s onto world load, 10.6 s worse overall |
-| `-Dfastloading.uiprio=on` | off | queue the menu's UI textures first |
-| `-Dfastloading.clothprio=on` | off | queue clothing XML ahead of textures, measured no gain |
-| `-Dfastloading.packwarm=on` | off | decode tile-pack pages at the menu, 17 s slower at a short dwell |
-| `-Dfastloading.bufalloc=on` | off | allocate buffers outside the global lock, measured no change |
-| `-Dfastloading.census=on` | off | log a count of every asset task queued |
-| `-Dfastloading.logowait=N` | 0 | hold the logos until menu textures are ready, up to N ms |
 
 None of these apply on a dedicated server, where the jar does not load at all. The two Lua parts
 are switched from Lua instead: set `FastLoadingDisableGunIndex = true` or

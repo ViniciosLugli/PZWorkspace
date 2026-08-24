@@ -25,15 +25,7 @@ local function tick()
     Events.OnFETick.Remove(tick)
 
     -- Absent without ZombieBuddy, which is a supported configuration: the Lua half of this mod
-    -- works alone and the game simply loads the textures where it always did.
-    -- End the boot-only asset priority raise. MeshPriority promotes animation meshes above
-    -- textures, which is worth ~12 s at boot (initAnimationMeshes blocks on 79 of them) and
-    -- about -24 s at every world load, where nothing blocks that way.
-    if type(FastLoading_EndBootPhase) == "function" then
-        local okB, resB = pcall(FastLoading_EndBootPhase)
-        if okB then print("[FastLoading/meshprio] " .. tostring(resB)) end
-    end
-
+    -- works alone and the game loads the textures where it always did.
     if type(FastLoading_WarmVehicleTextures) == "function" then
         local ok, res = pcall(FastLoading_WarmVehicleTextures)
         if not ok then
@@ -41,17 +33,6 @@ local function tick()
         end
     end
 
-    -- World tile-pack pages, same idea one level up: GameWindow only MOUNTS those packs, and the
-    -- page PNGs are not decoded until LoadTileDefinitions asks for them in the middle of a world
-    -- load. Off unless -Dfastloading.packwarm=on.
-    if type(FastLoading_WarmPackPages) == "function" then
-        local okP, resP = pcall(FastLoading_WarmPackPages)
-        if okP then
-            if resP ~= "off" then print("[FastLoading/packwarm] " .. tostring(resP)) end
-        else
-            print("[FastLoading/packwarm] call failed: " .. tostring(resP))
-        end
-    end
 end
 
 -- OnFETick is the front-end tick (MainScreenState.java:671). OnTickEvenPaused comes from

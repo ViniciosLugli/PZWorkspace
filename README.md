@@ -7,7 +7,7 @@ versions are on the Workshop; these are the sources behind them.
 
 | mod | what it does | workshop |
 |---|---|---|
-| [Lugli_FastLoading](Lugli_FastLoading) | Cuts loading time. 129s to 78s to be in the world on a 300+ mod list, 20s to 13s to the menu on vanilla. | [3787104045](https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045) |
+| [Lugli_FastLoading](Lugli_FastLoading) | Cuts loading time. On a 300+ mod list, 49s to 38s to the menu and 129s to 78s to be in the world. On vanilla, 20s to 13s to the menu. | [3787104045](https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045) |
 
 ## Layout
 

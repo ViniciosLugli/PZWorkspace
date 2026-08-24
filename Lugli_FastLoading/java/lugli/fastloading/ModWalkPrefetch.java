@@ -15,21 +15,11 @@ import zombie.debug.DebugLog;
 import zombie.gameStates.ChooseGameInfo;
 
 /**
- * Walks every mod's file tree in parallel instead of one at a time.
+ * Walks every mod's file tree in parallel instead of one at a time. -Dfastloading.modwalk=off.
  *
- * loadMod is called once per installed mod and walks that mod's common and version trees
- * serially through ZomboidFileSystem.searchFolders. On this list that is 337 mods and 50,209
- * filesystem nodes on the main thread, and it is the bulk of the 2.9 s override-map phase.
- * Directory enumeration is latency-bound, so it parallelises well.
- *
- * Only the WALKING is moved. Everything loadMod does with the result stays untouched in engine
- * hands: the relative-path lowering, the override logging, the activeFileMap insertion and its
- * ordering. The precomputed list is handed back in the exact order a serial walk produced, so
- * activeFileMap ends up identical, which matters because a later entry overwrites an earlier
- * one and that is how mod override precedence works.
- *
- * Self-checking: the first root to be served is also walked serially and the two lists are
- * compared. Any difference disables the prefetch before it has affected anything.
+ * loadMod runs once per installed mod and walks its trees serially, which is tens of thousands of
+ * directory reads on a large list. Only the WALK is parallel: results are published to the engine
+ * in the original order, so mod override precedence is unchanged.
  */
 public final class ModWalkPrefetch {
 

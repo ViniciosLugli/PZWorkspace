@@ -5,14 +5,12 @@ import zombie.core.Core;
 import zombie.debug.DebugLog;
 
 /**
- * Skips the hot-reload file watcher's recursive directory registration, which does nothing in
- * normal play and costs a second full walk of every installed mod tree.
- * -Dfastloading.watchergate=off; -Ddebug=true also disables it.
+ * Skips the hot-reload watcher's recursive directory registration, which does nothing in normal
+ * play and costs a second full walk of every mod tree. -Dfastloading.watchergate=off, and
+ * -Ddebug=true disables it too.
  *
- * The cut is at registerDirRecursive, NOT at init(): skipping init() leaves the `watcher` field
- * null, and getAllModFoldersAux still calls addDirectory on it during loadMods.
- *
- * Rationale, measurements and scope:
+ * Only recognisable media trees are skipped. The messaging folder carries live-toggle files and
+ * must stay watched.
  */
 public final class WatcherGate {
 

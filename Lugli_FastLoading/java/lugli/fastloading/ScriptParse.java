@@ -27,13 +27,8 @@ public final class ScriptParse {
     /** ...at least one of which must be this big, or the check has proved nothing. */
     public static final int VERIFY_CHARS = 100000;
     /**
-     * Hard ceiling on differential checks, whatever else the gate says.
-     *
-     * Without it, "keep going until a large input has been seen" never terminates on a setup
-     * with no script file that big -- a small mod list, or vanilla -- so every call would run
-     * the original as well, doubling parse cost FOR THE WHOLE SESSION. ScriptParser is not only
-     * a boot path: CustomSandboxOptions, SeamFile, SeatingFile, FontsFile and every
-     * exit-to-menu reload go through it too.
+     * Hard ceiling on differential checks. Verifying every call would double the tokenizer's cost,
+     * so the check runs on a sample and stops once the replacement has proved itself.
      */
     public static final int VERIFY_CEILING = 4000;
 
@@ -218,13 +213,7 @@ public final class ScriptParse {
 
     public static boolean weakEvidenceReported;
 
-    /**
-     * Run another differential check?
-     *
-     * Yes while under the call quota, and yes beyond it until a genuinely large input has
-     * been seen -- but never past VERIFY_CEILING, so the cost is bounded on a setup that
-     * simply has no input that big.
-     */
+    // Sample early and often, then taper: a defect shows up on the first few files or not at all.
     public static boolean wantCheck(int checks, int bigSeen, String what) {
         if (checks >= VERIFY_CEILING) {
             if (bigSeen == 0 && !weakEvidenceReported) {

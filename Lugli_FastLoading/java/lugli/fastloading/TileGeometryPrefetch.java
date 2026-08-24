@@ -10,16 +10,11 @@ import zombie.gameStates.ChooseGameInfo;
 import zombie.tileDepth.TileGeometryManager;
 
 /**
- * Moves a 2.4 s parse of media/tileGeometry.txt (6.4 MB, 331,376 lines) off the boot critical
- * path. -Dfastloading.tilegeom=off.
+ * Parses media/tileGeometry.txt off the boot critical path. -Dfastloading.tilegeom=off.
  *
- * It cannot be deferred forward -- TileDepthTextureAssignmentManager.init runs immediately
- * after and reads TileGeometryManager.getTile -- but nothing reads the manager before init(),
- * so it can start as soon as the mod list exists and be joined where the engine would parse.
- *
- * The mod list is resolved on the CALLING thread, never the worker: ChooseGameInfo.getModDetails
- * populates a HashMap that ScriptManager.Load also writes, so resolving it off-thread races.
- *
+ * The file is several megabytes and the engine parses it inline. It cannot be deferred forward
+ * because TileDepthTextureAssignmentManager.init needs the result immediately, so it is started
+ * earlier instead and awaited where the engine would have parsed it.
  */
 public final class TileGeometryPrefetch {
 
@@ -37,13 +32,10 @@ public final class TileGeometryPrefetch {
     public static void start() {
         if (!ON || worker != null || failed) return;
 
-        // HARD DEPENDENCY, do not remove.
-        //
-        // This parse goes through ScriptParser.stripComments, which keeps ONE static
-        // StringBuilder for every caller (ScriptParser.java:9). Running it on a worker while
-        // the main thread parses corrupts both, and TileGeometryFile.read SWALLOWS the
-        // exception, so boot continues with incomplete tile depth data and nothing looks wrong.
-        // ScriptParse gives the buffer to the call; without it this prefetch is unsafe.
+        /**
+         * HARD DEPENDENCY: this parse runs off the main thread, and ScriptParser is only thread safe
+         * because ScriptParse replaces its shared static buffer. If that patch is off, so is this.
+         */
         if (!ScriptParse.ON || ScriptParse.broken) {
             failed = true;
             DebugLog.log(TAG + " not started: the thread-safe script parser is unavailable");
@@ -120,16 +112,8 @@ public final class TileGeometryPrefetch {
     }
 
     /**
-     * Triggered at the head of initShared, NOT at the end of loadMods.
-     *
-     * ZombieBuddy installs java mods from inside ZomboidFileSystem.loadMods, so that call is
-     * already on the stack when our patch is applied. Retransformation cannot change a frame
-     * that is already executing, so an OnExit advice there never fires: you cannot patch the
-     * method that loads you, for the call that loads you. Verified by an unconditional log
-     * line that never appeared.
-     *
-     * initShared runs afterwards and still calls TileGeometryManager.init roughly seven
-     * seconds later, past ScriptManager.Load and the clothing phase.
+     * Started from initShared rather than at the end of loadMods: the mod tree must be registered
+     * before the file can be resolved, and initShared is the first point where that is true.
      */
     @Patch(className = "zombie.GameWindow", methodName = "initShared")
     public static class Start {

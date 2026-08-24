@@ -9,16 +9,11 @@ import zombie.ui.TextManager;
 import zombie.ui.UIFont;
 
 /**
- * Keeps the window alive while boot is loading. -Dfastloading.progress=off.
+ * Keeps the window alive and drawing while boot loads. -Dfastloading.progress=off.
  *
- * GameWindow.DoLoadingText only writes to the log; it draws nothing. So during
- * ScriptManager.Load and LuaManager.LoadDirBase -- about eleven seconds on a large mod list --
- * the engine renders no frames and Windows greys the window as not responding. This draws two
- * frames per turn from inside the per-file Lua loop, throttled, using the same pattern
- * GameWindow.doEpilepsyWarningText uses on the same thread.
- *
- * Failure is contained: any exception disables the display permanently and boot continues.
- *
+ * GameWindow.DoLoadingText only writes to the log, so for the ten-odd seconds of script and Lua
+ * loading the window is frozen and the OS may mark it unresponsive. This pumps messages and draws
+ * the phase name the engine already announced.
  */
 public final class BootProgress {
 
@@ -45,12 +40,8 @@ public final class BootProgress {
     private BootProgress() {}
 
     /**
-     * How long after the engine last announced a loading phase this keeps drawing.
-     *
-     * RunLua is NOT boot-only -- require() and the exit-to-menu reload go through it -- so a
-     * handler with no end condition would draw a loading overlay during play. This follows the
-     * engine's own signal instead: DoLoadingText fires throughout a loading phase and never
-     * during gameplay.
+     * How long after the last announced phase this keeps drawing. A cap, so a missed final phase
+     * cannot leave the overlay up forever.
      */
     public static final long PHASE_IDLE_MS = 30000L;
 

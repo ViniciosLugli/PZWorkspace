@@ -87,14 +87,8 @@ public final class TileDepthLock {
             if (present(textures, name)) {
                 return true;
             }
-            // NO LAMBDA HERE. `computeIfAbsent(name, k -> new Object())` compiles the lambda to a
-            // PRIVATE synthetic method (lambda$enter$0), and this body is inlined into
-            // zombie.tileDepth.TileDepthTextures$LoadTask, which cannot reach it:
-            //   IllegalAccessError: ... tried to access private method
-            //   lugli.fastloading.TileDepthLock.lambda$enter$0
-            // It is invoked through invokedynamic rather than a Method ref, so a checker that
-            // scans member references does not see it either. Never use a lambda, method
-            // reference, or anonymous class inside an advice body.
+            // NO LAMBDA HERE. A lambda compiles to a private synthetic method, and advice bodies are
+            // inlined into the engine class, which cannot reach it: IllegalAccessError at runtime.
             Object lock = LOCKS.get(name);
             if (lock == null) {
                 Object fresh = new Object();

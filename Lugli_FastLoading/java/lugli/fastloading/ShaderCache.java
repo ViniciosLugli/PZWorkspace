@@ -7,15 +7,11 @@ import zombie.core.skinnedmodel.model.Model;
 import zombie.core.skinnedmodel.shader.Shader;
 
 /**
- * Model.CreateShader hops to the render thread and blocks for about a frame even when the
- * shader is already compiled; loadAnimalDefinitions did that ~894 times. A cache hit needs no
- * GL context. 29.6 s -> 2.7 s. -Dfastloading.shadercache=off restores the blocking hop.
+ * Caches compiled model shaders. -Dfastloading.shadercache=off.
  *
- * The recording half keeps warming the cache even when the fast path is off, so switching back
- * on mid-session is not a cold start.
- *
- * for a GL-upload-queue mechanism
- * that was blamed on this patch and does NOT exist.
+ * Model.CreateShader hops to the render thread and blocks for about a frame even when the shader
+ * is already compiled, and animal definitions alone do that hundreds of times. A cache hit needs
+ * no GL context, so it can answer on the calling thread.
  */
 public class ShaderCache {
 

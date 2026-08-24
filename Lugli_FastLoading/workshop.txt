@@ -2,7 +2,7 @@ version=1
 title=Lugli - Fast Loading
 description=Project Zomboid does a lot of loading work it does not need to do. This finds that work in the engine and removes it. Your loot, your items and your world are unchanged, and they are fingerprinted on every build to prove it.
 description=
-description=[b]300+ mods: 129s to 78s to be in the world (-40%).[/b]
+description=[b]300+ mods: 49s to 38s to the main menu, 129s to 78s to be in the world (-40%).[/b]
 description=[b]Vanilla: 20s to 13s to the main menu (-37%).[/b]
 description=
 description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_FastLoading/art/loading-300mods.gif[/img]
@@ -52,7 +52,7 @@ description=[b]Is it safe with my mod list?[/b]
 description=It changes when work happens, not what comes out. The item database, the loot tables and the tilesets are hashed on every build and must match an unpatched run or the build fails. Where engine code is replaced, the replacement runs against the original and switches itself off if the two ever disagree.
 description=
 description=[b]Something looks wrong and I want to rule this mod out.[/b]
-description=Add [i]-Dfastloading.logo=keep -Dfastloading.assets=off[/i] to [b]vmArgs[/b] to disable the two largest parts. The GitHub page lists all 23 switches. If that fixes it, please open an issue.
+description=Add [i]-Dfastloading.logo=keep -Dfastloading.assets=off[/i] to [b]vmArgs[/b] to disable the two largest parts. The GitHub page lists every switch. If that fixes it, please open an issue.
 description=
 description=[hr][/hr]
 description=Open source under MIT. Issues and pull requests welcome: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_FastLoading]github.com/ViniciosLugli/PZWorkspace[/url]

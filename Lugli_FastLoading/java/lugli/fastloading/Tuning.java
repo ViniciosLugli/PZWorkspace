@@ -69,38 +69,4 @@ public final class Tuning {
         return p.endsWith("/media") || p.contains("/media/");
     }
 
-    /**
-     * Is this asset one of the textures the FIRST drawn frame needs?
-     *
-     * GameWindow.java:185-191 loads exactly seven packs, then calls
-     * MainScreenState.preloadBackgroundTextures() at :195. Those, plus loose files under
-     * media/ui/, are what the menu draws before anything else exists. Everything else -- the
-     * world packs at :639-647 especially -- must NOT match: promoting those would just move the
-     * whole texture block up and undo the mesh ordering.
-     *
-     * ONE ARGUMENT, BECAUSE THE PATH ALREADY CARRIES THE PACK NAME. Texture.java:130 builds a
-     * pack TextureID's path as "@pack@/<packName>/<pageName>", and Asset.getPath() is public --
-     * so there is no need to reach for TextureID.assetParams.subTexture, which is
-     * package-private in zombie.core.textures and therefore unreachable from this package even
-     * though the inlined advice would be allowed to read it. Texture.java:508 uses the "@pack/"
-     * spelling for the Texture-level asset, so both prefixes are accepted.
-     *
-     * Lives here, free of zombie.* imports, so the build can unit-test it.
-     */
-    public static boolean isFirstFrameUiAsset(String path) {
-        if (path == null || path.isEmpty()) return false;
-        // Same both-separators rule as isSkippableWatchRoot: engine paths arrive mixed.
-        String p = path.replace('\\', '/').toLowerCase(java.util.Locale.ENGLISH);
-        int from = -1;
-        if (p.startsWith("@pack@/")) from = 7;
-        else if (p.startsWith("@pack/")) from = 6;
-        if (from >= 0) {
-            int end = p.indexOf('/', from);
-            String pack = end < 0 ? p.substring(from) : p.substring(from, end);
-            return pack.equals("ui") || pack.equals("ui2") || pack.equals("iconsmoveables")
-                || pack.equals("radioicons") || pack.equals("apcomui")
-                || pack.equals("mechanics") || pack.equals("weatherfx");
-        }
-        return p.startsWith("media/ui/") || p.contains("/media/ui/");
-    }
 }
