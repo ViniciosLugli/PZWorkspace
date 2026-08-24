@@ -26,10 +26,9 @@ The Java parts use [ZombieBuddy](https://steamcommunity.com/sharedfiles/filedeta
 for bytecode patching. Without it those parts skip themselves and the Lua ones still work, so the
 mods degrade rather than break.
 
-Jars are shipped **unsigned** for now. ZombieBuddy verifies a signature by fetching the author's
-Steam profile page on every launch when the author is not on its bundled list, and any failed
-request refuses the mod outright with no way to approve it. Unsigned takes a different branch and
-gives the user a normal one-time prompt instead. See the FastLoading README for the detail.
+Jars are signed. ZombieBuddy verifies a signature against the key published on the author's Steam
+profile, fetched on every launch, so a failed request to Steam can refuse a mod that is perfectly
+valid. See the FastLoading README for what that looks like and how to work around it.
 
 ## Licence
 

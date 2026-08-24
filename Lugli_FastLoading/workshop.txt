@@ -32,13 +32,13 @@ description=[b]Measurements, engine analysis and the full switch list:[/b] [url=
 description=
 description=[hr][/hr]
 description=[h1]FAQ[/h1]
-description=[b]ZombieBuddy says the mod is not signed, or asks me to approve it.[/b]
+description=[b]ZombieBuddy asks me to approve a Java mod.[/b]
 description=That is expected. Approve it and enable the mod. ZombieBuddy never runs Java code you have not agreed to, and it only asks once.
 description=
-description=Signing is off on purpose right now. ZombieBuddy checks a signature by fetching the author's Steam profile page on every launch, and I am not yet on its built-in author list. If Steam does not answer (rate limit, outage, VPN, blocked connection) the check fails and the mod is refused outright, with no way to approve it. Unsigned means you always get a normal prompt you can accept. It goes back to signed once the ZombieBuddy author adds me to the list.
+description=[b]It says "Cannot trust author: signature is invalid".[/b]
+description=That message is about reaching Steam, not about the file. The jar is signed, and ZombieBuddy checks the signature by loading my Steam profile page to read the key published there, on every launch. If Steam answers with anything else (rate limit, outage, VPN, blocked connection) the check fails closed and you get that wording. Restarting the game a few minutes later usually clears it.
 description=
-description=[b]It still will not enable, or it says the signature is invalid.[/b]
-description=Turn the signature check off. Open [i]ProjectZomboid64.json[/i] in your game folder and change its ZombieBuddy entry in the [b]vmArgs[/b] list to:
+description=If it keeps happening, tell ZombieBuddy to skip the check. Open [i]ProjectZomboid64.json[/i] in your game folder and change its ZombieBuddy entry in the [b]vmArgs[/b] list to:
 description=[code]-agentlib:zbNative=policy=allow-all[/code]
 description=Steam replaces that file when it updates the game, so you may need to redo it. This turns the check off for [i]every[/i] Java mod, not only this one.
 description=

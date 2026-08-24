@@ -4,7 +4,9 @@ Project Zomboid B42 does a lot of loading work it does not need to do. This mod 
 in the engine and removes it. The item database, the loot tables and the tilesets are fingerprinted
 on every build and must match an unpatched run, or the build fails.
 
-![Launch to playing, vanilla and 300+ mods, with and without Fast Loading](art/proof-race.gif)
+![Launch to playing on a 300+ mod list, with and without Fast Loading](art/proof-race.gif)
+
+*Real time at 40x, boot and world load shown separately. Vanilla is in the table below.*
 
 | | without | with | delta |
 |---|---|---|---|
@@ -82,18 +84,23 @@ any disagreement, reporting it on the main menu.
 
 ## Signing
 
-**The released jar is unsigned on purpose.** ZombieBuddy looks a signer's key up in its bundled
-`authors.json`, and for an author who is not listed it falls back to fetching that author's Steam
-profile page and scraping the key out of it, on every launch, for every user. Any answer other
-than the page (rate limit, outage, VPN, blocked connection) throws, and the dialog then refuses
-the mod with no approve button: `Cannot trust author: signature is invalid.`
+The jar is signed. ZombieBuddy verifies it by looking the signer's key up in its bundled
+`authors.json` and, for an author who is not listed, falling back to fetching that author's Steam
+profile page and reading the key published there. That happens on every launch, for every user.
 
-With no `.zbs` sidecar, `ZBSVerifier.check` takes the `allowUnsignedMods` branch instead, which
-defaults to true, and the user gets a normal one-time prompt they can accept. Until the
-ZombieBuddy author adds this key to the shared list, unsigned is the better trade for players.
+That fallback is the one weak point. Any answer other than the page (rate limit, outage, VPN,
+blocked connection) throws, and the dialog then refuses the mod with no approve button:
+`Cannot trust author: signature is invalid.` It is a failed web request, not a bad file.
+`tools/sign-jars.sh` verifies every signature it produces, and the published jar verifies
+against the key on the profile.
 
-If a user still cannot enable it, `-agentlib:zbNative=policy=allow-all` in the `vmArgs` list of
-`ProjectZomboid64.json` skips the check for every Java mod, not just this one.
+Users hitting it can restart a few minutes later, or set
+`-agentlib:zbNative=policy=allow-all` in the `vmArgs` list of `ProjectZomboid64.json` to skip the
+check for every Java mod. The permanent fix is being added to ZombieBuddy's bundled author list,
+which removes the network from the path entirely.
+
+`tools/sign-jars.sh` signs and verifies; `--unsigned` ships without a sidecar instead, which
+takes ZombieBuddy's `allowUnsignedMods` branch and always yields an approvable prompt.
 
 ## Switches
 
