@@ -17,6 +17,9 @@ on every build and must match an unpatched run, or the build fails.
 Build 42.20.3, same machine, same save, 5 s wait at the menu, arms interleaved, every run checked
 against its own log, and a stock engine with no local-only patches. Bands: 19.9-26.1 to 12.5-13.0,
 46.8-46.9 to 33.6-36.0, and 127.8-127.9 to 83.6-86.8.
+There is no vanilla launch-to-playing row because it has not been measured. The harness cannot
+load a pinned world on a mod-free profile, and the modded save cannot be opened without its mods,
+so the honest options were an unmeasured number or none. Vanilla boot above is measured.
 
 [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045).
 Needs [ZombieBuddy](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853) for the
