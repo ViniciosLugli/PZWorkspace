@@ -106,10 +106,10 @@ public class AssetThrottle {
             name = "FastLoading_MenuBeat", global = true)
     public static String menuBeat() {
         lastMenuBeat = System.currentTimeMillis();
-        // The front end ticking IS the definition of boot being over, so retire the loading
-        // screen here rather than waiting for its idle timer. Otherwise it can repaint over a
-        // menu that is already drawing itself.
-        BootProgress.off = true;
+        // Backstop only. BootProgress.retire() on MainScreenState.enter is the real off-switch;
+        // this used to be the ONLY one, which meant a jar preloaded without the mod's Lua never
+        // retired the screen at all.
+        BootProgress.retire();
         return "ok";
     }
 

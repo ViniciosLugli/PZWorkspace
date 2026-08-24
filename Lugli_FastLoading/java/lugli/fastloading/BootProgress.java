@@ -44,9 +44,10 @@ public final class BootProgress {
     public static final long INTERVAL_MS = Long.getLong("fastloading.progressms", 80L);
 
     /**
-     * Safety net only, for a boot that dies or never announces its last phase. The screen
-     * normally retires when the front end starts ticking, via AssetThrottle.menuBeat. A short
-     * value here is a bug: single phases legitimately run for tens of seconds.
+     * Safety net only, for a boot that dies before reaching the menu. retire() is the real end
+     * condition. This was once the only bound, and 120 s of it covered the whole menu dwell and
+     * the world load after it. A short value here is still a bug: single phases legitimately run
+     * for tens of seconds.
      */
     public static final long PHASE_IDLE_MS = Long.getLong("fastloading.progressidle", 120000L);
 
@@ -103,7 +104,10 @@ public final class BootProgress {
 
     /** Latches what the engine announced and advances the phase model. */
     public static void note(String text) {
-        if (text == null || text.isEmpty()) {
+        // Retired means retired: never re-stamp the clock afterwards. Core.ResetLua re-fires
+        // DoLoadingText("UI_Loading_Texturepack", ...) once per pack, and MainScreen.lua:1237
+        // calls ResetLua ON THE CONTINUE PATH when the save's mods require it.
+        if (off || text == null || text.isEmpty()) {
             return;
         }
         long now = System.currentTimeMillis();
@@ -168,11 +172,46 @@ public final class BootProgress {
         drawCount++;
     }
 
+    /**
+     * Retires the screen for the rest of the session, once the main menu exists.
+     *
+     * THE PRIMARY OFF-SWITCH, DELIBERATELY IN JAVA. It used to be AssetThrottle.menuBeat, reached
+     * only from FastLoading_MenuGate.lua, so a jar loaded WITHOUT the mod's Lua (ZombieBuddy
+     * preload, which is how both proof harnesses run the "+" arm) never retired it: it painted
+     * over the menu and the world load until the 120 s idle timer expired. An off-switch must not
+     * live in a file the thing it switches off can ship without.
+     *
+     * One-way on purpose. Exit-to-menu is a real reload, but the phase model is exhausted by then
+     * and would redisplay "Starting up 7/7 98%", so that reload keeps vanilla's frozen window.
+     */
+    public static void retire() {
+        if (off) {
+            return;
+        }
+        off = true;
+        DebugLog.log(TAG + " retired at the main menu");
+    }
+
+    /** Read after the cheap flag checks, so the retired case costs one volatile read. */
+    public static boolean stateAllowsPaint() {
+        try {
+            zombie.gameStates.GameStateMachine sm = zombie.GameWindow.states;
+            if (sm == null) {
+                return true;
+            }
+            zombie.gameStates.GameState cur = sm.current;
+            return BootScreenGate.paintAllowed(cur == null ? null : cur.getClass().getName());
+        } catch (Throwable t) {
+            return false;      // cannot tell where we are: do not paint over it
+        }
+    }
+
     public static void tick() {
         if (!ON || off) return;
         long now = System.currentTimeMillis();
         if (lastPhaseAt == 0L || now - lastPhaseAt > PHASE_IDLE_MS) return;
         if (now - lastFrame < INTERVAL_MS) return;
+        if (!stateAllowsPaint()) return;
         lastFrame = now;
         pumpAssets(now);
         try {
@@ -221,6 +260,12 @@ public final class BootProgress {
         }
         long now = System.currentTimeMillis();
         if (now - lastPhaseAt > PHASE_IDLE_MS) {
+            return;
+        }
+        // The path that painted over the world-loading screen. Core.EndFrameUI is an OnEnter
+        // hook, so body()'s opaque full-screen rect lands AFTER GameLoadingState drew its own
+        // frame (EndFrameUI at GameLoadingState.java:579-860, LoadingQueueState:65) and erases it.
+        if (!stateAllowsPaint()) {
             return;
         }
         lastFrame = now;
@@ -382,7 +427,15 @@ public final class BootProgress {
         }
     }
 
-    /** MainScreenState.enter builds the whole front end with nothing painting; hold the screen. */
+    /**
+     * MainScreenState.enter builds the front end with nothing painting: hold the screen across
+     * it, retire on the way out.
+     *
+     * OnExit is the seam, and the choice matters. When enter() returns the menu exists and is
+     * about to render itself. MainScreenState.exit would be far too late: it does not fire until
+     * the player LEAVES the menu, which is the whole window the overlay used to sit on top of a
+     * live, clickable one.
+     */
     @Patch(className = "zombie.gameStates.MainScreenState", methodName = "enter")
     public static class MenuHandover {
         @Patch.OnEnter
@@ -390,6 +443,11 @@ public final class BootProgress {
             BootProgress.note("__final__");
             BootProgress.forceDraw();
             BootProgress.report();
+        }
+
+        @Patch.OnExit
+        public static void exit() {
+            BootProgress.retire();
         }
     }
 
