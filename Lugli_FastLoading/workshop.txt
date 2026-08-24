@@ -1,11 +1,14 @@
 version=1
 title=Lugli - Fast Loading
-description=Project Zomboid spends most of its loading time on work it does not need to do. This finds that work in the engine and removes it. Your loot, your items and your world are unchanged - they are fingerprinted on every build and proven identical to an unpatched game.
+description=Project Zomboid does a lot of loading work it does not need to do. This finds that work in the engine and removes it. Your loot, your items and your world are unchanged, and they are fingerprinted on every build to prove it.
 description=
 description=[b]300+ mods: 129s to 78s to be in the world (-40%).[/b]
 description=[b]Vanilla: 20s to 13s to the main menu (-37%).[/b]
 description=
-description=Build 42.20.3, same machine, same save, 12 launches with the arms interleaved. It scales with your mod count, not your map size - most of what it removes is per-mod work, so the bigger your list the more you get back.
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_FastLoading/art/proof-race.gif[/img]
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_FastLoading/art/proof-chart.png[/img]
+description=
+description=Build 42.20.3, same machine, same save, 12 launches with the arms interleaved. It scales with your mod count, not your map size, so the bigger your list the more you get back.
 description=
 description=[hr][/hr]
 description=[h1]Needs [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853]ZombieBuddy[/url][/h1]
@@ -16,40 +19,40 @@ description=[h1]What it does[/h1]
 description=[list]
 description=[*]Skips the intro logos, which the game plays [i]after[/i] loading has already finished
 description=[*]Walks your mod folders on 8 threads instead of one, without changing override order
-description=[*]Stops the script and Lua loaders repeating per file what only needs doing once per folder
-description=[*]Decodes textures, tilesets and shaders in parallel instead of behind a single lock, and sizes the texture buffer to your machine instead of a hardcoded 50MB
+description=[*]Stops the script and Lua loaders doing per file what only needs doing per folder
+description=[*]Decodes textures, tilesets and shaders in parallel instead of behind one lock, and sizes the texture buffer to your machine instead of a hardcoded 50MB
 description=[*]Loads vehicle textures while you sit at the menu instead of while you wait to spawn
-description=[*]Builds the loot table once, after every mod has added to it, instead of once per mod that asks
+description=[*]Builds the loot table once, after every mod has added to it, instead of once per mod
 description=[*]Draws a progress bar on the loading screen the game otherwise leaves frozen
 description=[/list]
 description=
-description=Every part can be switched off on its own, and any part that cannot enable itself says so on the main menu rather than failing quietly.
+description=Every part can be switched off on its own, and any part that cannot enable itself says so on the main menu.
 description=
-description=[b]The measurements, the engine analysis and the full switch list are on GitHub:[/b] [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_FastLoading]github.com/ViniciosLugli/PZWorkspace[/url]
+description=[b]Measurements, engine analysis and the full switch list:[/b] [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_FastLoading]github.com/ViniciosLugli/PZWorkspace[/url]
 description=
 description=[hr][/hr]
 description=[h1]FAQ[/h1]
 description=[b]ZombieBuddy says the mod is not signed, or asks me to approve it.[/b]
-description=Expected - approve it and enable the mod. ZombieBuddy never runs Java code you have not agreed to, and it only asks once.
+description=That is expected. Approve it and enable the mod. ZombieBuddy never runs Java code you have not agreed to, and it only asks once.
 description=
-description=Signing is switched off on purpose right now. ZombieBuddy verifies a signature by fetching the author's Steam profile page on every launch, and I am not yet on its built-in author list. If Steam does not answer that request - rate limit, outage, VPN, blocked connection - the check fails and the mod is refused outright, with no way to approve it. Unsigned means you always get a normal prompt you can accept instead. It goes back to being signed once the ZombieBuddy author adds me to the list.
+description=Signing is off on purpose right now. ZombieBuddy checks a signature by fetching the author's Steam profile page on every launch, and I am not yet on its built-in author list. If Steam does not answer (rate limit, outage, VPN, blocked connection) the check fails and the mod is refused outright, with no way to approve it. Unsigned means you always get a normal prompt you can accept. It goes back to signed once the ZombieBuddy author adds me to the list.
 description=
 description=[b]It still will not enable, or it says the signature is invalid.[/b]
-description=Turn ZombieBuddy's signature check off. Open [i]ProjectZomboid64.json[/i] in your game folder and change its ZombieBuddy entry in the [b]vmArgs[/b] list to:
+description=Turn the signature check off. Open [i]ProjectZomboid64.json[/i] in your game folder and change its ZombieBuddy entry in the [b]vmArgs[/b] list to:
 description=[code]-agentlib:zbNative=policy=allow-all[/code]
-description=Steam replaces that file when it updates the game, so you may need to redo it after an update. This turns the check off for [i]every[/i] Java mod you have, not only this one.
+description=Steam replaces that file when it updates the game, so you may need to redo it. This turns the check off for [i]every[/i] Java mod, not only this one.
 description=
 description=[b]Do I need it on a dedicated server?[/b]
-description=Only for the loot fixes. The Java half does not load on a server at all, so the boot and texture work is client-side and every player gets it from their own install. Put it in the server mod list if you want the loot fixes for everyone; leaving it out costs nothing else, and players still get the full speed-up on their own machine.
+description=Only for the loot fixes. The Java half does not load on a server at all, so the boot and texture work is client side and each player gets it from their own install. Add it to the server mod list if you want the loot fixes for everyone. Leaving it out costs nothing else.
 description=
 description=[b]Can I add or remove it mid-save?[/b]
 description=Yes. It writes nothing into your save and nothing into your game folder.
 description=
 description=[b]Is it safe with my mod list?[/b]
-description=It changes when work happens, not what comes out. The item database, the loot tables and the tilesets are hashed on every build and must match an unpatched run or the build fails. Where engine code is replaced, the replacement is run against the original and switches itself off if the two ever disagree.
+description=It changes when work happens, not what comes out. The item database, the loot tables and the tilesets are hashed on every build and must match an unpatched run or the build fails. Where engine code is replaced, the replacement runs against the original and switches itself off if the two ever disagree.
 description=
 description=[b]Something looks wrong and I want to rule this mod out.[/b]
-description=Add [i]-Dfastloading.logo=keep -Dfastloading.assets=off[/i] to [b]vmArgs[/b] to disable the two largest parts, or see the GitHub README for all 23 switches. If that fixes it, please open an issue.
+description=Add [i]-Dfastloading.logo=keep -Dfastloading.assets=off[/i] to [b]vmArgs[/b] to disable the two largest parts. The GitHub page lists all 23 switches. If that fixes it, please open an issue.
 description=
 description=[hr][/hr]
 description=Open source under MIT. Issues and pull requests welcome: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_FastLoading]github.com/ViniciosLugli/PZWorkspace[/url]
