@@ -11,15 +11,12 @@ on every build and must match an unpatched run, or the build fails.
 | | without | with | delta |
 |---|---|---|---|
 | Vanilla, launch to main menu | 20.3 s | 12.8 s | **-37 %** |
-| 300+ mods, launch to main menu | 49.2 s | 37.9 s | **-23 %** |
-| 300+ mods, launch to playing | 129.2 s | 77.9 s | **-40 %** |
+| 300+ mods, launch to main menu | 46.8 s | 35.1 s | **-25 %** |
+| 300+ mods, launch to playing | 127.8 s | 85.5 s | **-33 %** |
 
-Build 42.20.3, same machine, same save, 5 s wait at the menu. 12 launches, arms interleaved,
-each run checked against its own log. Bands: 19.9-26.1 to 12.5-13.0, 48.3-49.9 to 37.2-38.0,
-and 128.3-130.2 to 76.9-78.0.
-
-Vanilla launch-to-playing is not listed because it is not measured: a mod-free profile cannot
-load a pinned world through the benchmark harness, so there is no honest number for that cell.
+Build 42.20.3, same machine, same save, 5 s wait at the menu, arms interleaved, every run checked
+against its own log, and a stock engine with no local-only patches. Bands: 19.9-26.1 to 12.5-13.0,
+46.8-46.9 to 33.6-36.0, and 127.8-127.9 to 83.6-86.8.
 
 [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045).
 Needs [ZombieBuddy](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853) for the
