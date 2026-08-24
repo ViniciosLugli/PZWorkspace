@@ -9,7 +9,9 @@ description=
 description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_FastLoading/art/loading-300mods.gif[/img]
 description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_FastLoading/art/loading-summary.png[/img]
 description=
-description=For Build 42.20 and later. Measured on 42.20.3: same machine, same save, 12 launches with the arms interleaved. It scales with your mod count, not your map size, so the bigger your list the more you get back.
+description=For Build 42.20 and later. Measured on 42.20.3: same machine, same save, arms interleaved, every run checked against its own log. It scales with your mod count, not your map size, so the bigger your list the more you get back.
+description=
+description=[b]Still in progress.[/b] Only stable versions get published here, but treat the numbers above as a snapshot rather than a promise: they move between releases. Safety comes first every time. Where a change is faster but riskier for the base game or for other mods, I take the slower option, and anything that cannot verify itself disables itself instead of guessing. So expect the gains to vary, and occasionally to shrink, when that is the safer call.
 description=
 description=[hr][/hr]
 description=[h1]Needs [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853]ZombieBuddy[/url][/h1]
