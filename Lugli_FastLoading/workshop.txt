@@ -2,13 +2,14 @@ version=1
 title=Lugli - Fast Loading
 description=Project Zomboid does a lot of loading work it does not need to do. This finds that work in the engine and removes it. Your loot, your items and your world are unchanged, and they are fingerprinted on every build to prove it.
 description=
-description=[b]300+ mods: 49s to 38s to the main menu, 129s to 78s to be in the world (-40%).[/b]
+description=[b]300+ mods: 129s to 78s to be in the world (-40%).[/b]
+description=[b]300+ mods: 49s to 38s to the main menu (-23%).[/b]
 description=[b]Vanilla: 20s to 13s to the main menu (-37%).[/b]
 description=
 description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_FastLoading/art/loading-300mods.gif[/img]
 description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_FastLoading/art/loading-summary.png[/img]
 description=
-description=Build 42.20.3, same machine, same save, 12 launches with the arms interleaved. It scales with your mod count, not your map size, so the bigger your list the more you get back.
+description=For Build 42.20 and later. Measured on 42.20.3: same machine, same save, 12 launches with the arms interleaved. It scales with your mod count, not your map size, so the bigger your list the more you get back.
 description=
 description=[hr][/hr]
 description=[h1]Needs [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853]ZombieBuddy[/url][/h1]
@@ -23,6 +24,9 @@ description=[*]Stops the script and Lua loaders doing per file what only needs d
 description=[*]Decodes textures, tilesets and shaders in parallel instead of behind one lock, and sizes the texture buffer to your machine instead of a hardcoded 50MB
 description=[*]Loads vehicle textures while you sit at the menu instead of while you wait to spawn
 description=[*]Builds the loot table once, after every mod has added to it, instead of once per mod
+description=[*]Indexes the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3722064198]SWMG Gunworks[/url] loot insert, 78s down to 8s, if you run that mod
+description=[*]Parses tile geometry off the loading thread, and fixes a tokenizer that re-copied each script file per item
+description=[*]Skips a hot-reload file watcher that does nothing outside debug mode
 description=[*]Draws a progress bar on the loading screen the game otherwise leaves frozen
 description=[/list]
 description=
