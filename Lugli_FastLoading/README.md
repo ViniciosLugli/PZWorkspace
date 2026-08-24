@@ -83,6 +83,8 @@ The loader phases are the bottleneck now, not the asset pipeline.
 | Buffer budget from your heap, pool from your cores | A hardcoded 50 MB and 4 threads |
 | Loot table parsed once, after every mod has added | Once per mod that asks, about 9 times |
 | SWMG Gunworks loot insert indexed | 78.3 s down to 8.1 s, if you run that mod |
+| A real loading screen: bar, phase, elapsed, walking figure | A blank window the OS can mark unresponsive |
+| Options screen opens without waiting on the render thread | Blocking round-trips behind every queued texture upload |
 
 Where engine code is replaced, the replacement runs against the original and disables itself on
 any disagreement, reporting it on the main menu.
@@ -107,6 +109,29 @@ which removes the network from the path entirely.
 `tools/sign-jars.sh` signs and verifies; `--unsigned` ships without a sidecar instead, which
 takes ZombieBuddy's `allowUnsignedMods` branch and always yields an approvable prompt.
 
+## The loading screen
+
+Vanilla writes its loading phases to the log and leaves the window blank, so a long boot looks
+frozen and the OS can mark the game unresponsive. This mod draws a real one instead: a progress
+bar, the phase name, elapsed time, and the same walking figure the world-loading screen uses.
+
+The bar is **learned, not counted**. The engine's phases are wildly uneven, so "step 3 of 7"
+would sit still for twenty seconds and then jump. Each phase's duration is written to
+`Zomboid/fastloading-boot.txt` and reused next launch, so the second boot onwards moves at a rate
+that matches your machine. It is also monotonic by construction, because texture packs are
+announced throughout boot and a bar that can retreat is worse than none.
+
+Two things worth knowing before you install:
+
+- The figure is fetched with the same call the world-loading screen uses, so a mod that replaces
+  that art is picked up here too. Set `-Dfastloading.walktexture=PATH` to point it elsewhere.
+- The engine's photosensitivity notice is **not shown by default**. It normally occupies the
+  screen for the whole Lua phase, which conflicts with a live loading screen. Set
+  `-Dfastloading.warningms=5000` to show it on the loading screen for five seconds, or
+  `-Dfastloading.warningms=-1` to leave the engine's own frame exactly as it is.
+
+Turn the whole thing off with `-Dfastloading.progress=off` and boot looks like vanilla.
+
 ## Switches
 
 JVM system properties, so they go in the `vmArgs` list inside `ProjectZomboid64.json` in the game
@@ -123,12 +148,29 @@ folder, not Steam launch options, which never reach the JVM. Steam replaces that
 | `-Dfastloading.assets=off` | on | use the engine's 50 MB cap and 4 asset threads |
 | `-Dfastloading.assetbudget=N` | auto (`heap/2`, max 2048) | direct-buffer megabytes before a worker sleeps |
 | `-Dfastloading.assetpoll=N` | 20 | milliseconds between budget re-checks |
+| `-Dfastloading.assetcache=N` | 20 | milliseconds a live-buffer reading stays reusable |
+| `-Dfastloading.assetprio=N` | 0 | asset worker thread priority, 1-10; 0 leaves the JVM default |
+| `-Dfastloading.uploadcap=N` | 0 | how far the render thread may fall behind on uploads while the menu is up; 0 = no limit |
 | `-Dfastloading.assetstats=on` | off | log the gate counters while they move |
 | `-Dfastloading.assetstatsms=N` | 5000 | milliseconds between those lines |
+| `-Dfastloading.demandprio=off` | on | queue textures the player just asked for behind background ones |
+| `-Dfastloading.demandband=N` | 9 | priority for a texture requested while the menu is up |
+| `-Dfastloading.bulkband=N` | 3 | priority for the vehicle warm's textures |
+| `-Dfastloading.demandwindow=N` | 2000 | milliseconds background asset work stands down after a demand request |
+| `-Dfastloading.querycache=off` | on | ask the render thread again for a capability answer that cannot change |
 | `-Dfastloading.shadercache=off` | on | recompile model shaders every load |
 | `-Dfastloading.tiledepth=off` | on | decode depth tilesets inside the global lock |
 | `-Dfastloading.vehtex=off` | on | load vehicle textures during world load |
-| `-Dfastloading.progress=off` | on | no loading progress bar |
+| `-Dfastloading.vehtexslice=N` | 8 | vehicle scripts warmed per slice |
+| `-Dfastloading.vehtexinterval=N` | 100 | milliseconds between warm slices |
+| `-Dfastloading.vehtexquiet=N` | 96 | pending asset tasks below which the warm may run |
+| `-Dfastloading.progress=off` | on | no loading screen |
+| `-Dfastloading.progressms=N` | 80 | milliseconds between loading-screen frames |
+| `-Dfastloading.progressidle=N` | 120000 | safety cap: stop drawing this long after the last phase |
+| `-Dfastloading.warningms=N` | 0 | photosensitivity notice: 0 hides it, >0 shows it for N ms, -1 lets the engine draw its own |
+| `-Dfastloading.walktexture=PATH` | media/ui/Progress/MaleWalk2.png | the animation on the loading screen |
+| `-Dfastloading.artpumpms=N` | 300 | milliseconds between the bounded pumps that fetch the loading art |
+| `-Dfastloading.artpumpwindow=N` | 8000 | milliseconds into boot after which those pumps stop |
 | `-Dfastloading.logstat=off` | on | check the log file size on every written line |
 | `-Dfastloading.luaindex=off` | on | use the engine's linear scan of loaded Lua files |
 | `-Dfastloading.gunidx=off` | on | search the Gunworks tables per insert instead of indexing |

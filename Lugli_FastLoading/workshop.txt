@@ -27,10 +27,12 @@ description=[*]Builds the loot table once, after every mod has added to it, inst
 description=[*]Indexes the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3722064198]SWMG Gunworks[/url] loot insert, 78s down to 8s, if you run that mod
 description=[*]Parses tile geometry off the loading thread, and fixes a tokenizer that re-copied each script file per item
 description=[*]Skips a hot-reload file watcher that does nothing outside debug mode
-description=[*]Draws a progress bar on the loading screen the game otherwise leaves frozen
+description=[*]Replaces the blank loading screen with a real one: progress bar, phase name, elapsed time and the walking figure from the world-loading screen
 description=[/list]
 description=
 description=Every part can be switched off on its own, and any part that cannot enable itself says so on the main menu.
+description=
+description=[b]The loading screen looks different.[/b] That is this mod, not a bug. -Dfastloading.progress=off restores the vanilla blank screen. The game's photosensitivity notice is hidden by default because it occupies the screen for most of boot; -Dfastloading.warningms=-1 puts it back exactly as vanilla shows it.
 description=
 description=[b]Measurements, engine analysis and the full switch list:[/b] [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_FastLoading]github.com/ViniciosLugli/PZWorkspace[/url]
 description=
