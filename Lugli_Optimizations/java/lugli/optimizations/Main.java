@@ -12,20 +12,15 @@ package lugli.optimizations;
  *   - it carries a runtime self-test and DISARMS ITSELF rather than risk a visual defect;
  *   - it reports whether its advice actually installed -- see PatchAudit.
  *
- * DEFAULTS, stated exactly. This header once claimed "everything is ON" and that was false for
- * two of five parts, which is how `roomindex` sat inert for weeks while the mod claimed to work.
- * A part that is OFF has not earned ON yet.
+ * DEFAULTS. A part that is OFF has not earned ON yet.
  *
  *   windgate    fast     ON   -- the headline part
- *   zextents    fast     ON   -- exact and self-verifying. Same answer, far less work, and
- *                              two orders of magnitude under the noise floor. Never quote it
- *   roomindex   fast     ON   -- the same shape. Never quote it
- *   uistagger   off      OFF  -- real on its own metric, but frame-time bands overlap
- *   chunklua    observe  OFF  -- counts and stands aside. `spread` is lossless but costs the
- *                                mean (p50 +5.7 %, p90 +7.4 %)
+ *   zextents    fast     ON   -- exact and self-verifying, but far under the noise floor
+ *   roomindex   fast     ON   -- the same shape
+ *   uistagger   off      OFF  -- real on its own metric, but the frame-time bands overlap
+ *   chunklua    observe  OFF  -- lossless, but `spread` costs the mean (p50 +5.7 %, p90 +7.4 %)
  *
- * The measured result and the conditions attached to it live in the mod's README, not here. A
- * javadoc that carries campaign history goes stale silently.
+ * Measured results and the conditions attached to them live in the README, not here.
  *
  * Nothing here may touch zombie.* at premain: the game classes are on the classpath but not
  * initialised, so loading one early can change static-initialiser order.

@@ -32,7 +32,7 @@ import zombie.iso.IsoWorld;
  *   event once per non-empty square (IsoChunk.java:3802-3837) to every registered handler.
  *
  * WHY NOT CAP THE CHUNK DRAIN
- *   Tried and REJECTED -- see src/Dev/lugli/dev/ChunkBudget.java. Deferring the chunk itself
+ *   Tried and REJECTED. Deferring the chunk itself
  *   decouples `chunk.loaded` from vehicle streaming and produces
  *   NullPointerException: Cannot read field "vehicles" because "this.chunk" is null.
  *   The queue's drain RATE is an invariant other systems depend on.

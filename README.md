@@ -8,7 +8,7 @@ versions are on the Workshop; these are the sources behind them.
 | mod | what it does | workshop |
 |---|---|---|
 | [Lugli_FastLoading](Lugli_FastLoading) | Cuts loading time. On a 300+ mod list, 47s to 32s to the menu and 130s to 90s to be in the world. On vanilla, 37s to 27s to be in the world. | [3787104045](https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045) |
-| [Lugli_Optimizations](Lugli_Optimizations) | Cuts frame time by stopping the engine redrawing what is not moving. In vegetation, -16% at the median and -18% at the 90th percentile. In a city centre, -9% at the 90th and no median gain. | [pending first upload](https://steamcommunity.com/profiles/76561198172703919/myworkshopfiles/) |
+| [Lugli_Optimizations](Lugli_Optimizations) | Cuts frame time by stopping the engine redrawing what is not moving. In vegetation, -16% at the median and -18% at the 90th percentile. In a city centre, -9% at the 90th and no median gain. | [3790863696](https://steamcommunity.com/sharedfiles/filedetails/?id=3790863696) |
 
 Measured on 42.20.4 with 337 mods: same machine, same save, arms interleaved A,B,A,B, every run
 checked against its own log, the first pair of each campaign discarded as cold. Numbers move

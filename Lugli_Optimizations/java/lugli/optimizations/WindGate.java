@@ -10,14 +10,8 @@ import zombie.iso.objects.ObjectRenderEffects;
  * Keep "Wind Sprite Effects" ON, but stop paying for it while the wind is not actually moving
  * anything. -Dlugli.opt.windgate=off|observe|fast (default fast).
  *
- * NOTE ON THE PROPERTY NAME. This header used to read `-Dlugli.windgate ... (default off)`, which
- * was wrong on both counts -- it was copied from src/Dev/lugli/dev/WindGate.java, the dev-gated
- * original, and never updated when the part shipped. It matters more than a typo: every recorded
- * wind-gate A/B on this project was armed with `-Dlugli.windgate=fast`, i.e. the DEV jar's switch,
- * so the published "+31 % fps" figure has never been re-measured against the property this file
- * actually reads. The two implementations diff as behaviourally identical, but identical on
- * inspection is not measured. Until it is re-run under -Dlugli.opt.windgate, no number from this
- * part is quotable.
+ * The switch is `-Dlugli.opt.windgate`. An earlier dev-only build read `-Dlugli.windgate`, so any
+ * figure quoting that name predates this file and does not describe it.
  *
  * THE COST BEING TARGETED (measured here, 6-run A/B, non-overlapping bands)
  *   Turning the option off moved p50 7.879-8.080 -> 6.219-6.471 ms (-20 %) and p90 ~17.2 ->
