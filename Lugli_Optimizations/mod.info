@@ -1,0 +1,13 @@
+name=Lugli - Optimizations
+id=Lugli_Optimizations
+author=ViniciosLugli
+description=Project Zomboid redraws vegetation that is not moving, every frame, on the thread that sets your framerate. This returns it to the cached chunk texture until it actually moves. The sway is untouched - nothing is disabled and nothing looks different. Measured in vegetation, zoomed out, calm wind: -16% frame time at the median (the typical frame) and -18% at the 90th percentile (the roughest frame in ten, where stuttering shows), the mod ahead in every one of four interleaved pairs. In a city centre there is little to gate: -9% at the 90th percentile (the roughest frame in ten, where stuttering is felt) and no measurable median gain. Above wind 0.3 nothing is at rest and it stands aside entirely. Also replaces a 361x over-scan in the engine's chunk height calculation and a linear room-square scan, both cross-checked against the engine's own answer. Every part disables itself on any disagreement rather than risk a visual defect, and reports on the main menu whether it installed. Needs ZombieBuddy. Not compatible with other performance mods - they patch the same methods. Open source (MIT): github.com/ViniciosLugli/PZWorkspace
+poster=preview.png
+icon=icon.png
+category=features
+versionMin=42.20
+modversion=1.0.0
+javaJarFile=media/java/client/Optimizations.jar
+javaPkgName=lugli.optimizations
+javaPreload=true
+ZBVersionMin=2.3.2

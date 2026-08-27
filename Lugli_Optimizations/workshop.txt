@@ -1,0 +1,76 @@
+version=1
+title=Lugli - Optimizations
+description=The engine repeats work every frame that did not need doing at all. This finds it and stops it, and because the work is per-frame the saving comes back on every frame you draw rather than once when you load. Nothing you see or play changes: every part recomputes the engine's own answer and disables itself if the two differ.
+description=
+description=[b]In vegetation, zoomed out, calm wind: -16% frame time at the median, -18% at the 90th percentile.[/b]
+description=[b]In a city centre: -9% at the 90th percentile, and no measurable median gain.[/b]
+description=[i]The median is the typical frame; the 90th percentile is the roughest frame in ten, where stuttering shows. In vegetation both improve; in a city only the rough frames do.[/i]
+description=
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_Optimizations/art/optimizations-card.png[/img]
+description=
+description=For Build 42.20 and later. Measured on 42.20.4 with 337 mods: same machine, same save, arms interleaved, every run checked against its own log, the mod ahead in all four vegetation pairs. Percentages only, because the harness sits in both arms: the deltas are sound, the milliseconds are not yours.
+description=
+description=[b]Still in development, and maintained.[/b] Parts are added as they pass the gate below, so the numbers are a snapshot rather than a ceiling. I keep it current as Build 42 moves.
+description=
+description=[hr][/hr]
+description=[h1]Needs [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853]ZombieBuddy[/url][/h1]
+description=This is engine patching and ZombieBuddy is what permits it. Without it the mod does nothing, and says so on the main menu rather than pretending to work.
+description=
+description=[hr][/hr]
+description=[h1]What it does[/h1]
+description=[b]Wind gate[/b] - the one with a measurable frame-time win
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_Optimizations/art/fix-windgate.gif[/img]
+description=Vegetation that sways is redrawn every frame, on the thread that sets your framerate, whether or not it is moving. This returns it to the cached chunk texture until it moves again. The sway is untouched: nothing is disabled and nothing looks different.
+description=It pays off most [b]zoomed out, in calm or light wind[/b], and among trees rather than in a city centre. Above wind 0.3 nothing is at rest, so it stands aside and costs nothing.
+description=
+description=[b]Chunk height scan[/b]
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_Optimizations/art/fix-zextents.gif[/img]
+description=The engine reads 130,321 array entries where 361 hold the answer. Replaced with an exact scan.
+description=
+description=[b]Room square index[/b]
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_Optimizations/art/fix-roomindex.gif[/img]
+description=Before adding a tile to a room the game checked every tile already in it, one at a time. Now it goes straight there.
+description=
+description=Every part can be switched off on its own.
+description=
+description=[hr][/hr]
+description=[h1]Most ideas do not make it in[/h1]
+description=Every candidate is measured on its own, in several scenes, before a line of it is written: nanoseconds saved per operation times operations per frame, counted in the running game, against the noise floor.
+description=
+description=It only ships if it is [b]safe[/b] (identical results, nothing assumed of the engine beyond what it guarantees, no behaviour traded for frames) and if the gain is [b]real[/b] at that scale. Far more has been rejected than passed: a 361x algorithmic win the JIT had already erased, a cache slower than the walk it replaced. Both were deleted rather than shipped as a plausible-sounding bullet point, which is why this list is short.
+description=
+description=[hr][/hr]
+description=[h1]FAQ[/h1]
+description=[b]ZombieBuddy asks me to approve a Java mod.[/b]
+description=Expected. Approve it and enable the mod. ZombieBuddy never runs Java code you have not agreed to, and asks once.
+description=
+description=[b]Why is this not signed, and should I trust it?[/b]
+description=ZombieBuddy verifies an unlisted author's key by fetching my Steam profile page on every launch, and anything other than that page (rate limit, outage, VPN) fails closed with no approve button. That is the "signature is invalid" people hit. Unsigned takes the ordinary approve-once path instead. My key is queued at [url=https://github.com/zed-0xff/ZombieBuddy/pull/44]PR #44[/url]; signing returns when it merges.
+description=A signature would only prove the file came from this Steam account. It is not an audit. The source is what you can actually check: MIT and public, including the measurements that failed. Decompile the jar and compare it; I would rather you did. If you would rather not, do not install it. That is a reasonable decision; subscribing first and calling the author untrustworthy afterwards is not.
+description=
+description=[b]Why is there no fps number?[/b]
+description=Because fps is not what was measured, and it is a poor instrument anyway: an average frame rate blends a whole session and hides the frames you actually feel. What is measured is frame time, per frame, at the median, 90th and 99th percentile, alongside the engine's own per-section probes, so a delta is attributed to code rather than to the run it happened in.
+description=
+description=[b]Can I use it with other optimisation mods?[/b]
+description=You can, but expect conflicts. Anything patching the same engine methods collides with this one, and whichever loads last wins silently, so behaviour gets unpredictable and the numbers above stop applying. I cannot support that, having no way to tell which mod caused what. Turn one off before reporting a problem.
+description=
+description=[b]Do I need it on a dedicated server?[/b]
+description=No. The Java half never loads on a server, so this is client side and each player gets it from their own install.
+description=
+description=[b]Can I add or remove it mid-save?[/b]
+description=Yes. It writes nothing into your save and nothing into your game folder.
+description=
+description=[b]Is it safe with my mod list?[/b]
+description=Every part recomputes the engine's own answer for its first calls and compares. On any disagreement it disables itself permanently and logs why. Each part also reports on the main menu whether it installed.
+description=
+description=[b]Something looks wrong and I want to rule this mod out.[/b]
+description=Add [i]-Dlugli.opt.windgate=off[/i] to [b]vmArgs[/b] to disable the only part with a visual path. Every switch is listed on GitHub. If that fixes it, open an issue there.
+description=
+description=[hr][/hr]
+description=[b]Also by me:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045]Lugli - Fast Loading[/url]. This one is the milliseconds after you spawn; that one is the two minutes before. Neither needs the other.
+description=
+description=Open source under MIT. Full switch list, engine analysis and method: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_Optimizations]github.com/ViniciosLugli/PZWorkspace[/url]
+description=
+description=Built alongside [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url], the 300+ mod list these numbers come from.
+tags=Build 42;QoL;Misc
+visibility=public
