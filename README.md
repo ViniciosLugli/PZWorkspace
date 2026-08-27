@@ -7,7 +7,12 @@ versions are on the Workshop; these are the sources behind them.
 
 | mod | what it does | workshop |
 |---|---|---|
-| [Lugli_FastLoading](Lugli_FastLoading) | Cuts loading time. On a 300+ mod list, 49s to 38s to the menu and 129s to 78s to be in the world. On vanilla, 20s to 13s to the menu. | [3787104045](https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045) |
+| [Lugli_FastLoading](Lugli_FastLoading) | Cuts loading time. On a 300+ mod list, 47s to 32s to the menu and 130s to 90s to be in the world. On vanilla, 37s to 27s to be in the world. | [3787104045](https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045) |
+| [Lugli_Optimizations](Lugli_Optimizations) | Cuts frame time by stopping the engine redrawing what is not moving. In vegetation, -16% at the median and -18% at the 90th percentile. In a city centre, -9% at the 90th and no median gain. | [pending first upload](https://steamcommunity.com/profiles/76561198172703919/myworkshopfiles/) |
+
+Measured on 42.20.4 with 337 mods: same machine, same save, arms interleaved A,B,A,B, every run
+checked against its own log, the first pair of each campaign discarded as cold. Numbers move
+between releases and each mod's README carries the conditions attached to its own.
 
 ## Layout
 
@@ -23,12 +28,19 @@ versions are on the Workshop; these are the sources behind them.
 ## ZombieBuddy
 
 The Java parts use [ZombieBuddy](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853)
-for bytecode patching. Without it those parts skip themselves and the Lua ones still work, so the
-mods degrade rather than break.
+for bytecode patching. Without it those parts skip themselves. Fast Loading still runs its two Lua
+loot fixes; Optimizations is Java only and does nothing at all. Either way the mod says so on the
+main menu rather than pretending to work.
 
-Jars are signed. ZombieBuddy verifies a signature against the key published on the author's Steam
-profile, fetched on every launch, so a failed request to Steam can refuse a mod that is perfectly
-valid. See the FastLoading README for what that looks like and how to work around it.
+**Jars currently ship unsigned, deliberately.** ZombieBuddy resolves a signer's key from a bundled
+author list, and for an author who is not on it, falls back to fetching that author's Steam profile
+page on every launch, for every user. Any answer other than the page fails closed and the approval
+dialog then refuses the mod with no approve button. With no signature at all the user gets an
+ordinary one-time approval prompt instead, which is strictly better than a signature that only
+verifies when Steam answers. The cost is preload, which requires a valid signature.
+
+This author's key is queued at [ZombieBuddy PR #44](https://github.com/zed-0xff/ZombieBuddy/pull/44).
+When it merges, signing and preload both come back.
 
 ## Licence
 
