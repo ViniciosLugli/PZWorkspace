@@ -78,4 +78,24 @@ public class LuaBridge {
     public static String watcherGateStatus() {
         return WatcherGate.status();
     }
+
+    /**
+     * Priority-merge counters. Reported from Lua as well as at the menu handover, because the
+     * boot line alone cannot separate the world-load half -- MergeStat snapshots boot, so this
+     * string minus that snapshot is the load.
+     */
+    @LuaMethod(name = "FastLoading_MergeStat", global = true)
+    public static String mergeStat() {
+        return MergeStat.status();
+    }
+
+    /**
+     * Deferred-icon counters. `resolved` climbing while the player opens containers is the part
+     * working; `resolved` at zero with `deferred` high means nothing has asked for an icon yet,
+     * which at the menu is correct and in play is a defect.
+     */
+    @LuaMethod(name = "FastLoading_LazyIcon", global = true)
+    public static String lazyIcon() {
+        return LazyIcon.status();
+    }
 }

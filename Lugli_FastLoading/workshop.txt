@@ -2,19 +2,19 @@ version=1
 title=Lugli - Fast Loading
 description=Project Zomboid does a lot of loading work it does not need to do. This finds that work in the engine and removes it. Your loot, your items and your world are unchanged, and they are fingerprinted on every build to prove it.
 description=
-description=[b]300+ mods: 128s to 86s to be in the world (-33%).[/b]
-description=[b]300+ mods: 47s to 36s to the main menu (-24%).[/b]
-description=[b]Vanilla: 40s to 29s to be in the world (-28%).[/b]
+description=[b]300+ mods: 130s to 90s to be in the world (-31%).[/b]
+description=[b]300+ mods: 47s to 32s to the main menu (-32%).[/b]
+description=[b]Vanilla: 37s to 27s to be in the world (-27%).[/b]
 description=
-description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_FastLoading/art/loading-summary.png[/img]
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_FastLoading/art/proof-chart.png[/img]
 description=
-description=For Build 42.20 and later. Measured on 42.20.3: same machine, same save, arms interleaved, every run checked against its own log. It scales with your mod count, not your map size, so the bigger your list the more you get back.
+description=For Build 42.20 and later. Measured on 42.20.4 with 337 mods: same machine, same save, arms interleaved, every run checked against its own log. It scales with your mod count, not your map size.
 description=
-description=[b]Still in progress.[/b] Only stable versions get published here, but treat the numbers above as a snapshot rather than a promise: they move between releases. Safety comes first every time. Where a change is faster but riskier for the base game or for other mods, I take the slower option, and anything that cannot verify itself disables itself instead of guessing. So expect the gains to vary, and occasionally to shrink, when that is the safer call.
+description=[b]Still in development, and maintained.[/b] The numbers are a snapshot, not a ceiling, and I keep it current as Build 42 moves. Where a change is faster but riskier for the base game or for other mods I take the slower option, and anything that cannot verify itself disables itself.
 description=
 description=[hr][/hr]
 description=[h1]Needs [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853]ZombieBuddy[/url][/h1]
-description=Almost all of this is engine patching, and ZombieBuddy is what lets a mod patch the engine. Without it only the two loot fixes run, and the mod tells you so on the main menu instead of pretending to work.
+description=Almost all of this is engine patching and ZombieBuddy is what permits it. Without it only the two loot fixes run, and the mod says so on the main menu rather than pretending to work.
 description=
 description=[hr][/hr]
 description=[h1]What it does[/h1]
@@ -27,42 +27,47 @@ description=[*]Loads vehicle textures while you sit at the menu instead of while
 description=[*]Builds the loot table once, after every mod has added to it, instead of once per mod
 description=[*]Indexes the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3722064198]SWMG Gunworks[/url] loot insert, 78s down to 8s, if you run that mod
 description=[*]Parses tile geometry off the loading thread, and fixes a tokenizer that re-copied each script file per item
-description=[*]Skips a hot-reload file watcher that does nothing outside debug mode
-description=[*]Replaces the blank loading screen with a real one: progress bar, phase name, elapsed time and the walking figure from the world-loading screen
+description=[*]Replaces the blank loading screen with a real one: progress bar, phase name, elapsed time and the walking figure
 description=[/list]
 description=
 description=Every part can be switched off on its own, and any part that cannot enable itself says so on the main menu.
 description=
-description=[b]The loading screen looks different.[/b] That is this mod, not a bug. -Dfastloading.progress=off restores the vanilla blank screen. The game's photosensitivity notice is hidden by default because it occupies the screen for most of boot; -Dfastloading.warningms=-1 puts it back exactly as vanilla shows it.
+description=[b]The loading screen looks different.[/b] That is this mod, not a bug. [code]-Dfastloading.progress=off[/code] restores the vanilla blank screen. The photosensitivity notice is hidden by default because it otherwise covers most of boot; [code]-Dfastloading.warningms=-1[/code] puts it back.
 description=
-description=[b]Measurements, engine analysis and the full switch list:[/b] [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_FastLoading]github.com/ViniciosLugli/PZWorkspace[/url]
+description=[hr][/hr]
+description=[h1]Optional: trade sharpness for speed[/h1]
+description=Most of a launch is texture going into the GPU, and tile packs are the biggest part of that. The game's [b]Texture Size[/b] option has never applied to tile packs, so lowering it did nothing for the mods that cost you most. [code]-Dfastloading.texcap=512[/code] in [b]vmArgs[/b] applies it to packs too, roughly halving the texture a launch uploads. It is the largest single saving measured on a heavy tile-pack list.
+description=
+description=[b]This one you can see.[/b] Tiles are softer and capped pages lose their mipmaps, so distant ground shimmers. It ships [b]off[/b] and the numbers above are measured with it off. Try [i]512[/i] first.
 description=
 description=[hr][/hr]
 description=[h1]FAQ[/h1]
 description=[b]ZombieBuddy asks me to approve a Java mod.[/b]
-description=That is expected. Approve it and enable the mod. ZombieBuddy never runs Java code you have not agreed to, and it only asks once.
+description=Expected. Approve it and enable the mod. ZombieBuddy never runs Java code you have not agreed to, and asks once.
 description=
-description=[b]It says "Cannot trust author: signature is invalid".[/b]
-description=That message is about reaching Steam, not about the file. The jar is signed, and ZombieBuddy checks the signature by loading my Steam profile page to read the key published there, on every launch. If Steam answers with anything else (rate limit, outage, VPN, blocked connection) the check fails closed and you get that wording. Restarting the game a few minutes later usually clears it.
+description=[b]Why is this not signed, and should I trust it?[/b]
+description=ZombieBuddy verifies an unlisted author's key by fetching my Steam profile page on every launch, and anything other than that page (rate limit, outage, VPN) fails closed with no approve button. That is the "signature is invalid" people hit. Unsigned takes the ordinary approve-once path instead. My key is queued at [url=https://github.com/zed-0xff/ZombieBuddy/pull/44]PR #44[/url]; signing returns when it merges.
+description=A signature would only prove the file came from this Steam account. It is not an audit. The source is what you can actually check: MIT and public, including the measurements that failed. Decompile the jar and compare it; I would rather you did. If you would rather not, do not install it. That is a reasonable decision; subscribing first and calling the author untrustworthy afterwards is not.
 description=
-description=If it keeps happening, tell ZombieBuddy to skip the check. Open [i]ProjectZomboid64.json[/i] in your game folder and change its ZombieBuddy entry in the [b]vmArgs[/b] list to:
-description=[code]-agentlib:zbNative=policy=allow-all[/code]
-description=Steam replaces that file when it updates the game, so you may need to redo it. This turns the check off for [i]every[/i] Java mod, not only this one.
+description=[b]Can the main menu arrive sooner?[/b]
+description=There is a switch that queues animation meshes ahead of textures, and it ships off because it moves work rather than removing it: the menu arrives ~11s sooner and the world load then waits on what it deferred. Break-even is about 22 seconds on the menu and most people are quicker. If you linger there, add [code]-Dfastloading.meshprio=on[/code] to [b]vmArgs[/b].
 description=
 description=[b]Do I need it on a dedicated server?[/b]
-description=Only for the loot fixes. The Java half does not load on a server at all, so the boot and texture work is client side and each player gets it from their own install. Add it to the server mod list if you want the loot fixes for everyone. Leaving it out costs nothing else.
+description=Only for the loot fixes. The Java half never loads on a server, so the rest is client side and each player gets it from their own install.
 description=
 description=[b]Can I add or remove it mid-save?[/b]
 description=Yes. It writes nothing into your save and nothing into your game folder.
 description=
 description=[b]Is it safe with my mod list?[/b]
-description=It changes when work happens, not what comes out. The item database, the loot tables and the tilesets are hashed on every build and must match an unpatched run or the build fails. Where engine code is replaced, the replacement runs against the original and switches itself off if the two ever disagree.
+description=It changes when work happens, not what comes out. The item database, the loot tables and the tilesets are hashed on every build and must match an unpatched run or the build fails. Replaced engine code checks itself against the original and switches off on any disagreement.
 description=
 description=[b]Something looks wrong and I want to rule this mod out.[/b]
-description=Add [i]-Dfastloading.logo=keep -Dfastloading.assets=off[/i] to [b]vmArgs[/b] to disable the two largest parts. The GitHub page lists every switch. If that fixes it, please open an issue.
+description=Add [i]-Dfastloading.logo=keep -Dfastloading.assets=off[/i] to [b]vmArgs[/b] to disable the two largest parts. Every switch is listed on GitHub. If that fixes it, open an issue there.
 description=
 description=[hr][/hr]
-description=Open source under MIT. Issues and pull requests welcome: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_FastLoading]github.com/ViniciosLugli/PZWorkspace[/url]
+description=[b]Also by me:[/b] [url=https://steamcommunity.com/profiles/76561198172703919/myworkshopfiles/]Lugli - Optimizations[/url]. This one is the two minutes before you spawn; that one is the milliseconds after. Neither needs the other.
+description=
+description=Open source under MIT. Full switch list, engine analysis and method: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_FastLoading]github.com/ViniciosLugli/PZWorkspace[/url]
 description=
 description=Built alongside [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url], the 300+ mod list these numbers come from.
 tags=Build 42;QoL;Misc

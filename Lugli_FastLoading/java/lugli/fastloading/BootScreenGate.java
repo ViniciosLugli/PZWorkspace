@@ -4,12 +4,11 @@ package lugli.fastloading;
  * Which game states the boot overlay may paint over.
  *
  * Second line of defence behind BootProgress.retire(). The latch says when to stop; this says
- * where it must never draw regardless. Both exist because the overlay's only off-switch used to
- * be a Lua heartbeat living outside the jar that draws it, so a jar preloaded without the mod's
- * Lua painted "Starting up 7/7 98%" over the menu and the world-loading screen.
+ * where it must never draw regardless. Both exist because an off-switch must not live in a file
+ * the thing it switches off can ship without.
  *
- * Matches on the class NAME so the class stays free of zombie.* imports and tools/build-jars.sh
- * can unit-test it, as it does BootPhases and Tuning. This failure is cosmetic and so ships
+ * Matches on the class NAME so the class stays free of zombie.* imports and can be unit-tested
+ * without the game on the classpath, as BootPhases and Tuning are. This failure is cosmetic and so ships
  * easily: an overlay that paints one state too late still "works".
  */
 public final class BootScreenGate {

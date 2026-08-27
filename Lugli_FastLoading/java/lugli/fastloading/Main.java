@@ -20,9 +20,6 @@ public final class Main {
     /** Agent premain, before zombie.gameStates.MainScreenState.main. No zombie.* here. */
     public static void premain(String[] args) {
         System.out.println("[FastLoading] premain: patches install before the game's main class");
-        // A media-tree prefetch lived here and was removed: it worked, but three separate
-        // measurements showed no effect, and it needed a duplicate of ModWalkPrefetch.walk kept
-        // byte-identical or mod override precedence would shift.
     }
 
     /** The normal path, from inside ZomboidFileSystem.loadMods. */

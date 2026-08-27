@@ -64,8 +64,13 @@ public final class BootProgress {
 
     /**
      * Bounded pumping of the asset queue, purely so the figure arrives early rather than two
-     * thirds of the way through boot. Strictly bounded: retiring assets does mipmap scaling and
-     * GL uploads on the main thread, and doing it freely costs seconds of boot.
+     * thirds of the way through boot.
+     *
+     * Pumping is CHEAP, which is not obvious. limitMaxSize returns immediately for every
+     * load-path texture (it needs flags 128|256, which nothing on this path sets) and the upload
+     * is queued to the render thread (TextureID:327), so per-asset game-thread cost is tens of
+     * nanoseconds. What binds is the COUNT cap, Math.min(inProgress.size(), 16), not the work.
+     * See AssetCap.
      */
     public static final long PUMP_INTERVAL_MS = Long.getLong("fastloading.artpumpms", 300L);
     public static final long PUMP_WINDOW_MS = Long.getLong("fastloading.artpumpwindow", 8000L);
@@ -175,11 +180,9 @@ public final class BootProgress {
     /**
      * Retires the screen for the rest of the session, once the main menu exists.
      *
-     * THE PRIMARY OFF-SWITCH, DELIBERATELY IN JAVA. It used to be AssetThrottle.menuBeat, reached
-     * only from FastLoading_MenuGate.lua, so a jar loaded WITHOUT the mod's Lua (ZombieBuddy
-     * preload, which is how both proof harnesses run the "+" arm) never retired it: it painted
-     * over the menu and the world load until the 120 s idle timer expired. An off-switch must not
-     * live in a file the thing it switches off can ship without.
+     * THE PRIMARY OFF-SWITCH, DELIBERATELY IN JAVA. An off-switch must not live in a file the
+     * thing it switches off can ship without -- a preloaded jar never loads the mod's Lua, which
+     * is how both proof harnesses run the "+" arm.
      *
      * One-way on purpose. Exit-to-menu is a real reload, but the phase model is exhausted by then
      * and would redisplay "Starting up 7/7 98%", so that reload keeps vanilla's frozen window.
@@ -448,6 +451,22 @@ public final class BootProgress {
         @Patch.OnExit
         public static void exit() {
             BootProgress.retire();
+            // The mesh raise ends here too. Driven from Java because its old Lua gate never fired
+            // under ZombieBuddy preload, and from THIS advice so the two things that must stop at
+            // the menu stop together.
+            MeshPriority.endBoot();
+            AssetCap.endBoot();
+            MergeStat.endBoot();
+            // Two ON-by-default parts used to reach the menu having logged nothing at all, so no
+            // run could assert them. They report here for the same reason the three above do.
+            DebugLog.log(ShaderCache.TAG + " " + ShaderCache.status());
+            DebugLog.log(DemandPriority.TAG + " " + DemandPriority.status());
+            DebugLog.log(LazyIcon.TAG + " " + LazyIcon.status());
+            DebugLog.log(TextureCap.TAG + " " + TextureCap.status());
+            // These two are default-OFF and used to say nothing at all, which reads exactly like a
+            // part that failed to attach. Nothing downstream can tell those apart without this.
+            DebugLog.log(MeshPriority.TAG + " " + MeshPriority.status());
+            DebugLog.log(MergeStat.TAG + " " + MergeStat.status());
         }
     }
 
@@ -500,7 +519,7 @@ public final class BootProgress {
         @Patch.OnEnter
         public static void enter() {
             if ((++tokenCalls & 255) == 0) {
-                BootProgress.tick();
+                    BootProgress.tick();
             }
         }
     }
@@ -509,8 +528,22 @@ public final class BootProgress {
     @Patch(className = "zombie.fileSystem.FileSystemImpl", methodName = "updateAsyncTransactions")
     public static class AssetPump {
         @Patch.OnEnter
-        public static void enter() {
+        public static void enter(@Patch.This Object self) {
             BootProgress.tick();
+            // Diagnostic only, and default off. It rides this advice for the same reason the cap
+            // raise below does: a second class on this method would be a second registration, and
+            // a dev-jar advice on an already-patched method has silently failed to run before.
+            MergeStat.sample(self);
+        }
+
+        /**
+         * The in-flight cap raise rides this advice rather than declaring its own class on the
+         * same method: two advices per method stack reliably, and a third is where it stopped
+         * being reliable in the past.
+         */
+        @Patch.OnExit
+        public static void exit(@Patch.This Object self) {
+            AssetCap.topUp(self);
         }
     }
 }

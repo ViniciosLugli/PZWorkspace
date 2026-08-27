@@ -35,23 +35,40 @@ public final class VehicleTextureWarm {
      * 725 were queued inside the first second. It spread nothing while looking like it did; the
      * queue histogram showed the full 3,044 textures already pending at the first sample.
      */
-    public static final int SLICE = Integer.getInteger("fastloading.vehtexslice", 8);
+    /**
+     * 8 could not finish in a realistic menu: 725 scripts at 8 per 100 ms is 80/s, needing >=9.1 s
+     * of GREEN time, and green time is far scarcer than wall time (a completing run logs
+     * `725 scripts in 82 ms over 813 backoffs`). 32 finishes in ~2.3 s. Still paced rather than
+     * unpaced, but the real protection is the bulk band, not the rate.
+     */
+    public static final int SLICE = Integer.getInteger("fastloading.vehtexslice", 32);
     public static final long INTERVAL_MS = Long.getLong("fastloading.vehtexinterval", 100L);
 
     /**
-     * Do not start until the loader's own backlog has drained. Warming is background work with
-     * no deadline, and the first seconds of menu time are exactly when the boot backlog is still
-     * draining and the player is most likely to open something.
+     * 0 = no absolute gate. Shipped at 96 in 1.5.0 and killed the feature on any large mod list,
+     * where the backlog runs `pending avg 5148`: the gate never opened and nothing logged that it
+     * had not. Belt-and-braces anyway -- the warm marks its window DemandPriority.bulk, so its
+     * textures queue below the engine's own band and cannot delay the player. Positive values
+     * restore an absolute gate.
      */
-    public static final int QUIET_PENDING = Integer.getInteger("fastloading.vehtexquiet", 96);
+    public static final int QUIET_PENDING = Integer.getInteger("fastloading.vehtexquiet", 0);
+
+    /** Leave the opening moment of menu time alone -- what the pending gate really meant. */
+    public static final long WARM_DELAY_MS = Long.getLong("fastloading.vehtexdelay", 1500L);
+
+    public static long firstTickAt;
+    public static boolean standdownLogged;
 
     public static long lastSliceAt;
 
     /**
-     * Feed only while the live direct-buffer set is below this. A quarter of the gate budget
-     * leaves the rest for whatever the player actually asked to see.
+     * Stand down above this percentage of the buffer budget. Was BUDGET/4, which never opened
+     * either: 512 MB of a 2048 MB budget is below where live bytes sit for the whole menu. The
+     * guard exists to avoid reaching the budget, where AssetThrottle sleeps workers -- and that
+     * is the budget itself, not a quarter of it.
      */
-    public static final long HIGH_WATER = AssetThrottle.BUDGET / 4L;
+    public static final int HIGH_WATER_PCT = Integer.getInteger("fastloading.vehtexhigh", 75);
+    public static final long HIGH_WATER = AssetThrottle.BUDGET / 100L * HIGH_WATER_PCT;
 
     public static boolean done;
     public static int scripts;
@@ -89,13 +106,25 @@ public final class VehicleTextureWarm {
             if (now - lastSliceAt < INTERVAL_MS) {
                 return "pacing";
             }
+            if (firstTickAt == 0L) {
+                firstTickAt = now;
+            }
             int pending = AssetThrottle.pendingCount();
-            if (AssetThrottle.liveBytes() > HIGH_WATER
-                    || DemandPriority.demandPending()
-                    || (pending >= 0 && pending > QUIET_PENDING)) {
-                // Stand down while the loader is still busy, and right after the player asked
-                // for something: this is bulk work competing for the same sixteen slots.
+            boolean backpressure = AssetThrottle.liveBytes() > HIGH_WATER;
+            boolean demand = DemandPriority.demandPending();
+            boolean early = now - firstTickAt < WARM_DELAY_MS;
+            boolean tooDeep = QUIET_PENDING > 0 && pending >= 0 && pending > QUIET_PENDING;
+            if (backpressure || demand || early || tooDeep) {
+                // Stand down on real backpressure, on a live demand request, and for the opening
+                // moment of menu time. NOT on raw queue depth by default -- see QUIET_PENDING.
                 waits++;
+                // Say so, once. A silent stand-down is how this shipped dead in 1.5.0.
+                if (!standdownLogged && waits > 50) {
+                    standdownLogged = true;
+                    DebugLog.log(TAG + " still standing down after " + waits + " ticks"
+                                 + " (pending=" + pending + ", backpressure=" + backpressure
+                                 + ", demand=" + demand + ", quiet=" + QUIET_PENDING + ")");
+                }
                 return "waiting";
             }
             lastSliceAt = now;

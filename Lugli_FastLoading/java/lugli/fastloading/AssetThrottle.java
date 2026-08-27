@@ -24,9 +24,29 @@ public class AssetThrottle {
     public static final long BUDGET = Tuning.effectiveBudgetBytes(
             Runtime.getRuntime().maxMemory(),
             Long.getLong("fastloading.assetbudget", 0L));
+    /**
+     * The same ceiling, but for menu time. See Tuning.menuBudgetBytes for why it is a different
+     * number: at the menu the budget is not a throughput knob, it is the length of the freeze the
+     * player sees, because live bytes drain only as the render thread uploads them.
+     */
+    public static final long MENU_BUDGET =
+            Tuning.menuBudgetBytes(BUDGET, Tuning.MENU_BUDGET_MB);
     public static final boolean ON =
             !"off".equals(System.getProperty("fastloading.assets", "on"));
     private static volatile boolean poolSized;
+
+    /** How many times a worker waited on the menu budget rather than the loading one. */
+    public static volatile long menuBlocked;
+
+    /**
+     * The ceiling that applies right now. Public: read from the inlined advice.
+     *
+     * Re-read on every pass of the gate rather than captured once, because the menu can come and
+     * go while a worker is parked and the wrong budget would then persist for the whole wait.
+     */
+    public static long currentBudget() {
+        return MENU_BUDGET < BUDGET && atMenu() ? MENU_BUDGET : BUDGET;
+    }
 
     /**
      * Milliseconds between budget re-checks while blocked. Vanilla is 20. This was 2, which was
@@ -248,11 +268,14 @@ public class AssetThrottle {
         totalCalls++;
         boolean blocked = false;
         long t0 = 0L;
-        while (liveBytes() > BUDGET || uploadBacklog() > UPLOAD_CAP) {
+        while (liveBytes() > currentBudget() || uploadBacklog() > UPLOAD_CAP) {
             if (!blocked) {
                 blocked = true;
                 t0 = System.currentTimeMillis();
                 blockedCalls++;
+                if (MENU_BUDGET < BUDGET && atMenu()) {
+                    menuBlocked++;
+                }
             }
             try {
                 Thread.sleep(POLL_MS);
@@ -330,7 +353,9 @@ public class AssetThrottle {
                      + " blocked=" + blockedCalls
                      + " blockedMs=" + blockedMs
                      + " (+" + deltaBlocked + " in the last " + STATS_MS + " ms)"
-                     + " budgetMB=" + (BUDGET >> 20));
+                     + " budgetMB=" + (BUDGET >> 20)
+                     + " menuBudgetMB=" + (MENU_BUDGET >> 20)
+                     + " menuBlocked=" + menuBlocked);
     }
 
     /**
@@ -353,7 +378,8 @@ public class AssetThrottle {
                 pool.setMaximumPoolSize(target);
                 pool.setCorePoolSize(target);
                 DebugLog.log(Tuning.TAG + " asset pool " + target + " threads, budget "
-                             + (BUDGET >> 20) + " MB");
+                             + (BUDGET >> 20) + " MB, menu budget "
+                             + (MENU_BUDGET >> 20) + " MB");
             }
         } catch (Throwable t) {
             DebugLog.log(Tuning.TAG + " pool resize skipped (" + t + ")");

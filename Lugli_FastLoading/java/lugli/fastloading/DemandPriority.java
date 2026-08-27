@@ -31,19 +31,21 @@ import me.zed_0xff.zombie_buddy.Patch;
 @Patch(className = "zombie.fileSystem.FileTask", methodName = "setPriority")
 public final class DemandPriority {
 
+    public static final String TAG = "[FastLoading/demandprio]";
+
     // public: this body is inlined into zombie.fileSystem.FileTask, which then reads these from
     // its own class. Anything private throws IllegalAccessError at runtime.
     public static final boolean ON =
             !"off".equals(System.getProperty("fastloading.demandprio", "on"));
 
     /** The band textures are queued at by the engine. Only this value is rewritten. */
-    public static final int TEXTURE_BAND = 7;
+    public static final int TEXTURE_BAND = Tuning.TEXTURE_BAND;
 
     /** Above the band, so it overtakes everything already pending. */
-    public static final int DEMAND = Integer.getInteger("fastloading.demandband", 9);
+    public static final int DEMAND = Tuning.DEMAND_BAND;
 
     /** Below the band, so bulk warming never delays anything else. */
-    public static final int BULK = Integer.getInteger("fastloading.bulkband", 3);
+    public static final int BULK = Tuning.BULK_BAND;
 
     /**
      * Set by VehicleTextureWarm around its slice. It runs on the main thread, so a request from

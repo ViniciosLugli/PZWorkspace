@@ -1,12 +1,12 @@
 name=Lugli - Fast Loading
 id=Lugli_FastLoading
 author=ViniciosLugli
-description=Removes loading work Project Zomboid does not need to do. 300+ mods, launch to playing: 128s to 86s (-33%). Vanilla, launch to playing: 40s to 29s (-28%). Build 42.20.3, interleaved A/B, loot tables and item database fingerprinted identical. Also draws the loading screen the game leaves frozen. Requires ZombieBuddy for the engine patches. Open source (MIT): github.com/ViniciosLugli/PZWorkspace
+description=Removes loading work Project Zomboid does not need to do. 337 mods, launch to playing: 130s to 90s (-31%). Vanilla, launch to playing: 37s to 27s (-27%). Build 42.20.4, interleaved A/B, loot tables and item database fingerprinted identical. Also draws the loading screen the game leaves frozen. Requires ZombieBuddy for the engine patches. Open source (MIT): github.com/ViniciosLugli/PZWorkspace
 poster=preview.png
 icon=icon.png
 category=features
 versionMin=42.20
-modversion=1.5.1
+modversion=1.6.0
 incompatible=PZFixPack
 javaJarFile=media/java/client/FastLoading.jar
 javaPkgName=lugli.fastloading
