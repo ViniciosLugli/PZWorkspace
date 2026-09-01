@@ -6,6 +6,10 @@ Build 42 has none of them, and a matching hole underneath: a lit item on the gro
 at all, which is why vanilla puts a lamp out *before* it lands. These do not go out. Crack one and
 it burns wherever you leave it.
 
+**[Watch the demo](https://youtu.be/uk9aEgyv5wU)**
+
+[![Lugli - Emergency Lights, running in game](https://img.youtube.com/vi/uk9aEgyv5wU/maxresdefault.jpg)](https://youtu.be/uk9aEgyv5wU)
+
 ![Every item the mod adds](art/el-items.png)
 
 ## Requires ZombieBuddy

@@ -10,6 +10,10 @@ window and the toast. Pure Lua otherwise, no jar.
 **It changes nothing about how the game plays.** No items, no XP, no loot, no spawns, no recipes.
 It watches, it counts, and it tells you.
 
+**[Watch the demo](https://youtu.be/oCbHLc-QO38)**
+
+[![Lugli - Achievements, running in game](https://img.youtube.com/vi/oCbHLc-QO38/maxresdefault.jpg)](https://youtu.be/oCbHLc-QO38)
+
 ![The categories, and a sample of the art](art/ach-categories.png)
 
 ![The achievements window](art/window.png)
