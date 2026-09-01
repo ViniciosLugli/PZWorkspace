@@ -68,11 +68,20 @@ end
 
 --- The save-wide unlock ledger, created on first use. Progress belongs to the survivor who ran
 --- it up; unlocks do not, and the achievements earned BY dying would otherwise be recorded only
---- on the character being deleted. Nil when ModData is unavailable, as on a bare VM.
+--- on the character being deleted. Nil when there is no store yet, as on a bare VM.
 function M.getSaveData()
-    if ModData == nil or ModData.getOrCreate == nil then return nil end
-    local ok, t = pcall(ModData.getOrCreate, SAVE_TABLE)
-    if not ok or type(t) ~= "table" then return nil end
+    local t
+    if M.isMpClient ~= nil and M.isMpClient() then
+        local c = M.mpContainer
+        if type(c) ~= "table" then return nil end
+        t = c.ledger
+        if type(t) ~= "table" then t = {}; c.ledger = t end
+    else
+        if ModData == nil or ModData.getOrCreate == nil then return nil end
+        local ok, got = pcall(ModData.getOrCreate, SAVE_TABLE)
+        if not ok or type(got) ~= "table" then return nil end
+        t = got
+    end
     if type(t.version) ~= "number" then t.version = M.DATA_VERSION end
     if type(t.unlocked) ~= "table" then t.unlocked = {} end
     if type(t.unlockedAt) ~= "table" then t.unlockedAt = {} end
@@ -103,6 +112,8 @@ function M.recordSaveUnlock(id, hours, who)
     t.unlocked[id] = true
     t.unlockedAt[id] = (type(hours) == "number") and hours or 0
     t.unlockedBy[id] = (type(who) == "string") and who or ""
+    local mark = M.markDirty
+    if mark ~= nil then mark() end
     return true
 end
 
@@ -130,7 +141,13 @@ end
 
 function M.isPerCharacter() return perCharacter end
 
+--- Sync.lua owns this container on a multiplayer client: it is hydrated from the server and
+--- flushed back, because global ModData there is never saved.
 local function worldData()
+    if M.isMpClient ~= nil and M.isMpClient() then
+        local c = M.mpContainer
+        return (type(c) == "table") and c or nil
+    end
     if ModData == nil or ModData.getOrCreate == nil then return nil end
     local ok, md = pcall(ModData.getOrCreate, WORLD_TABLE)
     if not ok or type(md) ~= "table" then return nil end
@@ -167,7 +184,9 @@ end
 --- per-character setting is consulted. Returns nil rather than throwing when there is no usable
 --- player, so one bad call cannot take the rest of the mod down.
 function M.getCharData(player)
-    if not perCharacter then
+    -- mpCharacterFallback is set by Sync.lua when a server turns out not to have this mod: the
+    -- player's own ModData is then the only store anything persists.
+    if not perCharacter and not M.mpCharacterFallback then
         local md = worldData()
         if md ~= nil then
             return ready(md, M.MODDATA_KEY, "world")
@@ -182,8 +201,11 @@ function M.getCharData(player)
 end
 
 -- Looked up per call rather than captured: a third-party mod may register achievements after
--- this file has loaded.
+-- this file has loaded. markDirty only exists on a multiplayer client, where it decides whether
+-- the store is worth sending.
 local function notify(player, key)
+    local mark = M.markDirty
+    if mark ~= nil then mark() end
     local f = M.onStatChanged
     if f ~= nil then f(player, key) end
 end

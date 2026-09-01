@@ -59,24 +59,24 @@ local function onBookFinished(self)
 
     local item = self.item
     if item == nil then return end
-    local full = nil
-    local okF, v = pcall(function() return item:getFullType() end)
-    if okF then full = v end
-    if full == nil then return end
+    local full = item:getFullType()
+    if type(full) ~= "string" then return end
+
+    -- getSkillTrained and getLearnedRecipes are declared on Literature, NOT on InventoryItem, so
+    -- a modded readable that is not a Literature threw "Tried to call nil" once per read -- and
+    -- through the action fan-out, where nothing logged it. Ask what the item is first.
+    if instanceof == nil or not instanceof(item, "Literature") then return end
 
     -- A skill book is any item carrying SkillTrained; all 120 do, and nothing else does.
-    local okS, trained = pcall(function() return item:getSkillTrained() end)
-    if okS and trained ~= nil and trained ~= "" then
+    local trained = item:getSkillTrained()
+    if trained ~= nil and trained ~= "" then
         M.addUnique(player, "skill_books_read", full)
     else
         -- getLearnedRecipes, not the B41 getTeachedRecipes, which is absent on this build and
         -- inside a pcall reported every magazine as unread. Empty counts as none, since a plain
         -- novel must not be filed as a magazine.
-        local okR, teaches = pcall(function()
-            local list = item:getLearnedRecipes()
-            return list ~= nil and not list:isEmpty()
-        end)
-        if okR and teaches then
+        local list = item:getLearnedRecipes()
+        if list ~= nil and not list:isEmpty() then
             M.addUnique(player, "magazines_read", full)
         end
     end
@@ -85,11 +85,9 @@ end
 --- Known recipes is a count with no event behind it, so it is polled on the hour.
 local function onEveryHours()
     M.forEachLocalPlayer(function(player)
+        -- getKnownRecipes is a final field initialised at construction, so the list is never nil.
         if player.getKnownRecipes == nil then return end
-        local ok, n = pcall(function() return player:getKnownRecipes():size() end)
-        if ok and type(n) == "number" then
-            M.setStatIfGreater(player, "recipes_known", n)
-        end
+        M.setStatIfGreater(player, "recipes_known", player:getKnownRecipes():size())
     end)
 end
 

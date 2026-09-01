@@ -71,11 +71,16 @@ cannot break the action it watches. A part that fails to install says so on the 
   and recipes known come across immediately. Counters that only existed because the mod was
   watching, like kills and things built, start from zero. Skill levels register on the next level.
 - **Removal:** safe. The save loads normally; reinstall and your progress is still there.
-- **Multiplayer:** every player keeps their own collection against a server. Nobody else's kills
-  unlock yours.
-- **Dedicated server:** nothing loads. `client/` does not run in a server process, so no tracker
-  registers, the roster is never built, and nothing is written to server state. Verified against a
-  real headless server.
+- **Multiplayer:** every player keeps their own collection against a server. The server holds it
+  under their username and returns it when they reconnect, so nobody else's kills unlock yours.
+  The mod has to be in the server's mod list, which is how the game loads mods for a connecting
+  player anyway. If the server is running an older build that does not answer, progress falls back
+  to the character's own data and the window says so. The engine gives a multiplayer client no
+  radio or television channel list, so the four achievements for tuning in are single player only.
+- **Dedicated server:** no achievement can be earned there. `client/` does not run in a server
+  process, so no tracker registers and the roster is never built. The one thing the server does is
+  keep each player's counters and unlocked ids in a `LugliAchievementsPlayers` table saved with the
+  world. Verified against a real headless server.
 - English and Brazilian Portuguese, both complete. A build gate refuses a language missing a key.
 
 ## The roster

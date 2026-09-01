@@ -120,6 +120,13 @@ local function buildIndex()
     end
 end
 
+--- Force the next getSummary to recompute. The epoch only moves when a definition or an unlock
+--- changes, so a store that is swapped underneath the window -- the server's copy arriving, or
+--- the fallback to character data -- would otherwise be read from a cache built before it.
+function M.invalidateSummary()
+    epoch = epoch + 1
+end
+
 function M.getWatchers(key)
     if indexDirty then buildIndex() end
     return statIndex[key] or {}
@@ -147,17 +154,33 @@ local function doUnlock(player, data, def)
     data.unlockedAt[def.id] = hours
     -- The save-wide ledger is the only copy that survives this character, and the death
     -- achievements are earned at the moment the per-character store stops existing.
+    -- descriptor is a plain field the engine itself nil-checks, so it is asked for step by step
+    -- rather than chained: an error here would be dumped by the engine before any pcall unwound.
     local who = ""
     if player ~= nil and player.getDescriptor ~= nil then
-        local ok, d = pcall(function() return player:getDescriptor():getForename() end)
-        if ok and type(d) == "string" then who = d end
+        local desc = player:getDescriptor()
+        if desc ~= nil then
+            local d = desc:getForename()
+            if type(d) == "string" then who = d end
+        end
     end
+    -- Both of these used to swallow a throw whole. An unlock is rare and names an id, so saying
+    -- which one failed costs nothing and is the difference between a bug and a hard achievement.
     if type(M.recordSaveUnlock) == "function" then
-        pcall(M.recordSaveUnlock, def.id, hours, who)
+        local ok, err = pcall(M.recordSaveUnlock, def.id, hours, who)
+        if not ok then
+            M.defect("registry", "the save ledger refused '" .. def.id .. "': " .. tostring(err))
+        end
     end
     epoch = epoch + 1
     local notify = M.onUnlocked
-    if notify ~= nil then pcall(notify, player, def) end
+    if notify ~= nil then
+        local ok, err = pcall(notify, player, def)
+        if not ok then
+            M.defect("registry", "the unlock notification for '" .. def.id ..
+                                 "' threw: " .. tostring(err))
+        end
+    end
 end
 
 --- Called by every stat setter. This is the hot path.

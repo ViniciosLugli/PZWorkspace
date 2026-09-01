@@ -4,6 +4,11 @@ local M = LugliAchievements
 local PART = "HUD button"
 local ICON_DIR = "media/ui/achievements/sidebar/"
 
+--- How many frames the attach may be retried before the part gives up and says so. The column's
+--- buttons are laid out over the first few frames, so early failures are normal and expected;
+--- roughly two seconds at 60 fps is generous, and finite.
+local ATTACH_ATTEMPTS = 120
+
 --- The game picks 48, 64, 80 or 96 from the UI scale and sizes every sidebar button to it, so
 --- ours reads its own size off a sibling rather than re-deriving the setting.
 local function icons(px)
@@ -26,7 +31,7 @@ local function lowest(panel)
     local bottom, ref = nil, nil
     for i = 1, #names do
         local b = panel[names[i]]
-        if b ~= nil and b.getBottom ~= nil and b:isVisible() then
+        if b ~= nil and b.getBottom ~= nil and b.isVisible ~= nil and b:isVisible() then
             local y = b:getBottom()
             if bottom == nil or y > bottom then bottom = y; ref = b end
         end
@@ -79,6 +84,7 @@ local function install()
     ISEquippedItem.createChildren = function(self, ...)
         local r = { original(self, ...) }
         self.lugliAchBtn = nil
+        self.lugliAchTries = 0
         return unpack(r)
     end
 
@@ -88,8 +94,20 @@ local function install()
     local originalPre = ISEquippedItem.prerender
     if type(originalPre) == "function" then
         ISEquippedItem.prerender = function(self, ...)
-            -- pcall: a fault here would take the whole HUD column down with it.
-            if self.lugliAchBtn == nil then pcall(attach, self) end
+            if self.lugliAchBtn == nil and (self.lugliAchTries or 0) < ATTACH_ATTEMPTS then
+                self.lugliAchTries = (self.lugliAchTries or 0) + 1
+                -- pcall: a fault here would take the whole HUD column down with it. BOUNDED,
+                -- because unbounded it retried every frame forever on a layout with no visible
+                -- sibling to sit under, and a throw inside would have been an error dump at the
+                -- frame rate rather than a line.
+                local ok, err = pcall(attach, self)
+                if not ok then
+                    self.lugliAchTries = ATTACH_ATTEMPTS
+                    M.defect(PART, "attaching the sidebar button threw: " .. tostring(err))
+                elseif self.lugliAchBtn == nil and self.lugliAchTries >= ATTACH_ATTEMPTS then
+                    M.status(PART, false, "no visible sidebar button to sit under", "dep")
+                end
+            end
             local btn = self.lugliAchBtn
             if btn ~= nil and btn.lugliAchIconOn ~= nil and btn.lugliAchIconOff ~= nil then
                 pcall(function()

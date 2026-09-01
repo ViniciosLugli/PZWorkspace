@@ -28,6 +28,14 @@ function M.isCoopHost()
     return IS_SERVER and IS_CLIENT
 end
 
+--- A client process that is not also the server. Global ModData is client-local there: nothing
+--- transmits it and GameWindow.save never persists it, so it is empty again on reconnect.
+function M.isMpClient()
+    return IS_CLIENT and not IS_SERVER
+end
+
+M.NET_MODULE = "LugliAchievements"
+
 function M.envName()
     if M.isCoopHost() then return "co-op host" end
     if M.isDedicatedServer() then return "dedicated server" end
@@ -117,6 +125,12 @@ end
 --- The callback list lives on the CLASS, beside the wrapper that closes over it. Held in a
 --- module local instead, a Lua VM reload would empty it while the old wrapper survived, and
 --- every later callback would be appended to a list nothing reads.
+---
+--- Each entry carries the part that registered it, because a throwing callback is dropped and
+--- reported by name -- the same fail-once-then-go-quiet contract addHandler gives an event
+--- handler. A bare pcall here removed nothing and logged nothing, so a callback that threw did
+--- so on every occurrence of that action for the rest of the session, dumping to the engine log
+--- with nothing in this mod's log to say whose it was.
 function M.onAction(part, clsName, fn, method)
     method = method or "perform"
     local cls = rawget(_G, clsName)
@@ -132,12 +146,23 @@ function M.onAction(part, clsName, fn, method)
         local original = cls[method]
         cls[method] = function(self, ...)
             local result = original(self, ...)
-            for i = 1, #list do pcall(list[i], self) end
+            local i = 1
+            while i <= #list do
+                local entry = list[i]
+                local ok, err = pcall(entry.fn, self)
+                if ok then
+                    i = i + 1
+                else
+                    table.remove(list, i)
+                    M.defect(entry.part, clsName .. "." .. method ..
+                                         " callback removed after: " .. tostring(err))
+                end
+            end
             return result
         end
         cls[hookField] = list
     end
-    list[#list + 1] = fn
+    list[#list + 1] = { part = part, fn = fn }
     return true
 end
 

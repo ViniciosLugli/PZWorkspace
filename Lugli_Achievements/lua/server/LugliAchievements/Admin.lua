@@ -1,6 +1,6 @@
--- The server side of a mod that has no server side, said out loud: an admin needs to know it
--- loaded, what it writes, and whose progress is whose. Nothing runs here, because client/ never
--- loads in a server process. server/ loads at world load, which is why the report lives here.
+-- What an admin needs to know: that it loaded, what it writes, and whose progress is whose.
+-- client/ never loads in a server process, so no achievement can be earned here; Store.lua is
+-- the one thing that does run, and it holds what the clients earn.
 require "LugliAchievements/Core"
 
 local M = LugliAchievements
@@ -12,14 +12,15 @@ function M.serverReport()
     local where = (type(M.envName) == "function") and M.envName() or "unknown"
     local lines = {
         "[LugliAchievements] running as: " .. where,
-        "[LugliAchievements] server-side work: none. client/ does not load here, so no tracker " ..
-            "registers and no achievement can be earned in this process.",
+        "[LugliAchievements] server-side work: it keeps each player's progress and hands it " ..
+            "back when they connect. client/ does not load here, so no tracker registers and " ..
+            "no achievement can be earned in this process.",
         "[LugliAchievements] definitions held in memory: " ..
             (M.isDedicatedServer() and ("0 (" .. skipped .. " refused, by design)")
                                     or tostring(#(M.getAllDefinitions and M.getAllDefinitions() or {}))),
-        "[LugliAchievements] save impact: none. Progress is per player -- character ModData, or " ..
-            "a GlobalModData table that is never transmitted. One player's progress is never " ..
-            "another's, and nothing is written to server state.",
+        "[LugliAchievements] save impact: one GlobalModData table, LugliAchievementsPlayers, " ..
+            "keyed by username and saved with the world. Counters and unlock ids only. One " ..
+            "player's progress is never another's, and nothing else is written to server state.",
     }
     return table.concat(lines, "\n")
 end

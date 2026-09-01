@@ -40,7 +40,33 @@ local CAUSE_STAT = {
 -- How recent a hit has to be to count as the cause of death, in in-game hours.
 local CAUSE_WINDOW_HOURS = 0.5
 
+-- Tiles. Close enough that the animal is plausibly what hit you.
+local ANIMAL_RANGE = 3
+
 local lastCause, lastCauseAt = {}, {}
+
+--- Is an animal standing next to this survivor.
+---
+--- IsoCell.getObjectList() returns a java.util.Set, which declares size() but NOT get(int), so
+--- indexing it raised "Tried to call nil" on every death and died_animal could never be earned.
+--- getAnimals() is the list the engine keeps for this exact question, and answering from it does
+--- not walk every zombie in the cell.
+local function nearAnimal(player)
+    if player.getCell == nil then return false end
+    local cell = player:getCell()
+    if cell == nil then return false end
+    local animals = cell:getAnimals()
+    if animals == nil then return false end
+    local px, py = player:getX(), player:getY()
+    for i = 0, animals:size() - 1 do
+        local a = animals:get(i)
+        if a ~= nil and math.abs(a:getX() - px) < ANIMAL_RANGE
+                    and math.abs(a:getY() - py) < ANIMAL_RANGE then
+            return true
+        end
+    end
+    return false
+end
 
 local function onDamage(character, damageType)
     if type(damageType) ~= "string" then return end
@@ -136,28 +162,19 @@ local function onDeath(player)
         M.setStat(player, "died_bleach", 1)
     end
 
-    -- Hypothermia is a moodle at maximum rather than a damage type.
-    local okM, cold = pcall(function()
-        return player:getMoodles():getMoodleLevel(MoodleType.HYPOTHERMIA)
-    end)
-    if okM and type(cold) == "number" and cold >= 4 then M.setStat(player, "died_cold", 1) end
+    -- Hypothermia is a moodle at maximum rather than a damage type. MoodleType is a Java-backed
+    -- global and absent on a bare VM, so it is asked for rather than tried; getMoodles() is a
+    -- final field and getMoodleLevel(MoodleType) is declared on Moodles, so neither can throw.
+    if MoodleType ~= nil and MoodleType.HYPOTHERMIA ~= nil then
+        if player:getMoodles():getMoodleLevel(MoodleType.HYPOTHERMIA) >= 4 then
+            M.setStat(player, "died_cold", 1)
+        end
+    end
 
     -- There is no animal damage type, so this is the honest approximation: an animal is nearby
     -- and the last damage was a weapon hit.
-    if idx ~= nil and lastCause[idx] == "WEAPONHIT" and player.getCell ~= nil then
-        local okA, near = pcall(function()
-            local list = player:getCell():getObjectList()
-            if list == nil then return false end
-            for i = 0, list:size() - 1 do
-                local o = list:get(i)
-                if o ~= nil and instanceof ~= nil and instanceof(o, "IsoAnimal") then
-                    if math.abs(o:getX() - player:getX()) < 3
-                        and math.abs(o:getY() - player:getY()) < 3 then return true end
-                end
-            end
-            return false
-        end)
-        if okA and near then M.setStat(player, "died_animal", 1) end
+    if idx ~= nil and lastCause[idx] == "WEAPONHIT" and nearAnimal(player) then
+        M.setStat(player, "died_animal", 1)
     end
 end
 
