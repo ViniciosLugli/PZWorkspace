@@ -1,0 +1,138 @@
+require "LugliAchievements/Categories"
+
+local M = LugliAchievements
+
+local DEFS = {
+    {
+        id = "med_bandage_1",
+        name = "UI_LugliAch_med_bandage_1_name",
+        description = "UI_LugliAch_med_bandage_1_desc",
+        category = "field_medicine",
+        stat = "bandages_applied",
+        target = 1,
+        tier = "bronze",
+    },
+    {
+        id = "med_bandage_50",
+        name = "UI_LugliAch_med_bandage_50_name",
+        description = "UI_LugliAch_med_bandage_50_desc",
+        category = "field_medicine",
+        stat = "bandages_applied",
+        target = 50,
+        tier = "silver",
+    },
+    {
+        id = "med_stitch_5",
+        name = "UI_LugliAch_med_stitch_5_name",
+        description = "UI_LugliAch_med_stitch_5_desc",
+        category = "field_medicine",
+        stat = "stitches",
+        target = 5,
+        tier = "silver",
+    },
+    {
+        id = "med_splint_1",
+        name = "UI_LugliAch_med_splint_1_name",
+        description = "UI_LugliAch_med_splint_1_desc",
+        category = "field_medicine",
+        stat = "splints",
+        target = 1,
+        tier = "bronze",
+    },
+    {
+        id = "med_bullet_1",
+        name = "UI_LugliAch_med_bullet_1_name",
+        description = "UI_LugliAch_med_bullet_1_desc",
+        category = "field_medicine",
+        stat = "bullets_removed",
+        target = 1,
+        tier = "bronze",
+    },
+    {
+        id = "med_glass_10",
+        name = "UI_LugliAch_med_glass_10_name",
+        description = "UI_LugliAch_med_glass_10_desc",
+        category = "field_medicine",
+        stat = "glass_removed",
+        target = 10,
+        tier = "silver",
+    },
+    {
+        id = "med_cataplasm_10",
+        name = "UI_LugliAch_med_cataplasm_10_name",
+        description = "UI_LugliAch_med_cataplasm_10_desc",
+        category = "field_medicine",
+        stat = "cataplasms",
+        target = 10,
+        tier = "silver",
+    },
+    {
+        id = "med_pills_100",
+        name = "UI_LugliAch_med_pills_100_name",
+        description = "UI_LugliAch_med_pills_100_desc",
+        category = "field_medicine",
+        stat = "pills_taken",
+        target = 100,
+        tier = "silver",
+    },
+    {
+        id = "med_check_50",
+        name = "UI_LugliAch_med_check_50_name",
+        description = "UI_LugliAch_med_check_50_desc",
+        category = "field_medicine",
+        stat = "medical_checks",
+        target = 50,
+        tier = "silver",
+    },
+    {
+        id = "med_poison_1",
+        name = "UI_LugliAch_med_poison_1_name",
+        description = "UI_LugliAch_med_poison_1_desc",
+        category = "field_medicine",
+        stat = "damage_poison",
+        target = 1,
+        tier = "bronze",
+    },
+    {
+        id = "med_fall_10",
+        name = "UI_LugliAch_med_fall_10_name",
+        description = "UI_LugliAch_med_fall_10_desc",
+        category = "field_medicine",
+        stat = "damage_fall",
+        target = 10,
+        tier = "silver",
+    },
+    {
+        id = "med_damage_types_10",
+        name = "UI_LugliAch_med_damage_types_10_name",
+        description = "UI_LugliAch_med_damage_types_10_desc",
+        category = "field_medicine",
+        stat = "damage_types",
+        target = 10,
+        tier = "gold",
+    },
+    {
+        id = "med_infected_1",
+        name = "UI_LugliAch_med_infected_1_name",
+        description = "UI_LugliAch_med_infected_1_desc",
+        category = "field_medicine",
+        stat = "infected",
+        target = 1,
+        tier = "bronze",
+    },
+    {
+        id = "med_fracture_1",
+        name = "UI_LugliAch_med_fracture_1_name",
+        description = "UI_LugliAch_med_fracture_1_desc",
+        category = "field_medicine",
+        stat = "fracture_healed",
+        target = 1,
+        tier = "silver",
+    },
+}
+
+for i = 1, #DEFS do
+    M.register(DEFS[i])
+end
+
+M.status("Field Medicine definitions", true)

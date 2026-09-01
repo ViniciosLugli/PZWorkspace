@@ -1,0 +1,45 @@
+-- The server side of a mod that has no server side, said out loud: an admin needs to know it
+-- loaded, what it writes, and whose progress is whose. Nothing runs here, because client/ never
+-- loads in a server process. server/ loads at world load, which is why the report lives here.
+require "LugliAchievements/Core"
+
+local M = LugliAchievements
+local PART = "Server"
+
+--- A function rather than a print, so it can be called again without re-triggering an event.
+function M.serverReport()
+    local skipped = M.serverSkipped or 0
+    local where = (type(M.envName) == "function") and M.envName() or "unknown"
+    local lines = {
+        "[LugliAchievements] running as: " .. where,
+        "[LugliAchievements] server-side work: none. client/ does not load here, so no tracker " ..
+            "registers and no achievement can be earned in this process.",
+        "[LugliAchievements] definitions held in memory: " ..
+            (M.isDedicatedServer() and ("0 (" .. skipped .. " refused, by design)")
+                                    or tostring(#(M.getAllDefinitions and M.getAllDefinitions() or {}))),
+        "[LugliAchievements] save impact: none. Progress is per player -- character ModData, or " ..
+            "a GlobalModData table that is never transmitted. One player's progress is never " ..
+            "another's, and nothing is written to server state.",
+    }
+    return table.concat(lines, "\n")
+end
+
+--- Print it once, when the world the admin just started is up.
+local function announce()
+    print(M.serverReport())
+end
+
+if M.isDedicatedServer() or M.isCoopHost() then
+    -- OnServerStarted is the honest moment: the world exists and the log is being read.
+    -- Falls back to world load, because a co-op host reaches that and may not reach the other.
+    local hooked = M.addHandler(PART, "OnServerStarted", announce)
+    if hooked == nil then
+        hooked = M.addHandler(PART, "OnGameStart", announce)
+    end
+    M.status(PART, hooked ~= nil,
+             "reports on start; stores nothing server-side", hooked ~= nil and nil or "bug")
+else
+    -- Single player and plain multiplayer clients have a server process they never see. Saying
+    -- "dep" rather than failing is the difference between "not applicable" and "broken".
+    M.status(PART, nil, "not a server process", "dep")
+end

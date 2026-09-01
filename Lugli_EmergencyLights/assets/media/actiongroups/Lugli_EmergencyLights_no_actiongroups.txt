@@ -1,0 +1,1 @@
+Placeholder so the B42 multiplayer and dedicated-server animation media scan can enter this folder instead of logging a missing-directory error. Lugli - Emergency Lights adds no action groups.

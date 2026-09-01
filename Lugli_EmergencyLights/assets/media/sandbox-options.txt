@@ -1,0 +1,260 @@
+VERSION = 1,
+
+/* GENERATED FILE. Edit the generator that writes it, never this.
+ *
+ * Read from Lua as SandboxVars.LugliEL.<Name>, ONCE at OnGameStart and cached.
+ * Every default here comes from the same table the item scripts do, so a burn time
+ * on this screen cannot disagree with the one the mod enforces.
+ */
+
+option LugliEL.GlowStickHours = {
+	type = double,
+	default = 4,
+	min = 0.25,
+	max = 72,
+	page = LugliEL,
+	translation = LugliEL_GlowStickHours,
+}
+
+option LugliEL.ChemLightHours = {
+	type = double,
+	default = 8,
+	min = 0.25,
+	max = 72,
+	page = LugliEL,
+	translation = LugliEL_ChemLightHours,
+}
+
+option LugliEL.RoadFlareHours = {
+	type = double,
+	default = 0.5,
+	min = 0.25,
+	max = 72,
+	page = LugliEL,
+	translation = LugliEL_RoadFlareHours,
+}
+
+option LugliEL.GlowStickRadius = {
+	type = integer,
+	default = 5,
+	min = 1,
+	max = 40,
+	page = LugliEL,
+	translation = LugliEL_GlowStickRadius,
+}
+
+option LugliEL.ChemLightRadius = {
+	type = integer,
+	default = 10,
+	min = 1,
+	max = 40,
+	page = LugliEL,
+	translation = LugliEL_ChemLightRadius,
+}
+
+option LugliEL.RoadFlareRadius = {
+	type = integer,
+	default = 15,
+	min = 1,
+	max = 40,
+	page = LugliEL,
+	translation = LugliEL_RoadFlareRadius,
+}
+
+option LugliEL.LightIntensity = {
+	type = double,
+	default = 1,
+	min = 0.1,
+	max = 1.5,
+	page = LugliEL,
+	translation = LugliEL_LightIntensity,
+}
+
+option LugliEL.LightSaturation = {
+	type = double,
+	default = 0.45,
+	min = 0,
+	max = 1,
+	page = LugliEL,
+	translation = LugliEL_LightSaturation,
+}
+
+option LugliEL.LightFlicker = {
+	type = boolean,
+	default = true,
+	page = LugliEL,
+	translation = LugliEL_LightFlicker,
+}
+
+option LugliEL.LightIncidence = {
+	type = boolean,
+	default = true,
+	page = LugliEL,
+	translation = LugliEL_LightIncidence,
+}
+
+option LugliEL.ThrowRangeMult = {
+	type = double,
+	default = 1,
+	min = 0.25,
+	max = 2,
+	page = LugliEL,
+	translation = LugliEL_ThrowRangeMult,
+}
+
+option LugliEL.CrackNoise = {
+	type = integer,
+	default = 3,
+	min = 0,
+	max = 60,
+	page = LugliEL,
+	translation = LugliEL_CrackNoise,
+}
+
+option LugliEL.ThrowNoise = {
+	type = integer,
+	default = 5,
+	min = 0,
+	max = 60,
+	page = LugliEL,
+	translation = LugliEL_ThrowNoise,
+}
+
+option LugliEL.FlareNoise = {
+	type = integer,
+	default = 12,
+	min = 0,
+	max = 120,
+	page = LugliEL,
+	translation = LugliEL_FlareNoise,
+}
+
+option LugliEL.FlareGunNoise = {
+	type = integer,
+	default = 30,
+	min = 0,
+	max = 200,
+	page = LugliEL,
+	translation = LugliEL_FlareGunNoise,
+}
+
+option LugliEL.AerialNoise = {
+	type = integer,
+	default = 20,
+	min = 0,
+	max = 200,
+	page = LugliEL,
+	translation = LugliEL_AerialNoise,
+}
+
+option LugliEL.AerialShotRange = {
+	type = integer,
+	default = 30,
+	min = 10,
+	max = 60,
+	page = LugliEL,
+	translation = LugliEL_AerialShotRange,
+}
+
+option LugliEL.AerialSeconds = {
+	type = integer,
+	default = 300,
+	min = 30,
+	max = 3600,
+	page = LugliEL,
+	translation = LugliEL_AerialSeconds,
+}
+
+option LugliEL.AerialLightRadius = {
+	type = integer,
+	default = 40,
+	min = 4,
+	max = 40,
+	page = LugliEL,
+	translation = LugliEL_AerialLightRadius,
+}
+
+option LugliEL.AerialRange = {
+	type = integer,
+	default = 150,
+	min = 10,
+	max = 400,
+	page = LugliEL,
+	translation = LugliEL_AerialRange,
+}
+
+option LugliEL.FlareWash = {
+	type = boolean,
+	default = true,
+	page = LugliEL,
+	translation = LugliEL_FlareWash,
+}
+
+option LugliEL.FlareFire = {
+	type = boolean,
+	default = true,
+	page = LugliEL,
+	translation = LugliEL_FlareFire,
+}
+
+option LugliEL.CarriedFlareSound = {
+	type = boolean,
+	default = true,
+	page = LugliEL,
+	translation = LugliEL_CarriedFlareSound,
+}
+
+option LugliEL.MapMarker = {
+	type = boolean,
+	default = true,
+	page = LugliEL,
+	translation = LugliEL_MapMarker,
+}
+
+option LugliEL.MapRangeCircle = {
+	type = boolean,
+	default = false,
+	page = LugliEL,
+	translation = LugliEL_MapRangeCircle,
+}
+
+option LugliEL.LootMultiplier = {
+	type = double,
+	default = 1,
+	min = 0,
+	max = 4,
+	page = LugliEL,
+	translation = LugliEL_LootMultiplier,
+}
+
+option LugliEL.SweepRadius = {
+	type = integer,
+	default = 10,
+	min = 4,
+	max = 32,
+	page = LugliEL,
+	translation = LugliEL_SweepRadius,
+}
+
+option LugliEL.SweepSeconds = {
+	type = double,
+	default = 1,
+	min = 0.25,
+	max = 5,
+	page = LugliEL,
+	translation = LugliEL_SweepSeconds,
+}
+
+option LugliEL.DebugLog = {
+	type = boolean,
+	default = false,
+	page = LugliEL,
+	translation = LugliEL_DebugLog,
+}
+
+option LugliEL.DebugRanges = {
+	type = boolean,
+	default = false,
+	page = LugliEL,
+	translation = LugliEL_DebugRanges,
+}

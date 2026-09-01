@@ -1,0 +1,35 @@
+/* The unlock sting.
+ *
+ * A MOD CANNOT SHIP AN FMOD BANK, so this is a loose OGG resolved through
+ * ZomboidFileSystem by FMODManager.loadSound. `event =` could only name an event
+ * that already exists in a vanilla bank, which ours does not.
+ *
+ * EVERY VALUE CARRIES A TRAILING COMMA, INCLUDING THE LAST. ScriptParser.readBlock
+ * emits a value only when it reaches a ',' and returns immediately on '}', so a
+ * final key without one is silently dropped.
+ *
+ * The name is prefixed because GameSounds keys ONE flat map on the bare name and
+ * ignores the module, so a later-loading mod calling something "Unlock" would
+ * replace ours.
+ *
+ * is3D = false and no distanceMin/distanceMax: this is interface feedback for the
+ * player who earned it, not a thing happening at a place in the world. category = UI
+ * puts it under the player's own UI volume slider rather than under Ambient, which
+ * is where vanilla files every sound the interface makes.
+ */
+module Base
+{
+    sound LugliAch_Unlock
+    {
+        category = UI,
+        is3D = false,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliAch_Unlock.ogg,
+            /* Set here rather than baked into the OGG: the clip keeps its headroom and its level
+             * stays a value someone can read and change. */
+            volume = 0.5,
+        }
+    }
+}

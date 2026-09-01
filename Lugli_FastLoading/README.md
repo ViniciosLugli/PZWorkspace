@@ -132,6 +132,16 @@ Break-even is around **22 s on the menu**. Most people are quicker, so it ships 
 made adaptive: by the time the menu exists the meshes are already loaded, and the deferred textures
 need elapsed wall time no priority scheme can manufacture.
 
+## Other optimisation mods
+
+Anything patching the same engine method collides with this, and whichever loads last wins silently.
+That combination is not supported, because a fault cannot be attributed to one mod or the other.
+
+**Zed's Better FPS NG specifically.** Checked on 42.20.4 against its 2026-08-27 build: it patches
+**no method this mod patches**, so the two can be installed together. It does retransform three of
+the same engine *classes* -- `GameWindow`, `Model` and `FileSystemImpl`, the last one new in that
+build. If you run both and something looks wrong, turn one off before reporting it.
+
 ## Signing
 
 The jar ships **unsigned**, deliberately.

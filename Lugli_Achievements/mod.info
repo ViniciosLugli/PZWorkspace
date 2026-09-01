@@ -1,0 +1,10 @@
+name=Lugli - Achievements
+id=Lugli_Achievements
+author=ViniciosLugli
+description=An in-game achievement system for Build 42. Tracks what your survivor actually does, unlocks achievements as you go, and shows them in a browsable window with progress on every one. Progress is kept per world by default, so a death does not restart the collection, and a tickbox makes it per character instead. Purely observational: no items, no XP, no change to how the game plays. Other mods can register their own achievements through a public API.
+poster=preview.png
+icon=icon.png
+category=features
+require=NeatUI_Framework
+versionMin=42.20
+modversion=1.0.0

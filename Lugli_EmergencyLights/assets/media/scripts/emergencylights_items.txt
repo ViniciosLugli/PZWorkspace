@@ -1,0 +1,637 @@
+/* GENERATED FILE. Edit the generator that writes it, never this.
+ *
+ * module LugliEmergencyLights, never Base. Script bodies MERGE per field: a redefinition
+ * overwrites only the keys it names and every key an earlier body set survives, so
+ * two mods sharing Base.FlareGun do not override one another, they interleave into
+ * one item. BetterContainers already ships compatibility lists naming
+ * Base.FlareGun and Base.FlareCartridge from two other mods.
+ *
+ * THE LIT VARIANTS CARRY SwingAnim = Throw AND NO PhysicsObject, deliberately.
+ * SwingAnim alone drives WeaponType.getWeaponType (a chain of SwingAnim string
+ * compares, WeaponType.java:39-51), which sets the Weapon anim variable to
+ * throwing and rangedWeapon true: the real vanilla throw animation and aiming, for
+ * free. PhysicsObject is the separate key that makes CombatManager:638 call
+ * Throw(), whose only non-exploding branch is Base.Ball, whose IsoBall.Fall()
+ * emits a 600 tile world sound. 600 is byte-identical to a ringing house alarm and
+ * three times a shotgun, and WorldSoundManager exposes no way to cancel it. So we
+ * take the animation and place the item ourselves.
+ *
+ * No ActivatedItem key anywhere: isEmittingLight() is
+ * canEmitLight() && (!canBeActivated() || isActivated()), so an item that CANNOT be
+ * activated and has LightStrength > 0 emits unconditionally while held. That is
+ * exactly the chem light semantic, and it means the player can never switch one off.
+ */
+module LugliEmergencyLights
+{
+    imports
+    {
+        Base
+    }
+
+    /* Green Glow Stick, sealed. Inert until cracked. */
+    item GlowStick_Green
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:normal,
+        Weight = 0.075,
+        Icon = LugliEL_GlowStick_Green,
+        WorldStaticModel = LugliEmergencyLights.GlowStick_Ground,
+        ColorRed = 40,
+        ColorGreen = 255,
+        ColorBlue = 90,
+        AttachmentType = Walkie,
+    }
+
+    /* Green Glow Stick, cracked. Burns 4.0 game hours, cannot be put out. */
+    item GlowStick_Green_Lit
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:weapon,
+        Weight = 0.075,
+        Icon = LugliEL_GlowStick_Green_Lit,
+        WorldStaticModel = LugliEmergencyLights.GlowStickLit_Ground,
+        WeaponSprite = LugliEmergencyLights.GlowStickLit_Held,
+        StaticModel = LugliEmergencyLights.GlowStickLit_Held,
+        ColorRed = 40,
+        ColorGreen = 255,
+        ColorBlue = 90,
+        LightDistance = 0,
+        LightStrength = 0.05,
+        TorchCone = false,
+        SwingAnim = Throw,
+        MaxRange = 18.2,
+        MinRange = 0.61,
+        MinDamage = 0.0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        DoorDamage = 0,
+        KnockdownMod = 0.0,
+        SplatNumber = 0,
+        SplatBloodOnNoDeath = false,
+        Swingtime = 1.2,
+        MinimumSwingtime = 1.2,
+        SwingAmountBeforeImpact = 0.1,
+        UseSelf = true,
+        DisappearOnUse = false,
+        UseEndurance = false,
+        ConditionMax = 100,
+        AttachmentType = Walkie,
+        Tags = base:lightwhenattached,
+    }
+
+    /* Blue Glow Stick, sealed. Inert until cracked. */
+    item GlowStick_Blue
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:normal,
+        Weight = 0.075,
+        Icon = LugliEL_GlowStick_Blue,
+        WorldStaticModel = LugliEmergencyLights.GlowStick_Ground,
+        ColorRed = 60,
+        ColorGreen = 140,
+        ColorBlue = 255,
+        AttachmentType = Walkie,
+    }
+
+    /* Blue Glow Stick, cracked. Burns 4.0 game hours, cannot be put out. */
+    item GlowStick_Blue_Lit
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:weapon,
+        Weight = 0.075,
+        Icon = LugliEL_GlowStick_Blue_Lit,
+        WorldStaticModel = LugliEmergencyLights.GlowStickLit_Ground,
+        WeaponSprite = LugliEmergencyLights.GlowStickLit_Held,
+        StaticModel = LugliEmergencyLights.GlowStickLit_Held,
+        ColorRed = 60,
+        ColorGreen = 140,
+        ColorBlue = 255,
+        LightDistance = 0,
+        LightStrength = 0.05,
+        TorchCone = false,
+        SwingAnim = Throw,
+        MaxRange = 18.2,
+        MinRange = 0.61,
+        MinDamage = 0.0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        DoorDamage = 0,
+        KnockdownMod = 0.0,
+        SplatNumber = 0,
+        SplatBloodOnNoDeath = false,
+        Swingtime = 1.2,
+        MinimumSwingtime = 1.2,
+        SwingAmountBeforeImpact = 0.1,
+        UseSelf = true,
+        DisappearOnUse = false,
+        UseEndurance = false,
+        ConditionMax = 100,
+        AttachmentType = Walkie,
+        Tags = base:lightwhenattached,
+    }
+
+    /* Pink Glow Stick, sealed. Inert until cracked. */
+    item GlowStick_Pink
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:normal,
+        Weight = 0.075,
+        Icon = LugliEL_GlowStick_Pink,
+        WorldStaticModel = LugliEmergencyLights.GlowStick_Ground,
+        ColorRed = 255,
+        ColorGreen = 80,
+        ColorBlue = 180,
+        AttachmentType = Walkie,
+    }
+
+    /* Pink Glow Stick, cracked. Burns 4.0 game hours, cannot be put out. */
+    item GlowStick_Pink_Lit
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:weapon,
+        Weight = 0.075,
+        Icon = LugliEL_GlowStick_Pink_Lit,
+        WorldStaticModel = LugliEmergencyLights.GlowStickLit_Ground,
+        WeaponSprite = LugliEmergencyLights.GlowStickLit_Held,
+        StaticModel = LugliEmergencyLights.GlowStickLit_Held,
+        ColorRed = 255,
+        ColorGreen = 80,
+        ColorBlue = 180,
+        LightDistance = 0,
+        LightStrength = 0.05,
+        TorchCone = false,
+        SwingAnim = Throw,
+        MaxRange = 18.2,
+        MinRange = 0.61,
+        MinDamage = 0.0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        DoorDamage = 0,
+        KnockdownMod = 0.0,
+        SplatNumber = 0,
+        SplatBloodOnNoDeath = false,
+        Swingtime = 1.2,
+        MinimumSwingtime = 1.2,
+        SwingAmountBeforeImpact = 0.1,
+        UseSelf = true,
+        DisappearOnUse = false,
+        UseEndurance = false,
+        ConditionMax = 100,
+        AttachmentType = Walkie,
+        Tags = base:lightwhenattached,
+    }
+
+    /* Orange Glow Stick, sealed. Inert until cracked. */
+    item GlowStick_Orange
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:normal,
+        Weight = 0.075,
+        Icon = LugliEL_GlowStick_Orange,
+        WorldStaticModel = LugliEmergencyLights.GlowStick_Ground,
+        ColorRed = 255,
+        ColorGreen = 140,
+        ColorBlue = 40,
+        AttachmentType = Walkie,
+    }
+
+    /* Orange Glow Stick, cracked. Burns 4.0 game hours, cannot be put out. */
+    item GlowStick_Orange_Lit
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:weapon,
+        Weight = 0.075,
+        Icon = LugliEL_GlowStick_Orange_Lit,
+        WorldStaticModel = LugliEmergencyLights.GlowStickLit_Ground,
+        WeaponSprite = LugliEmergencyLights.GlowStickLit_Held,
+        StaticModel = LugliEmergencyLights.GlowStickLit_Held,
+        ColorRed = 255,
+        ColorGreen = 140,
+        ColorBlue = 40,
+        LightDistance = 0,
+        LightStrength = 0.05,
+        TorchCone = false,
+        SwingAnim = Throw,
+        MaxRange = 18.2,
+        MinRange = 0.61,
+        MinDamage = 0.0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        DoorDamage = 0,
+        KnockdownMod = 0.0,
+        SplatNumber = 0,
+        SplatBloodOnNoDeath = false,
+        Swingtime = 1.2,
+        MinimumSwingtime = 1.2,
+        SwingAmountBeforeImpact = 0.1,
+        UseSelf = true,
+        DisappearOnUse = false,
+        UseEndurance = false,
+        ConditionMax = 100,
+        AttachmentType = Walkie,
+        Tags = base:lightwhenattached,
+    }
+
+    /* Green Chem Light, sealed. Inert until cracked. */
+    item ChemLight_Green
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:normal,
+        Weight = 0.100,
+        Icon = LugliEL_ChemLight_Green,
+        WorldStaticModel = LugliEmergencyLights.ChemLight_Ground,
+        ColorRed = 40,
+        ColorGreen = 255,
+        ColorBlue = 90,
+        AttachmentType = Walkie,
+    }
+
+    /* Green Chem Light, cracked. Burns 8.0 game hours, cannot be put out. */
+    item ChemLight_Green_Lit
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:weapon,
+        Weight = 0.100,
+        Icon = LugliEL_ChemLight_Green_Lit,
+        WorldStaticModel = LugliEmergencyLights.ChemLightLit_Ground,
+        WeaponSprite = LugliEmergencyLights.ChemLightLit_Held,
+        StaticModel = LugliEmergencyLights.ChemLightLit_Held,
+        ColorRed = 40,
+        ColorGreen = 255,
+        ColorBlue = 90,
+        LightDistance = 0,
+        LightStrength = 0.05,
+        TorchCone = false,
+        SwingAnim = Throw,
+        MaxRange = 16.2,
+        MinRange = 0.61,
+        MinDamage = 0.0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        DoorDamage = 0,
+        KnockdownMod = 0.0,
+        SplatNumber = 0,
+        SplatBloodOnNoDeath = false,
+        Swingtime = 1.2,
+        MinimumSwingtime = 1.2,
+        SwingAmountBeforeImpact = 0.1,
+        UseSelf = true,
+        DisappearOnUse = false,
+        UseEndurance = false,
+        ConditionMax = 100,
+        AttachmentType = Walkie,
+        Tags = base:lightwhenattached,
+    }
+
+    /* Red Chem Light, sealed. Inert until cracked. */
+    item ChemLight_Red
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:normal,
+        Weight = 0.100,
+        Icon = LugliEL_ChemLight_Red,
+        WorldStaticModel = LugliEmergencyLights.ChemLight_Ground,
+        ColorRed = 255,
+        ColorGreen = 45,
+        ColorBlue = 35,
+        AttachmentType = Walkie,
+    }
+
+    /* Red Chem Light, cracked. Burns 8.0 game hours, cannot be put out. */
+    item ChemLight_Red_Lit
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:weapon,
+        Weight = 0.100,
+        Icon = LugliEL_ChemLight_Red_Lit,
+        WorldStaticModel = LugliEmergencyLights.ChemLightLit_Ground,
+        WeaponSprite = LugliEmergencyLights.ChemLightLit_Held,
+        StaticModel = LugliEmergencyLights.ChemLightLit_Held,
+        ColorRed = 255,
+        ColorGreen = 45,
+        ColorBlue = 35,
+        LightDistance = 0,
+        LightStrength = 0.05,
+        TorchCone = false,
+        SwingAnim = Throw,
+        MaxRange = 16.2,
+        MinRange = 0.61,
+        MinDamage = 0.0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        DoorDamage = 0,
+        KnockdownMod = 0.0,
+        SplatNumber = 0,
+        SplatBloodOnNoDeath = false,
+        Swingtime = 1.2,
+        MinimumSwingtime = 1.2,
+        SwingAmountBeforeImpact = 0.1,
+        UseSelf = true,
+        DisappearOnUse = false,
+        UseEndurance = false,
+        ConditionMax = 100,
+        AttachmentType = Walkie,
+        Tags = base:lightwhenattached,
+    }
+
+    /* Yellow Chem Light, sealed. Inert until cracked. */
+    item ChemLight_Yellow
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:normal,
+        Weight = 0.100,
+        Icon = LugliEL_ChemLight_Yellow,
+        WorldStaticModel = LugliEmergencyLights.ChemLight_Ground,
+        ColorRed = 255,
+        ColorGreen = 230,
+        ColorBlue = 60,
+        AttachmentType = Walkie,
+    }
+
+    /* Yellow Chem Light, cracked. Burns 8.0 game hours, cannot be put out. */
+    item ChemLight_Yellow_Lit
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:weapon,
+        Weight = 0.100,
+        Icon = LugliEL_ChemLight_Yellow_Lit,
+        WorldStaticModel = LugliEmergencyLights.ChemLightLit_Ground,
+        WeaponSprite = LugliEmergencyLights.ChemLightLit_Held,
+        StaticModel = LugliEmergencyLights.ChemLightLit_Held,
+        ColorRed = 255,
+        ColorGreen = 230,
+        ColorBlue = 60,
+        LightDistance = 0,
+        LightStrength = 0.05,
+        TorchCone = false,
+        SwingAnim = Throw,
+        MaxRange = 16.2,
+        MinRange = 0.61,
+        MinDamage = 0.0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        DoorDamage = 0,
+        KnockdownMod = 0.0,
+        SplatNumber = 0,
+        SplatBloodOnNoDeath = false,
+        Swingtime = 1.2,
+        MinimumSwingtime = 1.2,
+        SwingAmountBeforeImpact = 0.1,
+        UseSelf = true,
+        DisappearOnUse = false,
+        UseEndurance = false,
+        ConditionMax = 100,
+        AttachmentType = Walkie,
+        Tags = base:lightwhenattached,
+    }
+
+    /* Cyan Chem Light, sealed. Inert until cracked. */
+    item ChemLight_Cyan
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:normal,
+        Weight = 0.100,
+        Icon = LugliEL_ChemLight_Cyan,
+        WorldStaticModel = LugliEmergencyLights.ChemLight_Ground,
+        ColorRed = 55,
+        ColorGreen = 235,
+        ColorBlue = 230,
+        AttachmentType = Walkie,
+    }
+
+    /* Cyan Chem Light, cracked. Burns 8.0 game hours, cannot be put out. */
+    item ChemLight_Cyan_Lit
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:weapon,
+        Weight = 0.100,
+        Icon = LugliEL_ChemLight_Cyan_Lit,
+        WorldStaticModel = LugliEmergencyLights.ChemLightLit_Ground,
+        WeaponSprite = LugliEmergencyLights.ChemLightLit_Held,
+        StaticModel = LugliEmergencyLights.ChemLightLit_Held,
+        ColorRed = 55,
+        ColorGreen = 235,
+        ColorBlue = 230,
+        LightDistance = 0,
+        LightStrength = 0.05,
+        TorchCone = false,
+        SwingAnim = Throw,
+        MaxRange = 16.2,
+        MinRange = 0.61,
+        MinDamage = 0.0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        DoorDamage = 0,
+        KnockdownMod = 0.0,
+        SplatNumber = 0,
+        SplatBloodOnNoDeath = false,
+        Swingtime = 1.2,
+        MinimumSwingtime = 1.2,
+        SwingAmountBeforeImpact = 0.1,
+        UseSelf = true,
+        DisappearOnUse = false,
+        UseEndurance = false,
+        ConditionMax = 100,
+        AttachmentType = Walkie,
+        Tags = base:lightwhenattached,
+    }
+
+    /* Red Road Flare, sealed. Inert until cracked. */
+    item RoadFlare_Red
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:normal,
+        Weight = 0.150,
+        Icon = LugliEL_RoadFlare_Red,
+        WorldStaticModel = LugliEmergencyLights.RoadFlare_Ground,
+        ColorRed = 255,
+        ColorGreen = 45,
+        ColorBlue = 35,
+    }
+
+    /* Red Road Flare, cracked. Burns 0.5 game hours, cannot be put out. */
+    item RoadFlare_Red_Lit
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:weapon,
+        Weight = 0.150,
+        Icon = LugliEL_RoadFlare_Red_Lit,
+        WorldStaticModel = LugliEmergencyLights.RoadFlareLit_Ground,
+        WeaponSprite = LugliEmergencyLights.RoadFlareLit_Held,
+        StaticModel = LugliEmergencyLights.RoadFlareLit_Held,
+        ColorRed = 255,
+        ColorGreen = 45,
+        ColorBlue = 35,
+        LightDistance = 0,
+        LightStrength = 0.05,
+        TorchCone = false,
+        SwingAnim = Throw,
+        MaxRange = 10.5,
+        MinRange = 0.61,
+        MinDamage = 0.0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        DoorDamage = 0,
+        KnockdownMod = 0.0,
+        SplatNumber = 0,
+        SplatBloodOnNoDeath = false,
+        Swingtime = 1.2,
+        MinimumSwingtime = 1.2,
+        SwingAmountBeforeImpact = 0.1,
+        UseSelf = true,
+        DisappearOnUse = false,
+        UseEndurance = false,
+        ConditionMax = 100,
+    }
+
+    /* Spent glow stick. One per family, shared by that family's colours: the dead
+     * object goes the same milky grey whatever colour it started as, but it is
+     * still that object. Cannot be relit, cannot be recharged. */
+    item GlowStick_Spent
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:normal,
+        Weight = 0.04,
+        Icon = LugliEL_GlowStick_Spent,
+        WorldStaticModel = LugliEmergencyLights.GlowStick_Spent_Ground,
+        StaticModel = LugliEmergencyLights.GlowStick_Spent_Ground,
+        ColorRed = 150,
+        ColorGreen = 150,
+        ColorBlue = 150,
+    }
+
+    /* Spent chem light. One per family, shared by that family's colours: the dead
+     * object goes the same milky grey whatever colour it started as, but it is
+     * still that object. Cannot be relit, cannot be recharged. */
+    item ChemLight_Spent
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:normal,
+        Weight = 0.05,
+        Icon = LugliEL_ChemLight_Spent,
+        WorldStaticModel = LugliEmergencyLights.ChemLight_Spent_Ground,
+        StaticModel = LugliEmergencyLights.ChemLight_Spent_Ground,
+        ColorRed = 150,
+        ColorGreen = 150,
+        ColorBlue = 150,
+    }
+
+    /* Spent road flare. One per family, shared by that family's colours: the dead
+     * object goes the same milky grey whatever colour it started as, but it is
+     * still that object. Cannot be relit, cannot be recharged. */
+    item RoadFlare_Spent
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:normal,
+        Weight = 0.07,
+        Icon = LugliEL_RoadFlare_Spent,
+        WorldStaticModel = LugliEmergencyLights.RoadFlare_Spent_Ground,
+        StaticModel = LugliEmergencyLights.RoadFlare_Spent_Ground,
+        ColorRed = 150,
+        ColorGreen = 150,
+        ColorBlue = 150,
+    }
+
+    /* Flare Cartridge. No ColorRed anywhere: the hull colour is in the texture, because a
+     * tint would take the brass head with it. */
+    item FlareCartridge
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:normal,
+        Weight = 0.05,
+        Icon = LugliEL_FlareCartridge,
+        WorldStaticModel = LugliEmergencyLights.FlareCartridge_Ground,
+        StaticModel = LugliEmergencyLights.FlareCartridge_Ground,
+        count = 1,
+        MetalValue = 1.0,
+        Tags = base:ammo,
+    }
+
+    /* Flare gun. A real firearm to the engine, and three keys carry the whole design.
+     *
+     * MaxHitcount = 0 and Projectilecount = 0 make a gun that does no ballistic work
+     * at all and exists purely to fire Events.OnWeaponSwingHitPoint, which is where
+     * our Lua reads the aim and launches the flare. Vanilla's M203 is built the same
+     * way.
+     *
+     * It is NOT tagged base:fakeweapon, and that is deliberate rather than an
+     * oversight. Revolver_CapGun carries that tag and looks like the ideal harmless
+     * gun template, but SwipeStatePlayer.java:281-292 returns before
+     * attackCollisionCheck when the tag is present and ammo is loaded, so
+     * OnWeaponSwingHitPoint never fires and the entire hook is dead.
+     *
+     * WeaponReloadType is a closed Java enum, so revolver it is: the break-open
+     * animation, which is what a flare pistol does anyway. HaveChamber = false with
+     * MaxAmmo = 1 puts canShoot on the ammo-count branch, which is correct for a
+     * single-shot break action.
+     *
+     * SoundRadius 50 rather than the engine throw's 600. A flare gun should be heard;
+     * it should not be a house alarm. The tunable version of this is a sandbox option.
+     */
+    item FlareGun
+    {
+        DisplayCategory = EmergencyLights,
+        ItemType = base:weapon,
+        SubCategory = Firearm,
+        Weight = 0.50,
+        Icon = LugliEL_FlareGun,
+        WeaponSprite = LugliEmergencyLights.FlareGun,
+        StaticModel = LugliEmergencyLights.FlareGun,
+        AmmoType = lugli:flare_cartridge,
+        WeaponReloadType = revolver,
+        MaxAmmo = 1,
+        HaveChamber = false,
+        ManuallyRemoveSpentRounds = true,
+        Ranged = true,
+        IsAimedFirearm = false,
+        SwingAnim = Handgun,
+        RunAnim = Run_Weapon2,
+        AttachmentType = HolsterSmall,
+        Aimingtime = 20,
+        Reloadtime = 30,
+        RecoilDelay = 20,
+        MinAngle = 0.96,
+        MinSightRange = 2,
+        MaxSightRange = 6.0,
+        MaxRange = 10.0,
+        MinRange = 0.61,
+        MinDamage = 0.1,
+        MaxDamage = 0.2,
+        HitChance = 60,
+        MaxHitcount = 0,
+        Projectilecount = 0,
+        DoorDamage = 0,
+        KnockdownMod = 0.0,
+        PushBackMod = 0.0,
+        SplatNumber = 0,
+        SplatBloodOnNoDeath = false,
+        Swingtime = 0.6,
+        MinimumSwingtime = 0.6,
+        SwingAmountBeforeImpact = 0.0,
+        UseEndurance = false,
+        ConditionMax = 10,
+        ConditionLowerChanceOneIn = 200,
+        MetalValue = 30.0,
+        SoundRadius = 50,
+        SoundVolume = 20,
+        SoundGain = 1.2,
+        /* Vanilla M36 sounds, every one of them verified present in this build's
+         * media/scripts/generated/sounds/weapons/sounds_firearm_m36.txt. A named
+         * sound that does not exist fails silently and leaves the action mute. */
+        EquipSound = M36Equip,
+        UnequipSound = M36UnEquip,
+        DropSound = M36Drop,
+        BringToBearSound = M36BringToBear,
+        AimReleaseSound = M36AimRelease,
+        InsertAmmoSound = M36InsertAmmo,
+        InsertAmmoStartSound = M36InsertAmmoStart,
+        InsertAmmoStopSound = M36InsertAmmoStop,
+        EjectAmmoSound = M36EjectAmmo,
+        EjectAmmoStartSound = M36EjectAmmoStart,
+        EjectAmmoStopSound = M36EjectAmmoStop,
+        ClickSound = LugliEL_FlareGunDry,
+        SwingSound = LugliEL_FlareGunShot,
+        ImpactSound = null,
+        Tags = base:firearm,
+    }
+}

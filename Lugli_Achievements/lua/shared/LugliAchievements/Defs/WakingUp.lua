@@ -1,0 +1,125 @@
+require "LugliAchievements/Categories"
+
+local M = LugliAchievements
+
+local DEFS = {
+    {
+        id = "waking_smash_1",
+        name = "UI_LugliAch_waking_smash_1_name",
+        description = "UI_LugliAch_waking_smash_1_desc",
+        category = "waking_up",
+        stat = "windows_smashed",
+        target = 1,
+        tier = "bronze",
+    },
+    {
+        id = "waking_window_1",
+        name = "UI_LugliAch_waking_window_1_name",
+        description = "UI_LugliAch_waking_window_1_desc",
+        category = "waking_up",
+        stat = "windows_climbed",
+        target = 1,
+        tier = "bronze",
+    },
+    {
+        id = "waking_fence_1",
+        name = "UI_LugliAch_waking_fence_1_name",
+        description = "UI_LugliAch_waking_fence_1_desc",
+        category = "waking_up",
+        stat = "fences_climbed",
+        target = 1,
+        tier = "bronze",
+    },
+    {
+        id = "waking_burden_1",
+        name = "UI_LugliAch_waking_burden_1_name",
+        description = "UI_LugliAch_waking_burden_1_desc",
+        category = "waking_up",
+        stat = "overburdened",
+        target = 1,
+        tier = "bronze",
+    },
+    {
+        id = "waking_forage_1",
+        name = "UI_LugliAch_waking_forage_1_name",
+        description = "UI_LugliAch_waking_forage_1_desc",
+        category = "waking_up",
+        stat = "items_foraged",
+        target = 1,
+        unit = "UI_LugliAch_unit_items",
+        tier = "bronze",
+    },
+    {
+        id = "waking_craft_1",
+        name = "UI_LugliAch_waking_craft_1_name",
+        description = "UI_LugliAch_waking_craft_1_desc",
+        category = "waking_up",
+        stat = "items_crafted",
+        target = 1,
+        unit = "UI_LugliAch_unit_items",
+        tier = "bronze",
+    },
+    {
+        id = "waking_build_1",
+        name = "UI_LugliAch_waking_build_1_name",
+        description = "UI_LugliAch_waking_build_1_desc",
+        category = "waking_up",
+        stat = "objects_built",
+        target = 1,
+        unit = "UI_LugliAch_unit_things",
+        tier = "bronze",
+    },
+    {
+        id = "waking_drive_1",
+        name = "UI_LugliAch_waking_drive_1_name",
+        description = "UI_LugliAch_waking_drive_1_desc",
+        category = "waking_up",
+        stat = "vehicle_enters",
+        target = 1,
+        tier = "bronze",
+    },
+    {
+        id = "waking_read_1",
+        name = "UI_LugliAch_waking_read_1_name",
+        description = "UI_LugliAch_waking_read_1_desc",
+        category = "waking_up",
+        stat = "books_read",
+        target = 1,
+        unit = "UI_LugliAch_unit_books",
+        tier = "bronze",
+    },
+    {
+        id = "waking_rope_1",
+        name = "UI_LugliAch_waking_rope_1_name",
+        description = "UI_LugliAch_waking_rope_1_desc",
+        category = "waking_up",
+        stat = "sheet_ropes_tied",
+        target = 1,
+        tier = "bronze",
+    },
+    {
+        id = "waking_day_2",
+        name = "UI_LugliAch_waking_day_2_name",
+        description = "UI_LugliAch_waking_day_2_desc",
+        category = "waking_up",
+        stat = "days_survived",
+        target = 1,
+        unit = "UI_LugliAch_unit_days",
+        tier = "bronze",
+    },
+    {
+        id = "waking_map_1",
+        name = "UI_LugliAch_waking_map_1_name",
+        description = "UI_LugliAch_waking_map_1_desc",
+        category = "waking_up",
+        stat = "maps_read",
+        target = 1,
+        tier = "bronze",
+    },
+}
+
+for i = 1, #DEFS do
+    M.register(DEFS[i])
+end
+
+M.status("Waking Up definitions", true)

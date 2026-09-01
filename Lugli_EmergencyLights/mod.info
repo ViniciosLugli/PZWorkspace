@@ -1,0 +1,13 @@
+name=Lugli - Emergency Lights
+id=Lugli_EmergencyLights
+author=ViniciosLugli
+description=Glow sticks, chem lights, road flares and a flare gun for Build 42. Crack one and it burns for hours, cannot be put out, and keeps burning wherever you drop or throw it. Vanilla puts a lamp out before it lands; these do not. Throw one down a dark corridor, leave one at a doorway you mean to come back to, or fire a flare over the treeline. Every burn time, light radius, throw range and noise level is a sandbox option.
+poster=preview.png
+icon=icon.png
+category=features
+versionMin=42.20
+require=ZombieBuddy
+modversion=1.0.0
+javaJarFile=media/java/client/EmergencyLights.jar
+javaPkgName=lugli.emergencylights
+ZBVersionMin=2.3.2

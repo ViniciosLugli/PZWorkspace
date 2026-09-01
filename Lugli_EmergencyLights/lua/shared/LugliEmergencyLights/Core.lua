@@ -1,0 +1,393 @@
+--[[
+    Core
+    Environment, items, sound and the part registry.
+]]
+
+LugliEmergencyLights = LugliEmergencyLights or {}
+LugliEmergencyLights.parts = LugliEmergencyLights.parts or {}
+
+-- ---- Core --------------------------------------------------------------------------------------
+do
+    --- Every item the player is carrying, INCLUDING inside bags, as a flat array.
+    function LugliEmergencyLights.allCarried(player, depth)
+        local out = {}
+        if player == nil then return out end
+
+        local function walk(container, d)
+            if container == nil or d > 3 then return end
+            local items = container:getItems()
+            if items == nil then return end
+            for i = 0, items:size() - 1 do
+                local item = items:get(i)
+                if item ~= nil then
+                    out[#out + 1] = item
+                    if item:IsInventoryContainer() then
+                        local inner = item:getInventory()
+                        if inner ~= nil and inner ~= container then walk(inner, d + 1) end
+                    end
+                end
+            end
+        end
+
+        pcall(function() walk(player:getInventory(), depth or 1) end)
+        return out
+    end
+
+    --- One world-object coordinate, or the tile centre when it cannot be had.
+    function LugliEmergencyLights.worldPosOf(wo, axis, tile)
+        local mid = (axis == "Z") and tile or (tile + 0.5)
+        if wo == nil then return mid end
+        local ok, v = pcall(function()
+            if axis == "X" then return wo:getWorldPosX() end
+            if axis == "Y" then return wo:getWorldPosY() end
+            return wo:getWorldPosZ()
+        end)
+        if not ok or type(v) ~= "number" or v ~= v then return mid end
+        return v
+    end
+
+    --- How the item is lying, in degrees, or nil if it cannot be asked.
+    function LugliEmergencyLights.itemRotation(item, axis)
+        if item == nil then return nil end
+        local ok, v = pcall(function()
+            if axis == "P" then return item:getWorldYRotation() end
+            return item:getWorldZRotation()
+        end)
+        if not ok or type(v) ~= "number" or v ~= v then return nil end
+        return v
+    end
+
+    --- The tile a MOVING light should sit on: the nearest one, not the one it is inside.
+    function LugliEmergencyLights.lightTile(v)
+        if type(v) ~= "number" then return v end
+        return math.floor(v + 0.5)
+    end
+
+    --- Move a hotbar attachment from one item to its replacement.
+    function LugliEmergencyLights.moveAttachment(oldItem, newItem, player)
+        if oldItem == nil or newItem == nil or player == nil then return false end
+        if getPlayerHotbar == nil then return false end
+
+        local ok, moved = pcall(function()
+            local idx = oldItem:getAttachedSlot()
+            if type(idx) ~= "number" or idx < 0 then return false end
+
+            local num = player:getPlayerNum()
+            local hotbar = getPlayerHotbar(num)
+            if hotbar == nil or type(hotbar.availableSlot) ~= "table" then return false end
+
+            local def = hotbar.availableSlot[idx]
+            if def == nil then return false end
+
+            -- The attachment NAME, which is what the character indexes its attached items by. Not the
+            -- slot type: setAttachedToModel is given `slot`, setAttachedSlotType is given slotDef.type,
+            -- and they are different strings.
+            local slot = oldItem:getAttachedToModel()
+            if slot == nil or slot == "" then return false end
+
+            hotbar:removeItem(oldItem, false)
+            hotbar:attachItem(newItem, slot, idx, def, false)
+            return true
+        end)
+        return ok and moved == true
+    end
+
+    --- Take an item off the belt, the back or the holster, and off the character's model with it.
+    function LugliEmergencyLights.detachAttachment(item, player)
+        if item == nil or player == nil then return false end
+        if getPlayerHotbar == nil then return false end
+
+        local ok, gone = pcall(function()
+            local idx = item:getAttachedSlot()
+            if type(idx) ~= "number" or idx < 0 then return false end
+
+            local hotbar = getPlayerHotbar(player:getPlayerNum())
+            if hotbar == nil then return false end
+
+            hotbar:removeItem(item, false)
+            return true
+        end)
+        return ok and gone == true
+    end
+
+    --- Seconds of GAME time since the last frame, defaulting to 1/60.
+    local function readDelta() return getGameTime():getTimeDelta() end
+
+    function LugliEmergencyLights.frameDelta()
+        if getGameTime == nil then return 1.0 / 60.0 end
+        local ok, d = pcall(readDelta)
+        if ok and type(d) == "number" and d > 0.0 then return d end
+        return 1.0 / 60.0
+    end
+
+    local M = LugliEmergencyLights
+
+    M.TAG = "EmergencyLights"
+
+    --- ZombRandFloat, guarded. The engine's own generator, so this follows the world seed rather than
+    --- a second unseeded one; the midpoint is the fallback when it is absent.
+    function M.rand(lo, hi)
+        if ZombRandFloat == nil then return (lo + hi) * 0.5 end
+        local ok, v = pcall(ZombRandFloat, lo, hi)
+        if not ok or type(v) ~= "number" then return (lo + hi) * 0.5 end
+        return v
+    end
+
+    --- Symmetric noise in [-amount, amount], zero when the generator is absent.
+    function M.jitter(amount)
+        if ZombRandFloat == nil then return 0.0 end
+        local ok, v = pcall(ZombRandFloat, -amount, amount)
+        if not ok or type(v) ~= "number" then return 0.0 end
+        return v
+    end
+
+    -- WHERE ARE WE RUNNING.
+    local function boolCall(fn)
+        if type(fn) ~= "function" then return false end
+        local ok, v = pcall(fn)
+        return ok and v == true
+    end
+
+    local IS_SERVER = boolCall(isServer)
+    local IS_CLIENT = boolCall(isClient)
+
+    function M.isDedicatedServer() return IS_SERVER and not IS_CLIENT end
+    function M.isMultiplayer()     return IS_SERVER or IS_CLIENT end
+    local function isCoopHost()    return IS_SERVER and IS_CLIENT end
+
+    function M.envName()
+        if isCoopHost() then return "co-op host" end
+        if M.isDedicatedServer() then return "dedicated server" end
+        if IS_CLIENT then return "multiplayer client" end
+        return "single player"
+    end
+
+    --- Outcome of one part, rendered by the main-menu panel.
+    function M.status(key, ok, note, kind)
+        M.parts[key] = { ok = ok, note = note, kind = kind }
+    end
+
+    function M.log(part, msg)
+        print("[" .. M.TAG .. "/" .. tostring(part) .. "] " .. tostring(msg))
+    end
+
+    --- A DIAGNOSTIC, printed only when the player has asked for them.
+    function M.debug(part, msg)
+        if M.cfg == nil or M.cfg("DebugLog") ~= true then return end
+        M.log(part, msg)
+    end
+
+    --- A failure that should not have happened.
+    local reported = {}
+    function M.defect(part, note)
+        M.status(part, false, note, "bug")
+        if reported[part] then return end
+        reported[part] = true
+        print("[" .. M.TAG .. "/" .. tostring(part) .. "] DEFECT: " .. tostring(note))
+    end
+
+    --- Register an event handler that fails ONCE and then goes quiet.
+    function M.addHandler(part, eventName, fn)
+        if Events == nil or Events[eventName] == nil then
+            M.defect(part, "Events." .. tostring(eventName) .. " does not exist on this build")
+            return nil
+        end
+        local wrapped
+        wrapped = function(...)
+            local ok, err = pcall(fn, ...)
+            if not ok then
+                Events[eventName].Remove(wrapped)
+                M.defect(part, eventName .. " handler removed after: " .. tostring(err))
+            end
+        end
+        Events[eventName].Add(wrapped)
+        return wrapped
+    end
+
+    -- ONE OnTick FOR THE WHOLE MOD.
+    local tickers = {}
+    local tickerHandler = nil
+
+    --- Run fn every `seconds`. seconds may be a number, or a function returning one when the
+    --- interval is a sandbox option that can change under us. Zero means every frame.
+    function M.addTicker(part, seconds, fn)
+        tickers[#tickers + 1] = { part = part, at = 0, every = seconds, fn = fn }
+
+        if tickerHandler == nil then
+            tickerHandler = M.addHandler("Core", "OnTick", function()
+                local now = getTimestampMs ~= nil and getTimestampMs() or 0
+                for i = #tickers, 1, -1 do
+                    local t = tickers[i]
+                    local every = t.every
+                    if type(every) == "function" then every = every() end
+                    if type(every) ~= "number" or every < 0 then every = 0 end
+                    if now >= t.at then
+                        t.at = now + every * 1000
+                        local ok, err = pcall(t.fn)
+                        if not ok then
+                            table.remove(tickers, i)
+                            M.defect(t.part, "ticker removed after: " .. tostring(err))
+                        end
+                    end
+                end
+            end)
+            if tickerHandler == nil then return nil end
+        end
+        return true
+    end
+
+    --- How often the scanning parts run, from the one sandbox option that governs it.
+    function M.scanInterval()
+        local secs = M.cfg ~= nil and M.cfg("SweepSeconds") or nil
+        if type(secs) ~= "number" or secs <= 0 then return 1.0 end
+        return secs
+    end
+
+    --- Translate, treating an echoed key as a miss.
+    function M.T(key, fallback)
+        if type(key) ~= "string" then return fallback or "" end
+        if getText == nil then return fallback or key end
+        local ok, s = pcall(getText, key)
+        if ok and type(s) == "string" and s ~= key then return s end
+        return fallback or key
+    end
+
+    --- Release everything this part owns when the world goes away.
+    function M.addTeardown(part, fn)
+        M.addHandler(part, "OnDisconnect", fn)
+        M.addHandler(part, "OnMainMenuEnter", fn)
+    end
+
+    --- Is this character one THIS machine controls?
+    function M.isLocalPlayer(character)
+        if character == nil then return false end
+        local ok, v = pcall(function() return character:isLocalPlayer() end)
+        if not ok or v == nil then return true end
+        return v == true
+    end
+
+    --- Flatten a context-menu selection into real InventoryItems.
+    function M.selectedItems(items)
+        if items == nil then return {} end
+        if ISInventoryPane ~= nil and type(ISInventoryPane.getActualItems) == "function" then
+            local ok, actual = pcall(ISInventoryPane.getActualItems, items)
+            if ok and type(actual) == "table" then return actual end
+        end
+        local out = {}
+        for _, v in ipairs(items) do
+            if instanceof ~= nil and instanceof(v, "InventoryItem") then
+                out[#out + 1] = v
+            elseif type(v) == "table" and type(v.items) == "table" then
+                for i = 2, #v.items do out[#out + 1] = v.items[i] end
+            end
+        end
+        return out
+    end
+
+    --- Every local player, so split screen works rather than only player one.
+    function M.forEachLocalPlayer(fn)
+        if getNumActivePlayers == nil or getSpecificPlayer == nil then return end
+        for i = 0, getNumActivePlayers() - 1 do
+            local p = getSpecificPlayer(i)
+            if p ~= nil then fn(p, i) end
+        end
+    end
+
+    M.status("Core", true)
+end
+
+-- ---- Sound -------------------------------------------------------------------------------------
+do
+    local M = LugliEmergencyLights
+    local PART = "Sound"
+
+    -- Prefixed: GameSounds keys one flat map on the bare name and ignores the module, so an
+    -- unprefixed name is replaced by any later-loading mod that picks the same one.
+    M.SND_CRACK = "LugliEL_StickCrack"
+    M.SND_FLARE_BURN = "LugliEL_FlareBurn"
+    -- One clip, five entries, because volume and 3D-ness are SCRIPT properties: every field on
+    -- FMODSoundEmitter is a public instance field, so Kahlua can neither read a playing instance's
+    -- handle nor set its volume. Which one plays is decided by where the flare is.
+    M.SND_FLARE_BURN_HELD    = "LugliEL_FlareBurnHeld"      -- your own hand: mono, and twice as loud
+    M.SND_FLARE_BURN_CARRIED = "LugliEL_FlareBurnCarried"   -- your own bag: mono, world volume
+    M.SND_FLARE_BURN_REMOTE  = "LugliEL_FlareBurnRemote"    -- someone else's hand: positional
+    M.SND_FLARE_BURN_AERIAL  = "LugliEL_FlareBurnAerial"    -- fired and burning: louder, carries further
+    M.SND_FLARE_BURN_AERIAL_NEAR = "LugliEL_FlareBurnAerialNear"  -- standing under it: mono, no direction
+
+    --- Beyond this many tiles a fired flare is a thing over there; inside it, it is overhead.
+    M.AERIAL_NEAR_TILES = 8
+    M.SND_FLAREGUN_RELOAD    = "LugliEL_FlareGunReload"
+    M.SND_FLAREGUN_DRY       = "LugliEL_FlareGunDry"
+
+    -- THE SHOT ITSELF IS NOT PLAYED FROM HERE. The gun's item script sets SwingSound to
+    -- LugliEL_FlareGunShot and ClickSound to LugliEL_FlareGunDry, so the engine plays both by itself;
+    -- playing the shot from Lua as well gave two reports for one trigger pull.
+
+    --- Which looping burn sound a family makes, or nil for the ones that burn silently.
+    function M.burnSoundFor(familyId)
+        if familyId == "RoadFlare" then return M.SND_FLARE_BURN end
+        return nil
+    end
+
+    --- One-shot at a square. Replicates, so other players hear it.
+    local function playAt(square, name)
+        if square == nil or name == nil or M.isDedicatedServer() then return end
+        pcall(function() square:playSound(name) end)
+    end
+
+    --- One-shot on a character.
+    function M.playOn(character, name)
+        if character == nil then return end
+        local sq = character:getCurrentSquare()
+        if sq ~= nil then playAt(sq, name) end
+    end
+
+    --- A free emitter at a world point, or nil.
+    function M.emitterAt(x, y, z)
+        if getWorld == nil or x == nil or y == nil then return nil end
+        -- An emitter at exactly (0,0) is forced to 2D and would follow the listener around.
+        if x == 0 and y == 0 then return nil end
+        local ok, e = pcall(function()
+            return getWorld():getFreeEmitter(x + 0.5, y + 0.5, z or 0)
+        end)
+        return ok and e or nil
+    end
+
+    --- Start or re-arm a loop. Looping comes from `loop = true` in the sound script, not from here.
+    function M.loopOn(emitter, name, square)
+        if emitter == nil or name == nil or square == nil then return false end
+        -- Poll rather than cache a channel handle, as IsoGenerator does: self-healing across a
+        -- chunk reload that dropped the channel.
+        local ok, playing = pcall(function() return emitter:isPlaying(name) end)
+        if ok and playing then return true end
+        -- playSoundImpl, not playSound: every client derives this loop from the item it can already
+        -- see, so replicating it would stack one copy per player in range.
+        return pcall(function() emitter:playSoundImpl(name, square) end)
+    end
+
+    --- Stop an emitter. Every path that drops a light must call this: a loop never reports
+    --- isEmpty(), so an abandoned emitter is ticked forever at a fixed position.
+    function M.stopEmitter(emitter)
+        if emitter == nil then return end
+        pcall(function() emitter:stopAll() end)
+    end
+
+    --- Attract zombies.
+    function M.noiseAt(source, x, y, z, radius)
+        if radius == nil or radius <= 0 or getWorldSoundManager == nil then return end
+        pcall(function()
+            getWorldSoundManager():addSound(source, x, y, z or 0, radius, radius)
+        end)
+    end
+
+    --- A noise that is ONGOING, re-asserted by its caller for as long as the source is alive.
+    function M.noiseRepeatingAt(source, x, y, z, radius)
+        if radius == nil or radius <= 0 or getWorldSoundManager == nil then return end
+        pcall(function()
+            getWorldSoundManager():addSoundRepeating(
+                source, x, y, z or 0, radius, radius, false, false)
+        end)
+    end
+
+    M.status(PART, true)
+end

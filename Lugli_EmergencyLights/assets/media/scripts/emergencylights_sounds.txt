@@ -1,0 +1,180 @@
+/* GENERATED FILE. Edit the generator that writes it, never this.
+ *
+ * A MOD CANNOT SHIP AN FMOD BANK, so every clip below is a loose OGG resolved
+ * through ZomboidFileSystem by FMODManager.loadSound. `event =` could only name an
+ * event that already exists in a vanilla bank.
+ *
+ * EVERY VALUE CARRIES A TRAILING COMMA, INCLUDING THE LAST. ScriptParser.readBlock
+ * emits a value only when it reaches a ',' and returns immediately on '}', so a
+ * final key without one is silently dropped. A live workshop mod ships exactly that
+ * bug today.
+ *
+ * distanceMin and distanceMax go through Integer.parseInt: a float throws and takes
+ * the whole script object with it. There is no `priority` key.
+ *
+ * Names are prefixed because GameSounds keys ONE flat map on the bare name and
+ * ignores the module, so a later-loading mod with the same name replaces ours.
+ */
+module Base
+{
+    sound LugliEL_StickCrack
+    {
+        category = Item,
+        is3D = true,
+        maxInstancesPerEmitter = 2,
+        clip
+        {
+            file = media/sound/LugliEL_StickCrack1.ogg,
+            volume = 0.70,
+            distanceMin = 2,
+            distanceMax = 12,
+        }
+        clip
+        {
+            file = media/sound/LugliEL_StickCrack2.ogg,
+            volume = 0.70,
+            distanceMin = 2,
+            distanceMax = 12,
+        }
+        clip
+        {
+            file = media/sound/LugliEL_StickCrack3.ogg,
+            volume = 0.70,
+            distanceMin = 2,
+            distanceMax = 12,
+        }
+    }
+
+    sound LugliEL_FlareBurn
+    {
+        category = Item,
+        is3D = true,
+        loop = true,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliEL_FlareBurn.ogg,
+            volume = 1.90,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+
+    sound LugliEL_FlareGunShot
+    {
+        category = Item,
+        is3D = true,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliEL_FlareGunShot.ogg,
+            volume = 0.90,
+            distanceMin = 6,
+            distanceMax = 60,
+        }
+    }
+
+    sound LugliEL_FlareBurnHeld
+    {
+        category = Item,
+        is3D = false,
+        loop = true,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliEL_FlareBurn.ogg,
+            volume = 1.38,
+            distanceMin = 1,
+            distanceMax = 6,
+        }
+    }
+
+    sound LugliEL_FlareBurnCarried
+    {
+        category = Item,
+        is3D = false,
+        loop = true,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliEL_FlareBurn.ogg,
+            volume = 0.66,
+            distanceMin = 1,
+            distanceMax = 6,
+        }
+    }
+
+    sound LugliEL_FlareBurnRemote
+    {
+        category = Item,
+        is3D = true,
+        loop = true,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliEL_FlareBurn.ogg,
+            volume = 1.65,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+
+    sound LugliEL_FlareBurnAerial
+    {
+        category = Item,
+        is3D = true,
+        loop = true,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliEL_FlareBurn.ogg,
+            volume = 2.93,
+            distanceMin = 2,
+            distanceMax = 50,
+        }
+    }
+
+    sound LugliEL_FlareBurnAerialNear
+    {
+        category = Item,
+        is3D = false,
+        loop = true,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliEL_FlareBurn.ogg,
+            volume = 1.50,
+            distanceMin = 1,
+            distanceMax = 6,
+        }
+    }
+
+    sound LugliEL_FlareGunReload
+    {
+        category = Item,
+        is3D = true,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliEL_FlareGunReload.ogg,
+            volume = 1.11,
+            distanceMin = 2,
+            distanceMax = 15,
+        }
+    }
+
+    sound LugliEL_FlareGunDry
+    {
+        category = Item,
+        is3D = true,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliEL_FlareGunDry.ogg,
+            volume = 0.80,
+            distanceMin = 1,
+            distanceMax = 8,
+        }
+    }
+
+}

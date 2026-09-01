@@ -1,0 +1,56 @@
+version=1
+title=Lugli - Achievements
+description=Project Zomboid B42 has no achievements. This adds 250+ of them, earned by what your survivor actually does: a weapon class you finally used, a species you finally handled, a way you finally died.
+description=
+description=[b]It changes nothing about how the game plays.[/b] No items, no XP, no loot, no spawns, no recipes. It watches, it counts, and it tells you.
+description=
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_Achievements/art/ach-categories.png[/img]
+description=
+description=[h1]The categories[/h1]
+description=[list]
+description=[*][b]Waking Up[/b]: the first time you do each ordinary thing.
+description=[*][b]Body Count[/b]: kills, by weapon class and by how much noise you made getting them.
+description=[*][b]Still Breathing[/b]: days survived.
+description=[*][b]Autodidact[/b]: skill levels, perks, and the books that got you there.
+description=[*][b]Nailed It[/b]: what you built, and what you set on fire.
+description=[*][b]Homestead[/b]: crops and animals.
+description=[*][b]Field Medicine[/b]: bandages, stitches, splints, and what you pulled back out.
+description=[*][b]Roadside Attractions[/b]: driving, and the places at the end of the road.
+description=[*][b]House Proud[/b]: burying the dead, hoarding, and keeping a house worth coming back to.
+description=[*][b]This Is How You Died[/b]: the ways it ends.
+description=[*][b]Secrets[/b]: hidden, and shown as a teaser until you trip over the thing itself.
+description=[*][b]Milestones[/b]: finishing a whole category.
+description=[/list]
+description=
+description=One of the hidden ones, if you would rather know: [spoiler]You Shall Not Pass. Wear the wizard hat.[/spoiler]
+description=
+description=[h1]You choose what a death costs[/h1]
+description=By default progress is kept [b]per world[/b]: one collection shared by every survivor in the save, so dying does not restart it. That is also what lets an achievement be earned by the death itself, at the moment the character earning it stops existing.
+description=
+description=A tickbox in the mod options switches it to [b]per character[/b], if you would rather each survivor start clean. Switching deletes nothing: the two are separate stores, and turning it back brings the old one straight back.
+description=
+description=[h1]Other mods can add their own[/h1]
+description=An achievement is one table: an id, a name, a category, a stat to watch and a number to reach. Register it and it appears in the window, tracks itself, saves itself and raises its own toast. Your art, your categories, your rules.
+description=
+description=[h1]Before you subscribe[/h1]
+description=For Build 42.20 and later. Needs [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3508537032]NeatUI Framework[/url] for the window and the toast. Pure Lua otherwise, no jar. English and Brazilian Portuguese, both complete.
+description=
+description=[h1]FAQ[/h1]
+description=
+description=[b]Can I add it to a save I already started?[/b] Yes. Anything the game still knows about is credited on the next load, so days survived and recipes known come across immediately. Counters that only exist because the mod was watching, like kills and things built, start from zero.
+description=
+description=[b]Is it safe to remove?[/b] Yes. It writes only its own data and touches nothing else. Remove it and the save loads normally; reinstall it and your progress is still there.
+description=
+description=[b]Does it work in multiplayer?[/b] Yes, and your progress is yours. Nothing crosses the wire, so every player keeps their own collection against that server and nobody else's kills unlock yours.
+description=
+description=[b]What does it do to my dedicated server?[/b] Nothing. Nothing can be earned in a server process, and the mod says exactly that at startup rather than half loading. Verified on a real headless server.
+description=
+description=[b]Will 250+ achievements slow the game down?[/b] No. Each one is indexed by the counter it watches, so changing a stat only ever wakes the handful watching that stat, never the whole roster.
+description=
+description=[hr][/hr]
+description=Open source under MIT: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_Achievements]github.com/ViniciosLugli/PZWorkspace[/url]
+description=
+description=Built alongside [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url].
+description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url].
+tags=Build 42;Interface;Misc
+visibility=public
