@@ -85,6 +85,8 @@ description=
 description=[hr][/hr]
 description=Open source under MIT, with full asset credits: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_EmergencyLights]github.com/ViniciosLugli/PZWorkspace[/url]
 description=
+description=[i]Most of the 2D art here was generated with Gemini (Nano Banana 2), then hand edited and polished. I cannot draw, sadly :( The flare gun model and the sounds are other people's work, credited in full on GitHub.[/i]
+description=
 description=Built alongside [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url].
 description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url].
 tags=Build 42;Items;Models;Audio;Realistic;Military

@@ -22,8 +22,6 @@ description=[*][b]Secrets[/b]: hidden, and shown as a teaser until you trip over
 description=[*][b]Milestones[/b]: finishing a whole category.
 description=[/list]
 description=
-description=One of the hidden ones, if you would rather know: [spoiler]You Shall Not Pass. Wear the wizard hat.[/spoiler]
-description=
 description=[h1]You choose what a death costs[/h1]
 description=By default progress is kept [b]per world[/b]: one collection shared by every survivor in the save, so dying does not restart it. That is also what lets an achievement be earned by the death itself, at the moment the character earning it stops existing.
 description=
@@ -49,6 +47,8 @@ description=[b]Will 250+ achievements slow the game down?[/b] No. Each one is in
 description=
 description=[hr][/hr]
 description=Open source under MIT: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_Achievements]github.com/ViniciosLugli/PZWorkspace[/url]
+description=
+description=[i]Most of the 2D art here was generated with Gemini (Nano Banana 2), then hand edited and polished. I cannot draw, sadly :([/i]
 description=
 description=Built alongside [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url].
 description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url].
