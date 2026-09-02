@@ -1,6 +1,6 @@
 version=1
 title=Lugli - Achievements
-description=Project Zomboid B42 has no achievements. This adds 250+ of them, earned by what your survivor actually does: a weapon class you finally used, a species you finally handled, a way you finally died.
+description=Project Zomboid B42 has no achievements. This adds 280+ of them, earned by what your survivor actually does: a weapon class you finally used, a species you finally handled, a way you finally died.
 description=
 description=[b]It changes nothing about how the game plays.[/b] No items, no XP, no loot, no spawns, no recipes. It watches, it counts, and it tells you.
 description=
@@ -19,6 +19,7 @@ description=[*][b]Roadside Attractions[/b]: driving, and the places at the end o
 description=[*][b]House Proud[/b]: burying the dead, hoarding, and keeping a house worth coming back to.
 description=[*][b]This Is How You Died[/b]: the ways it ends.
 description=[*][b]Secrets[/b]: hidden, and shown as a teaser until you trip over the thing itself.
+description=[*][b]Challenges[/b]: one-off situations rather than totals. Climb out a window with three of them on you, kill one while you are on fire and still be alive an hour later, spend a whole night outdoors and kill nothing.
 description=[*][b]Milestones[/b]: finishing a whole category.
 description=[/list]
 description=
@@ -43,7 +44,7 @@ description=[b]Does it work in multiplayer?[/b] Yes, and your collection is your
 description=
 description=[b]What does it do to my dedicated server?[/b] It keeps one table of counters and unlocked ids per player, saved with the world, and nothing else. Nothing can be earned in a server process, and the mod says exactly that at startup rather than half loading. Verified on a real headless server.
 description=
-description=[b]Will 250+ achievements slow the game down?[/b] No. Each one is indexed by the counter it watches, so changing a stat only ever wakes the handful watching that stat, never the whole roster.
+description=[b]Will 280+ achievements slow the game down?[/b] No. Each one is indexed by the counter it watches, so changing a stat only ever wakes the handful watching that stat, never the whole roster.
 description=
 description=[hr][/hr]
 description=Open source under MIT: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_Achievements]github.com/ViniciosLugli/PZWorkspace[/url]

@@ -1,6 +1,6 @@
 # Lugli - Achievements
 
-Project Zomboid **B42** has no achievements. This adds 250+ of them, earned by what your survivor
+Project Zomboid **B42** has no achievements. This adds 280+ of them, earned by what your survivor
 actually does. Every one is listed in [the roster](#the-roster) at the end, with the icon, name,
 description and goal the game shows.
 
@@ -104,8 +104,9 @@ they cannot drift from what you actually play.
 | <img src="assets/media/ui/achievements/cat/house_proud.png" width="28" alt=""> | [House Proud](#house-proud) | 31 | 10 | 17 | 4 |
 | <img src="assets/media/ui/achievements/cat/how_you_died.png" width="28" alt=""> | [This Is How You Died](#this-is-how-you-died) | 17 | 13 | 4 | 0 |
 | <img src="assets/media/ui/achievements/cat/secrets.png" width="28" alt=""> | [Secrets](#secrets) | 16 | 7 | 6 | 3 |
+| <img src="assets/media/ui/achievements/cat/challenges.png" width="28" alt=""> | [Challenges](#challenges) | 25 | 3 | 16 | 6 |
 | <img src="assets/media/ui/achievements/cat/milestones.png" width="28" alt=""> | [Milestones](#milestones) | 12 | 0 | 0 | 12 |
-| | **Total** | **258** | **90** | **128** | **40** |
+| | **Total** | **283** | **93** | **144** | **46** |
 
 ### Waking Up
 
@@ -416,6 +417,36 @@ they cannot drift from what you actually play.
 
 </details>
 
+### Challenges
+
+| | Achievement | How you get it | Goal | Tier |
+|---|---|---|---|---|
+| <img src="assets/media/ui/achievements/small/chal_hurt_kill.png" width="40" alt=""> | **Bloodletting** | Kill a zombie while you are under a quarter health | once | Silver |
+| <img src="assets/media/ui/achievements/small/chal_panic_kills_10.png" width="40" alt=""> | **Composure** | Kill ten zombies after blind panic has fully set in | 10 zombies | Silver |
+| <img src="assets/media/ui/achievements/small/chal_fracture_kills_5.png" width="40" alt=""> | **Walking It Off** | Kill five zombies on a fractured leg | 5 zombies | Silver |
+| <img src="assets/media/ui/achievements/small/chal_drunk_kills_20.png" width="40" alt=""> | **Dutch Courage** | Kill twenty zombies while drunk | 20 zombies | Silver |
+| <img src="assets/media/ui/achievements/small/chal_burning_kill.png" width="40" alt=""> | **Fight Fire With Fire** | Kill a zombie while you are the one on fire | once | Gold |
+| <img src="assets/media/ui/achievements/small/chal_spent_kills_20.png" width="40" alt=""> | **Running On Empty** | Kill twenty zombies with nothing left in the tank | 20 zombies | Silver |
+| <img src="assets/media/ui/achievements/small/chal_heavy_kills_10.png" width="40" alt=""> | **Dead Weight** | Kill ten zombies while overburdened | 10 zombies | Bronze |
+| <img src="assets/media/ui/achievements/small/chal_bleeding_kills_20.png" width="40" alt=""> | **Blood In The Water** | Kill twenty zombies while bleeding from two wounds | 20 zombies | Silver |
+| <img src="assets/media/ui/achievements/small/chal_sneak_kills_25.png" width="40" alt=""> | **Nowhere To Be** | Kill twenty five zombies without ever standing up straight | 25 zombies | Silver |
+| <img src="assets/media/ui/achievements/small/chal_night_kills_100.png" width="40" alt=""> | **Night Shift** | Kill one hundred zombies between dusk and dawn | 100 zombies | Silver |
+| <img src="assets/media/ui/achievements/small/chal_aimed_pressure_15.png" width="40" alt=""> | **Steady Hands** | Drop fifteen zombies while three of them are closing on you | 15 zombies | Silver |
+| <img src="assets/media/ui/achievements/small/chal_window_chased_3.png" width="40" alt=""> | **Threading The Needle** | Climb through a window with three of them on your heels | 3 zombies | Silver |
+| <img src="assets/media/ui/achievements/small/chal_fence_chased_5.png" width="40" alt=""> | **Over And Gone** | Climb a fence with five of them right behind you | 5 zombies | Gold |
+| <img src="assets/media/ui/achievements/small/chal_rope_chased_3.png" width="40" alt=""> | **Rope Trick** | Climb a sheet rope with three of them chasing | 3 zombies | Silver |
+| <img src="assets/media/ui/achievements/small/chal_car_chased_8.png" width="40" alt=""> | **Getaway Driver** | Reach a vehicle with eight of them chasing you | 8 zombies | Silver |
+| <img src="assets/media/ui/achievements/small/chal_bandage_chased_3.png" width="40" alt=""> | **Not Now** | Apply a bandage with three of them chasing you | 3 zombies | Gold |
+| <img src="assets/media/ui/achievements/small/chal_crowd_kill_15.png" width="40" alt=""> | **Never Tell Me The Odds** | Kill a zombie with fifteen of them in sight at once | 15 zombies | Silver |
+| <img src="assets/media/ui/achievements/small/chal_heavy_fence.png" width="40" alt=""> | **Weight Of The World** | Climb a fence while overburdened | once | Bronze |
+| <img src="assets/media/ui/achievements/small/chal_burst_5_10s.png" width="40" alt=""> | **Ten Seconds Flat** | Kill five zombies inside ten seconds | once | Gold |
+| <img src="assets/media/ui/achievements/small/chal_burst_3_3s.png" width="40" alt=""> | **Hat Trick** | Kill three zombies inside three seconds | once | Silver |
+| <img src="assets/media/ui/achievements/small/chal_untouched_50.png" width="40" alt=""> | **No Contact** | Kill fifty zombies between one hit taken and the next | 50 zombies | Gold |
+| <img src="assets/media/ui/achievements/small/chal_life_kills_100.png" width="40" alt=""> | **Century** | Kill one hundred zombies on a single survivor | 100 zombies | Silver |
+| <img src="assets/media/ui/achievements/small/chal_feeding_kill.png" width="40" alt=""> | **Interrupted Dinner** | Kill a zombie that was busy feeding on a corpse | once | Bronze |
+| <img src="assets/media/ui/achievements/small/chal_reanimated_kill.png" width="40" alt=""> | **Return To Sender** | Kill a zombie that used to be a player | once | Silver |
+| <img src="assets/media/ui/achievements/small/chal_widenet_10.png" width="40" alt=""> | **Wide Net** | Kill with ten different weapons, every one of them while badly hurt | 10 types | Gold |
+
 ### Milestones
 
 | | Achievement | How you get it | Goal | Tier |
@@ -439,7 +470,7 @@ they cannot drift from what you actually play.
 
 ```
 art/           the preview, the icon and the screenshots this page uses
-assets/media/  the 258 achievement icons, the category art and the translations
+assets/media/  the 283 achievement icons, the category art and the translations
 lua/           the mod source: engine in shared/, trackers and UI in client/
 mod.info       the in-game manifest
 workshop.txt   the Steam listing, BBCode

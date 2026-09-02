@@ -9,6 +9,10 @@ local PART = "Milestone tracking"
 --
 -- There is deliberately no entry for `milestones` itself. Counted among the categories it
 -- requires, the capstone could never unlock: it would always be one short of itself.
+--
+-- Nor for `challenges`. Those are one-off situations, several of which depend on a world seed
+-- or a run going badly in a specific way, so gating the capstone on them would make it a matter
+-- of luck rather than of playing the game through. `cats_done` therefore tops out at 11.
 local CATEGORY_STAT = {
     waking_up        = "cat_done_waking_up",
     body_count       = "cat_done_body_count",

@@ -7,4 +7,4 @@ icon=icon.png
 category=features
 require=NeatUI_Framework
 versionMin=42.20
-modversion=1.0.0
+modversion=1.1.0

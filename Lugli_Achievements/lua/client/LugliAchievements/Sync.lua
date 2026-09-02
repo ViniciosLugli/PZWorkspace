@@ -12,12 +12,18 @@ if not M.isMpClient() then
     return
 end
 
--- Ten-minute polls to wait for the server before giving up on it.
-local REPLY_POLLS = 2
+-- ASKING ONCE AT OnGameStart DOES NOT WORK, AND FAILS SILENTLY. IngameState.enter() raises
+-- OnGameStart and only a later tick sets GameClient.ingame; the three-argument sendClientCommand
+-- tests that flag and otherwise falls through to SinglePlayerClient, a local loopback with no
+-- error and no reply. hydrated then stays false, flush() is guarded on it, and nothing is ever
+-- saved: to the player, "progress clears every re-login". ingame is never reset, so it bites only
+-- the first world entry of a session, which is why it looked intermittent. Hence the timer:
+-- EveryOneMinute cannot fire before the game is running.
+local REPLY_ATTEMPTS = 10
 
 local hydrated = false
 local dirty = false
-local polls = 0
+local attempts = 0
 
 --- Called by every stat write, so an unchanged table is not sent every ten game-minutes.
 function M.markDirty() dirty = true end
@@ -65,6 +71,9 @@ local function fallbackToCharacter()
         end
     end)
     M.invalidateSummary()
+    -- Same reason as after a hydrate: the store has been swapped underneath the challenge
+    -- tracker, so what it believes is still pending is no longer true of this one.
+    if M.rebuildChallengeBindings ~= nil then M.rebuildChallengeBindings() end
     dirty = true
     flush()
     M.status(PART, false, "the server did not answer, so progress is kept with your character " ..
@@ -87,6 +96,12 @@ local function onServerCommand(module, command, packet)
     M.toastQuiet = true
     M.forEachLocalPlayer(function(player) M.recheckAll(player) end)
     M.toastQuiet = wasQuiet
+
+    -- The server's copy arrives with challenges ALREADY unlocked, and recheckAll skips anything
+    -- unlocked, so no unlock event fires and nothing retires them. Without this the challenge
+    -- tracker keeps every earned row in its pending list and re-evaluates it on every kill for
+    -- the rest of the session. Looked up at call time: this file loads before that tracker.
+    if M.rebuildChallengeBindings ~= nil then M.rebuildChallengeBindings() end
 end
 
 --- Rejoining, possibly a different server. The last session's copy is not this one's and must
@@ -94,22 +109,39 @@ end
 local function resetForNewServer()
     hydrated = false
     dirty = false
-    polls = 0
+    attempts = 0
     M.mpCharacterFallback = nil
     for k in pairs(M.mpContainer) do M.mpContainer[k] = nil end
     M.invalidateSummary()
 end
 
-local function onEveryTenMinutes()
-    if not hydrated and not usingCharacterStore() then
-        polls = polls + 1
-        if polls > REPLY_POLLS then fallbackToCharacter() end
+--- Ask the server for this player's progress. Safe to call repeatedly: the server answers every
+--- request and hydration is idempotent.
+local function requestLoad()
+    sendClientCommand(M.NET_MODULE, "load", {})
+end
+
+--- Retried every in-game minute rather than asked once, for the reason at the top of this file.
+--- Ten attempts is roughly twenty five real seconds at the default day length, so a server that
+--- does have the mod answers long before the fallback, and one that does not is not left
+--- pretending for twenty in-game minutes.
+local function onEveryOneMinute()
+    if hydrated or usingCharacterStore() then return end
+    attempts = attempts + 1
+    if attempts > REPLY_ATTEMPTS then
+        fallbackToCharacter()
         return
     end
+    requestLoad()
+end
+
+local function onEveryTenMinutes()
+    if not hydrated and not usingCharacterStore() then return end
     flush()
 end
 
 M.addHandler(PART, "OnServerCommand", onServerCommand)
+M.addHandler(PART, "EveryOneMinute", onEveryOneMinute)
 M.addHandler(PART, "EveryTenMinutes", onEveryTenMinutes)
 M.addHandler(PART, "OnPlayerDeath", flush)
 M.addHandler(PART, "OnDisconnect", flush)
@@ -121,7 +153,9 @@ M.addHandler(PART, "OnGameStart", function()
         M.status(PART, true, "progress is kept with your character on the server")
     else
         resetForNewServer()
-        sendClientCommand(M.NET_MODULE, "load", {})
+        -- Best effort only. On the first world entry of a session this lands in the
+        -- single-player loopback, which is why onEveryOneMinute keeps asking.
+        requestLoad()
     end
     -- Chained here rather than at load, because every file that owns this hook has run by now.
     -- Once, because a second world load would otherwise stack another flush onto every unlock.
