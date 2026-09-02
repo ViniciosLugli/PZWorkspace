@@ -63,33 +63,36 @@ do
         return math.floor(v + 0.5)
     end
 
-    --- Move a hotbar attachment from one item to its replacement.
-    function LugliEmergencyLights.moveAttachment(oldItem, newItem, player)
-        if oldItem == nil or newItem == nil or player == nil then return false end
+    --- Put a replacement item onto the belt, the back or the holster at a named attachment
+    --- location, in the hotbar slot that serves that location.
+    ---
+    --- BY LOCATION, NOT BY THE OLD ITEM. The item being replaced is gone by the time this runs
+    --- on a multiplayer client: the server swapped it and the engine's own inventory packets took
+    --- it out of every container, so its slot index cannot be read off it any more. What survives
+    --- the round trip is the attachment location string ("Belt Left"), which is what the
+    --- character indexes its attached items by and what the authority read before the swap.
+    --- The hotbar slot is found from that: each slot's definition names the location it attaches
+    --- an item of this attachment type to. Client-only: getPlayerHotbar is a UI global.
+    function LugliEmergencyLights.reattachAt(player, newItem, location)
+        if player == nil or newItem == nil or location == nil or location == "" then return false end
         if getPlayerHotbar == nil then return false end
 
-        local ok, moved = pcall(function()
-            local idx = oldItem:getAttachedSlot()
-            if type(idx) ~= "number" or idx < 0 then return false end
-
-            local num = player:getPlayerNum()
-            local hotbar = getPlayerHotbar(num)
+        local ok, done = pcall(function()
+            local hotbar = getPlayerHotbar(player:getPlayerNum())
             if hotbar == nil or type(hotbar.availableSlot) ~= "table" then return false end
-
-            local def = hotbar.availableSlot[idx]
-            if def == nil then return false end
-
-            -- The attachment NAME, which is what the character indexes its attached items by. Not the
-            -- slot type: setAttachedToModel is given `slot`, setAttachedSlotType is given slotDef.type,
-            -- and they are different strings.
-            local slot = oldItem:getAttachedToModel()
-            if slot == nil or slot == "" then return false end
-
-            hotbar:removeItem(oldItem, false)
-            hotbar:attachItem(newItem, slot, idx, def, false)
-            return true
+            local kind = newItem:getAttachmentType()
+            if kind == nil then return false end
+            for idx, slot in pairs(hotbar.availableSlot) do
+                local def = slot.def
+                if type(def) == "table" and type(def.attachments) == "table"
+                    and def.attachments[kind] == location then
+                    hotbar:attachItem(newItem, location, idx, def, false)
+                    return true
+                end
+            end
+            return false
         end)
-        return ok and moved == true
+        return ok and done == true
     end
 
     --- Take an item off the belt, the back or the holster, and off the character's model with it.
@@ -124,6 +127,19 @@ do
 
     M.TAG = "EmergencyLights"
 
+    -- THE WIRE NAMES. Namespaced, because OnClientCommand/OnServerCommand fire for every mod on
+    -- the server and the module string is the only thing separating them.
+    M.NET_MODULE     = "LugliEmergencyLights"
+    M.NET_FLARE      = "flare"      -- client -> server: I fired one
+    M.NET_FLARE_ECHO = "flareAt"    -- server -> everyone: somebody fired one
+    M.NET_DROP       = "drop"       -- client -> server: put this on the ground for me
+    M.NET_DROP_ECHO  = "dropped"    -- server -> the thrower: it is on the ground now, or not
+    M.NET_CRACK      = "crack"      -- client -> server: crack this sealed item of mine
+    M.NET_CRACK_ECHO = "cracked"    -- server -> that client: swapped, with the new item's id
+    M.NET_THROW      = "throw"      -- client -> server: I threw one, here is its flight
+    M.NET_THROW_ECHO = "thrown"     -- server -> everyone: somebody threw one
+    M.NET_EXPIRE_ECHO = "burntOut"  -- server -> that client: one of yours burnt out and was swapped
+
     --- ZombRandFloat, guarded. The engine's own generator, so this follows the world seed rather than
     --- a second unseeded one; the midpoint is the fallback when it is absent.
     function M.rand(lo, hi)
@@ -148,15 +164,33 @@ do
         return ok and v == true
     end
 
+    -- CACHED AT LOAD, AND THAT IS CORRECT. GameClient.client is set in
+    -- ConnectionManager.doServerConnect BEFORE the handshake, and ConnectToServerState then calls
+    -- Core.ResetLua, which rebuilds the whole Lua VM and re-runs LoadDirBase with the flag already
+    -- true. So this file is re-executed as a multiplayer client and these read true.
     local IS_SERVER = boolCall(isServer)
     local IS_CLIENT = boolCall(isClient)
 
     function M.isDedicatedServer() return IS_SERVER and not IS_CLIENT end
     function M.isMultiplayer()     return IS_SERVER or IS_CLIENT end
-    local function isCoopHost()    return IS_SERVER and IS_CLIENT end
+
+    --- Is this the co-op HOST's client process? Read live, never cached: GameClient.connection is
+    --- nil while this file first loads, so a value captured here would latch false forever.
+    --- IS_SERVER and IS_CLIENT was the old test and it is never true on any process -- the co-op
+    --- host's server runs in a CHILD JVM, so the host itself is an ordinary multiplayer client.
+    function M.isCoopHost()
+        if not IS_CLIENT then return false end
+        return boolCall(isCoopHost)
+    end
+
+    --- IS THIS MACHINE ALLOWED TO CHANGE THE WORLD?
+    --- True on a dedicated server, on a co-op child server, and in single player: exactly one
+    --- process per world. isServer() cannot answer this -- it is false in single player, where the
+    --- work still has to happen -- which is why electing on it was tried and failed.
+    function M.isWorldAuthority() return not IS_CLIENT end
 
     function M.envName()
-        if isCoopHost() then return "co-op host" end
+        if M.isCoopHost() then return "co-op host" end
         if M.isDedicatedServer() then return "dedicated server" end
         if IS_CLIENT then return "multiplayer client" end
         return "single player"
@@ -259,11 +293,17 @@ do
     end
 
     --- Is this character one THIS machine controls?
+    ---
+    --- FAILS CLOSED, and the class test comes first. isLocalPlayer() is declared on IsoPlayer, not
+    --- on IsoGameCharacter, and OnWeaponSwingHitPoint hands us the latter: a zombie swinging a lit
+    --- stick used to pass this check, reach the aim resolver, and throw its stick at THIS machine's
+    --- mouse cursor. Answering "yes" when the question could not be asked is the wrong default in
+    --- every caller here.
     function M.isLocalPlayer(character)
         if character == nil then return false end
+        if instanceof ~= nil and not instanceof(character, "IsoPlayer") then return false end
         local ok, v = pcall(function() return character:isLocalPlayer() end)
-        if not ok or v == nil then return true end
-        return v == true
+        return ok and v == true
     end
 
     --- Flatten a context-menu selection into real InventoryItems.
@@ -285,12 +325,37 @@ do
     end
 
     --- Every local player, so split screen works rather than only player one.
+    --- RENDERING AND INPUT ONLY. On a dedicated server getNumActivePlayers() is 0, so this yields
+    --- nothing there; anything the world authority has to walk wants forEachWorldPlayer.
     function M.forEachLocalPlayer(fn)
         if getNumActivePlayers == nil or getSpecificPlayer == nil then return end
         for i = 0, getNumActivePlayers() - 1 do
             local p = getSpecificPlayer(i)
             if p ~= nil then fn(p, i) end
         end
+    end
+
+    --- Every player whose surroundings this process is responsible for.
+    ---
+    --- Two drivers, because neither covers both worlds this runs in: getOnlinePlayers() is
+    --- GameServer.getPlayers() on a dedicated server and an EMPTY list in single player, while
+    --- getNumActivePlayers() is 0 on a dedicated server. The index passed to fn is a position in
+    --- the walk, not a player number -- do not use it for a viewport.
+    function M.forEachWorldPlayer(fn)
+        if getOnlinePlayers ~= nil then
+            local ok, list = pcall(getOnlinePlayers)
+            if ok and list ~= nil then
+                local okN, n = pcall(function() return list:size() end)
+                if okN and type(n) == "number" and n > 0 then
+                    for i = 0, n - 1 do
+                        local p = list:get(i)
+                        if p ~= nil then fn(p, i) end
+                    end
+                    return
+                end
+            end
+        end
+        M.forEachLocalPlayer(fn)
     end
 
     M.status("Core", true)

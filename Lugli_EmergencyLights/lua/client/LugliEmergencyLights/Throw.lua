@@ -113,7 +113,12 @@ end
 
 --- Put an item on a square, assuming it has already left every container.
 --- Split out of the landing so the projectile can place it on arrival, not on release.
-function M.place(player, item, square, rest)
+---
+--- `origin` is the container the item came out of, and it is only used when the landing has to be
+--- handed to the server: if that request is never answered the item goes back THERE rather than
+--- into the main inventory. By this point the throw has already emptied every container, so it
+--- cannot be recovered from the item itself.
+function M.place(player, item, square, rest, origin)
     if player == nil or square == nil or item == nil then return false end
 
     -- IS THERE STILL A WORLD TO PLACE IT IN. Checked BEFORE anything is removed from anywhere.
@@ -161,6 +166,34 @@ function M.place(player, item, square, rest)
         if oy < 0.02 then oy = 0.02 elseif oy > 0.98 then oy = 0.98 end
     end
 
+    -- HOW IT WILL LIE, worked out here because only this machine knows how the throw ended: the
+    -- impact velocity, the wall it stopped against, how steeply it came down. The server cannot
+    -- derive any of that, so it is sent rather than recomputed.
+    local restPitch, restYaw = nil, nil
+    if M.poseFor ~= nil then
+        local info0 = M.litInfo(item)
+        local fam0 = info0 ~= nil and info0.family or nil
+        restPitch, restYaw = M.poseFor(fam0, rest or {})
+    end
+
+    -- ---- THE SERVER DROPS IT, IF THERE IS ONE THAT CAN ------------------------------------------
+    -- A multiplayer client cannot put a world item on the wire by any route (docs/13), so an item
+    -- this machine places is visible to this machine alone and the authority never learns it exists.
+    -- Asking the server to do the dropping is the only way anybody else sees what you put down.
+    --
+    -- The item is HELD by Net.lua until the server confirms, and handed back if it never does. It is
+    -- already out of every container by now, so there is nothing to undo either way.
+    if M.serverDropReady ~= nil and M.serverDropReady() then
+        if M.sendDrop(player, item, square, ox, oy, restPitch, restYaw, origin or inv) then
+            M.debug(PART, string.format("asked the server to land %s at %d,%d,%d",
+                tostring(item:getFullType()), square:getX(), square:getY(), square:getZ()))
+            -- The noise is ours to make and replicates by itself; the light, the pose and the model
+            -- all arrive with the object the server sends back to everyone.
+            M.noiseAt(player, square:getX(), square:getY(), square:getZ(), M.cfg("ThrowNoise"))
+            return true
+        end
+    end
+
     local placed = nil
     pcall(function()
         placed = square:AddWorldInventoryItem(item, ox, oy, 0.0, true)
@@ -175,6 +208,14 @@ function M.place(player, item, square, rest)
         tostring(item:getFullType()), square:getX(), square:getY(), square:getZ(),
         tostring(getCore ~= nil and getCore():isOption3DGroundItem() or "unknown")))
 
+    -- MINE TO LOOK AFTER, and only on a multiplayer client. Nothing Lua can call from a client puts
+    -- a world item on the wire, so this object exists here and nowhere else: the authority will
+    -- never see it and never burn it out. The mark is what lets the client sweep expire this one
+    -- without going anywhere near an object the server owns. See M.markLocalOnly.
+    if M.isMultiplayer() and M.markLocalOnly ~= nil then
+        M.markLocalOnly(placed or item)
+    end
+
     -- Vanilla's own drop does this. Without it the world-item cleanup sandbox option can sweep a
     -- burning stick away.
     local wo = nil
@@ -183,9 +224,8 @@ function M.place(player, item, square, rest)
         if wo ~= nil then wo:setIgnoreRemoveSandbox(true) end
     end)
 
-    -- HOW IT LIES.
-    local restPitch, restYaw = nil, nil
-
+    -- HOW IT LIES, applied to the object this machine just made. Same numbers the server path
+    -- sends; worked out once, above.
     if M.poseFor ~= nil then
         local info0 = M.litInfo(placed) or M.litInfo(item)
         local fam = info0 ~= nil and info0.family or nil
@@ -260,6 +300,14 @@ local function throwWithArc(player, item, square, info)
         end
     end
     M.markInFlight(item, true, player, origin)
+
+    -- AND TELL EVERYBODY ELSE IT IS IN THE AIR. The landed item reaches them through the server's
+    -- own placement; the flight would not, and a stick that appears on the ground out of nowhere
+    -- is not the throw the other player just watched you wind up for. Net.lua relays the arc and
+    -- the receivers fly a visual-only copy: no item, no landing, no inventory.
+    if M.sendThrow ~= nil then
+        M.sendThrow(player, item, px, py, pz, tx, ty, flight, apex)
+    end
 
     -- The square is captured by COORDINATE, not by reference: a chunk can be disposed and rebuilt
     -- mid-flight, and placing onto an orphaned IsoGridSquare succeeds silently and puts the item
@@ -364,7 +412,7 @@ local function throwWithArc(player, item, square, info)
                 lt.stalled and ", stalled on unloaded ground" or ""))
         end
 
-        if not M.place(player, item, sq, rest) then
+        if not M.place(player, item, sq, rest, origin) then
             M.restoreThrown(item, player, origin)
         end
     end
@@ -394,7 +442,7 @@ local function throwWithArc(player, item, square, info)
         -- would mark the item as permanently airborne -- unthrowable for the rest of the session,
         -- and invisible to the held light, which skips anything in flight.
         M.markInFlight(item, false)
-        if not M.place(player, item, square) then
+        if not M.place(player, item, square, nil, origin) then
             M.restoreThrown(item, player, origin)
         end
     end

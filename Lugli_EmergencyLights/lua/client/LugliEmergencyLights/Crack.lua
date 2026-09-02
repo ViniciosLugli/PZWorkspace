@@ -15,21 +15,19 @@ do
     local M = LugliEmergencyLights
     local PART = "Crack"
 
-    local seq = 0
-
-    --- An id unique across players and reboots, so the throw's server round trip can name one
-    --- specific stick rather than "a green one somewhere".
-    local function newId(player)
-        seq = seq + 1
-        local who = "sp"
-        if player ~= nil then
-            local ok, u = pcall(function() return player:getUsername() end)
-            if ok and u ~= nil and u ~= "" then who = tostring(u) end
-        end
-        return who .. "-" .. tostring(getTimestampMs and getTimestampMs() or 0) .. "-" .. seq
-    end
-
     --- Swap one sealed item for its lit form, IN THE HAND. Returns the new item, or nil.
+    ---
+    --- WHO MAKES THE SWAP IS THE WHOLE MULTIPLAYER CORRECTNESS OF THIS MOD. A multiplayer client
+    --- cannot create an inventory item: ItemContainer.AddItem has no network effect, so an item
+    --- minted here would exist on this machine and nowhere else. The server's copy of the
+    --- inventory would keep the sealed one, EquipPacket.processServer resolves the equipped item
+    --- by id against that copy and would find nothing, so every other player would see an empty
+    --- hand and no light; and the throw's server-side drop, which lands the sender's OWN item,
+    --- would refuse it and hand the stick back. Vanilla mints items on the server for the same
+    --- reason (server/ClientCommands.lua: AddItem, sendAddItemToContainer, setPrimaryHandItem,
+    --- sendEquip), and so does this: in multiplayer the client asks, the authority swaps
+    --- (World.lua's authoritySwap) and the engine's own inventory and equip packets carry the
+    --- result back. In single player this process is the authority and swaps directly.
     function M.crackHeld(player, item)
         if player == nil or item == nil then return nil end
         local litType = M.LIT_OF[item:getFullType()]
@@ -44,58 +42,32 @@ do
         -- NOT AN ITEM LYING ON THE GROUND.
         if item:getWorldItem() ~= nil then return nil end
 
-        -- THE ITEM'S OWN CONTAINER, not the player's main inventory.
-        local inv = item:getContainer()
-        if inv == nil then inv = player:getInventory() end
-        if inv == nil then return nil end
-
-        -- Out of the hand before it leaves the container: removing an equipped item without this
-        -- leaves the character holding a reference to something no container owns.
-        local wasPrimary = player:getPrimaryHandItem() == item
-        local wasSecondary = player:getSecondaryHandItem() == item
-        if wasPrimary or wasSecondary then
-            pcall(function() player:removeFromHands(item) end)
-        end
-
-        -- Remove FIRST, so a failure cannot leave two items behind.
-        local lit = inv:AddItem(litType)
-        if lit == nil then
-            M.defect(PART, "AddItem failed for " .. tostring(litType) .. "; the sealed item is untouched")
-            return nil
-        end
-
-        pcall(function() inv:Remove(item) end)
-        local stillThere = true
-        local ok, has = pcall(function() return inv:contains(item) end)
-        if ok then stillThere = has == true end
-        if stillThere then
-            -- The sealed one will not leave. Take the lit one back out rather than hand over both.
-            pcall(function() inv:Remove(lit) end)
-            M.defect(PART, "Remove was a no-op for " .. tostring(item:getFullType()))
-            return nil
-        end
-
-        M.markCracked(lit, M.burnHours(info.family), newId(player))
-
-        -- Straight back into the hand it was cracked in. setPrimaryHandItem does the equip itself and
-        -- costs no extra queued action, which is why there is no equipLit helper any more.
-        if wasPrimary then
-            pcall(function() player:setPrimaryHandItem(lit) end)
-        elseif wasSecondary then
-            pcall(function() player:setSecondaryHandItem(lit) end)
-        end
-
-        -- AND BACK ONTO THE BELT. Cracking mints a new item, and an attachment lives on the ITEM, so
-        -- without this the stick you cracked fell off your belt and the replacement appeared loose in
-        -- your bag.
-        M.moveAttachment(item, lit, player)
-
-        -- NO sendRemoveItemFromContainer FROM A CLIENT. It gets the player KICKED.
-
+        -- The crack is a noise wherever it happens. WorldSoundManager replicates from a client, so
+        -- this is said once, here, and not again by the server.
         local sq = player:getCurrentSquare()
         if sq ~= nil then
             M.noiseAt(player, sq:getX(), sq:getY(), sq:getZ(), M.cfg("CrackNoise"))
         end
+
+        if M.isMultiplayer() then
+            if M.sendCrack ~= nil and M.sendCrack(player, item, info.family) then return item end
+            M.defect(PART, "could not ask the server to crack " .. tostring(item:getFullType()))
+            return nil
+        end
+
+        if M.authoritySwap == nil then
+            M.defect(PART, "no authority swap on this build; the sealed item is untouched")
+            return nil
+        end
+        local lit, location = M.authoritySwap(player, item, litType, M.burnHours(info.family))
+        if lit == nil then
+            M.defect(PART, "crack refused: " .. tostring(location))
+            return nil
+        end
+        -- AND BACK ONTO THE BELT. Cracking mints a new item, and an attachment lives on the ITEM, so
+        -- without this the stick you cracked fell off your belt and the replacement appeared loose in
+        -- your bag.
+        if location ~= nil and M.reattachAt ~= nil then M.reattachAt(player, lit, location) end
         return lit
     end
 

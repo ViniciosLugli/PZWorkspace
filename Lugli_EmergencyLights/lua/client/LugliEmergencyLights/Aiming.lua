@@ -344,7 +344,11 @@ do
             -- How far the thing in your hand would actually go, which is the family's own range and
             -- the multiplier together rather than either on its own.
             if M.eachCarried ~= nil and M.throwRange ~= nil then
-                M.eachCarried(function(player, idx, item, info)
+                M.eachCarried(function(player, key, item, info, remote)
+                    -- These rings are drawn at the VIEWER's feet, so they describe what the viewer
+                    -- is holding. Another player's stick would put a second ring here labelled with
+                    -- their reach, which is a number about somebody else drawn around you.
+                    if remote then return end
                     ringAndLabel(R, tex, vpIdx, vpZoom, px, py, pz,
                                  M.throwRange(info.family), C_REACH, "throw")
                 end)

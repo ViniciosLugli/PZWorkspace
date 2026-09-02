@@ -67,27 +67,7 @@ do
         -- THE FLARE HANGS. It climbs, then burns in the air for its whole life while drifting down.
         local z = math.floor(character:getZ())
         local radius = M.cfg("AerialLightRadius")
-        if type(radius) ~= "number" then radius = 40 end
-        local fx, fy = math.floor(x), math.floor(y)
-
-        -- Fires once, when the composition ignites: the sky wash, the zombie draw and the map mark all
-        -- begin here rather than at a landing that, for a flare that reaches altitude, never happens.
-        local function onLit(aloft)
-            M.noiseAt(character, fx, fy, z, M.cfg("AerialNoise"))
-            if aloft == false then return end
-
-            -- IN REAL SECONDS, and it is the only one of the three that is. The timed light and
-            -- the map mark both expire against worldHours; launchWash drives WorldFlares and a
-            -- getTimestampMs clock, so the game-time option has to be converted for it alone.
-            M.launchWash(x, y, range, M.realSeconds(secs), cart.r, cart.g, cart.b)
-            if M.markFlare ~= nil then
-                M.markFlare(x, y, range, secs, cart.r, cart.g, cart.b)
-            end
-
-            -- A CARRIER RECORD ON THE LANDING TILE, and without it the flare was mute and inert.
-            M.addTimedCluster(fx, fy, z, 0.02, 0.02, 0.02, 1, secs, M.SND_FLARE_BURN_AERIAL,
-                              cart.r, cart.g, cart.b, range)
-        end
+        if type(radius) ~= "number" then radius = 20 end
 
         -- The report and the recoil are now, whatever the flare does afterwards.
         local sq = character:getCurrentSquare()
@@ -112,6 +92,36 @@ do
 
         -- THE BOOST IS SECONDS; THE LIFE IS MINUTES.
         local travel = 0.55 + dist * 0.022
+
+        -- Fires once, when the composition ignites: the sky wash, the zombie draw and the map mark all
+        -- begin here rather than at a landing that, for a flare that reaches altitude, never happens.
+        --
+        -- DECLARED BELOW THE MUZZLE SOLVE, and that position is load-bearing: a closure written above
+        -- `local mx` would bind the GLOBAL mx, which is nil, and the packet would carry nothing.
+        local function onLit(aloft)
+            -- Guarded like every other cross-file call in this mod: these two live in Net.lua, and
+            -- a shot that threw here would take the projectile ticker down with it rather than
+            -- costing one flare.
+            if M.aerialComposition == nil then
+                M.defect(PART, "Net.lua did not load; a fired flare will not light")
+                return
+            end
+            M.aerialComposition(x, y, z, secs, range, cart.r, cart.g, cart.b,
+                                character, aloft ~= false)
+        end
+
+        -- AND TELL EVERYONE ELSE, NOW, NOT AT IGNITION. Nothing about a fired flare is derivable
+        -- from replicated state: it leaves no item behind and the aim point existed only on this
+        -- machine. It is sent here rather than from onLit because onLit fires when the flare
+        -- IGNITES, a second or more into the flight, while the muzzle below was captured at the
+        -- trigger -- and the server checks that muzzle against where the shooter is standing when
+        -- the packet arrives. Anyone who kept walking after firing had their flare silently
+        -- refused, which is most people, most of the time.
+        --
+        -- The receiver replays the whole flight from these numbers, so nothing is gained by waiting.
+        if M.sendFlare ~= nil then
+            M.sendFlare(character, x, y, z, secs, range, mx, my, mz, travel, apex, cart)
+        end
 
         local launched = false
         if M.launchProjectile ~= nil then

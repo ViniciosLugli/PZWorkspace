@@ -167,9 +167,9 @@ option LugliEL.AerialSeconds = {
 
 option LugliEL.AerialLightRadius = {
 	type = integer,
-	default = 40,
+	default = 20,
 	min = 4,
-	max = 40,
+	max = 20,
 	page = LugliEL,
 	translation = LugliEL_AerialLightRadius,
 }

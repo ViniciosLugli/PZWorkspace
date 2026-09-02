@@ -17,53 +17,21 @@ do
 
     local swapped = 0
 
-    --- Replace one burnt-out item in place, keeping where it was.
+    --- Replace one burnt-out item in place, keeping where it was: the same swap the authority
+    --- makes (World.lua's authoritySwap), because in single player this process IS the authority.
+    --- In multiplayer this never runs: the server walks every player's inventory itself and the
+    --- swap arrives as the engine's own inventory packets. See tick().
     local function replace(player, container, item)
         local spentType = M.SPENT_OF[item:getFullType()]
-        if spentType == nil then return false end
-
-        -- Out of the hands first. Removing an equipped item without this leaves the character
-        -- holding a reference to something no container owns. Which hand is REMEMBERED, because a
-        -- flare that burns out is still a thing you were holding.
-        local wasPrimary = player:getPrimaryHandItem() == item
-        local wasSecondary = player:getSecondaryHandItem() == item
-        pcall(function()
-            if wasPrimary or wasSecondary then player:removeFromHands(item) end
-        end)
-
-        -- ADD FIRST, THEN REMOVE. The order is the whole safety property.
-        local spent = nil
-        local okAdd = pcall(function() spent = container:AddItem(spentType) end)
-        if not okAdd or spent == nil then
-            M.defect(PART, "could not create " .. tostring(spentType) .. "; leaving the item alone")
-            -- Put it back where it was, since the hand was already emptied above.
-            if wasPrimary then pcall(function() player:setPrimaryHandItem(item) end)
-            elseif wasSecondary then pcall(function() player:setSecondaryHandItem(item) end) end
+        if spentType == nil or M.authoritySwap == nil then return false end
+        local spent, location = M.authoritySwap(player, item, spentType)
+        if spent == nil then
+            M.defect(PART, "burn-out swap refused: " .. tostring(location))
             return false
         end
-        if not pcall(function() container:Remove(item) end) then
-            -- The replacement exists but the original will not leave. Taking the replacement back out
-            -- is the only way to avoid handing the player both.
-            pcall(function() container:Remove(spent) end)
-            M.defect(PART, "could not remove the burnt-out item; no swap made")
-            return false
-        end
-
-        -- BACK INTO THE HAND IT BURNED OUT IN.
-        if spent ~= nil then
-            pcall(function()
-                if wasPrimary then
-                    player:setPrimaryHandItem(spent)
-                elseif wasSecondary then
-                    player:setSecondaryHandItem(spent)
-                end
-            end)
-            -- And onto the belt it burned out on, for the same reason: an attachment lives on the item,
-            -- so a swap silently drops it. Crack does the same in the other direction.
-            M.moveAttachment(item, spent, player)
-        end
-
-        -- NO sendRemoveItemFromContainer FROM A CLIENT. It gets the player KICKED.
+        -- Back onto the belt it burned out on: an attachment lives on the item, so a swap silently
+        -- drops it. Crack does the same in the other direction.
+        if location ~= nil and M.reattachAt ~= nil then M.reattachAt(player, spent, location) end
         swapped = swapped + 1
         return true
     end
@@ -100,6 +68,13 @@ do
     end
 
     local function tick()
+        -- THE AUTHORITY OWNS BURN-OUT, and on a multiplayer client that is the server. A swap made
+        -- here would exist on this machine only: ItemContainer.AddItem has no network effect, the
+        -- server's copy of the inventory would keep the burning item, and the next equip packet,
+        -- which resolves item ids against that copy, would show every other player an empty hand.
+        -- The server walks every online player's inventory in World.lua and the swap arrives as
+        -- the engine's own inventory packets. In single player this process is the authority.
+        if M.isMultiplayer() then return end
         -- NO pcall HERE. addTicker already drops and reports a part that throws, once. Wrapping the
         -- body swallows exactly that failure, so a real bug came back as 49 identical stack traces
         -- in one session instead of one defect line and silence.

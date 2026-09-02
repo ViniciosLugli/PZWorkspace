@@ -36,10 +36,23 @@ local function burning(item)
     return item ~= nil and M.litInfo(item) ~= nil and not M.isExpired(item)
 end
 
---- True when this character holds something whose family makes a burn sound.
+--- True when this character is carrying something whose family makes a burn sound where it can be
+--- seen: either hand, or clipped to the belt.
+---
+--- THE BELT COUNTS, and it has to: the held-light pass lights an attached item, so checking only
+--- the hands here left a flare on somebody's belt glowing in silence.
 local function holdingBurner(character)
     local item = character:getPrimaryHandItem()
     if not burning(item) then item = character:getSecondaryHandItem() end
+    if not burning(item) then
+        local ok, attached = pcall(function() return character:getAttachedItems() end)
+        if ok and attached ~= nil then
+            for i = 0, attached:size() - 1 do
+                local it = attached:getItemByIndex(i)
+                if burning(it) then item = it break end
+            end
+        end
+    end
     return burning(item) and M.burnSoundFor(M.litInfo(item).family) ~= nil
 end
 
@@ -125,22 +138,45 @@ local function updateOwn(player, idx)
     carried[idx] = start(name, x, y, z, player:getCurrentSquare())
 end
 
+--- How far away another player's flare is still worth an emitter, in tiles. The same cull the
+--- carried LIGHT uses, and for a harder reason: an emitter is an FMOD channel, a looping one never
+--- reports isEmpty(), and IsoWorld ticks every one of them forever. Without this, a fifty-player
+--- server where everyone lit a flare would open fifty channels on every client, all of them for
+--- sources nobody can hear.
+local REMOTE_CULL = 52
+
+--- Squared distance to the nearest local player, or nil when none is loaded.
+local function nearestLocalDist2(other)
+    local ox, oy = other:getX(), other:getY()
+    local best = nil
+    M.forEachLocalPlayer(function(p)
+        local dx, dy = p:getX() - ox, p:getY() - oy
+        local d2 = dx * dx + dy * dy
+        if best == nil or d2 < best then best = d2 end
+    end)
+    return best
+end
+
 local function updateRemote()
     if getOnlinePlayers == nil then return end
     local players = getOnlinePlayers()
     if players == nil then return end
 
+    local cull2 = REMOTE_CULL * REMOTE_CULL
     local seen = {}
     for i = 0, players:size() - 1 do
         local other = players:get(i)
         if other ~= nil and not other:isLocalPlayer() and holdingBurner(other) then
-            local who = tostring(other:getUsername())
-            seen[who] = true
-            local x, y, z = other:getX(), other:getY(), other:getZ()
-            if remote[who] ~= nil then
-                follow(remote[who], M.SND_FLARE_BURN_REMOTE, x, y, z, other:getCurrentSquare())
-            else
-                remote[who] = start(M.SND_FLARE_BURN_REMOTE, x, y, z, other:getCurrentSquare())
+            local d2 = nearestLocalDist2(other)
+            if d2 ~= nil and d2 <= cull2 then
+                local who = tostring(other:getUsername())
+                seen[who] = true
+                local x, y, z = other:getX(), other:getY(), other:getZ()
+                if remote[who] ~= nil then
+                    follow(remote[who], M.SND_FLARE_BURN_REMOTE, x, y, z, other:getCurrentSquare())
+                else
+                    remote[who] = start(M.SND_FLARE_BURN_REMOTE, x, y, z, other:getCurrentSquare())
+                end
             end
         end
     end

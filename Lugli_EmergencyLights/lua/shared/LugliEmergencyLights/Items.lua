@@ -156,6 +156,7 @@ M.LIT = {
         windage = 0.45,
         bounceE = 0.18,
         bounceF = 0.28,
+        tintByValue = true,
     },
 }
 
@@ -214,7 +215,7 @@ M.SANDBOX = {
     ["AerialNoise"] = { kind = "integer", default = 20 },
     ["AerialShotRange"] = { kind = "integer", default = 30 },
     ["AerialSeconds"] = { kind = "integer", default = 300 },
-    ["AerialLightRadius"] = { kind = "integer", default = 40 },
+    ["AerialLightRadius"] = { kind = "integer", default = 20 },
     ["AerialRange"] = { kind = "integer", default = 150 },
     ["FlareWash"] = { kind = "boolean", default = true },
     ["FlareFire"] = { kind = "boolean", default = true },

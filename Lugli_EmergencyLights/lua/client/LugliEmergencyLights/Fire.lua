@@ -55,53 +55,20 @@ function M.jetDirection(pitchDeg, yawDeg)
     return M.jetFromWorld(M.axisWorld(pitchDeg, yawDeg))
 end
 
---- WHERE THE FLAME SITS RELATIVE TO THE CHARACTER, when the flare is in their hand.
-M.flameOffset = M.flameOffset or { fwd = 0.10, side = 0.11, up = 0.42 }
-
 local phase = 0.0
 
---- A cheap deterministic hash in 0..1, so every particle has its own rhythm without storing state.
-local function playerLook(player)
-    return player:getLookDirectionX(), player:getLookDirectionY()
-end
 
 local function hash01(a, b)
     local n = (a * 12.9898 + b * 78.233) * 43758.5453
     return n - math.floor(n)
 end
 
---- DECLARED ABOVE ITS WRITER, and that is the whole reason it sits here rather than beside the
---- other reporting state further down.
-local anchorFromBridge = false
-
---- Where a held flare's burning tip is, in WORLD coordinates, and which way it points on screen.
-local function heldAnchor(player, fx, fy)
-    if LugliELHeldPointResolve ~= nil and LugliELHeldPointResolve(player) == true then
-        local wx, wy, wz = LugliELHeldPointX(), LugliELHeldPointY(), LugliELHeldPointZ()
-        anchorFromBridge = true
-        -- The flare's own axis, tip minus base, so the flame leaves the burning end along the tube
-        -- exactly as it does for a flare lying on the ground.
-        local hjx, hjy = M.jetFromWorld(wx - LugliELHeldPointBaseX(),
-                                        wy - LugliELHeldPointBaseY(),
-                                        wz - LugliELHeldPointBaseZ())
-        return wx, wy, wz, hjx, hjy
-    end
-
-    anchorFromBridge = false
-    local o = M.flameOffset
-    -- The right-hand normal of the look vector, which is where the primary hand is.
-    local px, py = -fy, fx
-    return player:getX() + fx * o.fwd + px * o.side,
-           player:getY() + fy * o.fwd + py * o.side,
-           player:getZ() + o.up, nil, nil
-end
-
---- The look vector, or straight ahead when it cannot be had.
-local function lookVector(player)
-    local ok, lx, ly = pcall(playerLook, player)
-    if ok and type(lx) == "number" and (lx ~= 0.0 or ly ~= 0.0) then return lx, ly end
-    return 0.0, 1.0
-end
+--- THE FLAME OF A FLARE IN THE HAND IS NOT DRAWN HERE. It is geometry in the held mesh
+--- (tools/emlights-gen.py, profile_flame_plume): the engine keeps a held model on the
+--- Bip01_Prop1 bone through every animation, and nothing Lua can read follows that bone. Two
+--- anchors were tried from here, a measured constant and a live evaluation of the animation
+--- blend, and both sat visibly off the rod. What this file draws is the flame of a flare ON
+--- THE GROUND, where the rod's pose is the mod's own number and the sprite fits it exactly.
 
 --- Draw one complete flare flame at a screen point.
 local function drawFlame(R, sx, sy, seedA, seedB, cr, cg, cb, life, windX, windY,
@@ -151,10 +118,6 @@ local function drawFlame(R, sx, sy, seedA, seedB, cr, cg, cb, life, windX, windY
     -- Near white, and small. The one part of a flare that has no colour of its own.
     M.fxRect(R, core, sx, sy, cw * 1.1, cw * 1.1, 1.0, 0.96, 0.90, 0.95 * life)
 end
-
---- Which route produced the held anchor, said once when it changes. If the bridge is answering
---- and the flame still sits wrong, the error is downstream of here.
-local anchorSaid = nil
 
 local function draw()
     if M.cfg("FlareFire") ~= true then return end
@@ -225,43 +188,6 @@ local function draw()
                       rec.rawR or 1.0, rec.rawG or 0.3, rec.rawB or 0.2,
                       life, windX, windY, core, glow, streak, corona, jx, jy)
         end)
-
-        -- ---- FLARES IN THE HAND ------------------------------------------------------------
-        -- NOT CULLED, and it does not need to be: there is at most one per local player and the
-        -- character carrying it is at the centre of their own viewport by construction.
-        if M.eachCarried ~= nil then
-            M.eachCarried(function(player, idx, item, info)
-                if info.family ~= "RoadFlare" then return end
-
-                local fx, fy = lookVector(player)
-
-                -- ASK THE ENGINE WHERE THE HAND IS, and only guess if it will not say.
-                local wx, wy, wz, hjx, hjy = heldAnchor(player, fx, fy)
-
-                -- THIS PLAYER'S viewport, not the pass's. In split screen the two characters are
-                -- drawn into different halves of the window with their own zoom, and a held flame
-                -- belongs to whichever one is carrying it.
-                local hIdx, hZoom = M.fxViewport(player)
-                local sx, sy = M.fxScreen(hIdx, hZoom, wx, wy, wz)
-
-                -- SAID ONCE, WHEN THE ROUTE CHANGES, never per frame.
-                if anchorSaid ~= anchorFromBridge then
-                    anchorSaid = anchorFromBridge
-                    M.debug(PART, string.format(
-                        "held flame anchored via %s at %.2f,%.2f,%.2f",
-                        anchorFromBridge and "the hand bone" or "the fallback offset",
-                        wx, wy, wz))
-                end
-
-                local frac = M.fractionLeft(item) or 1.0
-                local life = 0.55 + 0.45 * frac
-                -- Seeded on the player rather than on a tile, so the flame is stable as they walk
-                -- and two players carrying flares do not burn in lockstep.
-                drawFlame(R, sx, sy, idx * 977, idx * 131,
-                          info.r, info.g, info.b,
-                          life, windX, windY, core, glow, streak, corona, hjx, hjy)
-            end)
-        end
     end)
 
     M.fxAdditive(R, false)

@@ -55,10 +55,35 @@ end
 local KEY_EXPIRES = "lugliELExpires"
 local KEY_BURN    = "lugliELBurn"
 local KEY_ID      = "lugliELId"
+local KEY_LOCAL   = "lugliELLocal"
 
 M.KEY_EXPIRES = KEY_EXPIRES
 M.KEY_BURN    = KEY_BURN
 M.KEY_ID      = KEY_ID
+M.KEY_LOCAL   = KEY_LOCAL
+
+--- Mark a world item that ONLY THIS MACHINE CAN SEE.
+---
+--- On a multiplayer client nothing Lua can call puts a world item on the wire: AddWorldInventoryItem
+--- transmits inside `if (transmit && GameServer.server)`, IsoObject.transmitCompleteItemToClients is
+--- `if (GameServer.server)`, and so is sendAddItemToContainer. So an item this client drops or
+--- throws exists on this client and nowhere else -- not on the server, and not on any other player's
+--- screen. The authority therefore cannot burn it out, because it never hears about it.
+---
+--- This mark is how the client tells "an object I made, that is mine to look after" apart from "an
+--- object the server sent me, that is not". It never reaches the server, which is exactly why it
+--- answers the question correctly.
+function M.markLocalOnly(item)
+    if item == nil then return false end
+    local ok = pcall(function() item:getModData()[KEY_LOCAL] = true end)
+    return ok
+end
+
+function M.isLocalOnly(item)
+    if item == nil then return false end
+    local ok, v = pcall(function() return item:getModData()[KEY_LOCAL] end)
+    return ok and v == true
+end
 
 --- Stamp an item as burning for burnHours from now.
 function M.markCracked(item, burnHours, uniqueId)

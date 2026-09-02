@@ -6,9 +6,9 @@
  * The two flare cartridges are the exception that proves it: they are NOT tinted,
  * so they are one mesh under two textures, which is what keeps a brass head brass.
  *
- * NO BLOCK NAMES A SHADER. One did, a fullbright one, and the model then did not
- * draw at all: WorldItemAtlas requires model.isReady() before it will build a
- * ground entry, and the held path produced an empty hand for the same reason.
+ * The burning blocks name a fullbright shader, and it ships as <name>.frag plus
+ * <name>_static.vert: the engine opens the _static file for a static block, and a
+ * block whose vertex file is missing draws nothing, silently.
  *
  * attachment muzzle on the flare gun is mandatory, not decoration:
  * BallisticsController.java:88-92 bails out of update() when it is absent.
@@ -78,7 +78,7 @@ module LugliEmergencyLights
 
     model RoadFlareLit_Held
     {
-        mesh = WorldItems/LugliEL_RoadFlareLit,
+        mesh = WorldItems/LugliEL_RoadFlareLitHeld,
         texture = LugliEL_RoadFlareLit,
         shader = lugliELGlow,
         scale = 1.00,

@@ -121,8 +121,12 @@ function M.lightRadius(familyId)
         local fam = M.FAMILIES[familyId]
         v = fam ~= nil and fam.radius or 4
     end
-    -- THE 20-TILE CAP IS THE LAMPPOST'S, NOT THE ENGINE'S.
-    if M.uncappedRadius ~= true and v > 20 then return 20 end
+    -- THE 20-TILE CAP IS THE LAMPPOST'S, AND THE MOD NOW USES THE LAMPPOST.
+    -- LightingJNI.checkLights applies PZMath.min(radius, 20) on the permanent arm
+    -- (LightingJNI.java:325). Sending more is not an error, it is silently ignored, so the cap is
+    -- applied here where a sandbox value can still be reported honestly rather than appearing to
+    -- take effect. The three ground families are 5, 10 and 15 and are untouched by it.
+    if v > 20 then return 20 end
     return v
 end
 

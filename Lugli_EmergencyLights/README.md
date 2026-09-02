@@ -12,44 +12,31 @@ it burns wherever you leave it.
 
 ![Every item the mod adds](art/el-items.png)
 
-## Requires ZombieBuddy
+## No dependencies
 
-**Not optional.** [ZombieBuddy](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853)
-loads the small jar that reaches the native light call. Enable both; load order does not matter.
+Subscribe, enable, play. There is nothing else to install and load order does not matter.
 
-`mod.info` declares `require=ZombieBuddy`, so the launcher refuses to enable this without it.
-ZombieBuddy itself never reads that line, but vanilla does, and an item mod that hands you glow
-sticks which cannot glow is worse than one the launcher turned away. Every call into the jar is
-still feature detected and `pcall`ed, so a broken install degrades instead of erroring and says so
-on screen.
+This mod used to need [ZombieBuddy](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853)
+and a jar, because `zombie.iso.LightingJNI` is not on the engine's Lua exposer whitelist. It no
+longer does: `IsoCell` and `IsoLightSource` are both on that whitelist, so the light goes through
+`getCell():addLamppost` and the mod is pure Lua.
 
-The jar ships **unsigned**. ZombieBuddy resolves an unlisted author's key by fetching their Steam
-profile page on every launch, and any other answer fails closed with no approve button. Unsigned
-takes the ordinary approve-once path instead. Key queued at
-[ZombieBuddy PR #44](https://github.com/zed-0xff/ZombieBuddy/pull/44).
+## What that costs, stated plainly
 
-## The bridge
+`addLamppost` applies two limits the old direct call did not, and one of them is real:
 
-Lua's only way to place a light is `IsoCell.addLamppost`, which applies three Java-side limits
-before the native call ever sees the request:
-
-| | `addLamppost` | this mod |
+| | effect | what the mod does |
 |---|---|---|
-| radius | clamped to 20 tiles | as asked |
-| colour | doubled, then clamped | as asked |
-| cost per light | marks the whole scene for a global relight | none |
+| radius | clamped to 20 tiles | accepted. The three ground families are 5, 10 and 15 and are untouched; only a flare overhead lost reach |
+| colour | doubled, then clamped | cancelled exactly by halving on the way in, so the whole burn-down colour curve survives |
+| cost | a global relight per add and per remove | a light that only changes colour costs neither, which is why moving lights are the only ones rationed |
 
-It also resolves the held-item bone, so a carried light sits on the burning tip rather than at your
-feet.
-
-Both halves take a JVM system property, which belongs in the `vmArgs` list inside
-`ProjectZomboid64.json`, **not** Steam launch options, which never reach the JVM. Steam replaces
-that file on update.
-
-| Switch | Effect |
-|---|---|
-| `-Dlugli.emergencylights.worldlight=off` | Light globals not registered |
-| `-Dlugli.emergencylights.heldpoint=off` | Held-item bone globals not registered |
+A held flare's flame is part of the held model: a white-hot core, a plume and three tongues built
+into the mesh, so the engine carries it on the rod through every animation, which nothing drawn
+from Lua can do because Lua cannot read the hand bone. The flame's colours are painted into the
+lit skin and the lit item's tint is white, so the engine shows it as painted. What a mesh cannot
+do is flicker; the light it casts does. On the ground, where the rod's pose is known exactly, the
+flame stays a drawn, animated sprite.
 
 ## What it adds
 
@@ -61,11 +48,10 @@ item: a burnt road flare leaves a burnt road flare, not a glow stick.
 | Glow stick | green, blue, pink, orange | 4 h | 5, one room | Supermarkets, houses, kids' rooms, camping crates; camper, adventurer and teenagers' vehicles |
 | Chem light | green, red, yellow, cyan | 8 h | 10, a house or a street and both pavements | Army surplus, police lockers, tool stores; army, SWAT, police and ranger vehicles |
 | Road flare | red | 30 min | 15, hard flickering light plus a sky wash | Car supply shelves, mechanics, every emergency vehicle; a small chance in any boot |
-| Flare gun | with its own cartridge | 5 min | 40, overhead | Police and army lockups, camping crates; ranger, fire and survivalist glove boxes |
+| Flare gun | with its own cartridge | 5 min | 20, overhead | Police and army lockups, camping crates; ranger, fire and survivalist glove boxes |
 
-Radii are in tiles. **Vanilla caps a street lamp at 20**, which is the ceiling the bridge above
-exists to get past: a road flare reaches three quarters of it from your hand and the flare gun goes
-to twice it.
+Radii are in tiles, and **20 is the engine's ceiling for any one light**. A road flare reaches
+three quarters of it from your hand; a flare overhead reaches all of it.
 
 **Every duration is in-game time**, read off `getWorldAgeHours`, so all four scale with the day
 length setting rather than the wall clock. Every figure in the table is the sandbox default, not a
@@ -105,7 +91,11 @@ get the frame time back.
 
 ## Compatibility
 
-- Singleplayer, multiplayer and dedicated servers. Items and timers are server side, light is drawn
+- Singleplayer, multiplayer and dedicated servers. Cracking a stick and burning one out are swaps
+  the server makes in multiplayer, because a client cannot create an item the server will ever
+  see: what you hold is what everybody else sees in your hand. A throw is relayed at launch so
+  other players watch the arc and its light, and the landed item is placed by the server.
+  Items and timers are server side, light is drawn
   per client.
 - Safe to add mid-save: items appear in containers the game has not generated yet, so buildings you
   have stripped stay stripped. Safe to remove.
@@ -130,7 +120,6 @@ allowed. Converted to PZ's model format with a flat palette texture; geometry un
 ```
 art/           preview, icon, and the graphics this page uses
 assets/media/  textures, models, sounds, shaders, item and sandbox scripts, translations
-java/          the ZombieBuddy bridge, compiled into the shipped jar
 lua/           client/, server/ and shared/
 mod.info       the in-game manifest
 workshop.txt   the Steam listing, BBCode

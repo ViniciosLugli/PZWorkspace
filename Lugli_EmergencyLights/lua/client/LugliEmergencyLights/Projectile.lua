@@ -13,11 +13,10 @@ LugliEmergencyLights.parts = LugliEmergencyLights.parts or {}
 local M = LugliEmergencyLights
 local PART = "Projectile"
 
--- The Java bridge owns the moving light.
+-- Lamp owns the moving light.
 local OWNER = "Lugli_EmergencyLights/projectile"
 
 local live = {}
-local haveBridge = false
 
 -- Sampled on a fixed TIME interval rather than per frame, so the trail's density is the same at
 -- 30 fps and 144.
@@ -300,11 +299,9 @@ function M.launchProjectile(player, x0, y0, z0, x1, y1, seconds, travel, apex, r
     -- ---- THE TRAVELLING LIGHT ------------------------------------------------------------------
     -- The same world light the hand and the floor use, so a thrown item does not change
     -- renderer in mid-air and the two handovers are nothing at all.
-    if haveBridge then
-        p.slot = LugliELWorldLightAcquire(OWNER)
-        if p.slot < 0 then
-            M.defect(PART, "no free light slot; flare flies without its own light")
-        end
+    p.slot = M.lampAcquire(OWNER)
+    if p.slot < 0 then
+        M.defect(PART, "no free light slot; flare flies without its own light")
     end
     live[#live + 1] = p
     return true
@@ -338,8 +335,8 @@ local function pushTrail(p)
 end
 
 local function release(p)
-    if p.slot >= 0 and haveBridge then
-        pcall(LugliELWorldLightRelease, p.slot)
+    if p.slot >= 0 then
+        pcall(M.lampRelease, p.slot)
         p.slot = -1
     end
 end
@@ -567,8 +564,8 @@ local function submitLights()
             local cg = M.shade(p.g, frac, fam)
             local cb = M.shade(p.b, frac, fam)
             -- ROUNDED TO THE NEAREST TILE, not the one it happens to be inside.
-            LugliELWorldLightSet(p.slot, M.lightTile(p.x), M.lightTile(p.y), p.lightZ,
-                                 cr, cg, cb, p.radius)
+            M.lampSet(p.slot, M.lightTile(p.x), M.lightTile(p.y), p.lightZ,
+                      cr, cg, cb, p.radius)
         end
     end
 end
@@ -897,20 +894,12 @@ local h = M.addTicker(PART, 0, advance)
 M.addHandler(PART, "OnPostRender", draw)
 M.addTeardown(PART, function() M.dropProjectiles() end)
 
--- Still checked rather than assumed, even though the bridge ships in this mod's own jar: a jar that
--- guarantees the MOD is installed, not that ZombieBuddy loaded its jar. Without the bridge a flare
+-- A MOVING LIGHT IS THE EXPENSIVE ONE. Every tile step is a remove and an add, and each of those
+-- bumps Core.dirtyGlobalLightsCount, so a flare in flight is the only thing in this mod that
+-- rebuilds its light rather than merely recolouring it. The position is already quantised to tiles
+-- by M.lightTile, which is what keeps that to a handful a second rather than one per frame.
 M.addHandler(PART, "OnGameStart", function()
-    -- Every global this file calls, not just the first: a half-present bridge would fail later,
-    -- inside a per-frame path, instead of here.
-    haveBridge = LugliELWorldLightAcquire ~= nil and LugliELWorldLightSet ~= nil
-        and LugliELWorldLightRelease ~= nil and LugliELWorldLightReleaseOwner ~= nil
-    if haveBridge then
-        -- Reclaim anything a previous Lua state left behind before taking new slots.
-        pcall(LugliELWorldLightReleaseOwner, OWNER)
-        M.log(PART, "bridge present: thrown and fired lights travel with the object")
-    else
-        M.log(PART, "no bridge: projectiles fly and trail, without a travelling light")
-    end
+    M.log(PART, "thrown and fired lights travel with the object")
 end)
 
 if h ~= nil then M.status(PART, true) end

@@ -4,7 +4,6 @@
 ]]
 
 require "LugliEmergencyLights/Core"
-require "LugliEmergencyLights/Pose"
 require "LugliEmergencyLights/FX"
 
 LugliEmergencyLights = LugliEmergencyLights or {}
@@ -18,11 +17,6 @@ do
     -- ============================================================================ WHICH PRIMITIVE, and
     -- it is the one decision the whole file rests on.
     local OWNER = "Lugli_EmergencyLights/ground"
-
-    --- Set at OnGameStart once every world-light global this file calls has been found.
-    local haveBridge = false
-
-    local exhausted = false
 
     -- FULL SATURATION IS 1.0 HERE, not the lamppost's 0.5.
     local CEILING = 1.0
@@ -143,13 +137,19 @@ do
         return shade(v, power, sat, inten)
     end
 
-    --- A world-light slot, or nil when the pool is spent.
+    --- A world-light slot, or nil when this part is already holding its budget.
+    ---
+    --- A REFUSAL IS NEVER LATCHED. It used to be: one failed acquire set an `exhausted` flag that
+    --- only a release could clear, so a single refusal during world entry silently killed every
+    --- ground light for the rest of the session -- which is exactly what happened, because the
+    --- light pool's own OnGameStart handler ran after this one and refused until it had.
+    --- MAX_LIGHTS is the only real ceiling now, and it is checked without latching anything.
     local function acquireSlot()
-        if not haveBridge or exhausted or lightN >= MAX_LIGHTS then return nil end
-        local ok, h = pcall(LugliELWorldLightAcquire, OWNER)
+        if lightN >= MAX_LIGHTS then return nil end
+        local ok, h = pcall(M.lampAcquire, OWNER)
         if not ok or type(h) ~= "number" or h < 0 then
-            exhausted = true
-            M.defect(PART, "no free world-light slots; new ground lights will not be lit")
+            -- Said once per part by M.defect's own dedupe, and the next sweep tries again.
+            M.defect(PART, "the world light refused a slot; ground lights will keep retrying")
             return nil
         end
         lightN = lightN + 1
@@ -160,19 +160,15 @@ do
     --- light this mod ever put out: harmless, and twice the JNI for nothing.
     local function releaseSlot(h)
         if h == nil then return end
-        pcall(LugliELWorldLightRelease, h)
+        pcall(M.lampRelease, h)
         lightN = lightN - 1
-        -- A SLOT CAME BACK, so the pool is not what it was when the latch was set. Clearing it here
-        -- rather than on a timer means the retry happens exactly when the situation has actually
-        -- changed, and cannot re-spam: a fresh acquire that fails re-latches immediately.
-        exhausted = false
     end
 
     --- Register one ground light. Returns its handle, or nil.
     local function place(x, y, z, r, g, b, radius, label)
         local h = acquireSlot()
         if h == nil then return nil end
-        local ok, set = pcall(LugliELWorldLightSet, h,
+        local ok, set = pcall(M.lampSet, h,
                               math.floor(x), math.floor(y), z, r, g, b, radius)
         if not ok or set == false then
             releaseSlot(h)
@@ -242,6 +238,14 @@ do
             liveN = liveN + 1
         else
             -- UPDATE IN PLACE.
+            --
+            -- AND TRY AGAIN IF IT NEVER GOT A LIGHT. A record is created whether or not a slot was
+            -- free, so an item that landed during a moment when none was is otherwise dark for as
+            -- long as it burns, with a record that looks healthy. The sweep passes through here
+            -- every scan, which is exactly the right place to notice and retry.
+            if rec.cd == nil then
+                rec.cd = place(fx, fy, fz, r, g, b, radius, "ground")
+            end
             rec.fx, rec.fy, rec.fz = fx, fy, fz
             rec.radius = radius
             -- Re-read every pass, not just at creation: an item that is knocked over, picked up and
@@ -369,7 +373,7 @@ do
 
         -- And by owner, so a record that somehow escaped the walk above costs nothing permanently.
         -- The carried light does not share this owner string, so its slot is untouched.
-        if haveBridge then pcall(function() LugliELWorldLightReleaseOwner(OWNER) end) end
+        pcall(function() M.lampReleaseOwner(OWNER) end)
     end
 
     -- NO TICKER. A registered world light persists until something removes it, so there is nothing
@@ -437,9 +441,11 @@ do
 
                     if r ~= nil then
                         rec.curR, rec.curG, rec.curB = r, g, b
-                        -- The bridge sends a bare setLightColor unless the position or radius actually
-                        -- moved, so a stationary light costs one native call, not a remove and an add.
-                        pcall(LugliELWorldLightSet, rec.cd,
+                        -- Lamp sends a bare setLightColor unless the position or radius actually
+                        -- moved, so a stationary light costs one native call and NO global relight.
+                        -- That difference is why the permanent lamppost arm was chosen over the
+                        -- uncapped temp one, which cannot be recoloured at all.
+                        pcall(M.lampSet, rec.cd,
                               math.floor(rec.fx), math.floor(rec.fy), rec.fz,
                               r, g, b, rec.radius)
                     end
@@ -452,12 +458,6 @@ do
     M.addTicker(PART, 0, submit)
 
     local h = M.addHandler(PART, "OnGameStart", function()
-        haveBridge = LugliELWorldLightAcquire ~= nil and LugliELWorldLightSet ~= nil
-            and LugliELWorldLightRelease ~= nil and LugliELWorldLightReleaseOwner ~= nil
-
-        -- Read by Config.lightRadius, which cannot ask us directly: it is shared/ and loads first.
-        M.uncappedRadius = haveBridge
-        exhausted = false
         lightN = 0
         worldUp = true
 
@@ -466,18 +466,11 @@ do
         -- at the old world's age.
         if M.resetWorldClock ~= nil then M.resetWorldClock() end
 
-        if haveBridge then
-            -- Reclaim whatever the previous Lua state left holding. the bridge's registry lives in Java
-            -- and survives the VM teardown that wipes ours, so without this every world entry leaked
-            -- the last world's ground lights and the pool ran out after a few reloads.
-            pcall(LugliELWorldLightReleaseOwner, OWNER)
-            M.log(PART, "ground lights ready, up to " .. tostring(MAX_LIGHTS) .. " at once")
-        else
-            -- SAID OUT LOUD, because this is the one failure that looks exactly like a bug in this mod.
-            M.defect(PART, "the world-light jar is installed but its Lua API is absent, so ZombieBuddy did not "
-                           .. "load it: nothing this mod drops will emit light. Install ZombieBuddy, "
-                           .. "or check its log for a rejected jar.")
-        end
+        -- NOTHING TO RECLAIM ANY MORE. The old bridge kept its registry in Java, which survived the
+        -- Lua VM teardown, so every world entry had to hand the last world's slots back or the pool
+        -- ran dry after a few reloads. Lamp's registry is Lua and dies with it, and the engine
+        -- clears lamppostPositions on world teardown, so both halves are gone by themselves.
+        M.log(PART, "ground lights ready, up to " .. tostring(MAX_LIGHTS) .. " at once")
     end)
 
     M.addTeardown(PART, function()
@@ -486,7 +479,7 @@ do
         -- already going away.
         worldUp = false
         M.dropAll()
-        if haveBridge then pcall(LugliELWorldLightReleaseOwner, OWNER) end
+        pcall(M.lampReleaseOwner, OWNER)
     end)
 
     -- Gated on the handler, as every other part is gated on the thing it cannot run without.
@@ -501,17 +494,37 @@ do
 
     local OWNER = "Lugli_EmergencyLights/held"
 
-    -- playerIndex -> world-light handle
-    local slots = {}
-    local haveBridge = false
+    -- ONE KEY SPACE FOR BOTH KINDS OF CARRIER. A local player is keyed by their player number, so
+    -- split screen still gets one light each; another player on the server is keyed by "@username".
+    -- Keeping them in one table is what lets the slot pool, the teardown and the flame pass stay
+    -- single-path rather than growing a second copy of each.
+    local function localKey(idx) return idx end
+    local function remoteKey(who) return "@" .. tostring(who) end
 
-    -- playerIndex -> { item, info } resolved on the slow pass, reused by the fast one.
+    -- key -> world-light handle
+    local slots = {}
+
+    -- key -> { player, item, info, remote } resolved on the slow pass, reused by the fast one.
     local carried = {}
     local carriedN = 0
 
-    local function setCarried(idx, rec)
-        local had = carried[idx] ~= nil
-        carried[idx] = rec
+    --- How many OTHER players' lights this client will carry at once. The pool is 256 slots, of
+    --- which the ground takes up to 128 and split screen up to 4; this leaves room for the
+    --- projectiles. Without a ceiling, a full server where everyone cracked a stick would starve
+    --- every ground light on the map.
+    local MAX_REMOTE = 24
+
+    --- And how far away another player's light is still worth carrying, in tiles. The ground
+    --- submitter's own cull, for the same reason: past this it is not on anybody's screen.
+    local REMOTE_CULL = 52
+
+    --- When the remote walk may run again. It walks every online player, so it goes on the scan
+    --- interval rather than on the 10 Hz resolve: nobody can light a stick faster than that.
+    local remoteAt = 0
+
+    local function setCarried(key, rec)
+        local had = carried[key] ~= nil
+        carried[key] = rec
         if rec ~= nil and not had then carriedN = carriedN + 1
         elseif rec == nil and had then carriedN = carriedN - 1 end
     end
@@ -519,18 +532,18 @@ do
     -- DECLARED HERE, ABOVE drop(), and that position is the whole point.
     local exhausted = false
 
-    local function drop(idx)
-        local s = slots[idx]
+    local function drop(key)
+        local s = slots[key]
         if s ~= nil then
             -- RELEASED, NOT JUST REMOVED, and cleared from the table.
-            slots[idx] = nil
-            if haveBridge then
-                pcall(LugliELWorldLightRelease, s)
-                -- A slot came back, so the pool has changed: the next acquire is allowed to try again.
-                exhausted = false
-            end
+            slots[key] = nil
+            -- NOT ALSO CLEARING `exhausted` HERE. Clearing it only on a release was the bug: it
+            -- assumed this block already held a slot, which is exactly not the case when the ground
+            -- lights have taken the pool. resolve() clears it every pass instead, which covers this
+            -- case and every other one.
+            pcall(M.lampRelease, s)
         end
-        setCarried(idx, nil)
+        setCarried(key, nil)
     end
 
     local function usable(item)
@@ -539,10 +552,15 @@ do
         -- so it must be excluded here or it would light the player from inside a bag while visibly
         -- arcing across the street.
         if M.isInFlight ~= nil and M.isInFlight(item) then return false end
+        -- ON ANOTHER PLAYER'S ITEM, isExpired IS ALWAYS FALSE, and that is the honest limit of doing
+        -- this without a packet: a held item is stamped on its owner's machine and the stamp only
+        -- travels when the item does. So a remote carrier's light lingers a little past the burn-out
+        -- rather than never appearing, which is the right direction to be wrong in.
         return M.litInfo(item) ~= nil and not M.isExpired(item)
     end
 
-    --- The lit item in either hand or clipped to the belt, or nil.
+    --- The lit item in either hand or clipped to the belt, or nil. Asked of remote players too:
+    --- every call here is on IsoGameCharacter, which a replicated player fully is.
     local function heldLit(player)
         if usable(player:getPrimaryHandItem()) then return player:getPrimaryHandItem() end
         if usable(player:getSecondaryHandItem()) then return player:getSecondaryHandItem() end
@@ -556,14 +574,14 @@ do
         return nil
     end
 
-    --- ONE slot per player, taken once and kept for as long as they carry something lit.
-    local function slotFor(idx)
-        local s = slots[idx]
-        if s ~= nil or not haveBridge or exhausted then return s end
+    --- ONE slot per carrier, taken once and kept for as long as they carry something lit.
+    local function slotFor(key)
+        local s = slots[key]
+        if s ~= nil or exhausted then return s end
 
-        local h = LugliELWorldLightAcquire(OWNER)
+        local h = M.lampAcquire(OWNER)
         if type(h) == "number" and h >= 0 then
-            slots[idx] = h
+            slots[key] = h
             return h
         end
 
@@ -573,8 +591,8 @@ do
     end
 
     --- One light, re-stated every frame on the tile nearest the player.
-    local function update(player, idx, item, info)
-        local h = slotFor(idx)
+    local function update(player, key, item, info)
+        local h = slotFor(key)
         if h == nil then return end
 
         local frac = M.fractionLeft(item) or 1.0
@@ -588,55 +606,151 @@ do
         local radius = M.lightRadius(info.family)
 
         -- ROUNDED TO THE NEAREST TILE.
-        LugliELWorldLightSet(h, M.lightTile(player:getX()), M.lightTile(player:getY()),
-                             player:getZ(), r, g, b, radius)
+        M.lampSet(h, M.lightTile(player:getX()), M.lightTile(player:getY()),
+                  player:getZ(), r, g, b, radius)
     end
 
-    --- WHICH item is lit. Walking both hands and every attached item is the expensive part.
-    local function resolve()
+    --- WHICH item is lit, for the players sharing this screen.
+    local function resolveLocal()
         M.forEachLocalPlayer(function(player, idx)
+            local key = localKey(idx)
             local item = heldLit(player)
             if item == nil then
-                if carried[idx] ~= nil then drop(idx) end
+                if carried[key] ~= nil then drop(key) end
                 return
             end
-            setCarried(idx, { item = item, info = M.litInfo(item) })
+            setCarried(key, { player = player, item = item, info = M.litInfo(item) })
         end)
+    end
+
+    --- How far the nearest local player is from this one, squared, or nil when nobody is loaded.
+    local function nearestLocalDist2(other)
+        local ox, oy = other:getX(), other:getY()
+        local best = nil
+        M.forEachLocalPlayer(function(p)
+            local dx, dy = p:getX() - ox, p:getY() - oy
+            local d2 = dx * dx + dy * dy
+            if best == nil or d2 < best then best = d2 end
+        end)
+        return best
+    end
+
+    --- AND THE OTHER PLAYERS ON THE SERVER, which is the whole reason a carried light is worth
+    --- anything to anybody but the carrier. Their held item type is replicated by the engine, so
+    --- this needs no packet of its own: only a walk.
+    local function resolveRemote()
+        if getOnlinePlayers == nil then return end
+        local players = getOnlinePlayers()
+        if players == nil then return end
+
+        local cull2 = REMOTE_CULL * REMOTE_CULL
+        local seen, taken = {}, 0
+        for i = 0, players:size() - 1 do
+            local other = players:get(i)
+            if other ~= nil and not other:isLocalPlayer() then
+                local item = heldLit(other)
+                if item ~= nil then
+                    local d2 = nearestLocalDist2(other)
+                    -- Bounded twice: by distance, because past the cull it is on nobody's screen,
+                    -- and by count, because the slot pool is shared with every ground light and a
+                    -- full server would otherwise take all of it.
+                    if d2 ~= nil and d2 <= cull2 and taken < MAX_REMOTE then
+                        taken = taken + 1
+                        local key = remoteKey(other:getUsername())
+                        seen[key] = true
+                        setCarried(key, { player = other, item = item,
+                                          info = M.litInfo(item), remote = true })
+                    end
+                end
+            end
+        end
+
+        -- Anyone who logged out, walked off, or put it away gives their slot back.
+        local stale = {}
+        for key, c in pairs(carried) do
+            if c.remote and not seen[key] then stale[#stale + 1] = key end
+        end
+        for i = 1, #stale do drop(stale[i]) end
+    end
+
+    local function resolve()
+        -- THE LATCH IS CLEARED HERE, not only when one of OUR slots comes back.
+        --
+        -- `exhausted` exists to stop slotFor asking the bridge on every frame once the pool is
+        -- spent. Clearing it only in drop() assumed this block already held a slot -- but the pool
+        -- is shared with the ground lights, which can take all of it while nobody is carrying
+        -- anything. Then the first person to crack a stick latched it and NOTHING could clear it,
+        -- because there was no held slot to release: carried lights were dead for the rest of the
+        -- session, with one defect line, and the code's own comment said otherwise.
+        --
+        -- Retrying once per resolve rather than per frame is what the latch was really for: this is
+        -- ten attempts a second in the worst case instead of sixty, and it recovers by itself the
+        -- moment a ground light goes out.
+        exhausted = false
+        resolveLocal()
+        if not M.isMultiplayer() then return end
+        -- On its own clock: this walks every online player, and nothing it looks at can change
+        -- faster than somebody can crack a stick.
+        local now = getTimestampMs ~= nil and getTimestampMs() or 0
+        if now < remoteAt then return end
+        remoteAt = now + M.scanInterval() * 1000
+        pcall(resolveRemote)
     end
 
     --- WHERE the light goes, every frame. This is what makes it glide rather than step.
-    local function placeOne(player, idx)
-        local c = carried[idx]
-        if c == nil then return end
-        local ok, err = pcall(update, player, idx, c.item, c.info)
-        if not ok then
-            drop(idx)
-            M.defect(PART, tostring(err))
-        end
-    end
-
     local function place()
         -- Nothing lit in anybody's hands: the whole pass is one integer compare.
         if carriedN == 0 then return end
-        M.forEachLocalPlayer(placeOne)
+        local stale = nil
+
+        --- YOUR OWN LIGHT FIRST, and a stranger's second.
+        ---
+        --- Slots are taken lazily, here, and `pairs` walks a hash table in whatever order it likes.
+        --- With the pool nearly spent that decided by coin toss whose light survived, so your own
+        --- held flare could go dark while somebody you can barely see stayed lit. Two passes over
+        --- the same table costs nothing and makes the answer "yours".
+        local function pass(wantRemote)
+            for key, c in pairs(carried) do
+                if (c.remote == true) == wantRemote then
+                    local ok, err = pcall(update, c.player, key, c.item, c.info)
+                    if not ok then
+                        -- Not dropped inside the walk: removing from a table while iterating it
+                        -- skips entries, and a remote player's object goes stale the moment they
+                        -- disconnect.
+                        stale = stale or {}
+                        stale[#stale + 1] = key
+                        M.defect(PART, tostring(err))
+                    end
+                end
+            end
+        end
+
+        pass(false)
+        pass(true)
+
+        if stale ~= nil then
+            for i = 1, #stale do drop(stale[i]) end
+        end
     end
 
-    --- Every local player currently carrying a lit item, with the item and its family record.
+    --- Every player currently carrying a lit item, local or remote, with the item and its family
+    --- record. `remote` says which, because a remote carrier is drawn into the VIEWER's viewport
+    --- rather than their own -- they do not have one on this machine.
     function M.eachCarried(fn)
         if carriedN == 0 then return end
-        M.forEachLocalPlayer(function(player, idx)
-            local c = carried[idx]
-            if c ~= nil and c.item ~= nil and c.info ~= nil then
-                fn(player, idx, c.item, c.info)
+        for key, c in pairs(carried) do
+            if c.player ~= nil and c.item ~= nil and c.info ~= nil then
+                fn(c.player, key, c.item, c.info, c.remote == true)
             end
-        end)
+        end
     end
 
     function M.dropHeldLights()
-        for idx, _ in pairs(carried) do drop(idx) end
-        for idx, _ in pairs(slots) do drop(idx) end
+        for key, _ in pairs(carried) do drop(key) end
+        for key, _ in pairs(slots) do drop(key) end
         carried, slots = {}, {}
         carriedN = 0
+        remoteAt = 0
     end
 
     -- TWO RATES ON PURPOSE.
@@ -646,22 +760,9 @@ do
     M.addTeardown(PART, function() M.dropHeldLights() end)
 
     M.addHandler(PART, "OnGameStart", function()
-        -- Every global this file calls, and only those.
-        -- for a function it never needed and not for the one it did.
-        haveBridge = LugliELWorldLightAcquire ~= nil and LugliELWorldLightSet ~= nil
-            and LugliELWorldLightRelease ~= nil and LugliELWorldLightReleaseOwner ~= nil
         slots = {}
         exhausted = false
-        if haveBridge then
-            -- Reclaim slots the previous Lua state left behind: the bridge's registry lives in Java and
-            -- survives the VM teardown that wipes ours.
-            pcall(LugliELWorldLightReleaseOwner, OWNER)
-            M.log(PART, "carried light ready, one per player at the family's own radius")
-        else
-            -- The ground light reports this failure in full; one line here is enough to say which
-            -- part is dark rather than repeating the whole diagnosis.
-            M.defect(PART, "the world-light Lua API is absent: a carried light will not be lit")
-        end
+        M.log(PART, "carried light ready, one per player at the family's own radius")
     end)
 
     if h ~= nil then M.status(PART, true) end
@@ -680,9 +781,18 @@ do
     local TINT_STEPS = 12
 
     --- Tint a burning item to match the light it casts, at a bounded number of distinct values.
+    ---
+    --- CLIENT-SIDE, and it stays that way now its neighbours have gone to the server. setColorRed
+    --- and friends do not transmit, and this is a pure function of fractionLeft, which every machine
+    --- computes identically from the replicated stamp -- so no two clients can disagree, and having
+    --- the authority write it too would mark a burning stick dirty on the world save every tick.
     local function tintItem(item, info, frac)
         local q = math.floor((frac or 1.0) * TINT_STEPS + 0.5) / TINT_STEPS
         local r, g, b = info.r * q, info.g * q, info.b * q
+        -- A family whose lit skin is painted in colour ships its lit item WHITE, so that a held
+        -- one's flame keeps its own colours (the engine re-tints a held weapon's whole texture by
+        -- the item colour). Burning down still dims it, by value alone.
+        if info.tintByValue then r, g, b = q, q, q end
         pcall(function()
             -- Half a step of the coarsest channel, well under the byte the atlas key quantises to and
             -- well over any float noise from the round trip.
@@ -697,29 +807,39 @@ do
         end)
     end
 
-    --- Swap an expired ground item for its family's spent item.
-    local function expire(square, worldObj, item, spentType)
-        if square == nil or worldObj == nil or spentType == nil then return end
-
-        -- instanceItem, NOT InventoryItemFactory.CreateItem.
-        local okX, errX = pcall(function()
-            local spent = instanceItem ~= nil and instanceItem(spentType) or nil
+    --- Burn out an item that ONLY THIS MACHINE CAN SEE.
+    ---
+    --- The one exception to "the authority owns ground items", and it is not a loophole: an object
+    --- a multiplayer client dropped or threw never reached the server (see M.markLocalOnly), so the
+    --- authority cannot burn it out and no other client can be racing us for it. Without this the
+    --- stick you threw stayed lit forever on your own screen -- which is what removing the old
+    --- client-side expire cost, before this put it back for exactly the objects it is safe for.
+    local function expireLocalOnly(square, worldObj, item)
+        local spentType = M.SPENT_OF[item:getFullType()]
+        if spentType == nil or instanceItem == nil then return end
+        local ok, err = pcall(function()
+            local spent = instanceItem(spentType)
             -- swapItem throws if the incoming item already belongs to a world object, so a freshly
-            -- instanced one (which has none) is the only safe thing to hand it.
+            -- instanced one is the only safe thing to hand it. It does not transmit from a client,
+            -- which is precisely why this is confined to objects nobody else has.
             if spent ~= nil then
+                M.markLocalOnly(spent)
                 worldObj:swapItem(spent)
-            else
-                -- THE FALLBACK REPAIRS ITSELF, because the overload it has to use is the broken one.
-                square:transmitRemoveItemFromSquare(worldObj)
-                local placed = square:AddWorldInventoryItem(spentType, 0.5, 0.5, 0.0)
-                if placed ~= nil then pcall(function() placed:addToWorld() end) end
             end
         end)
-        -- REPORTED, like every other failure in this mod.
-        if not okX then
-            M.defect(PART, "could not swap a burnt-out item: " .. tostring(errX))
+        if not ok then
+            M.defect(PART, "could not burn out a locally dropped item: " .. tostring(err))
         end
     end
+
+    -- NO GENERAL expire() HERE ANY MORE, and no stamping and no posing: they live in
+    -- server/LugliEmergencyLights/World.lua, which exactly one machine per world runs.
+    --
+    -- swapItem sends IsoObjectChange.SWAP_ITEM only inside `if (GameServer.server)`, so the swap
+    -- this file used to make was purely local on a multiplayer client: the server never heard it,
+    -- the save kept the lit item, and every client redid the swap on every chunk load. The fallback
+    -- branch was worse, because THAT one does replicate -- two clients in range minted two spent
+    -- items. What is left here is what a viewer may legitimately decide for itself.
 
     local function sweepSquare(square, budget)
         local objs = square:getWorldObjects()
@@ -727,16 +847,22 @@ do
         local n = objs:size()
         if n == 0 then return budget end
 
-        -- COLLECTED FIRST, THEN ACTED ON.
-        local dead, live = nil, nil
+        -- COLLECTED FIRST, THEN ACTED ON. `dead` is now only a flag: this file no longer touches a
+        -- burnt-out item, it only stops lighting the tile once nothing on it is still burning.
+        local dead, live, mine = false, nil, nil
         for i = 0, n - 1 do
             local wo = objs:get(i)
             local item = wo ~= nil and wo:getItem() or nil
             local info = item ~= nil and M.litInfo(item) or nil
             if info ~= nil then
                 if M.isExpired(item) then
-                    dead = dead or {}
-                    dead[#dead + 1] = { wo = wo, item = item }
+                    dead = true
+                    -- Ours alone, so ours to burn out. Anything else on this tile is the
+                    -- authority's and is left strictly alone.
+                    if M.isLocalOnly ~= nil and M.isLocalOnly(item) then
+                        mine = mine or {}
+                        mine[#mine + 1] = { wo = wo, item = item }
+                    end
                 elseif live == nil then
                     -- The first burning item on the tile owns the light. Several on one square is one
                     -- light, which is both cheaper and what looks right.
@@ -745,29 +871,28 @@ do
             end
         end
 
-        if dead == nil and live == nil then return budget end
+        if not dead and live == nil then return budget end
         local x, y, z = square:getX(), square:getY(), square:getZ()
+
+        -- THE AUTHORITY GETS THIS SQUARE FIRST, and only in single player, where it is this same
+        -- process and has no walk of its own. It stamps, poses and swaps here so the record built
+        -- below reads a posed item's rotation in the same visit -- and so the two of us do not walk
+        -- every tile in the world twice a second between us. On a multiplayer client this global
+        -- does not exist at all; on a dedicated server this file never runs.
+        if M.worldActOnSquare ~= nil then M.worldActOnSquare(square) end
 
         if live ~= nil then
             local info, item = live.info, live.item
-            local frac = M.fractionLeft(item)
-            if frac == nil then
-                -- ON THE GROUND, LIT, AND NEVER STAMPED.
-                if M.markCracked ~= nil then
-                    local stamped = false
-                    pcall(function() stamped = M.markCracked(item) end)
-                    if stamped then
-                        M.debug(PART, "stamped an unstamped lit item at "
-                                    .. tostring(x) .. "," .. tostring(y) .. "," .. tostring(z))
-                    end
-                end
-                frac = M.fractionLeft(item) or 1.0
-            end
-            -- HOW IT LIES, for everything that reached the ground without being thrown: an ordinary
-            -- drop, a container emptied out, loot spawned in a crate, or a corpse dropping its carry.
-            if M.poseIfUnposed ~= nil then
-                pcall(M.poseIfUnposed, item, live.wo, info.family)
-            end
+            -- ON THE GROUND, LIT, AND NOT STAMPED. Light it at full strength rather than refuse to
+            -- light it at all.
+            --
+            -- AND ON A MULTIPLAYER CLIENT THAT IS PERMANENT, not a pass or two: item ModData is not
+            -- replicated by anything. SyncExtendedPlacementPacket carries offsets and rotations
+            -- only, and SWAP_ITEM re-serialises the replacement. So the authority's stamp is real,
+            -- and it decides when the item burns out and swaps, but this client never reads the
+            -- number -- it sees full brightness and then the spent item arriving. In single player
+            -- the authority is this process and the stamp is landed before this line runs.
+            local frac = M.fractionLeft(item) or 1.0
 
             local isNew = not M.hasLight(x, y, z)
             if not isNew or budget > 0 then
@@ -795,16 +920,17 @@ do
                 -- loaded when this file first runs.
                 if M.refreshBurnDisplay ~= nil then M.refreshBurnDisplay(item) end
             end
-        elseif dead ~= nil then
+        elseif dead then
             -- Only when nothing is left burning here. Dropping unconditionally darkened a tile that
             -- still had a live stick on it for a full pass.
             M.dropAt(x, y, z)
         end
 
-        if dead ~= nil then
-            for i = 1, #dead do
-                expire(square, dead[i].wo, dead[i].item, M.SPENT_OF[dead[i].item:getFullType()])
-            end
+        -- `dead` is read only to decide whether this tile still deserves a light. Turning the burnt
+        -- item into its spent form is the authority's job and arrives over the wire -- except for
+        -- the ones the authority has never heard of, which are ours.
+        if mine ~= nil then
+            for i = 1, #mine do expireLocalOnly(square, mine[i].wo, mine[i].item) end
         end
         return budget
     end
@@ -967,7 +1093,8 @@ do
         end
     end)
 
-    -- MAINTENANCE: expiry, swaps, colour refresh and reaping, near the player only.
+    -- MAINTENANCE: colour refresh, the pose catch-up and reaping, near the player only. Expiry and
+    -- the burnt-out swap are NOT here any more; they belong to the authority, in server/World.lua.
     local h = M.addTicker(PART, M.scanInterval, pass)
 
     -- NO TEARDOWN HERE. The GroundLight block owns the registry and already registers dropAll,

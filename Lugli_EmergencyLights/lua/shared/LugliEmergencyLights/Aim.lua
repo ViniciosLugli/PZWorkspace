@@ -11,6 +11,30 @@ local M = LugliEmergencyLights
 local PART = "Aim"
 
 --- World point the player is aiming at, clamped to maxRange tiles. Returns x, y, z or nil.
+--- The engine's own character-to-world transform, for anything that must sit ON a character
+--- rather than near one: Model.vectorToWorldCoords (Model.java:109-121), which is negate x,
+--- rotatey(a), swap y and z, scale 1.5/1.5/0.61237234, then translate by the character.
+---
+--- Its only non-Lua input is AnimationPlayer.getRenderedAngle(), and that is angle + pi/2
+--- (AnimationPlayer.java:1681-1683) while IsoGameCharacter.getAnimAngleRadians() (:3021) returns
+--- the same angle field from a class Lua can reach. So pass the FACING angle; the pi/2 is added
+--- here.
+---
+--- A ZERO OFFSET RETURNS THE CHARACTER ORIGIN, which is the feet. That is not a rounding error,
+--- it is the identity of this transform, and shipping a placeholder of zeros once put a held
+--- flare's flame on the floor at the player's boots.
+function M.modelToWorld(px, py, pz, facingRad, mx, my, mz)
+    local a = facingRad + math.pi / 2
+    local ca, sa = math.cos(a), math.sin(a)
+    return px + 1.5 * (-mx * ca - mz * sa),
+           py + 1.5 * (-mx * sa + mz * ca),
+           pz + 0.61237234 * my
+end
+
+--- NOTHING IN THIS MOD ASKS WHERE THE HELD ITEM IS ANY MORE. The held flare's flame is geometry
+--- in its own mesh, which the engine keeps on the hand bone; modelToWorld above serves the
+--- projectile and the aim, whose positions the mod does own.
+
 function M.aimPoint(player, maxRange)
     if player == nil then return nil end
     local px, py, pz = player:getX(), player:getY(), player:getZ()
