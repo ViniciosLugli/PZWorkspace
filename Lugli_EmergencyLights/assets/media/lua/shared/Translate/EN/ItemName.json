@@ -21,5 +21,6 @@
     "LugliEmergencyLights.ChemLight_Spent": "Chem Light (Spent)",
     "LugliEmergencyLights.RoadFlare_Spent": "Road Flare (Burned)",
     "LugliEmergencyLights.FlareCartridge": "Flare Cartridge",
-    "LugliEmergencyLights.FlareGun": "Flare Gun"
+    "LugliEmergencyLights.FlareGun": "Flare Gun",
+    "LugliEmergencyLights.PyrotechnicsManual": "Roadside Pyrotechnics Handbook"
 }

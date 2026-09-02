@@ -40,8 +40,9 @@ flame stays a drawn, animated sprite.
 
 ## What it adds
 
-23 items across four families. Every colour ships sealed and lit, and each family has its own spent
-item: a burnt road flare leaves a burnt road flare, not a glow stick.
+23 items across four families, plus the handbook that teaches you to make more. Every colour ships
+sealed and lit, and each family has its own spent item: a burnt road flare leaves a burnt road
+flare, not a glow stick.
 
 | Family | Colours | Burn | Radius | Where it spawns |
 |---|---|---|---|---|
@@ -67,6 +68,27 @@ limit.
 - **The light dims as it burns down**, then goes out and leaves the spent item.
 - **State survives everything.** A lit item is a swapped item plus an absolute timestamp, so it
   reads the same across saves, reloads, containers and multiplayer clients.
+
+## Making your own
+
+The pyrotechnics are craftable and the chemistry is not, which is the line the mod draws. A road
+flare is an oxidiser, a propellant and a striker composition in a paper tube, and a survivor with
+a table can make one. A glow stick is a sealed glass ampoule of factory chemistry, so those stay
+something you find.
+
+| Recipe | Takes | Reloading |
+|---|---|---|
+| Road flare | gunpowder, fertiliser, paper, tape, matches, and a knife to keep | 2 |
+| Repack a burned flare | the burnt flare, gunpowder, fertiliser, matches | 1 |
+| Flare cartridge | a road flare, aluminium, gunpowder | 3 |
+
+Repacking is the cheap path, and it is why the burnt flare is worth carrying home: the tube and
+its cap survive the burn, so it costs no paper, no tape and no knife. All three need a crafting
+surface, and all three are hidden until you learn them, either by finding the *Roadside
+Pyrotechnics Handbook* or by reaching Reloading 4 on your own.
+
+Fertiliser stands in for the nitrate because Build 42 has no saltpetre, no sulphur and no
+strontium. Gunpowder gets a use it never had: no vanilla recipe consumes it.
 
 ## Sandbox options
 

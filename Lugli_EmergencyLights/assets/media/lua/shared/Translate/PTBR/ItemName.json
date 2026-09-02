@@ -21,5 +21,6 @@
     "LugliEmergencyLights.ChemLight_Spent": "Bastao Quimico (Usado)",
     "LugliEmergencyLights.RoadFlare_Spent": "Sinalizador Rodoviario (Queimado)",
     "LugliEmergencyLights.FlareCartridge": "Cartucho Sinalizador",
-    "LugliEmergencyLights.FlareGun": "Pistola Sinalizadora"
+    "LugliEmergencyLights.FlareGun": "Pistola Sinalizadora",
+    "LugliEmergencyLights.PyrotechnicsManual": "Manual de Pirotecnia Rodoviaria"
 }

@@ -16,10 +16,19 @@ do
     local M = LugliEmergencyLights
     local PART = "Server"
 
+    --- COUNTED, not a formula with a constant on the end. This used to be `pairs * 2 + 5`, where
+    --- the 5 stood for three spent items, a cartridge and a gun, so adding the recipe manual
+    --- would have left the log quietly reporting one item fewer than the mod ships.
+    local function itemCount()
+        local n = 2                                       -- the gun and the manual
+        for _ in pairs(M.LIT_OF) do n = n + 2 end         -- one sealed and one lit each
+        for _ in pairs(M.SPENT) do n = n + 1 end
+        for _ in pairs(M.CARTRIDGES) do n = n + 1 end
+        return n
+    end
+
     local function report()
-        local items = 0
-        for _ in pairs(M.LIT_OF) do items = items + 1 end
-        M.log(PART, M.envName() .. ", " .. (items * 2 + 5) .. " items registered")
+        M.log(PART, M.envName() .. ", " .. itemCount() .. " items registered")
         if M.isDedicatedServer() then
             M.log(PART, "lights are client-side; this process only carries item state and loot")
         end
@@ -98,6 +107,22 @@ do
     -- vanilla treats every firearm it ships.
     local GUN_PLACES = { PoliceStorageGuns = 2.0, ArmyStorageOutfit = 1.0, CrateCamping = 0.5 }
     local CART_PLACES = { PoliceStorageGuns = 3.0, ArmyStorageAmmunition = 4.0, CrateCamping = 1.0 }
+
+    -- The recipe manual, and it is deliberately not common. It is the only thing in the mod that
+    -- unlocks something rather than being used up, so finding one should be an event; a survivor
+    -- who never does still reaches the recipes through the Reloading skill.
+    --
+    -- Vanilla's own recipe magazines are the yardstick: 4.0 in the container built for them,
+    -- 2.0 in a themed one and 0.1 on an ordinary living room shelf. This mod has no container of
+    -- its own, so a mechanic's shelf is the closest thing to a home.
+    local MANUAL_PLACES = {
+        MechanicShelfMisc = 2.0,
+        CarSupplyGasCans = 1.5,
+        GarageTools = 1.0, PoliceStorageGuns = 1.0, ArmyStorageOutfit = 1.0,
+        BookstoreMisc = 0.5, CrateBooks = 0.5, MagazineRackMixed = 0.5,
+        LivingRoomShelfNoTapes = 0.1,
+    }
+    local VEHICLE_MANUAL = { MechanicGloveBox = 1.0, GloveBox = 0.1 }
 
     -- ---- VEHICLES ------------------------------------------------------------------------------
     -- A SEPARATE TABLE, and the biggest hole in this mod's loot. ItemPickerJava.Parse reads a
@@ -245,6 +270,10 @@ do
             end
         end
 
+        for container, chance in pairs(MANUAL_PLACES) do
+            add(container, M.MANUAL.item, chance * mult)
+        end
+
         -- The same three passes again, against the vehicle tables.
         for sealed, lit in pairs(M.LIT_OF) do
             local info = M.LIT[lit]
@@ -264,6 +293,10 @@ do
             for container, chance in pairs(VEHICLE_CART) do
                 addVehicle(container, fullType, chance * mult)
             end
+        end
+
+        for container, chance in pairs(VEHICLE_MANUAL) do
+            addVehicle(container, M.MANUAL.item, chance * mult)
         end
 
         M.log(PART, added .. " container entries and " .. vAdded .. " vehicle entries added, "

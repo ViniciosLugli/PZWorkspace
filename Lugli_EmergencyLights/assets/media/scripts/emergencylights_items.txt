@@ -634,4 +634,19 @@ module LugliEmergencyLights
         ImpactSound = null,
         Tags = base:firearm,
     }
+
+    item PyrotechnicsManual
+    {
+        DisplayCategory = RecipeResource,
+        ItemType = base:literature,
+        Weight = 0.5,
+        Icon = Magazine,
+        BoredomChange = -20,
+        StressChange = -15,
+        LearnedRecipes = lugli:pyrotechnics,
+        StaticModel = Base.Magazine,
+        WorldStaticModel = Base.MagazineGround,
+        Tags = base:magazine;base:fastread,
+        OnCreate = ItemCodeOnCreate.onCreateRecipeMagazine,
+    }
 }

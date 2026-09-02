@@ -1,0 +1,92 @@
+/* GENERATED FILE. Edit the generator that writes it, never this.
+ *     tools/emlights-gen.py
+ *
+ * Crafting for the pyrotechnic half of the mod. The glow sticks and chem lights
+ * are deliberately absent: see the crafting block in the generator for why.
+ */
+
+module Base
+{
+    /* A flare from nothing: an oxidiser, a propellant and a striker composition,
+     * rolled into a paper tube and taped. Fertiliser is the nitrate, because the
+     * game has no saltpetre, no sulphur and no strontium. Everything here is
+     * built from what Build 42 actually ships. */
+    craftRecipe LugliEL_CraftRoadFlare
+    {
+        timedAction = Making,
+        time = 200,
+        Tags = AnySurfaceCraft,
+        category = EmergencyLights,
+        NeedToBeLearn = true,
+        MetaRecipe = lugli:pyrotechnics,
+        AutoLearnAny = Reloading:4,
+        SkillRequired = Reloading:2,
+        xpAward = Reloading:10,
+        inputs
+        {
+            item 1 tags[base:sharpknife] mode:keep flags[Prop1;MayDegradeVeryLight],
+            item 2 [Base.GunPowder],
+            item 2 tags[base:fertilizer],
+            item 1 [Base.SheetPaper2;Base.Newspaper],
+            item 2 [Base.DuctTape],
+            item 1 [Base.Matches;Base.Matchbox],
+        }
+        outputs
+        {
+            item 1 LugliEmergencyLights.RoadFlare_Red,
+        }
+    }
+
+    /* THE REASON THE SPENT ITEM EXISTS. A burnt flare is a tube with a cap on it,
+     * which is most of a new flare. So this costs no paper, no tape and no knife,
+     * at half the skill and three fifths of the time. Carrying the litter home is
+     * meant to be worth doing. */
+    craftRecipe LugliEL_RepackRoadFlare
+    {
+        timedAction = Making,
+        time = 120,
+        Tags = AnySurfaceCraft,
+        category = EmergencyLights,
+        NeedToBeLearn = true,
+        MetaRecipe = lugli:pyrotechnics,
+        AutoLearnAny = Reloading:4,
+        SkillRequired = Reloading:1,
+        xpAward = Reloading:5,
+        inputs
+        {
+            item 1 [LugliEmergencyLights.RoadFlare_Spent] mode:destroy flags[ItemCount],
+            item 2 [Base.GunPowder],
+            item 2 tags[base:fertilizer],
+            item 1 [Base.Matches;Base.Matchbox],
+        }
+        outputs
+        {
+            item 1 LugliEmergencyLights.RoadFlare_Red,
+        }
+    }
+
+    /* A whole road flare goes into one cartridge, and that is the price of the
+     * gun staying the premium tool rather than the cheap one. */
+    craftRecipe LugliEL_CraftFlareCartridge
+    {
+        timedAction = Making,
+        time = 150,
+        Tags = AnySurfaceCraft,
+        category = EmergencyLights,
+        NeedToBeLearn = true,
+        MetaRecipe = lugli:pyrotechnics,
+        AutoLearnAny = Reloading:6,
+        SkillRequired = Reloading:3,
+        xpAward = Reloading:15,
+        inputs
+        {
+            item 1 [LugliEmergencyLights.RoadFlare_Red] mode:destroy flags[ItemCount],
+            item 1 [Base.Aluminum;Base.AluminumScrap;Base.AluminumFragments],
+            item 2 [Base.GunPowder],
+        }
+        outputs
+        {
+            item 1 LugliEmergencyLights.FlareCartridge,
+        }
+    }
+}

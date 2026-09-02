@@ -235,6 +235,14 @@ M.GUN = {
     ammo = "lugli:flare_cartridge",
 }
 
+--- The recipe magazine. Here only so the loot pass can name it: nothing else in
+--- the mod reads it, because the crafting itself is entirely script-driven and
+--- needs no Lua at all.
+M.MANUAL = {
+    item = "LugliEmergencyLights.PyrotechnicsManual",
+    meta = "lugli:pyrotechnics",
+}
+
 --- The aerial signal cartridge, keyed by fullType. A table with one row rather
 --- than a single record, so a second colour, if the reload path ever grows one, is
 --- a row here instead of a rewrite of everything that reads it.
