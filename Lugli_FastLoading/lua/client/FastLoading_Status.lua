@@ -6,8 +6,9 @@
     button; it stays closed for the session.
 
     Parts record themselves in FastLoading.parts, so this reads real outcomes rather
-    than guessing from the mod list. The Java patches report through a global the jar
-    registers, which is nil when ZombieBuddy is absent.
+    than guessing from the mod list. The Java side reports through a global the jar
+    registers; a missing global is NOT proof that ZombieBuddy is absent, so ask
+    ZombieBuddy itself before blaming it.
 ]]
 
 FastLoading = FastLoading or {}
@@ -18,10 +19,39 @@ local TITLE_GAP, NOTE_INDENT = 10, 18
 local dismissed = false
 local panel = nil
 
---- Java side. The global only exists if the jar was loaded by ZombieBuddy.
+local MOD_ID = "Lugli_FastLoading"
+
+--- ZombieBuddy's own account of this jar, or nil when it will not give one.
+-- Fields per ZombieBuddy's LuaAPI: loaded, reason, sha256, decision, persisted.
+local function jarStatus()
+    if ZombieBuddy == nil then return nil end
+    local ok, st = pcall(function() return ZombieBuddy.getJavaModStatus(MOD_ID) end)
+    if not ok or type(st) ~= "table" then return nil end
+    return st
+end
+
+--- Java side.
+--
+-- Three states have to stay apart, and only the first is a missing dependency:
+--   ZombieBuddy absent                  the mod cannot patch anything, and says so
+--   present, jar not loaded             report its own reason, verbatim
+--   jar loaded, bridge global missing    a defect here; the engine patches are unaffected
+--
+-- This used to collapse all three onto the first, so a player whose patches were demonstrably
+-- running was told to install the ZombieBuddy they already had.
 local function javaStatus()
     if type(FastLoading_JavaActive) ~= "function" then
-        return { ok = false, kind = "dep", note = "needs ZombieBuddy (Java patches inactive)" }
+        if ZombieBuddy == nil then
+            return { ok = false, kind = "dep", note = "needs ZombieBuddy (Java patches inactive)" }
+        end
+        local jar = jarStatus()
+        if jar and jar.loaded == false then
+            local why = type(jar.reason) == "string" and jar.reason or "no reason given"
+            return { ok = false, kind = "bug", note = "ZombieBuddy: " .. why }
+        end
+        -- Loaded, or ZombieBuddy would not say. Either way the patches are not implicated:
+        -- the boot screen and the asset work are woven in Java and never read this global.
+        return { ok = false, kind = "bug", note = "jar loaded but the Lua bridge is missing" }
     end
     local ok, active = pcall(FastLoading_JavaActive)
     if not ok or not active then
