@@ -21,13 +21,12 @@ Numbers move between releases and each mod's README carries the conditions attac
 ```
 Lugli_FastLoading      ->  ZombieBuddy
 Lugli_Optimizations    ->  ZombieBuddy
-Lugli_EmergencyLights  ->  ZombieBuddy
 Lugli_Achievements     ->  NeatUI Framework
+Lugli_EmergencyLights  ->  nothing
 ```
 
-ZombieBuddy is a hard requirement for all three Java mods, not a soft one: without it their jars
-never load. How each one declares that is a per-mod call, made on what the mod is still worth
-without it.
+ZombieBuddy is a hard requirement for both Java mods, not a soft one: without it their jars never
+load. Neither declares it in `mod.info`, for the reason below.
 
 ## Layout
 
@@ -46,15 +45,13 @@ without it.
 The Java parts use [ZombieBuddy](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853)
 for bytecode patching. Without it those parts skip themselves rather than pretending to work.
 
-**Emergency Lights declares `require=ZombieBuddy`** in `mod.info`, so vanilla's launcher refuses to
-enable it on its own. Its items exist to emit light, and shipping glow sticks that cannot glow is
-worse than a mod the launcher turned away. Every call into the jar is still feature detected and
-`pcall`ed, so a broken install degrades and says so on screen.
+**Emergency Lights needs nothing.** It was the third Java mod until its light went through
+`IsoCell.addLamppost`, which is on the engine's Lua whitelist. It is pure Lua now.
 
-**Fast Loading and Optimizations do not**, because both still have something to say alone: Fast
-Loading keeps running its two Lua loot fixes, and Optimizations reports on the main menu that it is
-doing nothing. ZombieBuddy itself never reads `require=`; vanilla does, which is what makes the line
-worth writing.
+**Neither Fast Loading nor Optimizations declares `require=ZombieBuddy`**, because both still have
+something to say alone: Fast Loading keeps running its two Lua loot fixes, and Optimizations reports
+on the main menu that it is doing nothing. ZombieBuddy itself never reads `require=`; vanilla's
+launcher does, which is the only thing that would make the line bite.
 
 **Jars currently ship unsigned, deliberately.** ZombieBuddy resolves a signer's key from a bundled
 author list, and for an author who is not on it, falls back to fetching that author's Steam profile
