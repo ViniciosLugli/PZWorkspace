@@ -28,11 +28,14 @@ description=By default progress is kept [b]per world[/b]: one collection shared 
 description=
 description=A tickbox in the mod options switches it to [b]per character[/b], if you would rather each survivor start clean. Switching deletes nothing: the two are separate stores, and turning it back brings the old one straight back.
 description=
+description=[h1]Pick the sound you unlock to[/h1]
+description=Open the achievements window and hit Sound in the title bar. Seven unlock sounds to choose from, plus Off, and its own volume slider separate from the game's. Every one plays the moment you select it, so you can hear it before you commit. The choice is yours and it stays with you: it is saved with your settings, not with the save, so it carries across characters, worlds and servers.
+description=
 description=[h1]Other mods can add their own[/h1]
 description=An achievement is one table: an id, a name, a category, a stat to watch and a number to reach. Register it and it appears in the window, tracks itself, saves itself and raises its own toast. Your art, your categories, your rules.
 description=
 description=[h1]Before you subscribe[/h1]
-description=For Build 42.20 and later. Needs [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3508537032]NeatUI Framework[/url] for the window and the toast. Pure Lua otherwise, no jar. English and Brazilian Portuguese, both complete.
+description=For Build 42.20 and later. Needs [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3508537032]NeatUI Framework[/url] for the window and the toast. Pure Lua otherwise, no jar. Ten languages, every one complete: English, Brazilian Portuguese, Simplified Chinese, Russian, Spanish, German, French, Polish, Japanese and Korean. The names are the hard part, and they were adapted rather than run through a dictionary, so the jokes still land.
 description=
 description=[h1]FAQ[/h1]
 description=

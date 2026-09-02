@@ -92,10 +92,9 @@ local function onServerCommand(module, command, packet)
 
     -- The backfill at OnCreatePlayer ran against an empty store. Silently: this is the mod
     -- catching up with counters that have just arrived, not the player earning them.
-    local wasQuiet = M.toastQuiet
-    M.toastQuiet = true
-    M.forEachLocalPlayer(function(player) M.recheckAll(player) end)
-    M.toastQuiet = wasQuiet
+    M.quietly(function()
+        M.forEachLocalPlayer(function(player) M.recheckAll(player) end)
+    end)
 
     -- The server's copy arrives with challenges ALREADY unlocked, and recheckAll skips anything
     -- unlocked, so no unlock event fires and nothing retires them. Without this the challenge

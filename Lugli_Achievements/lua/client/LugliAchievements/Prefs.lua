@@ -9,8 +9,9 @@ local FILE = "LugliAchievements.cfg"
 
 -- An unknown key in the file is ignored rather than carried, so removing a setting later cannot
 -- leave litter behind forever.
-local NUMERIC = { zoom = true, x = true, y = true, w = true, h = true, sort = true }
-local TEXT = { filter = true }
+local NUMERIC = { zoom = true, x = true, y = true, w = true, h = true, sort = true,
+                  volume = true }
+local TEXT = { filter = true, sound = true }
 
 local prefs = {}
 local loaded = false
@@ -64,7 +65,8 @@ function M.savePrefs()
     if not ok or writer == nil then return end
     pcall(function()
         writer:write("# Lugli - Achievements. Window preferences, rewritten by the game.\n")
-        for _, k in ipairs({ "zoom", "x", "y", "w", "h", "filter", "sort" }) do
+        for _, k in ipairs({ "zoom", "x", "y", "w", "h", "filter", "sort",
+                             "sound", "volume" }) do
             if prefs[k] ~= nil then
                 writer:write(k .. " = " .. tostring(prefs[k]) .. "\n")
             end
@@ -79,4 +81,4 @@ end
 -- never removed one.
 M.addHandler(PART, "OnPlayerDeath", M.savePrefs)
 
-M.status(PART, true, "window size, position and last category")
+M.status(PART, true, "window size, position, last category and unlock sound")

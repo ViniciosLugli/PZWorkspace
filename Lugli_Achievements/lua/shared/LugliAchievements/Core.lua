@@ -62,6 +62,28 @@ function M.defect(part, note)
     print("[" .. M.TAG .. "/" .. tostring(part) .. "] DEFECT: " .. tostring(note))
 end
 
+--- Run fn with unlock toasts and their sound suppressed, and always put the flag back.
+---
+--- A helper rather than a flag each caller sets: several handlers sit on OnCreatePlayer with no
+--- ordering guarantee, and the one that did not save-set-restore made a completed category
+--- announce its milestone on every world load.
+---
+--- Depth counted because these nest: a backfill unlock reaches Meta's chained hook, which
+--- rechecks and can unlock again. A plain boolean would unmute the outer call halfway through.
+local quietDepth = 0
+
+function M.quietly(fn, ...)
+    quietDepth = quietDepth + 1
+    M.toastQuiet = true
+    local ok, a, b = pcall(fn, ...)
+    quietDepth = quietDepth - 1
+    if quietDepth <= 0 then
+        quietDepth = 0
+        M.toastQuiet = false
+    end
+    return ok, a, b
+end
+
 --- getText echoes the key back when it is absent, so an unresolved unit would otherwise be
 --- concatenated into a progress line verbatim. Hence the s ~= key guard.
 function M.text(key, fallback)

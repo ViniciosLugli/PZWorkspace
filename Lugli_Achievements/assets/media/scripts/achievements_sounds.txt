@@ -1,34 +1,108 @@
-/* The unlock sting.
+/* The unlock stings. One block per clip; the player picks between them in the achievements
+ * window, where the dropdown plays what it selects.
  *
- * A MOD CANNOT SHIP AN FMOD BANK, so this is a loose OGG resolved through
+ * A MOD CANNOT SHIP AN FMOD BANK, so these are loose OGGs resolved through
  * ZomboidFileSystem by FMODManager.loadSound. `event =` could only name an event
- * that already exists in a vanilla bank, which ours does not.
+ * that already exists in a vanilla bank, which ours do not.
  *
  * EVERY VALUE CARRIES A TRAILING COMMA, INCLUDING THE LAST. ScriptParser.readBlock
  * emits a value only when it reaches a ',' and returns immediately on '}', so a
  * final key without one is silently dropped.
  *
- * The name is prefixed because GameSounds keys ONE flat map on the bare name and
- * ignores the module, so a later-loading mod calling something "Unlock" would
- * replace ours.
+ * The names are prefixed because GameSounds keys ONE flat map on the bare name and
+ * ignores the module, so a later-loading mod calling something "Soft" would replace ours.
  *
  * is3D = false and no distanceMin/distanceMax: this is interface feedback for the
  * player who earned it, not a thing happening at a place in the world. category = UI
  * puts it under the player's own UI volume slider rather than under Ambient, which
  * is where vanilla files every sound the interface makes.
+ *
+ * One volume for all seven, because tools/achievements-audio.sh peak normalises every clip to
+ * -1 dBFS on encode and Sound.lua applies the player's own gain per play on top. A per-clip trim
+ * here would be correcting the same thing a third time, in a file nothing verifies.
  */
 module Base
 {
-    sound LugliAch_Unlock
+    sound LugliAch_Steam
     {
         category = UI,
         is3D = false,
         maxInstancesPerEmitter = 1,
         clip
         {
-            file = media/sound/LugliAch_Unlock.ogg,
-            /* Set here rather than baked into the OGG: the clip keeps its headroom and its level
-             * stays a value someone can read and change. */
+            file = media/sound/LugliAch_Steam.ogg,
+            volume = 0.5,
+        }
+    }
+
+    sound LugliAch_Xbox
+    {
+        category = UI,
+        is3D = false,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliAch_Xbox.ogg,
+            volume = 0.5,
+        }
+    }
+
+    sound LugliAch_SteamDeck
+    {
+        category = UI,
+        is3D = false,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliAch_SteamDeck.ogg,
+            volume = 0.5,
+        }
+    }
+
+    sound LugliAch_Witcher
+    {
+        category = UI,
+        is3D = false,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliAch_Witcher.ogg,
+            volume = 0.5,
+        }
+    }
+
+    sound LugliAch_Skyrim
+    {
+        category = UI,
+        is3D = false,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliAch_Skyrim.ogg,
+            volume = 0.5,
+        }
+    }
+
+    sound LugliAch_DST
+    {
+        category = UI,
+        is3D = false,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliAch_DST.ogg,
+            volume = 0.5,
+        }
+    }
+
+    sound LugliAch_Scribblenauts
+    {
+        category = UI,
+        is3D = false,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliAch_Scribblenauts.ogg,
             volume = 0.5,
         }
     }

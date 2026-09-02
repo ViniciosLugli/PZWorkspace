@@ -3,6 +3,11 @@ require "LugliAchievements/Core"
 local M = LugliAchievements
 local PART = "Options"
 
+-- ONE OPTION LIVES HERE, AND ONLY ONE. Progress scope changes what the mod reads at world load,
+-- so it belongs on the page you visit between sessions. The unlock sound is a taste decision you
+-- want to HEAR while you make it, so it moved into the achievements window, where picking one
+-- plays it. See Sound.lua and the settings panel in Window.lua.
+--
 -- Registration is unconditional: PZAPI.ModOptions save() writes unregistered option lines with
 -- no terminator, so consecutive unknown lines fuse and are dropped. Ours is safe while it stays
 -- registered.
@@ -30,27 +35,7 @@ local function install()
                            getText("UI_LugliAch_opt_percharacter_tip"))
     end)
 
-    pcall(function()
-        options:addTickBox("unlockSound",
-                           getText("UI_LugliAch_opt_unlocksound"),
-                           true,
-                           getText("UI_LugliAch_opt_unlocksound_tip"))
-    end)
-
-    M.status(PART, true, "progress scope, per world by default")
-end
-
---- Read live, unlike the scope beside it: this is asked once per unlock, not on a hot path, and
---- someone who just turned it off wants it off now. Defaults ON, matching the tickbox.
-function M.unlockSoundEnabled()
-    if PZAPI == nil or PZAPI.ModOptions == nil then return true end
-    local ok, opts = pcall(function() return PZAPI.ModOptions:getOptions(M.OPTIONS_ID) end)
-    if not ok or opts == nil or opts.getOption == nil then return true end
-    local ok2, opt = pcall(function() return opts:getOption("unlockSound") end)
-    if not ok2 or opt == nil or opt.getValue == nil then return true end
-    local ok3, v = pcall(function() return opt:getValue() end)
-    if not ok3 then return true end
-    return v ~= false
+    M.status(PART, true, "progress scope; the unlock sound lives in the window")
 end
 
 install()

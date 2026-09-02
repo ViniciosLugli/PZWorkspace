@@ -251,10 +251,13 @@ function M.toastPump()
 end
 
 --- Rides the toastQuiet gate with the toast: the load-time backfill must not arrive as a burst
---- of chimes over a silent screen.
+--- of chimes over a silent screen. The player picks the sound, or none, in the window itself.
 local function playUnlockSound()
-    if type(M.unlockSoundEnabled) == "function" and M.unlockSoundEnabled() == false then return end
-    if M.neat ~= nil then M.neat.sound("LugliAch_Unlock") end
+    -- Through Sound.lua rather than M.neat.sound, because that helper discards the handle and
+    -- the handle is the only way to apply the player's chosen volume.
+    if type(M.playAtVolume) ~= "function" then return end
+    if type(M.unlockSoundName) ~= "function" then return end
+    M.playAtVolume(M.unlockSoundName())
 end
 
 --- The registry calls this on every unlock. It must not throw: it runs inside the unlock path.

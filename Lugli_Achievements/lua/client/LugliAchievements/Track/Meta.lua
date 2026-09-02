@@ -67,8 +67,13 @@ end
 
 -- Also on load, so a save that completed a category under an older version catches up rather
 -- than waiting for one more unlock that may never come.
+--
+-- QUIET, like every other load-time backfill. This one was not, and it is a catch-up path that
+-- can unlock: a save sitting on a finished category announced its milestone with a toast and a
+-- chime every time the world loaded. Boot.lua's own quiet window does not cover this, because
+-- these are two separate handlers on OnCreatePlayer with no ordering guarantee between them.
 M.addHandler(PART, "OnCreatePlayer", function()
-    M.forEachLocalPlayer(recheck)
+    M.quietly(function() M.forEachLocalPlayer(recheck) end)
 end)
 
 -- Chained, not assigned: Toast owns this hook and requiring it above is what guarantees it has

@@ -192,42 +192,51 @@ local function ensureClass()
 
     --- Every mode falls back to the registry order for ties: a sort that is not total is a list
     --- that moves under the cursor when nothing changed.
+    local TIER_RANK = { gold = 1, silver = 2, bronze = 3 }
+
+    --- Sort the visible rows in place.
+    ---
+    --- Every key is computed once, before the sort, never inside the comparator. Looking them up
+    --- in the callback meant ~2,600 comparisons each reaching pcall(ModData.getOrCreate): about
+    --- ten thousand store walks to open the window, and again on every search keystroke, because
+    --- rebuild() re-sorts. That was the freeze. Decorated first it is 283 lookups.
     function Window:applySort(rows, player)
         local mode = SORTS[self.sortMode or 1] or "default"
         if mode == "default" then return end
 
-        local home = {}
-        for i = 1, #rows do home[rows[i].id] = i end
-
-        local function unlocked(d) return M.isUnlockedAnywhere(player, d.id) end
-        local function frac(d)
-            local ok, f = pcall(M.getProgressFraction, player, d)
-            return (ok and type(f) == "number") and f or 0
-        end
-        local TIER = { gold = 1, silver = 2, bronze = 3 }
-
-        local key
-        if mode == "name" then
-            key = function(d) return string.lower(M.text(d.name, d.id)) end
-        elseif mode == "tier" then
-            key = function(d) return TIER[d.tier] or 4 end
+        -- Registry order, the tie-break that keeps the sort total. Without it rows with equal
+        -- keys can compare inconsistently, which is how table.sort is made to overflow its stack.
+        local home, rank, frac, name = {}, {}, {}, {}
+        for i = 1, #rows do
+            local d = rows[i]
+            home[d.id] = i
+            if mode == "progress" or mode == "done" then
+                rank[d.id] = M.isUnlockedAnywhere(player, d.id) and 1 or 0
+            end
+            if mode == "progress" then
+                local ok, f = pcall(M.getProgressFraction, player, d)
+                frac[d.id] = (ok and type(f) == "number") and f or 0
+            elseif mode == "name" then
+                name[d.id] = string.lower(M.text(d.name, d.id))
+            end
         end
 
         table.sort(rows, function(a, b)
+            local ia, ib = a.id, b.id
             if mode == "progress" then
                 -- Earned rows last: a finished row is not an answer to "what am I nearly at".
-                local ua, ub = unlocked(a), unlocked(b)
-                if ua ~= ub then return ub end
-                local fa, fb = frac(a), frac(b)
-                if fa ~= fb then return fa > fb end
+                if rank[ia] ~= rank[ib] then return rank[ib] == 1 end
+                if frac[ia] ~= frac[ib] then return frac[ia] > frac[ib] end
             elseif mode == "done" then
-                local ua, ub = unlocked(a), unlocked(b)
-                if ua ~= ub then return ua end
+                if rank[ia] ~= rank[ib] then return rank[ia] == 1 end
+            elseif mode == "name" then
+                if name[ia] ~= name[ib] then return name[ia] < name[ib] end
             else
-                local ka, kb = key(a), key(b)
+                local ka = TIER_RANK[a.tier] or 4
+                local kb = TIER_RANK[b.tier] or 4
                 if ka ~= kb then return ka < kb end
             end
-            return (home[a.id] or 0) < (home[b.id] or 0)
+            return (home[ia] or 0) < (home[ib] or 0)
         end)
     end
 
@@ -283,8 +292,92 @@ local function ensureClass()
             self:rebuild()
         end
         self:addChild(self.searchBox)
+
+        self:buildSoundPanel()
         self:reflow()
         self:rebuild()
+    end
+
+    -- The unlock sound lives here, not on the mod options page, because that page cannot play
+    -- anything and this is a choice you can only make by hearing it.
+    --
+    -- A popup rather than another header row: m.gridY is m.title + m.header, so widening the
+    -- header would push through gridH, rowsFit, m.detail, minimumHeight and applyZoom's wantH.
+    function Window:buildSoundPanel()
+        if ISPanel == nil or ISComboBox == nil or ISVolumeControl == nil then
+            M.log(PART, "no sound panel: the game's UI classes are not all present")
+            return
+        end
+
+        self.soundBtn = ISButton:new(0, 0, 10, 10,
+                                     M.text("UI_LugliAch_window_sound", "Sound"), self,
+                                     function() self:toggleSoundPanel() end)
+        self.soundBtn:initialise()
+        self.soundBtn:instantiate()
+        self.soundBtn.borderColor = { r = 1, g = 1, b = 1, a = 0.4 }
+        self:addChild(self.soundBtn)
+
+        local panel = ISPanel:new(0, 0, 10, 10)
+        panel:initialise()
+        panel:instantiate()
+        panel.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
+        panel.borderColor = { r = 0, g = 0, b = 0, a = 0 }
+        panel:setVisible(false)
+        panel.owner = self
+        -- Drawn by hand so it matches the rest of the window rather than the vanilla panel chrome.
+        function panel:prerender()
+            local m = self.owner:metrics()
+            N.panel(self, N.TEX.panelRound, 0, 0, self.width, self.height, N.PANEL_TINT, 0.97)
+            local pad = m.pad
+            self:drawText(M.text("UI_LugliAch_window_sound", "Sound"),
+                          pad, pad, N.text.r, N.text.g, N.text.b, 1, m.font.body)
+            self:drawText(M.text("UI_LugliAch_window_volume", "Volume"),
+                          pad, self.volumeCtl:getY() - m.bodyH - math.floor(pad / 2),
+                          N.text.r, N.text.g, N.text.b, 1, m.font.body)
+        end
+        -- Swallow clicks so picking a sound does not fall through to the grid behind it.
+        function panel:onMouseDown() return true end
+        self.soundPanel = panel
+        self:addChild(panel)
+
+        local combo = ISComboBox:new(0, 0, 10, 10, self, function(_, box)
+            M.setSoundIndex(box.selected or 1)
+            -- The point of moving this out of the options page: you hear what you picked.
+            M.previewSound()
+        end)
+        combo:initialise()
+        combo:instantiate()
+        for _, key in ipairs(M.SOUND_LABELS or {}) do
+            combo:addOption(M.text(key, key))
+        end
+        combo.selected = M.soundIndex()
+        panel.soundCombo = combo
+        panel:addChild(combo)
+
+        local vol = ISVolumeControl:new(0, 0, 10, 10, self, function(_, _, v)
+            M.setSoundNotch(v)
+            -- Only on a real change, which setVolume already guarantees: it returns early when
+            -- the notch is unchanged, so dragging across one notch does not stutter the clip.
+            M.previewSound()
+        end)
+        vol:initialise()
+        vol:instantiate()
+        vol.volume = M.soundNotch()
+        panel.volumeCtl = vol
+        panel:addChild(vol)
+    end
+
+    function Window:toggleSoundPanel()
+        if self.soundPanel == nil then return end
+        local show = not self.soundPanel:isVisible()
+        if show then
+            -- Re-read rather than trust the widgets: the cfg is shared with any other window
+            -- this player has open, and the file is the truth.
+            self.soundPanel.soundCombo.selected = M.soundIndex()
+            self.soundPanel.volumeCtl.volume = M.soundNotch()
+        end
+        self.soundPanel:setVisible(show)
+        M.neat.sound(M.neat.SOUND.option)
     end
 
     function Window:reflow()
@@ -325,6 +418,46 @@ local function ensureClass()
             self.zoomBox:setX(self.width - m.pad - w)
             self.zoomBox:setY(math.floor((m.title - m.btn) / 2))
             self.zoomBox.selected = m.z
+        end
+        if self.soundBtn ~= nil then
+            local w = N.width(M.text("UI_LugliAch_window_sound", "Sound"), m.font.body) + m.pad * 2
+            self.soundBtn:setWidth(w)
+            self.soundBtn:setHeight(m.btn)
+            self.soundBtn.font = m.font.body
+            -- Left of the zoom combo, both pinned to the right edge, so neither strands on a
+            -- resize the way the vanilla pin and collapse buttons do.
+            self.soundBtn:setX(self.width - m.pad - (m.btn * 2 + m.pad) - m.pad - w)
+            self.soundBtn:setY(math.floor((m.title - m.btn) / 2))
+        end
+        if self.soundPanel ~= nil then
+            local sh = m.bodyH + 6
+            local inner = math.max(m.search, m.cell * 2)
+            local pw = inner + m.pad * 2
+            local ph = m.pad + m.bodyH + math.floor(m.pad / 2) + sh
+                       + m.pad + m.bodyH + math.floor(m.pad / 2) + m.btn + m.pad
+            self.soundPanel:setWidth(pw)
+            self.soundPanel:setHeight(ph)
+            -- Hangs below the button, held inside the window so it cannot spill off the frame.
+            local px = math.min(self.soundBtn ~= nil and self.soundBtn:getX() or 0,
+                                self.width - pw - m.pad)
+            self.soundPanel:setX(math.max(m.pad, px))
+            self.soundPanel:setY(m.title)
+
+            local combo = self.soundPanel.soundCombo
+            combo:setWidth(inner)
+            combo:setHeight(sh)
+            combo.baseHeight = sh
+            combo.itemheight = sh
+            combo.font = m.font.body
+            combo.fontHgt = m.bodyH
+            combo:setX(m.pad)
+            combo:setY(m.pad + m.bodyH + math.floor(m.pad / 2))
+
+            local vol = self.soundPanel.volumeCtl
+            vol:setWidth(inner)
+            vol:setHeight(m.btn)
+            vol:setX(m.pad)
+            vol:setY(combo:getY() + sh + m.pad + m.bodyH + math.floor(m.pad / 2))
         end
         self.minimumWidth = m.sidebar + m.cell * 3 + m.pad * 5
         self.minimumHeight = m.title + m.header + m.cell + m.detailBase + m.pad * 2
