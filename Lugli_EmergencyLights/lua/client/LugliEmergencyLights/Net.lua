@@ -18,6 +18,13 @@ do
     --- than any round trip and shorter than the flare it describes.
     local ECHO_TTL_MS = 30000
 
+    --- How long a landed light may outlive its own world object, in ms. The object and the landing
+    --- message are separate packets with no ordering between them, so for a moment the tile is lit
+    --- with nothing on it; without this the light reaper reads that as an item that has gone.
+    --- Generous against any real round trip, short enough that a landing whose object never
+    --- arrives here costs one ground-light slot for four seconds and no longer.
+    local LANDING_GRACE_MS = 4000
+
     --- id -> the moment it may be forgotten. Not a set: an echo that never arrives, because the
     --- server has no mod, must not leak an entry for the life of the session.
     local mine = {}
@@ -258,15 +265,31 @@ do
         end
 
         local x, y, z = math.floor(args.x), math.floor(args.y), math.floor(args.z)
+
+        -- ONLY IF THIS MACHINE CAN ACTUALLY SEE THAT TILE. The echo goes to every connection,
+        -- because the arc it ends may be flying on any of them, but most receivers are nowhere
+        -- near the landing. Lighting a square outside their chunk window would spend one of the
+        -- limited ground-light slots on something nobody can see, for every throw anybody makes
+        -- anywhere on the map. Whoever walks there later gets the light from the sweep, off the
+        -- real object, which is where a light for a tile you are standing in should come from.
+        local sq = nil
+        pcall(function() sq = getCell():getGridSquare(x, y, z) end)
+        if sq == nil then return end
+
         local ox = type(args.ox) == "number" and args.ox or 0.5
         local oy = type(args.oy) == "number" and args.oy or 0.5
         local frac = type(args.frac) == "number" and args.frac or 1.0
 
         -- The same record M.place builds on the thrower's own local path. Keyed by tile and by
         -- item, so when the sweep next finds the real object here it updates this light in place
-        -- rather than making a second one -- and if the object never arrives on this machine, the
-        -- sweep drops the light on its next pass, exactly as it does for any tile with nothing
-        -- burning on it. Self-correcting either way.
+        -- rather than making a second one.
+        --
+        -- `awaitMs` is what keeps it alive until then. The world object and this message are
+        -- SEPARATE PACKETS WITH NO ORDERING BETWEEN THEM, and the light reaper treats a square
+        -- with nothing burning on it as evidence the light should go. Without a grace period a
+        -- reap landing in that gap drops this light and the next sweep builds it again: the
+        -- flicker this whole message exists to remove, made rarer and harder to reproduce rather
+        -- than fixed. The sweep clears the deadline as soon as it sees the real item.
         pcall(function()
             M.ensure(x, y, z, {
                 family = info.family,
@@ -275,6 +298,7 @@ do
                 sound = M.burnSoundFor(info.family),
                 fx = x + ox, fy = y + oy, fz = z,
                 pitch = args.pitch, yaw = args.yaw,
+                awaitMs = LANDING_GRACE_MS,
             }, frac)
         end)
         M.debug(PART, "a throw landed at " .. tostring(x) .. "," .. tostring(y)

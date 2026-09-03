@@ -846,6 +846,21 @@ do
         local wasPrimary, wasSecondary = M.takeOffModel(player, item)
         local wasHeld = wasPrimary or wasSecondary
 
+        -- AND THE EMPTY HAND IS TOLD TO EVERYBODY, on the same step that empties it. sendEquip is
+        -- the server-side updateHandEquips, the same call authoritySwap makes for a crack.
+        --
+        -- ANNOUNCED HERE RATHER THAN AFTER THE LANDING, because from this line on the hand is
+        -- empty whatever happens next, and every one of those outcomes is a hand the thrower has
+        -- already emptied on their own machine: the item reaches the ground, or the engine refuses
+        -- it and it goes back to their bag, or the removal below fails and the throw is refused.
+        -- Announcing only on the way to a successful landing would leave the two refusal paths
+        -- with an empty hand on the server that nobody else had been told about.
+        if wasHeld and sendEquip ~= nil then
+            pcall(function() sendEquip(player) end)
+            M.debug(PART, "took " .. tostring(args.type) .. " out of the thrower's hand "
+                        .. "and told everybody")
+        end
+
         -- OUT OF THE INVENTORY, ON THE AUTHORITY, and told to the client. DoRemoveItem is the
         -- unsynchronised removal; sendRemoveItemFromContainer is what carries it, and it is safe
         -- here because it is the SERVER sending. The same call from a client is the one that kicks.
@@ -859,16 +874,6 @@ do
         end)
         if not okRemove then
             return refuse(player, args, "could not take it out of their inventory")
-        end
-
-        -- AND THE EMPTY HAND IS TOLD TO EVERYBODY. sendEquip is the server-side updateHandEquips,
-        -- the same call authoritySwap makes for a crack. Sent HERE rather than after the landing
-        -- on purpose: the hand is empty in both outcomes below, the item on the ground or the item
-        -- handed back to their bag.
-        if wasHeld and sendEquip ~= nil then
-            pcall(function() sendEquip(player) end)
-            M.debug(PART, "took " .. tostring(args.type) .. " out of the thrower's hand "
-                        .. "and told everybody")
         end
 
         -- STAMPED AND POSED BEFORE THE ADD.

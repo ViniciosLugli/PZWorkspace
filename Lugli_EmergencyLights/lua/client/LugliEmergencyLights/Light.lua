@@ -254,6 +254,22 @@ do
             rec.curR, rec.curG, rec.curB = r, g, b
         end
 
+        -- HOW LONG THIS LIGHT MAY OUTLIVE ITS ITEM, in real milliseconds, or nil for "not at all".
+        --
+        -- Set only by a landing the SERVER has announced whose world object has not reached this
+        -- machine yet: the two are separate packets with no ordering between them, and the reaper
+        -- reads a square with nothing burning on it as an item that has gone. Real time rather
+        -- than the world clock, because what is being waited on is a packet, not a burn.
+        --
+        -- CLEARED BY EVERY OTHER CALLER, which is the half that matters: the sweep passes no
+        -- deadline, so the first pass that finds the real item on the square ends the grace period
+        -- rather than extending it, and the light goes back to living or dying by the item alone.
+        if type(info.awaitMs) == "number" and getTimestampMs ~= nil then
+            rec.awaitUntil = getTimestampMs() + info.awaitMs
+        else
+            rec.awaitUntil = nil
+        end
+
         -- THE COLOUR THIS LIGHT SHOULD REST AT.
         rec.frac = frac
 
@@ -1064,6 +1080,7 @@ do
         -- Reap ONLY on evidence: a square we can actually read that no longer has anything burning on
         -- it.
         local stale = {}
+        local nowMs = getTimestampMs ~= nil and getTimestampMs() or 0
         M.eachLight(function(key, rec)
             local timed = M.timedAlive(rec)
             if timed ~= nil then
@@ -1071,6 +1088,12 @@ do
                 -- square. It also survives being walked away from, which is the entire point of
                 -- firing one: a signal you cannot leave behind is not a signal.
                 if not timed then stale[#stale + 1] = key end
+            elseif rec.awaitUntil ~= nil and nowMs < rec.awaitUntil then
+                -- A LANDING WHOSE OBJECT IS STILL IN THE POST. The server has said an item is on
+                -- this tile and the packet carrying it has not arrived, so an empty square is not
+                -- yet evidence of anything. Kept until the deadline; the first sweep that finds
+                -- the item clears it. See M.ensure.
+                local _ = key
             elseif reapSquare(rec) == nil then
                 -- OUT OF THE CHUNK WINDOW IS EVIDENCE, and this is the opposite of what it looks like.
                 stale[#stale + 1] = key
