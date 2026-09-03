@@ -137,9 +137,11 @@ end
 
 --- @param bounce  optional { restitution, forwardRetention } for a thrown item. Omitted for a
 ---                 fired flare, which never touches the ground.
+--- @param tag     optional name for this flight, so something else can end it: only a relayed
+---                 throw carries one, and only the landing broadcast uses it. See M.endProjectile.
 function M.launchProjectile(player, x0, y0, z0, x1, y1, seconds, travel, apex, r, g, b,
                             radius, onLit, onDone, thrown, bounce, windage, tex,
-                            decayFamily, decayFrac)
+                            decayFamily, decayFrac, tag)
     if type(seconds) ~= "number" or seconds <= 0 then return false end
 
     local p = {
@@ -189,6 +191,9 @@ function M.launchProjectile(player, x0, y0, z0, x1, y1, seconds, travel, apex, r
         lastX = x0, lastY = y0,
         onLit = onLit, onDone = onDone, fired = false,
         thrown = thrown == true,
+        -- WHO THIS FLIGHT IS, for the one thing that can end a flight from outside: a relayed
+        -- throw, ended by the landing that this machine could not have worked out for itself.
+        tag = type(tag) == "string" and tag or nil,
         slot = -1,
         -- THE ITEM'S OWN PICTURE, for drawing it in flight.
         tex = tex,
@@ -863,6 +868,26 @@ local function draw()
     end)
 
     M.fxAdditive(R, false)
+end
+
+--- End the flight carrying this tag, wherever it has got to. True when one was ended.
+---
+--- ONLY A RELAYED THROW HAS A TAG, and that is the whole safety of this: a replay is
+--- visual-only, with no owner, no item and NO onDone, so ending it releases a light and nothing
+--- else. onDone is deliberately not called -- it is what LANDS AN ITEM, and the only projectile
+--- that has one is the thrower's own, which has already run it and retired by the time any
+--- landing message could arrive. Calling it here could only ever put a second item on the ground.
+function M.endProjectile(tag)
+    if type(tag) ~= "string" then return false end
+    for i = #live, 1, -1 do
+        local p = live[i]
+        if p ~= nil and p.tag == tag then
+            table.remove(live, i)
+            release(p)
+            return true
+        end
+    end
+    return false
 end
 
 --- Every projectile currently in the air, with its family and where it is.

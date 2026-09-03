@@ -173,12 +173,16 @@ do
     local throwSeq = 0
 
     --- Tell the server this machine just threw one, so everybody else can fly a copy.
+    ---
+    --- RETURNS THE ID IT SENT, or nil. The landing goes over the wire separately, once the item is
+    --- actually on the ground, and it names this same id so every machine can end the copy of the
+    --- arc it is flying rather than letting each one stop wherever its own physics happened to.
     function M.sendThrow(player, item, x0, y0, z0, x1, y1, flight, apex)
-        if not M.isMultiplayer() or sendClientCommand == nil then return false end
-        if player == nil or item == nil then return false end
+        if not M.isMultiplayer() or sendClientCommand == nil then return nil end
+        if player == nil or item == nil then return nil end
         local fullType, itemId = nil, nil
         pcall(function() fullType = item:getFullType(); itemId = item:getID() end)
-        if fullType == nil then return false end
+        if fullType == nil then return nil end
 
         local who = "?"
         pcall(function() who = tostring(player:getUsername()) end)
@@ -195,7 +199,8 @@ do
             x0 = x0, y0 = y0, z0 = z0, x1 = x1, y1 = y1,
             flight = flight, apex = apex,
         })
-        return ok
+        if not ok then return nil end
+        return id
     end
 
     --- Somebody threw one. Fly a visual-only copy: no item, no landing, no inventory. The real
@@ -214,13 +219,66 @@ do
         local tex = nil
         pcall(function() tex = getScriptManager():getItem(args.type):getNormalTexture() end)
         local frac = type(args.frac) == "number" and args.frac or 1.0
+        -- TAGGED WITH THE THROW'S OWN ID. This copy is flown by physics that cannot agree with the
+        -- thrower's -- its own jitter, its own wind sample -- so it is ended by the landing echo
+        -- rather than left to stop wherever it drifts to. See onLandEcho.
         local ok = M.launchProjectile(nil, args.x0, args.y0, args.z0, args.x1, args.y1,
                                       args.flight, args.flight, args.apex,
                                       info.r, info.g, info.b, M.lightRadius(info.family),
                                       nil, nil, true, bounce,
                                       M.windageFor ~= nil and M.windageFor(info.family) or 0.0,
-                                      tex, info.family, frac)
+                                      tex, info.family, frac, id)
         if ok then M.debug(PART, "replayed " .. tostring(args.who) .. "'s throw") end
+    end
+
+    -- ---- A THROW THAT HAS LANDED, which is the only moment every machine can agree on ---------
+    --
+    -- Sent by the server the instant the item is really on the ground (World.lua, onDrop). It does
+    -- two things no client can work out for itself, and BOTH of them are why it exists:
+    --
+    --   1. it ends the copy of the arc this machine is flying. Every receiver simulates the throw
+    --      separately and stops somewhere slightly different; without this the light lingers in
+    --      mid-air, in the wrong place, after the real item is down.
+    --   2. it lights the landing tile on the frame the item arrives, instead of leaving it dark
+    --      until the once-a-second sweep next walks past.
+    --
+    -- IT IS NOT SUPPRESSED BY `mine`, and that is the one thing to remember about it. Every other
+    -- echo in this file is dropped when it carries an id this machine sent, because the sender has
+    -- already done the work locally. Here the sender has done the OPPOSITE: M.place handed the
+    -- landing to the server and returned before lighting anything, so the thrower needs this
+    -- message every bit as much as the onlookers do.
+    local function onLandEcho(args)
+        local id = type(args.id) == "string" and args.id or nil
+        if id ~= nil and M.endProjectile ~= nil then M.endProjectile(id) end
+
+        local info = type(args.type) == "string" and M.LIT ~= nil and M.LIT[args.type] or nil
+        if info == nil or M.ensure == nil then return end
+        if type(args.x) ~= "number" or type(args.y) ~= "number" or type(args.z) ~= "number" then
+            return
+        end
+
+        local x, y, z = math.floor(args.x), math.floor(args.y), math.floor(args.z)
+        local ox = type(args.ox) == "number" and args.ox or 0.5
+        local oy = type(args.oy) == "number" and args.oy or 0.5
+        local frac = type(args.frac) == "number" and args.frac or 1.0
+
+        -- The same record M.place builds on the thrower's own local path. Keyed by tile and by
+        -- item, so when the sweep next finds the real object here it updates this light in place
+        -- rather than making a second one -- and if the object never arrives on this machine, the
+        -- sweep drops the light on its next pass, exactly as it does for any tile with nothing
+        -- burning on it. Self-correcting either way.
+        pcall(function()
+            M.ensure(x, y, z, {
+                family = info.family,
+                colour = info.colour,
+                r = info.r, g = info.g, b = info.b,
+                sound = M.burnSoundFor(info.family),
+                fx = x + ox, fy = y + oy, fz = z,
+                pitch = args.pitch, yaw = args.yaw,
+            }, frac)
+        end)
+        M.debug(PART, "a throw landed at " .. tostring(x) .. "," .. tostring(y)
+                    .. "," .. tostring(z))
     end
 
     -- ---- DROPPING SOMETHING WHERE OTHER PEOPLE CAN SEE IT ------------------------------------
@@ -302,7 +360,11 @@ do
 
     --- Ask the server to put this item on the ground. Returns true when the request is away and the
     --- item is being held for it; false means the caller must land it itself.
-    function M.sendDrop(player, item, square, ox, oy, pitch, yaw, container)
+    ---
+    --- `throwId` is the id M.sendThrow returned for this same throw, or nil for a landing that
+    --- never flew. It is carried so the server's landing broadcast can name the arc every other
+    --- machine is flying, and so end it at the moment the item is really down.
+    function M.sendDrop(player, item, square, ox, oy, pitch, yaw, container, throwId)
         if not M.serverDropReady() or player == nil or item == nil or square == nil then
             return false
         end
@@ -330,6 +392,7 @@ do
             x = square:getX(), y = square:getY(), z = square:getZ(),
             ox = ox, oy = oy,
             pitch = pitch, yaw = yaw,
+            throwId = type(throwId) == "string" and throwId or nil,
         })
         if not ok then return false end
 
@@ -421,6 +484,7 @@ do
         if command == M.NET_CRACK_ECHO then return onSwapEcho(args, "a crack") end
         if command == M.NET_EXPIRE_ECHO then return onSwapEcho(args, "a burn-out") end
         if command == M.NET_THROW_ECHO then return onThrowEcho(args) end
+        if command == M.NET_LAND_ECHO then return onLandEcho(args) end
         if command ~= M.NET_FLARE_ECHO then return end
 
         local id = tostring(args.id or "")

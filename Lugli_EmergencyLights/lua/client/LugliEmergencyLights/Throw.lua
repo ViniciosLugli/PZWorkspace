@@ -184,7 +184,12 @@ function M.place(player, item, square, rest, origin)
     -- The item is HELD by Net.lua until the server confirms, and handed back if it never does. It is
     -- already out of every container by now, so there is nothing to undo either way.
     if M.serverDropReady ~= nil and M.serverDropReady() then
-        if M.sendDrop(player, item, square, ox, oy, restPitch, restYaw, origin or inv) then
+        -- The arc's own id travels with the landing, so the server's broadcast can end the copy of
+        -- this throw every other machine is flying and light the tile on the frame it arrives.
+        -- A landing with no flight behind it -- the fallback that places an item directly when the
+        -- arc could not be launched -- carries none, and is simply a landing nobody watched.
+        local throwId = rest ~= nil and rest.record ~= nil and rest.record.throwId or nil
+        if M.sendDrop(player, item, square, ox, oy, restPitch, restYaw, origin or inv, throwId) then
             M.debug(PART, string.format("asked the server to land %s at %d,%d,%d",
                 tostring(item:getFullType()), square:getX(), square:getY(), square:getZ()))
             -- The noise is ours to make and replicates by itself; the light, the pose and the model
@@ -288,6 +293,17 @@ local function throwWithArc(player, item, square, info)
     -- IT LEAVES THE INVENTORY HERE, on the frame it leaves the hand.
     pcall(function() player:removeFromHands(item) end)
 
+    -- AND THE EMPTY HAND GOES ON THE WIRE. removeFromHands on a client only nulls the hand and
+    -- raises a flag that the SERVER reads (IsoGameCharacter.java:3383, :8655); a client sends the
+    -- Equip packet only when something calls updateHandEquips, which is exactly what the engine's
+    -- own client-side drop does (:11323-11325). Without it the thrown item stays visible in this
+    -- character's hand on every other player's screen for as long as they can see them. The
+    -- authority empties its own copy of the hand when it takes the item (World.lua, onDrop); this
+    -- is the half that cannot wait for the round trip.
+    if M.isMultiplayer() then
+        pcall(function() player:updateHandEquips() end)
+    end
+
     local origin = nil
     pcall(function() origin = item:getContainer() end)
     if origin ~= nil then
@@ -305,8 +321,12 @@ local function throwWithArc(player, item, square, info)
     -- own placement; the flight would not, and a stick that appears on the ground out of nowhere
     -- is not the throw the other player just watched you wind up for. Net.lua relays the arc and
     -- the receivers fly a visual-only copy: no item, no landing, no inventory.
+    -- The id it went out under is kept on the throw's own record below: the landing is a separate
+    -- message, sent once the item is really on the ground, and it names this id so every machine
+    -- ends the arc it is flying at the same moment rather than whenever its own copy stops.
+    local throwId = nil
     if M.sendThrow ~= nil then
-        M.sendThrow(player, item, px, py, pz, tx, ty, flight, apex)
+        throwId = M.sendThrow(player, item, px, py, pz, tx, ty, flight, apex)
     end
 
     -- The square is captured by COORDINATE, not by reference: a chunk can be disposed and rebuilt
@@ -318,6 +338,7 @@ local function throwWithArc(player, item, square, info)
     local rec = {
         family = info.family,
         colour = info.colour,
+        throwId = throwId,
         aimDist = dist,
         range = M.throwRange ~= nil and M.throwRange(info.family) or nil,
         fromX = px, fromY = py, fromZ = pz,

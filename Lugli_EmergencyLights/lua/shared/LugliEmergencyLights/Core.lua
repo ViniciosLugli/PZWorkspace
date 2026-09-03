@@ -139,6 +139,7 @@ do
     M.NET_THROW      = "throw"      -- client -> server: I threw one, here is its flight
     M.NET_THROW_ECHO = "thrown"     -- server -> everyone: somebody threw one
     M.NET_EXPIRE_ECHO = "burntOut"  -- server -> that client: one of yours burnt out and was swapped
+    M.NET_LAND_ECHO  = "landed"     -- server -> everyone: a throw ended HERE, light this tile
 
     --- ZombRandFloat, guarded. The engine's own generator, so this follows the world seed rather than
     --- a second unseeded one; the midpoint is the fallback when it is absent.

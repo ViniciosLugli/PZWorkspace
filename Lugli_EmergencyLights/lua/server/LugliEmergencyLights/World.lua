@@ -265,6 +265,37 @@ do
         return location
     end
 
+    --- Take an item off the character's model and out of their hands, on the authority. Returns
+    --- which hand it was in (primary, secondary) and the attachment location it hung at, or nil.
+    ---
+    --- EVERY REMOVAL FROM AN INVENTORY HAS TO DO THIS, and that is why it is its own function
+    --- rather than four lines inside the swap. `ItemContainer.Remove` clears the hand itself
+    --- (ItemContainer.java:2020-2022), but `DoRemoveItem` -- which is what the drop uses, because
+    --- it is the unsynchronised half of the pair -- does NOT (`:2057-2080`). An item left in the
+    --- server's copy of a hand is relayed to every other client by EquipPacket.write
+    --- (EquipPacket.java:51-83), so the thrower goes on holding, on everybody else's screen, a
+    --- stick that is lying on the ground.
+    ---
+    --- Exactly as Transaction.updateItem does before it removes a transferred item
+    --- (Transaction.java:290-296), or the character keeps a reference to something no container
+    --- owns.
+    function M.takeOffModel(player, item)
+        if player == nil or item == nil then return false, false, nil end
+
+        local location = M.attachedLocationOf(player, item)
+        local wasPrimary, wasSecondary = false, false
+        pcall(function()
+            wasPrimary = player:isPrimaryHandItem(item)
+            wasSecondary = player:isSecondaryHandItem(item)
+        end)
+
+        pcall(function()
+            if location ~= nil then player:removeAttachedItem(item) end
+            if wasPrimary or wasSecondary then player:removeFromHands(item) end
+        end)
+        return wasPrimary, wasSecondary, location
+    end
+
     --- Replace `item` in the player's inventory with a fresh `newType`, keeping its container and
     --- its hand, and stamp the new one with `burnHours` when given. Returns the new item and the
     --- attachment location the old one hung at (nil for none), or nil and a reason.
@@ -276,20 +307,7 @@ do
         pcall(function() holder = item:getContainer() end)
         if holder == nil then return nil, "the item is in no container" end
 
-        local location = M.attachedLocationOf(player, item)
-        local wasPrimary, wasSecondary = false, false
-        pcall(function()
-            wasPrimary = player:isPrimaryHandItem(item)
-            wasSecondary = player:isSecondaryHandItem(item)
-        end)
-
-        -- OUT OF THE MODEL AND THE HANDS FIRST, exactly as Transaction.updateItem does before it
-        -- removes a transferred item (Transaction.java:290-296), or the character keeps a
-        -- reference to something no container owns.
-        pcall(function()
-            if location ~= nil then player:removeAttachedItem(item) end
-            if wasPrimary or wasSecondary then player:removeFromHands(item) end
-        end)
+        local wasPrimary, wasSecondary, location = M.takeOffModel(player, item)
 
         -- REMOVE, THEN ADD, each told to the owner. ItemContainer.Remove is the ordinary call:
         -- it drops the hand reference itself and flags the container for the hot save.
@@ -821,6 +839,13 @@ do
         local ox = finite(args.ox) and clamp(args.ox, 0.02, 0.98) or 0.5
         local oy = finite(args.oy) and clamp(args.oy, 0.02, 0.98) or 0.5
 
+        -- OUT OF THE HANDS AND OFF THE BELT FIRST, because DoRemoveItem below does neither.
+        -- Without this the server's copy of the thrower goes on holding an item that is now lying
+        -- on the ground, and EquipPacket relays that hand to every other client: the thrown stick
+        -- stays visible in their hand for everybody except themselves. See M.takeOffModel.
+        local wasPrimary, wasSecondary = M.takeOffModel(player, item)
+        local wasHeld = wasPrimary or wasSecondary
+
         -- OUT OF THE INVENTORY, ON THE AUTHORITY, and told to the client. DoRemoveItem is the
         -- unsynchronised removal; sendRemoveItemFromContainer is what carries it, and it is safe
         -- here because it is the SERVER sending. The same call from a client is the one that kicks.
@@ -834,6 +859,16 @@ do
         end)
         if not okRemove then
             return refuse(player, args, "could not take it out of their inventory")
+        end
+
+        -- AND THE EMPTY HAND IS TOLD TO EVERYBODY. sendEquip is the server-side updateHandEquips,
+        -- the same call authoritySwap makes for a crack. Sent HERE rather than after the landing
+        -- on purpose: the hand is empty in both outcomes below, the item on the ground or the item
+        -- handed back to their bag.
+        if wasHeld and sendEquip ~= nil then
+            pcall(function() sendEquip(player) end)
+            M.debug(PART, "took " .. tostring(args.type) .. " out of the thrower's hand "
+                        .. "and told everybody")
         end
 
         -- STAMPED AND POSED BEFORE THE ADD.
@@ -893,6 +928,33 @@ do
         -- AddWorldInventoryItem. This only tells the THROWER that its held copy can go.
         sendServerCommand(player, M.NET_MODULE, M.NET_DROP_ECHO,
                           { id = shortString(args.id, MAX_ID), ok = true })
+
+        -- ---- AND THE THROW IS OVER, TOLD TO EVERYBODY ------------------------------------------
+        --
+        -- The world object replicates, but WHEN and WHERE the flight ended does not, and both are
+        -- needed on every machine that watched the arc:
+        --
+        -- * each receiver flies its OWN copy of the throw (Net.lua, onThrowEcho) through the same
+        --   physics with its own jitter and its own wind sample, so it stops at a different tile
+        --   at a different moment. Nothing ends it but its own simulation.
+        -- * and the ground light is built by each client's sweep, which runs once a second. So
+        --   between the arc's light going out and the landed item's light coming on there is up to
+        --   a second of darkness -- for the THROWER too, because M.place hands the landing over
+        --   here and returns before lighting anything.
+        --
+        -- One broadcast closes both. It carries nothing this handler has not already validated
+        -- against the sender's own position and this mod's own item tables.
+        local throwId = type(args.throwId) == "string" and shortString(args.throwId, MAX_ID) or nil
+        sendServerCommand(M.NET_MODULE, M.NET_LAND_ECHO, {
+            id = throwId, type = args.type,
+            x = math.floor(args.x), y = math.floor(args.y), z = math.floor(args.z),
+            ox = ox, oy = oy,
+            pitch = finite(args.pitch) and clamp(args.pitch, 0.0, 360.0) or nil,
+            yaw = finite(args.yaw) and clamp(args.yaw, 0.0, 360.0) or nil,
+            -- THE SERVER'S OWN READING of how much is left, as the throw relay sends: every
+            -- receiver shades the light it builds with this rather than with a client's number.
+            frac = clamp(M.fractionLeft(item) or 1.0, 0.0, 1.0),
+        })
     end
 
     -- ---- CRACKING, on the authority ------------------------------------------------------------
