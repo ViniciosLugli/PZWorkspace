@@ -93,7 +93,7 @@ do
         -- THE BOOST IS SECONDS; THE LIFE IS MINUTES.
         local travel = 0.55 + dist * 0.022
 
-        -- Fires once, when the composition ignites: the sky wash, the zombie draw and the map mark all
+        -- Fires once, when the composition ignites: the carrier light, the zombie draw and the map mark all
         -- begin here rather than at a landing that, for a flare that reaches altitude, never happens.
         --
         -- DECLARED BELOW THE MUZZLE SOLVE, and that position is load-bearing: a closure written above
@@ -135,7 +135,7 @@ do
 
         -- ONE LINE PER SHOT, the way the throw reports itself.
         M.debug(PART, string.format(
-            "fired %.1f tiles, apex %.2fz in %.2fs, wind lean %.2f, wash %d tiles for %ds%s",
+            "fired %.1f tiles, apex %.2fz in %.2fs, wind lean %.2f, signal %d tiles for %ds%s",
             dist, apex, travel, windLean, math.floor(range), math.floor(secs),
             launched and "" or "  DEFECT: no projectile part, the flare did not fly"))
     end
@@ -192,23 +192,16 @@ do
     local M = LugliEmergencyLights
     local PART = "Flare"
 
-    local nextWash = 0
     local nextNoise = 0
     local nextAerial = 0
     local phase = 0
 
-    -- WorldFlares.launchFlare takes accumulated GameTime.getMultiplier, which advances about 48 per
-    -- REAL second. The engine's own ClimateManager passes 7200, which is 150 seconds.
-    local MULT_PER_SECOND = 48
-
-    -- Re-launched rather than launched once: a Flare has no setters, its list caps at 101 and evicts
-    -- the oldest, and it is cleared on world init. A short lifetime refreshed on a timer is
-    -- self-limiting and survives a reload.
-    --- How far away a burning flare can be and still be worth washing the sky for, in tiles.
-    local WASH_CULL = 80
-
-    local WASH_SECONDS = 25
-    local WASH_EVERY_MS = 20000
+    -- NO SKY WASH, AND NONE IS COMING BACK. This block used to drive WorldFlares.launchFlare for
+    -- every burning flare. Flare.update (WorldFlares.java:264-284) resets
+    -- player.dirtyRecalcGridStackTime to 1.0 on every tick for every player inside the flare's
+    -- range, so IsoCell rebuilt the whole grid stack every frame for as long as the wash lived
+    -- (30 fps, 69 ms of CPU on a player's report), and applyFlare (:348-351) forces desaturation
+    -- up to the full night darkness, which is the grey screen. Neither is tunable from Lua.
 
     -- A burning flare KEEPS calling.
     local NOISE_EVERY_MS = 1000
@@ -223,58 +216,6 @@ do
             or rec.sound == M.SND_FLARE_BURN
             or rec.sound == M.SND_FLARE_BURN_AERIAL
             or rec.sound == M.SND_FLARE_BURN_AERIAL_NEAR
-    end
-
-    --- Every wash this mod has launched that is still worth driving, keyed by the engine's own flare
-    --- id.
-    local washes = {}
-    local washN = 0
-
-    local function launch(x, y, range, seconds, r, g, b)
-        if WorldFlares == nil then return false end
-        local id = nil
-        local ok = pcall(function()
-            id = WorldFlares.nextId
-            WorldFlares.launchFlare(
-                seconds * MULT_PER_SECOND,
-                math.floor(x), math.floor(y), math.floor(range),
-                0.0,
-                r, g, b,
-                r, g, b)
-        end)
-        if ok and type(id) == "number" then
-            washes[id] = { born = getTimestampMs ~= nil and getTimestampMs() or 0,
-                           life = seconds * 1000.0, r = r, g = g, b = b }
-            washN = washN + 1
-        end
-        return ok
-    end
-    M.launchWash = launch
-
-    --- Drive the colour of every live wash across its life.
-    local function washColour()
-        if WorldFlares == nil or washN == 0 or getTimestampMs == nil then return end
-        local now = getTimestampMs()
-        for id, w in pairs(washes) do
-            local k = w.life > 0 and (now - w.born) / w.life or 1.0
-            if k >= 1.0 then
-                washes[id] = nil
-                washN = washN - 1
-            else
-                -- White-hot for the first tenth, then down through its own colour, ending deep and
-                -- dim. Squared on the way out so most of the life is spent at the flare's real hue
-                -- rather than sliding continuously.
-                local hot = k < 0.10 and (1.0 - k / 0.10) or 0.0
-                local fade = 1.0 - 0.45 * k * k
-                local r = (w.r + (1.0 - w.r) * hot) * fade
-                local g = (w.g + (1.0 - w.g) * hot) * fade
-                local b = (w.b + (1.0 - w.b) * hot) * fade
-                pcall(function()
-                    local f = WorldFlares.getFlareID(id)
-                    if f ~= nil then f:getColor():setExterior(r, g, b, 1.0) end
-                end)
-            end
-        end
     end
 
     --- One flicker step across every burning flare light.
@@ -297,53 +238,6 @@ do
                 rec.flick = k
             end
         end)
-    end
-
-    --- Forget every wash.
-    local function washForget()
-        washes = {}
-        washN = 0
-    end
-
-    local function washPass()
-        if getTimestampMs == nil then return end
-        local now = getTimestampMs()
-        if now < nextWash then return end
-        nextWash = now + WASH_EVERY_MS
-
-        -- THROUGH M.lightRadius, so one option means one thing to both of its readers.
-        local groundRange = M.lightRadius("RoadFlare")
-        if type(groundRange) ~= "number" then groundRange = 9 end
-        -- ONE WASH, FOR THE NEAREST FLARE ONLY.
-        local px, py = nil, nil
-        if getPlayer ~= nil then
-            local okp, pl = pcall(getPlayer)
-            if okp and pl ~= nil then
-                pcall(function() px, py = pl:getX(), pl:getY() end)
-            end
-        end
-
-        local best, bestD = nil, nil
-        M.eachLight(function(_, rec)
-            if not isFlare(rec) or rec.sound == nil then return end
-            local d = 0.0
-            if px ~= nil then
-                local dx, dy = rec.x - px, rec.y - py
-                d = dx * dx + dy * dy
-            end
-            if bestD == nil or d < bestD then best, bestD = rec, d end
-        end)
-
-        -- And only if it is close enough to be worth a sky effect at all. Beyond this the wash is
-        -- invisible anyway: applyFlaresForPlayer scales it by distance.
-        if best ~= nil and (bestD == nil or bestD <= WASH_CULL * WASH_CULL) then
-            local wr = best.washR or best.baseR
-            local wg = best.washG or best.baseG
-            local wb = best.washB or best.baseB
-            local wrange = best.washRange
-            if type(wrange) ~= "number" then wrange = groundRange * 2 end
-            launch(best.x, best.y, wrange, WASH_SECONDS, wr, wg, wb)
-        end
     end
 
     --- Draw zombies to every burning flare, ground and aerial alike.
@@ -462,25 +356,13 @@ do
         -- flicker() pairs-walks EVERY live light to find flares, so with forty dropped sticks and no
         -- flare at all that was 2,400 closure calls a second to animate nothing. The registry knows
         if M.flareLightCount() > 0 then flicker(dt) end
-        if M.cfg("FlareWash") == true then
-            washPass()
-            -- Every frame, and cheap: it skips on a counter when no wash is live, and a live one is
-            -- three lerps and one setter. The wash lasts 25 seconds and is re-issued every 20, so
-            -- there are rarely more than two.
-            washColour()
-        end
         noisePass()
         aerialPass()
     end
 
     -- PER FRAME, but only the flicker needs it, and only when there is a flare to flicker. The other
-    -- three passes throttle themselves on their own clocks.
+    -- two passes throttle themselves on their own clocks.
     local h = M.addTicker(PART, 0, tick)
-
-    -- The engine clears its own flare list on world init (ClimateManager.init -> WorldFlares.Clear),
-    -- so a record surviving a world change would be driving an id that now belongs to someone else's
-    -- flare -- or to nothing.
-    M.addTeardown(PART, washForget)
 
     if h ~= nil then M.status(PART, true) end
 end

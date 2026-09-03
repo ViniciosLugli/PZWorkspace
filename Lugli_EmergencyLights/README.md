@@ -48,7 +48,7 @@ flare, not a glow stick.
 |---|---|---|---|---|
 | Glow stick | green, blue, pink, orange | 4 h | 5, one room | Supermarkets, houses, kids' rooms, camping crates; camper, adventurer and teenagers' vehicles |
 | Chem light | green, red, yellow, cyan | 8 h | 10, a house or a street and both pavements | Army surplus, police lockers, tool stores; army, SWAT, police and ranger vehicles |
-| Road flare | red | 30 min | 15, hard flickering light plus a sky wash | Car supply shelves, mechanics, every emergency vehicle; a small chance in any boot |
+| Road flare | red | 30 min | 15, hard flickering light | Car supply shelves, mechanics, every emergency vehicle; a small chance in any boot |
 | Flare gun | with its own cartridge | 5 min | 20, overhead | Police and army lockups, camping crates; ranger, fire and survivalist glove boxes |
 
 Radii are in tiles, and **20 is the engine's ceiling for any one light**. A road flare reaches
@@ -102,7 +102,7 @@ New Game screen, under `LugliEL`, saved in a preset like any vanilla setting.
 | Throwing | `ThrowRangeMult` |
 | Noise | `CrackNoise` `ThrowNoise` `FlareNoise` `FlareGunNoise` `AerialNoise` |
 | Flare gun | `AerialShotRange` `AerialSeconds` `AerialLightRadius` `AerialRange` |
-| Road flare | `FlareWash` `FlareFire` `CarriedFlareSound` |
+| Road flare | `FlareFire` `CarriedFlareSound` |
 | Map | `MapMarker` `MapRangeCircle` |
 | Loot | `LootMultiplier` |
 | Performance | `SweepRadius` `SweepSeconds` |

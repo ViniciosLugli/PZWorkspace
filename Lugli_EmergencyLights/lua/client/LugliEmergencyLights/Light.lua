@@ -274,7 +274,7 @@ do
         arm(rec, x, y, z, info.sound)
     end
 
-    --- A light with no item under it, alive until a GAME-CLOCK deadline.
+    --- Count a timed light as a flare, so the flicker pass knows there is something to animate.
     local function markFlareLight(x, y, z)
         local rec = live[keyOf(x, y, z)]
         if rec ~= nil and not rec.flare then
@@ -283,8 +283,8 @@ do
         end
     end
 
-    --- THE WASH IS AUTHORED, NOT INFERRED FROM THE LIGHT, and the last four arguments are why.
-    local function addTimedLight(x, y, z, r, g, b, radius, seconds, sound, washR, washG, washB, washRange)
+    --- A light with no item under it, alive until a GAME-CLOCK deadline.
+    local function addTimedLight(x, y, z, r, g, b, radius, seconds, sound)
         if M.worldHours == nil or not worldUp then return false end
         M.drop(keyOf(x, y, z))
 
@@ -296,7 +296,6 @@ do
                       radius = radius, ident = "timed",
                       baseR = r, baseG = g, baseB = b,
                       curR = r, curG = g, curB = b,
-                      washR = washR, washG = washG, washB = washB, washRange = washRange,
                       sound = sound, expiresAt = M.worldHours() + seconds / 3600.0 }
         live[keyOf(x, y, z)] = rec
         liveN = liveN + 1
@@ -305,9 +304,8 @@ do
     end
 
     --- One light of whatever size was asked for.
-    function M.addTimedCluster(x, y, z, r, g, b, radius, seconds, sound, washR, washG, washB, washRange)
-        local ok = addTimedLight(x, y, z, r, g, b, radius, seconds, sound,
-                                   washR, washG, washB, washRange)
+    function M.addTimedCluster(x, y, z, r, g, b, radius, seconds, sound)
+        local ok = addTimedLight(x, y, z, r, g, b, radius, seconds, sound)
         if ok then markFlareLight(x, y, z) end
         return ok
     end

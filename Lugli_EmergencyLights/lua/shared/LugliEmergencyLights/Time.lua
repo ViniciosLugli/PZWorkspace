@@ -34,24 +34,6 @@ function M.worldHours()
     return seen
 end
 
---- Game seconds to REAL seconds, for the engine machinery that runs on a wall clock.
----
---- Every duration a player sets in this mod is in-game time, like the burn hours above. Some of
---- what consumes it is not: WorldFlares.launchFlare accumulates GameTime.getMultiplier at about 48
---- per REAL second, and getTimestampMs is a wall clock. Converting at the boundary keeps one clock
---- in the options and one in the engine.
----
---- getMinutesPerDay is REAL minutes per game day, so a game day of 86400 s takes that many real
---- minutes: real = game * minutesPerDay / 1440. Falls back to 1:1 rather than to zero, because a
---- flare that never burns is worse than one whose length is off.
-function M.realSeconds(gameSeconds)
-    if type(gameSeconds) ~= "number" then return 0.0 end
-    if type(getGameTime) ~= "function" then return gameSeconds end
-    local ok, mpd = pcall(function() return getGameTime():getMinutesPerDay() end)
-    if not ok or type(mpd) ~= "number" or mpd <= 0 then return gameSeconds end
-    return gameSeconds * mpd / 1440.0
-end
-
 local KEY_EXPIRES = "lugliELExpires"
 local KEY_BURN    = "lugliELBurn"
 local KEY_ID      = "lugliELId"

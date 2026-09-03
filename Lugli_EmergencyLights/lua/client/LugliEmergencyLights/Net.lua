@@ -76,12 +76,9 @@ do
         end
         if aloft ~= true then return end
 
-        -- IN REAL SECONDS, and it is the only one of the three that is. The timed light and the map
-        -- mark both expire against worldHours; launchWash drives WorldFlares and a getTimestampMs
-        -- clock, so the game-time option has to be converted for it alone.
-        if M.launchWash ~= nil then
-            M.launchWash(x, y, range, M.realSeconds(secs), r, g, b)
-        end
+        -- NO SKY WASH. The engine's WorldFlares effect rebuilt the grid stack every frame and greyed
+        -- the whole scene for the flare's life; see the Flare block in Gun.lua. Both timers below
+        -- run on worldHours, so `secs` is in-game seconds throughout.
         -- EVERY CLIENT MARKS ITS OWN MAP. That is the point of a signal.
         if M.markFlare ~= nil then
             M.markFlare(x, y, range, secs, r, g, b)
@@ -89,7 +86,7 @@ do
         -- A CARRIER RECORD ON THE LANDING TILE, and without it the flare was mute and inert.
         if M.addTimedCluster ~= nil then
             M.addTimedCluster(math.floor(x), math.floor(y), z, 0.02, 0.02, 0.02, 1, secs,
-                              M.SND_FLARE_BURN_AERIAL, r, g, b, range)
+                              M.SND_FLARE_BURN_AERIAL)
         end
     end
 

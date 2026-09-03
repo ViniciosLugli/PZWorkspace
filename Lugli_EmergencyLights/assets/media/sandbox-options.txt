@@ -183,13 +183,6 @@ option LugliEL.AerialRange = {
 	translation = LugliEL_AerialRange,
 }
 
-option LugliEL.FlareWash = {
-	type = boolean,
-	default = true,
-	page = LugliEL,
-	translation = LugliEL_FlareWash,
-}
-
 option LugliEL.FlareFire = {
 	type = boolean,
 	default = true,

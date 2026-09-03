@@ -258,8 +258,8 @@ do
     --- How thick the line is, in world-frame pixels. A measuring line, not a beam.
     local RING_W = 2.0
 
-    --- Beyond this there is no point drawing: the sky wash is 150 tiles and its ring would be a line
-    --- across the whole screen with nothing to compare it to.
+    --- Beyond this there is no point drawing: the signal range is 150 tiles and its ring would be a
+    --- line across the whole screen with nothing to compare it to.
     local MAX_DRAW = 64
 
     --- Colour per KIND of thing, so the legend is the colour rather than a wall of text.

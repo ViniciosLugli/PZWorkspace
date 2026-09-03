@@ -3,10 +3,6 @@ require "LugliAchievements/Registry"
 local M = LugliAchievements
 local PART = "Progress sync"
 
--- The container Stats.lua reads on a multiplayer client. Created unconditionally so the store
--- selector never has to care which file loaded first.
-M.mpContainer = M.mpContainer or {}
-
 if not M.isMpClient() then
     M.status(PART, nil, "not a multiplayer client", "dep")
     return
@@ -19,6 +15,14 @@ end
 -- saved: to the player, "progress clears every re-login". ingame is never reset, so it bites only
 -- the first world entry of a session, which is why it looked intermittent. Hence the timer:
 -- EveryOneMinute cannot fire before the game is running.
+--
+-- UNTIL THE REPLY LANDS THERE IS NO STORE. M.mpContainer, the table Stats.lua reads on a
+-- multiplayer client, is nil from OnGameStart until the server's copy is adopted, and nil again
+-- on every reconnect. It used to be an empty table for those seconds, and the ten-minute
+-- inventory walk filled it: a bag holding a hundred item types crossed the Collector target
+-- against an empty unlocked set, the toast and chime fired, and the server's copy then replaced
+-- the lot. To the player, "I get the achievement message every login". With no store every
+-- tracker write is a no-op until the copy is here, and the quiet recheck below credits it.
 local REPLY_ATTEMPTS = 10
 
 local hydrated = false
@@ -57,50 +61,50 @@ local function flush()
     sendClientCommand(M.NET_MODULE, "save", M.mpContainer)
 end
 
+--- The store has just been settled, one way or the other, and everything that read it before now
+--- read nothing. Rerun the backfill against it, silently: this is the mod catching up with
+--- counters that were already earned, not the player earning them. Then rebuild the challenge
+--- bindings: a store that arrives with challenges already unlocked fires no unlock event, and
+--- recheckAll skips anything unlocked, so nothing else would retire them and the tracker would
+--- re-evaluate every earned row on every kill for the rest of the session. Both looked up at call
+--- time: this file loads before the tracker that owns them.
+local function settled()
+    M.invalidateSummary()
+    M.quietly(function()
+        M.forEachLocalPlayer(function(player) M.recheckAll(player) end)
+    end)
+    if M.rebuildChallengeBindings ~= nil then M.rebuildChallengeBindings() end
+end
+
 --- No reply means the server is not running a build of this mod that answers, usually because it
 --- has not been updated yet. Character ModData is then the only store the server persists by
---- itself, so progress moves there instead of being lost. It dies with the character, and with it
+--- itself, so progress goes there instead of nowhere. It dies with the character, and with it
 --- the save-wide ledger of what earlier survivors earned, which is why this is the fallback and
 --- not the default.
 local function fallbackToCharacter()
     M.mpCharacterFallback = true
-    M.forEachLocalPlayer(function(player)
-        local md = player:getModData()
-        if type(md) == "table" and md[M.MODDATA_KEY] == nil then
-            md[M.MODDATA_KEY] = M.mpContainer[M.MODDATA_KEY]
-        end
-    end)
-    M.invalidateSummary()
-    -- Same reason as after a hydrate: the store has been swapped underneath the challenge
-    -- tracker, so what it believes is still pending is no longer true of this one.
-    if M.rebuildChallengeBindings ~= nil then M.rebuildChallengeBindings() end
-    dirty = true
-    flush()
+    settled()
     M.status(PART, false, "the server did not answer, so progress is kept with your character " ..
                           "and is lost when they die. The server needs this mod too", "dep")
 end
 
 local function onServerCommand(module, command, packet)
     if module ~= M.NET_MODULE or command ~= "data" then return end
+    -- The server answers every request, and the retries sent before its first reply arrived
+    -- produce more of them. Each carries the copy as it was BEFORE anything flushed since, so
+    -- adopting a second one would roll back an achievement earned in between.
+    if hydrated then return end
     if type(packet) ~= "table" then packet = {} end
 
-    for k in pairs(M.mpContainer) do M.mpContainer[k] = nil end
-    for k, v in pairs(packet) do M.mpContainer[k] = v end
+    -- Adopted whole, and before the recheck: an unlock the recheck finds reaches flush() through
+    -- the chained hook, and flush() sends only a hydrated store. A reply that lands after the
+    -- client gave up is the server proving it has the mod after all, and its copy is the one
+    -- that outlives the character, so it takes over from the fallback.
+    M.mpContainer = packet
+    M.mpCharacterFallback = nil
     hydrated = true
-    M.invalidateSummary()
     M.status(PART, true, "progress is kept by the server, per player")
-
-    -- The backfill at OnCreatePlayer ran against an empty store. Silently: this is the mod
-    -- catching up with counters that have just arrived, not the player earning them.
-    M.quietly(function()
-        M.forEachLocalPlayer(function(player) M.recheckAll(player) end)
-    end)
-
-    -- The server's copy arrives with challenges ALREADY unlocked, and recheckAll skips anything
-    -- unlocked, so no unlock event fires and nothing retires them. Without this the challenge
-    -- tracker keeps every earned row in its pending list and re-evaluates it on every kill for
-    -- the rest of the session. Looked up at call time: this file loads before that tracker.
-    if M.rebuildChallengeBindings ~= nil then M.rebuildChallengeBindings() end
+    settled()
 end
 
 --- Rejoining, possibly a different server. The last session's copy is not this one's and must
@@ -110,7 +114,7 @@ local function resetForNewServer()
     dirty = false
     attempts = 0
     M.mpCharacterFallback = nil
-    for k in pairs(M.mpContainer) do M.mpContainer[k] = nil end
+    M.mpContainer = nil
     M.invalidateSummary()
 end
 

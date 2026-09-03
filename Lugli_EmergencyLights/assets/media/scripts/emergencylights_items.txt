@@ -551,8 +551,16 @@ module LugliEmergencyLights
      *
      * MaxHitcount = 0 and Projectilecount = 0 make a gun that does no ballistic work
      * at all and exists purely to fire Events.OnWeaponSwingHitPoint, which is where
-     * our Lua reads the aim and launches the flare. Vanilla's M203 is built the same
-     * way.
+     * our Lua reads the aim and launches the flare. No vanilla weapon is built this
+     * way, so every consequence below was read from the engine, not copied.
+     *
+     * IsAimedFirearm = false is what lets the shot point at the sky (see the
+     * generator), and it has one cost: vanilla's ISReloadWeaponAction.onShoot only
+     * spends a round on the server, and the server only raises
+     * OnWeaponSwingHitPoint for an AIMED firearm (network/fields/hit/Player.java:141).
+     * In multiplayer the cartridge is therefore spent by this mod's own flare relay
+     * in server/World.lua, which calls that same onShoot on the server's copy of the
+     * gun. Single player runs the client-side decrement and needs nothing.
      *
      * It is NOT tagged base:fakeweapon, and that is deliberate rather than an
      * oversight. Revolver_CapGun carries that tag and looks like the ideal harmless

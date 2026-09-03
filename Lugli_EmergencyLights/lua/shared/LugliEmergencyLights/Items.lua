@@ -217,7 +217,6 @@ M.SANDBOX = {
     ["AerialSeconds"] = { kind = "integer", default = 300 },
     ["AerialLightRadius"] = { kind = "integer", default = 20 },
     ["AerialRange"] = { kind = "integer", default = 150 },
-    ["FlareWash"] = { kind = "boolean", default = true },
     ["FlareFire"] = { kind = "boolean", default = true },
     ["CarriedFlareSound"] = { kind = "boolean", default = true },
     ["MapMarker"] = { kind = "boolean", default = true },
@@ -246,16 +245,13 @@ M.MANUAL = {
 --- The aerial signal cartridge, keyed by fullType. A table with one row rather
 --- than a single record, so a second colour, if the reload path ever grows one, is
 --- a row here instead of a rewrite of everything that reads it.
---- flareLife is what WorldFlares.launchFlare wants: its lifetime argument is
---- accumulated GameTime.getMultiplier, which advances about 48 per REAL second, so
---- it is seconds * 48 and not seconds. The engine's own ClimateManager passes 7200,
---- which is 150 seconds, and the debug UI's lifeTime * 60 is off by 1.25x from the
---- label above it.
+--- rangeTiles and aloftSeconds are the fallbacks for the AerialRange and
+--- AerialSeconds sandbox options; both are in-game units.
 M.CARTRIDGES = {
     ["LugliEmergencyLights.FlareCartridge"] = {
         colour = "Red", ammo = "lugli:flare_cartridge",
         r = 1.0000, g = 0.1765, b = 0.1373,
-        rangeTiles = 150, aloftSeconds = 300.0, flareLife = 14400.0,
+        rangeTiles = 150, aloftSeconds = 300.0,
         -- Fired, not spent. Unlike the three light families it leaves NO
         -- item behind: the whole cartridge goes up, so the firing code
         -- removes it and puts nothing in its place.

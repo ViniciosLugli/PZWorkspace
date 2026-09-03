@@ -142,7 +142,8 @@ end
 function M.isPerCharacter() return perCharacter end
 
 --- Sync.lua owns this container on a multiplayer client: it is hydrated from the server and
---- flushed back, because global ModData there is never saved.
+--- flushed back, because global ModData there is never saved. Nil until the server's copy has
+--- arrived, and nil again on every reconnect.
 local function worldData()
     if M.isMpClient ~= nil and M.isMpClient() then
         local c = M.mpContainer
@@ -191,6 +192,11 @@ function M.getCharData(player)
         if md ~= nil then
             return ready(md, M.MODDATA_KEY, "world")
         end
+        -- A multiplayer client with no container is waiting for the server's copy, which
+        -- replaces the store whole when it lands. Anything counted before then is thrown away
+        -- with it, and an unlock earned against that empty store announced, on every login,
+        -- an achievement the player already had. So there is no store yet, not an empty one.
+        if M.isMpClient ~= nil and M.isMpClient() then return nil end
         -- No ModData means no world is loaded. Falling through to the character store beats
         -- returning nil, which every caller would then have to handle.
     end

@@ -601,18 +601,6 @@ do
         end)
         if not okP or not finite(px) then return nil end
 
-        -- AND THEY HAVE TO BE HOLDING THE GUN. Without this the geometry is the only brake, and a
-        -- modified client can fire a flare every MIN_GAP_MS with no gun and no cartridge -- each
-        -- echo costing every receiving client a projectile, one of its 128 ground light slots and a
-        -- looping emitter. A handful of accounts doing that holds the whole pool and no real light
-        -- on the map can be lit.
-        local holding = nil
-        pcall(function()
-            local held = player:getPrimaryHandItem()
-            holding = held ~= nil and held:getFullType() or nil
-        end)
-        if holding ~= M.GUN.item then return nil end
-
         -- The muzzle is on the shooter. Anything else is somebody else's gun.
         local mdx, mdy = args.mx - px, args.my - py
         if mdx * mdx + mdy * mdy > 4.0 then return nil end
@@ -642,6 +630,50 @@ do
             g      = clamp(finite(args.g) and args.g or 0.3, 0.0, 1.0),
             b      = clamp(finite(args.b) and args.b or 0.2, 0.0, 1.0),
         }
+    end
+
+    --- The flare gun in the sender's primary hand, on the SERVER's copy of them, or nil.
+    ---
+    --- THEY HAVE TO BE HOLDING THE GUN. Without this the geometry is the only brake, and a
+    --- modified client can fire a flare every MIN_GAP_MS with no gun and no cartridge -- each echo
+    --- costing every receiving client a projectile, one of its 128 ground light slots and a looping
+    --- emitter. A handful of accounts doing that holds the whole pool and no real light on the map
+    --- can be lit.
+    local function heldGun(player)
+        local gun = nil
+        pcall(function()
+            local held = player:getPrimaryHandItem()
+            if held ~= nil and held:getFullType() == M.GUN.item then gun = held end
+        end)
+        return gun
+    end
+
+    --- Spend the cartridge on the server's copy of the gun. True when a round was there to spend.
+    ---
+    --- THE ENGINE DOES NOT DO THIS FOR US, and that was the "one shell fires forever" report.
+    --- Vanilla spends ammo in ISReloadWeaponAction.onShoot, hooked on OnWeaponSwingHitPoint, and
+    --- only where `not isClient()`: a multiplayer client leaves it to the server. The server raises
+    --- OnWeaponSwingHitPoint from the attack packet only for an AIMED firearm
+    --- (network/fields/hit/Player.java:141-150), and the flare gun is deliberately not one, so
+    --- nothing on the server ever ran onShoot for it and the count stayed at 1.
+    ---
+    --- So the relay, which is the one server-side thing that hears about every shot, runs the same
+    --- vanilla function the server would have run: it decrements, records the spent round, and
+    --- sends SyncHandWeaponFields back to the shooter. Single player never reaches this file's
+    --- handler and spends the round client-side as vanilla does.
+    local function spendRound(player, gun)
+        local ammo = 0
+        pcall(function() ammo = gun:getCurrentAmmoCount() end)
+        if type(ammo) ~= "number" or ammo <= 0 then return false end
+
+        local shoot = ISReloadWeaponAction ~= nil and ISReloadWeaponAction.onShoot or nil
+        if type(shoot) ~= "function" then
+            M.defect(PART, "ISReloadWeaponAction.onShoot is not on this build; cartridges are not spent")
+            return true
+        end
+        local ok, err = pcall(shoot, player, gun)
+        if not ok then M.defect(PART, "could not spend a cartridge: " .. tostring(err)) end
+        return true
     end
 
     --- Is this a type this mod actually ships? THE most important check in the file: without it a
@@ -1046,6 +1078,19 @@ do
         prune(now)
         if lastAt[who] == nil then lastN = lastN + 1 end
         lastAt[who] = now + MIN_GAP_MS
+
+        local gun = heldGun(player)
+        if gun == nil then
+            M.debug(PART, "refused a flare packet from " .. who .. ": not holding the gun")
+            return
+        end
+        -- SPENT BEFORE THE GEOMETRY IS JUDGED. The shot already happened on the shooter's screen,
+        -- and a refused relay must not hand the round back. An empty gun, on the copy that counts,
+        -- fires nothing for anybody.
+        if not spendRound(player, gun) then
+            M.debug(PART, "refused a flare packet from " .. who .. ": no cartridge")
+            return
+        end
 
         local clean = sanitise(player, args)
         if clean == nil then
