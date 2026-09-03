@@ -18,10 +18,17 @@ public final class BootScreenGate {
      * (GameWindow.java:223-227). MainScreenState is allowed because the handover paint happens
      * inside its enter(), and GameStateMachine assigns `current` BEFORE calling enter()
      * (GameStateMachine.java:35-38, :88-92), so the state is already set for that last frame.
+     *
+     * TermsOfServiceState is REFUSED. On a profile that has never accepted the terms
+     * (options.ini termsOfServiceVersion=-1, every fresh install) ISTermsOfServiceUI.lua:175
+     * marks the state created and it Remains until the player clicks Accept. The overlay used
+     * to be allowed there because an accepted profile passes through in one frame; on a fresh
+     * one it painted "98% 6/7" over the invisible dialog for as long as the player waited,
+     * which reads as a hang in the mod. The accepted case loses one black frame, which the
+     * state's own render() presents anyway.
      */
     private static final String[] ALLOWED = {
         "zombie.gameStates.TISLogoState",
-        "zombie.gameStates.TermsOfServiceState",
         "zombie.gameStates.MainScreenState",
     };
 
