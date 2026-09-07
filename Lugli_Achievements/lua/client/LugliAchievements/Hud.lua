@@ -36,11 +36,34 @@ local function lowest(panel)
             if bottom == nil or y > bottom then bottom = y; ref = b end
         end
     end
+    local children = panel.childrenInOrder or panel.children
+    if type(children) == "table" and ref ~= nil then
+        for _, b in pairs(children) do
+            if b ~= nil and b ~= panel.lugliAchBtn and b.internal ~= "LUGLI_ACHIEVEMENTS" and b.getBottom ~= nil and b.isVisible ~= nil and b:isVisible() then
+                if b.getX ~= nil and b.getWidth ~= nil and b:getX() == ref:getX() and b:getWidth() == ref:getWidth() then
+                    local y = b:getBottom()
+                    if y > bottom then bottom = y; ref = b end
+                end
+            end
+        end
+    end
     return bottom, ref
 end
 
+local lastClickMs = 0
+
 local function attach(panel)
-    if panel == nil or panel.lugliAchBtn ~= nil then return end
+    if panel == nil then return end
+    if panel.lugliAchBtn ~= nil then return end
+    local children = panel.childrenInOrder or panel.children
+    if type(children) == "table" then
+        for _, b in pairs(children) do
+            if b ~= nil and b.internal == "LUGLI_ACHIEVEMENTS" then
+                panel.lugliAchBtn = b
+                return
+            end
+        end
+    end
     local bottom, ref = lowest(panel)
     if bottom == nil or ref == nil then return end
 
@@ -51,7 +74,12 @@ local function attach(panel)
     local spacing = 15
 
     local btn = ISButton:new(ref:getX(), bottom + spacing, px, ref:getHeight(), "", panel,
-                             function() M.toggleWindow(panel.chr and panel.chr:getPlayerNum() or 0) end)
+                             function()
+                                 local now = (type(getTimestampMs) == "function") and getTimestampMs() or 0
+                                 if now - lastClickMs < 250 then return end
+                                 lastClickMs = now
+                                 M.toggleWindow(panel.chr and panel.chr:getPlayerNum() or 0)
+                             end)
     btn.internal = "LUGLI_ACHIEVEMENTS"
     btn:initialise()
     btn:instantiate()
@@ -63,9 +91,17 @@ local function attach(panel)
     panel:addChild(btn)
     panel.lugliAchBtn = btn
 
+    local title = getText("UI_LugliAch_window_title")
+    if type(M.getHotkeyString) == "function" then
+        local keyName = M.getHotkeyString()
+        if keyName and keyName ~= "" then
+            title = title .. " (" .. keyName .. ")"
+        end
+    end
+
     if panel.addMouseOverToolTipItem ~= nil then
         pcall(function()
-            panel:addMouseOverToolTipItem(btn, getText("UI_LugliAch_window_title"))
+            panel:addMouseOverToolTipItem(btn, title)
         end)
     end
     -- The panel's height is the bottom of its last button, and it now has one more.
@@ -83,7 +119,10 @@ local function install()
     local original = ISEquippedItem.createChildren
     ISEquippedItem.createChildren = function(self, ...)
         local r = { original(self, ...) }
-        self.lugliAchBtn = nil
+        if self.lugliAchBtn ~= nil then
+            pcall(function() self:removeChild(self.lugliAchBtn) end)
+            self.lugliAchBtn = nil
+        end
         self.lugliAchTries = 0
         return unpack(r)
     end
@@ -95,7 +134,10 @@ local function install()
     if type(originalPre) == "function" then
         ISEquippedItem.prerender = function(self, ...)
             if self.lugliAchBtn == nil and (self.lugliAchTries or 0) < ATTACH_ATTEMPTS then
-                self.lugliAchTries = (self.lugliAchTries or 0) + 1
+                -- Count tries only after sidebar is visible.
+                if self:isVisible() and self.invBtn ~= nil and self.invBtn:isVisible() then
+                    self.lugliAchTries = (self.lugliAchTries or 0) + 1
+                end
                 -- pcall: a fault here would take the whole HUD column down with it. BOUNDED,
                 -- because unbounded it retried every frame forever on a layout with no visible
                 -- sibling to sit under, and a throw inside would have been an error dump at the
@@ -104,15 +146,24 @@ local function install()
                 if not ok then
                     self.lugliAchTries = ATTACH_ATTEMPTS
                     M.defect(PART, "attaching the sidebar button threw: " .. tostring(err))
-                elseif self.lugliAchBtn == nil and self.lugliAchTries >= ATTACH_ATTEMPTS then
+                elseif self.lugliAchBtn == nil and (self.lugliAchTries or 0) >= ATTACH_ATTEMPTS then
                     M.status(PART, false, "no visible sidebar button to sit under", "dep")
                 end
             end
             local btn = self.lugliAchBtn
-            if btn ~= nil and btn.lugliAchIconOn ~= nil and btn.lugliAchIconOff ~= nil then
-                pcall(function()
-                    btn:setImage(M.isWindowOpen() and btn.lugliAchIconOn or btn.lugliAchIconOff)
-                end)
+            if btn ~= nil then
+                local show = true
+                if type(M.isSidebarButtonEnabled) == "function" then
+                    show = M.isSidebarButtonEnabled()
+                end
+                if btn:isVisible() ~= show then
+                    btn:setVisible(show)
+                end
+                if show and btn.lugliAchIconOn ~= nil and btn.lugliAchIconOff ~= nil then
+                    pcall(function()
+                        btn:setImage(M.isWindowOpen() and btn.lugliAchIconOn or btn.lugliAchIconOff)
+                    end)
+                end
             end
             return originalPre(self, ...)
         end
@@ -126,5 +177,15 @@ end
 
 install()
 
--- The panel is rebuilt on a resolution or UI-scale change, so the wrapper is re-asserted.
-M.addHandler(PART, "OnGameStart", install)
+-- Re-assert on resolution change; reset retry budget on game start if unattached.
+local function onGameStart()
+    install()
+    if ISEquippedItem and ISEquippedItem.instance then
+        local inst = ISEquippedItem.instance
+        if inst.lugliAchBtn == nil then
+            inst.lugliAchTries = 0
+        end
+    end
+end
+
+M.addHandler(PART, "OnGameStart", onGameStart)

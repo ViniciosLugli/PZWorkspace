@@ -39,6 +39,8 @@ description=For Build 42.20 and later. Needs [url=https://steamcommunity.com/sha
 description=
 description=[h1]FAQ[/h1]
 description=
+description=[b]How do I open the achievements panel?[/b] Click the medal icon at the bottom of the left HUD sidebar, or press [b]F7[/b] (default key, rebindable under [b]Options -> Keybindings -> Lugli Achievements[/b]). If you prefer a clean sidebar, you can disable the sidebar button in [b]Mod Options[/b] or inside the achievements window Settings panel.
+description=
 description=[b]Can I add it to a save I already started?[/b] Yes. Anything the game still knows about is credited on the next load, so days survived and recipes known come across immediately. Counters that only exist because the mod was watching, like kills and things built, start from zero.
 description=
 description=[b]Is it safe to remove?[/b] Yes. It writes only its own data and touches nothing else. Remove it and the save loads normally; reinstall it and your progress is still there.

@@ -18,6 +18,10 @@ It watches, it counts, and it tells you.
 
 ![The achievements window](art/window.png)
 
+## How to open
+
+Click the medal icon at the bottom of the left HUD sidebar, or press **F7** (default key, rebindable under **Options -> Keybindings -> Lugli Achievements**). If you prefer a clean sidebar, you can disable the sidebar button in **Mod Options** or inside the achievements window Settings panel.
+
 ## Where progress lives
 
 Per world by default: one collection shared by every survivor in the save, so a death does not

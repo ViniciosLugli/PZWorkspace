@@ -310,7 +310,7 @@ local function ensureClass()
         end
 
         self.soundBtn = ISButton:new(0, 0, 10, 10,
-                                     M.text("UI_LugliAch_window_sound", "Sound"), self,
+                                     M.text("UI_LugliAch_window_settings", "Settings"), self,
                                      function() self:toggleSoundPanel() end)
         self.soundBtn:initialise()
         self.soundBtn:instantiate()
@@ -365,6 +365,21 @@ local function ensureClass()
         vol.volume = M.soundNotch()
         panel.volumeCtl = vol
         panel:addChild(vol)
+
+        if ISTickBox ~= nil then
+            local tick = ISTickBox:new(0, 0, 10, 10, "", self, function(_, _, selected)
+                if type(M.setSidebarButtonEnabled) == "function" then
+                    M.setSidebarButtonEnabled(selected)
+                end
+            end)
+            tick:initialise()
+            tick:instantiate()
+            tick:addOption(M.text("UI_LugliAch_opt_showsidebar", "Show Sidebar Button"))
+            local cur = (type(M.isSidebarButtonEnabled) == "function") and M.isSidebarButtonEnabled() or true
+            tick:setSelected(1, cur)
+            panel.sidebarTick = tick
+            panel:addChild(tick)
+        end
     end
 
     function Window:toggleSoundPanel()
@@ -375,6 +390,9 @@ local function ensureClass()
             -- this player has open, and the file is the truth.
             self.soundPanel.soundCombo.selected = M.soundIndex()
             self.soundPanel.volumeCtl.volume = M.soundNotch()
+            if self.soundPanel.sidebarTick ~= nil and type(M.isSidebarButtonEnabled) == "function" then
+                self.soundPanel.sidebarTick:setSelected(1, M.isSidebarButtonEnabled())
+            end
         end
         self.soundPanel:setVisible(show)
         M.neat.sound(M.neat.SOUND.option)
@@ -420,24 +438,25 @@ local function ensureClass()
             self.zoomBox.selected = m.z
         end
         if self.soundBtn ~= nil then
-            local w = N.width(M.text("UI_LugliAch_window_sound", "Sound"), m.font.body) + m.pad * 2
+            local label = M.text("UI_LugliAch_window_settings", "Settings")
+            local w = N.width(label, m.font.body) + m.pad * 2
+            self.soundBtn:setTitle(label)
             self.soundBtn:setWidth(w)
             self.soundBtn:setHeight(m.btn)
             self.soundBtn.font = m.font.body
-            -- Left of the zoom combo, both pinned to the right edge, so neither strands on a
-            -- resize the way the vanilla pin and collapse buttons do.
             self.soundBtn:setX(self.width - m.pad - (m.btn * 2 + m.pad) - m.pad - w)
             self.soundBtn:setY(math.floor((m.title - m.btn) / 2))
         end
         if self.soundPanel ~= nil then
             local sh = m.bodyH + 6
+            local tickH = self.soundPanel.sidebarTick and (m.bodyH + m.pad) or 0
             local inner = math.max(m.search, m.cell * 2)
             local pw = inner + m.pad * 2
             local ph = m.pad + m.bodyH + math.floor(m.pad / 2) + sh
                        + m.pad + m.bodyH + math.floor(m.pad / 2) + m.btn + m.pad
+                       + (tickH > 0 and (tickH + m.pad) or 0)
             self.soundPanel:setWidth(pw)
             self.soundPanel:setHeight(ph)
-            -- Hangs below the button, held inside the window so it cannot spill off the frame.
             local px = math.min(self.soundBtn ~= nil and self.soundBtn:getX() or 0,
                                 self.width - pw - m.pad)
             self.soundPanel:setX(math.max(m.pad, px))
@@ -458,6 +477,14 @@ local function ensureClass()
             vol:setHeight(m.btn)
             vol:setX(m.pad)
             vol:setY(combo:getY() + sh + m.pad + m.bodyH + math.floor(m.pad / 2))
+
+            if self.soundPanel.sidebarTick ~= nil then
+                local tick = self.soundPanel.sidebarTick
+                tick:setWidth(inner)
+                tick:setHeight(m.bodyH)
+                tick:setX(m.pad)
+                tick:setY(vol:getY() + m.btn + m.pad)
+            end
         end
         self.minimumWidth = m.sidebar + m.cell * 3 + m.pad * 5
         self.minimumHeight = m.title + m.header + m.cell + m.detailBase + m.pad * 2
@@ -883,64 +910,84 @@ end
 
 --- Tear down for good, however it was dismissed. Idempotent.
 function M.forgetWindow(win)
-    if instance == nil then return end
-    if win ~= nil and win ~= instance then return end
-    M.rememberWindow(instance)
-    pcall(function() instance:removeFromUIManager() end)
-    instance = nil
-    -- Every dismissal funnels through here, so it is the one place worth voicing.
+    local target = win or instance
+    if target == nil then return end
+    M.rememberWindow(target)
+    pcall(function() target:setVisible(false) end)
+    pcall(function() target:removeFromUIManager() end)
+    if win == nil or win == instance then
+        instance = nil
+    end
     M.neat.sound(M.neat.SOUND.close)
 end
 
+local isToggling = false
+
 function M.toggleWindow(playerNum)
-    if not ensureClass() then
-        M.defect(PART, "ISCollapsableWindow is not available")
-        return
-    end
-    if M.isWindowOpen() then
+    if isToggling then return end
+    isToggling = true
+    local ok, err = pcall(function()
+        if not ensureClass() then
+            M.defect(PART, "ISCollapsableWindow is not available")
+            return
+        end
+        if M.isWindowOpen() then
+            M.forgetWindow(instance)
+            return
+        end
         M.forgetWindow(instance)
-        return
-    end
-    -- Reaching here holding a husk means isWindowOpen missed it. Drop it rather than leak.
-    M.forgetWindow(instance)
-    local okNew, win = pcall(function()
-        return Window:new(0, 0, 800, 600, playerNum or 0)
+        if UIManager ~= nil and UIManager.getUI ~= nil then
+            pcall(function()
+                local uis = UIManager.getUI()
+                if uis ~= nil then
+                    for i = uis:size() - 1, 0, -1 do
+                        local ui = uis:get(i)
+                        if ui ~= nil and (ui.Type == "LugliAchWindow" or ui == instance) then
+                            ui:setVisible(false)
+                            ui:removeFromUIManager()
+                        end
+                    end
+                end
+            end)
+        end
+        local okNew, win = pcall(function()
+            return Window:new(0, 0, 800, 600, playerNum or 0)
+        end)
+        if not okNew or win == nil then
+            M.defect(PART, "could not build the window: " .. tostring(win))
+            return
+        end
+        instance = win
+        win:initialise()
+        win:instantiate()
+        win:addToUIManager()
+        win:applyZoom(M.getUIZoom())
+
+        local sw, sh = getCore():getScreenWidth(), getCore():getScreenHeight()
+        local pw, ph = M.pref("w", nil), M.pref("h", nil)
+        if type(pw) == "number" and type(ph) == "number" then
+            win:setWidth(math.max(win.minimumWidth or 0, math.min(pw, sw)))
+            win:setHeight(math.max(win.minimumHeight or 0, math.min(ph, sh)))
+            win:reflow()
+        end
+        local px, py = M.pref("x", nil), M.pref("y", nil)
+        if type(px) == "number" and type(py) == "number" then
+            win:setX(math.max(0, math.min(px, sw - win:getWidth())))
+            win:setY(math.max(0, math.min(py, sh - win:getHeight())))
+        end
+
+        local want = M.pref("filter", "")
+        if type(want) == "string" and want ~= "" and M.getCategory(want) ~= nil then
+            win.filter = want
+        end
+        M.neat.sound(M.neat.SOUND.open)
     end)
-    if not okNew or win == nil then
-        M.defect(PART, "could not build the window: " .. tostring(win))
-        return
+    isToggling = false
+    if not ok then
+        M.defect(PART, "toggleWindow threw: " .. tostring(err))
     end
-    win:initialise()
-    win:instantiate()
-    win:addToUIManager()
-    -- Sizes and centres for the remembered zoom, so opening it always fits the screen.
-    win:applyZoom(M.getUIZoom())
-
-    -- Size before position, so the clamp knows how big the thing being placed is.
-    local sw, sh = getCore():getScreenWidth(), getCore():getScreenHeight()
-    local pw, ph = M.pref("w", nil), M.pref("h", nil)
-    if type(pw) == "number" and type(ph) == "number" then
-        win:setWidth(math.max(win.minimumWidth or 0, math.min(pw, sw)))
-        win:setHeight(math.max(win.minimumHeight or 0, math.min(ph, sh)))
-        win:reflow()
-    end
-    local px, py = M.pref("x", nil), M.pref("y", nil)
-    if type(px) == "number" and type(py) == "number" then
-        win:setX(math.max(0, math.min(px, sw - win:getWidth())))
-        win:setY(math.max(0, math.min(py, sh - win:getHeight())))
-    end
-
-    -- And the category it was left on, if it still exists.
-    local want = M.pref("filter", "")
-    if type(want) == "string" and want ~= "" and M.getCategory(want) ~= nil then
-        win.filter = want
-    end
-    instance = win
-    M.neat.sound(M.neat.SOUND.open)
 end
 
---- Open means ON SCREEN, not "a table still exists". The sidebar icon reads this every prerender,
---- and setVisible is public, so this asks the widget and repairs itself when the two disagree.
 function M.isWindowOpen()
     if instance == nil then return false end
     local ok, visible = pcall(function() return instance:isVisible() end)

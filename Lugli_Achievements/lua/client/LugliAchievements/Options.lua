@@ -35,7 +35,48 @@ local function install()
                            getText("UI_LugliAch_opt_percharacter_tip"))
     end)
 
-    M.status(PART, true, "progress scope; the unlock sound lives in the window")
+    -- Sidebar button visibility toggle.
+    pcall(function()
+        options:addTickBox("showSidebarButton",
+                           getText("UI_LugliAch_opt_showsidebar"),
+                           M.isSidebarButtonEnabled(),
+                           getText("UI_LugliAch_opt_showsidebar_tip"))
+    end)
+
+    M.status(PART, true, "progress scope and sidebar toggle; the unlock sound lives in the window")
+end
+
+function M.isSidebarButtonEnabled()
+    if PZAPI ~= nil and PZAPI.ModOptions ~= nil then
+        local ok, opts = pcall(function() return PZAPI.ModOptions:getOptions(M.OPTIONS_ID) end)
+        if ok and opts ~= nil and opts.getOption ~= nil then
+            local ok2, opt = pcall(function() return opts:getOption("showSidebarButton") end)
+            if ok2 and opt ~= nil and opt.getValue ~= nil then
+                local ok3, v = pcall(function() return opt:getValue() end)
+                if ok3 and type(v) == "boolean" then return v end
+            end
+        end
+    end
+    if type(M.pref) == "function" then
+        return M.pref("showSidebar", 1) == 1
+    end
+    return true
+end
+
+function M.setSidebarButtonEnabled(enabled)
+    if type(M.setPref) == "function" then
+        M.setPref("showSidebar", enabled and 1 or 0)
+        M.savePrefs()
+    end
+    if PZAPI ~= nil and PZAPI.ModOptions ~= nil then
+        pcall(function()
+            local opts = PZAPI.ModOptions:getOptions(M.OPTIONS_ID)
+            if opts and opts.getOption then
+                local opt = opts:getOption("showSidebarButton")
+                if opt and opt.setValue then opt:setValue(enabled) end
+            end
+        end)
+    end
 end
 
 install()

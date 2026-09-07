@@ -10,7 +10,7 @@ local FILE = "LugliAchievements.cfg"
 -- An unknown key in the file is ignored rather than carried, so removing a setting later cannot
 -- leave litter behind forever.
 local NUMERIC = { zoom = true, x = true, y = true, w = true, h = true, sort = true,
-                  volume = true }
+                  volume = true, showSidebar = true }
 local TEXT = { filter = true, sound = true }
 
 local prefs = {}
@@ -41,8 +41,6 @@ local function load()
     pcall(function() reader:close() end)
 end
 
---- Reads the file on first use rather than at load: client/ runs at boot and the file API is
---- not guaranteed that early.
 function M.pref(key, fallback)
     load()
     local v = prefs[key]
@@ -50,7 +48,6 @@ function M.pref(key, fallback)
     return v
 end
 
---- Deferred to savePrefs, so dragging a window does not write a file every frame.
 function M.setPref(key, value)
     if not (NUMERIC[key] or TEXT[key]) then return end
     load()
@@ -66,7 +63,7 @@ function M.savePrefs()
     pcall(function()
         writer:write("# Lugli - Achievements. Window preferences, rewritten by the game.\n")
         for _, k in ipairs({ "zoom", "x", "y", "w", "h", "filter", "sort",
-                             "sound", "volume" }) do
+                             "sound", "volume", "showSidebar" }) do
             if prefs[k] ~= nil then
                 writer:write(k .. " = " .. tostring(prefs[k]) .. "\n")
             end
