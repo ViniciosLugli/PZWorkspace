@@ -1,81 +1,22 @@
---[[
-    GunworksLootSpeedup
-    Makes the Gunworks loot-table insert pass fast.
-
-    Distribution.Insert (Gunworks framework, Distribution/Functions.lua) evaluated
-    script:getName() and script:getFullName(), two Lua to Java calls, inside its
-    innermost loop, once per value of every loot table. With Guns of Marz calling
-    Insert 230 times over ~531,000 values that is ~244 million calls. Measured on a
-    large mod list: 78,308 ms of world load, cut to 8,078 ms. The sibling functions
-    in the same file already hoist those calls; only Insert did not.
-
-    Hoists the two calls, scans with a numeric for, and caches per-base positions,
-    invalidating a cached entry when a later insert appends a name it searched for.
-
-    Loot output is identical. A self-test runs both the original and the fast
-    version against a fixture at install time and REFUSES to install on any
-    mismatch, leaving the original Insert in place.
-]]
-
+-- GunworksLootSpeedup: optimizes Gunworks Distribution.Insert pass with caching and indexing.
 FastLoading = FastLoading or {}
-FastLoading.parts = FastLoading.parts or {}
--- kind: "dep"  a dependency you chose not to install, nothing is wrong
---       "bug"  this should have worked; worth reporting
-local function gwStatus(ok, note, kind)
-    FastLoading.parts["Gunworks loot insert"] = { ok = ok, note = note, kind = kind }
-end
-
-gwStatus(nil, "checked when you load a world", "pending")
 
 local MODULE = "Distribution/Functions.lua"
 local patched = false
 
--- Position cache. Every Insert walks all four loot tables end to end, and the mod makes 230
--- Insert calls naming only 48 distinct base items, so remember where each was found.
---
--- Cached positions stay valid because Insert only ever APPENDS: it never removes or reorders,
--- so a recorded index still points at the same value. The one way to go stale is a later Insert
--- searching for a name an earlier one appended, so new positions are pushed into any matching
--- cache entry rather than trusting the caller's naming convention.
-
+-- Position cache for base items across loot tables.
 local cacheStore = {}
 local indexStore = {}
 local indexChecks = 0
 
---- -Dfastloading.gunidx=off falls back to the per-miss full walk. Also set automatically if the
---- index ever disagrees with that walk, so a wrong index degrades instead of corrupting loot.
---
--- The bridge is absent on a dedicated server (this mod's jar never loads there) and absent when
--- ZombieBuddy is not installed, so treat a missing bridge as "on" -- this file's whole saving is
--- what cuts server startup, and it must not switch itself off in the environment that needs it.
---
--- A SERVER CANNOT USE THE -D SWITCH. FastLoading_Switch is a @LuaMethod on this mod's jar, and
--- that jar never loads on a dedicated server (no ZombieBuddy there) -- so the bridge is nil in
--- exactly the environment these shared Lua parts matter most for. Without a second route the
--- kill switch would be dead where an admin is most likely to need it. So also honour a plain
--- global, which any server can set from its own Lua:
---     FastLoadingDisableGunIndex = true
+-- Kill switch (-Dfastloading.gunidx=off or global FastLoadingDisableGunIndex = true).
 local indexBroken = (FastLoadingDisableGunIndex == true)
         or ((type(FastLoading_Switch) == "function")
             and FastLoading_Switch("gunidx", "on") == "off")
         or false
---- Cross-check this many index lookups against the original full walk before trusting it.
 local INDEX_VERIFY = 4
 
--- ---------------------------------------------------------------------------
--- One indexing walk instead of one walk per base item.
---
--- The per-base cache above still paid a FULL four-table walk on every miss, and
--- applyDistributionPass names 48 distinct base items -- so 48 walks of 531,557
--- values, about 25.5 M iterations, which is the bulk of what the pass still
--- costs after the hoist fix.
---
--- buildIndex walks ONCE and records every string it sees under its own name.
--- A global sequence number is stamped on each position so that merging the two
--- buckets for getName() and getFullName() reproduces the original emission
--- order exactly: (table, container, index). That order is observable in the
--- finished loot tables, so it is not a detail.
--- ---------------------------------------------------------------------------
+-- Single-pass loot index by item name.
 local function buildIndex(tables)
     local II, WI, seq = {}, {}, 0
     for _, lootTable in pairs(tables) do
@@ -386,14 +327,12 @@ local function applyPatch()
     -- condition here: FastLoading declares no hard dependency on it.
     local found, mod = pcall(require, MODULE)
     if not found or type(mod) ~= "table" or type(mod.Insert) ~= "function" then
-        gwStatus(false, "needs the Gunworks framework (SWMG)", "dep")
         print("[FastLoading/gunworks] Gunworks framework (SWMG) not present, skipping")
         return
     end
 
     local ok, why = selfTestPasses(mod.Insert)
     if not ok then
-        gwStatus(false, "self-test disagreed with the original, not installed", "bug")
         print("[FastLoading/gunworks] Marz/Gunworks distribution: SELF-TEST FAILED (" .. tostring(why)
               .. ") - leaving the original Insert in place")
         return
@@ -401,20 +340,11 @@ local function applyPatch()
 
     mod.FastLoading_originalInsert = mod.Insert
     mod.Insert = fastInsert
-    gwStatus(true)
     print("[FastLoading/gunworks] Marz/Gunworks distribution: Insert() replaced, self-test passed")
 end
 
 Events.OnPreDistributionMerge.Add(function()
-    -- Drop the caches at the START of every merge, not just the first.
-    --
-    -- `applyPatch` self-guards with `patched`, so on the SECOND world load of a session it does
-    -- nothing -- and both stores would survive, keyed by the same table objects. That is only safe
-    -- while Insert is the sole mutator of those tables, and it is not: SapphCooking pushes ~1,090
-    -- `table.insert` calls from `addSandboxLoot()` on OnInitGlobalModData. An append by anyone
-    -- else leaves a cached position list incomplete, where the original's live re-walk would have
-    -- found it -- a silently different loot table on the second load, which is exactly the failure
-    -- this file's own header warns about. Rebuilding costs one walk per world load.
+    -- Reset caches on each merge to reflect external table modifications.
     cacheStore = {}
     indexStore = {}
     indexChecks = 0
@@ -422,7 +352,6 @@ Events.OnPreDistributionMerge.Add(function()
     local ok, err = pcall(applyPatch)
     if not ok then
         patched = true -- fail once, then stay quiet
-        gwStatus(false, "patch failed: " .. tostring(err), "bug")
         print("[FastLoading/gunworks] Marz/Gunworks distribution patch FAILED: " .. tostring(err))
     end
 end)
