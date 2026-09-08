@@ -70,11 +70,29 @@ local function seedStats(player)
         end
     end
 
+    local TOYS = {
+        ["Base.BorisBadger"] = true, ["Base.EyeOfCthulhu"] = true, ["Base.FluffyfootBunny"] = true,
+        ["Base.FreddyFox"] = true, ["Base.FurbertSquirrel"] = true, ["Base.JacquesBeaver"] = true,
+        ["Base.MoleyMole"] = true, ["Base.PancakeHedgehog"] = true, ["Base.PanchoDog"] = true,
+        ["Base.Plushabug"] = true, ["Base.Spiffo"] = true, ["Base.SpiffoBig"] = true,
+        ["Base.TrashGoblin"] = true, ["Base.ToyBear"] = true,
+        ["Base.ToyBear_Crafted_Cotton"] = true, ["Base.ToyBear_Crafted_Burlap"] = true,
+        ["Base.Bricktoys"] = true, ["Base.Crayons"] = true, ["Base.Cube"] = true,
+        ["Base.Doll"] = true, ["Base.Rubberducky"] = true, ["Base.RubberSpider"] = true,
+        ["Base.ToyBadge"] = true, ["Base.ToyCar"] = true, ["Base.ToyPlane"] = true,
+        ["Base.Yoyo"] = true,
+    }
+
     local inv = player:getInventory()
     if inv ~= nil then
         local okW, w = pcall(function() return inv:getContentsWeight() end)
         if okW and type(w) == "number" then
             M.setStatIfGreater(player, "heaviest_container", math.floor(w))
+        end
+        local okCapW, carried = pcall(function() return inv:getCapacityWeight() end)
+        local okEffCap, cap = pcall(function() return inv:getEffectiveCapacity(player) end)
+        if okCapW and okEffCap and type(carried) == "number" and type(cap) == "number" and carried > cap then
+            M.setStatIfGreater(player, "overburdened", 1)
         end
         local okItems, items = pcall(function() return inv:getItems() end)
         if okItems and items ~= nil and items.size ~= nil then
@@ -85,6 +103,7 @@ local function seedStats(player)
                     local okT, full = pcall(function() return item:getFullType() end)
                     if okT and type(full) == "string" then
                         M.addUnique(player, "item_types", full)
+                        if TOYS[full] then M.addUnique(player, "toys_found", full) end
                         if full == "Base.Spiffo" then M.setStat(player, "saw_spiffo", 1) end
                         if full == "Base.SpiffoBig" then M.setStat(player, "saw_bigspiffo", 1) end
                         if full == "Base.Sledgehammer" or full == "Base.Sledgehammer2" or full == "Base.SledgehammerForged" then
@@ -96,17 +115,69 @@ local function seedStats(player)
         end
     end
 
+    local function handWeight(item)
+        if item == nil then return 0 end
+        local ok, hw = pcall(function() return item:getActualWeight() end)
+        return (ok and type(hw) == "number") and hw or 0
+    end
+    if handWeight(player:getPrimaryHandItem()) + handWeight(player:getSecondaryHandItem()) >= 40 then
+        M.setStat(player, "macho", 1)
+    end
+
+    pcall(function()
+        local worn = player:getWornItems()
+        if worn ~= nil then
+            for i = 0, worn:size() - 1 do
+                local slot = worn:get(i)
+                local item = slot ~= nil and slot:getItem() or nil
+                if item ~= nil and item:getFullType() == "Base.Hat_Wizard" then
+                    M.setStat(player, "wore_wizard_hat", 1)
+                    break
+                end
+            end
+        end
+    end)
+
     local okSq, square = pcall(function() return player:getCurrentSquare() end)
     if okSq and square ~= nil then
         local okR, region = pcall(function() return square:getSquareRegion() end)
         if okR and type(region) == "string" and region ~= "General" then
             M.addUnique(player, "regions_seen", region)
             if region == "Louisville" then M.setStat(player, "saw_louisville", 1) end
+            if region == "LAA" then M.setStat(player, "saw_airport", 1) end
         end
         local okZ, z = pcall(function() return player:getZ() end)
         if okZ and type(z) == "number" and z < 0 then
             M.setStat(player, "saw_basement", 1)
         end
+    end
+
+    if getClimateManager ~= nil then
+        local okS, sid = pcall(function() return getClimateManager():getSeasonId() end)
+        if okS and sid == 5 then M.setStat(player, "saw_winter", 1) end
+    end
+
+    local moodles = player:getMoodles()
+    if moodles ~= nil and MoodleType ~= nil then
+        local BAD_MOODLES = {
+            "ENDURANCE", "TIRED", "HUNGRY", "PANIC", "SICK", "BORED", "UNHAPPY", "BLEEDING", "WET",
+            "HAS_A_COLD", "ANGRY", "STRESS", "THIRST", "INJURED", "PAIN", "HEAVY_LOAD", "DRUNK",
+            "HYPERTHERMIA", "HYPOTHERMIA", "WINDCHILL", "CANT_SPRINT", "UNCOMFORTABLE",
+            "NOXIOUS_SMELL", "FOOD_EATEN",
+        }
+        local bad, noxious = 0, 0
+        for i = 1, #BAD_MOODLES do
+            local mt = MoodleType[BAD_MOODLES[i]]
+            if mt ~= nil then
+                local okM, lvl = pcall(function() return moodles:getMoodleLevel(mt) end)
+                if okM and type(lvl) == "number" and lvl > 0 then
+                    bad = bad + 1
+                    if BAD_MOODLES[i] == "NOXIOUS_SMELL" then noxious = 1 end
+                end
+            end
+        end
+        if bad > 0 then M.setStatIfGreater(player, "moodles_worst", bad) end
+        if noxious == 1 then M.setStat(player, "noxious", 1) end
     end
 end
 
