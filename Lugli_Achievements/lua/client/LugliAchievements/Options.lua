@@ -29,18 +29,34 @@ local function install()
 
     -- Default false, which is per world.
     pcall(function()
-        options:addTickBox("perCharacter",
+        local opt = options:addTickBox("perCharacter",
                            getText("UI_LugliAch_opt_percharacter"),
                            false,
                            getText("UI_LugliAch_opt_percharacter_tip"))
+        if opt ~= nil then
+            opt.onChange = function(self, value)
+                if type(M.refreshScope) == "function" then M.refreshScope() end
+            end
+            opt.onChangeApply = function(self, value)
+                if type(M.refreshScope) == "function" then M.refreshScope() end
+            end
+        end
     end)
 
     -- Sidebar button visibility toggle.
     pcall(function()
-        options:addTickBox("showSidebarButton",
+        local opt = options:addTickBox("showSidebarButton",
                            getText("UI_LugliAch_opt_showsidebar"),
                            M.isSidebarButtonEnabled(),
                            getText("UI_LugliAch_opt_showsidebar_tip"))
+        if opt ~= nil then
+            opt.onChange = function(self, value)
+                M.setSidebarButtonEnabled(value)
+            end
+            opt.onChangeApply = function(self, value)
+                M.setSidebarButtonEnabled(value)
+            end
+        end
     end)
 
     M.status(PART, true, "progress scope and sidebar toggle; the unlock sound lives in the window")
@@ -63,7 +79,11 @@ function M.isSidebarButtonEnabled()
     return true
 end
 
+local isUpdatingSidebar = false
+
 function M.setSidebarButtonEnabled(enabled)
+    if isUpdatingSidebar then return end
+    isUpdatingSidebar = true
     if type(M.setPref) == "function" then
         M.setPref("showSidebar", enabled and 1 or 0)
         M.savePrefs()
@@ -77,6 +97,10 @@ function M.setSidebarButtonEnabled(enabled)
             end
         end)
     end
+    if type(M.updateSettingsUI) == "function" then
+        pcall(M.updateSettingsUI)
+    end
+    isUpdatingSidebar = false
 end
 
 install()

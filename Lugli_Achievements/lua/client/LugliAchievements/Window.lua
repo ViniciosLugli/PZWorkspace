@@ -367,7 +367,7 @@ local function ensureClass()
         panel:addChild(vol)
 
         if ISTickBox ~= nil then
-            local tick = ISTickBox:new(0, 0, 10, 10, "", self, function(_, _, selected)
+            local tick = ISTickBox:new(0, 0, 20, 20, "", self, function(_, _, selected)
                 if type(M.setSidebarButtonEnabled) == "function" then
                     M.setSidebarButtonEnabled(selected)
                 end
@@ -449,8 +449,24 @@ local function ensureClass()
         end
         if self.soundPanel ~= nil then
             local sh = m.bodyH + 6
-            local tickH = self.soundPanel.sidebarTick and (m.bodyH + m.pad) or 0
-            local inner = math.max(m.search, m.cell * 2)
+            local tick = self.soundPanel.sidebarTick
+            local tickH = 0
+            local tickW = 0
+            if tick ~= nil then
+                if tick.setFont ~= nil then tick:setFont(m.font.body) end
+                tick.font = m.font.body
+                tick.fontHgt = m.bodyH
+                local bSize = math.max(20, m.bodyH)
+                tick.boxSize = bSize
+                tick.textGap = math.max(8, math.floor(m.pad * 0.8))
+                tick.itemHgt = math.max(bSize, tick.fontHgt)
+                tick.borderColor = { r = 1, g = 1, b = 1, a = 0.5 }
+                tick.choicesColor = { r = N.text.r, g = N.text.g, b = N.text.b, a = 1 }
+                tickH = tick.itemHgt
+                local label = M.text("UI_LugliAch_opt_showsidebar", "Show Sidebar Button")
+                tickW = bSize + tick.textGap + N.width(label, m.font.body) + m.pad
+            end
+            local inner = math.max(m.search, m.cell * 2, tickW)
             local pw = inner + m.pad * 2
             local ph = m.pad + m.bodyH + math.floor(m.pad / 2) + sh
                        + m.pad + m.bodyH + math.floor(m.pad / 2) + m.btn + m.pad
@@ -478,10 +494,9 @@ local function ensureClass()
             vol:setX(m.pad)
             vol:setY(combo:getY() + sh + m.pad + m.bodyH + math.floor(m.pad / 2))
 
-            if self.soundPanel.sidebarTick ~= nil then
-                local tick = self.soundPanel.sidebarTick
+            if tick ~= nil then
                 tick:setWidth(inner)
-                tick:setHeight(m.bodyH)
+                tick:setHeight(tickH)
                 tick:setX(m.pad)
                 tick:setY(vol:getY() + m.btn + m.pad)
             end
@@ -919,6 +934,13 @@ function M.forgetWindow(win)
         instance = nil
     end
     M.neat.sound(M.neat.SOUND.close)
+end
+
+function M.updateSettingsUI()
+    if instance ~= nil and instance.soundPanel ~= nil and instance.soundPanel.sidebarTick ~= nil then
+        local cur = (type(M.isSidebarButtonEnabled) == "function") and M.isSidebarButtonEnabled() or true
+        instance.soundPanel.sidebarTick:setSelected(1, cur)
+    end
 end
 
 local isToggling = false
