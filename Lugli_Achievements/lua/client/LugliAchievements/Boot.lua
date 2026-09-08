@@ -181,6 +181,8 @@ local function seedStats(player)
     end
 end
 
+M.seedStats = seedStats
+
 -- Silent backfill catches up with existing progress without toast spam.
 local h = M.addHandler(PART, "OnCreatePlayer", function(playerIndex, player)
     if player == nil then return end

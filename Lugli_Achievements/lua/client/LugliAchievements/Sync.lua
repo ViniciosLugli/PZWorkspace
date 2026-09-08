@@ -71,7 +71,12 @@ end
 local function settled()
     M.invalidateSummary()
     M.quietly(function()
-        M.forEachLocalPlayer(function(player) M.recheckAll(player) end)
+        M.forEachLocalPlayer(function(player)
+            if type(M.seedStats) == "function" then
+                M.seedStats(player)
+            end
+            M.recheckAll(player)
+        end)
     end)
     if M.rebuildChallengeBindings ~= nil then M.rebuildChallengeBindings() end
 end
