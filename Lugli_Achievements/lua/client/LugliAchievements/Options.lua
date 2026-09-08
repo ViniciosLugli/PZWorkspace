@@ -63,6 +63,10 @@ local function install()
 end
 
 function M.isSidebarButtonEnabled()
+    if type(M.pref) == "function" then
+        local p = M.pref("showSidebar", nil)
+        if p ~= nil then return p == 1 end
+    end
     if PZAPI ~= nil and PZAPI.ModOptions ~= nil then
         local ok, opts = pcall(function() return PZAPI.ModOptions:getOptions(M.OPTIONS_ID) end)
         if ok and opts ~= nil and opts.getOption ~= nil then
@@ -72,9 +76,6 @@ function M.isSidebarButtonEnabled()
                 if ok3 and type(v) == "boolean" then return v end
             end
         end
-    end
-    if type(M.pref) == "function" then
-        return M.pref("showSidebar", 1) == 1
     end
     return true
 end

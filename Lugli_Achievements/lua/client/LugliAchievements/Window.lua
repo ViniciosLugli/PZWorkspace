@@ -367,21 +367,69 @@ local function ensureClass()
         panel:addChild(vol)
 
         if ISTickBox ~= nil then
-            local tick = ISTickBox:new(0, 0, 20, 20, "", self, function(_, _, selected)
-                if type(M.setSidebarButtonEnabled) == "function" then
-                    M.setSidebarButtonEnabled(selected)
-                end
-            end)
+            local tick = ISTickBox:new(0, 0, 20, 20, "", self, nil)
             tick:initialise()
             tick:instantiate()
             function tick:onMouseDown(x, y)
-                self.clickedOption = self.mouseOverOption
                 return true
             end
-            local origMouseUp = tick.onMouseUp
             function tick:onMouseUp(x, y)
-                origMouseUp(self, x, y)
+                if not self:isMouseOver() then return true end
+                local nxt = not self:isSelected(1)
+                self:setSelected(1, nxt)
+                if getSoundManager ~= nil then
+                    pcall(function() getSoundManager():playUISound("UIToggleTickBox") end)
+                end
+                if type(M.setSidebarButtonEnabled) == "function" then
+                    M.setSidebarButtonEnabled(nxt)
+                end
                 return true
+            end
+            function tick:onMouseMove(dx, dy)
+                self.mouseOverOption = 1
+            end
+            function tick:onMouseMoveOutside(dx, dy)
+                self.mouseOverOption = 0
+            end
+            function tick:forceClick()
+                local nxt = not self:isSelected(1)
+                self:setSelected(1, nxt)
+                if getSoundManager ~= nil then
+                    pcall(function() getSoundManager():playUISound("UIToggleTickBox") end)
+                end
+                if type(M.setSidebarButtonEnabled) == "function" then
+                    M.setSidebarButtonEnabled(nxt)
+                end
+            end
+            function tick:render()
+                local itemH = self.itemHgt or self.height
+                local bSize = self.boxSize or 22
+                local fontH = self.fontHgt or 18
+                local y = math.floor((self.height - itemH) / 2)
+                local boxDY = math.floor((itemH - bSize) / 2)
+                local textDY = math.floor((itemH - fontH) / 2)
+                local isHover = self:isMouseOver()
+                local bgA = isHover and 0.85 or 0.5
+                local bgC = isHover and 0.25 or 0.1
+                self:drawRect(self.leftMargin, y + boxDY, bSize, bSize, bgA, bgC, bgC, bgC)
+                local bdrA = isHover and 1.0 or 0.5
+                local bdrC = isHover and 1.0 or 0.7
+                self:drawRectBorder(self.leftMargin, y + boxDY, bSize, bSize, bdrA, bdrC, bdrC, bdrC)
+                if self:isSelected(1) then
+                    local tint = (getCore ~= nil and getCore().getGoodHighlitedColor ~= nil)
+                        and getCore():getGoodHighlitedColor() or nil
+                    local tr = tint and tint:getR() or 0.3
+                    local tg = tint and tint:getG() or 0.9
+                    local tb = tint and tint:getB() or 0.3
+                    if self.tickTexture ~= nil then
+                        self:drawTextureScaled(self.tickTexture, self.leftMargin + 2, y + boxDY + 2, bSize - 4, bSize - 4, 1, tr, tg, tb)
+                    else
+                        self:drawRect(self.leftMargin + 4, y + boxDY + 4, bSize - 8, bSize - 8, 1, tr, tg, tb)
+                    end
+                end
+                local label = (self.options and self.options[1]) or ""
+                local txtC = isHover and { r = 1, g = 1, b = 1, a = 1 } or { r = N.text.r, g = N.text.g, b = N.text.b, a = 1 }
+                self:drawText(label, self.leftMargin + bSize + self.textGap, y + textDY, txtC.r, txtC.g, txtC.b, txtC.a, self.font)
             end
             tick:addOption(M.text("UI_LugliAch_opt_showsidebar", "Show Sidebar Button"))
             local cur = true
@@ -468,10 +516,10 @@ local function ensureClass()
                 if tick.setFont ~= nil then tick:setFont(m.font.body) end
                 tick.font = m.font.body
                 tick.fontHgt = m.bodyH
-                local bSize = math.max(20, m.bodyH)
+                local bSize = math.max(22, math.floor(m.btn * 0.9))
                 tick.boxSize = bSize
                 tick.textGap = math.max(8, math.floor(m.pad * 0.8))
-                tick.itemHgt = math.max(bSize, tick.fontHgt)
+                tick.itemHgt = math.max(bSize, m.bodyH + 4)
                 tick.borderColor = { r = 1, g = 1, b = 1, a = 0.5 }
                 tick.choicesColor = { r = N.text.r, g = N.text.g, b = N.text.b, a = 1 }
                 tickH = tick.itemHgt
