@@ -374,8 +374,20 @@ local function ensureClass()
             end)
             tick:initialise()
             tick:instantiate()
+            function tick:onMouseDown(x, y)
+                self.clickedOption = self.mouseOverOption
+                return true
+            end
+            local origMouseUp = tick.onMouseUp
+            function tick:onMouseUp(x, y)
+                origMouseUp(self, x, y)
+                return true
+            end
             tick:addOption(M.text("UI_LugliAch_opt_showsidebar", "Show Sidebar Button"))
-            local cur = (type(M.isSidebarButtonEnabled) == "function") and M.isSidebarButtonEnabled() or true
+            local cur = true
+            if type(M.isSidebarButtonEnabled) == "function" then
+                cur = M.isSidebarButtonEnabled()
+            end
             tick:setSelected(1, cur)
             panel.sidebarTick = tick
             panel:addChild(tick)
@@ -938,8 +950,14 @@ end
 
 function M.updateSettingsUI()
     if instance ~= nil and instance.soundPanel ~= nil and instance.soundPanel.sidebarTick ~= nil then
-        local cur = (type(M.isSidebarButtonEnabled) == "function") and M.isSidebarButtonEnabled() or true
-        instance.soundPanel.sidebarTick:setSelected(1, cur)
+        local tick = instance.soundPanel.sidebarTick
+        local cur = true
+        if type(M.isSidebarButtonEnabled) == "function" then
+            cur = M.isSidebarButtonEnabled()
+        end
+        if tick.isSelected == nil or tick:isSelected(1) ~= cur then
+            tick:setSelected(1, cur)
+        end
     end
 end
 

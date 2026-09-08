@@ -95,6 +95,9 @@ function M.setSidebarButtonEnabled(enabled)
                 local opt = opts:getOption("showSidebarButton")
                 if opt and opt.setValue then opt:setValue(enabled) end
             end
+            if PZAPI.ModOptions.save then
+                PZAPI.ModOptions:save()
+            end
         end)
     end
     if type(M.updateSettingsUI) == "function" then
