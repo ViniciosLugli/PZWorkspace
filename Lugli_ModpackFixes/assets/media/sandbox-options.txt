@@ -1,0 +1,108 @@
+VERSION = 1,
+
+/* GENERATED from the parts under lua/shared/ModpackFixes. Never edit. */
+
+option LugliModpackFixes.BiiTooltip = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_BiiTooltip,
+}
+
+option LugliModpackFixes.BpHotbar = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_BpHotbar,
+}
+
+option LugliModpackFixes.CleanUIBlink = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_CleanUIBlink,
+}
+
+option LugliModpackFixes.FhKeys = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_FhKeys,
+}
+
+option LugliModpackFixes.GydeHandy = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_GydeHandy,
+}
+
+option LugliModpackFixes.HotbarEquip = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_HotbarEquip,
+}
+
+option LugliModpackFixes.P4Place = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_P4Place,
+}
+
+option LugliModpackFixes.SeatView = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_SeatView,
+}
+
+option LugliModpackFixes.SgKills = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_SgKills,
+}
+
+option LugliModpackFixes.SgTank = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_SgTank,
+}
+
+option LugliModpackFixes.SlingStop = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_SlingStop,
+}
+
+option LugliModpackFixes.TileProps = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_TileProps,
+}
+
+option LugliModpackFixes.UsDrops = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_UsDrops,
+}
+
+option LugliModpackFixes.UsItems = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_UsItems,
+}
+
+option LugliModpackFixes.VehicleLoot = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_VehicleLoot,
+}

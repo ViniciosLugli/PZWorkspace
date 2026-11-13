@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animNode>
+	<m_Name>fromSitOnGround</m_Name>
+	<m_AnimName>Bob_SitGround_Out</m_AnimName>
+	<m_DeferredBoneName></m_DeferredBoneName>
+	<m_Looped>false</m_Looped>
+	<m_BlendTime>0.20</m_BlendTime>
+	<m_EarlyTransitionOut>true</m_EarlyTransitionOut>
+	<m_SpeedScale>1.28</m_SpeedScale>
+	<m_Conditions x_name="f222df65-abd6-47fb-be09-f6d725e5bf49">
+		<m_Name>sitonground</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_Value>true</m_Value>
+	</m_Conditions>
+	<m_Events x_name="c5f622c1-f5cb-4aa4-93c7-679f9c6c1440">
+		<m_EventName>FlagWhileAlive</m_EventName>
+		<m_Time>Start</m_Time>
+		<m_ParameterValue>hideEquippedHandL</m_ParameterValue>
+	</m_Events>
+	<m_Events x_name="e34660b2-a2d0-420a-b8dc-acc1b10d0755">
+		<m_EventName>FlagWhileAlive</m_EventName>
+		<m_Time>Start</m_Time>
+		<m_ParameterValue>hideEquippedHandR</m_ParameterValue>
+	</m_Events>
+</animNode>

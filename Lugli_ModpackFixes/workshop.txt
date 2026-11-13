@@ -1,0 +1,49 @@
+version=1
+title=Lugli - B42 Modpack Compats & Fixes
+description=Fixes for conflicts between popular Build 42 mods, and for bugs inside some of them. Every mod name below links to its page.
+description=
+description=[b]No dependencies.[/b] Each fix turns on only when the mods it fixes are active. It first checks that their code is still the version it was written for, and after an update it stands down instead of guessing. Every fix has its own switch in the sandbox options.
+description=
+description=[h1]Combat and zombies[/h1]
+description=[list]
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3833349401]Super Gore[/url]:[/b] zombies it finishes off (a severed head, a burst chest) now count in your zombie kills.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3833349401]Super Gore[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3783283328]Special Zombies: Tank[/url]:[/b] a Tank no longer dies to almost any hit, or heals when a limb is cut.
+description=[/list]
+description=[h1]Hotbar and keys[/h1]
+description=[list]
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2366717227]SwapIt[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3771638611]Fancy Handwork[/url]:[/b] modifier + hotbar key takes the item into your off hand again.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2366717227]SwapIt[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3737864976]H.E.C.U.[/url]:[/b] the hotbar key puts helmets and masks on and off again.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2366717227]SwapIt[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3696291148]Better Pause[/url]:[/b] hotbar keys work while paused again.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3771638611]Fancy Handwork B42.20[/url]:[/b] the swap-hands keys work, and key presses stop raising errors.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3775549570]Alice's Weapon Sling[/url]:[/b] cancelling an attach no longer leaves a ghost weapon on your body.
+description=[/list]
+description=[h1]Inventory and menus[/h1]
+description=[list]
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3758971325]Better Item Info[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3722134990]Guns of Marz[/url]:[/b] tooltip rows from other mods (backpack upgrades, seed seasons, silencer durability) stay visible.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3830103302]Better Item Transfer[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3422220305]Picking Meister[/url]:[/b] Grab and Unpack Contents sits next to Place again.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3437629766]CleanUI[/url]:[/b] the vanilla tutorial no longer errors when it points at a container.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781990933]Clear Driver View Fix[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3501302358]Vehicle Seat UI (KI5)[/url]:[/b] the seat diagram no longer flashes when you start driving.
+description=[/list]
+description=[h1]Items, loot and world[/h1]
+description=[list]
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2713921292]Undead Survivor[/url]:[/b] gas masks are kept when you remove the filter, the Stalker knife can be sharpened, and in multiplayer a corpse shows only loot you can take.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3457132019]Specific Loot (KI5)[/url]:[/b] burnt wrecks and Ford F350/F450 work trucks spawn with loot.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3413150945]More Damaged Objects[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3484263516]Raven Creek[/url]:[/b] street lights, hedges, ladders, fences and signs get their vanilla properties back.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3342191739]Gyde's Trait Magazines[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3776852122]Extended[/url]:[/b] the Handy magazine gives its four skill levels.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2447729538]Fluffy Hair[/url]:[/b] two hoodies no longer show the hood up when it is down.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3736837081]Get Up Quick[/url]:[/b] what you hold is hidden again while you stand up from the ground, as in vanilla.
+description=[/list]
+description=[h1]Questions[/h1]
+description=[list]
+description=[*][b]Load order?[/b] Anywhere after the mods it fixes. The end of the list is simplest.
+description=[*][b]Can I add it to a running save?[/b] Yes.
+description=[*][b]Is it safe to remove?[/b] Yes. It adds no items or objects, so nothing breaks when it is gone.
+description=[*][b]Multiplayer?[/b] Install it on the server and on every client, as with any mod. Tested in single player so far.
+description=[*][b]Did it load?[/b] Your console.txt has a line starting with [i][Lugli/ModpackFixes][/i] that lists every fix and whether it installed, or why it was skipped.
+description=[/list]
+description=[hr][/hr]
+description=More from me: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045]Lugli - Fast Loading[/url], [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url], and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url].
+description=
+description=Like my mods? Support is never needed and always appreciated: [url=https://ko-fi.com/vinicioslugli]ko-fi.com/vinicioslugli[/url]
+tags=Build 42;QoL;WIP
+visibility=unlisted

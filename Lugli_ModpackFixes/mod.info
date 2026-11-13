@@ -1,0 +1,9 @@
+name=Lugli - B42 Modpack Compats & Fixes
+id=Lugli_ModpackFixes
+author=ViniciosLugli
+description=Fixes for conflicts between popular Build 42 mods, and for bugs inside some of them. Each fix turns on only beside the mods it fixes, and has its own sandbox switch.
+poster=preview.png
+icon=icon.png
+category=features
+versionMin=42.22
+modversion=0.1.0
