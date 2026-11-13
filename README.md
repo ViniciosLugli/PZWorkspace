@@ -1,6 +1,7 @@
 # PZWorkspace
 
-Source for my Project Zomboid mods. Built for **Build 42.20**.
+Source for my Project Zomboid mods. Built for **Build 42**; each `mod.info` names the oldest
+build it supports.
 
 Each folder is one mod: its Lua, its Java, its `mod.info` and its Steam listing. The built
 versions are on the Workshop; these are the sources behind them.
@@ -11,6 +12,7 @@ versions are on the Workshop; these are the sources behind them.
 | [Lugli_Optimizations](Lugli_Optimizations) | Cuts frame time by stopping the engine redrawing what is not moving. In vegetation, -16% at the median and -18% at the 90th percentile. In a city centre, -9% at the 90th and no median gain. | [3790863696](https://steamcommunity.com/sharedfiles/filedetails/?id=3790863696) |
 | [Lugli_Achievements](Lugli_Achievements) | 280+ achievements across thirteen categories, earned by what your survivor actually does. Pure Lua, no effect on how the game plays. | [3793988085](https://steamcommunity.com/sharedfiles/filedetails/?id=3793988085) |
 | [Lugli_EmergencyLights](Lugli_EmergencyLights) | Glow sticks, chem lights, road flares and a flare gun that keep burning where they land. | [3793988563](https://steamcommunity.com/sharedfiles/filedetails/?id=3793988563) |
+| [Lugli_GreaseOfMarz](Lugli_GreaseOfMarz) | Unofficial fixes for the Gunworks and Guns of Marz gun stack: a faster loot pass at world load, the reload props Ultimate Marksman drops, and Headhunter rifles that take Guns of Marz ammo. | upload pending |
 
 Timing numbers were measured on 42.20.4 with 337 mods: same machine, same save, arms interleaved
 A,B,A,B, every run checked against its own log, the first pair of each campaign discarded as cold.
@@ -23,6 +25,7 @@ Lugli_FastLoading      ->  ZombieBuddy
 Lugli_Optimizations    ->  ZombieBuddy
 Lugli_Achievements     ->  NeatUI Framework
 Lugli_EmergencyLights  ->  nothing
+Lugli_GreaseOfMarz     ->  nothing; each fix turns on only beside the mods it fixes
 ```
 
 ZombieBuddy is a hard requirement for both Java mods, not a soft one: without it their jars never
@@ -53,15 +56,10 @@ something to say alone: Fast Loading keeps running its two Lua loot fixes, and O
 on the main menu that it is doing nothing. ZombieBuddy itself never reads `require=`; vanilla's
 launcher does, which is the only thing that would make the line bite.
 
-**Jars currently ship unsigned, deliberately.** ZombieBuddy resolves a signer's key from a bundled
-author list, and for an author who is not on it, falls back to fetching that author's Steam profile
-page on every launch, for every user. Any answer other than the page fails closed and the approval
-dialog then refuses the mod with no approve button. With no signature at all the user gets an
-ordinary one-time approval prompt instead, which is strictly better than a signature that only
-verifies when Steam answers. The cost is preload, which requires a valid signature.
-
-This author's key is queued at [ZombieBuddy PR #44](https://github.com/zed-0xff/ZombieBuddy/pull/44).
-When it merges, signing and preload both come back.
+**The jars are signed**, and the signing key is in ZombieBuddy's own signed author list
+([`authors/ViniciosLugli.json`](https://github.com/zed-0xff/ZombieBuddy/tree/master/authors)), so
+ZombieBuddy verifies them offline: no web request at launch, the author name in the approval dialog,
+and preload eligibility. ZombieBuddy still asks once before it runs Java code you have not approved.
 
 ## Licence
 
