@@ -26,4 +26,4 @@ description=More from me: [url=https://steamcommunity.com/sharedfiles/filedetail
 description=
 description=Like my mods? Support is never needed and always appreciated: [url=https://ko-fi.com/vinicioslugli]ko-fi.com/vinicioslugli[/url]
 tags=Build 42;Weapons;QoL;WIP
-visibility=unlisted
+visibility=public
