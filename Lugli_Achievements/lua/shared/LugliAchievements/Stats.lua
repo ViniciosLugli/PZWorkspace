@@ -172,8 +172,13 @@ local function ready(container, key, label)
     if data.version ~= M.DATA_VERSION then
         local mok, merr = migrate(data)
         if not mok then
-            -- Resetting throws away progress, so it is never silent.
-            M.defect("stats", label .. " progress reset, could not migrate: " .. tostring(merr))
+            -- Set aside, never discarded: a newer build of the mod can still read it, and on a
+            -- multiplayer client this container is flushed over the server's only copy. The first
+            -- one set aside is kept, since a later reset holds nothing worth more.
+            local aside = key .. "_unreadable"
+            if container[aside] == nil then container[aside] = data end
+            M.defect("stats", label .. " progress could not be migrated (" .. tostring(merr) ..
+                              "), kept aside as " .. aside .. " and started fresh")
             data = newData()
             container[key] = data
         end
@@ -204,6 +209,24 @@ function M.getCharData(player)
     local ok, md = pcall(fetchModData, player)
     if not ok or type(md) ~= "table" then return nil end
     return ready(md, M.MODDATA_KEY, "character")
+end
+
+--- fn(player, idx, data) once per distinct progress store, for an event that belongs to the
+--- world rather than to one survivor: a storm, an explosion, a day ending. Split screen on the
+--- per-world store is several players over one table, and crediting each of them counted one
+--- blizzard twice.
+function M.forEachStore(fn)
+    if getNumActivePlayers == nil or getSpecificPlayer == nil then return end
+    local n = getNumActivePlayers()
+    local seen = (n > 1) and {} or nil
+    for i = 0, n - 1 do
+        local p = getSpecificPlayer(i)
+        local data = (p ~= nil) and M.getCharData(p) or nil
+        if data ~= nil and (seen == nil or not seen[data]) then
+            if seen ~= nil then seen[data] = true end
+            fn(p, i, data)
+        end
+    end
 end
 
 -- Looked up per call rather than captured: a third-party mod may register achievements after

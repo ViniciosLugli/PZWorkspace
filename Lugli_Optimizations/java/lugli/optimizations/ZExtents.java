@@ -1,11 +1,12 @@
 package lugli.optimizations;
 
 import me.zed_0xff.zombie_buddy.Patch;
+import se.krka.kahlua.integration.annotations.LuaMethod;
 import zombie.iso.IsoChunk;
 import zombie.iso.IsoChunkMap;
 
 /**
- * Fix a 362x over-scan in IsoChunkMap.calculateZExtentsForChunkMap.
+ * Fix a 361x over-scan in IsoChunkMap.calculateZExtentsForChunkMap.
  * -Dlugli.opt.zextents=off|verify|fast   (default fast)
  *
  * THE BUG (read at IsoChunkMap.java:959-975)
@@ -185,8 +186,7 @@ public final class ZExtents {
         }
     }
 
-    @se.krka.kahlua.integration.annotations.LuaMethod(
-            name = "Lugli_ZExtentsReport", global = true)
+    @LuaMethod(name = "Lugli_ZExtentsReport", global = true)
     public static String report() {
         if (!ENABLED) {
             return "[zextents] off";

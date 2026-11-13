@@ -55,11 +55,11 @@ public final class MergeStat {
     public static volatile int maxPending;
     public static volatile int maxAdded;
 
-    /** Boot-phase snapshot, so the world-load half is a subtraction rather than a second run. */
+    /**
+     * Pumps at the menu handover, and the latch for its one "boot:" line. That line is the
+     * boot-phase snapshot, so the world-load half is a subtraction rather than a second run.
+     */
     public static volatile long bootPumps;
-    public static volatile long bootCompares;
-    public static volatile long bootShifted;
-    public static volatile long bootMerged;
 
     private static volatile boolean announced;
     private static long lastLogNanos;
@@ -265,9 +265,6 @@ public final class MergeStat {
             return;
         }
         bootPumps = pumps;
-        bootCompares = compares;
-        bootShifted = shifted;
-        bootMerged = merged;
         DebugLog.log(TAG + " boot: " + status());
     }
 

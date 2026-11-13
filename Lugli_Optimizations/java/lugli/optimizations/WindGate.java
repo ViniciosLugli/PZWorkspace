@@ -1,9 +1,19 @@
 package lugli.optimizations;
 
+import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.IdentityHashMap;
+import java.util.Set;
+
 import me.zed_0xff.zombie_buddy.Patch;
+import se.krka.kahlua.integration.annotations.LuaMethod;
+import zombie.characters.IsoPlayer;
 import zombie.core.PerformanceSettings;
 import zombie.iso.IsoCamera;
+import zombie.iso.IsoCell;
 import zombie.iso.IsoChunk;
+import zombie.iso.IsoChunkMap;
+import zombie.iso.IsoWorld;
 import zombie.iso.objects.ObjectRenderEffects;
 
 /**
@@ -62,6 +72,9 @@ public final class WindGate {
     /** Consecutive agreeing frames before the gate flips. About 3 s at 60 fps. */
     public static final int DWELL_FRAMES = 180;
 
+    /** Stale-gate races per world beyond which a per-frame race no longer explains them. */
+    private static final int STALE_FLIP_LIMIT = 400;
+
     /**
      * Per-windType calm state, NOT one global flag.
      *
@@ -79,7 +92,9 @@ public final class WindGate {
     public static final int[] agree = {0, 0, 0};
     public static int lastFrame = -1;
     public static int flips = 0;
+    /** Per world: a lifetime count would let a long multi-world session trip the disarm limit. */
     public static int staleFlips = 0;
+    public static Object staleCell = null;
     public static long gatedCalls = 0L;
 
     /**
@@ -111,6 +126,12 @@ public final class WindGate {
             return;
         }
         lastFrame = f;
+        // IsoWorld.init builds a new IsoCell per world load, so a changed cell is a new world.
+        IsoCell cell = IsoWorld.instance.currentCell;
+        if (cell != staleCell) {
+            staleCell = cell;
+            staleFlips = 0;
+        }
         resolvePools();
         if (broken || poolPlain == null || poolTrees == null) {
             return;
@@ -160,8 +181,8 @@ public final class WindGate {
      * at rest" tried to null a moving effect and the self-test disarmed, three runs out of three.
      * Gating must therefore apply ONLY to effects that came from the wind pools.
      */
-    public static final java.util.IdentityHashMap<Object, Integer> POOL_TYPE =
-            new java.util.IdentityHashMap<Object, Integer>();
+    public static final IdentityHashMap<Object, Integer> POOL_TYPE =
+            new IdentityHashMap<Object, Integer>();
 
     public static void resolvePools() {
         if (poolsResolved) {
@@ -169,9 +190,8 @@ public final class WindGate {
         }
         poolsResolved = true;
         try {
-            java.lang.reflect.Field a = ObjectRenderEffects.class.getDeclaredField("WIND_EFFECTS");
-            java.lang.reflect.Field b =
-                    ObjectRenderEffects.class.getDeclaredField("WIND_EFFECTS_TREES");
+            Field a = ObjectRenderEffects.class.getDeclaredField("WIND_EFFECTS");
+            Field b = ObjectRenderEffects.class.getDeclaredField("WIND_EFFECTS_TREES");
             a.setAccessible(true);
             b.setAccessible(true);
             poolPlain = (Object[][]) a.get(null);
@@ -183,10 +203,15 @@ public final class WindGate {
                 }
             }
         } catch (Throwable t) {
-            broken = true;
-            breakReason = "cannot read wind pools: " + t;
-            System.out.println("[Lugli/Opt/windgate] DISARMED -- " + breakReason);
+            disarm("cannot read wind pools: " + t);
         }
+    }
+
+    /** Permanent: the gate stands aside for the rest of the session, which is vanilla rendering. */
+    private static void disarm(String reason) {
+        broken = true;
+        breakReason = reason;
+        System.out.println("[Lugli/Opt/windgate] DISARMED -- " + reason);
     }
 
     public static boolean allAtRest(int id) {
@@ -206,43 +231,44 @@ public final class WindGate {
     }
 
     /**
-     * Rebuild the baked textures so a flip is never visible. Uses the engine own dirty flag for
+     * Rebuild the baked textures so a flip is never visible. Uses the engine's own dirty flag for
      * a render-effect change (256L, as IsoObject.removeRenderEffect does at :5401-5407).
      * Rare by construction, because DWELL_FRAMES gates it.
+     *
+     * getChunk takes chunk-map-LOCAL indices 0..chunkGridWidth-1 and returns null outside them
+     * (IsoChunkMap.java:476-484). Passing world chunk coordinates, as this once did, matched no
+     * slot and invalidated nothing. Split-screen maps can share chunks, hence the identity set:
+     * one invalidation already covers all four players' render levels (IsoChunk.java:5492-5500).
      */
     public static void invalidateLoadedChunks() {
         if (!PerformanceSettings.fboRenderChunk) {
             return;
         }
         try {
-            java.util.ArrayList<IsoChunk> all = new java.util.ArrayList<>();
-            zombie.iso.IsoCell cell = zombie.iso.IsoWorld.instance.currentCell;
-            for (int n = 0; n < zombie.characters.IsoPlayer.numPlayers; n++) {
-                zombie.iso.IsoChunkMap cm = cell.getChunkMap(n);
+            Set<IsoChunk> done = Collections.newSetFromMap(new IdentityHashMap<IsoChunk, Boolean>());
+            IsoCell cell = IsoWorld.instance.currentCell;
+            int w = IsoChunkMap.chunkGridWidth;
+            for (int n = 0; n < IsoPlayer.numPlayers; n++) {
+                IsoChunkMap cm = cell.getChunkMap(n);
                 if (cm == null) {
                     continue;
                 }
-                for (int x = cm.getWorldXMinTiles() / 8; x <= cm.getWorldXMaxTiles() / 8; x++) {
-                    for (int y = cm.getWorldYMinTiles() / 8; y <= cm.getWorldYMaxTiles() / 8; y++) {
+                for (int x = 0; x < w; x++) {
+                    for (int y = 0; y < w; y++) {
                         IsoChunk c = cm.getChunk(x, y);
-                        if (c != null && !all.contains(c)) {
-                            all.add(c);
+                        if (c != null && done.add(c)) {
+                            c.invalidateRenderChunkLevels(256L);
                         }
                     }
                 }
             }
-            for (int i = 0; i < all.size(); i++) {
-                all.get(i).invalidateRenderChunkLevels(256L);
-            }
         } catch (Throwable t) {
-            broken = true;
-            breakReason = "invalidate failed: " + t;
-            System.out.println("[Lugli/Opt/windgate] DISARMED -- " + breakReason);
+            disarm("invalidate failed: " + t);
         }
     }
 
     /**
-     * Should this object wind effect be hidden from the render-layer predicate right now?
+     * Should this object's wind effect be hidden from the render-layer predicate right now?
      *
      * Self-test built in: gating is only correct when the effect is genuinely at rest, so if we
      * are about to gate a DISPLACED effect the gate is wrong and disarms PERMANENTLY rather than
@@ -271,10 +297,8 @@ public final class WindGate {
             agree[t] = 0;
             staleFlips++;
             invalidateLoadedChunks();
-            if (staleFlips > 400) {
-                broken = true;
-                breakReason = "gate raced " + staleFlips + " times -- not a per-frame race";
-                System.out.println("[Lugli/Opt/windgate] DISARMED -- " + breakReason);
+            if (staleFlips > STALE_FLIP_LIMIT) {
+                disarm("gate raced " + staleFlips + " times -- not a per-frame race");
             }
             return false;
         }
@@ -320,7 +344,7 @@ public final class WindGate {
         }
     }
 
-    @se.krka.kahlua.integration.annotations.LuaMethod(name = "Lugli_WindGateReport", global = true)
+    @LuaMethod(name = "Lugli_WindGateReport", global = true)
     public static String report() {
         if (!ENABLED) {
             return "[windgate] off";

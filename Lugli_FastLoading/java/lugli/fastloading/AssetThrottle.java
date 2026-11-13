@@ -1,10 +1,13 @@
 package lugli.fastloading;
 
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.VarHandle;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import me.zed_0xff.zombie_buddy.Patch;
+import se.krka.kahlua.integration.annotations.LuaMethod;
 import zombie.core.utils.DirectBufferAllocator;
 import zombie.debug.DebugLog;
 
@@ -85,7 +88,7 @@ public class AssetThrottle {
      * Upload backlog the render thread is allowed to fall behind by, in queued items.
      *
      * THIS IS THE ONE THAT MATTERS FOR MENU LATENCY. Every retired texture queues a createTexture
-     * onto RenderThread's invoke queue (TextureID.java:327), up to 16 a frame, and the render
+     * onto RenderThread's invoke queue (TextureID.java:345), up to 16 a frame, and the render
      * thread drains that queue under a 10 ms budget per loop (RenderThread.java:303). Production
      * beats consumption, so the queue grows without bound.
      *
@@ -122,8 +125,7 @@ public class AssetThrottle {
     public static volatile long lastMenuBeat;
     public static final long MENU_STALE_MS = 1000L;
 
-    @se.krka.kahlua.integration.annotations.LuaMethod(
-            name = "FastLoading_MenuBeat", global = true)
+    @LuaMethod(name = "FastLoading_MenuBeat", global = true)
     public static String menuBeat() {
         lastMenuBeat = System.currentTimeMillis();
         // Backstop only. BootProgress.retire() on MainScreenState.enter is the real off-switch;
@@ -153,27 +155,33 @@ public class AssetThrottle {
             return 0;
         }
         try {
-            if (!queueFieldsTried) {
-                initQueueFields();
-            }
-            if (F_QUEUE == null) {
-                return 0;
-            }
-            Object inbox = F_QUEUE.get(null);
-            int n;
-            // The engine locks the inbox itself; the invoking list is render-thread local, so
-            // reading its size is a benign race and only ever makes us a frame stale.
-            synchronized (inbox) {
-                n = ((List<?>) inbox).size();
-            }
-            if (F_INVOKING != null) {
-                n += ((List<?>) F_INVOKING.get(null)).size();
-            }
-            return n;
+            int n = invokeQueueDepth();
+            return n < 0 ? 0 : n;
         } catch (Throwable t) {
             F_QUEUE = null;             // read it once, never again
             return 0;
         }
+    }
+
+    /** Items waiting on the render thread's invoke queue, or -1 if it cannot be read. */
+    private static int invokeQueueDepth() throws ReflectiveOperationException {
+        if (!queueFieldsTried) {
+            initQueueFields();
+        }
+        Object inbox = F_QUEUE == null ? null : F_QUEUE.get(null);
+        if (inbox == null) {
+            return -1;
+        }
+        int n;
+        // The engine locks the inbox itself; the invoking list is render-thread local, so
+        // reading its size is a benign race and only ever makes us a frame stale.
+        synchronized (inbox) {
+            n = ((List<?>) inbox).size();
+        }
+        if (F_INVOKING != null) {
+            n += ((List<?>) F_INVOKING.get(null)).size();
+        }
+        return n;
     }
 
     private static volatile boolean pendingFieldTried;
@@ -222,10 +230,43 @@ public class AssetThrottle {
         }
     }
 
-    /** How often, and for how long, workers actually slept on the budget. */
-    public static long blockedCalls;
-    public static long blockedMs;
-    public static long totalCalls;
+    /**
+     * How often, and for how long, workers actually slept on the budget. Every asset worker
+     * writes these at once, so they are added atomically. They stay plain long fields rather
+     * than LongAdders because Lugli_Dev's BootTimer reads them reflectively with getLong.
+     */
+    public static volatile long blockedCalls;
+    public static volatile long blockedMs;
+    public static volatile long totalCalls;
+
+    private static final VarHandle BLOCKED_CALLS = counter("blockedCalls");
+    private static final VarHandle BLOCKED_MS = counter("blockedMs");
+    private static final VarHandle TOTAL_CALLS = counter("totalCalls");
+    private static final VarHandle MENU_BLOCKED = counter("menuBlocked");
+
+    private static VarHandle counter(String name) {
+        try {
+            return MethodHandles.lookup().findStaticVarHandle(AssetThrottle.class, name, long.class);
+        } catch (ReflectiveOperationException e) {
+            throw new ExceptionInInitializerError(e);
+        }
+    }
+
+    // public, and NOT inlined: the advice calls these, so the VarHandles stay private here.
+    public static void countCall() {
+        TOTAL_CALLS.getAndAdd(1L);
+    }
+
+    public static void countBlocked(boolean menu) {
+        BLOCKED_CALLS.getAndAdd(1L);
+        if (menu) {
+            MENU_BLOCKED.getAndAdd(1L);
+        }
+    }
+
+    public static void countBlockedMs(long ms) {
+        BLOCKED_MS.getAndAdd(ms);
+    }
 
     /**
      * -Dfastloading.assetstats=on logs the counters above while they move, rate-limited, from
@@ -243,10 +284,10 @@ public class AssetThrottle {
      * front end, and the menu drops frames -- which is what a player feels as a slow options
      * screen. Priority costs no throughput: while the game thread is idle, as it is through a
      * loading screen, the workers still get every spare core.
-     * -Dfastloading.assetprio=N, 1..10, 0 leaves the default.
+     * -Dfastloading.assetprio=N, 1..10, 0 leaves the default. Unset, see Tuning.workerPriority.
      */
     public static final int WORKER_PRIORITY =
-            Integer.getInteger("fastloading.assetprio", 0);
+            Tuning.workerPriority(Tuning.HOST.cores, Integer.getInteger("fastloading.assetprio"));
 
     @Patch.OnEnter(skipOn = true)
     public static boolean enter() {
@@ -265,17 +306,14 @@ public class AssetThrottle {
                 }
             }
         }
-        totalCalls++;
+        countCall();
         boolean blocked = false;
         long t0 = 0L;
         while (liveBytes() > currentBudget() || uploadBacklog() > UPLOAD_CAP) {
             if (!blocked) {
                 blocked = true;
                 t0 = System.currentTimeMillis();
-                blockedCalls++;
-                if (MENU_BUDGET < BUDGET && atMenu()) {
-                    menuBlocked++;
-                }
+                countBlocked(MENU_BUDGET < BUDGET && atMenu());
             }
             try {
                 Thread.sleep(POLL_MS);
@@ -285,7 +323,7 @@ public class AssetThrottle {
             }
         }
         if (blocked) {
-            blockedMs += System.currentTimeMillis() - t0;
+            countBlockedMs(System.currentTimeMillis() - t0);
         }
         if (STATS) {
             reportStats();
@@ -302,27 +340,12 @@ public class AssetThrottle {
      * texture is indistinguishable from a slow machine -- which is how three wrong causes got
      * chased before this existed.
      */
-    @se.krka.kahlua.integration.annotations.LuaMethod(
-            name = "FastLoading_PipelineStatus", global = true)
+    @LuaMethod(name = "FastLoading_PipelineStatus", global = true)
     public static String pipelineStatus() {
         int pend = pendingCount();
         int up;
         try {
-            Object inbox = F_QUEUE == null ? null : F_QUEUE.get(null);
-            if (inbox == null) {
-                initQueueFields();
-                inbox = F_QUEUE == null ? null : F_QUEUE.get(null);
-            }
-            if (inbox == null) {
-                up = -1;
-            } else {
-                synchronized (inbox) {
-                    up = ((List<?>) inbox).size();
-                }
-                if (F_INVOKING != null) {
-                    up += ((List<?>) F_INVOKING.get(null)).size();
-                }
-            }
+            up = invokeQueueDepth();
         } catch (Throwable t) {
             up = -1;
         }
@@ -358,16 +381,35 @@ public class AssetThrottle {
                      + " menuBlocked=" + menuBlocked);
     }
 
+    /** For the menu handover line, so a part that did nothing says so. */
+    public static String status() {
+        if (!ON) return "off";
+        return "budget " + (BUDGET >> 20) + " MB, menu budget " + (MENU_BUDGET >> 20) + " MB, "
+             + blockedCalls + " of " + totalCalls + " call(s) blocked for " + blockedMs + " ms";
+    }
+
     /**
      * FileSystemImpl is built in GameWindow's static initialiser, before mods load, so
      * its constructor cannot be intercepted. newFixedThreadPool returns a
      * ThreadPoolExecutor, which can simply be resized afterwards.
      */
+    /** The asset pool's live size, or 0 if it cannot be read. For the handover line. */
+    public static int livePoolSize() {
+        try {
+            Field f = zombie.fileSystem.FileSystemImpl.class.getDeclaredField("executor");
+            f.setAccessible(true);
+            Object executor = f.get(zombie.GameWindow.fileSystem);
+            return executor instanceof ThreadPoolExecutor pool ? pool.getMaximumPoolSize() : 0;
+        } catch (Throwable t) {
+            return 0;
+        }
+    }
+
     public static void sizePool() {
         if (poolSized) return;
         poolSized = true;
 
-        int target = Tuning.poolTarget(Runtime.getRuntime().availableProcessors());
+        int target = Tuning.poolTarget(Tuning.HOST.cores);
         if (target == 0) return;
 
         try {

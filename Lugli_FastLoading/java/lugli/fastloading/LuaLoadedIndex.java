@@ -1,8 +1,10 @@
 package lugli.fastloading;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.function.UnaryOperator;
 
 import me.zed_0xff.zombie_buddy.Patch;
 import zombie.Lua.LuaManager;
@@ -11,7 +13,7 @@ import zombie.debug.DebugLog;
 /**
  * Gives LuaManager.loaded a hash index. -Dfastloading.luaindex=off.
  *
- * loaded is a public static ArrayList<String> and RunLuaInternal opens with
+ * loaded is a public static List<String> and RunLuaInternal opens with
  * loaded.contains(filename), a linear scan that grows with every file already loaded.
  * The index mirrors the list; if the two ever disagree the patch falls back to the scan.
  */
@@ -26,73 +28,107 @@ public final class LuaLoadedIndex {
 
     private LuaLoadedIndex() {}
 
-    /** An ArrayList that answers contains() from a hash set. Semantics are otherwise identical. */
+    /** For the menu handover line, so a part that did nothing says so. */
+    public static String status() {
+        if (!ON) return "off";
+        return installed ? "ok, " + rebuilds + " index rebuild(s)" : "idle: LuaManager.init never reached it";
+    }
+
+    /**
+     * An ArrayList that answers contains() from a hash index. Semantics are otherwise identical.
+     *
+     * The index is a multiset (count per entry), not a set: loaded can hold the same file twice,
+     * and a set would then be smaller than the list forever, so the size check below would rebuild
+     * on every later lookup and cost more than the scan it replaces.
+     */
     public static final class Indexed extends ArrayList<String> {
-        private final HashSet<String> index = new HashSet<>();
+        private final HashMap<String, Integer> counts = new HashMap<>();
+        private int indexed;
+
+        private void inc(String s) {
+            counts.merge(s, 1, Integer::sum);
+            indexed++;
+        }
+
+        private void dec(Object o) {
+            Integer n = counts.get(o);
+            if (n == null) return;
+            if (n == 1) counts.remove(o); else counts.put((String) o, n - 1);
+            indexed--;
+        }
 
         private void rebuild() {
-            index.clear();
-            index.addAll(this);
+            counts.clear();
+            indexed = 0;
+            for (String s : this) inc(s);
             rebuilds++;
         }
 
         @Override
         public boolean contains(Object o) {
-            if (index.size() != size()) {
+            if (indexed != size()) {
                 rebuild();          // something mutated us through a path we do not override
             }
-            return index.contains(o);
+            return counts.containsKey(o);
         }
 
         @Override
         public boolean add(String s) {
-            index.add(s);
+            inc(s);
             return super.add(s);
         }
 
         @Override
         public void add(int i, String s) {
-            index.add(s);
             super.add(i, s);
+            inc(s);
         }
 
         @Override
         public boolean addAll(Collection<? extends String> c) {
-            index.addAll(c);
+            for (String s : c) inc(s);
             return super.addAll(c);
         }
 
         @Override
         public boolean addAll(int i, Collection<? extends String> c) {
-            index.addAll(c);
+            for (String s : c) inc(s);
             return super.addAll(i, c);
         }
 
         @Override
         public boolean remove(Object o) {
             boolean r = super.remove(o);
-            rebuild();              // duplicates are possible; see the class doc
+            if (r) dec(o);
             return r;
         }
 
         @Override
         public String remove(int i) {
             String r = super.remove(i);
-            rebuild();
+            dec(r);
             return r;
         }
 
         @Override
         public String set(int i, String s) {
             String r = super.set(i, s);
-            rebuild();
+            dec(r);
+            inc(s);
             return r;
+        }
+
+        @Override
+        public void replaceAll(UnaryOperator<String> op) {
+            super.replaceAll(op);
+            rebuild();
         }
 
         @Override
         public void clear() {
             super.clear();
-            index.clear();
+            counts.clear();
+            indexed = 0;
         }
     }
 
@@ -102,7 +138,7 @@ public final class LuaLoadedIndex {
             return;
         }
         try {
-            ArrayList<String> cur = LuaManager.loaded;
+            List<String> cur = LuaManager.loaded;
             if (cur instanceof Indexed) {
                 return;
             }
@@ -121,7 +157,7 @@ public final class LuaLoadedIndex {
         }
     }
 
-    /** init() assigns a fresh ArrayList at :1110, so replace it after that has happened. */
+    /** init() assigns a fresh ArrayList at :1113, so replace it after that has happened. */
     @Patch(className = "zombie.Lua.LuaManager", methodName = "init")
     public static class Install {
         @Patch.OnExit

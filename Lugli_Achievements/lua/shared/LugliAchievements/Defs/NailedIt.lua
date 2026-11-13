@@ -167,6 +167,7 @@ local DEFS = {
         stat = "safehouse_claimed",
         target = 1,
         tier = "bronze",
+        multiplayer = true,
     },
     {
         id = "build_craft_100",

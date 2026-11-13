@@ -38,7 +38,7 @@ import zombie.ui.UIManager;
  * an 18.3 s LOSS.
  *
  * THE BURST
- *   `UIManager.updateUIElements()` (`zombie/ui/UIManager.java:826-830`) is a trivial loop:
+ *   `UIManager.updateUIElements()` (`zombie/ui/UIManager.java:824-828`) is a trivial loop:
  *
  *       for (int i = 0; i < UI.size(); i++) { UI.get(i).update(); }
  *
@@ -46,7 +46,7 @@ import zombie.ui.UIManager;
  *
  *       if (UIManager.doTick && ...) LuaManager.caller.pcallvoid(..., tableget(table, "update"), ...)
  *
- *   and `doTick` is true only once per 100 ms (`UIManager.java:526-531`). So EVERY panel's Lua
+ *   and `doTick` is true only once per 100 ms (`UIManager.java:523-529`). So EVERY panel's Lua
  *   `update` fires on the SAME frame, once every ~6 frames at 60 fps. That is exactly the shape
  *   the profiler reports: `updateUIElements` at 1.0 occurrences per frame, p50 0.048 ms,
  *   **p99 7.177 ms**, and 14.1 % of the above-median time budget.
@@ -67,8 +67,8 @@ import zombie.ui.UIManager;
  *   phased.
  *
  * WHY `uiUpdateIntervalMS` DOES NOT DRIFT
- *   Panels read the tick delta through `UIManager.uiUpdateIntervalMS` (`:86`, exposed at `:1435`
- *   and `:1439`). It is written only on the engine's own tick frame. Since each panel still ticks
+ *   Panels read the tick delta through `UIManager.uiUpdateIntervalMS` (`:87`, exposed at `:1444`
+ *   and `:1448`). It is written only on the engine's own tick frame. Since each panel still ticks
  *   once per 100 ms window, the interval it observes is still the true time between its own
  *   ticks. Staggering the phase does not change the rate, which is what that value describes.
  *
@@ -76,8 +76,9 @@ import zombie.ui.UIManager;
  *   If the frame rate is below slices x 10 fps, the engine can open a new tick window before all
  *   slices have run. Letting that happen would SKIP a panel's update for that window -- a
  *   behaviour change, not a scheduling one. So when a new window opens with slices outstanding,
- *   the remainder run immediately in that frame. Below ~40 fps at the default of 4 slices this
- *   degrades to vanilla behaviour, which is the correct failure mode.
+ *   the remainder run immediately in that frame. The live slice count adapts to the frame rate
+ *   (see `slices`), so this is the exception; a window that does run short degrades to vanilla
+ *   behaviour, which is the correct failure mode.
  *
  * WHAT THIS IS AND IS NOT
  *   A p99 fix. Total work is unchanged -- the same Lua runs at the same rate. It moves a burst
@@ -85,8 +86,10 @@ import zombie.ui.UIManager;
  *
  * BLAST RADIUS OF `doTick`
  *   Only two readers exist in the whole build: `UIElement.java:1709` (the call being phased) and
- *   `AtomUI.java:422`. The flag is restored to the engine's value before this advice returns, so
- *   nothing outside the loop can observe it changed.
+ *   `AtomUI.java:423`. AtomUI is staggered too, and that is safe for the same reason: its doTick
+ *   branch is only its Lua `luaUpdate` plus its child nodes' update, so the whole subtree moves
+ *   phase together and still ticks once per window. The flag is restored to the engine's value
+ *   before this advice returns, so nothing outside the loop can observe it changed.
  */
 public final class UITickStagger {
 
@@ -113,10 +116,11 @@ public final class UITickStagger {
     private static long framesThisWindow = 0L;
     private static long emaFramesPerWindow = 0L;
 
-    /** Slices still owed for the window the engine most recently opened. */
+    /**
+     * Slices still owed for the window the engine most recently opened. The slice that runs this
+     * frame is `slices - owed`: `slices` only changes when a window opens, which also resets this.
+     */
     private static int owed = 0;
-    /** Which slice runs this frame. */
-    private static int slice = 0;
 
     public static long windows = 0L;
     public static long flushes = 0L;
@@ -151,19 +155,17 @@ public final class UITickStagger {
             windows++;
             adaptSlices();
             if (owed > 0) {
-                // The previous window never finished: the frame rate is below SLICES x 10 fps.
+                // The previous window never finished: the frame rate is below slices x 10 fps.
                 // Skipping those panels would drop an update, so run everything now.
                 flushes++;
                 flushAll = true;
             }
             owed = slices;
-            slice = 0;
         }
 
         int runSlice = -1;
         if (owed > 0) {
-            runSlice = slice;
-            slice++;
+            runSlice = slices - owed;
             owed--;
         }
 
@@ -171,8 +173,8 @@ public final class UITickStagger {
             for (int i = 0; i < ui.size(); i++) {
                 // Maintenance runs for every element every frame, as in vanilla. Only the Lua
                 // callback is phased, and that is what doTick gates.
-                UIManager.doTick = flushAll || (runSlice >= 0 && (i % slices) == runSlice);
                 UIElementInterface e = ui.get(i);
+                UIManager.doTick = flushAll || (runSlice >= 0 && sliceOf(e, slices) == runSlice);
                 if (e != null) {
                     e.update();
                 }
@@ -184,6 +186,15 @@ public final class UITickStagger {
             UIManager.doTick = engineTick;
         }
         return true;
+    }
+
+    /**
+     * Keyed on the element, not its list index: a panel opened or closed mid-window shifts every
+     * later index, and `i % slices` would then tick some panels twice in that window and others
+     * not at all. The identity hash is fixed for the object's lifetime.
+     */
+    private static int sliceOf(Object element, int sliceCount) {
+        return Math.floorMod(System.identityHashCode(element), sliceCount);
     }
 
     /**

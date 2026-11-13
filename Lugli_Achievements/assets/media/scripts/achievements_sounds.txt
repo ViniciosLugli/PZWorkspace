@@ -17,8 +17,7 @@
  * puts it under the player's own UI volume slider rather than under Ambient, which
  * is where vanilla files every sound the interface makes.
  *
- * One volume for all seven, because tools/achievements-audio.sh peak normalises every clip to
- * -1 dBFS on encode and Sound.lua applies the player's own gain per play on top. A per-clip trim
+ * One volume for all seven, because every clip is peak normalised to -1 dBFS on encode and Sound.lua applies the player's own gain per play on top. A per-clip trim
  * here would be correcting the same thing a third time, in a file nothing verifies.
  */
 module Base

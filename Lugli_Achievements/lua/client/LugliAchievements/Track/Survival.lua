@@ -49,11 +49,18 @@ local function onEveryHours()
 end
 
 local function onEveryDays()
+    -- Per store, not per player: split screen on the per-world store shares one streak, and a
+    -- day is clean only if nobody on it was hurt.
+    local hurtStore = {}
     M.forEachLocalPlayer(function(player, idx)
+        local data = M.getCharData(player)
+        if data ~= nil and hurtToday[idx] then hurtStore[data] = true end
+        hurtToday[idx] = false
+    end)
+    M.forEachStore(function(player, idx, data)
         -- A clean day is one where nothing damaged us. Best-of, so breaking the streak does not
         -- take the record with it.
-        if hurtToday[idx] then
-            hurtToday[idx] = false
+        if hurtStore[data] then
             M.setStat(player, "clean_streak", 0)
         else
             local streak = M.getStat(player, "clean_streak") + 1
@@ -109,24 +116,27 @@ local function onEveryDays()
     end)
 end
 
-local function onEveryTenMinutes()
-    M.forEachLocalPlayer(function(player)
-        local moodles = player:getMoodles()
-        if moodles == nil or MoodleType == nil then return end
-        local bad, noxious = 0, 0
-        for i = 1, #BAD_MOODLES do
-            local mt = MoodleType[BAD_MOODLES[i]]
-            if mt ~= nil then
-                local ok, lvl = pcall(function() return moodles:getMoodleLevel(mt) end)
-                if ok and type(lvl) == "number" and lvl > 0 then
-                    bad = bad + 1
-                    if BAD_MOODLES[i] == "NOXIOUS_SMELL" then noxious = 1 end
-                end
+--- How many bad moodles at once, and the smell. Boot.lua asks the same at load.
+function M.checkMoodles(player)
+    local moodles = player:getMoodles()
+    if moodles == nil or MoodleType == nil then return end
+    local bad, noxious = 0, 0
+    for i = 1, #BAD_MOODLES do
+        local mt = MoodleType[BAD_MOODLES[i]]
+        if mt ~= nil then
+            local ok, lvl = pcall(function() return moodles:getMoodleLevel(mt) end)
+            if ok and type(lvl) == "number" and lvl > 0 then
+                bad = bad + 1
+                if BAD_MOODLES[i] == "NOXIOUS_SMELL" then noxious = 1 end
             end
         end
-        M.setStatIfGreater(player, "moodles_worst", bad)
-        if noxious == 1 then M.setStat(player, "noxious", 1) end
-    end)
+    end
+    M.setStatIfGreater(player, "moodles_worst", bad)
+    if noxious == 1 then M.setStat(player, "noxious", 1) end
+end
+
+local function onEveryTenMinutes()
+    M.forEachLocalPlayer(M.checkMoodles)
 end
 
 local function onDamage(character)
@@ -143,23 +153,34 @@ local function onWeatherDone(period)
         tropical = period:isTropicalStorm() == true
     end)
     if not blizzard and not tropical then return end
-    M.forEachLocalPlayer(function(player)
-        if blizzard then
-            M.incStat(player, "blizzards", 1)
+    M.forEachStore(function(player)
+        if blizzard then M.incStat(player, "blizzards", 1) end
+        if tropical then M.incStat(player, "storms", 1) end
+    end)
+    if blizzard then
+        M.forEachLocalPlayer(function(player)
             if player.isOutside ~= nil and player:isOutside() then
                 M.setStat(player, "blizzard_outdoors", 1)
             end
-        end
-        if tropical then M.incStat(player, "storms", 1) end
-    end)
+        end)
+    end
 end
 
---- OnThunderEvent takes five arguments, not one.
+--- OnThunderEvent takes five arguments, not one. One strike is one count per store, however many
+--- of the survivors sharing it were outdoors to hear it.
 local function onThunder(x, y, doStrike)
     if doStrike ~= true then return end
+    local heard = nil
     M.forEachLocalPlayer(function(player)
         if player.isOutside ~= nil and player:isOutside() then
-            M.incStat(player, "thunder_heard", 1)
+            local data = M.getCharData(player)
+            if data ~= nil then
+                heard = heard or {}
+                if not heard[data] then
+                    heard[data] = true
+                    M.incStat(player, "thunder_heard", 1)
+                end
+            end
         end
     end)
 end
@@ -167,7 +188,7 @@ end
 M.addHandler(PART, "EveryHours", onEveryHours)
 M.addHandler(PART, "EveryDays", onEveryDays)
 M.addHandler(PART, "EveryTenMinutes", onEveryTenMinutes)
-M.addHandler(PART, "OnPlayerGetDamage", onDamage)
+M.onPlayerDamage(PART, onDamage)
 M.addHandler(PART, "OnWeatherPeriodComplete", onWeatherDone)
 M.addHandler(PART, "OnThunderEvent", onThunder)
 M.status(PART, true)

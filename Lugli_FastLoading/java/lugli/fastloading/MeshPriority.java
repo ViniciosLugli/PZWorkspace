@@ -18,7 +18,7 @@ import zombie.debug.DebugLog;
  *
  * THE GATE IS IN JAVA ON PURPOSE. An off-switch must not live in a file the thing it switches off
  * can ship without -- a preloaded jar never loads the mod's Lua.
-  */
+ */
 @Patch(className = "zombie.fileSystem.FileSystemImpl", methodName = "runAsync")
 public final class MeshPriority {
 
@@ -44,15 +44,16 @@ public final class MeshPriority {
 
     private MeshPriority() {}
 
-    /**
-     * Ends the boot phase. Called from BootProgress.MenuHandover's OnExit on MainScreenState.enter
-     * so the mesh gate cannot drift out of step with the screen's own retirement.
-     */
-    /** Public so BootProgress can make this part assert itself at the menu handover. */
+    /** For the menu handover line, so a part that did nothing says so. */
     public static String status() {
         return ON ? ("armed, " + raised + " mesh task(s) raised") : "off";
     }
 
+    /**
+     * Ends the boot phase. Called from BootProgress.handover() on the way out of
+     * MainScreenState.enter, so the mesh gate cannot drift out of step with the screen's own
+     * retirement.
+     */
     public static void endBoot() {
         if (bootDone) {
             return;

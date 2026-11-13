@@ -160,9 +160,10 @@ local function install()
                     btn:setVisible(show)
                 end
                 if show and btn.lugliAchIconOn ~= nil and btn.lugliAchIconOff ~= nil then
-                    pcall(function()
-                        btn:setImage(M.isWindowOpen() and btn.lugliAchIconOn or btn.lugliAchIconOff)
-                    end)
+                    -- Every frame: no closure, and compare first so the common case writes nothing.
+                    local okOpen, open = pcall(M.isWindowOpen)
+                    local want = (okOpen and open) and btn.lugliAchIconOn or btn.lugliAchIconOff
+                    if btn.image ~= want then btn:setImage(want) end
                 end
             end
             return originalPre(self, ...)

@@ -6,11 +6,11 @@ database, the loot tables and the tilesets are fingerprinted on every build and 
 to an unpatched run.
 
 Needs [ZombieBuddy](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853) for the
-engine patches. Without it only the two loot fixes run, and the mod says so on the main menu
-rather than pretending to work.
+engine patches. Without it only the Lua parts run (the two loot fixes and one options-screen
+fix), and the mod says so in the game log.
 
-**In active development and maintained.** The figures below are a snapshot of one campaign, not a
-ceiling, and I keep this current as Build 42 moves.
+**Actively maintained.** The figures below come from one campaign and are not a ceiling. I keep
+this current as Build 42 moves.
 
 ![Launch to playing on a 300+ mod list, with and without Fast Loading](art/proof-race.gif)
 
@@ -30,7 +30,7 @@ log, stock engine with no local-only patches. Four pairs per arm, the first of e
 cold. Launch-to-playing bands: 35.6-39.0 to 26.3-27.8, and 129.3-130.8 to 87.8-90.9.
 
 Boot and world load in a row come from **the same launches**, so the three rows of a pair add up.
-A total stacked from two separate campaigns would be a fabrication however honest each half is.
+No total is stacked from two separate campaigns.
 
 It scales with mod count, not map size.
 
@@ -53,7 +53,7 @@ asset work, 18,795 tasks at ~2.4 ms each.
 hardcodes 50 MB. One world load spent **433.7 s of asset-worker time asleep in that gate**, blocked
 on 21 % of calls, roughly half of all worker time across boot plus load.
 
-That explained every symptom that had resisted three rounds of investigation: workers at 15-25 % of
+That explained every symptom left over from three rounds of investigation: workers at 15-25 % of
 a core, total CPU at 276 % of a possible 1200 %, throughput pinned near 250 tasks/s, and raising the
 in-flight cap from 16 to 48 making worker CPU *fall*, because a deeper queue means more live decoded
 buffers and so more crossings of the same gate. Budget ladder, interleaved, 5 s dwell:
@@ -77,7 +77,7 @@ from 4.1 s to 9.5 s. **The only score is end to end.**
 | | instead of |
 |---|---|
 | Intro logos skipped | played after loading has already finished |
-| Mod folder walk on 8 threads, override order unchanged | one folder at a time, 678 trees deep |
+| Mod folder walk on up to 8 threads, override order unchanged | one folder at a time, 678 trees deep |
 | Lua scan resolves a path once per folder | once per file |
 | Tile geometry parsed on a worker thread | on the thread you are waiting for |
 | Script tokenizer stops re-copying the file per item | 428 ms of pure copying, down to 76 ms |
@@ -90,7 +90,7 @@ from 4.1 s to 9.5 s. **The only score is end to end.**
 | A real loading screen | a blank window the OS can mark unresponsive |
 | Options screen opens without waiting on the render thread | blocking round-trips behind every queued upload |
 
-Every part is behind a switch, every part reports on the main menu if it could not enable itself,
+Every part is behind a switch, every part reports in the game log if it could not enable itself,
 and where engine code is replaced the replacement runs against the original and disables itself on
 any disagreement.
 
@@ -100,11 +100,11 @@ Vanilla writes its loading phases to the log and leaves the window blank, so a l
 frozen and the OS can mark the game unresponsive. This draws a real one: progress bar, phase name,
 elapsed time, and the same walking figure the world-loading screen uses.
 
-The bar is **learned, not counted**. The engine's phases are wildly uneven, so "step 3 of 7" would
-sit still for twenty seconds and then jump. Each phase's duration is written to
-`Zomboid/fastloading-boot.txt` and reused next launch, so from the second boot onwards the bar moves
-at a rate matching your machine. It is monotonic by construction: texture packs are announced
-throughout boot, and a bar that can retreat is worse than none.
+The bar is timed from your earlier launches rather than counted in steps. The engine's phases are
+very uneven, so "step 3 of 7" would sit still for twenty seconds and then jump. Each phase's
+duration is written to `Zomboid/fastloading-boot.txt` and reused next launch, so from the second
+boot onwards the bar moves at a rate matching your machine. It never moves backwards, by
+construction, even though texture packs keep being announced throughout boot.
 
 The figure is fetched with the same call the world-loading screen uses, so a mod that replaces that
 art is picked up here too. The engine's photosensitivity notice is hidden by default because it
@@ -118,8 +118,8 @@ upload, and it is the largest single saving measured on a heavy tile-pack list. 
 you can see it: tiles are visibly softer and capped pages lose their mipmaps, so distant ground
 shimmers. The headline numbers above are measured with it off. Try `512` first.
 
-**`meshprio`** queues animation meshes ahead of textures during boot. It does not remove work, it
-**moves** it: the menu arrives ~11 s sooner and the deferred textures become what the world load
+**`meshprio`** queues animation meshes ahead of textures during boot. It moves work instead of
+removing it: the menu arrives ~11 s sooner and the deferred textures become what the world load
 then waits on. Launch to playing, 300+ mods, interleaved:
 
 | time on the menu | `meshprio=on` | default | |
@@ -144,19 +144,13 @@ build. If you run both and something looks wrong, turn one off before reporting 
 
 ## Signing
 
-The jar ships **unsigned**, deliberately.
+The jar is **signed**, and the signing key is in ZombieBuddy's own signed author list
+([`authors/ViniciosLugli.json`](https://github.com/zed-0xff/ZombieBuddy/tree/master/authors)). So
+ZombieBuddy verifies it offline: no web request at launch, the author name shows in the approval
+dialog, and the jar is eligible for preload. ZombieBuddy still asks once before it runs any Java
+code you have not approved.
 
-ZombieBuddy verifies an unlisted author's key by fetching that author's Steam profile page on every
-launch, for every user. Any answer other than the page -- rate limit, outage, blocked connection --
-fails closed, and the approval dialog then refuses the mod with no approve button. With no
-signature at all, `ZBSVerifier.check` takes a different branch: `allowUnsignedMods` defaults to
-**true** and the user gets an ordinary one-time approval prompt. The cost is preload, which
-requires a valid signature.
-
-This key is queued at [ZombieBuddy PR #44](https://github.com/zed-0xff/ZombieBuddy/pull/44). When
-it merges, signing and preload both come back.
-
-Optimizations ships the same way for the same reason.
+Optimizations is signed the same way.
 
 ## Switches
 
@@ -172,12 +166,14 @@ updates the game.
 | `-Dfastloading.tilegeom=off` | on | parse tile geometry on the main thread |
 | `-Dfastloading.luascan=off` | on | use the engine's Lua directory scan |
 | `-Dfastloading.modwalk=off` | on | use the engine's serial mod folder walk |
+| `-Dfastloading.modinfo=off` | on | resolve each installed mod folder's paths one at a time |
+| `-Dfastloading.iothreads=N` | auto (cores-2, 1 to 8) | threads for the mod folder walk and path resolution, at least 1; try 1 or 2 on a hard disk |
 | `-Dfastloading.assets=off` | on | use the engine's 50 MB cap and 4 asset threads |
-| `-Dfastloading.assetbudget=N` | auto (`heap/2`, max 2048) | direct-buffer megabytes before a worker sleeps |
+| `-Dfastloading.assetbudget=N` | auto (`heap/2` from 4 GB of heap, `heap/4` below, min 64, max 2048) | direct-buffer megabytes before a worker sleeps |
 | `-Dfastloading.menubudget=N` | 0 (off) | direct-buffer megabytes while the menu is up. Measured null on menu responsiveness and slightly worse on world load; try 256 if your menu stutters |
 | `-Dfastloading.assetpoll=N` | 20 | milliseconds between budget re-checks |
 | `-Dfastloading.assetcache=N` | 20 | milliseconds a live-buffer reading stays reusable |
-| `-Dfastloading.assetprio=N` | 0 | asset worker thread priority, 1-10; 0 leaves the JVM default |
+| `-Dfastloading.assetprio=N` | auto (4 on 8 cores or fewer, else the JVM default) | asset worker thread priority, 1-10; 0 leaves the JVM default |
 | `-Dfastloading.uploadcap=N` | 0 | how far the render thread may fall behind on uploads while the menu is up; 0 = no limit |
 | `-Dfastloading.assetstats=on` | off | log the gate counters while they move |
 | `-Dfastloading.assetstatsms=N` | 5000 | milliseconds between those lines |
@@ -191,7 +187,7 @@ updates the game.
 | `-Dfastloading.meshprio=on` | off | queue animation meshes ahead of textures, for boot only |
 | `-Dfastloading.meshband=N` | 8 | priority the mesh raise uses |
 | `-Dfastloading.assetcap=off` | on | use the engine's 16-task in-flight asset cap |
-| `-Dfastloading.assetcapn=N` | 48 | how many asset tasks may be in flight when it is on |
+| `-Dfastloading.assetcapn=N` | auto (5 per asset thread, 16 to 48) | how many asset tasks may be in flight when it is on |
 | `-Dfastloading.assetcapms=N` | 600000 | backstop: end the raise this long after it starts, if the menu never reports |
 | `-Dfastloading.querycache=off` | on | ask the render thread again for a capability answer that cannot change |
 | `-Dfastloading.shadercache=off` | on | recompile model shaders every load |
@@ -213,6 +209,7 @@ updates the game.
 | `-Dfastloading.luaindex=off` | on | use the engine's linear scan of loaded Lua files |
 | `-Dfastloading.gunidx=off` | on | search the Gunworks tables per insert instead of indexing |
 | `-Dfastloading.lootinit=off` | on | let every mod re-run the loot parse from its own handler |
+| `-Dfastloading.menucalls=off` | on | rebuild the key-name table every time the options screen opens |
 
 On a **dedicated server** none of these apply: the jar does not load there. The two Lua parts are
 switched from Lua instead -- set `FastLoadingDisableGunIndex = true` or
@@ -223,7 +220,7 @@ switched from Lua instead -- set `FastLoadingDisableGunIndex = true` or
 ```
 art/                      the published explainer images
 java/lugli/fastloading/   the mod source, one file per part
-lua/                      the two loot fixes and the menu status report
+lua/                      the two loot fixes and the main-menu hooks
 mod.info                  the in-game manifest
 workshop.txt              the Steam listing, BBCode
 ```

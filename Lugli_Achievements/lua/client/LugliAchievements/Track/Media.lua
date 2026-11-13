@@ -13,8 +13,8 @@ local MILITARY = "Classified M1A1"
 ---
 --- getZomboidRadio() is `hasInstance() ? getInstance() : null`, and ZomboidRadio.Reset() nulls
 --- that instance on world exit. getScriptManager() is worse -- ZomboidRadio.Init() assigns it
---- null and returns early when the game mode is Client, so on a MULTIPLAYER CLIENT it is null
---- for the whole session and there is no channel list to read at all.
+--- null when the game mode is Client (ZomboidRadio.java:216-224), so on a MULTIPLAYER CLIENT it
+--- is null for the whole session and the devices below are read instead.
 ---
 --- Chaining through either raises a Lua error, and pcall does not keep that out of the log: the
 --- engine dumps the trace when the Java call throws, before pcall unwinds. An inner pcall also
@@ -37,13 +37,7 @@ local function isRadioStation(ch)
     return ch:GetCategory() == ChannelCategory.Radio
 end
 
--- No pcall around any of these: RadioChannel is on the engine's Lua whitelist and every member
--- read here is declared on it, so once the receiver is non-nil none of them can throw.
-local function credit(ch)
-    local name = ch:GetName()
-    if type(name) ~= "string" then return end
-    local isTv = ch:IsTv()
-    local radio = isRadioStation(ch)
+local function credit(name, isTv, radio)
     M.forEachLocalPlayer(function(player)
         if isTv then
             M.addUnique(player, "tv_channels", name)
@@ -61,16 +55,65 @@ local function credit(ch)
     end)
 end
 
--- Polled: there is no event for tuning a radio.
-local function onEveryTenMinutes()
-    local list = channelsList()
-    if list == nil then return end
+-- No pcall around any of these: RadioChannel is on the engine's Lua whitelist and every member
+-- read here is declared on it, so once the receiver is non-nil none of them can throw.
+local function creditChannels(list)
     for i = 0, list:size() - 1 do
         local ch = list:get(i)
         if ch ~= nil and ch:GetPlayerIsListening() then
-            credit(ch)
+            local name = ch:GetName()
+            if type(name) == "string" then credit(name, ch:IsTv(), isRadioStation(ch)) end
         end
     end
+end
+
+-- A multiplayer client has no channels, but it does have the devices and their names. The
+-- server answers RadioServerData with every channel's name, frequency and category, which
+-- addChannelName files under ChannelCategory.name() (GameClient.java:2289-2300,
+-- RadioScriptManager.java:104). The test for "listening" is the engine's own on a client,
+-- a device turned on with a player in range (ZomboidRadio.java:443-449); a held radio is the
+-- one device that is never registered, and counts while equipped (Radio.java:177-191).
+local function creditDevice(radio, data)
+    if data == nil or not data:getIsTurnedOn() then return end
+    -- nil until RadioServerData lands, and then in no category, so it is never credited.
+    local name = radio:getChannelName(data:getChannel())
+    local isTv = data:getIsTelevision()
+    -- RadioScriptManager.PlayerListensChannel only matches a channel whose IsTv agrees with the
+    -- device, so a television counts only television and a radio only the Radio category.
+    local category = radio:GetChannelList(isTv and "Television" or "Radio")
+    local listed = category ~= nil and category:containsValue(name)
+    credit(name, isTv and listed, (not isTv) and listed)
+end
+
+local function creditDevices(radio)
+    local devices = radio:getDevices()
+    for i = 0, devices:size() - 1 do
+        local device = devices:get(i)
+        if device ~= nil and device:HasPlayerInRange() then
+            creditDevice(radio, device:getDeviceData())
+        end
+    end
+    M.forEachLocalPlayer(function(player)
+        local held = player:getEquipedRadio()
+        if held ~= nil then creditDevice(radio, held:getDeviceData()) end
+    end)
+end
+
+--- The radio a multiplayer client reads its devices from, or nil when this session is not one.
+local function deviceRadio()
+    if not M.isMpClient() or getZomboidRadio == nil then return nil end
+    return getZomboidRadio()
+end
+
+-- Polled: there is no event for tuning a radio.
+local function onEveryTenMinutes()
+    local list = channelsList()
+    if list ~= nil then
+        creditChannels(list)
+        return
+    end
+    local radio = deviceRadio()
+    if radio ~= nil then creditDevices(radio) end
 end
 
 M.addHandler(PART, "EveryTenMinutes", onEveryTenMinutes)
@@ -78,12 +121,12 @@ M.addHandler(PART, "EveryTenMinutes", onEveryTenMinutes)
 -- Asked once a world exists rather than at load, and the answer holds for the session:
 -- ZomboidRadio.Init runs during IsoWorld load, well before OnGameStart.
 local h = M.addHandler(PART, "OnGameStart", function()
-    if channelsList() == nil then
-        -- A dependency, not a defect. The engine hands a multiplayer client no channel list, so
-        -- the four radio and television achievements cannot be earned there by any means.
-        M.status(PART, false, "the engine gives a multiplayer client no channel list", "dep")
-    else
+    if channelsList() ~= nil then
         M.status(PART, true)
+    elseif deviceRadio() ~= nil then
+        M.status(PART, true, "read from the radios and televisions around you")
+    else
+        M.status(PART, false, "the engine gives this session no channel list", "dep")
     end
 end)
 

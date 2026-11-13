@@ -1,6 +1,7 @@
 -- What an admin needs to know: that it loaded, what it writes, and whose progress is whose.
 -- client/ never loads in a server process, so no achievement can be earned here; Store.lua is
--- the one thing that does run, and it holds what the clients earn.
+-- the one thing that does run: it holds what the clients earn and relays the body damage only
+-- this process sees.
 require "LugliAchievements/Core"
 
 local M = LugliAchievements
@@ -13,8 +14,9 @@ function M.serverReport()
     local lines = {
         "[LugliAchievements] running as: " .. where,
         "[LugliAchievements] server-side work: it keeps each player's progress and hands it " ..
-            "back when they connect. client/ does not load here, so no tracker registers and " ..
-            "no achievement can be earned in this process.",
+            "back when they connect, and tells each player about the hunger, thirst, poison, " ..
+            "bleeding and infection damage only the server sees. client/ does not load here, " ..
+            "so no tracker registers and no achievement can be earned in this process.",
         "[LugliAchievements] definitions held in memory: " ..
             (M.isDedicatedServer() and ("0 (" .. skipped .. " refused, by design)")
                                     or tostring(#(M.getAllDefinitions and M.getAllDefinitions() or {}))),
@@ -30,15 +32,16 @@ local function announce()
     print(M.serverReport())
 end
 
-if M.isDedicatedServer() or M.isCoopHost() then
+-- A co-op host's server is a child JVM, and there it is a dedicated server like any other.
+if M.isDedicatedServer() then
     -- OnServerStarted is the honest moment: the world exists and the log is being read.
-    -- Falls back to world load, because a co-op host reaches that and may not reach the other.
     local hooked = M.addHandler(PART, "OnServerStarted", announce)
     if hooked == nil then
         hooked = M.addHandler(PART, "OnGameStart", announce)
     end
     M.status(PART, hooked ~= nil,
-             "reports on start; stores nothing server-side", hooked ~= nil and nil or "bug")
+             "reports on start; the progress store keeps each player's progress here",
+             hooked ~= nil and nil or "bug")
 else
     -- Single player and plain multiplayer clients have a server process they never see. Saying
     -- "dep" rather than failing is the difference between "not applicable" and "broken".

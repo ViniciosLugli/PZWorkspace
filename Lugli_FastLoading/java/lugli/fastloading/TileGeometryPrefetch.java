@@ -25,17 +25,25 @@ public final class TileGeometryPrefetch {
     public static volatile Thread worker;
     public static volatile boolean failed;
     public static volatile boolean consumed;
+    public static volatile boolean served;
     public static volatile long parseMs;
 
     private TileGeometryPrefetch() {}
 
+    /** For the menu handover line, so a part that did nothing says so. */
+    public static String status() {
+        if (!ON) return "off";
+        if (failed) return ScriptParse.ON ? "DEFECT" : "idle: needs the script parser fix, which is off";
+        if (served) return "ok, parsed off the main thread in " + parseMs + " ms";
+        if (consumed) return "DEFECT: the prefetch was never consumed";
+        return worker == null ? "idle: not started" : "pending: started, not yet consumed";
+    }
+
     public static void start() {
         if (!ON || worker != null || failed) return;
 
-        /**
-         * HARD DEPENDENCY: this parse runs off the main thread, and ScriptParser is only thread safe
-         * because ScriptParse replaces its shared static buffer. If that patch is off, so is this.
-         */
+        // HARD DEPENDENCY: this parse runs off the main thread, and ScriptParser is only thread safe
+        // because ScriptParse replaces its shared static buffer. If that patch is off, so is this.
         if (!ScriptParse.ON || ScriptParse.broken) {
             failed = true;
             DebugLog.log(TAG + " not started: the thread-safe script parser is unavailable");
@@ -77,19 +85,43 @@ public final class TileGeometryPrefetch {
         }
     }
 
-    /** true tells the advice to skip the engine's parse, because the worker already did it. */
+    /**
+     * true tells the advice to skip the engine's parse, because the worker already did it.
+     *
+     * The wait is uninterruptible on purpose. Giving up on an interrupt would let the engine
+     * parse into the manager while the worker is still adding to it. And a worker that failed
+     * part way has left some of its data in the manager, so that is cleared before the engine
+     * parses, or the fall back to stock would duplicate it.
+     */
     public static boolean join() {
         if (!ON || worker == null || consumed) return false;
         consumed = true;
-        try {
-            worker.join();
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            return false;
+        awaitWorker();
+        if (!failed) {
+            served = true;
+            DebugLog.log(TAG + " tileGeometry.txt parsed off the main thread in " + parseMs + " ms");
+            return true;
         }
-        if (failed) return false;
-        DebugLog.log(TAG + " tileGeometry.txt parsed off the main thread in " + parseMs + " ms");
-        return true;
+        try {
+            TileGeometryManager.getInstance().Reset();
+        } catch (Throwable e) {
+            DebugLog.log(TAG + " DEFECT: could not clear the failed prefetch (" + e + ")");
+        }
+        return false;
+    }
+
+    /** Waits for the worker to finish, keeping any interrupt for the caller afterwards. */
+    public static void awaitWorker() {
+        boolean interrupted = false;
+        while (true) {
+            try {
+                worker.join();
+                break;
+            } catch (InterruptedException e) {
+                interrupted = true;
+            }
+        }
+        if (interrupted) Thread.currentThread().interrupt();
     }
 
     /**
@@ -100,13 +132,12 @@ public final class TileGeometryPrefetch {
         if (!ON || worker == null || consumed) return;
         consumed = true;
         DebugLog.log(TAG + " DEFECT: prefetch was not consumed, rebuilding tile geometry cleanly");
+        awaitWorker();
         try {
-            worker.join();
             TileGeometryManager mgr = TileGeometryManager.getInstance();
             mgr.Reset();
             mgr.init();
         } catch (Throwable e) {
-            if (e instanceof InterruptedException) Thread.currentThread().interrupt();
             DebugLog.log(TAG + " rebuild failed (" + e + ")");
         }
     }

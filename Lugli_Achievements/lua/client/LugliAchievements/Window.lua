@@ -750,7 +750,7 @@ local function ensureClass()
             local bh = math.max(2, math.floor(m.bodyH * 0.2))
             local by = y + cell - bh - 2
             local bx, bw = x + pad, cell - pad * 2
-            self:drawRect(bx, by, bw, bh, 0.40, 0.18, 0.18, 0.18)
+            self:drawRect(bx, by, bw, bh, 0.85, 0.22, 0.22, 0.23)
             if f > 0 then
                 self:drawRect(bx, by, math.floor(bw * f), bh, 0.95, tier.r, tier.g, tier.b)
             end
@@ -832,22 +832,28 @@ local function ensureClass()
                            or M.text("UI_LugliAch_window_world", "This world")
         self:drawText(scopeLabel, hx, m.title + m.pad,
                       N.textDim.r, N.textDim.g, N.textDim.b, 1, m.font.body)
-        local head = s.unlocked .. " / " .. s.total .. " " .. s.percent .. "%"
-        self:drawText(head, hx, m.title + m.pad + m.bodyH,
-                      N.text.r, N.text.g, N.text.b, 1, m.font.head)
+        -- The count and the percentage are two figures, drawn apart: run together in one font,
+        -- "2 / 282 0%" read as "2820%".
+        local headY = m.title + m.pad + m.bodyH
+        local bodyY = headY + math.floor((m.headH - m.bodyH) / 2)
+        local head = s.unlocked .. " / " .. s.total
+        self:drawText(head, hx, headY, N.text.r, N.text.g, N.text.b, 1, m.font.head)
+        local px = hx + N.width(head, m.font.head) + m.pad * 2
+        local pct = s.percent .. "%"
+        self:drawText(pct, px, bodyY, N.accent.r, N.accent.g, N.accent.b, 1, m.font.body)
         -- What earlier survivors in this save earned and this one has not. The achievements
         -- earned by dying can only appear here for most saves.
         if s.inSave > s.unlocked then
             local extra = "+" .. (s.inSave - s.unlocked) .. " "
                 .. M.text("UI_LugliAch_window_earlier", "earned by earlier survivors")
-            self:drawText(extra, hx + N.width(head, m.font.head) + m.pad,
-                          m.title + m.pad + m.bodyH + math.floor((m.headH - m.bodyH) / 2),
+            self:drawText(extra, px + N.width(pct, m.font.body) + m.pad * 2, bodyY,
                           N.textDim.r, N.textDim.g, N.textDim.b, 1, m.font.body)
         end
 
         local barY = m.gridY - m.bar - m.pad
         local barW = self.width - hx - m.pad
-        self:drawRect(hx, barY, barW, m.bar, 0.45, 0.16, 0.16, 0.17)
+        -- A visible track, so a short fill reads as "a little way along" rather than a stray mark.
+        self:drawRect(hx, barY, barW, m.bar, 0.9, 0.24, 0.24, 0.26)
         if s.total > 0 and s.inSave > 0 then
             self:drawRect(hx, barY, math.floor(barW * (s.inSave / s.total)), m.bar,
                           0.45, N.accent.r, N.accent.g, N.accent.b)
@@ -896,7 +902,9 @@ local function ensureClass()
         local dy = self.height - m.detail
         local paneH = m.detail - m.pad
         N.inner(self, m.gridX - 2, dy, m.gridW + 4, paneH, 0.55)
-        local d = self.selected
+        -- With nothing picked, the tile under the cursor previews here, so reading a row needs no
+        -- click; a pick still pins its own row while the cursor wanders.
+        local d = self.selected or self.hoverRow
         local tx2 = m.gridX + m.pad
         local blockH = m.headH + m.bodyH * 2 + m.bar + m.pad
         local top = dy + math.max(m.pad, math.floor((paneH - blockH) / 2))
@@ -953,7 +961,7 @@ local function ensureClass()
             if not hidden and not unlocked and d.target and d.target > 1 then
                 local by = top + m.headH + m.bodyH * 2 + math.floor(m.pad / 2)
                 local bw = m.gridX + m.gridW - m.pad - tx2
-                self:drawRect(tx2, by, bw, m.bar, 0.5, 0.16, 0.16, 0.17)
+                self:drawRect(tx2, by, bw, m.bar, 0.9, 0.24, 0.24, 0.26)
                 local f = M.getProgressFraction(player, d)
                 if f > 0 then
                     self:drawRect(tx2, by, math.floor(bw * f), m.bar, 1, tier.r, tier.g, tier.b)
@@ -1028,11 +1036,13 @@ function M.toggleWindow(playerNum)
             pcall(function()
                 local uis = UIManager.getUI()
                 if uis ~= nil then
+                    -- getUI holds the JAVA elements; the Lua window is getTable() of one.
                     for i = uis:size() - 1, 0, -1 do
                         local ui = uis:get(i)
-                        if ui ~= nil and (ui.Type == "LugliAchWindow" or ui == instance) then
-                            ui:setVisible(false)
-                            ui:removeFromUIManager()
+                        local t = ui ~= nil and ui:getTable() or nil
+                        if t ~= nil and t.Type == "LugliAchWindow" then
+                            t:setVisible(false)
+                            t:removeFromUIManager()
                         end
                     end
                 end
@@ -1078,7 +1088,7 @@ end
 
 function M.isWindowOpen()
     if instance == nil then return false end
-    local ok, visible = pcall(function() return instance:isVisible() end)
+    local ok, visible = pcall(instance.isVisible, instance)
     if not ok or visible == false then
         M.forgetWindow(instance)
         return false

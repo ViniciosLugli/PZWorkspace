@@ -93,8 +93,22 @@ local function fallbackToCharacter()
                           "and is lost when they die. The server needs this mod too", "dep")
 end
 
+--- Damage the server saw and this client never raises (Store.lua). Every split-screen player
+--- shares the one connection, so the packet names which of them it hit.
+local function onDamageRelayed(packet)
+    if type(packet) ~= "table" or type(packet.type) ~= "string" then return end
+    M.forEachLocalPlayer(function(player)
+        if player:getOnlineID() == packet.id then M.deliverDamage(player, packet.type) end
+    end)
+end
+
 local function onServerCommand(module, command, packet)
-    if module ~= M.NET_MODULE or command ~= "data" then return end
+    if module ~= M.NET_MODULE then return end
+    if command == "damage" then
+        onDamageRelayed(packet)
+        return
+    end
+    if command ~= "data" then return end
     -- The server answers every request, and the retries sent before its first reply arrived
     -- produce more of them. Each carries the copy as it was BEFORE anything flushed since, so
     -- adopting a second one would roll back an achievement earned in between.
@@ -153,6 +167,15 @@ M.addHandler(PART, "EveryOneMinute", onEveryOneMinute)
 M.addHandler(PART, "EveryTenMinutes", onEveryTenMinutes)
 M.addHandler(PART, "OnPlayerDeath", flush)
 M.addHandler(PART, "OnDisconnect", flush)
+
+-- Quitting disconnects BEFORE anything Lua hears about it: IngameState calls doDisconnect and
+-- only then GameWindow.save, so OnSave and OnDisconnect both come too late and counters since the
+-- last ten-minute flush were lost on every quit. Every quit goes through the pause menu, so its
+-- key is the last moment still connected. A clean store sends nothing.
+local function onKeyPressed(key)
+    if Keyboard ~= nil and key == Keyboard.KEY_ESCAPE then flush() end
+end
+M.addHandler(PART, "OnKeyPressed", onKeyPressed)
 
 local chained = false
 

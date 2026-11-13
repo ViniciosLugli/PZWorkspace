@@ -31,17 +31,19 @@ import zombie.iso.areas.IsoRoom;
  *
  * `warmUp = true` on the three IsoRoom patches replaces that luck with the supported mechanism:
  * PatchEngine:630 issues `Class.forName` immediately after `installOn`, inside PREMAIN. Safe here
- * beyond doubt -- IsoRoom's entire `<clinit>` is one `new ArrayList()`.
+ * beyond doubt -- IsoRoom's entire `<clinit>` is one `new ArrayList()`. Main.loadPatchTargets now
+ * also runs from PreMain, before the install, so IsoRoom is already loaded and is retransformed
+ * rather than caught as a new load; warmUp stays as the second route.
  *
  * WHAT IT IS WORTH, so nobody quotes it: with the patch live it recorded 337,953 adds across
  * 3,592 rooms with `duplicates=0`. ~94 squares/room means the ArrayList scan it replaces costs
  * N(N-1)/2 ~= 4,371 comparisons per room, ~15.7 M per run, ~16 ms spread over ~11,930 frames --
  * about 0.0013 ms/frame. `duplicates=0` means every one of those scans ran to full length and
  * returned false, i.e. this is the WORST case for the vanilla code and it is still negligible.
- * This part ships because a hash lookup is the right shape and it verifies itself, NOT for speed
+ * This part ships because a hash lookup is the right shape and it verifies itself, NOT for speed.
  * Do not spend a frame A/B on it; the effect is an order of magnitude below the noise floor.
  *
- * THE WASTE (zombie/iso/areas/IsoRoom.java:162-166)
+ * THE WASTE (zombie/iso/areas/IsoRoom.java:193-197)
  *
  *   public void addSquare(IsoGridSquare sq) {
  *       if (!this.squares.contains(sq)) {
@@ -69,12 +71,12 @@ import zombie.iso.areas.IsoRoom;
  *   substitute.
  *
  *   Insertion ORDER is also preserved, and would be safe to change anyway: every read of
- *   `squares` is `isEmpty()` or `get(Rand.Next(size))` (`IsoRoom.java:299, 318-488`).
+ *   `squares` is `isEmpty()` or `get(Rand.Next(size))` (`IsoRoom.java:328, 347-517`).
  *
  * WHY THE INDEX MUST SELF-HEAL
- *   `IsoRoom.squares` is a `public final ArrayList` (`:49`) and it is mutated behind this
- *   method's back: `removeSquare` (`:241`), and two external `isoRoom.squares.clear()` calls in
- *   `BREBuilding.java:265` and `WorldRegionToMetaGrid.java:456`. A side index that trusted itself
+ *   `IsoRoom.squares` is a `public final ArrayList` (`:51`) and it is mutated behind this
+ *   method's back: `removeSquare` (`:272`), and the direct `squares.clear()` calls in
+ *   `refreshSquares` (`:206`) and `clear` (`:709`). A side index that trusted itself
  *   would drift, and the failure would be silent -- a square missing from a room changes which
  *   squares that room can pick for spawns, and nothing crashes.
  *
@@ -148,7 +150,7 @@ public final class RoomSquareIndex {
             if (present != truth) {
                 broken = true;
                 INDEX.clear();
-                System.out.println("[Lugli/roomindex] DISARMED: index said " + present
+                System.out.println("[Lugli/Opt/roomindex] DISARMED: index said " + present
                         + " but the list said " + truth + " -- falling back to the engine scan");
                 return false;
             }
@@ -189,14 +191,14 @@ public final class RoomSquareIndex {
         return set;
     }
 
-    /** Drop the whole index. Rooms do not outlive their world, and neither should this. */
     /**
      * World-teardown count. Legitimately 0 in any run that never leaves a world, which is why
-     * PatchAudit reports this one as UNKNOWN rather than "not installed" when it reads zero --
+     * PatchAudit reports this one as COLD rather than "not installed" when it reads zero --
      * a benchmark route that ends at the desktop never triggers IngameState.exit.
      */
     public static long resets = 0L;
 
+    /** Drop the whole index. Rooms do not outlive their world, and neither should this. */
     public static void reset() {
         resets++;
         INDEX.clear();
@@ -234,21 +236,16 @@ public final class RoomSquareIndex {
     }
 
     /**
-     * DISCRIMINATOR, not an optimization.
-     *
-     * `addSquare` reported invocations=0 across six runs while its call site at
-     * `IsoChunk.java:2828` is demonstrably live -- inside `loadInMainThread`, inside the
-     * `Recalc Nav` probe, guarded only by `sq.getRoom() != null`. Two explanations remain and
-     * they need different fixes: either ZombieBuddy is not instrumenting this class at all, or
-     * the class is instrumented and `addSquare` genuinely never runs on this route.
+     * DISCRIMINATOR, not an optimization: PatchAudit's control row for every IsoRoom advice.
      *
      * `getBuilding()` is a one-line public getter on the SAME class that the engine calls
      * constantly. If its counter moves while addSquare's stays at zero, the class is patchable
      * and the call site is the problem. If both stay at zero, the class is not being patched and
-     * no amount of work on this file will help.
+     * no amount of work on this file will help. That is how the eleven dark runs in the class
+     * javadoc were diagnosed.
      *
-     * The `[ZB] patching ...` log line cannot answer this: `zombie.iso.IsoChunk` appears nowhere
-     * in a 96-line patch list while our IsoChunk advice demonstrably ran in that same session.
+     * The `[ZB] patching ...` log line cannot answer this: it is not emitted for every patch, so
+     * its absence proves nothing.
      */
     public static long probeGetBuilding = 0L;
 

@@ -1,6 +1,7 @@
 package lugli.fastloading;
 
 import me.zed_0xff.zombie_buddy.Patch;
+import se.krka.kahlua.integration.annotations.LuaMethod;
 
 /**
  * Lets a texture the player just asked for overtake the boot backlog. -Dfastloading.demandprio=off.
@@ -78,21 +79,20 @@ public final class DemandPriority {
     public static final long DEMAND_WINDOW_MS =
             Long.getLong("fastloading.demandwindow", 2000L);
 
+    private DemandPriority() {}
+
     /** True shortly after the player asked for a texture. Public: read from inlined advice. */
     public static boolean demandPending() {
         long t = lastDemandAt;
         return t != 0L && System.currentTimeMillis() - t < DEMAND_WINDOW_MS;
     }
 
-    private DemandPriority() {}
-
     /**
      * Counters, for proving the advice actually ran. A patched-class line in the log does not
      * mean an advice fired, and an advice firing does not mean its argument write-back reached
      * the callee -- both fail silently, so a counter is the only evidence the rewrite happened.
      */
-    @se.krka.kahlua.integration.annotations.LuaMethod(
-            name = "FastLoading_DemandStatus", global = true)
+    @LuaMethod(name = "FastLoading_DemandStatus", global = true)
     public static String status() {
         if (!ON) {
             return "off";

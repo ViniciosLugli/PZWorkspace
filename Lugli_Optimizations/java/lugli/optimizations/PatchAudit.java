@@ -1,7 +1,9 @@
 package lugli.optimizations;
 
 import se.krka.kahlua.integration.annotations.LuaMethod;
+import zombie.GameWindow;
 import zombie.debug.DebugLog;
+import zombie.gameStates.IngameState;
 
 /**
  * Did each advice actually install? One block, every patch, checkable without the dev mod.
@@ -27,9 +29,10 @@ import zombie.debug.DebugLog;
  *     engine calls constantly established that the CLASS was uninstrumented rather than the call
  *     site being wrong.
  *
- * THE THREE-STATE VERDICT, and why two was a lie
+ * THE FOUR-STATE VERDICT, and why two was a lie
  *   The old file printed `NOT FIRED  <-- patch did not install`. It could not know that. A zero
- *   is consistent with three different worlds and they need opposite fixes:
+ *   is consistent with three different worlds and they need opposite fixes, plus the honest
+ *   answer when none can be told apart:
  *
  *     FIRED          the advice bytecode is in the engine method and was reached. Proven.
  *     NOT INSTALLED  zero here, but a control probe on the SAME CLASS is non-zero. Proven absent.
@@ -64,7 +67,7 @@ public final class PatchAudit {
     /** Emit the block once, after enough frames that the counters mean something. */
     private static final long ANNOUNCE_AT = 1200L;
 
-    public static long ticks = 0L;
+    private static long ticks = 0L;
     private static boolean announced = false;
 
     /**
@@ -74,6 +77,11 @@ public final class PatchAudit {
      */
     public static void tick() {
         if (announced) {
+            return;
+        }
+        // In-game frames only: UIManager also ticks on the loading screen, where IsoRoom.getBuilding
+        // has fired but addSquare has not yet, which read as a false NOT INSTALLED.
+        if (!(GameWindow.states.current instanceof IngameState)) {
             return;
         }
         if (++ticks < ANNOUNCE_AT) {
@@ -92,7 +100,7 @@ public final class PatchAudit {
      * this mod ships no Lua at all, so the previous arrangement made the audit reachable only
      * through Lugli_Dev.
      */
-    public static void emit() {
+    private static void emit() {
         String[] lines = report().split("\n");
         for (int i = 0; i < lines.length; i++) {
             DebugLog.log(lines[i]);
@@ -139,7 +147,7 @@ public final class PatchAudit {
      * Every @Patch this mod declares, eleven of them across ten distinct engine methods --
      * `zombie.gameStates.IngameState.exit` carries two advices, one from each of ChunkLuaSpread
      * and RoomSquareIndex, which is why ten methods need eleven pinned lines. Keep this list and
-     * tools/expected-patches-Optimizations.txt in step; a patch that is pinned but unaudited is
+     * src/Optimizations/test/expected-patches.txt in step; a patch that is pinned but unaudited is
      * exactly how ZExtents went dark for fifteen runs.
      */
     @LuaMethod(name = "Lugli_PatchAudit", global = true)
@@ -152,13 +160,8 @@ public final class PatchAudit {
         sb.append('\n').append(row("ChunkLuaSpread.triggerEvent",
                 "zombie.Lua.LuaEventManager|triggerEvent",
                 ChunkLuaSpread.invTrigger, NO_CONTROL, false));
-        // PROVEN UNREACHABLE on this install (2026-08-25). A control probe on IsoChunk.update --
-        // same class, no overloads, called every frame per loaded chunk -- ALSO read zero, and the
-        // log carries no `Transformed: zombie.iso.IsoChunk` line for any mod in the whole run.
-        // IsoChunk loads BEFORE loadMods, so it needs the explicit-retransform path, and
-        // PatchEngine.java:220's `break` caps that at ONE already-loaded class per mod. Neither
-        // warmUp nor PRELOAD_FOR_PATCHING can help: Class.forName on an already-loaded class is a
-        // no-op. Kept as a row so the zero stays visible rather than being quietly dropped.
+        // Runs every in-game frame, so a zero here after the announce delay means the advice is
+        // absent. It once was, because IsoCell loaded mid-install (Main.loadPatchTargets).
         sb.append('\n').append(row("ChunkLuaSpread.cellUpdate",
                 "zombie.iso.IsoCell|updateInternal",
                 ChunkLuaSpread.invDrain, NO_CONTROL, false));
@@ -169,9 +172,11 @@ public final class PatchAudit {
         sb.append('\n').append(row("RoomSquareIndex.addSquare",
                 "zombie.iso.areas.IsoRoom|addSquare",
                 RoomSquareIndex.invocations, roomControl, false));
+        // Reached only when a chunk unloads (IsoChunk.java:3220, :5328), which a reopened save
+        // may not do before the announce: a zero is COLD, not absence. addSquare is the proof.
         sb.append('\n').append(row("RoomSquareIndex.removeSquare",
                 "zombie.iso.areas.IsoRoom|removeSquare",
-                RoomSquareIndex.removals, roomControl, false));
+                RoomSquareIndex.removals, roomControl, true));
         sb.append('\n').append(row("RoomSquareIndex.getBuilding (control)",
                 "zombie.iso.areas.IsoRoom|getBuilding",
                 CONTROLS ? RoomSquareIndex.probeGetBuilding : 0L, NO_CONTROL, !CONTROLS));
@@ -193,11 +198,6 @@ public final class PatchAudit {
         sb.append('\n').append(row("ZExtents.calculateZExtents",
                 "zombie.iso.IsoChunkMap|calculateZExtentsForChunkMap",
                 ZExtents.invocations, NO_CONTROL, false));
-
-        // KahluaGet was a measurement part. It answered its question on 2026-08-25 -- 31,023
-        // tableget calls/frame against the 230,414 needed to clear 1.0 ms -- and was deleted with
-        // the idea. Its counters are not kept as a permanent diagnostic because
-        // observe mode cost one extra map probe per Lua table read, i.e. ~31k/frame.
 
         sb.append('\n').append("  -- modes: windgate=").append(WindGate.MODE)
           .append(" zextents=").append(ZExtents.MODE)

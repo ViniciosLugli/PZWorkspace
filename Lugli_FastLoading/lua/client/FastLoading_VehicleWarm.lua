@@ -5,8 +5,8 @@
 -- waits for all of it. Doing the same work here means Texture.getSharedTexture has already
 -- cached each one, so the world-load call queues nothing.
 --
--- Java side: lugli.fastloading.VehicleTextureWarm, which feeds a few scripts per tick and backs
--- off while decoded textures are waiting on the render thread. Queueing them all in one call
+-- Java side: lugli.fastloading.VehicleTextureWarm, which feeds a slice of scripts per interval
+-- and backs off while decoded textures are waiting on the render thread. Queueing them all in one call
 -- parks every asset worker on the buffer budget, which is what made mod thumbnails and the
 -- options screen slow to appear. Disabled by -Dfastloading.vehtex=off.
 --
@@ -31,8 +31,11 @@ tick = function()
     if ticks < DELAY_TICKS then return end
 
     -- Absent without ZombieBuddy, which is a supported configuration: the Lua half of this mod
-    -- works alone and the game loads the textures where it always did.
+    -- works alone and the game loads the textures where it always did. Said once, because a
+    -- player who expected the engine patches reads the log to find out why they are missing.
     if type(FastLoading_WarmVehicleTextures) ~= "function" then
+        print("[FastLoading] Java patches NOT loaded (ZombieBuddy absent or too old); "
+            .. "only the Lua parts run")
         stop()
         return
     end
@@ -46,6 +49,6 @@ tick = function()
     end
 end
 
--- OnFETick is the front-end tick (MainScreenState.java:671). OnTickEvenPaused comes from
+-- OnFETick is the front-end tick (MainScreenState.java:677). OnTickEvenPaused comes from
 -- IngameState, which does not exist at the menu, so it would never fire here.
 Events.OnFETick.Add(tick)

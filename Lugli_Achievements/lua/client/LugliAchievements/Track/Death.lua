@@ -68,8 +68,12 @@ local function nearAnimal(player)
     return false
 end
 
+--- Only a type that can explain a death is latched. BodyDamage raises POISON, HUNGRY, SICK,
+--- BLEEDING, THIRST and HEAVYLOAD in that order in one update, so latching all of them let a
+--- heavy bag overwrite the starvation that was actually killing the survivor.
 local function onDamage(character, damageType)
     if type(damageType) ~= "string" then return end
+    if CAUSE_STAT[damageType] == nil and damageType ~= "WEAPONHIT" then return end
     local i = M.playerIndex(character)
     if i == nil then return end
     lastCause[i] = damageType
@@ -110,10 +114,16 @@ local function onDrinkStart(action)
     if isBleach(action) then action[BLEACH_FLAG] = true end
 end
 
+-- Bleach kills within hours or not at all. Without a limit, a survivor who lived through a sip
+-- was credited on whatever killed them years later, and so was every later survivor sharing the
+-- per-world store.
+local BLEACH_WINDOW_HOURS = 48
+
+--- The latch holds the world hour of the drink, never 0, so "drank at hour zero" still reads.
 local function onDrinkDone(action)
     if action == nil or action.character == nil then return end
     if action[BLEACH_FLAG] ~= true and not isBleach(action) then return end
-    M.setStat(action.character, "drank_bleach", 1)
+    M.setStat(action.character, "drank_bleach", math.max(M.worldHours(), 0.001))
 end
 
 local function onDeath(player)
@@ -156,10 +166,14 @@ local function onDeath(player)
         M.setStat(player, "died_zombified", 1)
     end
 
-    -- No time window on bleach: the drink is the cause of death however long it took, which is
-    -- the whole reason it is not on the cause latch.
-    if M.getStat(player, "drank_bleach") > 0 then
-        M.setStat(player, "died_bleach", 1)
+    -- Not on the cause latch: the poison takes hours to kill, far past CAUSE_WINDOW_HOURS. Saves
+    -- from before the window hold 1 here, which reads as a drink at hour one and lapses.
+    local drank = M.getStat(player, "drank_bleach")
+    if drank > 0 then
+        if M.worldHours() - drank <= BLEACH_WINDOW_HOURS then
+            M.setStat(player, "died_bleach", 1)
+        end
+        M.setStat(player, "drank_bleach", 0)
     end
 
     -- Hypothermia is a moodle at maximum rather than a damage type. MoodleType is a Java-backed
@@ -178,7 +192,7 @@ local function onDeath(player)
     end
 end
 
-M.addHandler(PART, "OnPlayerGetDamage", onDamage)
+M.onPlayerDamage(PART, onDamage)
 M.addHandler(PART, "OnPlayerDeath", onDeath)
 
 -- Wrapped at OnGameStart so the copy chained is whatever is current after every mod has had its

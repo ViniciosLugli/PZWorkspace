@@ -59,10 +59,11 @@ public final class WatcherGate {
         return Tuning.isSkippableWatchRoot(start.toString(), java.io.File.separatorChar);
     }
 
-    /** For the status panel, so a part that did nothing is visible rather than silent. */
+    /** For the menu handover line and the Lua bridge, so a part that did nothing says so. */
     public static String status() {
         if (!ON) return "off";
         if (Core.debug) return "inactive: -Ddebug=true, hot reload is in use";
+        if (skipped + kept == 0) return Main.NEEDS_PRELOAD;
         return "ok, " + skipped + " media trees skipped, " + kept + " kept";
     }
 

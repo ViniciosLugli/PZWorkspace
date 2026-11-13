@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import me.zed_0xff.zombie_buddy.Patch;
@@ -27,11 +26,15 @@ public final class ModWalkPrefetch {
     public static final boolean ON = !"off".equals(System.getProperty("fastloading.modwalk"));
 
     // public: these bodies are inlined into zombie.* classes and read from there.
-    public static final ConcurrentHashMap<String, Future<ArrayList<String>>> PENDING = new ConcurrentHashMap<>();
+    public static final ConcurrentHashMap<String, Future<List<String>>> PENDING = new ConcurrentHashMap<>();
     public static volatile boolean started;
     public static volatile boolean broken;
     public static volatile boolean verified;
+    public static volatile boolean bootDone;
     public static volatile int served;
+    /** The loadMods pass the walks were computed for, and how far through it the engine is. */
+    public static volatile List<String> bootMods;
+    public static volatile int bootCalls;
     public static Field F_LOADLIST;
 
     /** A self-test on a handful of files is not evidence; hold out for a real tree. */
@@ -39,19 +42,24 @@ public final class ModWalkPrefetch {
 
     private ModWalkPrefetch() {}
 
+    /** For the menu handover line, so a part that did nothing says so. */
+    public static String status() {
+        if (!ON) return "off";
+        if (broken) return "DEFECT";
+        if (!started) return "idle: no loadMod call reached it";
+        return "ok, " + served + " mod tree(s) served from the pool"
+             + (verified ? "" : ", never verified on a tree of " + MIN_VERIFY_ENTRIES + "+ entries");
+    }
+
     /** Kicked off from the first loadMod call, which still runs normally. */
     public static void start() {
-        if (!ON || started || broken) return;
+        if (!ON || started || broken || bootDone) return;
         started = true;
         try {
-            ArrayList<String> modIDs = ZomboidFileSystem.instance.getModIDs();
-            int cores = Runtime.getRuntime().availableProcessors();
-            int threads = Math.max(2, Math.min(8, cores - 2));
-            ExecutorService pool = Executors.newFixedThreadPool(threads, r -> {
-                Thread t = new Thread(r, "FastLoading-modwalk");
-                t.setDaemon(true);
-                return t;
-            });
+            List<String> modIDs = new ArrayList<>(ZomboidFileSystem.instance.getModIDs());
+            bootMods = modIDs;
+            int threads = PrefetchPool.threads();
+            ExecutorService pool = PrefetchPool.create("FastLoading-modwalk", threads);
 
             int roots = 0;
             for (int i = 0; i < modIDs.size(); i++) {
@@ -74,7 +82,7 @@ public final class ModWalkPrefetch {
         String key = root.getAbsolutePath();
         if (PENDING.containsKey(key)) return 0;
         PENDING.put(key, pool.submit(() -> {
-            ArrayList<String> out = new ArrayList<>();
+            List<String> out = new ArrayList<>();
             walk(root, out);
             return out;
         }));
@@ -97,21 +105,61 @@ public final class ModWalkPrefetch {
         }
     }
 
+    /**
+     * The walks are a snapshot of the loadMods pass that started them. Core.ResetLua (a server
+     * join among them) and IngameState.exit run loadMods again, after mod files may have
+     * changed, and a stale walk there changes the script file list the server checksums. So the
+     * walks serve only that pass: each loadMod must be the next mod of bootMods, in order, and
+     * the pass ends at the exit of its last loadMod, or at the first one that throws or deviates.
+     */
+    public static void enterMod(String modId) {
+        start();
+        if (bootDone || !started) return;
+        List<String> boot = bootMods;
+        int i = bootCalls;
+        if (boot == null || i >= boot.size() || !boot.get(i).equals(modId)) {
+            endBoot("loadMod(" + modId + ") is not call " + i + " of the boot pass");
+            return;
+        }
+        bootCalls = i + 1;
+    }
+
+    public static void exitMod(Throwable thrown) {
+        if (bootDone) return;
+        if (thrown != null) {
+            endBoot("loadMod threw " + thrown);
+            return;
+        }
+        List<String> boot = bootMods;
+        if (boot == null || bootCalls >= boot.size()) endBoot(null);
+    }
+
+    public static void endBoot(String why) {
+        if (bootDone) return;
+        bootDone = true;
+        int left = PENDING.size();
+        PENDING.clear();
+        if (why != null || left > 0) {
+            DebugLog.log(TAG + " boot walk disarmed after " + bootCalls + " loadMod call(s), "
+                         + left + " unserved walk(s) discarded" + (why == null ? "" : " (" + why + ")"));
+        }
+    }
+
     /** true tells the advice to skip the engine's walk, because the pool already did it. */
     public static boolean serve(Object self, File fo) {
-        if (!ON || broken || PENDING.isEmpty()) return false;
+        if (!ON || broken || bootDone || PENDING.isEmpty()) return false;
         try {
-            Future<ArrayList<String>> f = PENDING.remove(fo.getAbsolutePath());
+            Future<List<String>> f = PENDING.remove(fo.getAbsolutePath());
             if (f == null) return false;
 
-            ArrayList<String> result = f.get();
+            List<String> result = f.get();
 
             // Verify EVERY root served until one is big enough to be real evidence. A
             // previous version stopped at the first root, which happened to hold 6 files
             // and proved nothing. Re-walking a small tree costs almost nothing, and this
             // decides mod override precedence, so it is worth being sure.
             if (!verified) {
-                ArrayList<String> serial = new ArrayList<>();
+                List<String> serial = new ArrayList<>();
                 walk(fo, serial);
                 if (!serial.equals(result)) {
                     broken = true;
@@ -127,7 +175,7 @@ public final class ModWalkPrefetch {
             }
 
             @SuppressWarnings("unchecked")
-            ArrayList<String> loadList = (ArrayList<String>)list(self);
+            List<String> loadList = (List<String>)list(self);
             loadList.addAll(result);
             served++;
             return true;
@@ -148,7 +196,11 @@ public final class ModWalkPrefetch {
 
     @Patch(className = "zombie.ZomboidFileSystem", methodName = "loadMod")
     public static class Kick {
-        @Patch.OnEnter public static void in() { ModWalkPrefetch.start(); }
+        @Patch.OnEnter
+        public static void in(@Patch.Argument(0) String modId) { ModWalkPrefetch.enterMod(modId); }
+
+        @Patch.OnExit(onThrowable = Throwable.class)
+        public static void out(@Patch.Thrown Throwable thrown) { ModWalkPrefetch.exitMod(thrown); }
     }
 
     @Patch(className = "zombie.ZomboidFileSystem", methodName = "searchFolders")

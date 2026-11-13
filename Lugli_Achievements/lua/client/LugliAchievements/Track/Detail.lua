@@ -177,11 +177,21 @@ local function onAnimal(self)
     end
 end
 
-local function onSafehouse()
-    M.forEachLocalPlayer(function(player) M.setStat(player, "safehouse_claimed", 1) end)
+--- The event fires for every safehouse change on the server, anyone's, so it is only the cue to
+--- look: the credit goes to a player who now owns one. Claiming exists only in multiplayer.
+local function creditOwner(player)
+    local user = player:getUsername()
+    if type(user) ~= "string" or user == "" then return end
+    local ok, house = pcall(SafeHouse.getSafehouseByOwner, user)
+    if ok and house ~= nil then M.setStat(player, "safehouse_claimed", 1) end
 end
 
-M.addHandler(PART, "OnPlayerGetDamage", onDamage)
+local function onSafehouse()
+    if SafeHouse == nil then return end
+    M.forEachLocalPlayer(creditOwner)
+end
+
+M.onPlayerDamage(PART, onDamage)
 M.addHandler(PART, "EveryHours", onEveryHours)
 M.addHandler(PART, "OnSafehousesChanged", onSafehouse)
 

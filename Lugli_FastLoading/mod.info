@@ -11,4 +11,4 @@ incompatible=PZFixPack
 javaJarFile=media/java/client/FastLoading.jar
 javaPkgName=lugli.fastloading
 javaPreload=true
-ZBVersionMin=2.3.2
+ZBVersionMin=2.3.4

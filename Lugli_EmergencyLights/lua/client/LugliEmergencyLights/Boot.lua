@@ -32,8 +32,7 @@ do
     end
 
     M.addHandler(PART, "OnGameStart", function()
-        -- Before any part reads a number: sandbox values are fixed for a world's life, and this is
-        -- the only moment they can change.
+        -- Before any part reads a number, so nothing reads the previous world's sandbox values.
         M.resetConfig()
         local ok, bad, pending = summary()
         -- THE BUILD STAMP LEADS, because every other line here is worthless if the code that printed

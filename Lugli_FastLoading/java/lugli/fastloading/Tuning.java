@@ -8,6 +8,31 @@ public final class Tuning {
     public static final long MIN_BUDGET = 64L * 1024 * 1024;
     public static final long MAX_BUDGET = 2048L * 1024 * 1024;
 
+    /** Below this max heap the budget takes a quarter instead of half: Steam's stock -Xmx3g. */
+    public static final long SMALL_HEAP = 4096L * 1024 * 1024;
+
+    /**
+     * The facts every knob is derived from, read once. availableProcessors honours the process
+     * affinity mask, so a player who pins the game to fewer cores gets knobs sized for those.
+     */
+    public static final class Machine {
+        public final int cores;
+        public final long maxHeapBytes;
+
+        public Machine(int cores, long maxHeapBytes) {
+            this.cores = cores;
+            this.maxHeapBytes = maxHeapBytes;
+        }
+
+        @Override
+        public String toString() {
+            return cores + " cores, max heap " + (maxHeapBytes >> 20) + " MB";
+        }
+    }
+
+    public static final Machine HOST = new Machine(Runtime.getRuntime().availableProcessors(),
+                                                   Runtime.getRuntime().maxMemory());
+
     /**
      * Live direct-buffer bytes tolerated before an asset worker waits.
      *
@@ -15,13 +40,59 @@ public final class Tuning {
      * single largest cost in the whole load: the asset workers spent 433 s asleep in the gate it
      * feeds on a 300+ mod list. The measured knee is 2 GB, above which it never binds.
      * MaxDirectMemorySize defaults to the max heap, so scale off that rather than picking a
-     * number for one machine.
+     * number for one machine. Below 4 GB of heap half is too greedy for a heap that small, so a
+     * quarter: 768 MB at the stock 3 GB.
      */
     public static long budgetBytes(long maxHeapBytes) {
-        long b = maxHeapBytes / 2;
+        long b = maxHeapBytes < SMALL_HEAP ? maxHeapBytes / 4 : maxHeapBytes / 2;
         if (b < MIN_BUDGET) return MIN_BUDGET;
         if (b > MAX_BUDGET) return MAX_BUDGET;
         return b;
+    }
+
+    /**
+     * Boot prefetch workers (mod walk, mod info): cores-2 in [1, 8], leaving two cores to the main
+     * and render threads. -Dfastloading.iothreads=N overrides it, floored at 1, for a spinning
+     * disk that seeks itself to death under eight parallel walks.
+     */
+    public static int prefetchThreads(int cores, Integer override) {
+        if (override != null) return Math.max(1, override);
+        return Math.max(1, Math.min(8, cores - 2));
+    }
+
+    /** The engine's in-flight window, which AssetCap's raise starts from. */
+    public static final int ENGINE_IN_FLIGHT = 16;
+    public static final int MAX_IN_FLIGHT = 48;
+
+    /**
+     * Asset tasks in flight: 5 per live asset worker, at most 48 (what the loose-class version
+     * measured at, with a pool of 10), never below the engine's own 16. A pool that cannot be read
+     * (0 or less) gets the engine's 16. -Dfastloading.assetcapn=N overrides it as given.
+     */
+    public static int assetCap(int poolSize, Integer override) {
+        if (override != null) return override;
+        if (poolSize <= 0) return ENGINE_IN_FLIGHT;
+        return Math.max(ENGINE_IN_FLIGHT, Math.min(MAX_IN_FLIGHT, 5 * poolSize));
+    }
+
+    /**
+     * Asset worker thread priority, 0 meaning leave the JVM default. On 8 cores or fewer the
+     * workers start one below normal so the front end keeps its share; above that there are
+     * cores to spare and they are left alone. -Dfastloading.assetprio=N overrides it, 0 included.
+     */
+    public static int workerPriority(int cores, Integer override) {
+        if (override != null) return override;
+        return cores <= 8 ? Thread.NORM_PRIORITY - 1 : 0;
+    }
+
+    /** The machine and what was derived from it, for the menu handover line. */
+    public static String describe(Machine m, int prefetchThreads, int assetPool, int inFlightCap,
+                                  long budgetBytes, int workerPriority) {
+        return "machine: " + m + "; prefetch threads " + prefetchThreads
+             + ", asset pool " + (assetPool > 0 ? String.valueOf(assetPool) : "unread")
+             + ", in-flight cap " + inFlightCap
+             + ", buffer budget " + (budgetBytes >> 20) + " MB"
+             + ", worker priority " + (workerPriority > 0 ? String.valueOf(workerPriority) : "default");
     }
 
     /**

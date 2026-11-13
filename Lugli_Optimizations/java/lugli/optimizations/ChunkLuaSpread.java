@@ -1,5 +1,7 @@
 package lugli.optimizations;
 
+import java.util.Arrays;
+
 import me.zed_0xff.zombie_buddy.Patch;
 import se.krka.kahlua.integration.annotations.LuaMethod;
 import zombie.Lua.LuaEventManager;
@@ -40,8 +42,9 @@ import zombie.iso.IsoWorld;
  *   This patch does the opposite: the chunk loads in exactly the frame it always did, with the
  *   same `loaded` flag at the same instant. Only the LUA NOTIFICATION is spread. Nothing in the
  *   engine reads the event -- triggerEvent returns void, Event.trigger's boolean is discarded by
- *   every 1-arg caller, and the Java-side per-square work already lives in
- *   LoadGridsquarePerformanceWorkaround and MapObjects.loadGridSquare, both independent of it.
+ *   the (String, Object) triggerEvent overload (LuaEventManager.java:260), and the Java-side
+ *   per-square work already lives in LoadGridsquarePerformanceWorkaround and
+ *   MapObjects.loadGridSquare, both independent of it.
  *
  * WHAT A HANDLER CAN OBSERVE
  *   The same IsoGridSquare, later. Newly loaded chunks arrive at the edge of the 19x19 grid,
@@ -68,8 +71,9 @@ import zombie.iso.IsoWorld;
  *      worst case degrades to vanilla behaviour rather than to an OOM.
  *
  * OBSERVE MODE
- *   Measures without changing anything: per frame it accumulates how many LoadGridsquare
- *   dispatches happened and how long they took, then reports the distribution. It exists because
+ *   Measures without changing anything: it counts the LoadGridsquare dispatches the drain would
+ *   have taken (`dispatches`). The per-chunk cost histogram it once reported went with the
+ *   doLoadGridsquare advice (see the note above Patch_cellUpdate). It exists because
  *   GameProfiler inflates exactly this measurement -- it wraps EVERY callback in a pooled,
  *   synchronized ProfileArea, and the bench's own duty cycle shows armed p50 19.712 ms against
  *   disarmed 13.055 ms on the same run. Any claim about what this costs must come from a
@@ -156,7 +160,7 @@ public final class ChunkLuaSpread {
     public static final int MAX_QUEUE = Integer.getInteger("lugli.opt.chunklua.maxqueue", 60000);
 
     // ---- queue: parallel arrays, no per-entry allocation --------------------------------------
-    private static Object[] qSquare = new Object[8192];
+    private static IsoGridSquare[] qSquare = new IsoGridSquare[8192];
     private static int[] qX = new int[8192];
     private static int[] qY = new int[8192];
     private static int[] qZ = new int[8192];
@@ -174,14 +178,15 @@ public final class ChunkLuaSpread {
     // ---- counters -----------------------------------------------------------------------------
     public static long dispatches = 0L;
     public static long deferred = 0L;
-    public static long dropped = 0L;
     /**
      * Stale entries recovered by re-resolving the PLACE, and entries whose place has left the
      * world and will be re-announced when it returns.
      *
      * These two were once a single `dropped` tally, and conflating them is what produced the wrong
      * verdict: neither is a lost event, so counting them as losses made the part look like it
-     * traded correctness for smoothness when it does not. See the SAFETY section above.
+     * traded correctness for smoothness when it does not. See the SAFETY section above. Nothing
+     * else can be lost: the queue only ever holds squares, so `dropped` was removed once it could
+     * no longer increment.
      */
     public static long reresolved = 0L;
     public static long deferredToReload = 0L;
@@ -214,12 +219,11 @@ public final class ChunkLuaSpread {
      * than the path never being taken.
      *
      * `resets` counts world teardown and is legitimately 0 in any run that never leaves a world,
-     * so PatchAudit reports zero there as UNKNOWN rather than as a missing patch.
+     * so PatchAudit reports zero there as COLD rather than as a missing patch.
      */
     public static long invTrigger = 0L;
     public static long invDrain = 0L;
     public static long resets = 0L;
-
 
     private ChunkLuaSpread() {}
 
@@ -231,7 +235,7 @@ public final class ChunkLuaSpread {
         if (!ENABLED || draining) {
             return false;
         }
-        // Reference compare first: IsoChunk.java:3837 passes a class-file literal and so does
+        // Reference compare first: IsoChunk.java:3840 passes a class-file literal and so does
         // this class, so both resolve to the same interned String. equals() is the fallback for
         // any caller that builds the name at runtime.
         if (event != EVENT && !EVENT.equals(event)) {
@@ -240,7 +244,7 @@ public final class ChunkLuaSpread {
         if (!(param instanceof IsoGridSquare)) {
             return false;
         }
-        countDispatch();
+        dispatches++;
         if (!SPREAD) {
             return false;                       // observe mode counts and stands aside
         }
@@ -288,13 +292,13 @@ public final class ChunkLuaSpread {
             System.arraycopy(qY, qHead, qY, 0, size);
             System.arraycopy(qZ, qHead, qZ, 0, size);
             System.arraycopy(qAt, qHead, qAt, 0, size);
-            java.util.Arrays.fill(qSquare, size, qTail, null);
+            Arrays.fill(qSquare, size, qTail, null);
             qHead = 0;
             qTail = size;
             return;
         }
         int cap = qSquare.length * 2;
-        Object[] ns = new Object[cap];
+        IsoGridSquare[] ns = new IsoGridSquare[cap];
         int[] nx = new int[cap];
         int[] ny = new int[cap];
         int[] nz = new int[cap];
@@ -332,58 +336,51 @@ public final class ChunkLuaSpread {
         draining = true;
         try {
             while (qHead < qTail) {
-                Object o = qSquare[qHead];
+                IsoGridSquare sq = qSquare[qHead];
                 int x = qX[qHead];
                 int y = qY[qHead];
                 int z = qZ[qHead];
                 qSquare[qHead] = null;
                 qHead++;
-                if (o instanceof IsoGridSquare) {
-                    IsoGridSquare sq = (IsoGridSquare)o;
-                    if (sq.getChunk() != null && sq.getX() == x && sq.getY() == y
-                            && sq.getZ() == z) {
-                        if (resolveOk + resolveBad < RESOLVE_CHECKS) {
-                            if (resolve(x, y, z) == sq) {
-                                resolveOk++;
-                            } else {
-                                resolveBad++;
-                            }
-                        }
-                        LuaEventManager.triggerEvent(EVENT, sq);
-                        drainedHere++;
-                    } else {
-                        // The queued OBJECT went stale -- its chunk unloaded, or the pooled square
-                        // was recycled to another location. The PLACE is what the event describes,
-                        // so ask for the place rather than throwing the entry away.
-                        IsoGridSquare now = resolve(x, y, z);
-                        if (now != null) {
-                            // Still loaded: a different square object occupies the same tile. This
-                            // is the same place, so dispatching for it is correct -- and resolving
-                            // by coordinate makes the pooled-recycle case disappear entirely.
-                            LuaEventManager.triggerEvent(EVENT, now);
-                            drainedHere++;
-                            reresolved++;
+                if (sq.getChunk() != null && sq.getX() == x && sq.getY() == y && sq.getZ() == z) {
+                    if (resolveOk + resolveBad < RESOLVE_CHECKS) {
+                        if (resolve(x, y, z) == sq) {
+                            resolveOk++;
                         } else {
-                            // The place has left the world. NOT a lost event: doLoadGridsquare
-                            // fires LoadGridsquare for every non-empty square on every entry of a
-                            // chunk into the world, and the isNewChunk() guard beside it covers
-                            // only addRatsAfterLoading -- verified in 42.20.4 bytecode, where
-                            // `ifeq` targets the dispatch itself, so it is the join point.
-                            // Measured too: on one city run 49,330 of 60,000 tracked coordinates
-                            // fired the event more than once, so this square is re-announced
-                            // when the player returns to it.
-                            deferredToReload++;
+                            resolveBad++;
                         }
                     }
+                    LuaEventManager.triggerEvent(EVENT, sq);
+                    drainedHere++;
                 } else {
-                    dropped++;
+                    // The queued OBJECT went stale -- its chunk unloaded, or the pooled square
+                    // was recycled to another location. The PLACE is what the event describes,
+                    // so ask for the place rather than throwing the entry away.
+                    IsoGridSquare now = resolve(x, y, z);
+                    if (now != null) {
+                        // Still loaded: a different square object occupies the same tile. This
+                        // is the same place, so dispatching for it is correct -- and resolving
+                        // by coordinate makes the pooled-recycle case disappear entirely.
+                        LuaEventManager.triggerEvent(EVENT, now);
+                        drainedHere++;
+                        reresolved++;
+                    } else {
+                        // The place has left the world. NOT a lost event: doLoadGridsquare
+                        // fires LoadGridsquare for every non-empty square on every entry of a
+                        // chunk into the world, and the isNewChunk() guard beside it covers
+                        // only addRatsAfterLoading -- verified in 42.20.4 bytecode, where
+                        // `ifeq` targets the dispatch itself, so it is the join point.
+                        // Measured too: on one city run 49,330 of 60,000 tracked coordinates
+                        // fired the event more than once, so this square is re-announced
+                        // when the player returns to it.
+                        deferredToReload++;
+                    }
                 }
-                // Age cap. The budget AIMS to clear the backlog within MAX_LAG_FRAMES, but its
-                // ceiling can stop it doing so under load, and an entry that outlives its chunk
-                // is dropped rather than dispatched -- a behaviour regression, not a slowdown.
-                // So latency is also bounded explicitly: keep going past the deadline while the
-                // head of the queue is older than MAX_LAG_FRAMES. Dropped fell from 16.2 % to
-                // 3-7 % when the budget became backlog-derived; this closes the remainder.
+                // Age cap. The budget AIMS to clear the backlog within the live lag window, but
+                // its ceiling can stop it doing so under load, and an entry that outlives its
+                // chunk waits for that chunk's next entry instead of dispatching now. So latency
+                // is also bounded explicitly: keep going past the deadline while the head of the
+                // queue is older than lagFrames.
                 if (System.nanoTime() >= deadline
                         && (qHead >= qTail || frames - qAt[qHead] <= (long)lagFrames)) {
                     break;
@@ -408,7 +405,7 @@ public final class ChunkLuaSpread {
     // vanilla profile where nothing is registered. So it is measured from the drain itself and
     // kept as an exponential moving average.
 
-    /** Live lag window, tightened when squares are being dropped. */
+    /** Live lag window, tightened when entries go stale faster than DROP_BUDGET_PPT. */
     private static int lagFrames = MAX_LAG_FRAMES;
     private static long lastDeferred = 0L;
     private static long lastStale = 0L;
@@ -461,7 +458,7 @@ public final class ChunkLuaSpread {
     }
 
     /**
-     * Re-tune the lag window from the drop rate observed since the last check.
+     * Re-tune the lag window from the staleness rate observed since the last check.
      *
      * Sampled over a window of deferrals rather than every frame, so a single unlucky chunk
      * unload cannot collapse the window, and so the measurement has enough denominator to mean
@@ -530,8 +527,8 @@ public final class ChunkLuaSpread {
     /** Drop everything without dispatching. Called when the world is torn down. */
     public static void reset() {
         resets++;
-        java.util.Arrays.fill(qSquare, null);
-        java.util.Arrays.fill(qAt, 0L);
+        Arrays.fill(qSquare, null);
+        Arrays.fill(qAt, 0L);
         qHead = 0;
         qTail = 0;
         draining = false;
@@ -549,25 +546,13 @@ public final class ChunkLuaSpread {
         drainThread = null;
     }
 
-    // ---- measurement ---------------------------------------------------------------------------
-    //
-    // Timed at the CHUNK, not at the event. There is no way to pass a value from an OnEnter advice
-    // to its OnExit through the ZombieBuddy Patch API, so a per-dispatch stopwatch is not
-    // available -- and it would be the wrong thing to measure anyway. What matters is the whole
-    // doLoadGridsquare call as one frame-blocking unit: the engine's own per-square work AND the
-    // Lua it dispatches, which is what the player feels as a hitch.
-    //
-    public static void countDispatch() {
-        dispatches++;
-    }
-
     // ---- patches -------------------------------------------------------------------------------
 
     /**
-     * The 1-arg overload, LuaEventManager.java:239. Chosen over the IsoChunk call site because it
-     * is a small, stable, public method whose whole body is the dispatch, and because skipping at
-     * ENTRY also skips `synchronized (EventMap)` (:240) -- the lock vanilla holds across the
-     * entire callback chain.
+     * The (String, Object) overload, LuaEventManager.java:239. Chosen over the IsoChunk call site
+     * because it is a small, stable, public method whose whole body is the dispatch, and because
+     * skipping at ENTRY also skips `synchronized (EventMap)` (:240) -- the lock vanilla holds
+     * across the entire callback chain.
      */
     @Patch(className = "zombie.Lua.LuaEventManager", methodName = "triggerEvent")
     public static class Patch_triggerEvent {
@@ -579,7 +564,7 @@ public final class ChunkLuaSpread {
 
     // The @Patch on zombie.iso.IsoChunk|doLoadGridsquare was DELETED 2026-08-26. It never wove:
     // its unconditional install probe read zero across every run while profscan measured the
-    // method itself at 0.5 calls/f, and `warmUp = true` plus Main.PRELOAD_FOR_PATCHING could not
+    // method itself at 0.5 calls/f, and `warmUp = true` plus loading the class from Main could not
     // change that -- IsoChunk loads before ZomboidFileSystem.loadMods and ZombieBuddy's
     // explicit-retransform pass covers only ONE already-loaded class per mod. Every
     // relocation to a class ZB can reach either measures a superset (IsoChunkMap.updateInternal
@@ -616,7 +601,6 @@ public final class ChunkLuaSpread {
           .append(" frames=").append(frames)
           .append(" dispatches=").append(dispatches)
           .append(" deferred=").append(deferred)
-          .append(" dropped=").append(dropped)
           .append(" reresolved=").append(reresolved)
           .append(" deferredToReload=").append(deferredToReload)
           .append(deferred > 0L

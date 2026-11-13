@@ -38,7 +38,7 @@ local function onSeeNewRoom(room)
     local okN, n = pcall(function() return room:getName() end)
     if okN and type(n) == "string" then name = n end
 
-    M.forEachLocalPlayer(function(player)
+    M.forEachStore(function(player)
         if id ~= nil then M.addUnique(player, "rooms_seen", id) end
         if name ~= nil then
             M.addUnique(player, "room_kinds", name)
@@ -49,17 +49,23 @@ local function onSeeNewRoom(room)
     end)
 end
 
+--- The named region a square is in. "General" is the wilderness, not a place. Boot.lua asks the
+--- same at load.
+function M.creditRegion(player, square)
+    local okR, region = pcall(function() return square:getSquareRegion() end)
+    if okR and type(region) == "string" and region ~= "General" then
+        M.addUnique(player, "regions_seen", region)
+        if region == "Louisville" then M.setStat(player, "saw_louisville", 1) end
+        if region == "LAA" then M.setStat(player, "saw_airport", 1) end
+    end
+end
+
 local function onEveryTenMinutes()
     M.forEachLocalPlayer(function(player)
         local okSq, square = pcall(function() return player:getCurrentSquare() end)
         if not okSq or square == nil then return end
 
-        local okR, region = pcall(function() return square:getSquareRegion() end)
-        if okR and type(region) == "string" and region ~= "General" then
-            M.addUnique(player, "regions_seen", region)
-            if region == "Louisville" then M.setStat(player, "saw_louisville", 1) end
-            if region == "LAA" then M.setStat(player, "saw_airport", 1) end
-        end
+        M.creditRegion(player, square)
 
         -- Basements are new in B42 and sit below ground level.
         local okZ, z = pcall(function() return square:getZ() end)

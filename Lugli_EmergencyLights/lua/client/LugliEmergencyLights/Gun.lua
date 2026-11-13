@@ -30,6 +30,32 @@ do
         return nil
     end
 
+    --- How much wider than the server's gap this client holds its own, in ms. The server times
+    --- ARRIVALS, and two packets sent exactly M.FLARE_GAP_MS apart can land closer than that.
+    local RELAY_JITTER_MS = 500
+
+    --- When this machine may next fire on a multiplayer server.
+    local nextShotAt = 0
+
+    --- MAY THIS SHOT FIRE AT ALL, on a multiplayer client. The server refuses a flare inside
+    --- M.FLARE_GAP_MS and spends nothing for it, which is what vanilla does with any shot it
+    --- refuses: the client never decrements (ISReloadWeaponAction.onShoot, `if not isClient()`,
+    --- ISReloadWeaponAction.lua:514), and an attack packet the server rejects as inconsistent or
+    --- invalid returns before processServer (PacketTypes.java:756-776), so it never reaches the
+    --- OnWeaponSwingHitPoint that processServer raises (PlayerHitPacket.java:222-226): nothing is
+    --- spent and nothing happens. Drawing that shot here anyway was a free flare only the shooter saw, and
+    --- the round stayed in the gun. So a shot the server would refuse is refused here first: no
+    --- flare, no noise, no packet, and the round stays exactly where the server has it.
+    ---
+    --- Single player has no relay and no limit: vanilla spends the round on this machine.
+    local function claimShot()
+        if not M.isMultiplayer() then return true end
+        local now = getTimestampMs ~= nil and getTimestampMs() or 0
+        if now < nextShotAt then return false end
+        nextShotAt = now + M.FLARE_GAP_MS + RELAY_JITTER_MS
+        return true
+    end
+
     local function onShot(character, weapon)
         if character == nil or weapon == nil then return end
         if weapon:getFullType() ~= M.GUN.item then return end
@@ -47,6 +73,10 @@ do
         -- FIRED OVER THE SCENERY, so the ground path between here and there does not get a vote.
         local sq = M.skySquare(character, aimRange())
         if sq == nil then return end
+        if not claimShot() then
+            M.debug(PART, "a shot inside the server's flare gap: nothing fires and no round is spent")
+            return
+        end
         local x, y = sq:getX() + 0.5, sq:getY() + 0.5
 
         -- THE SHOT LEANS DOWNWIND, and it does so HERE, before anything else reads x or y.
@@ -195,6 +225,8 @@ do
     local nextNoise = 0
     local nextAerial = 0
     local phase = 0
+    -- Seconds since the last flicker step: frames accumulate it, flickerTick spends it.
+    local flickerDt = 0
 
     -- NO SKY WASH, AND NONE IS COMING BACK. This block used to drive WorldFlares.launchFlare for
     -- every burning flare. Flare.update (WorldFlares.java:264-284) resets
@@ -352,17 +384,24 @@ do
         -- and 144 fps, unlike the flare's own flicker which is deliberately phase-stepped.
         local dt = M.frameDelta()
         M.stepIncidence(dt)
-
-        -- flicker() pairs-walks EVERY live light to find flares, so with forty dropped sticks and no
-        -- flare at all that was 2,400 closure calls a second to animate nothing. The registry knows
-        if M.flareLightCount() > 0 then flicker(dt) end
+        flickerDt = flickerDt + (dt or 0)
         noisePass()
         aerialPass()
     end
 
-    -- PER FRAME, but only the flicker needs it, and only when there is a flare to flicker. The other
-    -- two passes throttle themselves on their own clocks.
+    --- The flicker walk, at the rate the submitter reads rec.flick (M.lightRestateSeconds), with the
+    --- time since its last run so the phase advances exactly as it did per frame.
+    local function flickerTick()
+        -- flicker() pairs-walks EVERY live light to find flares, so with forty dropped sticks and no
+        -- flare at all it animated nothing at real cost. The registry knows whether any flare burns.
+        if M.flareLightCount() > 0 then flicker(flickerDt) end
+        flickerDt = 0
+    end
+
+    -- PER FRAME for the incidence wobble, which every light's shade reads. The other two passes
+    -- throttle themselves on their own clocks.
     local h = M.addTicker(PART, 0, tick)
+    M.addTicker(PART, M.lightRestateSeconds, flickerTick)
 
     if h ~= nil then M.status(PART, true) end
 end

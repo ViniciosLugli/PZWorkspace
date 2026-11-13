@@ -1,6 +1,9 @@
 package lugli.fastloading;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.LongAdder;
 
 import me.zed_0xff.zombie_buddy.Patch;
 import zombie.debug.DebugLog;
@@ -34,10 +37,14 @@ public final class ScriptParse {
 
     // public: these bodies are inlined into zombie.* classes and accessed from there.
     public static volatile boolean broken;
-    public static int tokenChecks, stripChecks;
-    public static int tokenBigSeen, stripBigSeen;
-    public static boolean announced;
-    public static long tokenCalls, stripCalls, stripSkipped;
+    // The tile geometry worker and the main thread tokenize at once, so every counter is atomic.
+    // A check counter read then bumped by two threads costs at most one extra check, never one less.
+    public static final AtomicInteger tokenChecks = new AtomicInteger(), stripChecks = new AtomicInteger();
+    public static final AtomicInteger tokenBigSeen = new AtomicInteger(), stripBigSeen = new AtomicInteger();
+    public static final AtomicBoolean announced = new AtomicBoolean();
+    public static final LongAdder tokenCalls = new LongAdder(), stripCalls = new LongAdder(),
+                                  stripSkipped = new LongAdder();
+    public static final AtomicBoolean weakEvidenceReported = new AtomicBoolean();
 
     private ScriptParse() {}
 
@@ -175,13 +182,13 @@ public final class ScriptParse {
     // ---- entry points called from the inlined advice ------------------------------------
 
     public static String doStrip(String totalFile) {
-        stripCalls++;
+        stripCalls.increment();
         String out = strip(totalFile);
-        if (out == totalFile) stripSkipped++;
+        if (out == totalFile) stripSkipped.increment();
 
-        if (wantCheck(stripChecks, stripBigSeen, "stripComments")) {
-            stripChecks++;
-            if (totalFile != null && totalFile.length() >= VERIFY_CHARS) stripBigSeen++;
+        if (wantCheck(stripChecks.get(), stripBigSeen.get(), "stripComments")) {
+            stripChecks.incrementAndGet();
+            if (totalFile != null && totalFile.length() >= VERIFY_CHARS) stripBigSeen.incrementAndGet();
             String ref = stripReference(totalFile);
             if (!ref.equals(out)) {
                 broken = true;
@@ -194,12 +201,12 @@ public final class ScriptParse {
     }
 
     public static ArrayList<String> doTokens(String totalFile) {
-        tokenCalls++;
+        tokenCalls.increment();
         ArrayList<String> out = tokens(totalFile);
 
-        if (wantCheck(tokenChecks, tokenBigSeen, "parseTokens")) {
-            tokenChecks++;
-            if (totalFile != null && totalFile.length() >= VERIFY_CHARS) tokenBigSeen++;
+        if (wantCheck(tokenChecks.get(), tokenBigSeen.get(), "parseTokens")) {
+            tokenChecks.incrementAndGet();
+            if (totalFile != null && totalFile.length() >= VERIFY_CHARS) tokenBigSeen.incrementAndGet();
             ArrayList<String> ref = tokensReference(totalFile);
             if (!ref.equals(out)) {
                 broken = true;
@@ -211,13 +218,10 @@ public final class ScriptParse {
         return out;
     }
 
-    public static boolean weakEvidenceReported;
-
     // Sample early and often, then taper: a defect shows up on the first few files or not at all.
     public static boolean wantCheck(int checks, int bigSeen, String what) {
         if (checks >= VERIFY_CEILING) {
-            if (bigSeen == 0 && !weakEvidenceReported) {
-                weakEvidenceReported = true;
+            if (bigSeen == 0 && weakEvidenceReported.compareAndSet(false, true)) {
                 DebugLog.log(TAG + " " + what + " verified on " + checks
                              + " calls but never saw an input of " + VERIFY_CHARS
                              + "+ chars; continuing on weaker evidence than intended");
@@ -228,8 +232,7 @@ public final class ScriptParse {
     }
 
     public static void announce() {
-        if (announced) return;
-        announced = true;
+        if (announced.get() || !announced.compareAndSet(false, true)) return;
         DebugLog.log(TAG + " script tokenizer: per-call buffer (thread safe) and linear token scan");
     }
 
@@ -237,9 +240,19 @@ public final class ScriptParse {
     public static String status() {
         if (!ON) return "off";
         if (broken) return "DEFECT";
-        return "ok, " + stripCalls + " strips (" + stripSkipped + " with no comment to strip), "
-               + tokenCalls + " tokenizations; verified on "
-               + stripBigSeen + "/" + tokenBigSeen + " large inputs";
+        return "ok, " + stripCalls.sum() + " strips (" + stripSkipped.sum() + " with no comment to strip), "
+               + tokenCalls.sum() + " tokenizations; verified on "
+               + stripBigSeen.get() + "/" + tokenBigSeen.get() + " large inputs";
+    }
+
+    /**
+     * Whether this call is ours. Decided ONCE per call, on entry, and carried to the exit in an
+     * advice local: stripComments runs on the tile geometry thread and the main thread at once,
+     * so re-reading `broken` on exit would see another thread's flip, leave the skipped original's
+     * null as the result, and make the caller throw.
+     */
+    public static boolean takeOver(String totalFile) {
+        return ON && !broken && totalFile != null;
     }
 
     // ---- patches ------------------------------------------------------------------------
@@ -251,14 +264,17 @@ public final class ScriptParse {
     @Patch(className = "zombie.scripting.ScriptParser", methodName = "stripComments")
     public static class Strip {
         @Patch.OnEnter(skipOn = true)
-        public static boolean in(@Patch.Argument(0) String totalFile) {
-            return ON && !broken && totalFile != null;
+        public static boolean in(@Patch.Argument(0) String totalFile,
+                                 @Patch.Local("fastloadingTake") boolean take) {
+            take = ScriptParse.takeOver(totalFile);
+            return take;
         }
 
         @Patch.OnExit
         public static void out(@Patch.Argument(0) String totalFile,
+                               @Patch.Local("fastloadingTake") boolean take,
                                @Patch.Return(readOnly = false) String ret) {
-            if (!ON || broken || totalFile == null) return;
+            if (!take) return;
             try {
                 ret = ScriptParse.doStrip(totalFile);
             } catch (Throwable t) {
@@ -272,14 +288,17 @@ public final class ScriptParse {
     @Patch(className = "zombie.scripting.ScriptParser", methodName = "parseTokens")
     public static class Tokens {
         @Patch.OnEnter(skipOn = true)
-        public static boolean in(@Patch.Argument(0) String totalFile) {
-            return ON && !broken && totalFile != null;
+        public static boolean in(@Patch.Argument(0) String totalFile,
+                                 @Patch.Local("fastloadingTake") boolean take) {
+            take = ScriptParse.takeOver(totalFile);
+            return take;
         }
 
         @Patch.OnExit
         public static void out(@Patch.Argument(0) String totalFile,
+                               @Patch.Local("fastloadingTake") boolean take,
                                @Patch.Return(readOnly = false) ArrayList<String> ret) {
-            if (!ON || broken || totalFile == null) return;
+            if (!take) return;
             try {
                 ret = ScriptParse.doTokens(totalFile);
             } catch (Throwable t) {

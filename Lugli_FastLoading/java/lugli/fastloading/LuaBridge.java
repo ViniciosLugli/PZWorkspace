@@ -3,9 +3,9 @@ package lugli.fastloading;
 import se.krka.kahlua.integration.annotations.LuaMethod;
 
 /**
- * Lets the Lua side know the jar actually loaded. Without ZombieBuddy this class is
- * never loaded, so the global stays nil and the status panel reports the Java patches
- * as unavailable. More reliable than checking the mod list, which only proves
+ * Lets the Lua side know the jar actually loaded. Without ZombieBuddy no class of this jar is
+ * loaded, so every bridge global stays nil, which is how FastLoading_VehicleWarm.lua tells the
+ * Java patches are missing. More reliable than checking the mod list, which only proves
  * ZombieBuddy is subscribed.
  */
 public class LuaBridge {
@@ -18,11 +18,6 @@ public class LuaBridge {
     @LuaMethod(name = "FastLoading_AssetBudgetMB", global = true)
     public static int assetBudgetMB() {
         return (int)(AssetThrottle.BUDGET >> 20);
-    }
-
-    @LuaMethod(name = "FastLoading_AssetPoolTarget", global = true)
-    public static int assetPoolTarget() {
-        return Tuning.poolTarget(Runtime.getRuntime().availableProcessors());
     }
 
     @LuaMethod(name = "FastLoading_LogoSkipped", global = true)
@@ -71,7 +66,7 @@ public class LuaBridge {
              + " blocked=" + AssetThrottle.blockedCalls
              + " blockedMs=" + AssetThrottle.blockedMs
              + " pollMs=" + AssetThrottle.POLL_MS
-             + " budgetMB=" + (AssetThrottle.BUDGET / (1024 * 1024));
+             + " budgetMB=" + (AssetThrottle.BUDGET >> 20);
     }
 
     @LuaMethod(name = "FastLoading_WatcherGateStatus", global = true)

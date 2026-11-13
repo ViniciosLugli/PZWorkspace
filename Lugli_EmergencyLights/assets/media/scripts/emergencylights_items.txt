@@ -10,7 +10,7 @@
  * SwingAnim alone drives WeaponType.getWeaponType (a chain of SwingAnim string
  * compares, WeaponType.java:39-51), which sets the Weapon anim variable to
  * throwing and rangedWeapon true: the real vanilla throw animation and aiming, for
- * free. PhysicsObject is the separate key that makes CombatManager:638 call
+ * free. PhysicsObject is the separate key that makes CombatManager:989 call
  * Throw(), whose only non-exploding branch is Base.Ball, whose IsoBall.Fall()
  * emits a 600 tile world sound. 600 is byte-identical to a ringing house alarm and
  * three times a shotgun, and WorldSoundManager exposes no way to cancel it. So we

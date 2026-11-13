@@ -7,7 +7,7 @@ import zombie.debug.DebugLog;
  * Answers a constant capability query without crossing to the render thread.
  * -Dfastloading.querycache=off.
  *
- * Core.allowOptionTextureCompression (Core.java:3460) is:
+ * Core.allowOptionTextureCompression (Core.java:3051) is:
  *
  *     return RenderThread.invokeQueryOnRenderContext(
  *         () -> Display.capabilities.OpenGL33 || !System.getProperty("os.name").contains("OS X"));
@@ -18,7 +18,7 @@ import zombie.debug.DebugLog;
  * every texture upload already queued.
  *
  * The options screen asks four or more times per open (MainOptions.lua:630, :637 -- which also
- * calls getOptionTextureCompression, itself another call at Core.java:3464 -- and :641). Measured
+ * calls getOptionTextureCompression, itself another call at Core.java:3055 -- and :641). Measured
  * against a streaming asset queue that is seconds per round-trip.
  *
  * The first call runs for real and its answer is kept; every later call returns it directly.
@@ -40,11 +40,18 @@ public final class QueryCache {
 
     private QueryCache() {}
 
+    /** For the menu handover line, so a part that did nothing says so. */
+    public static String status() {
+        if (!ON) return "off";
+        return "ok, " + served + " texture-compression answer(s) served, "
+             + displayModeSkipped + " unchanged display mode(s) skipped";
+    }
+
     /**
      * Skips the display-mode round-trip when the requested mode is already the current one.
      *
      * MainOptions:apply calls setResolutionAndFullScreen unconditionally (MainOptions.lua:481,
-     * :502) even when nothing changed, and Core.setDisplayModeInternal (Core.java:1942-1946)
+     * :502) even when nothing changed, and Core.setDisplayModeInternal (Core.java:1521-1524)
      * then early-outs on exactly this four-way test -- after the caller has already paid for a
      * blocking trip behind the texture-upload queue.
      *

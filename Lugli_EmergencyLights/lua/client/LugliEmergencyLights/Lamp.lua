@@ -3,12 +3,12 @@
     Every world light this mod makes, with no jar under it.
 
     The mod used to reach zombie.iso.LightingJNI through a ZombieBuddy bridge, because LightingJNI
-    is not on LuaManager's exposer whitelist. IsoCell IS on it (LuaManager.java:2170) and so is
-    IsoLightSource (:2176), so getCell():addLamppost(...) is reachable from here and the jar is not
+    is not on LuaManager's exposer whitelist. IsoCell IS on it (LuaManager.java:2181) and so is
+    IsoLightSource (:2190), so getCell():addLamppost(...) is reachable from here and the jar is not
     needed. What that costs, and why each cost is paid rather than worked around, is below.
 
     WHY THE LAMPPOST PATH AND NOT THE TEMP-LIGHT PATH. LightingJNI.checkLights forks on `life`
-    (:298-331). A source with life ~= -1 goes to addTempLight with its radius and colour passed
+    (:301-332). A source with life ~= -1 goes to addTempLight with its radius and colour passed
     RAW, which is the only way past the 20-tile cap. It is reachable: IsoLightSource's two 8-arg
     constructors differ in a primitive vs a non-primitive, which Kahlua separates cleanly
     (LuaJavaInvoker.java:271-292). It is still the wrong choice HERE, and the reason is the shape
@@ -16,10 +16,10 @@
 
       * the engine DROPS a temp source from lamppostPositions the same pass it submits it, so the
         colour can never be changed again -- only re-submitted;
-      * and this mod restates every light's colour EVERY FRAME, because a burning flare decays,
-        breathes and flickers.
+      * and this mod restates every light's colour twice per lighting pass (M.lightRestateSeconds),
+        because a burning flare decays, breathes and flickers.
 
-    Re-adding at frame rate is roughly 60 global relights per second per light, and about 20 per
+    Re-adding at that rate is 30 to 120 global relights per second per light, and about 20 per
     second already pins a relight on every lighting tick. The permanent arm instead lets a colour
     change go out as a bare setLightColor with no relight at all, which is exactly the cost model
     the old jar had. So: permanent lamppost, and the 20-tile cap is accepted.
@@ -73,12 +73,7 @@ do
     --- against a 67 ms pass, and without this floor it would climb dark. One pass, plus half a pass
     --- for whatever phase of the pass the source happened to land in.
     local function holdMs()
-        local fps = 15
-        if getPerformance ~= nil then
-            local ok, v = pcall(function() return getPerformance():getLightingFPS() end)
-            if ok and type(v) == "number" and v >= 1 then fps = v end
-        end
-        return 1500 / fps
+        return 1500 / M.lightingFps()
     end
 
     --- Records by handle. A handle is an integer, and a negative one is the failure the callers
@@ -111,7 +106,7 @@ do
     local function unplace(rec)
         if rec.light == nil then return end
         local c = cell()
-        if c ~= nil then pcall(function() c:removeLamppost(rec.light) end) end
+        if c ~= nil then pcall(c.removeLamppost, c, rec.light) end
         rec.light = nil
     end
 
@@ -148,15 +143,16 @@ do
     ---
     --- checkLights compares r/g/b against rJni/gJni/bJni and emits a bare setLightColor for the
     --- difference. That is why the permanent arm was chosen over the uncapped temp one: this mod
-    --- restates every colour every frame, and only this arm makes that free.
+    --- restates every colour twice per lighting pass, and only this arm makes that free.
+    ---
+    --- Method and arguments straight to pcall: this runs per light per restatement, and a closure
+    --- here was one allocation each time.
     local function colourNow(rec)
-        if rec.light == nil then return false end
-        local ok = pcall(function()
-            rec.light:setR(rec.r * COLOUR_PRESCALE)
-            rec.light:setG(rec.g * COLOUR_PRESCALE)
-            rec.light:setB(rec.b * COLOUR_PRESCALE)
-        end)
-        return ok
+        local light = rec.light
+        if light == nil then return false end
+        return pcall(light.setR, light, rec.r * COLOUR_PRESCALE)
+           and pcall(light.setG, light, rec.g * COLOUR_PRESCALE)
+           and pcall(light.setB, light, rec.b * COLOUR_PRESCALE)
     end
 
     --- Reserve a handle. No light exists yet: the caller has not said where it goes.
@@ -182,8 +178,8 @@ do
         return h
     end
 
-    --- State one light. Called EVERY FRAME for every light in the mod, so the cheap path has to be
-    --- the common one: nothing changed, or only the colour did.
+    --- State one light. Called twice per lighting pass for every light in the mod, so the cheap path
+    --- has to be the common one: nothing changed, or only the colour did.
     function M.lampSet(h, x, y, z, r, g, b, radius)
         local rec = live[h]
         if rec == nil then return false end
@@ -206,8 +202,9 @@ do
         -- AND WHILE IT IS OUT THERE, DO NOTHING. Rebuilding a light the engine is about to drop
         -- again buys nothing and costs a global relight every frame the carrier stands off the
         -- edge of the loaded map. Record the numbers and wait for it to come back.
-        if rec.light ~= nil then
-            local okB, inB = pcall(function() return rec.light:isInBounds() end)
+        local light = rec.light
+        if light ~= nil then
+            local okB, inB = pcall(light.isInBounds, light)
             if okB and inB == false then
                 rec.dropped = true
                 rec.x, rec.y, rec.z, rec.radius = ix, iy, iz, ir

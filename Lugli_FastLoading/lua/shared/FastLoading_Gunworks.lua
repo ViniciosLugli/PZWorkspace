@@ -1,5 +1,6 @@
 -- GunworksLootSpeedup: optimizes Gunworks Distribution.Insert pass with caching and indexing.
-FastLoading = FastLoading or {}
+-- Shipped byte-identical by Fast Loading and Grease of Marz at the same game path, so only the
+-- copy of the later-loading mod runs. Keep it free of either mod's namespace.
 
 local MODULE = "Distribution/Functions.lua"
 local patched = false
@@ -9,12 +10,21 @@ local cacheStore = {}
 local indexStore = {}
 local indexChecks = 0
 
--- Kill switch (-Dfastloading.gunidx=off or global FastLoadingDisableGunIndex = true).
-local indexBroken = (FastLoadingDisableGunIndex == true)
-        or ((type(FastLoading_Switch) == "function")
-            and FastLoading_Switch("gunidx", "on") == "off")
-        or false
+-- Latched by the kill switch or by the differential gate below; never cleared.
+local indexBroken = false
 local INDEX_VERIFY = 4
+
+LugliGunworksLoot = { state = "waiting for the loot merge" }
+
+-- Kill switch (-Dfastloading.gunidx=off or global FastLoadingDisableGunIndex = true), read at the
+-- merge rather than at file scope, like every part's switch.
+local function indexDisabled()
+    if FastLoadingDisableGunIndex == true then return true end
+    if type(FastLoading_Switch) == "function" then
+        return FastLoading_Switch("gunidx", "on") == "off"
+    end
+    return false
+end
 
 -- Single-pass loot index by item name.
 local function buildIndex(tables)
@@ -177,7 +187,8 @@ local function fastInsert(baseItem, chance, tables, newItem)
             if not same then
                 indexBroken = true
                 indexStore[tables] = nil
-                print("[FastLoading/gunworks] index DISARMED: disagreed with the full walk on "
+                LugliGunworksLoot.state = "index disarmed"
+                print("[Lugli/GunworksLoot] index DISARMED: disagreed with the full walk on "
                       .. tostring(baseItem) .. "; using the walk")
                 pos = ref
             end
@@ -303,11 +314,11 @@ local function selfTestPasses(originalInsert)
     --   * the same base repeated  -> cache-hit path
     --   * inserting a value that is itself searched later -> invalidation path
     local steps = {
-        { probe,    0.3, "PZFixPack.SelfTest"  },  -- cold: builds the cache
-        { probe,    0.3, "PZFixPack.SelfTest"  },  -- warm: cache hit
-        { probe,    nil, "PZFixPack.SelfTest2" },  -- nil chance
+        { probe,    0.3, "FastLoading.SelfTest"  },  -- cold: builds the cache
+        { probe,    0.3, "FastLoading.SelfTest"  },  -- warm: cache hit
+        { probe,    nil, "FastLoading.SelfTest2" },  -- nil chance
         { probe,    0.5, fullName              },  -- appends a searched name
-        { probe,    0.7, "PZFixPack.SelfTest3" },  -- must see the appended one
+        { probe,    0.7, "FastLoading.SelfTest3" },  -- must see the appended one
     }
     for i = 1, #steps do
         local st = steps[i]
@@ -327,20 +338,22 @@ local function applyPatch()
     -- condition here: FastLoading declares no hard dependency on it.
     local found, mod = pcall(require, MODULE)
     if not found or type(mod) ~= "table" or type(mod.Insert) ~= "function" then
-        print("[FastLoading/gunworks] Gunworks framework (SWMG) not present, skipping")
+        LugliGunworksLoot.state = "Gunworks not present"
+        print("[Lugli/GunworksLoot] Gunworks framework (SWMG) not present, skipping")
         return
     end
 
     local ok, why = selfTestPasses(mod.Insert)
     if not ok then
-        print("[FastLoading/gunworks] Marz/Gunworks distribution: SELF-TEST FAILED (" .. tostring(why)
+        LugliGunworksLoot.state = "self-test failed: " .. tostring(why)
+        print("[Lugli/GunworksLoot] Marz/Gunworks distribution: SELF-TEST FAILED (" .. tostring(why)
               .. ") - leaving the original Insert in place")
         return
     end
 
-    mod.FastLoading_originalInsert = mod.Insert
     mod.Insert = fastInsert
-    print("[FastLoading/gunworks] Marz/Gunworks distribution: Insert() replaced, self-test passed")
+    LugliGunworksLoot.state = "replaced"
+    print("[Lugli/GunworksLoot] Marz/Gunworks distribution: Insert() replaced, self-test passed")
 end
 
 Events.OnPreDistributionMerge.Add(function()
@@ -349,9 +362,13 @@ Events.OnPreDistributionMerge.Add(function()
     indexStore = {}
     indexChecks = 0
 
-    local ok, err = pcall(applyPatch)
+    local ok, err = pcall(function()
+        if indexDisabled() then indexBroken = true end
+        applyPatch()
+    end)
     if not ok then
         patched = true -- fail once, then stay quiet
-        print("[FastLoading/gunworks] Marz/Gunworks distribution patch FAILED: " .. tostring(err))
+        LugliGunworksLoot.state = "failed: " .. tostring(err)
+        print("[Lugli/GunworksLoot] Marz/Gunworks distribution patch FAILED: " .. tostring(err))
     end
 end)

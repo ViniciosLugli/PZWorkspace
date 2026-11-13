@@ -141,6 +141,11 @@ do
     M.NET_EXPIRE_ECHO = "burntOut"  -- server -> that client: one of yours burnt out and was swapped
     M.NET_LAND_ECHO  = "landed"     -- server -> everyone: a throw ended HERE, light this tile
 
+    --- One flare per player per this many milliseconds. ONE NUMBER FOR BOTH ENDS: the server refuses
+    --- a shot inside it (World.lua, the relay) and the shooter's client declines to fire one
+    --- (Gun.lua), so a shot the server will not take is never drawn on the shooter's screen.
+    M.FLARE_GAP_MS = 2000
+
     --- ZombRandFloat, guarded. The engine's own generator, so this follows the world seed rather than
     --- a second unseeded one; the midpoint is the fallback when it is absent.
     function M.rand(lo, hi)
@@ -197,7 +202,7 @@ do
         return "single player"
     end
 
-    --- Outcome of one part, rendered by the main-menu panel.
+    --- Outcome of one part, counted in the boot summary Boot.lua logs.
     function M.status(key, ok, note, kind)
         M.parts[key] = { ok = ok, note = note, kind = kind }
     end
@@ -253,10 +258,11 @@ do
                 local now = getTimestampMs ~= nil and getTimestampMs() or 0
                 for i = #tickers, 1, -1 do
                     local t = tickers[i]
-                    local every = t.every
-                    if type(every) == "function" then every = every() end
-                    if type(every) ~= "number" or every < 0 then every = 0 end
                     if now >= t.at then
+                        -- Read only when due: a function interval is a Java call or a sandbox read.
+                        local every = t.every
+                        if type(every) == "function" then every = every() end
+                        if type(every) ~= "number" or every < 0 then every = 0 end
                         t.at = now + every * 1000
                         local ok, err = pcall(t.fn)
                         if not ok then
@@ -269,6 +275,28 @@ do
             if tickerHandler == nil then return nil end
         end
         return true
+    end
+
+    --- The engine's lighting passes per second: LightingThread runs checkLights at
+    --- PerformanceSettings.lightingFps (LightingThread.java:63; 15 by default, 5 to 60 from the
+    --- options screen), read the way MainOptions.lua:925 reads it.
+    function M.lightingFps()
+        local perf = getPerformance ~= nil and getPerformance() or nil
+        if perf ~= nil then
+            local ok, v = pcall(perf.getLightingFPS, perf)
+            if ok and type(v) == "number" and v >= 1 then return v end
+        end
+        return 15
+    end
+
+    --- How often a light's numbers are restated to the engine, in seconds: twice per lighting pass.
+    ---
+    --- checkLights reads a source's colour, active flag and position only once per pass, so a
+    --- restatement between passes is overwritten unseen. Per frame that was 165 to 400 restatements
+    --- a second against 15 to 20 reads, and with 20 lights down the frame paid +0.14 ms for it.
+    --- Twice per pass keeps what a pass reads at most half a pass old.
+    function M.lightRestateSeconds()
+        return 0.5 / M.lightingFps()
     end
 
     --- How often the scanning parts run, from the one sandbox option that governs it.

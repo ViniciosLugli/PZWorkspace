@@ -17,9 +17,9 @@ local INTERNAL_STATS = {
 
 -- A zombie landing a hit raises NO Lua event: BodyDamage.AddRandomDamageFromZombie contains no
 -- triggerEvent, and OnPlayerGetDamage only fires for POISON, HUNGRY, SICK, BLEEDING, THIRST,
--- INFECTION, HEAVYLOAD, LOWWEIGHT, FALLDOWN, FIRE and vehicle damage. So "between one hit and
--- the next" cannot be built on that event. AddRandomDamageFromZombie does set the hit reaction
--- first, which is observable, so a rising edge on it is what a hit actually looks like.
+-- INFECTION, HEAVYLOAD, LOWWEIGHT, FALLDOWN, FIRE, WEAPONHIT and vehicle damage. So "between one
+-- hit and the next" cannot be built on that event. AddRandomDamageFromZombie does set the hit
+-- reaction first, which is observable, so a rising edge on it is what a hit actually looks like.
 local lastReaction = {}
 
 --- A real clock, not getWorldAgeHours: that is in-game time, so a ten second window would be

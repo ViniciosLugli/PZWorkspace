@@ -8,7 +8,7 @@
 
     Colours are 0-1 here because IsoLightSource takes floats, while the script
     writes the same values as 0-255. Note the engine doubles a persistent light's
-    colour and clamps it (LightingJNI.java:299-313), so anything above 0.5
+    colour and clamps it (LightingJNI.java:326-342), so anything above 0.5
     saturates.
 ]]
 

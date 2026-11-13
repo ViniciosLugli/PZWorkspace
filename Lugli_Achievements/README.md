@@ -8,7 +8,7 @@ Needs [NeatUI Framework](https://steamcommunity.com/sharedfiles/filedetails/?id=
 window and the toast. Pure Lua otherwise, no jar.
 
 **It changes nothing about how the game plays.** No items, no XP, no loot, no spawns, no recipes.
-It watches, it counts, and it tells you.
+It watches, counts and tells you.
 
 **[Watch the demo](https://youtu.be/oCbHLc-QO38)**
 
@@ -20,7 +20,7 @@ It watches, it counts, and it tells you.
 
 ## How to open
 
-Click the medal icon at the bottom of the left HUD sidebar, or press **F7** (default key, rebindable under **Options -> Keybindings -> Lugli Achievements**). If you prefer a clean sidebar, you can disable the sidebar button in **Mod Options** or inside the achievements window Settings panel.
+Click the medal icon at the bottom of the left HUD sidebar, or press **F7** (default key, rebindable under **Options -> Keybindings -> Lugli Achievements**). To hide the sidebar button, turn it off in **Mod Options** or in the Settings panel of the achievements window.
 
 ## Where progress lives
 
@@ -57,8 +57,8 @@ It appears in the window, tracks itself, saves itself and raises its own toast.
 First registration of an id wins; a duplicate is rejected and logged with both sources. A condition
 that is not a running total is a stat set to 1 with `target = 1`.
 
-Achievements are indexed by the stat they watch, so `incStat` only ever wakes the handful watching
-that stat, never the whole roster.
+Achievements are indexed by the stat they watch, so `incStat` only wakes the few watching that
+stat, not the whole roster.
 
 ## Reliability
 
@@ -67,7 +67,7 @@ writes cannot ship. Two offline suites run in the game's own Kahlua VM against t
 files, with mutation tests proving the suites can fail.
 
 Timed-action wrappers call through first and count afterwards inside `pcall`, so a counting bug
-cannot break the action it watches. A part that fails to install says so on the main menu.
+cannot break the action it watches. A part that fails to install says so in the game log, under `[LugliAchievements] parts:`.
 
 ## Compatibility
 
@@ -79,19 +79,23 @@ cannot break the action it watches. A part that fails to install says so on the 
   under their username and returns it when they reconnect, so nobody else's kills unlock yours.
   The mod has to be in the server's mod list, which is how the game loads mods for a connecting
   player anyway. If the server is running an older build that does not answer, progress falls back
-  to the character's own data and the window says so. The engine gives a multiplayer client no
-  radio or television channel list, so the four achievements for tuning in are single player only.
+  to the character's own data and the window says so. Hunger, thirst, poison, bleeding and
+  infection damage happen only on the server in multiplayer, so the server passes each player
+  theirs. The engine gives a multiplayer client no radio channel list, so there the four
+  achievements for tuning in read the radios and televisions around you instead.
 - **Dedicated server:** no achievement can be earned there. `client/` does not run in a server
-  process, so no tracker registers and the roster is never built. The one thing the server does is
-  keep each player's counters and unlocked ids in a `LugliAchievementsPlayers` table saved with the
-  world. Verified against a real headless server.
-- English and Brazilian Portuguese, both complete. A build gate refuses a language missing a key.
+  process, so no tracker registers and the roster is never built. The server does two things: it
+  keeps each player's counters and unlocked ids in a `LugliAchievementsPlayers` table saved with
+  the world, and it passes each player the body damage only the server sees, at most once a game
+  minute per kind. Verified against a real headless server.
+- Ten languages, all complete: English, Brazilian Portuguese, Simplified Chinese, Russian, Spanish,
+  German, French, Polish, Japanese and Korean. A build gate refuses a language missing a key.
 
 ## The roster
 
 Every achievement that ships, with the icon, name, description and goal the game itself uses.
 The tables below are generated from the mod's own definitions and its English translations, so
-they cannot drift from what you actually play.
+they match what ships.
 
 <!-- BEGIN ROSTER: generated from the shipped definitions. Do not edit by hand. -->
 

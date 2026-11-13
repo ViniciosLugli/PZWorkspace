@@ -18,7 +18,7 @@ LugliEmergencyLights.parts = LugliEmergencyLights.parts or {}
 -- THE ELECTION, and the directory is NOT the guard.
 --
 -- server/ loads on a multiplayer CLIENT too: GameLoadingState.java:149 calls LoadDirBase("server")
--- unconditionally. What does not load on a dedicated server is client/, because GameServer.java:1458
+-- unconditionally. What does not load on a dedicated server is client/, because GameServer.java:1513
 -- passes onlyChecksum = true and LuaManager skips RunLua. So the work below cannot live in client/,
 -- and putting it in server/ is not by itself enough.
 --
@@ -77,10 +77,9 @@ do
             if spent ~= nil then
                 worldObj:swapItem(spent)
             else
-                -- THE FALLBACK REPAIRS ITSELF, because the overload it has to use is the broken one.
+                -- The String overload creates, places and transmits the item (IsoGridSquare.java:6075).
                 square:transmitRemoveItemFromSquare(worldObj)
-                local placed = square:AddWorldInventoryItem(spentType, 0.5, 0.5, 0.0)
-                if placed ~= nil then pcall(function() placed:addToWorld() end) end
+                square:AddWorldInventoryItem(spentType, 0.5, 0.5, 0.0)
             end
         end)
         if not okX then
@@ -159,14 +158,17 @@ do
     local function sweepChunk(chunk, budget)
         if chunk == nil then return budget end
 
-        local okLo, lo = pcall(function() return chunk:getMinLevel() end)
-        local okHi, hi = pcall(function() return chunk:getMaxLevel() end)
+        -- Method references, not closures: this runs for every square of every chunk that loads.
+        local okLo, lo = pcall(chunk.getMinLevel, chunk)
+        local okHi, hi = pcall(chunk.getMaxLevel, chunk)
         if not okLo or not okHi or type(lo) ~= "number" or type(hi) ~= "number" then return budget end
 
+        local getSquare = chunk.getGridSquare
         for z = lo, hi do
             for x = 0, 7 do
                 for y = 0, 7 do
-                    local okSq, sq = pcall(function() return chunk:getGridSquare(x, y, z) end)
+                    if budget <= 0 then return budget end
+                    local okSq, sq = pcall(getSquare, chunk, x, y, z)
                     if okSq and sq ~= nil then
                         -- Caught per square: one bad tile must not take the whole handler with it.
                         local ok, res = pcall(actOnSquare, sq, budget)
@@ -490,8 +492,8 @@ do
     --- never fires in single player. Registering only OnGameStart left `ready` false on a real
     --- server, so the authority silently did nothing at all: no stamping, no posing, nothing ever
     --- burned out, and the only symptom was a log line that was not there. Server.lua has always
-    --- registered both for exactly this reason; this file did not, and tools/servertest.sh is what
-    --- found it. Idempotent, so whichever arrives first wins.
+    --- registered both for exactly this reason; this file did not, and a dedicated-server test is
+    --- what found it. Idempotent, so whichever arrives first wins.
     local started = false
     local function onWorldUp()
         if started then return end
@@ -532,10 +534,11 @@ do
     local M = LugliEmergencyLights
     local PART = "Relay"
 
-    --- One flare per player per this many milliseconds. The gun's own reload is slower, so this
-    --- costs a legitimate player nothing and bounds what a modified client can paint on everyone
-    --- else's screen.
-    local MIN_GAP_MS = 2000
+    --- One flare per player per this many milliseconds. Bounds what a modified client can paint on
+    --- everyone else's screen. A shot refused here spends nothing and shows nothing, as vanilla's
+    --- refused hit does; the shooter's own client holds a wider gap (Gun.lua) so an honest shot is
+    --- never drawn there and then refused here.
+    local MIN_GAP_MS = M.FLARE_GAP_MS
 
     --- username -> the moment they may fire again. PRUNED, because a dedicated server runs for
     --- weeks and this file registers no teardown: without it the table keeps one entry per distinct
@@ -672,7 +675,7 @@ do
     --- Vanilla spends ammo in ISReloadWeaponAction.onShoot, hooked on OnWeaponSwingHitPoint, and
     --- only where `not isClient()`: a multiplayer client leaves it to the server. The server raises
     --- OnWeaponSwingHitPoint from the attack packet only for an AIMED firearm
-    --- (network/fields/hit/Player.java:141-150), and the flare gun is deliberately not one, so
+    --- (network/packets/hit/PlayerHitPacket.java:222-226), and the flare gun is deliberately not one, so
     --- nothing on the server ever ran onShoot for it and the count stayed at 1.
     ---
     --- So the relay, which is the one server-side thing that hears about every shot, runs the same

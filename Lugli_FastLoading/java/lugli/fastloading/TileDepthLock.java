@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
+
 import me.zed_0xff.zombie_buddy.Patch;
 import zombie.debug.DebugLog;
 import zombie.tileDepth.TileDepthTextures;
@@ -44,6 +45,13 @@ public final class TileDepthLock {
     public static Constructor<TilesetDepthTexture> ctor;
 
     private TileDepthLock() {}
+
+    /** For the menu handover line, so a part that did nothing says so. */
+    public static String status() {
+        if (!ON) return "off";
+        if (broken) return "DEFECT";
+        return "ok, " + handled + " depth tileset(s) decoded outside the lock";
+    }
 
     /** Resolve once. Any failure disables the patch rather than half-applying it. */
     public static synchronized boolean ready(Object task) {

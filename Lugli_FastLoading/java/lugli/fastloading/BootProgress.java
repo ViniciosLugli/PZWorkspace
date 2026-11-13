@@ -1,6 +1,6 @@
 package lugli.fastloading;
 
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Map;
 
 import me.zed_0xff.zombie_buddy.Patch;
@@ -68,7 +68,7 @@ public final class BootProgress {
      *
      * Pumping is CHEAP, which is not obvious. limitMaxSize returns immediately for every
      * load-path texture (it needs flags 128|256, which nothing on this path sets) and the upload
-     * is queued to the render thread (TextureID:327), so per-asset game-thread cost is tens of
+     * is queued to the render thread (TextureID.java:345), so per-asset game-thread cost is tens of
      * nanoseconds. What binds is the COUNT cap, Math.min(inProgress.size(), 16), not the work.
      * See AssetCap.
      */
@@ -110,7 +110,7 @@ public final class BootProgress {
     /** Latches what the engine announced and advances the phase model. */
     public static void note(String text) {
         // Retired means retired: never re-stamp the clock afterwards. Core.ResetLua re-fires
-        // DoLoadingText("UI_Loading_Texturepack", ...) once per pack, and MainScreen.lua:1237
+        // DoLoadingText("UI_Loading_Texturepack", ...) once per pack, and MainScreen.lua:1223
         // calls ResetLua ON THE CONTINUE PATH when the save's mods require it.
         if (off || text == null || text.isEmpty()) {
             return;
@@ -195,6 +195,59 @@ public final class BootProgress {
         DebugLog.log(TAG + " retired at the main menu");
     }
 
+    /**
+     * The menu handover: everything that must stop at the menu stops here, and every part says
+     * what state it reached. Runs on every MainScreenState.enter; each endBoot latches itself.
+     *
+     * The boot-only scopes end from Java, and from the same advice that retires the screen, so
+     * nothing that must stop at the menu can drift out of step with it. MeshPriority's old Lua
+     * gate never fired under ZombieBuddy preload.
+     *
+     * Every part reports, ON or OFF. A part that logs nothing reads exactly like one that failed
+     * to attach, and the preload-only parts never fire on a launch without preload, so no run
+     * could assert either without these lines.
+     */
+    private static boolean machineReported;
+
+    public static void handover() {
+        try {
+            MeshPriority.endBoot();
+            AssetCap.endBoot();
+            MergeStat.endBoot();
+            part(ShaderCache.TAG, ShaderCache.status());
+            part(DemandPriority.TAG, DemandPriority.status());
+            part(LazyIcon.TAG, LazyIcon.status());
+            part(TextureCap.TAG, TextureCap.status());
+            part(MeshPriority.TAG, MeshPriority.status());
+            part(MergeStat.TAG, MergeStat.status());
+            part(ModInfoPrefetch.TAG, ModInfoPrefetch.status());
+            part(WatcherGate.TAG, WatcherGate.status());
+            part(ScriptParse.TAG, ScriptParse.status());
+            part(AssetCap.TAG, AssetCap.status());
+            if (!machineReported) {
+                machineReported = true;
+                part(Tuning.TAG, Tuning.describe(Tuning.HOST, PrefetchPool.threads(),
+                        AssetThrottle.livePoolSize(), AssetCap.cap, AssetThrottle.BUDGET,
+                        AssetThrottle.WORKER_PRIORITY));
+            }
+            part(Tuning.TAG, AssetThrottle.status());
+            part(LogoSkip.TAG, LogoSkip.status());
+            part(LuaScan.TAG, LuaScan.status());
+            part(ModWalkPrefetch.TAG, ModWalkPrefetch.status());
+            part(TileGeometryPrefetch.TAG, TileGeometryPrefetch.status());
+            part(TileDepthLock.TAG, TileDepthLock.status());
+            part(QueryCache.TAG, QueryCache.status());
+            part(LogStatThrottle.TAG, LogStatThrottle.status());
+            part(LuaLoadedIndex.TAG, LuaLoadedIndex.status());
+        } catch (Throwable t) {
+            DebugLog.log(TAG + " menu handover report failed (" + t + ")");
+        }
+    }
+
+    private static void part(String tag, String status) {
+        DebugLog.log(tag + " " + status);
+    }
+
     /** Read after the cheap flag checks, so the retired case costs one volatile read. */
     public static boolean stateAllowsPaint() {
         try {
@@ -267,7 +320,7 @@ public final class BootProgress {
         }
         // The path that painted over the world-loading screen. Core.EndFrameUI is an OnEnter
         // hook, so body()'s opaque full-screen rect lands AFTER GameLoadingState drew its own
-        // frame (EndFrameUI at GameLoadingState.java:579-860, LoadingQueueState:65) and erases it.
+        // frame (EndFrameUI at GameLoadingState.java:581-853, LoadingQueueState.java:65) and erases it.
         if (!stateAllowsPaint()) {
             return;
         }
@@ -297,7 +350,7 @@ public final class BootProgress {
         // The ground goes down BEFORE anything can bail out. The font is briefly null while
         // TextManager rebuilds it, and returning early there left the engine's frame empty --
         // which is a black flash, not merely a missing label.
-        sr.renderi(null, 0, 0, w, h, 0.055F, 0.062F, 0.078F, 1.0F, null);
+        sr.renderi(null, 0, 0, w, h, 0.0F, 0.0F, 0.0F, 1.0F, null);
 
         TextManager tm = TextManager.instance;
         if (tm == null) return;
@@ -306,7 +359,7 @@ public final class BootProgress {
         AngelCodeFont small = tm.getFontFromEnum(UIFont.Small);
         if (small == null) small = big;
 
-        double frac = PHASES.fraction(learned == null ? new HashMap<String, Long>() : learned, now);
+        double frac = PHASES.fraction(learned == null ? Collections.<String, Long>emptyMap() : learned, now);
         int step = Math.max(1, PHASES.currentIndex() + 1);
         boolean warn = warningVisible(now);
 
@@ -399,8 +452,10 @@ public final class BootProgress {
             if (zombie.GameWindow.fileSystem != null) {
                 zombie.GameWindow.fileSystem.updateAsyncTransactions();
             }
-        } catch (Throwable ignored) {
-            // Cosmetic.
+        } catch (Throwable t) {
+            // Contained, because the pump is cosmetic, but a failing asset pass is the engine's
+            // defect to report, so it goes where the engine's own exceptions go.
+            zombie.core.logger.ExceptionLogger.logException(t);
         }
     }
 
@@ -451,22 +506,7 @@ public final class BootProgress {
         @Patch.OnExit
         public static void exit() {
             BootProgress.retire();
-            // The mesh raise ends here too. Driven from Java because its old Lua gate never fired
-            // under ZombieBuddy preload, and from THIS advice so the two things that must stop at
-            // the menu stop together.
-            MeshPriority.endBoot();
-            AssetCap.endBoot();
-            MergeStat.endBoot();
-            // Two ON-by-default parts used to reach the menu having logged nothing at all, so no
-            // run could assert them. They report here for the same reason the three above do.
-            DebugLog.log(ShaderCache.TAG + " " + ShaderCache.status());
-            DebugLog.log(DemandPriority.TAG + " " + DemandPriority.status());
-            DebugLog.log(LazyIcon.TAG + " " + LazyIcon.status());
-            DebugLog.log(TextureCap.TAG + " " + TextureCap.status());
-            // These two are default-OFF and used to say nothing at all, which reads exactly like a
-            // part that failed to attach. Nothing downstream can tell those apart without this.
-            DebugLog.log(MeshPriority.TAG + " " + MeshPriority.status());
-            DebugLog.log(MergeStat.TAG + " " + MergeStat.status());
+            BootProgress.handover();
         }
     }
 
@@ -519,7 +559,7 @@ public final class BootProgress {
         @Patch.OnEnter
         public static void enter() {
             if ((++tokenCalls & 255) == 0) {
-                    BootProgress.tick();
+                BootProgress.tick();
             }
         }
     }

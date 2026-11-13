@@ -50,7 +50,7 @@ local function onExplode(trap)
         end
     end
     local molotov = (full == MOLOTOV)
-    M.forEachLocalPlayer(function(player)
+    M.forEachStore(function(player)
         if molotov then
             M.incStat(player, "molotovs_thrown", 1)
         else

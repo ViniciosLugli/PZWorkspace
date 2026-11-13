@@ -1,62 +1,51 @@
 version=1
 title=Lugli - Achievements
-description=Project Zomboid B42 has no achievements. This adds 280+ of them, earned by what your survivor actually does: a weapon class you finally used, a species you finally handled, a way you finally died.
+description=Build 42 has no achievements. This adds 280+ of them, earned by what your survivor actually does: a weapon you finally used, an animal you finally handled, a way you finally died.
 description=
-description=[b]It changes nothing about how the game plays.[/b] No items, no XP, no loot, no spawns, no recipes. It watches, it counts, and it tells you.
+description=[b]It changes nothing about how the game plays.[/b] No items, XP, loot or recipes. It watches, counts and tells you.
 description=
 description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_Achievements/art/ach-categories.png[/img]
 description=
-description=[h1]The categories[/h1]
+description=[h1]Needs [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3508537032]NeatUI Framework[/url][/h1]
+description=Build 42.20 or later. NeatUI draws the window and the unlock pop-ups. The rest is pure Lua.
+description=
+description=[h1]13 categories[/h1]
 description=[list]
-description=[*][b]Waking Up[/b]: the first time you do each ordinary thing.
-description=[*][b]Body Count[/b]: kills, by weapon class and by how much noise you made getting them.
-description=[*][b]Still Breathing[/b]: days survived.
-description=[*][b]Autodidact[/b]: skill levels, perks, and the books that got you there.
-description=[*][b]Nailed It[/b]: what you built, and what you set on fire.
-description=[*][b]Homestead[/b]: crops and animals.
-description=[*][b]Field Medicine[/b]: bandages, stitches, splints, and what you pulled back out.
-description=[*][b]Roadside Attractions[/b]: driving, and the places at the end of the road.
-description=[*][b]House Proud[/b]: burying the dead, hoarding, and keeping a house worth coming back to.
-description=[*][b]This Is How You Died[/b]: the ways it ends.
-description=[*][b]Secrets[/b]: hidden, and shown as a teaser until you trip over the thing itself.
-description=[*][b]Challenges[/b]: one-off situations rather than totals. Climb out a window with three of them on you, kill one while you are on fire and still be alive an hour later, spend a whole night outdoors and kill nothing.
-description=[*][b]Milestones[/b]: finishing a whole category.
+description=[*][b]Waking Up:[/b] the first time you do each ordinary thing
+description=[*][b]Body Count:[/b] kills, by weapon and by how much noise you made
+description=[*][b]Still Breathing:[/b] days survived
+description=[*][b]Autodidact:[/b] skills, perks and the books behind them
+description=[*][b]Nailed It:[/b] what you built, and what you set on fire
+description=[*][b]Homestead:[/b] crops and animals
+description=[*][b]Field Medicine:[/b] bandages, stitches and splints
+description=[*][b]Roadside Attractions:[/b] driving, and where the road ends
+description=[*][b]House Proud:[/b] burials, hoarding and a home worth keeping
+description=[*][b]This Is How You Died:[/b] the ways it ends
+description=[*][b]Secrets:[/b] hidden until you trip over them
+description=[*][b]Challenges:[/b] one-off feats, like killing one while on fire and living an hour more
+description=[*][b]Milestones:[/b] finishing a whole category
 description=[/list]
-description=
-description=[h1]You choose what a death costs[/h1]
-description=By default progress is kept [b]per world[/b]: one collection shared by every survivor in the save, so dying does not restart it. That is also what lets an achievement be earned by the death itself, at the moment the character earning it stops existing.
-description=
-description=A tickbox in the mod options switches it to [b]per character[/b], if you would rather each survivor start clean. Switching deletes nothing: the two are separate stores, and turning it back brings the old one straight back.
-description=
-description=[h1]Pick the sound you unlock to[/h1]
-description=Open the achievements window and hit Sound in the title bar. Seven unlock sounds to choose from, plus Off, and its own volume slider separate from the game's. Every one plays the moment you select it, so you can hear it before you commit. The choice is yours and it stays with you: it is saved with your settings, not with the save, so it carries across characters, worlds and servers.
-description=
-description=[h1]Other mods can add their own[/h1]
-description=An achievement is one table: an id, a name, a category, a stat to watch and a number to reach. Register it and it appears in the window, tracks itself, saves itself and raises its own toast. Your art, your categories, your rules.
-description=
-description=[h1]Before you subscribe[/h1]
-description=For Build 42.20 and later. Needs [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3508537032]NeatUI Framework[/url] for the window and the toast. Pure Lua otherwise, no jar. Ten languages, every one complete: English, Brazilian Portuguese, Simplified Chinese, Russian, Spanish, German, French, Polish, Japanese and Korean. The names are the hard part, and they were adapted rather than run through a dictionary, so the jokes still land.
-description=
+description=[h1]Make it yours[/h1]
+description=[list]
+description=[*][b]Per world or per character.[/b] By default every survivor in a save shares one collection, so dying does not reset it. Switch to per character in Mod Options. It applies on the next world load and deletes nothing.
+description=[*][b]Your unlock sound.[/b] In the window's Settings: seven sounds or off, with its own volume. It follows you to every world and server.
+description=[/list]
 description=[h1]FAQ[/h1]
-description=
-description=[b]How do I open the achievements panel?[/b] Click the medal icon at the bottom of the left HUD sidebar, or press [b]F7[/b] (default key, rebindable under [b]Options -> Keybindings -> Lugli Achievements[/b]). If you prefer a clean sidebar, you can disable the sidebar button in [b]Mod Options[/b] or inside the achievements window Settings panel.
-description=
-description=[b]Can I add it to a save I already started?[/b] Yes. Anything the game still knows about is credited on the next load, so days survived and recipes known come across immediately. Counters that only exist because the mod was watching, like kills and things built, start from zero.
-description=
-description=[b]Is it safe to remove?[/b] Yes. It writes only its own data and touches nothing else. Remove it and the save loads normally; reinstall it and your progress is still there.
-description=
-description=[b]Does it work in multiplayer?[/b] Yes, and your collection is yours. The server keeps each player's progress under their own name and hands it back when they reconnect, so nobody else's kills unlock yours. The server has to have the mod as well, which is how the game loads mods for a connecting player anyway. One limit the game imposes: a client cannot read the radio and television channel list, so the four achievements for tuning in are single player only.
-description=
-description=[b]What does it do to my dedicated server?[/b] It keeps one table of counters and unlocked ids per player, saved with the world, and nothing else. Nothing can be earned in a server process, and the mod says exactly that at startup rather than half loading. Verified on a real headless server.
-description=
-description=[b]Will 280+ achievements slow the game down?[/b] No. Each one is indexed by the counter it watches, so changing a stat only ever wakes the handful watching that stat, never the whole roster.
-description=
+description=[list]
+description=[*][b]How do I open it?[/b] The medal icon at the bottom of the left sidebar, or [b]F7[/b] (rebindable). Hide the sidebar button in Mod Options.
+description=[*][b]Can I add it to a running save?[/b] Yes. What the game already tracks, like days survived and known recipes, counts at once. Kills and builds start from zero.
+description=[*][b]Is it safe to remove?[/b] Yes. The save loads normally, and reinstalling brings your progress back.
+description=[*][b]Multiplayer?[/b] Yes, and your collection is your own. The server needs the mod too: it keeps each player's progress.
+description=[*][b]Languages?[/b] Ten, all complete: English, Brazilian Portuguese, Simplified Chinese, Russian, Spanish, German, French, Polish, Japanese and Korean. Names were adapted, not machine translated.
+description=[*][b]Will 280+ achievements slow the game?[/b] No. A stat change only wakes the few achievements watching that stat.
+description=[*][b]Can my mod add achievements?[/b] Yes. One table per achievement, and it tracks, saves and announces itself. Example on GitHub.
+description=[/list]
 description=[hr][/hr]
-description=Open source under MIT: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_Achievements]github.com/ViniciosLugli/PZWorkspace[/url]
+description=Open source, MIT: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_Achievements]github.com/ViniciosLugli/PZWorkspace[/url]
+description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url], and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url].
+description=[i]Most of the 2D art was generated with Gemini (Nano Banana 2), then edited by hand. I am not good at drawing, so if you would like to draw for my mods, just contact me![/i]
 description=
-description=[i]Most of the 2D art here was generated with Gemini (Nano Banana 2), then hand edited and polished. I cannot draw, sadly :([/i]
-description=
-description=Built alongside [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url].
-description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url].
+description=Like my mods? Support is never needed and always appreciated: [url=https://ko-fi.com/vinicioslugli]ko-fi.com/vinicioslugli[/url]
+description=[url=https://ko-fi.com/vinicioslugli][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_Achievements/art/kofi.png[/img][/url]
 tags=Build 42;Interface;Misc
 visibility=public

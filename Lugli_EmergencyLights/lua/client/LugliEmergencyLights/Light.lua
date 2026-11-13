@@ -74,7 +74,7 @@ do
         return c
     end
 
-    -- THE THREE OPTIONS M.shade READS, RESOLVED ONCE PER WORLD.
+    -- THE THREE OPTIONS M.shadeRGB READS, RESOLVED ONCE PER CONFIG CHANGE.
     local cfgGen = -1
     local satC, intenC, wobbleOnC = 0.45, 1.0, false
 
@@ -128,13 +128,15 @@ do
     end
 
     --- ONE function, for every light in the mod: held, dropped, in flight, fired.
-    function M.shade(v, frac, familyId)
+    --- All three channels at once, because every light is coloured whole: the options, the decay
+    --- and the wobble are the same for r, g and b, and were being worked out three times a frame.
+    function M.shadeRGB(r, g, b, frac, familyId)
         local f = frac or 1.0
         local sat, inten, wobbleOn = shadeOptions()
         -- The decay multiplies the light's POWER, not its remaining life: a stick at 10% left is not
         -- at 10% brightness, it is at its family's floor.
         local power = M.decayFor(familyId, f) * wobble(wobbleOn)
-        return shade(v, power, sat, inten)
+        return shade(r, power, sat, inten), shade(g, power, sat, inten), shade(b, power, sat, inten)
     end
 
     --- A world-light slot, or nil when this part is already holding its budget.
@@ -203,9 +205,7 @@ do
 
         -- THE FAMILY'S OWN NUMBERS, WITH NOTHING APPLIED ON TOP.
         local radius = M.lightRadius(info.family)
-        local r = M.shade(info.r, frac, info.family)
-        local g = M.shade(info.g, frac, info.family)
-        local b = M.shade(info.b, frac, info.family)
+        local r, g, b = M.shadeRGB(info.r, info.g, info.b, frac, info.family)
 
         -- Keyed on WHICH ITEM, not just which square.
         local ident = tostring(info.family) .. "/" .. tostring(info.colour)
@@ -393,7 +393,7 @@ do
     -- NO TICKER. A registered world light persists until something removes it, so there is nothing
     -- to re-state; see the note where the submitter used to be. The part's status is gated on the
     -- OnGameStart handler instead, which is the thing it genuinely cannot run without.
-    --- THE SUBMITTER. Every live ground light, re-stated every frame.
+    --- THE SUBMITTER. Every live ground light, re-stated twice per lighting pass.
     local SUBMIT_CULL = 52
 
     -- Reused across frames by submit(). Never longer than the number of local players, which is at
@@ -438,9 +438,7 @@ do
                         -- AN ITEM'S LIGHT. Shaded from the raw authored colour and the life left, so
                         -- it decays and breathes exactly as the same item does in the player's hand.
                         local frac = rec.frac or 1.0
-                        r = M.shade(rec.rawR, frac, rec.family)
-                        g = M.shade(rec.rawG, frac, rec.family)
-                        b = M.shade(rec.rawB, frac, rec.family)
+                        r, g, b = M.shadeRGB(rec.rawR, rec.rawG, rec.rawB, frac, rec.family)
 
                         -- The flare's own flicker, CONTRIBUTED by the Flare block in Gun.lua rather than
                         -- written by it. Two writers on one light fought each other frame by frame;
@@ -468,8 +466,8 @@ do
         end
     end
 
-    -- Per frame, because a torch stated once and left alone goes out.
-    M.addTicker(PART, 0, submit)
+    -- At the engine's lighting rate, not per frame: a pass reads each source once (M.lightRestateSeconds).
+    M.addTicker(PART, M.lightRestateSeconds, submit)
 
     local h = M.addHandler(PART, "OnGameStart", function()
         lightN = 0
@@ -497,7 +495,7 @@ do
     end)
 
     -- Gated on the handler, as every other part is gated on the thing it cannot run without.
-    -- Reporting healthy when that hook failed is the one failure the status panel exists to catch.
+    -- Reporting healthy when that hook failed is the one failure the boot summary exists to catch.
     if h ~= nil then M.status(PART, true) end
 end
 
@@ -604,15 +602,13 @@ do
         return nil
     end
 
-    --- One light, re-stated every frame on the tile nearest the player.
+    --- One light, re-stated twice per lighting pass on the tile nearest the player.
     local function update(player, key, item, info)
         local h = slotFor(key)
         if h == nil then return end
 
         local frac = M.fractionLeft(item) or 1.0
-        local r = M.shade(info.r, frac, info.family)
-        local g = M.shade(info.g, frac, info.family)
-        local b = M.shade(info.b, frac, info.family)
+        local r, g, b = M.shadeRGB(info.r, info.g, info.b, frac, info.family)
 
         -- THE SAME RADIUS THE FLOOR GETS. Not 0.75x for a pool and 1.15x for a cone: one light, the
         -- family's own number, so putting a burning flare down changes where the light is and nothing
@@ -711,37 +707,34 @@ do
         pcall(resolveRemote)
     end
 
+    --- YOUR OWN LIGHT FIRST, and a stranger's second.
+    ---
+    --- Slots are taken lazily, here, and `pairs` walks a hash table in whatever order it likes.
+    --- With the pool nearly spent that decided by coin toss whose light survived, so your own
+    --- held flare could go dark while somebody you can barely see stayed lit. Two passes over
+    --- the same table costs nothing and makes the answer "yours". Defined once, not per frame.
+    local function pass(wantRemote, stale)
+        for key, c in pairs(carried) do
+            if (c.remote == true) == wantRemote then
+                local ok, err = pcall(update, c.player, key, c.item, c.info)
+                if not ok then
+                    -- Not dropped inside the walk: removing from a table while iterating it
+                    -- skips entries, and a remote player's object goes stale the moment they
+                    -- disconnect.
+                    stale = stale or {}
+                    stale[#stale + 1] = key
+                    M.defect(PART, tostring(err))
+                end
+            end
+        end
+        return stale
+    end
+
     --- WHERE the light goes, every frame. This is what makes it glide rather than step.
     local function place()
         -- Nothing lit in anybody's hands: the whole pass is one integer compare.
         if carriedN == 0 then return end
-        local stale = nil
-
-        --- YOUR OWN LIGHT FIRST, and a stranger's second.
-        ---
-        --- Slots are taken lazily, here, and `pairs` walks a hash table in whatever order it likes.
-        --- With the pool nearly spent that decided by coin toss whose light survived, so your own
-        --- held flare could go dark while somebody you can barely see stayed lit. Two passes over
-        --- the same table costs nothing and makes the answer "yours".
-        local function pass(wantRemote)
-            for key, c in pairs(carried) do
-                if (c.remote == true) == wantRemote then
-                    local ok, err = pcall(update, c.player, key, c.item, c.info)
-                    if not ok then
-                        -- Not dropped inside the walk: removing from a table while iterating it
-                        -- skips entries, and a remote player's object goes stale the moment they
-                        -- disconnect.
-                        stale = stale or {}
-                        stale[#stale + 1] = key
-                        M.defect(PART, tostring(err))
-                    end
-                end
-            end
-        end
-
-        pass(false)
-        pass(true)
-
+        local stale = pass(true, pass(false, nil))
         if stale ~= nil then
             for i = 1, #stale do drop(stale[i]) end
         end
@@ -769,7 +762,7 @@ do
 
     -- TWO RATES ON PURPOSE.
     M.addTicker(PART, 0.1, resolve)
-    local h = M.addTicker(PART, 0, place)
+    local h = M.addTicker(PART, M.lightRestateSeconds, place)
 
     M.addTeardown(PART, function() M.dropHeldLights() end)
 
@@ -821,31 +814,6 @@ do
         end)
     end
 
-    --- Burn out an item that ONLY THIS MACHINE CAN SEE.
-    ---
-    --- The one exception to "the authority owns ground items", and it is not a loophole: an object
-    --- a multiplayer client dropped or threw never reached the server (see M.markLocalOnly), so the
-    --- authority cannot burn it out and no other client can be racing us for it. Without this the
-    --- stick you threw stayed lit forever on your own screen -- which is what removing the old
-    --- client-side expire cost, before this put it back for exactly the objects it is safe for.
-    local function expireLocalOnly(square, worldObj, item)
-        local spentType = M.SPENT_OF[item:getFullType()]
-        if spentType == nil or instanceItem == nil then return end
-        local ok, err = pcall(function()
-            local spent = instanceItem(spentType)
-            -- swapItem throws if the incoming item already belongs to a world object, so a freshly
-            -- instanced one is the only safe thing to hand it. It does not transmit from a client,
-            -- which is precisely why this is confined to objects nobody else has.
-            if spent ~= nil then
-                M.markLocalOnly(spent)
-                worldObj:swapItem(spent)
-            end
-        end)
-        if not ok then
-            M.defect(PART, "could not burn out a locally dropped item: " .. tostring(err))
-        end
-    end
-
     -- NO GENERAL expire() HERE ANY MORE, and no stamping and no posing: they live in
     -- server/LugliEmergencyLights/World.lua, which exactly one machine per world runs.
     --
@@ -863,7 +831,7 @@ do
 
         -- COLLECTED FIRST, THEN ACTED ON. `dead` is now only a flag: this file no longer touches a
         -- burnt-out item, it only stops lighting the tile once nothing on it is still burning.
-        local dead, live, mine = false, nil, nil
+        local dead, live = false, nil
         for i = 0, n - 1 do
             local wo = objs:get(i)
             local item = wo ~= nil and wo:getItem() or nil
@@ -871,12 +839,6 @@ do
             if info ~= nil then
                 if M.isExpired(item) then
                     dead = true
-                    -- Ours alone, so ours to burn out. Anything else on this tile is the
-                    -- authority's and is left strictly alone.
-                    if M.isLocalOnly ~= nil and M.isLocalOnly(item) then
-                        mine = mine or {}
-                        mine[#mine + 1] = { wo = wo, item = item }
-                    end
                 elseif live == nil then
                     -- The first burning item on the tile owns the light. Several on one square is one
                     -- light, which is both cheaper and what looks right.
@@ -941,11 +903,7 @@ do
         end
 
         -- `dead` is read only to decide whether this tile still deserves a light. Turning the burnt
-        -- item into its spent form is the authority's job and arrives over the wire -- except for
-        -- the ones the authority has never heard of, which are ours.
-        if mine ~= nil then
-            for i = 1, #mine do expireLocalOnly(square, mine[i].wo, mine[i].item) end
-        end
+        -- item into its spent form is the authority's job and arrives over the wire.
         return budget
     end
 

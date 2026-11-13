@@ -311,7 +311,7 @@ do
     -- AddWorldInventoryItem (its `transmit` argument is spent at `if (transmit &&
     -- GameServer.server)`), not through transmitCompleteItemToClients, not through
     -- sendAddItemToContainer, and not through sendObjectChange, which answers a client with
-    -- "sendObjectChange() can only be called on the server". See docs/13.
+    -- "sendObjectChange() can only be called on the server".
     --
     -- So a thrown stick placed by the thrower is visible to the thrower and to nobody else, and the
     -- authority never learns it exists. The only way to drop something everybody can see is to ask
@@ -330,15 +330,35 @@ do
     local pending = {}
     local pendingN = 0
 
+    --- How long a drop given up on is remembered, in ms, so an answer that arrives after the
+    --- deadline can still be reconciled with what the server did.
+    local ABANDON_TTL_MS = 120000
+
+    --- id -> the pending record, plus `forgetAt`. Drops the deadline handed back to the bag.
+    local abandoned = {}
+    local abandonedN = 0
+
     --- Makes every id unique on this machine whatever the clock does. Name plus millisecond plus
     --- tile is not enough on its own: two throws that landed on the same tile in the same
     --- millisecond would share an id, and the second would overwrite the first in `pending` --
     --- losing an item that had already left its container.
     local dropSeq = 0
 
-    --- Does the server answer drops? Latched false the first time one goes unanswered, so the very
-    --- next throw lands instantly and locally instead of hanging for fifteen seconds again.
+    --- Does the server answer drops? Latched false the first time one goes unanswered, and while it
+    --- is false a multiplayer client does not throw at all (Throw.lua): nothing a client places
+    --- exists for the server, so there is no local landing to fall back on. Any answer from the
+    --- server, however late, opens it again.
     local serverDrops = true
+
+    local STATUS_OK = "other players' flares and throws are visible to you"
+
+    --- The server answered a drop, so it has this mod: whatever a timeout latched off was wrong.
+    local function reopenDrops()
+        if serverDrops then return end
+        serverDrops = true
+        M.status(PART, true, STATUS_OK)
+        M.log(PART, "the server answered a drop; throwing is back on")
+    end
 
     --- May the caller hand a landing to the server?
     function M.serverDropReady()
@@ -353,10 +373,34 @@ do
         return rec
     end
 
+    local function forgetAbandoned(id)
+        if abandoned[id] == nil then return nil end
+        local rec = abandoned[id]
+        abandoned[id] = nil
+        abandonedN = abandonedN - 1
+        return rec
+    end
+
     --- Give up on the drops the server never answered and put those items back.
+    ---
+    --- BACK IN THE BAG IS WHAT THE SERVER SAYS. Taking the item out of a container on a client has
+    --- no network effect, so a server that never answered still holds it in this player's
+    --- inventory; handing it back makes the two agree again. It is never put on the ground here.
     local function reapDrops()
-        if pendingN == 0 then return end
+        if pendingN == 0 and abandonedN == 0 then return end
         local now = nowMs()
+
+        local stale = nil
+        for id, rec in pairs(abandoned) do
+            if now > rec.forgetAt then
+                stale = stale or {}
+                stale[#stale + 1] = id
+            end
+        end
+        if stale ~= nil then
+            for i = 1, #stale do forgetAbandoned(stale[i]) end
+        end
+
         local dead = nil
         for id, rec in pairs(pending) do
             if now > rec.at + DROP_TTL_MS then
@@ -367,23 +411,40 @@ do
         if dead == nil then return end
         for i = 1, #dead do
             local rec = forget(dead[i])
-            if rec ~= nil and M.restoreThrown ~= nil then
-                M.restoreThrown(rec.item, rec.player, rec.container)
+            if rec ~= nil then
+                if M.restoreThrown ~= nil then
+                    M.restoreThrown(rec.item, rec.player, rec.container)
+                end
+                if abandoned[dead[i]] == nil then abandonedN = abandonedN + 1 end
+                rec.forgetAt = now + ABANDON_TTL_MS
+                abandoned[dead[i]] = rec
             end
         end
-        -- ONCE. Everything after this lands locally, which is what a server without this mod can
-        -- support, and the player is told why other people cannot see what they put down.
+        -- ONCE. A SERVER WITHOUT THIS MOD CANNOT LAND ANYTHING, and it is said rather than papered
+        -- over with a landing only this screen would show: throwing stops until the server answers.
         if serverDrops then
             serverDrops = false
             M.status(PART, false,
-                     "the server does not have this mod, so what you put down is visible only to you",
+                     "the server did not answer a drop, so throwing is off: it may not have this mod",
                      "dep")
-            M.log(PART, "the server did not answer a drop; landing items locally from now on")
+            M.log(PART, "the server did not answer a drop; the item went back to the inventory "
+                      .. "and throwing is off until the server answers one")
         end
     end
 
+    --- Take an item back out of whatever container this machine put it in. Only ever called when
+    --- the server has confirmed it landed its own copy, so leaving this one anywhere is a duplicate.
+    local function release(item)
+        if item == nil then return end
+        pcall(function()
+            local c = item:getContainer()
+            if c ~= nil then c:Remove(item) end
+        end)
+    end
+
     --- Ask the server to put this item on the ground. Returns true when the request is away and the
-    --- item is being held for it; false means the caller must land it itself.
+    --- item is being held for it; false means nothing was sent and the item is the caller's to put
+    --- back, never to land itself.
     ---
     --- `throwId` is the id M.sendThrow returned for this same throw, or nil for a landing that
     --- never flew. It is carried so the server's landing broadcast can name the arc every other
@@ -451,14 +512,10 @@ do
         return n
     end
 
-    --- Take a parked item back out of wherever the save-time stow put it. Only ever called when
-    --- the server has confirmed it made its own copy, so leaving this one anywhere is a duplicate.
+    --- Take a parked item back out of wherever the save-time stow put it.
     local function unpark(rec)
-        if rec == nil or rec.parked ~= true or rec.item == nil then return end
-        pcall(function()
-            local c = rec.item:getContainer()
-            if c ~= nil then c:Remove(rec.item) end
-        end)
+        if rec == nil or rec.parked ~= true then return end
+        release(rec.item)
     end
 
     --- The server answered. Either it made the object, in which case ours is a duplicate of
@@ -473,17 +530,25 @@ do
         local id = tostring(args.id or "")
         local rec = forget(id)
         if rec == nil then
-            -- An answer to a drop this machine is no longer waiting on: the deadline beat it. The
-            -- item has already gone back into a container and the server has made its own, so there
-            -- are now two. Said out loud, because it is the one duplication this design can produce
-            -- and it would otherwise happen in complete silence.
-            M.log(PART, "a drop was answered after it had already been given up on (" .. id
-                      .. "); if an item looks duplicated, this is why")
+            local late = forgetAbandoned(id)
+            if late == nil then
+                M.debug(PART, "an answer to a drop this machine never made or long forgot (" .. id .. ")")
+                return
+            end
+            -- THE DEADLINE BEAT IT, and the server is the authority on what happened. The item was
+            -- handed back to the bag when the wait ran out. Refused: the server kept it too, and
+            -- the two already agree. Taken: the server took it out of this player's inventory and
+            -- put it on the ground, so the copy handed back here is the duplicate and comes out.
+            reopenDrops()
+            if args.ok ~= false then
+                release(late.item)
+                M.log(PART, "a drop was answered after the deadline (" .. id .. "); the server "
+                          .. "landed it, so the copy handed back to the inventory was taken out")
+            end
             return
         end
 
-        -- Answered at all, so the route works: anything an earlier timeout latched off was wrong.
-        serverDrops = true
+        reopenDrops()
 
         if args.ok == false then
             -- Already back in a container if a save parked it there; putting it back twice is a
@@ -563,8 +628,9 @@ do
             end
         end
         pending, pendingN = {}, 0
+        abandoned, abandonedN = {}, 0
         serverDrops = true
     end)
 
-    if h ~= nil then M.status(PART, true, "other players' flares and throws are visible to you") end
+    if h ~= nil then M.status(PART, true, STATUS_OK) end
 end

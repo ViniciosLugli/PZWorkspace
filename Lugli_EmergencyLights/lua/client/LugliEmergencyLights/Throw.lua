@@ -176,14 +176,15 @@ function M.place(player, item, square, rest, origin)
         restPitch, restYaw = M.poseFor(fam0, rest or {})
     end
 
-    -- ---- THE SERVER DROPS IT, IF THERE IS ONE THAT CAN ------------------------------------------
-    -- A multiplayer client cannot put a world item on the wire by any route (docs/13), so an item
-    -- this machine places is visible to this machine alone and the authority never learns it exists.
-    -- Asking the server to do the dropping is the only way anybody else sees what you put down.
+    -- ---- ON A MULTIPLAYER CLIENT THE SERVER LANDS IT, OR NOBODY DOES ---------------------------
+    -- Nothing a client calls puts a world item on the wire (AddWorldInventoryItem transmits inside
+    -- `if (transmit && GameServer.server)`), and the server still holds the item in this
+    -- player's inventory: a local landing is a ghost only this screen shows, over a bag the server
+    -- says is still full. Asking the server to do the dropping is the only landing a client has.
     --
-    -- The item is HELD by Net.lua until the server confirms, and handed back if it never does. It is
-    -- already out of every container by now, so there is nothing to undo either way.
-    if M.serverDropReady ~= nil and M.serverDropReady() then
+    -- The item is HELD by Net.lua until the server confirms, and handed back if it never does. If the
+    -- request cannot even go, it goes back now: there is no local landing to fall through to.
+    if M.isMultiplayer() then
         -- The arc's own id travels with the landing, so the server's broadcast can end the copy of
         -- this throw every other machine is flying and light the tile on the frame it arrives.
         -- A landing with no flight behind it -- the fallback that places an item directly when the
@@ -197,6 +198,8 @@ function M.place(player, item, square, rest, origin)
             M.noiseAt(player, square:getX(), square:getY(), square:getZ(), M.cfg("ThrowNoise"))
             return true
         end
+        M.restoreThrown(item, player, origin or inv)
+        return false
     end
 
     local placed = nil
@@ -212,14 +215,6 @@ function M.place(player, item, square, rest, origin)
     M.debug(PART, string.format("landed %s at %d,%d,%d (3D ground items: %s)",
         tostring(item:getFullType()), square:getX(), square:getY(), square:getZ(),
         tostring(getCore ~= nil and getCore():isOption3DGroundItem() or "unknown")))
-
-    -- MINE TO LOOK AFTER, and only on a multiplayer client. Nothing Lua can call from a client puts
-    -- a world item on the wire, so this object exists here and nowhere else: the authority will
-    -- never see it and never burn it out. The mark is what lets the client sweep expire this one
-    -- without going anywhere near an object the server owns. See M.markLocalOnly.
-    if M.isMultiplayer() and M.markLocalOnly ~= nil then
-        M.markLocalOnly(placed or item)
-    end
 
     -- Vanilla's own drop does this. Without it the world-item cleanup sandbox option can sweep a
     -- burning stick away.
@@ -521,6 +516,12 @@ local function onSwing(character, weapon)
     if info == nil then return end
     -- Already arcing through the air: one swing, one throw.
     if M.isInFlight(weapon) then return end
+    -- NO THROW THE SERVER WILL NOT LAND. On a multiplayer client only the server can put the item
+    -- down (M.place), so while it is not taking drops the item never leaves the hand.
+    if M.isMultiplayer() and not (M.serverDropReady ~= nil and M.serverDropReady()) then
+        M.debug(PART, "the server is not taking drops; the throw stays in the hand")
+        return
+    end
 
     -- DIRECT, for the same reason the flare gun is, and one the rewrite created.
     local sq = M.aimSquareDirect(character, M.throwRange(info.family))

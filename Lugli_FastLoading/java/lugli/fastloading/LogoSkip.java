@@ -19,6 +19,12 @@ public class LogoSkip {
     public static final boolean KEEP = "keep".equals(System.getProperty("fastloading.logo"));
     public static boolean announced;
 
+    /** For the menu handover line, so a part that did nothing says so. */
+    public static String status() {
+        if (KEEP) return "off";
+        return announced ? "ok, intro logos skipped" : "idle: the logo state never entered";
+    }
+
     @Patch.OnExit
     public static void exit(@Patch.This zombie.gameStates.TISLogoState state) {
         if (KEEP) return;

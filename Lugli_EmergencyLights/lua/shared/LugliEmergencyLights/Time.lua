@@ -37,35 +37,10 @@ end
 local KEY_EXPIRES = "lugliELExpires"
 local KEY_BURN    = "lugliELBurn"
 local KEY_ID      = "lugliELId"
-local KEY_LOCAL   = "lugliELLocal"
 
 M.KEY_EXPIRES = KEY_EXPIRES
 M.KEY_BURN    = KEY_BURN
 M.KEY_ID      = KEY_ID
-M.KEY_LOCAL   = KEY_LOCAL
-
---- Mark a world item that ONLY THIS MACHINE CAN SEE.
----
---- On a multiplayer client nothing Lua can call puts a world item on the wire: AddWorldInventoryItem
---- transmits inside `if (transmit && GameServer.server)`, IsoObject.transmitCompleteItemToClients is
---- `if (GameServer.server)`, and so is sendAddItemToContainer. So an item this client drops or
---- throws exists on this client and nowhere else -- not on the server, and not on any other player's
---- screen. The authority therefore cannot burn it out, because it never hears about it.
----
---- This mark is how the client tells "an object I made, that is mine to look after" apart from "an
---- object the server sent me, that is not". It never reaches the server, which is exactly why it
---- answers the question correctly.
-function M.markLocalOnly(item)
-    if item == nil then return false end
-    local ok = pcall(function() item:getModData()[KEY_LOCAL] = true end)
-    return ok
-end
-
-function M.isLocalOnly(item)
-    if item == nil then return false end
-    local ok, v = pcall(function() return item:getModData()[KEY_LOCAL] end)
-    return ok and v == true
-end
 
 --- Stamp an item as burning for burnHours from now.
 function M.markCracked(item, burnHours, uniqueId)
@@ -92,10 +67,16 @@ function M.hoursLeft(item)
 end
 
 --- Fraction of life remaining, 0 to 1. nil when not cracked or the burn time is unknown.
+--- Called per lit item per frame, so the ModData is fetched once rather than through hoursLeft.
 function M.fractionLeft(item)
-    local left = M.hoursLeft(item)
-    if left == nil then return nil end
-    local burn = item:getModData()[KEY_BURN]
+    if item == nil then return nil end
+    local md = item:getModData()
+    local expires = md[KEY_EXPIRES]
+    if type(expires) ~= "number" then return nil end
+    local now = M.worldHours()
+    if now == nil then return nil end
+    local left = expires - now
+    local burn = md[KEY_BURN]
     if type(burn) ~= "number" or burn <= 0 then return nil end
     if left <= 0 then return 0 end
     if left >= burn then return 1 end

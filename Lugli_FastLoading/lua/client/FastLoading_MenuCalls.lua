@@ -10,7 +10,7 @@
 -- and the advice's own unconditional log line never appeared. Both callers are Lua, so overriding
 -- them there always works and needs no patch slot.
 --
--- NEITHER OVERRIDE CHANGES AN OUTCOME.
+-- THE OVERRIDE DOES NOT CHANGE AN OUTCOME.
 --   onKeyboardLayoutChanged rebuilds a key-name table from glfwGetKeyName. MainOptions calls it on
 --   EVERY open purely in case the player switched QWERTY/AZERTY between screens; re-running it
 --   seconds later cannot produce a different answer.
@@ -18,8 +18,8 @@
 -- NOT DONE HERE: apply() also calls setResolutionAndFullScreen unconditionally, and the engine
 -- early-outs on the far side after paying for the trip. Skipping that from Lua looked easy and is
 -- not: the function reads the TARGET resolution from its combo box, so a guard comparing against
--- the CURRENT display state would swallow a real resolution change. A slow apply is a far smaller
--- fault than a settings screen that silently ignores you.
+-- the CURRENT display state would swallow a real resolution change. The Java side does it instead,
+-- on the requested values against the live display (lugli.fastloading.QueryCache.DisplayMode).
 
 local KEY_LAYOUT_TTL_MS = 10000
 
@@ -42,8 +42,18 @@ local function installed(t, key)
     return false
 end
 
+-- Kill switch, -Dfastloading.menucalls=off. Read here, not at file scope: the Java bridge that
+-- defines FastLoading_Switch may not be exposed yet when this file loads.
+local function partDisabled()
+    if type(FastLoading_Switch) == "function" then
+        return FastLoading_Switch("menucalls", "on") == "off"
+    end
+    return false
+end
+
 local function install()
     if type(MainOptions) ~= "table" then return end
+    if partDisabled() then return end
 
     if type(MainOptions.onKeyboardLayoutChanged) == "function"
             and not installed(MainOptions, "keylayout") then
@@ -61,7 +71,6 @@ local function install()
             return orig(self)
         end
     end
-
 end
 
 Events.OnGameBoot.Add(install)

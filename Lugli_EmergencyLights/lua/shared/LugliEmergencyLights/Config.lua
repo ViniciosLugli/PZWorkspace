@@ -17,18 +17,23 @@ local function typeOk(kind, v)
     return type(v) == "number"
 end
 
+local function field(t, k) return t[k] end
+
+-- The bad-type count last reported, so the two-second refresh logs a change, not a heartbeat.
+local lastBad = 0
+
 local function readAll()
     local out = {}
     local vars = nil
     if SandboxVars ~= nil then
-        local ok, t = pcall(function() return SandboxVars[M.SANDBOX_PAGE] end)
+        local ok, t = pcall(field, SandboxVars, M.SANDBOX_PAGE)
         if ok then vars = t end
     end
     local bad = 0
     for name, spec in pairs(M.SANDBOX) do
         local v = nil
         if vars ~= nil then
-            local ok, got = pcall(function() return vars[name] end)
+            local ok, got = pcall(field, vars, name)
             if ok then v = got end
         end
         -- A present but wrong-shaped value is worse than a missing one: it reaches arithmetic
@@ -40,9 +45,10 @@ local function readAll()
         if v == nil then v = spec.default end
         out[name] = v
     end
-    if bad > 0 then
+    if bad > 0 and bad ~= lastBad then
         M.log(PART, bad .. " sandbox value(s) had the wrong type, used the default")
     end
+    lastBad = bad
     return out
 end
 
@@ -95,7 +101,8 @@ function M.cfg(name)
     return v
 end
 
---- Drop the cache. Called at OnGameStart, the only point the answers can change.
+--- Drop the cache at world start, so a new world never reads the last one's answers. Edits in a
+--- live world are picked up by refreshConfig, which Boot.lua runs every two seconds.
 M.configGen = 0
 
 function M.resetConfig()
@@ -115,7 +122,14 @@ function M.burnHours(familyId)
     return v
 end
 
+--- Every light asks this every frame. The answer moves only with the config, so it is kept per
+--- family until configGen moves, instead of building an option name per light per frame.
+local radiusGen, radiusOf = -1, {}
+
 function M.lightRadius(familyId)
+    if radiusGen ~= M.configGen then radiusGen, radiusOf = M.configGen, {} end
+    local cached = radiusOf[familyId]
+    if cached ~= nil then return cached end
     local v = M.cfg(tostring(familyId) .. "Radius")
     if type(v) ~= "number" or v < 1 then
         local fam = M.FAMILIES[familyId]
@@ -126,7 +140,8 @@ function M.lightRadius(familyId)
     -- (LightingJNI.java:325). Sending more is not an error, it is silently ignored, so the cap is
     -- applied here where a sandbox value can still be reported honestly rather than appearing to
     -- take effect. The three ground families are 5, 10 and 15 and are untouched by it.
-    if v > 20 then return 20 end
+    if v > 20 then v = 20 end
+    if familyId ~= nil then radiusOf[familyId] = v end
     return v
 end
 

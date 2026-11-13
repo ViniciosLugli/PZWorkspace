@@ -18,18 +18,40 @@ local DECLARED_STATS = {
     "kills_spear",
 }
 
--- WeaponCategory.toString() returns the ResourceLocation, so the comparison is base:axe, never
--- AXE. Firearms carry no category at all and are found with isRanged() instead.
-local CATEGORY_STAT = {
-    ["base:axe"]         = "kills_axe",
-    ["base:blunt"]       = "kills_blunt",
-    ["base:smallblunt"]  = "kills_smallblunt",
-    ["base:longblade"]   = "kills_longblade",
-    ["base:smallblade"]  = "kills_smallblade",
-    ["base:spear"]       = "kills_spear",
-    ["base:unarmed"]     = "kills_unarmed",
-    ["base:improvised"]  = "kills_improvised",
+-- containsWeaponCategory takes the WeaponCategory object, so a string never matches and every
+-- category kill went uncounted. The key is the ResourceLocation, which is what saves already hold
+-- in weapon_classes_used. Firearms carry no category and are found with isRanged() instead.
+local CATEGORIES = {
+    { field = "AXE",         key = "base:axe",        stat = "kills_axe" },
+    { field = "BLUNT",       key = "base:blunt",      stat = "kills_blunt" },
+    { field = "SMALL_BLUNT", key = "base:smallblunt", stat = "kills_smallblunt" },
+    { field = "LONG_BLADE",  key = "base:longblade",  stat = "kills_longblade" },
+    { field = "SMALL_BLADE", key = "base:smallblade", stat = "kills_smallblade" },
+    { field = "SPEAR",       key = "base:spear",      stat = "kills_spear" },
+    { field = "UNARMED",     key = "base:unarmed",    stat = "kills_unarmed" },
+    { field = "IMPROVISED",  key = "base:improvised", stat = "kills_improvised" },
 }
+
+--- Resolved on the first kill, not at load: the class is exposed by then on every build, and a
+--- constant this build lacks drops out of the list instead of failing every kill.
+local resolved
+local function categories()
+    if resolved ~= nil then return resolved end
+    resolved = {}
+    local missing = {}
+    for _, c in ipairs(CATEGORIES) do
+        local obj = WeaponCategory ~= nil and WeaponCategory[c.field] or nil
+        if obj ~= nil then
+            resolved[#resolved + 1] = { obj = obj, key = c.key, stat = c.stat }
+        else
+            missing[#missing + 1] = c.field
+        end
+    end
+    if #missing > 0 then
+        M.defect(PART, "WeaponCategory lacks " .. table.concat(missing, " ") .. " on this build")
+    end
+    return resolved
+end
 
 --- Kill() sets attackedBy BEFORE firing the event, so this names the killer. It stays nil for
 --- fire and fall deaths, which keeps environmental kills out of the count for free.
@@ -59,12 +81,14 @@ local function creditCategories(player, weapon)
     end
     local script = weapon:getScriptItem()
     if script == nil or script.containsWeaponCategory == nil then return end
-    for cat, stat in pairs(CATEGORY_STAT) do
+    local cats = categories()
+    for i = 1, #cats do
+        local c = cats[i]
         -- pcall with arguments, not a closure: a closure here is eight allocations per kill.
-        local ok, has = pcall(script.containsWeaponCategory, script, cat)
+        local ok, has = pcall(script.containsWeaponCategory, script, c.obj)
         if ok and has then
-            M.incStat(player, stat, 1)
-            M.addUnique(player, "weapon_classes_used", cat)
+            M.incStat(player, c.stat, 1)
+            M.addUnique(player, "weapon_classes_used", c.key)
         end
     end
 end
@@ -134,7 +158,7 @@ end
 --- comparison is a subtraction rather than a running flag.
 local lastDayKills = {}
 local function onEveryDays()
-    M.forEachLocalPlayer(function(player, idx)
+    M.forEachStore(function(player, idx)
         local total = M.getStat(player, "kills_total")
         local prev = lastDayKills[idx]
         if prev ~= nil and total == prev and total >= 100 then

@@ -49,7 +49,12 @@ public final class LazyIcon {
 
     public static volatile long deferred;      // icons whose load was NOT queued at parse
     public static volatile long resolved;      // icons a reader later actually asked for
+    public static volatile long reDeferred;
+    public static volatile long ppCalls;
+    public static volatile long ppWithIcon;
+    public static volatile long ppWithIconAndTexture;
     private static volatile boolean announced;
+    private static volatile boolean postParseSeen;
 
     private static Field fItemType;
     private static Field fScriptItem;
@@ -145,7 +150,7 @@ public final class LazyIcon {
     /**
      * Resolve on first read. Called from the getter and from InventoryItem.getTexture(), both of
      * which run long before an icon reaches the screen -- which matters, because Texture.bind()
-     * substitutes the red/white error texture for anything not ready (Texture.java:678-688).
+     * substitutes the red/white error texture for anything not ready (Texture.java:676-686).
      *
      * The Question_On fallback is the engine's own, kept identical so a genuinely missing icon
      * looks exactly as it does in vanilla.
@@ -163,7 +168,7 @@ public final class LazyIcon {
         // sees an item whose icon is set, so its IconsForTexture fallback cannot be the writer.
         //
         // Rather than a fifth guess, recompute what vanilla's Icon branch would have produced and
-        // make that authoritative. Item.java:1994-1996 is trygetTexture(itemName) with a
+        // make that authoritative. Item.java:1999-2002 is trygetTexture(itemName) with a
         // Question_On fallback, which is exactly what this does, so the answer matches vanilla by
         // construction regardless of what wrote the field.
         String want = expectedName(item);
@@ -247,7 +252,7 @@ public final class LazyIcon {
         }
         // Keyed on `icon`, NOT on itemName. Script merge produces Item instances that carry the
         // parsed icon but a null itemName, and on those the engine's IconsForTexture fallback
-        // (Item.java:1472-1473) wins -- which is how Base.ClubHammer came out as
+        // (Item.java:1477-1478) wins -- which is how Base.ClubHammer came out as
         // Item_ClubHammer_Forged while resolve() was demonstrably returning Item_ClubHammer for a
         // different instance of the same item.
         if (item != null && hadIconParam(item) && item.normalTexture != null) {
@@ -256,12 +261,6 @@ public final class LazyIcon {
         }
     }
 
-
-    /**
-     * "This item declared an Icon" -- true wherever the branch we defer would have run.
-     * Item.icon is public and defaults to "None" (Item.java:75), and unlike itemName it survives
-     * whatever copying script merge does.
-     */
     /**
      * The texture name vanilla's Icon branch would have used, or null for an item that never
      * declared an Icon -- those keep a null normalTexture in vanilla and must keep one here.
@@ -273,15 +272,14 @@ public final class LazyIcon {
         return hadIconParam(item) ? "Item_" + item.icon : null;
     }
 
+    /**
+     * "This item declared an Icon" -- true wherever the branch we defer would have run.
+     * Item.icon is public and defaults to "None" (Item.java:75), and unlike itemName it survives
+     * whatever copying script merge does.
+     */
     private static boolean hadIconParam(Item item) {
         return item.icon != null && !"None".equals(item.icon) && !item.icon.isEmpty();
     }
-
-    public static volatile long reDeferred;
-    public static volatile long ppCalls;
-    public static volatile long ppWithIcon;
-    public static volatile long ppWithIconAndTexture;
-    private static volatile boolean postParseSeen;
 
     public static String status() {
         if (!ON) return "off";
@@ -294,7 +292,8 @@ public final class LazyIcon {
     /**
      * DoParam is overloaded -- DoParam(String) splits and re-calls DoParam(String, String) -- and
      * ZombieBuddy matches by name, so both are patched. Dispatch on AllArguments rather than a
-     * declared signature, the same way BootPatches handles getCanonicalFile's three overloads.
+     * declared signature, the same way Lugli_Dev's BootPatches handles getCanonicalFile's three
+     * overloads.
      */
     @Patch(className = "zombie.scripting.objects.Item", methodName = "DoParam")
     public static class Parse {
@@ -310,7 +309,7 @@ public final class LazyIcon {
     /**
      * The engine has its OWN null-texture fallback, and deferral makes it fire where it would not.
      *
-     * Item.InitLoadPP ends with (Item.java:1472-1473):
+     * Item.InitLoadPP ends with (Item.java:1477-1478):
      *     if (normalTexture == null && iconsForTexture != null && !iconsForTexture.isEmpty())
      *         normalTexture = Texture.trygetTexture("Item_" + iconsForTexture.get(0));
      *

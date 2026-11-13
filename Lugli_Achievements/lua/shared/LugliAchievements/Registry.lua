@@ -41,7 +41,8 @@ end
 --- Register one achievement.
 ---
 --- Required: id, name, description, category, stat, and target (or a check predicate).
---- Optional: unit, hidden, hiddenText, tier, icon, source.
+--- Optional: unit, hidden, hiddenText, tier, icon, source, and multiplayer = true for one only
+--- a multiplayer session can earn, which single player then leaves out of every total.
 ---
 --- The first registration of an id wins; a later one is rejected and logged with both sources,
 --- so no mod can silently replace another's achievement.
@@ -54,6 +55,11 @@ function M.register(def)
     end
     if type(def) ~= "table" then
         M.log("registry", "register ignored: not a table")
+        return false
+    end
+    -- Left in, it would be a row nobody can finish and a category capstone nobody can reach.
+    if def.multiplayer == true and M.isMpClient ~= nil and not M.isMpClient() then
+        M.mpOnlySkipped = (M.mpOnlySkipped or 0) + 1
         return false
     end
     local id = def.id

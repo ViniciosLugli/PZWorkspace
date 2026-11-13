@@ -2,11 +2,10 @@ package lugli.fastloading;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import zombie.debug.DebugLog;
-
 import me.zed_0xff.zombie_buddy.Patch;
 import zombie.core.skinnedmodel.model.Model;
 import zombie.core.skinnedmodel.shader.Shader;
+import zombie.debug.DebugLog;
 
 /**
  * Caches compiled model shaders. -Dfastloading.shadercache=off.
@@ -47,7 +46,7 @@ public class ShaderCache {
                                 @Patch.Argument(1) boolean isStatic,
                                 @Patch.Argument(2) boolean instanced,
                                 @Patch.Return Shader shader) {
-            if (name != null && shader != null) {
+            if (ON && name != null && shader != null) {
                 CACHE.put(key(name, isStatic, instanced), shader);
             }
         }

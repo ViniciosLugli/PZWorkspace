@@ -407,9 +407,8 @@ local function landRicochet(p)
     if frac < 0.0 then frac = 0.0 elseif frac > 1.0 then frac = 1.0 end
     local fam = p.decayFamily
     local x, y, z = math.floor(p.x), math.floor(p.y), math.floor(p.z)
-    pcall(M.addTimedCluster, x, y, z,
-          M.shade(p.r, frac, fam), M.shade(p.g, frac, fam), M.shade(p.b, frac, fam),
-          p.radius, left, M.SND_FLARE_BURN or nil)
+    local cr, cg, cb = M.shadeRGB(p.r, p.g, p.b, frac, fam)
+    pcall(M.addTimedCluster, x, y, z, cr, cg, cb, p.radius, left, M.SND_FLARE_BURN or nil)
 
     M.debug(PART, "ricocheted flare came to rest at " .. tostring(x) .. "," .. tostring(y)
                 .. "," .. tostring(z) .. " with " .. string.format("%.1f", left) .. "s left")
@@ -565,9 +564,7 @@ local function submitLights()
             -- THE SAME NUMBERS THE GROUND LIGHT WILL USE the instant it lands, through the same
             -- shading function, so the handover is invisible by construction rather than by two
             -- sets of constants happening to agree.
-            local cr = M.shade(p.r, frac, fam)
-            local cg = M.shade(p.g, frac, fam)
-            local cb = M.shade(p.b, frac, fam)
+            local cr, cg, cb = M.shadeRGB(p.r, p.g, p.b, frac, fam)
             -- ROUNDED TO THE NEAREST TILE, not the one it happens to be inside.
             M.lampSet(p.slot, M.lightTile(p.x), M.lightTile(p.y), p.lightZ,
                       cr, cg, cb, p.radius)
@@ -914,7 +911,8 @@ function M.dropProjectiles()
 end
 
 -- Both on OnTick. A paused game must not fly a flare forward, and neither light minds the pause:
-M.addTicker(PART, 0, submitLights)
+-- The flight per frame, its light at the engine's lighting rate (M.lightRestateSeconds).
+M.addTicker(PART, M.lightRestateSeconds, submitLights)
 local h = M.addTicker(PART, 0, advance)
 M.addHandler(PART, "OnPostRender", draw)
 M.addTeardown(PART, function() M.dropProjectiles() end)

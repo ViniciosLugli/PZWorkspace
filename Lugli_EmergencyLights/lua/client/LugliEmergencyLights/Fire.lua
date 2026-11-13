@@ -63,8 +63,8 @@ local function hash01(a, b)
     return n - math.floor(n)
 end
 
---- THE FLAME OF A FLARE IN THE HAND IS NOT DRAWN HERE. It is geometry in the held mesh
---- (tools/emlights-gen.py, profile_flame_plume): the engine keeps a held model on the
+--- THE FLAME OF A FLARE IN THE HAND IS NOT DRAWN HERE. It is geometry in the held mesh:
+--- the engine keeps a held model on the
 --- Bip01_Prop1 bone through every animation, and nothing Lua can read follows that bone. Two
 --- anchors were tried from here, a measured constant and a live evaluation of the animation
 --- blend, and both sat visibly off the rod. What this file draws is the flame of a flare ON

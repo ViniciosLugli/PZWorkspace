@@ -48,29 +48,9 @@ public final class Tuning {
     }
 
     /**
-     * Iterations the ENGINE performs in calculateZExtentsForChunkMap: it bounds both loops by the
-     * flat array's length (gridWidth^2) instead of the grid dimension.
-     */
-    public static long engineZExtentScan(int gridWidth) {
-        long len = (long) gridWidth * gridWidth;
-        return len * len;
-    }
-
-    /** Iterations that can actually return a chunk -- getChunk is null outside [0, gridWidth). */
-    public static long usefulZExtentScan(int gridWidth) {
-        return (long) gridWidth * gridWidth;
-    }
-
-    /** How many times oversized the engine's scan is, for a given grid width. */
-    public static long zExtentOverscanFactor(int gridWidth) {
-        return engineZExtentScan(gridWidth) / usefulZExtentScan(gridWidth);
-    }
-
-
-    /**
      * Per-frame time allowance for the deferred LoadGridsquare drain.
      *
-     * Pure so it can be unit tested: ChunkLuaSpread's own copy lives on the frame path and
+     * Pure so it can be unit tested: ChunkLuaSpread.frameBudgetNs delegates here, and that class
      * imports zombie.*, which build-jars.sh cannot load in a test JVM.
      *
      * The rule is "clear the current backlog within lagFrames frames, at the observed cost per
@@ -112,8 +92,8 @@ public final class Tuning {
      * Does the room-square index disagree with the list it shadows?
      *
      * SIZE is the whole test, and that is deliberate. IsoRoom.squares is a public final
-     * ArrayList mutated behind addSquare's back -- by removeSquare (IsoRoom:241) and by two
-     * external `isoRoom.squares.clear()` calls (BREBuilding:265, WorldRegionToMetaGrid:456) --
+     * ArrayList mutated behind addSquare's back -- by removeSquare (IsoRoom:272) and by the direct
+     * `squares.clear()` calls in refreshSquares (:206) and clear (:709) --
      * so an index that trusted itself would drift silently, and a square missing from a room
      * changes which squares that room can pick for spawns without anything crashing.
      *

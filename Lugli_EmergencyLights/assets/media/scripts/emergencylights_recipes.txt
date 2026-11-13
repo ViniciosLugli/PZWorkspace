@@ -1,8 +1,7 @@
 /* GENERATED FILE. Edit the generator that writes it, never this.
- *     tools/emlights-gen.py
  *
  * Crafting for the pyrotechnic half of the mod. The glow sticks and chem lights
- * are deliberately absent: see the crafting block in the generator for why.
+ * are deliberately absent: the crafting block in the generator says why.
  */
 
 module Base

@@ -34,8 +34,7 @@ public final class VehicleTextureWarm {
      * the frame cap -- 165 ticks a second -- so eight per tick is 1,320 scripts a second and all
      * 725 were queued inside the first second. It spread nothing while looking like it did; the
      * queue histogram showed the full 3,044 textures already pending at the first sample.
-     */
-    /**
+     *
      * 8 could not finish in a realistic menu: 725 scripts at 8 per 100 ms is 80/s, needing >=9.1 s
      * of GREEN time, and green time is far scarcer than wall time (a completing run logs
      * `725 scripts in 82 ms over 813 backoffs`). 32 finishes in ~2.3 s. Still paced rather than
@@ -56,11 +55,6 @@ public final class VehicleTextureWarm {
     /** Leave the opening moment of menu time alone -- what the pending gate really meant. */
     public static final long WARM_DELAY_MS = Long.getLong("fastloading.vehtexdelay", 1500L);
 
-    public static long firstTickAt;
-    public static boolean standdownLogged;
-
-    public static long lastSliceAt;
-
     /**
      * Stand down above this percentage of the buffer budget. Was BUDGET/4, which never opened
      * either: 512 MB of a 2048 MB budget is below where live bytes sit for the whole menu. The
@@ -70,6 +64,9 @@ public final class VehicleTextureWarm {
     public static final int HIGH_WATER_PCT = Integer.getInteger("fastloading.vehtexhigh", 75);
     public static final long HIGH_WATER = AssetThrottle.BUDGET / 100L * HIGH_WATER_PCT;
 
+    public static long firstTickAt;
+    public static long lastSliceAt;
+    public static boolean standdownLogged;
     public static boolean done;
     public static int scripts;
     public static int warmed;
@@ -80,7 +77,7 @@ public final class VehicleTextureWarm {
 
     /**
      * Called from the main menu by FastLoading_VehicleWarm.lua, on the main thread, once per
-     * tick until it answers "done". Returns a short status the status panel can show.
+     * tick until it answers "done". Returns a short status for the Lua caller.
      */
     @LuaMethod(name = "FastLoading_WarmVehicleTextures", global = true)
     public static String warm() {
@@ -100,8 +97,6 @@ public final class VehicleTextureWarm {
             }
             scripts = all.size();
 
-            // Back off while decoded-but-not-yet-uploaded buffers are already piling up. Uses
-            // the gate's cached reading; the underlying call takes a global monitor.
             long now = System.currentTimeMillis();
             if (now - lastSliceAt < INTERVAL_MS) {
                 return "pacing";
@@ -110,6 +105,8 @@ public final class VehicleTextureWarm {
                 firstTickAt = now;
             }
             int pending = AssetThrottle.pendingCount();
+            // Back off while decoded-but-not-yet-uploaded buffers are already piling up. Uses
+            // the gate's cached reading; the underlying call takes a global monitor.
             boolean backpressure = AssetThrottle.liveBytes() > HIGH_WATER;
             boolean demand = DemandPriority.demandPending();
             boolean early = now - firstTickAt < WARM_DELAY_MS;

@@ -26,7 +26,7 @@ N.tierCol  = {
 
 N.TITLE_TINT = 0.08
 N.PANEL_TINT = 0.15
-N.PANEL_A    = 0.86
+N.PANEL_A    = 0.93
 N.INNER_TINT = 0.11
 
 local hasNP = false

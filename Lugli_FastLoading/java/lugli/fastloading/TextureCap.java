@@ -13,15 +13,15 @@ import zombie.debug.DebugLog;
  *   thing that has ever moved the number. This removes bytes.
  *
  * THE TWO-BIT OMISSION IT FIXES
- *   TextureID.limitMaxSize (:330-344) already downscales, using an existing mip level, on the
+ *   TextureID.limitMaxSize (:348-380) already downscales, using an existing mip level, on the
  *   WORKER thread -- off the render thread that is the constraint. It is gated on flags 128 or 256:
  *
  *       int flags = this.assetParams.flags;
  *       if ((flags & 384) == 0) { return data; }
  *
- *   Only model textures (ModelManager.java:1354) and vehicles (BaseVehicle.java:596,612) ever set
- *   those bits. Every texture-pack mount produces 68, 64 or 2 (GameWindow.java:636-653,
- *   ChooseGameInfo.java:265-286), so the guard fires and **pack pages are never capped at all** --
+ *   Only model textures (ModelManager.java:1354) and vehicles (BaseVehicle.java:606,622) ever set
+ *   those bits. Every texture-pack mount produces 68, 64 or 2 (GameWindow.java:634-643,
+ *   ChooseGameInfo.java:270-289), so the guard fires and **pack pages are never capped at all** --
  *   the vanilla "Texture Size" option cannot touch them. Pack pages are the single largest
  *   category of upload bytes in a launch.
  *

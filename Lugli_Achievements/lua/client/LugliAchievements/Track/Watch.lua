@@ -33,20 +33,23 @@ local function isStartleSounding(player)
     return ok and playing == true
 end
 
+local function pollStartle(player, idx)
+    local now = isStartleSounding(player)
+    if now and not sounding[idx] then M.incStat(player, "startled", 1) end
+    sounding[idx] = now
+end
+
 local function onTick()
     ticks = ticks + 1
     if ticks < STARTLE_EVERY then return end
     ticks = 0
-    M.forEachLocalPlayer(function(player, idx)
-        local now = isStartleSounding(player)
-        if now and not sounding[idx] then M.incStat(player, "startled", 1) end
-        sounding[idx] = now
-    end)
+    M.forEachLocalPlayer(pollStartle)
 end
 
 --- Worn, not carried: the inventory walk in the item tracker would otherwise credit somebody
 --- who found a hat and never put it on. Set-once, so the walk stops for the rest of the save.
-local function checkWizardHat(player)
+--- Boot.lua asks the same at load.
+function M.checkWizardHat(player)
     if M.getStat(player, "wore_wizard_hat") > 0 then return end
     pcall(function()
         local worn = player:getWornItems()
@@ -95,7 +98,7 @@ end
 
 local function onEveryTenMinutes()
     M.forEachLocalPlayer(function(player, idx)
-        checkWizardHat(player)
+        M.checkWizardHat(player)
         checkFractures(player, idx)
     end)
 end

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Locale;
 
+import me.zed_0xff.zombie_buddy.Patch;
 import zombie.Lua.LuaManager;
 import zombie.ZomboidFileSystem;
 import zombie.debug.DebugLog;
@@ -15,21 +16,27 @@ import zombie.debug.DebugLog;
  * LuaManager.searchFolders calls getCanonicalFile() inside its child loop, so a directory with N
  * entries pays N identical path resolutions. Resolving the parent once gives the same result.
  */
-@me.zed_0xff.zombie_buddy.Patch(className = "zombie.Lua.LuaManager", methodName = "searchFolders")
+@Patch(className = "zombie.Lua.LuaManager", methodName = "searchFolders")
 public final class LuaScan {
 
     public static final String TAG = "[FastLoading/luascan]";
-    public static boolean announced;
     public static final boolean ON = !"off".equals(System.getProperty("fastloading.luascan"));
+    public static boolean announced;
     public static boolean broken;
     public static int files;
 
     private LuaScan() {}
 
+    /** For the menu handover line, so a part that did nothing says so. */
+    public static String status() {
+        if (!ON) return "off";
+        if (broken) return "DEFECT";
+        return files == 0 ? "idle: no Lua directory walk reached it" : "ok, " + files + " Lua file(s) listed";
+    }
+
     /** true tells the inlined advice to skip the original walk. */
-    @me.zed_0xff.zombie_buddy.Patch.OnEnter(skipOn = true)
-    public static boolean enter(@me.zed_0xff.zombie_buddy.Patch.Argument(0) URI base,
-                                @me.zed_0xff.zombie_buddy.Patch.Argument(1) File fo) {
+    @Patch.OnEnter(skipOn = true)
+    public static boolean enter(@Patch.Argument(0) URI base, @Patch.Argument(1) File fo) {
         return scan(base, fo);
     }
 

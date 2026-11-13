@@ -24,8 +24,10 @@ function M.isDedicatedServer()
     return IS_SERVER and not IS_CLIENT
 end
 
+-- Read live: GameClient.connection is nil while this file loads. The co-op host's server runs in
+-- a child JVM, so the host is an ordinary multiplayer client and IS_SERVER and IS_CLIENT never are.
 function M.isCoopHost()
-    return IS_SERVER and IS_CLIENT
+    return IS_CLIENT and boolCall(isCoopHost)
 end
 
 --- A client process that is not also the server. Global ModData is client-local there: nothing
@@ -43,7 +45,7 @@ function M.envName()
     return "single player"
 end
 
---- Outcome of one part, rendered by the status panel.
+--- Outcome of one part, reported to the log by Health.lua.
 --- kind: "dep" a dependency you chose not to install, nothing is wrong.
 ---       "bug" this should have worked, and is worth reporting.
 ---       "pending" not decided yet; checked when you load a world.
@@ -108,15 +110,37 @@ function M.addHandler(part, eventName, fn)
         return nil
     end
     local wrapped
+    local removed = false
     wrapped = function(...)
+        -- Also called directly, by deliverDamage, so leaving the event list is not enough.
+        if removed then return end
         local ok, err = pcall(fn, ...)
         if not ok then
+            removed = true
             Events[eventName].Remove(wrapped)
             M.defect(part, eventName .. " handler removed after: " .. tostring(err))
         end
     end
     Events[eventName].Add(wrapped)
     return wrapped
+end
+
+-- On a multiplayer client BodyDamage.Update() returns before its damage block for a living local
+-- player (BodyDamage.java:2106-2113), so POISON, HUNGRY, SICK, BLEEDING, THIRST, HEAVYLOAD and
+-- INFECTION never fire there. The server runs that block for the same player and Store.lua relays
+-- what it sees; Sync.lua hands it to every handler registered here.
+local damageHandlers = {}
+
+--- OnPlayerGetDamage, plus the damage only the server sees in multiplayer.
+function M.onPlayerDamage(part, fn)
+    local wrapped = M.addHandler(part, "OnPlayerGetDamage", fn)
+    if wrapped ~= nil then damageHandlers[#damageHandlers + 1] = wrapped end
+    return wrapped
+end
+
+--- A relayed damage event, delivered as though the engine had raised it on this client.
+function M.deliverDamage(character, damageType)
+    for i = 1, #damageHandlers do damageHandlers[i](character, damageType) end
 end
 
 --- The index of a local player, or nil if the character is not one of ours. Index, not a

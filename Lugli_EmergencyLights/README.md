@@ -2,7 +2,7 @@
 
 Glow sticks, chem lights, road flares and a flare gun for Project Zomboid **B42**.
 
-Build 42 has none of them, and a matching hole underneath: a lit item on the ground emits no light
+Build 42 has none of them, and a related gap: a lit item on the ground emits no light
 at all, which is why vanilla puts a lamp out *before* it lands. These do not go out. Crack one and
 it burns wherever you leave it.
 
@@ -21,7 +21,7 @@ and a jar, because `zombie.iso.LightingJNI` is not on the engine's Lua exposer w
 longer does: `IsoCell` and `IsoLightSource` are both on that whitelist, so the light goes through
 `getCell():addLamppost` and the mod is pure Lua.
 
-## What that costs, stated plainly
+## What that costs
 
 `addLamppost` applies two limits the old direct call did not, and one of them is real:
 
@@ -66,12 +66,12 @@ limit.
 - **Throwing uses the real animation and aiming**, and lands where you aimed. The engine's thrown
   object makes a noise identical to a ringing house alarm; these are silent by default.
 - **The light dims as it burns down**, then goes out and leaves the spent item.
-- **State survives everything.** A lit item is a swapped item plus an absolute timestamp, so it
+- **Lit state persists.** A lit item is a swapped item plus an absolute timestamp, so it
   reads the same across saves, reloads, containers and multiplayer clients.
 
 ## Making your own
 
-The pyrotechnics are craftable and the chemistry is not, which is the line the mod draws. A road
+The pyrotechnics are craftable and the chemistry is not. A road
 flare is an oxidiser, a propellant and a striker composition in a paper tube, and a survivor with
 a table can make one. A glow stick is a sealed glass ampoule of factory chemistry, so those stay
 something you find.
@@ -85,7 +85,8 @@ something you find.
 Repacking is the cheap path, and it is why the burnt flare is worth carrying home: the tube and
 its cap survive the burn, so it costs no paper, no tape and no knife. All three need a crafting
 surface, and all three are hidden until you learn them, either by finding the *Roadside
-Pyrotechnics Handbook* or by reaching Reloading 4 on your own.
+Pyrotechnics Handbook* or on your own: the two flare recipes at Reloading 4, the cartridge at
+Reloading 6.
 
 Fertiliser stands in for the nitrate because Build 42 has no saltpetre, no sulphur and no
 strontium. Gunpowder gets a use it never had: no vanilla recipe consumes it.
@@ -116,13 +117,12 @@ get the frame time back.
 - Singleplayer, multiplayer and dedicated servers. Cracking a stick and burning one out are swaps
   the server makes in multiplayer, because a client cannot create an item the server will ever
   see: what you hold is what everybody else sees in your hand. A throw is relayed at launch so
-  other players watch the arc and its light, and the landed item is placed by the server.
-  Items and timers are server side, light is drawn
-  per client.
+  other players watch the arc and its light, and the landed item is placed by the server. Items and
+  timers are server side, light is drawn per client.
 - Safe to add mid-save: items appear in containers the game has not generated yet, so buildings you
   have stripped stay stripped. Safe to remove.
-- The *Explosives* mod also has a handheld road flare. Different module, so no conflict, but an
-  honest overlap on one family.
+- The *Explosives* mod also has a handheld road flare. Different module, so no conflict, but the two
+  overlap on that one family.
 - English and Brazilian Portuguese, both complete.
 
 ## Credits

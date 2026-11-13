@@ -4,7 +4,9 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.FutureTask;
+import java.util.concurrent.ThreadPoolExecutor;
 
+import zombie.core.logger.ExceptionLogger;
 import zombie.debug.DebugLog;
 import zombie.fileSystem.FileTask;
 
@@ -37,21 +39,27 @@ public final class AssetCap {
     public static final boolean ON =
             !"off".equals(System.getProperty("fastloading.assetcap", "on"));
 
-    /** The engine's own value is 16. 48 is what the loose-class version measured at. */
-    public static final int CAP = Integer.getInteger("fastloading.assetcapn", 48);
+    /** -Dfastloading.assetcapn=N, or null to derive the cap from the live pool. */
+    public static final Integer CAP_OVERRIDE = Integer.getInteger("fastloading.assetcapn");
+
+    /**
+     * The cap the last top-up applied; see Tuning.assetCap. Re-derived on every top-up from the
+     * live pool, because AssetThrottle resizes the pool on the first image task, which can land
+     * after the first top-up.
+     */
+    public static volatile int cap = Tuning.ENGINE_IN_FLIGHT;
 
     /** The engine's harvest window, and therefore where its blind spot starts. */
-    public static final int ENGINE_WINDOW = 16;
+    public static final int ENGINE_WINDOW = Tuning.ENGINE_IN_FLIGHT;
 
     public static volatile boolean off;
-    public static volatile boolean announced;
 
     /**
      * BOOT ONLY, and this is a safety scope rather than a tuning choice.
      *
      * The entire measured win is in boot (-3.61 s) -- world load did not move -- so ending here
      * costs nothing and removes every risk outside it. Two engine paths pump this method in a
-     * CANCELLATION spin loop: ImagePyramid.destroy() (:732) cancels its tasks and then spins on
+     * CANCELLATION spin loop: ImagePyramid.destroy() (:705) cancels its tasks and then spins on
      * updateAsyncTransactions until they drain, and TilesetImageCreator (:85) does the same shape.
      * A top-up that keeps feeding the gate during one of those would lengthen the very drain the
      * loop is waiting on. Nothing about that is worth a second of boot we already have.
@@ -143,8 +151,9 @@ public final class AssetCap {
                         Object result = null;
                         try {
                             result = f.get();
-                        } catch (Throwable ignored) {
-                            // The engine logs this case; a failed asset must still be retired.
+                        } catch (Throwable failed) {
+                            // As the engine's own harvest does; a failed asset must still be retired.
+                            ExceptionLogger.logException(failed, t.getErrorMessage());
                         }
                         t.handleResult(result);
                     }
@@ -158,7 +167,15 @@ public final class AssetCap {
             }
 
             // Then fill the gate the rest of the way.
-            while (inProgress.size() < CAP && !pending.isEmpty()) {
+            int pool = executor instanceof ThreadPoolExecutor tpe ? tpe.getMaximumPoolSize() : 0;
+            int limit = Tuning.assetCap(pool, CAP_OVERRIDE);
+            // Logged on each change, which is at most twice: the stock pool, then the resized one.
+            if (limit != cap) {
+                DebugLog.log(TAG + " in-flight cap " + ENGINE_WINDOW + " -> " + limit
+                             + " (asset pool " + pool + ")");
+            }
+            cap = limit;
+            while (inProgress.size() < limit && !pending.isEmpty()) {
                 Object item = pending.remove(0);
                 FutureTask<Object> f = (FutureTask<Object>) F_FUTURE.get(item);
                 FileTask t = (FileTask) F_TASK.get(item);
@@ -174,11 +191,6 @@ public final class AssetCap {
                 inProgress.add(item);
                 executor.submit(f);
                 submitted++;
-            }
-
-            if (!announced) {
-                announced = true;
-                DebugLog.log(TAG + " in-flight cap raised " + ENGINE_WINDOW + " -> " + CAP);
             }
         } catch (Throwable t) {
             off = true;
@@ -203,7 +215,7 @@ public final class AssetCap {
     public static String status() {
         if (!ON) return "off";
         if (off) return "DEFECT";
-        return "ok, cap " + CAP + ", " + submitted + " extra submit(s), "
+        return "ok, cap " + cap + ", " + submitted + " extra submit(s), "
                + retiredTail + " retired beyond the engine window";
     }
 }
