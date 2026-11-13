@@ -14,6 +14,7 @@ versions are on the Workshop; these are the sources behind them.
 | [Lugli_EmergencyLights](Lugli_EmergencyLights) | Glow sticks, chem lights, road flares and a flare gun that keep burning where they land. | [3793988563](https://steamcommunity.com/sharedfiles/filedetails/?id=3793988563) |
 | [Lugli_GreaseOfMarz](Lugli_GreaseOfMarz) | Unofficial fixes for the Gunworks and Guns of Marz gun stack: a faster loot pass at world load, the reload props Ultimate Marksman drops, and Headhunter rifles that take Guns of Marz ammo. | upload pending |
 | [Lugli_HonestWeight](Lugli_HonestWeight) | Every item weighs what the real object weighs, times one Scale for the whole game. Clothes and small goods get lighter, tools and guns heavier, and nothing becomes too heavy to carry. | upload pending |
+| [Lugli_ModpackFixes](Lugli_ModpackFixes) | Fixes for conflicts between popular Build 42 mods and for bugs inside some of them: SwapIt with Fancy Handwork, H.E.C.U. and Better Pause, Super Gore with the Special Zombies Tank, loot in Specific Loot's trucks, tile properties under More Damaged Objects and Raven Creek, and more. | upload pending |
 
 Timing numbers were measured on 42.20.4 with 337 mods: same machine, same save, arms interleaved
 A,B,A,B, every run checked against its own log, the first pair of each campaign discarded as cold.
@@ -28,6 +29,7 @@ Lugli_Achievements     ->  NeatUI Framework
 Lugli_EmergencyLights  ->  nothing
 Lugli_GreaseOfMarz     ->  nothing; each fix turns on only beside the mods it fixes
 Lugli_HonestWeight     ->  nothing
+Lugli_ModpackFixes     ->  nothing; each fix turns on only beside the mods it fixes
 ```
 
 ZombieBuddy is a hard requirement for both Java mods, not a soft one: without it their jars never
@@ -41,7 +43,7 @@ load. Neither declares it in `mod.info`, for the reason below.
   workshop.txt      the Steam listing, tracked as source
   lua/              client/, server/ and shared/, mapping to media/lua/... in the built mod
   java/             ZombieBuddy patch sources, compiled into the shipped jar
-  assets/           textures, models, sounds, scripts and translations
+  assets/           textures, models, sounds, scripts, sandbox options, translations and data files
   art/              preview, icon, and any listing or measurement graphics
 ```
 
