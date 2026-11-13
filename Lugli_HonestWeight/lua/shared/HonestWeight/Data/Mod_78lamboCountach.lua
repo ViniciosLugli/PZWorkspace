@@ -1,0 +1,35 @@
+-- GENERATED from the Honest Weight mass tables. Never edit by hand.
+-- Source 78lamboCountach: 29 row(s).
+LugliHonestWeight = LugliHonestWeight or {}
+LugliHonestWeight.data = LugliHonestWeight.data or {}
+table.insert(LugliHonestWeight.data, { id = "78lamboCountach", mod = "78lamboCountach", version = "e2d2f8d5f009", rows = {
+"Base.78lamboCountachBullbarA",10,10,12,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachBumperFront",2,2,9,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachBumperFrontA",12,12,14,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachEngineDoor3",8,8,9,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachEngineDoorVent3",7,7,9,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachFrontDoor3",15,15,12,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachFrontSideWindow3",7,7,2.2,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachFrontSpoiler3",3,3,4,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachFrontTrunkDoor3",5,5,8,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachFrontWindowArmor",8,8,4.9,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachMagazine",0.5,0.5,0.2,0,-1,-1,-1,0,-1,
+"Base.78lamboCountachPopupLights3",3,3,4,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachRearSideWindow3",2,2,1.3,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachRearSpoiler3",6,6,4,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachRearSpoilerTwo3",6.2,6.2,4,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachRearWindowArmor",2.5,2.5,2.9,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachRearWindshield3",3,3,3.9,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachRoofrack3",7,7,8,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachSBumperFront",5,5,9,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachSBumperFrontB",15,15,14,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachSBumperRear",2,2,7,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachSTire3",14,14,12,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachSeatFront3",14,14,12,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachTire3",13,13,12,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachTrunkDoor3",8,8,8,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachWindshield3",10,10,7.2,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachWindshieldArmor",15,15,10.8,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachWindshieldRearArmor",2.8,2.8,8.8,0,-1,-1,-1,2,-1,
+"Base.78lamboCountachWipers3",1,1,1,0,-1,-1,-1,2,-1,
+} })

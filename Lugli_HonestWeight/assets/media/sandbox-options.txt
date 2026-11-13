@@ -1,0 +1,38 @@
+VERSION = 1,
+
+/* Read from Lua as SandboxVars.LugliHW.<Name> at OnLoadedTileDefinitions
+ * (lua/shared/HonestWeight/Apply.lua). Defaults must match DEFAULTS there.
+ */
+
+option LugliHW.Realism = {
+	type = integer,
+	default = 100,
+	min = 0,
+	max = 100,
+	page = LugliHW,
+	translation = LugliHW_Realism,
+}
+
+option LugliHW.BulkFloor = {
+	type = enum,
+	numValues = 4,
+	default = 3,
+	page = LugliHW,
+	translation = LugliHW_BulkFloor,
+}
+
+option LugliHW.Scale = {
+	type = double,
+	default = 1.5,
+	min = 1.0,
+	max = 2.5,
+	page = LugliHW,
+	translation = LugliHW_Scale,
+}
+
+option LugliHW.VanillaStamina = {
+	type = boolean,
+	default = false,
+	page = LugliHW,
+	translation = LugliHW_VanillaStamina,
+}

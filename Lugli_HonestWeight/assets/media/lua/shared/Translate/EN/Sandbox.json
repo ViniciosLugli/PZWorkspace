@@ -1,0 +1,15 @@
+{
+    "Sandbox_LugliHW": "Lugli - Honest Weight",
+    "Sandbox_LugliHW_Realism": "Realism (%)",
+    "Sandbox_LugliHW_Realism_tooltip": "How far item weights move from the game's own values toward their real weight. 100 is fully real, 0 keeps the game's values with only obvious errors fixed, such as a broken item weighing more than a whole one. Takes effect the next time the world loads.",
+    "Sandbox_LugliHW_BulkFloor": "Bulk floor",
+    "Sandbox_LugliHW_BulkFloor_tooltip": "The game has no item volume, so weight is the only thing that stops a bag holding hundreds of shirts. Bulky light things (coats, pillows, sleeping bags, empty boxes) count as at least this many kilograms per litre they take up when packed, before Scale. Takes effect the next time the world loads.",
+    "Sandbox_LugliHW_BulkFloor_option1": "Off: real weight only",
+    "Sandbox_LugliHW_BulkFloor_option2": "Light: 0.05 per litre",
+    "Sandbox_LugliHW_BulkFloor_option3": "Normal: 0.10 per litre",
+    "Sandbox_LugliHW_BulkFloor_option4": "Strict: 0.15 per litre",
+    "Sandbox_LugliHW_Scale": "Scale",
+    "Sandbox_LugliHW_Scale_tooltip": "Game weight per real kilogram. The proportions between items stay real at any value. 1.0 is true kilograms, which makes carrying much easier than in the unmodded game. The default 1.5 keeps a typical loadout about as heavy as without this mod: clothes and small goods get lighter, tools and guns heavier. Liquids keep the game's fixed 1 per litre. Takes effect the next time the world loads.",
+    "Sandbox_LugliHW_VanillaStamina": "Keep the game's swing stamina",
+    "Sandbox_LugliHW_VanillaStamina_tooltip": "The game uses a melee weapon's weight for the stamina each swing and each axe chop costs. Off: stamina follows the real weight, so a heavy sledgehammer tires you faster and a light knife slower. On: every weapon costs the same stamina per swing as without this mod. Takes effect the next time the world loads."
+}

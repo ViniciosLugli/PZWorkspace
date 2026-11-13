@@ -1,0 +1,56 @@
+version=1
+title=Lugli - Honest Weight
+description=Every item weighs what the real object weighs. A T-shirt is a fifteenth of a crowbar, not half of one, and a full propane tank is properly heavy. One Scale for the whole game keeps a typical loadout within about 15% of its usual weight.
+description=
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_HonestWeight/art/hw-board.gif[/img]
+description=
+description=[b]No dependencies.[/b] Subscribe, enable, play. Load order does not matter.
+description=
+description=[h1]What changes[/h1]
+description=[table]
+description=[tr][th]Item[/th][th]Game[/th][th]Honest[/th][/tr]
+description=[tr][td]T-shirt[/td][td]1[/td][td]0.225[/td][/tr]
+description=[tr][td]Canned beans[/td][td]0.8[/td][td]0.705[/td][/tr]
+description=[tr][td]Claw hammer[/td][td]1.5[/td][td]0.975[/td][/tr]
+description=[tr][td]Padded jacket[/td][td]3[/td][td]1.8[/td][/tr]
+description=[tr][td]Crowbar[/td][td]2[/td][td]3.45[/td][/tr]
+description=[tr][td]JS-2000 shotgun[/td][td]4[/td][td]5.1[/td][/tr]
+description=[tr][td]Sledgehammer[/td][td]6[/td][td]8.1[/td][/tr]
+description=[tr][td]Propane tank, full[/td][td]10[/td][td]25.2[/td][/tr]
+description=[/table]
+description=[i]At the default options. Clothes and small goods get lighter; tools, guns and heavy gear get heavier.[/i]
+description=
+description=[h1]How it weighs things[/h1]
+description=[list]
+description=[*][b]Real mass, one Scale.[/b] Each item's real weight times the Scale option, 1.5 by default. The proportions between items stay real at any Scale.
+description=[*][b]Bulky things count.[/b] The game has no item volume, so coats, pillows, sleeping bags and empty boxes weigh at least a little per litre they take up. A bag no longer holds a hundred shirts.
+description=[*][b]Always carryable.[/b] Nothing ends up too heavy to pick up, drop or pull off a car. The heaviest real objects ease in toward the game's own heaviest items, like the generator.
+description=[*][b]Containers and liquids.[/b] Bottles, cans and pots weigh their empty mass; the game adds the liquid on top. Boxes and cartons weigh what they hold plus the packaging.
+description=[*][b]Guns and attachments.[/b] A gun weighs its real unloaded mass, and a scope or suppressor adds its own weight when you mount it.
+description=[*][b]Car parts in true kilograms.[/b] A part's weight is also the car's driving mass, so Scale does not multiply it.
+description=[*][b]Melee stamina follows weight.[/b] A heavier weapon tires you faster, as in the base game. One option puts swing stamina back to the game's values.
+description=[/list]
+description=[h1]Sandbox options[/h1]
+description=[list]
+description=[*][b]Realism[/b], 100%: how far weights move from the game's values toward the real ones. 0 keeps the game's values with only obvious errors fixed.
+description=[*][b]Bulk floor[/b], Normal: Off, Light, Normal or Strict.
+description=[*][b]Scale[/b], 1.5: game weight per real kilogram, 1.0 to 2.5. 1.0 is true kilograms and makes carrying much easier.
+description=[*][b]Keep the game's swing stamina[/b], Off.
+description=[/list]
+description=[h1]FAQ[/h1]
+description=[list]
+description=[*][b]Which items?[/b] Vanilla, plus the mods in [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url]. Items from any other mod keep their own weight.
+description=[*][b]True Weight?[/b] Honest Weight replaces it. Disable True Weight; while it is on, Honest Weight changes nothing.
+description=[*][b]Can I add it to a running save?[/b] Yes. Items take their new weight the next time the world loads. Removing it puts every weight back.
+description=[*][b]Another mod changes a weight?[/b] That mod wins. Honest Weight leaves any value it did not set alone.
+description=[*][b]Multiplayer?[/b] It runs on the server and every client, and the server's options apply to everyone. Not yet tested on a dedicated server, so please report anything odd.
+description=[*][b]Languages?[/b] English and Brazilian Portuguese.
+description=[/list]
+description=[hr][/hr]
+description=Open source, MIT: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_HonestWeight]github.com/ViniciosLugli/PZWorkspace[/url]
+description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url], and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url].
+description=
+description=Like my mods? Support is never needed and always appreciated: [url=https://ko-fi.com/vinicioslugli]ko-fi.com/vinicioslugli[/url]
+description=[url=https://ko-fi.com/vinicioslugli][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_HonestWeight/art/kofi.png[/img][/url]
+tags=Build 42;Balance;Realistic;Items
+visibility=public

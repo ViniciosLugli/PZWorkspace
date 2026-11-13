@@ -1,0 +1,10 @@
+name=Lugli - Honest Weight
+id=Lugli_HonestWeight
+author=ViniciosLugli
+description=Every item weighs what the real object weighs, times one Scale for the whole game. Clothes and small goods get lighter, tools, guns and heavy gear get heavier, and nothing becomes too heavy to carry. Covers vanilla and the mods in LugliPack - B42.
+poster=preview.png
+icon=icon.png
+category=features
+versionMin=42.22
+modversion=1.0.0
+incompatible=TrueWeight

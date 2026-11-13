@@ -1,0 +1,15 @@
+{
+    "Sandbox_LugliHW": "Lugli - Honest Weight",
+    "Sandbox_LugliHW_Realism": "Realismo (%)",
+    "Sandbox_LugliHW_Realism_tooltip": "O quanto o peso dos itens sai dos valores do jogo e vai para o peso real. 100 e o peso real, 0 mantem os valores do jogo corrigindo apenas erros obvios, como um item quebrado pesar mais que o inteiro. Vale a partir do proximo carregamento do mundo.",
+    "Sandbox_LugliHW_BulkFloor": "Piso de volume",
+    "Sandbox_LugliHW_BulkFloor_tooltip": "O jogo nao tem volume de itens, entao o peso e a unica coisa que impede uma mochila de carregar centenas de camisetas. Coisas volumosas e leves (casacos, travesseiros, sacos de dormir, caixas vazias) contam como pelo menos estes quilos por litro que ocupam guardadas, antes da Escala. Vale a partir do proximo carregamento do mundo.",
+    "Sandbox_LugliHW_BulkFloor_option1": "Desligado: so o peso real",
+    "Sandbox_LugliHW_BulkFloor_option2": "Leve: 0,05 por litro",
+    "Sandbox_LugliHW_BulkFloor_option3": "Normal: 0,10 por litro",
+    "Sandbox_LugliHW_BulkFloor_option4": "Rigido: 0,15 por litro",
+    "Sandbox_LugliHW_Scale": "Escala",
+    "Sandbox_LugliHW_Scale_tooltip": "Peso no jogo por quilo real. As proporcoes entre os itens continuam reais em qualquer valor. 1,0 e o quilo real, o que deixa carregar coisas bem mais facil que no jogo sem mods. O padrao 1,5 mantem uma carga tipica com o mesmo peso de sem este mod: roupas e coisas pequenas ficam mais leves, ferramentas e armas mais pesadas. Liquidos mantem o peso fixo do jogo de 1 por litro. Vale a partir do proximo carregamento do mundo.",
+    "Sandbox_LugliHW_VanillaStamina": "Manter o folego de golpe do jogo",
+    "Sandbox_LugliHW_VanillaStamina_tooltip": "O jogo usa o peso de uma arma corpo a corpo para o folego que cada golpe e cada machadada gastam. Desligado: o folego segue o peso real, entao uma marreta pesada cansa mais rapido e uma faca leve mais devagar. Ligado: cada arma gasta o mesmo folego por golpe que sem este mod. Vale a partir do proximo carregamento do mundo."
+}

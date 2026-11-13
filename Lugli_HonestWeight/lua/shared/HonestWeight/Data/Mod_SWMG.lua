@@ -1,0 +1,33 @@
+-- GENERATED from the Honest Weight mass tables. Never edit by hand.
+-- Source SWMG: 27 row(s).
+LugliHonestWeight = LugliHonestWeight or {}
+LugliHonestWeight.data = LugliHonestWeight.data or {}
+table.insert(LugliHonestWeight.data, { id = "SWMG", mod = "SWMG", version = "e2d2f8d5f009", rows = {
+"SWMG.12Gauge_Shell_Buckshot",0.031,0.031,0.04,0,-1,-1,-1,0,-1,
+"SWMG.12Gauge_Shell_Slug",0.031,0.031,0.04,0,-1,-1,-1,0,-1,
+"SWMG.223_Bullet",0.0085,0.0085,0.012,0,-1,-1,-1,0,-1,
+"SWMG.2Bore_Bullet",0.15,0.15,0.32,0,-1,-1,-1,0,-1,
+"SWMG.3006_Bullet",0.019,0.019,0.027,0,-1,-1,-1,0,-1,
+"SWMG.3030_Bullet",0.015,0.015,0.026,0,-1,-1,-1,0,-1,
+"SWMG.308_Bullet",0.0175,0.0175,0.025,0,-1,-1,-1,0,-1,
+"SWMG.357_Bullet",0.0115,0.0115,0.016,0,-1,-1,-1,0,-1,
+"SWMG.38_Bullet",0.01,0.01,0.015,0,-1,-1,-1,0,-1,
+"SWMG.40mm_Round_Buckshot",0.16,0.16,0.23,0,-1,-1,-1,0,-1,
+"SWMG.40mm_Round_HE",0.16,0.16,0.23,0,-1,-1,-1,0,-1,
+"SWMG.40mm_Round_Incendiary",0.16,0.16,0.23,0,-1,-1,-1,0,-1,
+"SWMG.44_Bullet",0.016,0.016,0.025,0,-1,-1,-1,0,-1,
+"SWMG.4570_Bullet",0.023,0.023,0.043,0,-1,-1,-1,0,-1,
+"SWMG.45_Bullet",0.0145,0.0145,0.021,0,-1,-1,-1,0,-1,
+"SWMG.50_Bullet",0.024,0.024,0.031,0,-1,-1,-1,0,-1,
+"SWMG.545x39_Bullet",0.007,0.007,0.0102,0,-1,-1,-1,0,-1,
+"SWMG.556x45_Bullet",0.0085,0.0085,0.012,0,-1,-1,-1,0,-1,
+"SWMG.556x45_Bullet_ArmorPiercing",0.0085,0.0085,0.012,0,-1,-1,-1,0,-1,
+"SWMG.556x45_Bullet_HollowPoint",0.0085,0.0085,0.012,0,-1,-1,-1,0,-1,
+"SWMG.556x45_Bullet_Overpressured",0.0085,0.0085,0.012,0,-1,-1,-1,0,-1,
+"SWMG.556x45_Bullet_Subsonic",0.0085,0.0085,0.012,0,-1,-1,-1,0,-1,
+"SWMG.762x39_Bullet",0.012,0.012,0.0163,0,-1,-1,-1,0,-1,
+"SWMG.762x51_Bullet",0.0165,0.0165,0.025,0,-1,-1,-1,0,-1,
+"SWMG.762x54_Bullet",0.016,0.016,0.0235,0,-1,-1,-1,0,-1,
+"SWMG.9x19_Bullet",0.009,0.009,0.0122,0,-1,-1,-1,0,-1,
+"SWMG.9x39_Bullet",0.0115,0.0115,0.03,0,-1,-1,-1,0,-1,
+} })

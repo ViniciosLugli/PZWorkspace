@@ -1,0 +1,35 @@
+-- GENERATED from the Honest Weight mass tables. Never edit by hand.
+-- Source 93townCar: 29 row(s).
+LugliHonestWeight = LugliHonestWeight or {}
+LugliHonestWeight.data = LugliHonestWeight.data or {}
+table.insert(LugliHonestWeight.data, { id = "93townCar", mod = "93townCar", version = "e2d2f8d5f009", rows = {
+"Base.93townCarBullbarFrontA",15,15,20,0,-1,-1,-1,2,-1,
+"Base.93townCarBullbarFrontB",17,17,20,0,-1,-1,-1,2,-1,
+"Base.93townCarBullbarFrontC",22,22,20,0,-1,-1,-1,2,-1,
+"Base.93townCarBumperFront0",10,10,22,0,-1,-1,-1,2,-1,
+"Base.93townCarBumperFront1",13,13,25,0,-1,-1,-1,2,-1,
+"Base.93townCarBumperRear0",12,12,18,0,-1,-1,-1,2,-1,
+"Base.93townCarEngineDoor1",15,15,20,0,-1,-1,-1,2,-1,
+"Base.93townCarFrontDoor1",10,10,22,0,-1,-1,-1,2,-1,
+"Base.93townCarFrontDoorArmor",18,18,19.6,0,-1,-1,-1,2,-1,
+"Base.93townCarFrontSideWindow1",3,3,3.3,0,-1,-1,-1,2,-1,
+"Base.93townCarLimoTire1",15,15,12,0,-1,-1,-1,2,-1,
+"Base.93townCarMagazine",0.5,0.5,0.2,0,-1,-1,-1,0,-1,
+"Base.93townCarMiddleSideWindow1",4,4,2.5,0,-1,-1,-1,2,-1,
+"Base.93townCarMiddleWindowArmor",20,20,5.5,0,-1,-1,-1,2,-1,
+"Base.93townCarRearDoor1",11,11,18,0,-1,-1,-1,2,-1,
+"Base.93townCarRearDoorArmor",19,19,16.7,0,-1,-1,-1,2,-1,
+"Base.93townCarRearSideWindow1",3,3,2.5,0,-1,-1,-1,2,-1,
+"Base.93townCarRearWindshield1",10,10,7.4,0,-1,-1,-1,2,-1,
+"Base.93townCarSeatFront1",18,18,28,0,-1,-1,-1,2,-1,
+"Base.93townCarSeatRear1",18,18,22,0,-1,-1,-1,2,-1,
+"Base.93townCarSunRoof1",2,2,12,0,-1,-1,-1,2,-1,
+"Base.93townCarTire1",15,15,12,0,-1,-1,-1,2,-1,
+"Base.93townCarTrunkDoor1",13,13,18,0,-1,-1,-1,2,-1,
+"Base.93townCarTrunkRack1",5,5,5,0,-1,-1,-1,2,-1,
+"Base.93townCarWindshield1",9,9,13,0,-1,-1,-1,2,-1,
+"Base.93townCarWindshieldArmorA",20,20,19.6,0,-1,-1,-1,2,-1,
+"Base.93townCarWindshieldArmorB",21,21,19.6,0,-1,-1,-1,2,-1,
+"Base.93townCarWindshieldRearArmor",21,21,16.7,0,-1,-1,-1,2,-1,
+"Base.BigBullHorns",2,2,2.5,0,-1,-1,-1,0,-1,
+} })
