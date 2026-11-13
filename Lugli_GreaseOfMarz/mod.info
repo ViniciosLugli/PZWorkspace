@@ -1,0 +1,9 @@
+name=Lugli - Grease of Marz
+id=Lugli_GreaseOfMarz
+author=ViniciosLugli
+description=Unofficial fixes for the Gunworks and Guns of Marz stack: a faster loot pass at world load, the reload step Ultimate Marksman drops, and ammo the Undead Survivor Headhunter rifles can load. Each fix turns on only beside the mods it needs.
+poster=preview.png
+icon=icon.png
+category=features
+versionMin=42.22
+modversion=0.1.0
