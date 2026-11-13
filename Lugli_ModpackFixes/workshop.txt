@@ -45,5 +45,6 @@ description=[hr][/hr]
 description=More from me: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045]Lugli - Fast Loading[/url], [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url], and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url].
 description=
 description=Like my mods? Support is never needed and always appreciated: [url=https://ko-fi.com/vinicioslugli]ko-fi.com/vinicioslugli[/url]
+description=[url=https://ko-fi.com/vinicioslugli][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_ModpackFixes/art/kofi.png[/img][/url]
 tags=Build 42;QoL;WIP
 visibility=unlisted
