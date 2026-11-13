@@ -13,7 +13,7 @@
     "Sandbox_LugliModpackFixes_HotbarEquip": "SwapIt: off-hand and wear-from-hotbar keys",
     "Sandbox_LugliModpackFixes_HotbarEquip_tooltip": "SwapIt replaces the hotbar's equip step, which turns off Fancy Handwork's modifier + hotbar key (take into the off hand) and H_E_C_U's hotbar key on helmets and masks (put on or take off). This brings both back on top of SwapIt. Only active with SwapIt and at least one of the two.",
     "Sandbox_LugliModpackFixes_P4Place": "Picking Meister: Grab Contents next to Place",
-    "Sandbox_LugliModpackFixes_P4Place_tooltip": "Better Item Transfer renames Place Item to Place, so Picking Meister's Grab and Unpack Contents entry moves to the bottom of the menu or is not offered. This puts it back next to Place. Only active with both mods.",
+    "Sandbox_LugliModpackFixes_P4Place_tooltip": "Better Item Transfer renames Place Item to Place, so Picking Meister's Grab and Unpack Contents entry moves to the bottom of the menu or is not offered. This puts it back beside Drop and Place. Only active with both mods.",
     "Sandbox_LugliModpackFixes_SeatView": "Clear Driver View Fix: no seat diagram flash with KI5's seat UI",
     "Sandbox_LugliModpackFixes_SeatView_tooltip": "KI5's seat UI replaces the seat diagram's drawing and drops Clear Driver View Fix's guard, so the diagram can flash when you start driving. This keeps it hidden while you drive with the engine on. Only active with both mods.",
     "Sandbox_LugliModpackFixes_SgKills": "Super Gore: zombies it finishes count as kills",

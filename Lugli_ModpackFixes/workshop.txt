@@ -20,7 +20,7 @@ description=[/list]
 description=[h1]Inventory and menus[/h1]
 description=[list]
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3758971325]Better Item Info[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3722134990]Guns of Marz[/url]:[/b] tooltip rows from other mods (backpack upgrades, seed seasons, silencer durability) stay visible.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3830103302]Better Item Transfer[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3422220305]Picking Meister[/url]:[/b] Grab and Unpack Contents sits next to Place again.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3830103302]Better Item Transfer[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3422220305]Picking Meister[/url]:[/b] Grab and Unpack Contents is back beside Drop and Place.
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3437629766]CleanUI[/url]:[/b] the vanilla tutorial no longer errors when it points at a container.
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781990933]Clear Driver View Fix[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3501302358]Vehicle Seat UI (KI5)[/url]:[/b] the seat diagram no longer flashes when you start driving.
 description=[/list]

@@ -32,7 +32,7 @@ M.addPart({
     name = "p4-place",
     switch = "P4Place",
     title = "Picking Meister: Grab Contents next to Place",
-    tip = "Better Item Transfer renames Place Item to Place, so Picking Meister's Grab and Unpack Contents entry moves to the bottom of the menu or is not offered. This puts it back next to Place. Only active with both mods.",
+    tip = "Better Item Transfer renames Place Item to Place, so Picking Meister's Grab and Unpack Contents entry moves to the bottom of the menu or is not offered. This puts it back beside Drop and Place. Only active with both mods.",
     kind = "compat",
     all = { "BetterItemTransfer", "P4PickingMeister" },
     side = "client",
