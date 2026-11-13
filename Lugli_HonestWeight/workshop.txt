@@ -19,6 +19,7 @@ description=[tr][td]Sledgehammer[/td][td]6[/td][td]8.1[/td][/tr]
 description=[tr][td]Propane tank, full[/td][td]10[/td][td]25.2[/td][/tr]
 description=[/table]
 description=[i]At the default options. Clothes and small goods get lighter; tools, guns and heavy gear get heavier.[/i]
+description=Want to look an item up? [url=https://github.com/ViniciosLugli/PZWorkspace/blob/main/Lugli_HonestWeight/WEIGHTS.md]The full weight list[/url] has every change, vanilla and mod by mod.
 description=
 description=[h1]How it weighs things[/h1]
 description=[list]

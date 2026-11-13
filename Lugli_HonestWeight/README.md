@@ -6,7 +6,7 @@ half of one. At the default Scale of 1.5 a typical loadout stays within about 15
 unmodded weight.
 
 Covers vanilla and the mods in the LugliPack - B42 collection. Items from any other mod keep
-their own weight.
+their own weight. Every weight it changes is listed in [WEIGHTS.md](WEIGHTS.md), source by source.
 
 ## How weights are set
 
