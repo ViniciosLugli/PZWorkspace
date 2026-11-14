@@ -30,6 +30,7 @@ description=[h1]FAQ[/h1]
 description=[list]
 description=[*][b]ZombieBuddy asks me to approve a Java mod.[/b] Expected. Approve it once and enable the mod.
 description=[*][b]Is it signed?[/b] Yes, and ZombieBuddy's author list names me. A signature proves who built it, not what it does, so the full source is on GitHub.
+description=[*][b]ZombieBuddy says the signature is invalid.[/b] It could not download its author list, which happens when GitHub is blocked. Launch once with a VPN or accelerator on, or open [url=https://cdn.jsdelivr.net/gh/zed-0xff/ZombieBuddy@master/authors.json]this copy of the list[/url] in your browser and save it as authors.json in %USERPROFILE%\.zombie_buddy (paste that into the File Explorer address bar; create the folder if it is missing), then restart the game. The list is signed by ZombieBuddy, so any copy is safe.
 description=[*][b]Where do the switches below go?[/b] In the [b]vmArgs[/b] list of ProjectZomboid64.json in the game folder, not in Steam launch options. A game update resets that file, so add them again after one.
 description=[*][b]The loading screen looks different.[/b] That is this mod. Add [i]-Dfastloading.progress=off[/i] for the vanilla screen, or [i]-Dfastloading.warningms=-1[/i] to bring back the photosensitivity notice.
 description=[*][b]I play from a hard disk.[/b] Add [i]-Dfastloading.iothreads=2[/i] so the folder scan seeks less.
