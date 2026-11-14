@@ -6,6 +6,8 @@ description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/mai
 description=
 description=[b]No dependencies.[/b] Subscribe, enable, play. Load order does not matter.
 description=
+description=[b]Do not use it with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768669395]True Weight[/url].[/b] Honest Weight replaces it and changes nothing while True Weight is on.
+description=
 description=[h1]What changes[/h1]
 description=[table]
 description=[tr][th]Item[/th][th]Game[/th][th]Honest[/th][/tr]
@@ -43,7 +45,7 @@ description=[/list]
 description=[h1]FAQ[/h1]
 description=[list]
 description=[*][b]Which items?[/b] Vanilla, plus the mods in [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url]. Items from any other mod keep their own weight.
-description=[*][b]True Weight?[/b] Honest Weight replaces it. Disable True Weight; while it is on, Honest Weight changes nothing.
+description=[*][b]How is it different from [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768669395]True Weight[/url]?[/b] True Weight hand-tunes vanilla items by name, so most modded items keep their old weight. Honest Weight gives vanilla and every LugliPack item its real weight on one scale, counts bulk, and keeps containers and liquids right. Use one or the other, never both.
 description=[*][b]Can I add it to a running save?[/b] Yes. Items take their new weight the next time the world loads. Removing it puts every weight back.
 description=[*][b]Another mod changes a weight?[/b] That mod wins. Honest Weight leaves any value it did not set alone.
 description=[*][b]Multiplayer?[/b] It runs on the server and every client, and the server's options apply to everyone. Not yet tested on a dedicated server, so please report anything odd.

@@ -27,6 +27,7 @@ description=[h1]FAQ[/h1]
 description=[list]
 description=[*][b]ZombieBuddy asks me to approve a Java mod.[/b] Expected. Approve it once and enable the mod.
 description=[*][b]Is it signed?[/b] Yes, and ZombieBuddy's author list names me. A signature proves who built it, not what it does, so the full source is on GitHub.
+description=[*][b]ZombieBuddy says the signature is invalid.[/b] It could not download its author list, which happens when GitHub is blocked (common in China). Launch once with a VPN or accelerator on, or open [url=https://cdn.jsdelivr.net/gh/zed-0xff/ZombieBuddy@master/authors.json]this copy of the list[/url] in your browser and save it as authors.json in %USERPROFILE%\.zombie_buddy (paste that into the File Explorer address bar; create the folder if it is missing), then restart the game. The list is signed by ZombieBuddy, so any copy is safe.
 description=[*][b]Why no fps number?[/b] Average fps hides the frames you feel. Time per frame is what was measured.
 description=[*][b]Other optimization mods?[/b] Fine unless they patch the same engine code: then whichever loads last wins, silently. If something looks wrong with both on, turn one off before reporting it.
 description=[*][b]Dedicated server?[/b] Not needed. It is client side.
