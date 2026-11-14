@@ -16,6 +16,13 @@ option LugliModpackFixes.BpHotbar = {
 	translation = LugliModpackFixes_BpHotbar,
 }
 
+option LugliModpackFixes.BpNeat = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_BpNeat,
+}
+
 option LugliModpackFixes.CleanUIBlink = {
 	type = boolean,
 	default = true,
@@ -70,6 +77,27 @@ option LugliModpackFixes.ImpSpawn = {
 	default = true,
 	page = LugliModpackFixes,
 	translation = LugliModpackFixes_ImpSpawn,
+}
+
+option LugliModpackFixes.NgmInfo = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_NgmInfo,
+}
+
+option LugliModpackFixes.NgmNeat = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_NgmNeat,
+}
+
+option LugliModpackFixes.NgmSlice = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_NgmSlice,
 }
 
 option LugliModpackFixes.P4Place = {

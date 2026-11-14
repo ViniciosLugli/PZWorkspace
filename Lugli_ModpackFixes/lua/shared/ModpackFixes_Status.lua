@@ -166,6 +166,27 @@ local function pack(...)
     return { n = select("#", ...), ... }
 end
 
+-- A Java object seen through Lua: every method is the real one bar `overrides` (name -> function
+-- of self). `realObject` is the object itself, for a part that is handed another part's overlay.
+function M.overlay(object, overrides)
+    local methods = {}
+    return setmetatable({ realObject = object }, { __index = function(_, key)
+        local fn = overrides[key] or methods[key]
+        if fn == nil then
+            local method = object[key]
+            if method == nil then return nil end
+            fn = function(_, ...) return method(object, ...) end
+            methods[key] = fn
+        end
+        return fn
+    end })
+end
+
+function M.realOf(object)
+    while type(object) == "table" and object.realObject ~= nil do object = object.realObject end
+    return object
+end
+
 function M.makeCtx(def)
     local ctx = { def = def }
 
