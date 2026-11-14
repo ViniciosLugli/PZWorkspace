@@ -29,5 +29,6 @@ description=[hr][/hr]
 description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url].
 description=
 description=Like my mods? Support is never needed and always appreciated: [url=https://ko-fi.com/vinicioslugli]ko-fi.com/vinicioslugli[/url]
+description=[url=https://ko-fi.com/vinicioslugli][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_GreaseOfMarz/art/kofi.png[/img][/url]
 tags=Build 42;Weapons;QoL;WIP
 visibility=public
