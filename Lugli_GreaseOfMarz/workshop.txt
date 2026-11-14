@@ -9,20 +9,22 @@ description=[list]
 description=[*][b]Faster world load.[/b] Guns of Marz adds its loot through Gunworks, which searches every loot table on each call. This does the same work with an index, checked against the original. Lugli - Fast Loading carries the same fix, so with both it runs once.
 description=[*][b]Reload props with Ultimate Marksman.[/b] Ultimate Marksman skips a Gunworks reload step, so revolvers, shotguns and other guns without a magazine lose the shell holder or speedloader in your off hand. This puts it back.
 description=[*][b]Headhunter rifles you can load.[/b] Undead Survivor's Headhunter rifles take .308 rounds and M14 magazines, which Guns of Marz turns into its own. They now take Guns of Marz's 7.62x51 rounds and M14 magazine, only when your sandbox converts that ammo.
+description=[*][b]Attachments UI without patches.[/b] The workbench now offers the Picatinny rail on Guns of Tien's guns, shows Guns of Marz and Guns of Tien pistols, revolvers and machine pistols the right way up and framed like vanilla handguns, draws each slot's line to its rail on the gun, and hides the bayonet slot it cannot fill (bayonets still attach from the right-click menu). Patches you already made keep looking the same.
 description=[/list]
 description=[h1]Works with[/h1]
 description=[list]
 description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3722064198]Gunworks-gang[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3722134990]Guns of Marz[/url]
 description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3775366853]Ultimate Marksman[/url], for the reload fix
 description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2713921292]Undead Survivor[/url], for the Headhunter fix
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3816324722]Attachments UI[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3820183693]Guns of Marz Extension: Guns of Tien[/url], for the workbench fix
 description=[/list]
 description=[h1]FAQ[/h1]
 description=[list]
 description=[*][b]Existing saves?[/b] Safe to add and to remove.
-description=[*][b]Multiplayer?[/b] Install it on the server and every client. Tested in single player so far.
+description=[*][b]Multiplayer?[/b] Install it on the server and every client.
 description=[/list]
 description=[hr][/hr]
-description=More from me: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045]Lugli - Fast Loading[/url], [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url], and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url].
+description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url].
 description=
 description=Like my mods? Support is never needed and always appreciated: [url=https://ko-fi.com/vinicioslugli]ko-fi.com/vinicioslugli[/url]
 tags=Build 42;Weapons;QoL;WIP
