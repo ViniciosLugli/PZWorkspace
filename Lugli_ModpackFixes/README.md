@@ -43,6 +43,12 @@ errors while running takes its changes back and leaves the game as it is without
 | UsmilSeats | damnlib (`damnlib`) | Its two seat repairs (duct tape, needle and thread) name seats that do not exist, so the seats of its military vehicles can never be repaired. Both repairs also accept the real seats, with damnlib's own tools and skills. |
 | DbuCeiling | Dynamic Backpack Upgrades | A bag reads back at most 50 (less its own weight). Past that the mod always offers Fix Upgrades for it, and with Fix Always it sets the capacity again every in-game minute, logging a warning each time. The bag counts as fixed at the most the game keeps, until its upgrades change. |
 
+## For server admins
+
+| Switch | Turns on with | What it does |
+|---|---|---|
+| SrvProf | A dedicated server whose cache folder holds `Lua/serverprof-on.txt` | Every mod message from the server to players leaves as the same packet type, so the server's own network statistics cannot say which mod is sending the most. With that file present, `sendServerCommand` and `ModData.transmit` are counted per mod command (or ModData key): calls, players reached, and an estimate of the bytes sent. Once a minute the counts go to `Lua/serverprof-sends.txt` as tab-separated rows. Create or delete the file at any time; it is checked once a minute. Without it, the part only checks for the file. A mod that kept its own copy of `sendServerCommand` before this mod loaded is not counted, so list this mod last. |
+
 ## Data fixes
 
 These are vanilla files shipped unchanged, so they win over a mod's older copy. They have no

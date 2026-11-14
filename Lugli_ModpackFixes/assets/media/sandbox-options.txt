@@ -107,6 +107,13 @@ option LugliModpackFixes.SlingStop = {
 	translation = LugliModpackFixes_SlingStop,
 }
 
+option LugliModpackFixes.SrvProf = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_SrvProf,
+}
+
 option LugliModpackFixes.TileProps = {
 	type = boolean,
 	default = true,
