@@ -107,7 +107,7 @@ Weights Lugli - Honest Weight sets for [Collections](https://steamcommunity.com/
 | British Afghanistan Medal | `Collections.PC_BritishAfghanMedal` | 0.1 | 0.09 |
 | British War Medal | `Collections.PC_BritishWarMedal` | 0.1 | 0.09 |
 | Bronze Star | `Collections.PC_BronzeStar` | 0.1 | 0.09 |
-| Can Collecting Guide | `Collections.PC_CanBook` | 0.1 | 0.525 |
+| Can Collecting Guide | `Collections.PC_CanBook` | 0.1 | 0.125 |
 | Cleaned Can - Butter Boy Brand | `Collections.PC_ButterBoyCanClean` | 0.2 | 0.075 |
 | Cleaned Can - Butterfly Brand | `Collections.PC_ButterflyCanClean` | 0.2 | 0.075 |
 | Cleaned Can - Royal Gorge Brand | `Collections.PC_RoyalGorgeCanClean` | 0.2 | 0.075 |
@@ -122,11 +122,11 @@ Weights Lugli - Honest Weight sets for [Collections](https://steamcommunity.com/
 | Cloak and Dagger | `Collections.PC_CloakDaggerP3Display` | 0.1 | 0.12 |
 | Comic | `Collections.PCComic` | 0.1 | 0.09 |
 | Comic Book Box | `Collections.PCComicBookBox` | 1 | 0.585 |
-| Comic Morning Party Zōkan | `Collections.PC_ComicMorningPartyP1` | 0.1 | 0.6 |
+| Comic Morning Party Zōkan | `Collections.PC_ComicMorningPartyP1` | 0.1 | 0.125 |
 | Comic Morning Party Zōkan | `Collections.PC_ComicMorningPartyP1Display` | 0.1 | 0.12 |
-| Comic Morning Party Zōkan | `Collections.PC_ComicMorningPartyP2` | 0.1 | 0.6 |
+| Comic Morning Party Zōkan | `Collections.PC_ComicMorningPartyP2` | 0.1 | 0.125 |
 | Comic Morning Party Zōkan | `Collections.PC_ComicMorningPartyP2Display` | 0.1 | 0.12 |
-| Comic Morning Party Zōkan | `Collections.PC_ComicMorningPartyP50` | 0.1 | 0.6 |
+| Comic Morning Party Zōkan | `Collections.PC_ComicMorningPartyP50` | 0.1 | 0.125 |
 | Comic Morning Party Zōkan | `Collections.PC_ComicMorningPartyP50Display` | 0.1 | 0.12 |
 | Comics for the Truly Needy | `Collections.PC_ComicsTrulyNeedy` | 0.1 | 0.09 |
 | Comics for the Truly Needy | `Collections.PC_ComicsTrulyNeedyDisplay` | 0.1 | 0.12 |
@@ -254,13 +254,13 @@ Weights Lugli - Honest Weight sets for [Collections](https://steamcommunity.com/
 | Kid Colt | `Collections.PC_KidColtP6` | 0.1 | 0.09 |
 | Kid Colt | `Collections.PC_KidColtP6Display` | 0.1 | 0.12 |
 | Korean Service Medal | `Collections.PC_KoreanService` | 0.1 | 0.09 |
-| M-3 Tactical Helmet | `Collections.PC_M3Tactical` | 1.5 | 2.25 |
-| M.1866 Marschstiefel | `Collections.PC_Boots1866Marching` | 1 | 2.7 |
+| M-3 Tactical Helmet | `Collections.PC_M3Tactical` | 1.5 | 1.88 |
+| M.1866 Marschstiefel | `Collections.PC_Boots1866Marching` | 1 | 1.25 |
 | M.1896 Waffenrock | `Collections.PC_JacketGermanM1896` | 2 | 2.25 |
 | M.1907 Keilhosen | `Collections.PC_PantsGerman1907` | 1 | 1.2 |
 | M.1907/10 Feldrock | `Collections.PC_JacketGermanM1907-10` | 2 | 1.65 |
 | M.1915 Feldbluse | `Collections.PC_JacketGermanM1915` | 2 | 1.65 |
-| M1 Steel Pot | `Collections.PC_M1Helmet` | 1.5 | 2.03 |
+| M1 Steel Pot | `Collections.PC_M1Helmet` | 1.5 | 1.88 |
 | M16 Stahlhelm | `Collections.PC_1916Stahlhelm` | 2 | 1.8 |
 | M1917 Brodie Helmet | `Collections.PC_BrodieHelmet` | 1.4 | 1.42 |
 | M35 Stahlhelm | `Collections.PC_M35Stahlhelm` | 1.5 | 1.65 |
@@ -282,14 +282,14 @@ Weights Lugli - Honest Weight sets for [Collections](https://steamcommunity.com/
 | Machine Man | `Collections.PC_MachineManP4Display` | 0.1 | 0.12 |
 | Machine Man | `Collections.PC_MachineManP5` | 0.1 | 0.09 |
 | Machine Man | `Collections.PC_MachineManP5Display` | 0.1 | 0.12 |
-| Manga | `Collections.PCManga` | 0.1 | 0.3 |
+| Manga | `Collections.PCManga` | 0.1 | 0.125 |
 | Mechamen | `Collections.PC_Mechamen` | 0.1 | 0.09 |
 | Mechamen | `Collections.PC_MechamenDisplay` | 0.1 | 0.12 |
-| Medal Collecting Guide | `Collections.PC_MedalBook` | 0.1 | 0.525 |
+| Medal Collecting Guide | `Collections.PC_MedalBook` | 0.1 | 0.125 |
 | Medal of Honor | `Collections.PC_MedalOfHonor` | 0.1 | 0.09 |
 | Mighty Tiny: The Mouse Marines | `Collections.PC_MightyTinyMouseMarines` | 0.1 | 0.09 |
 | Mighty Tiny: The Mouse Marines | `Collections.PC_MightyTinyMouseMarinesDisplay` | 0.1 | 0.12 |
-| Military Headgear Guide | `Collections.PC_HeadwearBook` | 0.1 | 0.525 |
+| Military Headgear Guide | `Collections.PC_HeadwearBook` | 0.1 | 0.125 |
 | Mitre Cap | `Collections.PC_MitreCap` | 1 | 0.75 |
 | National Defense Service Medal | `Collections.PC_NationalDefenseService` | 0.1 | 0.09 |
 | Ninja High School | `Collections.PC_NinjaHighSchoolP0` | 0.1 | 0.09 |
@@ -309,7 +309,7 @@ Weights Lugli - Honest Weight sets for [Collections](https://steamcommunity.com/
 | Prussian Napoleonic Award | `Collections.PC_PrussianNapoleonic` | 0.1 | 0.09 |
 | Purple Heart | `Collections.PC_PurpleHeart` | 0.1 | 0.09 |
 | Purple Heart w/ Oak Leaf | `Collections.PC_PurpleHeartOakLeaf` | 0.1 | 0.09 |
-| Puttees | `Collections.PC_Puttees` | 0.2 | 0.3 |
+| Puttees | `Collections.PC_Puttees` | 0.2 | 0.25 |
 | Queen's South Africa Medal | `Collections.PC_BritishSouthAfricaMedal` | 0.1 | 0.09 |
 | Rare Unknown Medal | `Collections.PC_MysteryMedalRare` | 0.1 | 0.045 |
 | Rowrbrazzle | `Collections.PC_RowrbrazzleP0` | 0.1 | 0.09 |
@@ -428,25 +428,25 @@ Weights Lugli - Honest Weight sets for [Collections](https://steamcommunity.com/
 | Vietnam Service Medal with Stars | `Collections.PC_VietnamServiceStars` | 0.1 | 0.09 |
 | Vintage Comic | `Collections.PCVintageComic` | 0.1 | 0.09 |
 | VZ.32 Helmet | `Collections.PC_VZ32Helmet` | 1.5 | 1.58 |
-| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP1` | 0.1 | 0.6 |
-| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP1175` | 0.1 | 0.6 |
+| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP1` | 0.1 | 0.125 |
+| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP1175` | 0.1 | 0.125 |
 | Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP1175Display` | 0.1 | 0.12 |
-| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP1259` | 0.1 | 0.6 |
+| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP1259` | 0.1 | 0.125 |
 | Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP1259Display` | 0.1 | 0.12 |
-| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP155` | 0.1 | 0.6 |
+| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP155` | 0.1 | 0.125 |
 | Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP155Display` | 0.1 | 0.12 |
 | Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP1Display` | 0.1 | 0.12 |
-| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP2` | 0.1 | 0.6 |
+| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP2` | 0.1 | 0.125 |
 | Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP2Display` | 0.1 | 0.12 |
-| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP582` | 0.1 | 0.6 |
+| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP582` | 0.1 | 0.125 |
 | Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP582Display` | 0.1 | 0.12 |
-| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP71` | 0.1 | 0.6 |
+| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP71` | 0.1 | 0.125 |
 | Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP71Display` | 0.1 | 0.12 |
-| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP836` | 0.1 | 0.6 |
+| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP836` | 0.1 | 0.125 |
 | Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP836Display` | 0.1 | 0.12 |
-| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP884` | 0.1 | 0.6 |
+| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP884` | 0.1 | 0.125 |
 | Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP884Display` | 0.1 | 0.12 |
-| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP975` | 0.1 | 0.6 |
+| Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP975` | 0.1 | 0.125 |
 | Weekly Shōnen Jump | `Collections.PC_WeeklyShonenJumpP975Display` | 0.1 | 0.12 |
 | Wild Life | `Collections.PC_WildLifeP1` | 0.1 | 0.09 |
 | Wild Life | `Collections.PC_WildLifeP1Display` | 0.1 | 0.12 |
@@ -473,7 +473,7 @@ Weights Lugli - Honest Weight sets for [Collections](https://steamcommunity.com/
 | World without a Superman | `Collections.PC_NoSuperman` | 0.1 | 0.09 |
 | World without a Superman | `Collections.PC_NoSupermanDisplay` | 0.1 | 0.12 |
 | WWI Service Medal | `Collections.PC_WW1Service` | 0.1 | 0.09 |
-| WWI-era German Equipment Set | `Collections.PC_ValiseGermanWWIKit` | 1 | 1.8 |
+| WWI-era German Equipment Set | `Collections.PC_ValiseGermanWWIKit` | 1 | 1.25 |
 | WWII Service Medal | `Collections.PC_WW2Service` | 0.1 | 0.09 |
 | Yarf! | `Collections.PC_YarfP0` | 0.1 | 0.09 |
 | Yarf! | `Collections.PC_YarfP0Display` | 0.1 | 0.12 |

@@ -6,15 +6,15 @@ Weights Lugli - Honest Weight sets for [UndeadSurvivor](https://steamcommunity.c
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| Amazona Boots | `UndeadSurvivor.AmazonaBoots` | 0.6 | 1.95 |
-| Amazona Cloak | `UndeadSurvivor.AmazonaCloakDOWN` | 1 | 1.5 |
-| Amazona Cloak | `UndeadSurvivor.AmazonaCloakUP` | 1 | 1.5 |
+| Amazona Boots | `UndeadSurvivor.AmazonaBoots` | 0.6 | 0.75 |
+| Amazona Cloak | `UndeadSurvivor.AmazonaCloakDOWN` | 1 | 1.25 |
+| Amazona Cloak | `UndeadSurvivor.AmazonaCloakUP` | 1 | 1.25 |
 | Amazona Dress | `UndeadSurvivor.AmazonaDress` | 1 | 0.825 |
 | Amazona Dress as bikini | `UndeadSurvivor.AmazonaDressTrimmed05` | 0.3 | 0.124 |
 | Amazona Dress as shirt | `UndeadSurvivor.AmazonaDressTrimmed02` | 0.7 | 0.413 |
 | Amazona Dress as short tanktop | `UndeadSurvivor.AmazonaDressTrimmed04` | 0.45 | 0.207 |
 | Amazona Dress as tanktop | `UndeadSurvivor.AmazonaDressTrimmed03` | 0.55 | 0.289 |
-| Amazona Dress but too short | `UndeadSurvivor.AmazonaDressTrimmed06` | 0.05 | 0.066 |
+| Amazona Dress but too short | `UndeadSurvivor.AmazonaDressTrimmed06` | 0.05 | 0.0625 |
 | Amazona Dress but trimmed | `UndeadSurvivor.AmazonaDressTrimmed01` | 0.8 | 0.578 |
 | Amazona Feather 01 | `UndeadSurvivor.AmazonaFeather01` | 0.1 | 0.0075 |
 | Amazona Feather 02 | `UndeadSurvivor.AmazonaFeather02` | 0.1 | 0.0075 |
@@ -43,49 +43,49 @@ Weights Lugli - Honest Weight sets for [UndeadSurvivor](https://steamcommunity.c
 | Bounty Photo 10 | `UndeadSurvivor.BountyPhoto10` | 0.05 | 0.006 |
 | Broken Stalker Knife | `UndeadSurvivor.StalkerKnife_Broken` | 1.1 | 0.525 |
 | Broken Stalker Knife Blade | `UndeadSurvivor.StalkerKnife_Blade_Broken` | 0.8 | 0.42 |
-| Deadly Headhunter Backpack | `UndeadSurvivor.DeadlyHeadhunterBackpack` | 1.2 | 2.25 |
+| Deadly Headhunter Backpack | `UndeadSurvivor.DeadlyHeadhunterBackpack` | 1.2 | 1.5 |
 | Deadly Headhunter Gasmask | `UndeadSurvivor.DeadlyHeadhunterGasmask` | 1 | 1.2 |
 | Deadly Headhunter Mantle | `UndeadSurvivor.DeadlyHeadhunterMantle` | 2 | 1.5 |
 | Deadly Headhunter Mantle | `UndeadSurvivor.DeadlyHeadhunterMantleDOWN` | 2 | 1.5 |
-| Deadly Headhunter Rifle | `Base.DeadlyHeadhunterRifle` | 4.5 | 6.6 |
-| Headhunter Backpack | `UndeadSurvivor.HeadhunterBackpack` | 1.2 | 2.25 |
+| Deadly Headhunter Rifle | `Base.DeadlyHeadhunterRifle` | 4.5 | 5.62 |
+| Headhunter Backpack | `UndeadSurvivor.HeadhunterBackpack` | 1.2 | 1.5 |
 | Headhunter Gasmask | `UndeadSurvivor.HeadhunterGasmask` | 1 | 1.2 |
 | Headhunter Mantle | `UndeadSurvivor.HeadhunterMantle` | 2 | 1.5 |
 | Headhunter Mantle | `UndeadSurvivor.HeadhunterMantleDOWN` | 2 | 1.5 |
-| Headhunter Rifle | `Base.HeadhunterRifle` | 4.5 | 6.6 |
+| Headhunter Rifle | `Base.HeadhunterRifle` | 4.5 | 5.62 |
 | Nomad Backpack | `UndeadSurvivor.NomadBackpack` | 5 | 2.25 |
-| Nomad Boots | `UndeadSurvivor.NomadBoots` | 0.8 | 1.95 |
-| Nomad Mask | `UndeadSurvivor.NomadMask` | 0.2 | 0.3 |
-| Nomad Parka | `UndeadSurvivor.NomadParka` | 2 | 2.7 |
-| Nomad Parka | `UndeadSurvivor.NomadParkaDOWN` | 2 | 2.7 |
-| Nomad Trousers | `UndeadSurvivor.NomadTrousers` | 1 | 1.65 |
-| Nomad Trousers | `UndeadSurvivor.NomadTrousersTucked` | 1 | 1.65 |
-| Ominous Nomad Mask | `UndeadSurvivor.OminousNomadMask` | 0.2 | 0.3 |
-| Ominous Nomad Parka | `UndeadSurvivor.OminousNomadParka` | 2 | 2.7 |
-| Ominous Nomad Parka | `UndeadSurvivor.OminousNomadParkaDOWN` | 2 | 2.7 |
-| Prepper Bags | `UndeadSurvivor.PrepperBags` | 0.5 | 0.9 |
+| Nomad Boots | `UndeadSurvivor.NomadBoots` | 0.8 | 1 |
+| Nomad Mask | `UndeadSurvivor.NomadMask` | 0.2 | 0.25 |
+| Nomad Parka | `UndeadSurvivor.NomadParka` | 2 | 2.5 |
+| Nomad Parka | `UndeadSurvivor.NomadParkaDOWN` | 2 | 2.5 |
+| Nomad Trousers | `UndeadSurvivor.NomadTrousers` | 1 | 1.25 |
+| Nomad Trousers | `UndeadSurvivor.NomadTrousersTucked` | 1 | 1.25 |
+| Ominous Nomad Mask | `UndeadSurvivor.OminousNomadMask` | 0.2 | 0.25 |
+| Ominous Nomad Parka | `UndeadSurvivor.OminousNomadParka` | 2 | 2.5 |
+| Ominous Nomad Parka | `UndeadSurvivor.OminousNomadParkaDOWN` | 2 | 2.5 |
+| Prepper Bags | `UndeadSurvivor.PrepperBags` | 0.5 | 0.625 |
 | Prepper Flashlight | `UndeadSurvivor.PrepperFlashlight` | 0.3 | 0.375 |
 | Prepper Gasmask | `UndeadSurvivor.PrepperMask` | 1 | 1.2 |
-| Prepper Helmet | `UndeadSurvivor.PrepperHelmet` | 1 | 2.25 |
+| Prepper Helmet | `UndeadSurvivor.PrepperHelmet` | 1 | 1.25 |
 | Prepper Jacket | `UndeadSurvivor.PrepperJacket` | 1.5 | 1.2 |
 | Prepper Knife Blade | `UndeadSurvivor.PrepperKnifeBlade` | 0.2 | 0.18 |
-| Prepper Knife Knock | `UndeadSurvivor.PrepperKnifeKnock` | 0.3 | 0.45 |
-| Prepper Knife Stab | `UndeadSurvivor.PrepperKnifeStab` | 0.3 | 0.45 |
-| Prepper Knife Swing | `UndeadSurvivor.PrepperKnifeSwing` | 0.3 | 0.45 |
+| Prepper Knife Knock | `UndeadSurvivor.PrepperKnifeKnock` | 0.3 | 0.375 |
+| Prepper Knife Stab | `UndeadSurvivor.PrepperKnifeStab` | 0.3 | 0.375 |
+| Prepper Knife Swing | `UndeadSurvivor.PrepperKnifeSwing` | 0.3 | 0.375 |
 | Prepper Trousers | `UndeadSurvivor.PrepperTrousers` | 1 | 0.975 |
 | Prepper Trousers | `UndeadSurvivor.PrepperTrousersTucked` | 1 | 0.975 |
-| Prepper Vest | `UndeadSurvivor.PrepperVest` | 0.5 | 0.75 |
-| Prepper Vest Packed | `UndeadSurvivor.PrepperVestPacked` | 1 | 1.5 |
-| Stalker Boots | `UndeadSurvivor.StalkerBoots` | 0.5 | 2.1 |
-| Stalker Cloak | `UndeadSurvivor.StalkerCloak` | 0.3 | 1.5 |
-| Stalker Cloak | `UndeadSurvivor.StalkerCloakDOWN` | 0.3 | 1.5 |
+| Prepper Vest | `UndeadSurvivor.PrepperVest` | 0.5 | 0.625 |
+| Prepper Vest Packed | `UndeadSurvivor.PrepperVestPacked` | 1 | 1.25 |
+| Stalker Boots | `UndeadSurvivor.StalkerBoots` | 0.5 | 0.625 |
+| Stalker Cloak | `UndeadSurvivor.StalkerCloak` | 0.3 | 0.375 |
+| Stalker Cloak | `UndeadSurvivor.StalkerCloakDOWN` | 0.3 | 0.375 |
 | Stalker Gasmask | `UndeadSurvivor.StalkerMask` | 1 | 1.2 |
-| Stalker Gloves | `UndeadSurvivor.StalkerGloves` | 0.1 | 0.27 |
-| Stalker Jacket | `UndeadSurvivor.StalkerJacket` | 1 | 2.25 |
+| Stalker Gloves | `UndeadSurvivor.StalkerGloves` | 0.1 | 0.125 |
+| Stalker Jacket | `UndeadSurvivor.StalkerJacket` | 1 | 1.25 |
 | Stalker Knife | `UndeadSurvivor.StalkerKnife` | 1.5 | 0.9 |
 | Stalker Knife Blade | `UndeadSurvivor.StalkerKnife_Blade` | 1 | 0.525 |
 | Stalker Knife Handle | `UndeadSurvivor.StalkerKnife_Handle` | 0.3 | 0.225 |
 | Stalker Knife Shard | `UndeadSurvivor.StalkerKnife_Shard` | 0.3 | 0.105 |
-| Stalker Trousers | `UndeadSurvivor.StalkerTrousers` | 1 | 1.65 |
-| Stalker Trousers | `UndeadSurvivor.StalkerTrousersTucked` | 1 | 1.65 |
+| Stalker Trousers | `UndeadSurvivor.StalkerTrousers` | 1 | 1.25 |
+| Stalker Trousers | `UndeadSurvivor.StalkerTrousersTucked` | 1 | 1.25 |
 | x4-x12 Headhunter Scope | `Base.HeadhunterScope` | 0.8 | 0.9 |

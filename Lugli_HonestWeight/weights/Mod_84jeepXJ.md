@@ -13,14 +13,14 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 84 Jeep Cherokee XJ Back Window Armor (*) | `Base.84jeepXJBackWindowArmor` | 15 | 3.9 |
 | 84 Jeep Cherokee XJ Front Bullbar (*) | `Base.84jeepXJBullbarFrontA` | 16 | 17 |
 | 84 Jeep Cherokee XJ Front Bumper (*) | `Base.84jeepXJBumperFront0` | 12 | 13 |
-| 84 Jeep Cherokee XJ Front Door (*) | `Base.84jeepXJFrontDoor2` | 10 | 15 |
-| 84 Jeep Cherokee XJ Front Push Bumper (*) | `Base.84jeepXJBumperFrontA` | 9 | 13 |
+| 84 Jeep Cherokee XJ Front Door (*) | `Base.84jeepXJFrontDoor2` | 10 | 12.5 |
+| 84 Jeep Cherokee XJ Front Push Bumper (*) | `Base.84jeepXJBumperFrontA` | 9 | 11.2 |
 | 84 Jeep Cherokee XJ Front Seat (*) | `Base.84jeepXJSeatFront2` | 14 | 15 |
 | 84 Jeep Cherokee XJ Front Side Window (*) | `Base.84jeepXJFrontSideWindow2` | 4 | 2.5 |
 | 84 Jeep Cherokee XJ Front Window Armor (*) | `Base.84jeepXJFrontWindowArmor` | 15 | 5.9 |
 | 84 Jeep Cherokee XJ Hood (*) | `Base.84jeepXJEngineDoor2` | 14 | 13 |
 | 84 Jeep Cherokee XJ Rear Bumper (*) | `Base.84jeepXJBumperRear0` | 9 | 10 |
-| 84 Jeep Cherokee XJ Rear Door (*) | `Base.84jeepXJRearDoor2` | 10 | 13 |
+| 84 Jeep Cherokee XJ Rear Door (*) | `Base.84jeepXJRearDoor2` | 10 | 12.5 |
 | 84 Jeep Cherokee XJ Rear Seat (*) | `Base.84jeepXJSeatRear2` | 16 | 15 |
 | 84 Jeep Cherokee XJ Rear Side Window (*) | `Base.84jeepXJRearSideWindow2` | 3 | 1.8 |
 | 84 Jeep Cherokee XJ Rear Window Armor (*) | `Base.84jeepXJRearWindowArmor` | 15 | 3.9 |

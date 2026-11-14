@@ -8,9 +8,9 @@ Weights Lugli - Honest Weight sets for [Neat Lockpicking](https://steamcommunity
 |---|---|---|---|
 | Handmade Lockpick | `NeatLockpicking.HandmadeLockpick` | 0.01 | 0.003 |
 | Lockpick | `NeatLockpicking.Lockpick` | 0.01 | 0.006 |
-| Lockpicking Basics | `NeatLockpicking.LockpickingMag` | 0.1 | 0.3 |
+| Lockpicking Basics | `NeatLockpicking.LockpickingMag` | 0.1 | 0.125 |
 | Lockpicking I | `NeatLockpicking.BookLockpicking1` | 1 | 0.45 |
 | Lockpicking II | `NeatLockpicking.BookLockpicking2` | 1 | 0.45 |
 | Lockpicking III | `NeatLockpicking.BookLockpicking3` | 1 | 0.9 |
-| Lockpicking IV | `NeatLockpicking.BookLockpicking4` | 1 | 1.35 |
-| Lockpicking V | `NeatLockpicking.BookLockpicking5` | 1 | 1.35 |
+| Lockpicking IV | `NeatLockpicking.BookLockpicking4` | 1 | 1.25 |
+| Lockpicking V | `NeatLockpicking.BookLockpicking5` | 1 | 1.25 |

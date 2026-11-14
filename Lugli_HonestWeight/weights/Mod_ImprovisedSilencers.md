@@ -8,6 +8,6 @@ Weights Lugli - Honest Weight sets for [Improvised Silencers (Build 42.20 Compat
 |---|---|---|---|
 | Hand Torch Silencer | `Base.TorchSilencer` | 1 | 0.375 |
 | Metal Pipe Silencer | `Base.MetalPipeSilencer` | 1 | 0.75 |
-| Potato Suppressor | `Base.PotatoSilencer` | 0.2 | 0.3 |
+| Potato Suppressor | `Base.PotatoSilencer` | 0.2 | 0.25 |
 | Silencer | `Base.Silencer` | 1 | 0.9 |
 | Water Bottle Silencer | `Base.WaterBottleSilencer` | 0.8 | 0.15 |

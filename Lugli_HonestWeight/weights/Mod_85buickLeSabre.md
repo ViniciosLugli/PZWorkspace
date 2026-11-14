@@ -9,10 +9,10 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Item | ID | Game | Honest |
 |---|---|---|---|
 | 85 Buick LeSabre Auto Manual | `Base.85buickLeSabreMagazine` | 0.5 | 0.3 |
-| 85 Buick LeSabre Front Bumper (*) | `Base.85buickLeSabreBumperFront0` | 10 | 22 |
-| 85 Buick LeSabre Front Seat (*) | `Base.85buickLeSabreSeatFront1` | 15 | 27.8 |
-| 85 Buick LeSabre Hood (*) | `Base.85buickLeSabreEngineDoor1` | 14 | 20 |
-| 85 Buick LeSabre Rear Bumper (*) | `Base.85buickLeSabreBumperRear0` | 9 | 18 |
-| 85 Buick LeSabre Rear Seat (*) | `Base.85buickLeSabreSeatRear1` | 16 | 22 |
-| 85 Buick LeSabre Reinforced Bumper (*) | `Base.85buickLeSabreBumperFrontA` | 15 | 25 |
-| 85 Buick LeSabre Trunk Lid (*) | `Base.85buickLeSabreTrunkDoor1` | 10 | 18 |
+| 85 Buick LeSabre Front Bumper (*) | `Base.85buickLeSabreBumperFront0` | 10 | 12.5 |
+| 85 Buick LeSabre Front Seat (*) | `Base.85buickLeSabreSeatFront1` | 15 | 18.8 |
+| 85 Buick LeSabre Hood (*) | `Base.85buickLeSabreEngineDoor1` | 14 | 17.5 |
+| 85 Buick LeSabre Rear Bumper (*) | `Base.85buickLeSabreBumperRear0` | 9 | 11.2 |
+| 85 Buick LeSabre Rear Seat (*) | `Base.85buickLeSabreSeatRear1` | 16 | 20 |
+| 85 Buick LeSabre Reinforced Bumper (*) | `Base.85buickLeSabreBumperFrontA` | 15 | 18.8 |
+| 85 Buick LeSabre Trunk Lid (*) | `Base.85buickLeSabreTrunkDoor1` | 10 | 12.5 |

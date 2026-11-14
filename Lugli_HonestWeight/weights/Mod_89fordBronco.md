@@ -10,9 +10,9 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 |---|---|---|---|
 | 89 Ford Bronco Auto Manual | `Base.89BroncoMagazine` | 0.5 | 0.3 |
 | 89 Ford Bronco Bed Barrier (*) | `Base.89BroncoBarrier` | 10 | 8 |
-| 89 Ford Bronco Front Bullbar (*) | `Base.89BroncoBullbarFront` | 10 | 24 |
-| 89 Ford Bronco Front Bumper (*) | `Base.89BroncoBumperFront` | 10 | 22 |
-| 89 Ford Bronco Rear Bumper (*) | `Base.89BroncoBumperRear` | 10 | 18 |
+| 89 Ford Bronco Front Bullbar (*) | `Base.89BroncoBullbarFront` | 10 | 12.5 |
+| 89 Ford Bronco Front Bumper (*) | `Base.89BroncoBumperFront` | 10 | 12.5 |
+| 89 Ford Bronco Rear Bumper (*) | `Base.89BroncoBumperRear` | 10 | 12.5 |
 | 89 Ford Bronco Rear Side Window (*) | `Base.89BroncoWindowSideRear2` | 3 | 2.1 |
 | 89 Ford Bronco Rear Windshield (*) | `Base.89BroncoWindshieldRear2` | 7 | 5.2 |
-| 89 Ford Bronco Trunk Lid (*) | `Base.89BroncoTrunkDoor2` | 15 | 22 |
+| 89 Ford Bronco Trunk Lid (*) | `Base.89BroncoTrunkDoor2` | 15 | 18.8 |

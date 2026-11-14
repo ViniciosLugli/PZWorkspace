@@ -10,16 +10,16 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 |---|---|---|---|
 | 99 Ford CVPI Auto Manual | `Base.99fordCVPIMagazine` | 0.5 | 0.3 |
 | 99 Ford CVPI Cab Barrier (*) | `Base.99fordCVPICabBarrier1` | 10 | 12 |
-| 99 Ford CVPI Front Bumper (*) | `Base.99fordCVPIBumperFront0` | 10 | 22 |
-| 99 Ford CVPI Front Door (*) | `Base.99fordCVPIFrontDoor1` | 10 | 22 |
-| 99 Ford CVPI Front Seat (*) | `Base.99fordCVPISeatFront1` | 15 | 27.8 |
+| 99 Ford CVPI Front Bumper (*) | `Base.99fordCVPIBumperFront0` | 10 | 12.5 |
+| 99 Ford CVPI Front Door (*) | `Base.99fordCVPIFrontDoor1` | 10 | 12.5 |
+| 99 Ford CVPI Front Seat (*) | `Base.99fordCVPISeatFront1` | 15 | 18.8 |
 | 99 Ford CVPI Front Side Window (*) | `Base.99fordCVPIFrontSideWindow1` | 3 | 3.3 |
-| 99 Ford CVPI Hood (*) | `Base.99fordCVPIEngineDoor1` | 15 | 20 |
+| 99 Ford CVPI Hood (*) | `Base.99fordCVPIEngineDoor1` | 15 | 18.8 |
 | 99 Ford CVPI Push Bumper (*) | `Base.99fordCVPIBumperFront1` | 15 | 13 |
-| 99 Ford CVPI Rear Bumper (*) | `Base.99fordCVPIBumperRear0` | 12 | 18 |
-| 99 Ford CVPI Rear Door (*) | `Base.99fordCVPIRearDoor1` | 11 | 18 |
+| 99 Ford CVPI Rear Bumper (*) | `Base.99fordCVPIBumperRear0` | 12 | 15 |
+| 99 Ford CVPI Rear Door (*) | `Base.99fordCVPIRearDoor1` | 11 | 13.8 |
 | 99 Ford CVPI Rear Seat (*) | `Base.99fordCVPISeatRear1` | 18 | 22 |
 | 99 Ford CVPI Rear Side Window (*) | `Base.99fordCVPIRearSideWindow1` | 3 | 2.5 |
 | 99 Ford CVPI Rear Windshield (*) | `Base.99fordCVPIRearWindshield1` | 10 | 7.4 |
-| 99 Ford CVPI Trunk Lid (*) | `Base.99fordCVPITrunkDoor1` | 13 | 18 |
-| 99 Ford CVPI Windshield (*) | `Base.99fordCVPIWindshield1` | 9 | 13 |
+| 99 Ford CVPI Trunk Lid (*) | `Base.99fordCVPITrunkDoor1` | 13 | 16.2 |
+| 99 Ford CVPI Windshield (*) | `Base.99fordCVPIWindshield1` | 9 | 11.2 |

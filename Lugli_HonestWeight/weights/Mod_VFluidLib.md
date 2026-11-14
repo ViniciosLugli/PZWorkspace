@@ -8,6 +8,6 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| Vehicle Fluid Tank (*) | `Base.VFluidTank1` | 8 | 17 |
-| Vehicle Fluid Tank (*) | `Base.VFluidTank2` | 8 | 17 |
-| Vehicle Fluid Tank (*) | `Base.VFluidTank3` | 8 | 17 |
+| Vehicle Fluid Tank (*) | `Base.VFluidTank1` | 8 | 10 |
+| Vehicle Fluid Tank (*) | `Base.VFluidTank2` | 8 | 10 |
+| Vehicle Fluid Tank (*) | `Base.VFluidTank3` | 8 | 10 |

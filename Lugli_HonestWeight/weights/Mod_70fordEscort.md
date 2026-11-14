@@ -11,7 +11,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 70 Ford Escort Auto Manual | `Base.70fordEscortMagazine` | 0.5 | 0.3 |
 | 70 Ford Escort Coupe Front Door (*) | `Base.70fordEscortCoupeFrontDoor3` | 11 | 12 |
 | 70 Ford Escort Coupe Rear Side Window (*) | `Base.70fordEscortCoupeRearSideWindow3` | 5 | 1.3 |
-| 70 Ford Escort Front Bumper (*) | `Base.70fordEscortBumperFront0` | 6 | 9 |
+| 70 Ford Escort Front Bumper (*) | `Base.70fordEscortBumperFront0` | 6 | 7.5 |
 | 70 Ford Escort Front Seat (*) | `Base.70fordEscortSeatFront3` | 13 | 12 |
 | 70 Ford Escort Front Side Window (*) | `Base.70fordEscortFrontSideWindow3` | 5 | 2.2 |
 | 70 Ford Escort Front Window Armor (*) | `Base.70fordEscortFrontWindowArmor` | 7 | 4.9 |

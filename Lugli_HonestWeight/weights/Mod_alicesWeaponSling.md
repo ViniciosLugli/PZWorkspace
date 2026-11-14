@@ -6,19 +6,19 @@ Weights Lugli - Honest Weight sets for [Alice's Weapon Sling](https://steamcommu
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| Weapon Sling (Back) | `AliceSlings.AliceWeaponSlingBack` | 0.01 | 0.225 |
-| Weapon Sling (Back) | `AliceSlings.AliceWeaponSlingBack_Hidden` | 0.01 | 0.225 |
-| Weapon Sling (Back) | `Base.AliceWeaponSlingBack` | 0.01 | 0.225 |
-| Weapon Sling (Back) | `Base.AliceWeaponSlingBack_Hidden` | 0.01 | 0.225 |
-| Weapon Sling - / | `AliceSlings.AliceWeaponSlingAlt` | 0.01 | 0.225 |
-| Weapon Sling - / | `AliceSlings.AliceWeaponSlingAlt_Hidden` | 0.01 | 0.225 |
-| Weapon Sling - / | `Base.AliceWeaponSlingAlt` | 0.01 | 0.225 |
-| Weapon Sling - / | `Base.AliceWeaponSlingAlt_Hidden` | 0.01 | 0.225 |
-| Weapon Sling - \\ | `AliceSlings.AliceWeaponSling` | 0.01 | 0.225 |
-| Weapon Sling - \\ | `AliceSlings.AliceWeaponSling_Hidden` | 0.01 | 0.225 |
-| Weapon Sling - \\ | `Base.AliceWeaponSling` | 0.01 | 0.225 |
-| Weapon Sling - \\ | `Base.AliceWeaponSling_Hidden` | 0.01 | 0.225 |
-| Weapon Sling -- | `AliceSlings.AliceWeaponSlingAlt2` | 0.01 | 0.225 |
-| Weapon Sling -- | `AliceSlings.AliceWeaponSlingAlt2_Hidden` | 0.01 | 0.225 |
-| Weapon Sling -- | `Base.AliceWeaponSlingAlt2` | 0.01 | 0.225 |
-| Weapon Sling -- | `Base.AliceWeaponSlingAlt2_Hidden` | 0.01 | 0.225 |
+| Weapon Sling (Back) | `AliceSlings.AliceWeaponSlingBack` | 0.01 | 0.0125 |
+| Weapon Sling (Back) | `AliceSlings.AliceWeaponSlingBack_Hidden` | 0.01 | 0.0125 |
+| Weapon Sling (Back) | `Base.AliceWeaponSlingBack` | 0.01 | 0.0125 |
+| Weapon Sling (Back) | `Base.AliceWeaponSlingBack_Hidden` | 0.01 | 0.0125 |
+| Weapon Sling - / | `AliceSlings.AliceWeaponSlingAlt` | 0.01 | 0.0125 |
+| Weapon Sling - / | `AliceSlings.AliceWeaponSlingAlt_Hidden` | 0.01 | 0.0125 |
+| Weapon Sling - / | `Base.AliceWeaponSlingAlt` | 0.01 | 0.0125 |
+| Weapon Sling - / | `Base.AliceWeaponSlingAlt_Hidden` | 0.01 | 0.0125 |
+| Weapon Sling - \\ | `AliceSlings.AliceWeaponSling` | 0.01 | 0.0125 |
+| Weapon Sling - \\ | `AliceSlings.AliceWeaponSling_Hidden` | 0.01 | 0.0125 |
+| Weapon Sling - \\ | `Base.AliceWeaponSling` | 0.01 | 0.0125 |
+| Weapon Sling - \\ | `Base.AliceWeaponSling_Hidden` | 0.01 | 0.0125 |
+| Weapon Sling -- | `AliceSlings.AliceWeaponSlingAlt2` | 0.01 | 0.0125 |
+| Weapon Sling -- | `AliceSlings.AliceWeaponSlingAlt2_Hidden` | 0.01 | 0.0125 |
+| Weapon Sling -- | `Base.AliceWeaponSlingAlt2` | 0.01 | 0.0125 |
+| Weapon Sling -- | `Base.AliceWeaponSlingAlt2_Hidden` | 0.01 | 0.0125 |

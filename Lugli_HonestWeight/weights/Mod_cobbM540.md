@@ -8,10 +8,10 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| Cobb Motor Company M540 Door (*) | `Base.cobbM540Door2` | 23 | 29.4 |
-| Cobb Motor Company M540 Hood (*) | `Base.cobbM540EngineDoor2` | 6 | 32.9 |
+| Cobb Motor Company M540 Door (*) | `Base.cobbM540Door2` | 23 | 28.8 |
+| Cobb Motor Company M540 Hood (*) | `Base.cobbM540EngineDoor2` | 6 | 7.5 |
 | Cobb Motor Company M540 Large Seat (*) | `Base.cobbM540SeatLarge2` | 16 | 15 |
 | Cobb Motor Company M540 Side Window (*) | `Base.cobbM540Window2` | 7 | 3.5 |
 | Cobb Motor Company M540 Small Seat (*) | `Base.cobbM540SeatSmall2` | 12 | 15 |
-| Cobb Motor Company M540 Tire (*) | `Base.cobbM540Tire2` | 24 | 40.5 |
-| Cobb Motor Company M540 Windshield (*) | `Base.cobbM540Windshield2` | 6 | 13 |
+| Cobb Motor Company M540 Tire (*) | `Base.cobbM540Tire2` | 24 | 30 |
+| Cobb Motor Company M540 Windshield (*) | `Base.cobbM540Windshield2` | 6 | 7.5 |

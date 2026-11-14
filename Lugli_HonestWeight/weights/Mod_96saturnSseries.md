@@ -24,7 +24,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 96 Saturn S Windshield (*) | `Base.96saturnSWindshield1` | 8 | 7.2 |
 | 96 Saturn S Windshield Armor (*) | `Base.96saturnSWindshieldArmor` | 18 | 10.8 |
 | 96 Saturn SL Rear Bumper (*) | `Base.96saturnSLBumperRear0` | 10 | 7 |
-| 96 Saturn SL Rear Windshield (*) | `Base.96saturnSLWindshieldRear1` | 3 | 3.9 |
+| 96 Saturn SL Rear Windshield (*) | `Base.96saturnSLWindshieldRear1` | 3 | 3.75 |
 | 96 Saturn SL Rear Windshield Armor (*) | `Base.96saturnSLWindshieldRearArmor` | 10 | 8.8 |
 | 96 Saturn SL Trunk Lid (*) | `Base.96saturnSLTrunkDoor1` | 10 | 8 |
 | 96 Saturn SL2 Tire (*) | `Base.96saturnSL2Tire1` | 13 | 8.5 |

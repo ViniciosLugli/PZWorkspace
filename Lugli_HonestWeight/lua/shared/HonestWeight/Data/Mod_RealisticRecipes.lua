@@ -2,7 +2,7 @@
 -- Source RealisticRecipes: 2 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "RealisticRecipes", mod = "RealisticRecipes", version = "e2d2f8d5f009", rows = {
-"RealisticRecipes.ImprovedSpear",2.4,2.4,0.9,0,-1,-1,-1,1,-1,
-"RealisticRecipes.MasterworkSpear",3,3,1.3,0,-1,-1,-1,1,-1,
+table.insert(LugliHonestWeight.data, { id = "RealisticRecipes", mod = "RealisticRecipes", version = "d126543c0334", rows = {
+"RealisticRecipes.ImprovedSpear",2.4,2.4,0.9,0,-1,-1,-1,1,-1,2.4,0,
+"RealisticRecipes.MasterworkSpear",3,3,1.3,0,-1,-1,-1,1,-1,3,0,
 } })

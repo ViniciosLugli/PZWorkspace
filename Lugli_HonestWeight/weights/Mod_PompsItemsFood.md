@@ -7,13 +7,13 @@ Weights Lugli - Honest Weight sets for [Pomp's Items - Just the Food](https://st
 | Item | ID | Game | Honest |
 |---|---|---|---|
 | Apple Filling | `PompsItems.PIApplePieFillingOpen` | 0.8 | 0.96 |
-| Bag of Disappointment | `PompsItems.PIBagOfDisappointment` | 0.15 | 0.6 |
+| Bag of Disappointment | `PompsItems.PIBagOfDisappointment` | 0.15 | 0.188 |
 | Bag of Mini Donuts | `PompsItems.PIChocDonutBag` | 0.9 | 0.473 |
 | Bag of Mini Donuts | `PompsItems.PIGlazeDonutBag` | 0.9 | 0.473 |
 | Bag of Mini Donuts | `PompsItems.PIPowderDonutBag` | 0.9 | 0.473 |
 | Bag of Mini Donuts | `PompsItems.PISWDonutBag` | 0.9 | 0.473 |
 | Bag of Whizzy Suckers | `PompsItems.PIWhizzyPops` | 0.5 | 0.165 |
-| Barbecue Sauce | `PompsItems.PIWingSauceBBQ` | 0.3 | 0.63 |
+| Barbecue Sauce | `PompsItems.PIWingSauceBBQ` | 0.3 | 0.375 |
 | Bastler's Buckeyes | `PompsItems.BuckeyesPack` | 0.5 | 0.262 |
 | Beer Bottle | `PompsItems.PIAlcopop` | 0.4 | 0.3 |
 | Berry Medley Filling | `PompsItems.PIBerryPieFillingOpen` | 0.8 | 0.96 |
@@ -54,17 +54,17 @@ Weights Lugli - Honest Weight sets for [Pomp's Items - Just the Food](https://st
 | Bountiful Kids | `PompsItems.PIKidCuisinePopcornChicken` | 0.4 | 0.33 |
 | Bountiful Kids | `PompsItems.PIKidCuisineSpaghetti` | 0.4 | 0.33 |
 | Box of Chocolate Ice Cream Sandwiches | `PompsItems.PIIceCreamCookieChocBox` | 0.6 | 0.645 |
-| Box of Dinosaur Nuggets | `PompsItems.DinoNugBox` | 0.7 | 1.85 |
+| Box of Dinosaur Nuggets | `PompsItems.DinoNugBox` | 0.7 | 0.875 |
 | Box of Fig Bars | `PompsItems.PIFigBox` | 1.2 | 0.525 |
 | Box of Freeze Pops | `PompsItems.PIFreezePops` | 1.8 | 1.88 |
-| Box of Fruit Barrels | `PompsItems.PIFruitBarrelBox` | 9 | 10.8 |
+| Box of Fruit Barrels | `PompsItems.PIFruitBarrelBox` | 9 | 7.89 |
 | Box of Fruit Spillers | `PompsItems.PIFruitSpillersBox` | 0.8 | 0.27 |
 | Box of Honey Buns | `PompsItems.PIHoneyBunBox` | 1 | 0.72 |
 | Box of Ice Cream Cookie Sandwiches | `PompsItems.PIIceCreamCookieBox` | 0.6 | 0.645 |
 | Box of Ice Cream Sandwiches | `PompsItems.PIIceCreamSandwichBox` | 1.5 | 1.48 |
-| Box of Lug Root Beer | `PompsItems.LugRootBeerBox` | 3 | 5.9 |
+| Box of Lug Root Beer | `PompsItems.LugRootBeerBox` | 3 | 3.75 |
 | Box of Mint Ice Cream Sandwiches | `PompsItems.PIIceCreamCookieMintBox` | 0.6 | 0.645 |
-| Box of RB Root Beer | `PompsItems.RootBeerBox` | 3 | 5.9 |
+| Box of RB Root Beer | `PompsItems.RootBeerBox` | 3 | 3.75 |
 | Box of Whip Tarts | `PompsItems.PIPopTartBBBox` | 1.1 | 0.669 |
 | Box of Whip Tarts | `PompsItems.PIPopTartBSBox` | 1.1 | 0.669 |
 | Box of Whip Tarts | `PompsItems.PIPopTartCCBox` | 1.1 | 0.669 |
@@ -72,19 +72,19 @@ Weights Lugli - Honest Weight sets for [Pomp's Items - Just the Food](https://st
 | Box of Whip Tarts | `PompsItems.PIPopTartSMBox` | 1.1 | 0.669 |
 | Box of Whip Tarts | `PompsItems.PIPopTartSWBox` | 1.1 | 0.669 |
 | Box of Whip Tarts | `PompsItems.PIPopTartWBBox` | 1.1 | 0.669 |
-| Boxed Frozen Pizza | `PompsItems.PIFrozenPizzaCheeseBox` | 0.6 | 0.975 |
-| Boxed Frozen Pizza | `PompsItems.PIFrozenPizzaMeatBox` | 0.6 | 0.975 |
-| Boxed Frozen Pizza | `PompsItems.PIFrozenPizzaPepperoniBox` | 0.6 | 0.975 |
-| Boxed Frozen Pizza | `PompsItems.PIFrozenPizzaSupremeBox` | 0.6 | 0.975 |
+| Boxed Frozen Pizza | `PompsItems.PIFrozenPizzaCheeseBox` | 0.6 | 0.75 |
+| Boxed Frozen Pizza | `PompsItems.PIFrozenPizzaMeatBox` | 0.6 | 0.75 |
+| Boxed Frozen Pizza | `PompsItems.PIFrozenPizzaPepperoniBox` | 0.6 | 0.75 |
+| Boxed Frozen Pizza | `PompsItems.PIFrozenPizzaSupremeBox` | 0.6 | 0.75 |
 | Brawndo | `PompsItems.Brawndo` | 0.25 | 0.128 |
 | Buckeyes | `PompsItems.Buckeyes` | 0.05 | 0.03 |
-| Buffalo Wing Sauce | `PompsItems.PIWingSauceBuffalo` | 0.3 | 0.63 |
+| Buffalo Wing Sauce | `PompsItems.PIWingSauceBuffalo` | 0.3 | 0.375 |
 | Candy Cigarettes | `PompsItems.PICandyCigarettes` | 0.1 | 0.045 |
 | Candy Cigarettes | `PompsItems.PICandyCigarettes2` | 0.1 | 0.045 |
 | Canned Alphabet Soup | `PompsItems.PIABCSoup` | 0.8 | 0.51 |
 | Canned Chicken & Stars | `PompsItems.PIChickenStars` | 0.8 | 0.51 |
 | Canned Clam Chowder | `PompsItems.PIClamChowder` | 0.8 | 0.51 |
-| Canned Ham | `PompsItems.PISpam` | 0.4 | 0.6 |
+| Canned Ham | `PompsItems.PISpam` | 0.4 | 0.5 |
 | Canned Macaroni & Cheese | `PompsItems.PICannedMacCheese` | 0.8 | 0.705 |
 | Canned Macaroni Beef | `PompsItems.PIMacBeef` | 0.8 | 0.705 |
 | Canned Pasta O's | `PompsItems.PISpaghettiOs` | 0.8 | 0.705 |
@@ -100,25 +100,25 @@ Weights Lugli - Honest Weight sets for [Pomp's Items - Just the Food](https://st
 | Canned Ravioli | `PompsItems.PICannedRavioli` | 0.8 | 0.705 |
 | Caribbean-Style Hot Sauce | `PompsItems.PIHotSauceCaribbean` | 0.3 | 0.36 |
 | Cheese & Breadstick Dipper | `PompsItems.PICheeseStickDip` | 0.15 | 0.06 |
-| Cheese Balls | `PompsItems.PICheeseBalls` | 1 | 1.5 |
+| Cheese Balls | `PompsItems.PICheeseBalls` | 1 | 1.25 |
 | Cheese Balls | `PompsItems.PICheeseBallsSmall` | 0.35 | 0.3 |
-| Cheesy Poofs | `PompsItems.PICheesyPoofs` | 0.3 | 0.6 |
+| Cheesy Poofs | `PompsItems.PICheesyPoofs` | 0.3 | 0.375 |
 | Cherry Filling | `PompsItems.PICherryPieFillingOpen` | 0.8 | 0.96 |
 | Chipotle Hot Sauce | `PompsItems.PIHotSauceChipotle` | 0.3 | 0.36 |
-| Chocolate Cross | `PompsItems.ChocolateCross` | 0.05 | 0.075 |
+| Chocolate Cross | `PompsItems.ChocolateCross` | 0.05 | 0.0625 |
 | Chocolate Rabbit | `PompsItems.ChocolateRabbit` | 0.05 | 0.045 |
 | Chocolate Sandwich Cookie | `PompsItems.POreo` | 0.05 | 0.051 |
 | Chocolate Wafers | `PompsItems.UtahWafers` | 0.05 | 0.06 |
 | Circus Peanuts | `PompsItems.CircusPeanuts` | 0.2 | 0.045 |
 | Coconut Glee | `PompsItems.CocoGlee` | 0.2 | 0.075 |
-| Cosmos Co. Canned Stallion Milk | `PompsItems.StallionMilk` | 0.3 | 0.48 |
+| Cosmos Co. Canned Stallion Milk | `PompsItems.StallionMilk` | 0.3 | 0.375 |
 | Crack Pops | `PompsItems.PIPopRocksBlue` | 0.1 | 0.015 |
 | Crack Pops | `PompsItems.PIPopRocksGreen` | 0.1 | 0.015 |
 | Crack Pops | `PompsItems.PIPopRocksRed` | 0.1 | 0.015 |
 | Dark Chocolate | `PompsItems.ChoccDark` | 0.2 | 0.24 |
 | Diamond Cola | `PompsItems.PIDiamondCola` | 0.2 | 0.0525 |
 | Dr. Doctor Ph.D. | `PompsItems.PIDrDoctor` | 0.2 | 0.0525 |
-| El Chip's | `PompsItems.PIElChips` | 0.2 | 0.6 |
+| El Chip's | `PompsItems.PIElChips` | 0.2 | 0.25 |
 | Fazbar | `PompsItems.PIFazbar` | 0.2 | 0.075 |
 | Fig Bar | `PompsItems.PIFigBar` | 0.2 | 0.06 |
 | Fish Snack 'Ems | `PompsItems.PIFishSnackems` | 0.2 | 0.15 |
@@ -147,50 +147,50 @@ Weights Lugli - Honest Weight sets for [Pomp's Items - Just the Food](https://st
 | Frozen Asian Meal | `PompsItems.JiangLi8` | 0.4 | 0.495 |
 | Frozen Dinosaur Nuggets | `PompsItems.DinoNug` | 0.2 | 0.15 |
 | Frozen Mozzarrela Stick | `PompsItems.MoxxStick` | 0.05 | 0.045 |
-| Frozen Pizza | `PompsItems.PIFrozenPizzaCheese` | 0.64 | 0.915 |
-| Frozen Pizza | `PompsItems.PIFrozenPizzaMeat` | 0.64 | 0.915 |
-| Frozen Pizza | `PompsItems.PIFrozenPizzaPepperoni` | 0.64 | 0.915 |
-| Frozen Pizza | `PompsItems.PIFrozenPizzaSupreme` | 0.64 | 0.915 |
-| Frozen Pizza Slice | `PompsItems.PIPizzaSliceCheese` | 0.08 | 0.105 |
-| Frozen Pizza Slice | `PompsItems.PIPizzaSliceMeat` | 0.08 | 0.105 |
-| Frozen Pizza Slice | `PompsItems.PIPizzaSlicePepperoni` | 0.08 | 0.105 |
-| Frozen Pizza Slice | `PompsItems.PIPizzaSliceSupreme` | 0.08 | 0.105 |
+| Frozen Pizza | `PompsItems.PIFrozenPizzaCheese` | 0.64 | 0.8 |
+| Frozen Pizza | `PompsItems.PIFrozenPizzaMeat` | 0.64 | 0.8 |
+| Frozen Pizza | `PompsItems.PIFrozenPizzaPepperoni` | 0.64 | 0.8 |
+| Frozen Pizza | `PompsItems.PIFrozenPizzaSupreme` | 0.64 | 0.8 |
+| Frozen Pizza Slice | `PompsItems.PIPizzaSliceCheese` | 0.08 | 0.1 |
+| Frozen Pizza Slice | `PompsItems.PIPizzaSliceMeat` | 0.08 | 0.1 |
+| Frozen Pizza Slice | `PompsItems.PIPizzaSlicePepperoni` | 0.08 | 0.1 |
+| Frozen Pizza Slice | `PompsItems.PIPizzaSliceSupreme` | 0.08 | 0.1 |
 | Frozen Waffle | `PompsItems.FrozenWafflez` | 0.15 | 0.0525 |
 | Fruit Spillers | `PompsItems.PIFruitSpillers` | 0.15 | 0.0375 |
-| Garlic Parmesan Sauce | `PompsItems.PIWingSauceGarlicParm` | 0.3 | 0.63 |
+| Garlic Parmesan Sauce | `PompsItems.PIWingSauceGarlicParm` | 0.3 | 0.375 |
 | Geeks | `PompsItems.PIGeeks` | 0.2 | 0.21 |
-| Glass Bottle | `PompsItems.PIBunnBourbon` | 0.18 | 0.9 |
-| Glass Bottle | `PompsItems.PIRyeWhiskey` | 0.5 | 1.35 |
-| Glass Bottle | `PompsItems.SbeveGin` | 0.2 | 0.9 |
-| Glass Bottle | `PompsItems.VodkaAus` | 0.4 | 0.9 |
-| Glass Bottle | `PompsItems.WildPegasus` | 0.5 | 1.35 |
+| Glass Bottle | `PompsItems.PIBunnBourbon` | 0.18 | 0.225 |
+| Glass Bottle | `PompsItems.PIRyeWhiskey` | 0.5 | 0.625 |
+| Glass Bottle | `PompsItems.SbeveGin` | 0.2 | 0.25 |
+| Glass Bottle | `PompsItems.VodkaAus` | 0.4 | 0.5 |
+| Glass Bottle | `PompsItems.WildPegasus` | 0.5 | 0.625 |
 | Green Habanero Hot Sauce | `PompsItems.PIHotSauceGreen` | 0.3 | 0.36 |
 | Gum Drops | `PompsItems.Dabs` | 0.2 | 0.045 |
 | Gummy Frogs | `PompsItems.PIGummyFrogs` | 0.2 | 0.045 |
 | Gummy Sharks | `PompsItems.GummySharks` | 0.2 | 0.045 |
 | Head Honcho Chew | `PompsItems.PIHeadHonchoChew` | 0.2 | 0.075 |
-| Honey Barbecue | `PompsItems.PIWingSauceHoneyBBQ` | 0.3 | 0.63 |
+| Honey Barbecue | `PompsItems.PIWingSauceHoneyBBQ` | 0.3 | 0.375 |
 | Honey Bun | `PompsItems.PIHoneyBun` | 0.15 | 0.112 |
-| Honey Mustard | `PompsItems.PIWingSauceHoneyMustard` | 0.3 | 0.63 |
+| Honey Mustard | `PompsItems.PIWingSauceHoneyMustard` | 0.3 | 0.375 |
 | Hot Chachas | `PompsItems.PIHotChachas` | 0.3 | 0.27 |
-| Hot Jaguars | `PompsItems.PIJaguarsFlaming` | 0.15 | 0.27 |
+| Hot Jaguars | `PompsItems.PIJaguarsFlaming` | 0.15 | 0.188 |
 | Ice Caps | `PompsItems.PIIceCaps` | 0.2 | 0.12 |
 | Ice Cream Sandwich | `PompsItems.PIIceCreamSandwich` | 0.15 | 0.12 |
 | Instant Popcorn | `PompsItems.PIPopcornButter` | 0.3 | 0.15 |
 | Instant Popcorn | `PompsItems.PIPopcornCheddar` | 0.3 | 0.15 |
-| Jaguars Crunchy | `PompsItems.PIJaguarsCrunchy` | 0.15 | 0.27 |
-| Jaguars Poofs | `PompsItems.PIJaguarsPoofy` | 0.15 | 0.27 |
+| Jaguars Crunchy | `PompsItems.PIJaguarsCrunchy` | 0.15 | 0.188 |
+| Jaguars Poofs | `PompsItems.PIJaguarsPoofy` | 0.15 | 0.188 |
 | Java Crunch | `PompsItems.PIJavaCrunch` | 0.2 | 0.075 |
-| Jawbreaker | `PompsItems.PIJawbreaker` | 0.03 | 0.045 |
+| Jawbreaker | `PompsItems.PIJawbreaker` | 0.03 | 0.0375 |
 | Jug | `PompsItems.PIChocMilk` | 1 | 0.57 |
 | Jug | `PompsItems.PISweetTea` | 1 | 0.57 |
 | Lemon Chica Bar | `PompsItems.PILemonChica` | 0.2 | 0.075 |
 | Lemon Filling | `PompsItems.PILemonPieFillingOpen` | 0.8 | 0.96 |
 | Lenni & Co. Coffee | `PompsItems.CzechCoffee` | 0.8 | 0.69 |
 | Maple's Maple Syrup | `PompsItems.MaplesSyrup` | 0.7 | 0.75 |
-| Marley Fried Chicken | `PompsItems.KFMarley` | 0.6 | 1.5 |
+| Marley Fried Chicken | `PompsItems.KFMarley` | 0.6 | 0.75 |
 | Melted Ice Cream Sandwich | `PompsItems.PIIceCreamSandwichRotten` | 0.15 | 0.12 |
-| Milk Molars | `PompsItems.PIMilkMolars` | 0.4 | 0.705 |
+| Milk Molars | `PompsItems.PIMilkMolars` | 0.4 | 0.5 |
 | Million Bucks Chocolate | `PompsItems.MoneyChoc` | 0.2 | 0.24 |
 | Mini Donut | `PompsItems.PIChocDonut` | 0.05 | 0.045 |
 | Mini Donut | `PompsItems.PIGlazeDonut` | 0.05 | 0.045 |
@@ -198,7 +198,7 @@ Weights Lugli - Honest Weight sets for [Pomp's Items - Just the Food](https://st
 | Mini Donut | `PompsItems.PISWDonut` | 0.05 | 0.045 |
 | Moz's Mozzarrela Sticks | `PompsItems.MoxxBox` | 0.5 | 0.405 |
 | Opened Alphabet Soup | `PompsItems.PIABCSoupOpen` | 0.8 | 0.51 |
-| Opened Canned Ham | `PompsItems.PISpamOpen` | 0.4 | 0.6 |
+| Opened Canned Ham | `PompsItems.PISpamOpen` | 0.4 | 0.5 |
 | Opened Chicken & Stars | `PompsItems.PIChickenStarsOpen` | 0.8 | 0.51 |
 | Opened Clam Chowder | `PompsItems.PIClamChowderOpen` | 0.8 | 0.51 |
 | Opened Macaroni & Cheese | `PompsItems.PICannedMacCheeseOpen` | 0.8 | 0.705 |
@@ -220,7 +220,7 @@ Weights Lugli - Honest Weight sets for [Pomp's Items - Just the Food](https://st
 | Pirate Plunderbar | `PompsItems.PIPiratePlunderbar` | 0.2 | 0.075 |
 | Pomp's | `PompsItems.Pomps` | 0.2 | 0.0555 |
 | Pomp's Big Cup | `PompsItems.PIPompsBig` | 0.2 | 0.0675 |
-| Potato Chips | `PompsItems.PIIslandChips` | 0.2 | 0.6 |
+| Potato Chips | `PompsItems.PIIslandChips` | 0.2 | 0.25 |
 | Potato Sticks | `PompsItems.TaterSticks` | 0.15 | 0.075 |
 | Prod Stick | `PompsItems.PIPushPopBlue` | 0.1 | 0.045 |
 | Prod Stick | `PompsItems.PIPushPopRed` | 0.1 | 0.045 |
@@ -234,7 +234,7 @@ Weights Lugli - Honest Weight sets for [Pomp's Items - Just the Food](https://st
 | Root Beer | `PompsItems.PIRootBeer` | 0.2 | 0.0525 |
 | Root Beer | `PompsItems.RMRootBeer` | 0.2 | 0.0525 |
 | Shooter | `PompsItems.PIFireball` | 0.05 | 0.015 |
-| Sky Dullards | `PompsItems.PISkyDullards` | 0.2 | 0.27 |
+| Sky Dullards | `PompsItems.PISkyDullards` | 0.2 | 0.25 |
 | Smoked Habanero Hot Sauce | `PompsItems.PIHotSauceBlack` | 0.3 | 0.36 |
 | Snackable | `PompsItems.LunchableBolognaSmall` | 0.4 | 0.195 |
 | Snackable | `PompsItems.LunchableExtraCheesePizzaSmall` | 0.4 | 0.195 |
@@ -263,7 +263,7 @@ Weights Lugli - Honest Weight sets for [Pomp's Items - Just the Food](https://st
 | Snackable Pepperoni | `PompsItems.PIPepperoni` | 0.05 | 0.015 |
 | Snackable Pizza | `PompsItems.PISnackablePizzaRecipe` | 0.1 | 0.06 |
 | Snackable Pizza Blank | `PompsItems.PIPizzaBlank` | 0.03 | 0.015 |
-| Snackable Shredded Cheese | `PompsItems.PISnackCheese` | 0.01 | 0.015 |
+| Snackable Shredded Cheese | `PompsItems.PISnackCheese` | 0.01 | 0.0125 |
 | Snackable Swiss Cheese | `PompsItems.PISwissCheese` | 0.05 | 0.015 |
 | Snackable Turkey | `PompsItems.PITurkey` | 0.05 | 0.015 |
 | Sour Gummy Horses | `PompsItems.SourGummies` | 0.2 | 0.0975 |
@@ -274,10 +274,10 @@ Weights Lugli - Honest Weight sets for [Pomp's Items - Just the Food](https://st
 | Stonewall Chew | `PompsItems.PIStonewallChew` | 0.2 | 0.075 |
 | Sunbooms | `PompsItems.Sunbooms` | 0.2 | 0.045 |
 | Sunbooms Tropical | `PompsItems.SunboomsTropical` | 0.2 | 0.045 |
-| Sweet Red Chili Sauce | `PompsItems.PIWingSauceSRC` | 0.3 | 0.63 |
-| Sweet Teriyaki Sauce | `PompsItems.PIWingSauceTeriyaki` | 0.3 | 0.63 |
+| Sweet Red Chili Sauce | `PompsItems.PIWingSauceSRC` | 0.3 | 0.375 |
+| Sweet Teriyaki Sauce | `PompsItems.PIWingSauceTeriyaki` | 0.3 | 0.375 |
 | Tangsy Extreme Sours | `PompsItems.Tangsy` | 0.2 | 0.018 |
-| Tartsies | `PompsItems.Tartsies` | 0.2 | 0.27 |
+| Tartsies | `PompsItems.Tartsies` | 0.2 | 0.25 |
 | Tasty Tarts | `PompsItems.TastyTarts` | 0.2 | 0.045 |
 | Tix | `PompsItems.PITix` | 0.2 | 0.075 |
 | Twistys Licorice Black | `PompsItems.TwistysBlack` | 0.2 | 0.0525 |

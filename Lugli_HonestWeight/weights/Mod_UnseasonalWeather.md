@@ -6,4 +6,4 @@ Weights Lugli - Honest Weight sets for [Unseasonal Weather](https://steamcommuni
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| Long-range Radio | `UnseasonalWeather.RadioLargoAlcance` | 1.5 | 2.25 |
+| Long-range Radio | `UnseasonalWeather.RadioLargoAlcance` | 1.5 | 1.88 |

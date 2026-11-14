@@ -6,15 +6,15 @@ Weights Lugli - Honest Weight sets for [\[B42\] Survival](https://steamcommunity
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| Box of Strings | `Base.StringBox` | 2 | 3.07 |
+| Box of Strings | `Base.StringBox` | 2 | 2.5 |
 | Button - Wood | `Base.ButtonWood` | 0.1 | 0.0045 |
-| Candle | `Base.CandleJar` | 0.2 | 0.75 |
-| Candle | `Base.CandleTinCan` | 0.2 | 0.3 |
-| Candle | `Base.CandleWaterRationCan` | 0.2 | 0.3 |
-| Flint Firestarter | `Base.FlintFirestarter` | 0.1 | 0.15 |
-| Lit Candle | `Base.CandleJarLit` | 0.2 | 0.75 |
-| Lit Candle | `Base.CandleTinCanLit` | 0.2 | 0.3 |
-| Lit Candle | `Base.CandleWaterRationCanLit` | 0.2 | 0.3 |
+| Candle | `Base.CandleJar` | 0.2 | 0.25 |
+| Candle | `Base.CandleTinCan` | 0.2 | 0.25 |
+| Candle | `Base.CandleWaterRationCan` | 0.2 | 0.25 |
+| Flint Firestarter | `Base.FlintFirestarter` | 0.1 | 0.125 |
+| Lit Candle | `Base.CandleJarLit` | 0.2 | 0.25 |
+| Lit Candle | `Base.CandleTinCanLit` | 0.2 | 0.25 |
+| Lit Candle | `Base.CandleWaterRationCanLit` | 0.2 | 0.25 |
 | Lit Torch | `Base.TorchLit` | 2 | 1.5 |
 | Torch | `Base.TorchBurnt` | 2 | 1.5 |
 | Torch | `Base.TorchCloth` | 2 | 1.5 |

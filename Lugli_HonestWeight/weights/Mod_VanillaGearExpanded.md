@@ -19,13 +19,13 @@ Weights Lugli - Honest Weight sets for [Vanilla Gear Expanded](https://steamcomm
 | Bulletproof Vest - Press | `VGE.Vest_BulletPress` | 5 | 3.9 |
 | Chest Rig - Tactical | `VGE.Bag_ChestRig_Tactical` | 1 | 0.9 |
 | Gloves - Fingerless Tactical | `VGE.Gloves_FingerlessTactical` | 0.1 | 0.105 |
-| Gloves - Tactical | `VGE.Gloves_Tactical` | 0.1 | 0.15 |
+| Gloves - Tactical | `VGE.Gloves_Tactical` | 0.1 | 0.125 |
 | Helmet - Crash Tactical | `VGE.Hat_Crash_Tactical` | 1 | 0.9 |
-| Helmet - Riot Prison | `VGE.Hat_Riot_Prison` | 1 | 1.95 |
-| Helmet - Riot Tactical | `VGE.Hat_Riot_Tactical` | 1 | 1.95 |
-| Helmet - Tactical Blue | `VGE.Hat_TacticalBlue` | 1 | 2.25 |
-| Helmet - Tactical Gray | `VGE.Hat_TacticalGray` | 1 | 2.25 |
-| Helmet - Tactical Green | `VGE.Hat_TacticalGreen` | 1 | 2.25 |
+| Helmet - Riot Prison | `VGE.Hat_Riot_Prison` | 1 | 1.25 |
+| Helmet - Riot Tactical | `VGE.Hat_Riot_Tactical` | 1 | 1.25 |
+| Helmet - Tactical Blue | `VGE.Hat_TacticalBlue` | 1 | 1.25 |
+| Helmet - Tactical Gray | `VGE.Hat_TacticalGray` | 1 | 1.25 |
+| Helmet - Tactical Green | `VGE.Hat_TacticalGreen` | 1 | 1.25 |
 | Jacket - FBI | `VGE.Jacket_FBI` | 1 | 1.2 |
 | Pants - Riot Guard | `VGE.Trousers_PrisonGuardRiot` | 1 | 0.825 |
 | Pants - Riot Guard | `VGE.Trousers_PrisonGuardRiotTucked` | 1 | 0.825 |
@@ -53,7 +53,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Gear Expanded](https://steamcomm
 | Shirt - Tactical Gray | `VGE.Shirt_TacticalGrayRolled` | 1 | 0.525 |
 | Shirt - Tactical Green | `VGE.Shirt_TacticalGreen` | 1 | 0.525 |
 | Shirt - Tactical Green | `VGE.Shirt_TacticalGreenRolled` | 1 | 0.525 |
-| Tactical Belt | `VGE.Holster_TacticalBelt` | 0.2 | 0.375 |
+| Tactical Belt | `VGE.Holster_TacticalBelt` | 0.2 | 0.25 |
 | Tactical Goggles | `VGE.Glasses_TacticalGoggles` | 0.1 | 0.12 |
-| Tactical Headset | `VGE.Hat_Tactical_Headset` | 0.3 | 0.45 |
-| Vest - Tactical | `VGE.Vest_Tactical` | 1 | 1.35 |
+| Tactical Headset | `VGE.Hat_Tactical_Headset` | 0.3 | 0.375 |
+| Vest - Tactical | `VGE.Vest_Tactical` | 1 | 1.25 |

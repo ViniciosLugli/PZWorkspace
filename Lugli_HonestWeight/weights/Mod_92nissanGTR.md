@@ -13,24 +13,24 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 92 Nissan Skyline R32 Door (*) | `Base.R32Door3` | 12 | 15 |
 | 92 Nissan Skyline R32 Front Seat (*) | `Base.R32FrontSeat3` | 14 | 15 |
 | 92 Nissan Skyline R32 Front Side Window (*) | `Base.R32FrontSideWindow3` | 5 | 2.5 |
-| 92 Nissan Skyline R32 Hood (*) | `Base.R32EngineDoor0` | 10 | 13 |
+| 92 Nissan Skyline R32 Hood (*) | `Base.R32EngineDoor0` | 10 | 12.5 |
 | 92 Nissan Skyline R32 Makeshift Door Armor (*) | `Base.R32DoorArmor` | 25 | 15.7 |
 | 92 Nissan Skyline R32 Makeshift Front Bullbar (*) | `Base.R32BumperA` | 27 | 17 |
 | 92 Nissan Skyline R32 Makeshift Rear Bullbar (*) | `Base.R32BumperRearA` | 24 | 13 |
 | 92 Nissan Skyline R32 Makeshift Rear Window Armor (*) | `Base.R32RearWindowArmor` | 6 | 3.9 |
 | 92 Nissan Skyline R32 Makeshift Rear Windshield Armor (*) | `Base.R32WindshieldRearArmor` | 14 | 13.7 |
 | 92 Nissan Skyline R32 Makeshift Windshield Armor (*) | `Base.R32WindshieldArmor` | 15 | 16.7 |
-| 92 Nissan Skyline R32 Performance Muffler (*) | `Base.R32muffler1` | 4 | 7 |
-| 92 Nissan Skyline R32 Rear Seat (*) | `Base.R32RearSeat3` | 10 | 15 |
+| 92 Nissan Skyline R32 Performance Muffler (*) | `Base.R32muffler1` | 4 | 5 |
+| 92 Nissan Skyline R32 Rear Seat (*) | `Base.R32RearSeat3` | 10 | 12.5 |
 | 92 Nissan Skyline R32 Rear Side Window (*) | `Base.R32RearSideWindow3` | 3 | 1.8 |
 | 92 Nissan Skyline R32 Rear Windshield (*) | `Base.R32WindshieldRear3` | 8 | 6 |
 | 92 Nissan Skyline R32 Slick Tire (*) | `Base.R32Tire2` | 11 | 12 |
 | 92 Nissan Skyline R32 Stock Front Bumper (*) | `Base.R32Bumper0` | 15 | 13 |
-| 92 Nissan Skyline R32 Stock Muffler (*) | `Base.R32muffler0` | 5 | 7 |
+| 92 Nissan Skyline R32 Stock Muffler (*) | `Base.R32muffler0` | 5 | 6.25 |
 | 92 Nissan Skyline R32 Stock Rear Bumper (*) | `Base.R32BumperRear0` | 14 | 10 |
 | 92 Nissan Skyline R32 Stock Spoiler (*) | `Base.R32Spoiler0` | 7 | 5 |
 | 92 Nissan Skyline R32 Stock Tire (*) | `Base.R32Tire0` | 15 | 10 |
-| 92 Nissan Skyline R32 Trunk Lid (*) | `Base.R32TrunkDoor3` | 9 | 12 |
+| 92 Nissan Skyline R32 Trunk Lid (*) | `Base.R32TrunkDoor3` | 9 | 11.2 |
 | 92 Nissan Skyline R32 Type1 Front Bumper (*) | `Base.R32Bumper1` | 14 | 13 |
 | 92 Nissan Skyline R32 Type1 Rear Bumper (*) | `Base.R32BumperRear1` | 13 | 10 |
 | 92 Nissan Skyline R32 Type1 Sideskirts (*) | `Base.R32Sideskirts1` | 6 | 4 |
@@ -41,4 +41,4 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 92 Nissan Skyline R32 Type3 Front Bumper (*) | `Base.R32Bumper3` | 12 | 13 |
 | 92 Nissan Skyline R32 Type3 Rear Bumper (*) | `Base.R32BumperRear3` | 11 | 10 |
 | 92 Nissan Skyline R32 Type3 Spoiler (*) | `Base.R32Spoiler3` | 7 | 5 |
-| 92 Nissan Skyline R32 Windshield (*) | `Base.R32Windshield3` | 8 | 11 |
+| 92 Nissan Skyline R32 Windshield (*) | `Base.R32Windshield3` | 8 | 10 |

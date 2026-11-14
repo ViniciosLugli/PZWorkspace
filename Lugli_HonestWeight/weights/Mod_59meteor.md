@@ -9,23 +9,23 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Item | ID | Game | Honest |
 |---|---|---|---|
 | 59 Cadillac Miller-Meteor Auto Manual | `Base.ECTO1Magazine` | 0.5 | 0.3 |
-| 59 Cadillac Miller-Meteor Bullbar (*) | `Base.ECTO1Bullbar1` | 11 | 20 |
-| 59 Cadillac Miller-Meteor Bumper (*) | `Base.ECTO1Bumper1` | 9 | 22 |
-| 59 Cadillac Miller-Meteor Front Door (*) | `Base.ECTO1CarFrontDoor1` | 10 | 22 |
-| 59 Cadillac Miller-Meteor Front Door Armor (*) | `Base.ECTO1CarFrontDoorArmor` | 15 | 19.6 |
-| 59 Cadillac Miller-Meteor Hood (*) | `Base.ECTO1EngineDoor1` | 12 | 20 |
-| 59 Cadillac Miller-Meteor Left Seat (*) | `Base.ECTO1CarSeatfl1` | 16 | 27.8 |
-| 59 Cadillac Miller-Meteor Rear Bumper (*) | `Base.ECTO1BumperRear1` | 5 | 18 |
-| 59 Cadillac Miller-Meteor Rear Door (*) | `Base.ECTO1CarRearDoor1` | 10 | 18 |
+| 59 Cadillac Miller-Meteor Bullbar (*) | `Base.ECTO1Bullbar1` | 11 | 13.8 |
+| 59 Cadillac Miller-Meteor Bumper (*) | `Base.ECTO1Bumper1` | 9 | 11.2 |
+| 59 Cadillac Miller-Meteor Front Door (*) | `Base.ECTO1CarFrontDoor1` | 10 | 12.5 |
+| 59 Cadillac Miller-Meteor Front Door Armor (*) | `Base.ECTO1CarFrontDoorArmor` | 15 | 18.8 |
+| 59 Cadillac Miller-Meteor Hood (*) | `Base.ECTO1EngineDoor1` | 12 | 15 |
+| 59 Cadillac Miller-Meteor Left Seat (*) | `Base.ECTO1CarSeatfl1` | 16 | 20 |
+| 59 Cadillac Miller-Meteor Rear Bumper (*) | `Base.ECTO1BumperRear1` | 5 | 6.25 |
+| 59 Cadillac Miller-Meteor Rear Door (*) | `Base.ECTO1CarRearDoor1` | 10 | 12.5 |
 | 59 Cadillac Miller-Meteor Rear Door Armor (*) | `Base.ECTO1CarRearDoorArmor` | 15 | 16.7 |
 | 59 Cadillac Miller-Meteor Rear Windshield (*) | `Base.ECTO1RearWindshield1` | 7 | 7.4 |
-| 59 Cadillac Miller-Meteor Rear Windshield Armor (*) | `Base.ECTO1WindshieldRearArmor` | 10 | 16.7 |
+| 59 Cadillac Miller-Meteor Rear Windshield Armor (*) | `Base.ECTO1WindshieldRearArmor` | 10 | 12.5 |
 | 59 Cadillac Miller-Meteor Reinforced Bumper (*) | `Base.ECTO1BumperA` | 20 | 25 |
 | 59 Cadillac Miller-Meteor Reinforced Tire (*) | `Base.ECTO1tire2` | 15 | 12 |
-| 59 Cadillac Miller-Meteor Right Seat (*) | `Base.ECTO1CarSeatfr1` | 14 | 27.8 |
+| 59 Cadillac Miller-Meteor Right Seat (*) | `Base.ECTO1CarSeatfr1` | 14 | 17.5 |
 | 59 Cadillac Miller-Meteor Side Window (*) | `Base.ECTO1SideWindow1` | 5 | 3.3 |
-| 59 Cadillac Miller-Meteor Small Rear Seat (*) | `Base.ECTO1CarSeatrr1` | 10 | 22 |
+| 59 Cadillac Miller-Meteor Small Rear Seat (*) | `Base.ECTO1CarSeatrr1` | 10 | 12.5 |
 | 59 Cadillac Miller-Meteor Tire (*) | `Base.ECTO1tire1` | 10 | 12 |
-| 59 Cadillac Miller-Meteor Trunk Lid (*) | `Base.ECTO1TrunkDoor1` | 8 | 18 |
+| 59 Cadillac Miller-Meteor Trunk Lid (*) | `Base.ECTO1TrunkDoor1` | 8 | 10 |
 | 59 Cadillac Miller-Meteor Windshield (*) | `Base.ECTO1Windshield1` | 12 | 13 |
 | 59 Cadillac Miller-Meteor Windshield Armor (*) | `Base.ECTO1WindshieldArmor` | 20 | 19.6 |

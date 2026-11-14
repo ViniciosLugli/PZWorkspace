@@ -30,6 +30,15 @@ option LugliHW.Scale = {
 	translation = LugliHW_Scale,
 }
 
+option LugliHW.MaxIncrease = {
+	type = integer,
+	default = 25,
+	min = 0,
+	max = 400,
+	page = LugliHW,
+	translation = LugliHW_MaxIncrease,
+}
+
 option LugliHW.VanillaStamina = {
 	type = boolean,
 	default = false,

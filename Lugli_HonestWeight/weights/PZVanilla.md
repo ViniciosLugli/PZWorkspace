@@ -11,9 +11,9 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | .30-30 Round (Vanilla) | `Base.3030Bullets` | 0.05 | 0.039 |
 | .308 Winchester Round (Vanilla) | `Base.308Bullets` | 0.04 | 0.0375 |
 | .357 Magnum Round (Vanilla) | `Base.Bullets357` | 0.02 | 0.024 |
-| .38 Special Round (Vanilla) | `Base.Bullets38` | 0.015 | 0.0225 |
+| .38 Special Round (Vanilla) | `Base.Bullets38` | 0.015 | 0.0187 |
 | .44 Magnum Round (Vanilla) | `Base.Bullets44` | 0.03 | 0.0375 |
-| .45 ACP Round (Vanilla) | `Base.Bullets45` | 0.025 | 0.0315 |
+| .45 ACP Round (Vanilla) | `Base.Bullets45` | 0.025 | 0.0312 |
 | 3D Glasses | `Base.Glasses_3dGlasses` | 0.1 | 0.018 |
 | 5.56x45mm Round (Vanilla) | `Base.556Bullets` | 0.035 | 0.018 |
 | 9x19mm Round (Vanilla) | `Base.Bullets9mm` | 0.02 | 0.0183 |
@@ -28,82 +28,82 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Agriculture I: "Better Gardening" | `Base.BookFarming1` | 1 | 0.45 |
 | Agriculture II: "Growing Food at Home" | `Base.BookFarming2` | 1 | 0.45 |
 | Agriculture III: "Liam Keating's Subsistence Farming" | `Base.BookFarming3` | 1 | 0.9 |
-| Agriculture IV: "The Science of Crop Genetics and Yields" | `Base.BookFarming4` | 1 | 1.35 |
-| Agriculture V: "USDA Guide to Agricultural Output Maximization" | `Base.BookFarming5` | 1 | 1.35 |
+| Agriculture IV: "The Science of Crop Genetics and Yields" | `Base.BookFarming4` | 1 | 1.25 |
+| Agriculture V: "USDA Guide to Agricultural Output Maximization" | `Base.BookFarming5` | 1 | 1.25 |
 | Aiming I: "Better Aiming" | `Base.BookAiming1` | 1 | 0.45 |
 | Aiming II: "Drawing and Shooting" | `Base.BookAiming2` | 1 | 0.45 |
 | Aiming III: "Leading Moving Targets" | `Base.BookAiming3` | 1 | 0.9 |
-| Aiming IV: "Long Range Sniping Tactics" | `Base.BookAiming4` | 1 | 1.35 |
-| Aiming V: "Secrets From the World's Best Snipers" | `Base.BookAiming5` | 1 | 1.35 |
-| Air Force Pilot Helmet | `Base.Hat_SPHhelmet` | 1 | 2.1 |
+| Aiming IV: "Long Range Sniping Tactics" | `Base.BookAiming4` | 1 | 1.25 |
+| Aiming V: "Secrets From the World's Best Snipers" | `Base.BookAiming5` | 1 | 1.25 |
+| Air Force Pilot Helmet | `Base.Hat_SPHhelmet` | 1 | 1.25 |
 | Alarm Clock | `Base.AlarmClock2` | 1 | 0.375 |
 | Alcohol Wipes | `Base.AlcoholWipes` | 0.3 | 0.15 |
 | ALICE Belt and Suspenders | `Base.Bag_ALICE_BeltSus` | 1 | 0.9 |
 | ALICE Belt and Suspenders | `Base.Bag_ALICE_BeltSus_Camo` | 1 | 0.9 |
 | ALICE Belt and Suspenders | `Base.Bag_ALICE_BeltSus_Green` | 1 | 0.9 |
-| Alligator Gar | `Base.AligatorGar` | 0.4 | 15 |
-| Aluminum Foil | `Base.Aluminum` | 0.1 | 0.225 |
+| Alligator Gar | `Base.AligatorGar` | 0.4 | 0.5 |
+| Aluminum Foil | `Base.Aluminum` | 0.1 | 0.125 |
 | Aluminum Fragments | `Base.AluminumFragments` | 0.1 | 0.03 |
 | Aluminum Scrap | `Base.AluminumScrap` | 0.5 | 0.15 |
-| Amethyst | `Base.Amethyst` | 0.001 | 0.045 |
+| Amethyst | `Base.Amethyst` | 0.001 | 0.00125 |
 | Ammo Straps | `Base.AmmoStraps` | 0.5 | 0.225 |
-| Ammunition Box | `Base.Bag_AmmoBox` | 1 | 1.65 |
-| Ammunition Box | `Base.Bag_AmmoBox_308` | 1 | 1.65 |
-| Ammunition Box | `Base.Bag_AmmoBox_38` | 1 | 1.65 |
-| Ammunition Box | `Base.Bag_AmmoBox_44` | 1 | 1.65 |
-| Ammunition Box | `Base.Bag_AmmoBox_45` | 1 | 1.65 |
-| Ammunition Box | `Base.Bag_AmmoBox_9mm` | 1 | 1.65 |
-| Ammunition Box | `Base.Bag_AmmoBox_Hunting` | 1 | 1.65 |
-| Ammunition Box | `Base.Bag_AmmoBox_Mixed` | 1 | 1.65 |
-| Ammunition Box | `Base.Bag_AmmoBox_ShotgunShells` | 1 | 1.65 |
+| Ammunition Box | `Base.Bag_AmmoBox` | 1 | 1.25 |
+| Ammunition Box | `Base.Bag_AmmoBox_308` | 1 | 1.25 |
+| Ammunition Box | `Base.Bag_AmmoBox_38` | 1 | 1.25 |
+| Ammunition Box | `Base.Bag_AmmoBox_44` | 1 | 1.25 |
+| Ammunition Box | `Base.Bag_AmmoBox_45` | 1 | 1.25 |
+| Ammunition Box | `Base.Bag_AmmoBox_9mm` | 1 | 1.25 |
+| Ammunition Box | `Base.Bag_AmmoBox_Hunting` | 1 | 1.25 |
+| Ammunition Box | `Base.Bag_AmmoBox_Mixed` | 1 | 1.25 |
+| Ammunition Box | `Base.Bag_AmmoBox_ShotgunShells` | 1 | 1.25 |
 | Amplifier | `Base.Amplifier` | 0.3 | 0.225 |
-| Angus Calf Hide (Furred) | `Base.CalfLeather_Angus_Fur` | 1 | 6 |
-| Angus Calf Hide (Unprocessed) | `Base.CalfLeather_Angus_Full` | 1 | 7.5 |
-| Angus Calf Leather (Furred, Wet) | `Base.CalfLeather_Angus_Fur_Tan_Wet` | 1 | 3 |
-| Angus Hide (Furred) | `Base.CowLeather_Angus_Fur` | 5 | 33.5 |
-| Angus Hide (Unprocessed) | `Base.CowLeather_Angus_Full` | 5 | 37.6 |
-| Angus Leather (Furred, Wet) | `Base.CowLeather_Angus_Fur_Tan_Wet` | 5 | 18 |
-| Angus Leather Half (Furred) | `Base.CowLeather_Angus_Fur_Tan_Medium` | 3 | 6.75 |
-| Angus Leather Quarter (Furred) | `Base.CowLeather_Angus_Fur_Tan_Small` | 1 | 3.3 |
+| Angus Calf Hide (Furred) | `Base.CalfLeather_Angus_Fur` | 1 | 1.25 |
+| Angus Calf Hide (Unprocessed) | `Base.CalfLeather_Angus_Full` | 1 | 1.25 |
+| Angus Calf Leather (Furred, Wet) | `Base.CalfLeather_Angus_Fur_Tan_Wet` | 1 | 1.25 |
+| Angus Hide (Furred) | `Base.CowLeather_Angus_Fur` | 5 | 6.25 |
+| Angus Hide (Unprocessed) | `Base.CowLeather_Angus_Full` | 5 | 6.25 |
+| Angus Leather (Furred, Wet) | `Base.CowLeather_Angus_Fur_Tan_Wet` | 5 | 6.25 |
+| Angus Leather Half (Furred) | `Base.CowLeather_Angus_Fur_Tan_Medium` | 3 | 3.75 |
+| Angus Leather Quarter (Furred) | `Base.CowLeather_Angus_Fur_Tan_Small` | 1 | 1.25 |
 | Animal Bone | `Base.AnimalBone` | 1.5 | 1.2 |
-| Animal Brain | `Base.Animal_Brain` | 0.1 | 0.225 |
+| Animal Brain | `Base.Animal_Brain` | 0.1 | 0.125 |
 | Animal Care I: "A Tale of St. Francis" | `Base.BookHusbandry1` | 1 | 0.45 |
 | Animal Care II: "Animal Welfare Basics" | `Base.BookHusbandry2` | 1 | 0.45 |
 | Animal Care III: "How Animals Think: A Helpful Guide" | `Base.BookHusbandry3` | 1 | 0.9 |
-| Animal Care IV: "The Wants and Needs of Diverse Fauna" | `Base.BookHusbandry4` | 1 | 1.35 |
-| Animal Care V: "Wilds Tamed: An In-Depth Comparative" | `Base.BookHusbandry5` | 1 | 1.35 |
-| Animal Feed Bag | `Base.AnimalFeedBag` | 4 | 12 |
+| Animal Care IV: "The Wants and Needs of Diverse Fauna" | `Base.BookHusbandry4` | 1 | 1.25 |
+| Animal Care V: "Wilds Tamed: An In-Depth Comparative" | `Base.BookHusbandry5` | 1 | 1.25 |
+| Animal Feed Bag | `Base.AnimalFeedBag` | 4 | 5 |
 | Animal Sinew | `Base.AnimalSinew` | 0.1 | 0.045 |
 | Animal Skull Necklace | `Base.Necklace_SkullMammal` | 0.1 | 0.09 |
-| Animal Skulls Necklace | `Base.Necklace_SkullMammal_Multi` | 0.1 | 0.225 |
+| Animal Skulls Necklace | `Base.Necklace_SkullMammal_Multi` | 0.1 | 0.125 |
 | Animal Teeth | `Base.HerbivoreTeeth` | 0.1 | 0.075 |
 | Antibiotics | `Base.Antibiotics` | 0.1 | 0.06 |
 | Antidepressants | `Base.PillsAntiDep` | 0.2 | 0.06 |
 | Antique Table Leg | `Base.TableLeg` | 2 | 2.25 |
 | Antique Table Leg - Chained | `Base.TableLeg_Chain` | 6 | 3.75 |
 | Antique Table Leg with Nails | `Base.TableLeg_Nails` | 2 | 2.33 |
-| Antique Table Leg with Sawblade | `Base.TableLeg_Sawblade` | 2 | 2.7 |
-| Antique Television | `Base.TvAntique` | 10 | 31.6 |
+| Antique Table Leg with Sawblade | `Base.TableLeg_Sawblade` | 2 | 2.5 |
+| Antique Television | `Base.TvAntique` | 10 | 12.5 |
 | Antler Boppers | `Base.Hat_Antlers` | 0.3 | 0.12 |
-| Antler Headdress | `Base.Hat_DeerHeadress` | 0.5 | 2.1 |
-| Aphids Spray | `Base.GardeningSprayAphids` | 1 | 1.42 |
-| Apple | `Base.Apple` | 0.2 | 0.27 |
+| Antler Headdress | `Base.Hat_DeerHeadress` | 0.5 | 0.625 |
+| Aphids Spray | `Base.GardeningSprayAphids` | 1 | 1.25 |
+| Apple | `Base.Apple` | 0.2 | 0.25 |
 | Apple Pie Slice | `Base.PieApple` | 0.5 | 0.195 |
-| Apricots (Dried) | `Base.DriedApricots` | 0.2 | 0.255 |
+| Apricots (Dried) | `Base.DriedApricots` | 0.2 | 0.25 |
 | Apron | `Base.Apron_BBQ` | 1 | 0.3 |
 | Apron | `Base.Apron_Black` | 1 | 0.3 |
 | Apron | `Base.Apron_White` | 1 | 0.3 |
 | Apron - Tight Fit | `Base.Apron_WhiteTEXTURE` | 1 | 0.3 |
 | Aramid Thread | `Base.Thread_Aramid` | 0.2 | 0.045 |
 | Army Beret | `Base.Hat_BeretArmy` | 0.5 | 0.15 |
-| Articulated Metal Shin Armor | `Base.ShinKneeGuard_L_Metal` | 2 | 2.7 |
-| Articulated Metal Shin Armor | `Base.ShinKneeGuard_R_Metal` | 2 | 2.7 |
+| Articulated Metal Shin Armor | `Base.ShinKneeGuard_L_Metal` | 2 | 2.5 |
+| Articulated Metal Shin Armor | `Base.ShinKneeGuard_R_Metal` | 2 | 2.5 |
 | Articulated Metal Shoulder Armor - Left | `Base.Shoulderpad_Articulated_L_Metal` | 2 | 2.1 |
 | Articulated Metal Shoulder Armor - Right | `Base.Shoulderpad_Articulated_R_Metal` | 2 | 2.1 |
-| Articulated Metal Thigh Armor | `Base.Thigh_ArticMetal_L` | 1 | 3 |
-| Articulated Metal Thigh Armor | `Base.Thigh_ArticMetal_R` | 1 | 3 |
+| Articulated Metal Thigh Armor | `Base.Thigh_ArticMetal_L` | 1 | 1.25 |
+| Articulated Metal Thigh Armor | `Base.Thigh_ArticMetal_R` | 1 | 1.25 |
 | Athletic Cup | `Base.AthleticCup` | 0.5 | 0.12 |
-| Auger Drill | `Base.OldDrill` | 1 | 1.5 |
+| Auger Drill | `Base.OldDrill` | 1 | 1.25 |
 | Aviator Glasses | `Base.Glasses_Aviators` | 0.1 | 0.045 |
 | Awl | `Base.Awl` | 0.3 | 0.09 |
 | Awl - Bone | `Base.Awl_Bone` | 0.2 | 0.06 |
@@ -111,8 +111,8 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Axe | `Base.Axe_Old` | 3 | 3.45 |
 | Axe Head | `Base.OldAxeHead` | 2 | 2.4 |
 | B-F Magazine | `Base.44Clip` | 0.2 | 0.15 |
-| B-F Pistol | `Base.Pistol3` | 2 | 2.85 |
-| Backgammon Board | `Base.BackgammonBoard` | 1 | 1.35 |
+| B-F Pistol | `Base.Pistol3` | 2 | 2.5 |
+| Backgammon Board | `Base.BackgammonBoard` | 1 | 1.25 |
 | Backpack Sprayer | `Base.KnapsackSprayer` | 5 | 5.25 |
 | Backpack Sprayer (Stowed) | `Base.KnapsackSprayer_Stowed` | 5 | 5.25 |
 | Bacon | `Base.Bacon` | 0.3 | 0.225 |
@@ -122,17 +122,17 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Badminton Birdie | `Base.Birdie` | 0.1 | 0.0075 |
 | Badminton Racket | `Base.BadmintonRacket` | 1 | 0.135 |
 | Bag of Chicken Nuggets | `Base.Frozen_ChickenNuggets` | 1 | 1.15 |
-| Bag of Concrete Powder | `Base.ConcretePowder` | 5 | 34.3 |
+| Bag of Concrete Powder | `Base.ConcretePowder` | 5 | 6.25 |
 | Bag of Fish Fingers | `Base.Frozen_FishFingers` | 1 | 0.653 |
-| Bag of Fries | `Base.Frozen_FrenchFries` | 1 | 1.28 |
-| Bag of Plaster Powder | `Base.PlasterPowder` | 5 | 15 |
-| Bag of Tato Dots | `Base.Frozen_TatoDots` | 1 | 1.37 |
+| Bag of Fries | `Base.Frozen_FrenchFries` | 1 | 1.25 |
+| Bag of Plaster Powder | `Base.PlasterPowder` | 5 | 6.25 |
+| Bag of Tato Dots | `Base.Frozen_TatoDots` | 1 | 1.25 |
 | Bag of Wallpaper Paste Powder | `Base.WallpaperPastePowder` | 2 | 0.75 |
-| Bagel | `Base.BagelPlain` | 0.1 | 0.15 |
+| Bagel | `Base.BagelPlain` | 0.1 | 0.125 |
 | Baguette | `Base.Baguette` | 0.3 | 0.375 |
-| Baguette | `Base.BaguetteDough` | 0.3 | 0.42 |
+| Baguette | `Base.BaguetteDough` | 0.3 | 0.375 |
 | Baking Pan | `Base.BakingPan` | 1 | 0.9 |
-| Baking Soda | `Base.BakingSoda` | 0.3 | 0.705 |
+| Baking Soda | `Base.BakingSoda` | 0.3 | 0.375 |
 | Baking Tray | `Base.BakingTray` | 1 | 0.9 |
 | Baking Tray with Chocolate Chip Cookies | `Base.CookieChocolateChipDough` | 1.9 | 1.26 |
 | Baking Tray with Chocolate Cookies | `Base.CookiesChocolateDough` | 1.9 | 1.26 |
@@ -141,13 +141,13 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Baking Tray with Sugar Cookies | `Base.CookiesSugarDough` | 1.9 | 1.26 |
 | Balaclava | `Base.Hat_BalaclavaFull` | 0.5 | 0.09 |
 | Balaclava - Open | `Base.Hat_BalaclavaFace` | 0.5 | 0.09 |
-| Ball Peen Hammer Head | `Base.BallPeenHammerHead` | 0.5 | 0.675 |
+| Ball Peen Hammer Head | `Base.BallPeenHammerHead` | 0.5 | 0.625 |
 | Ball-peen Hammer | `Base.BallPeenHammer` | 1.5 | 1.05 |
 | Ball-peen Hammer | `Base.BallPeenHammerForged` | 1.5 | 1.05 |
-| Baloney | `Base.Baloney` | 0.2 | 0.345 |
+| Baloney | `Base.Baloney` | 0.2 | 0.25 |
 | Baloney Slices | `Base.BaloneySlice` | 0.04 | 0.042 |
-| Balsamic Vinegar | `Base.BalsamicVinegar` | 0.2 | 0.675 |
-| Banana | `Base.Banana` | 0.2 | 0.27 |
+| Balsamic Vinegar | `Base.BalsamicVinegar` | 0.2 | 0.25 |
+| Banana | `Base.Banana` | 0.2 | 0.25 |
 | Bandage | `Base.Bandage` | 0.1 | 0.03 |
 | Bandage (Dirty) | `Base.BandageDirty` | 0.1 | 0.03 |
 | Bandage (Sterilized) | `Base.AlcoholBandage` | 0.1 | 0.0375 |
@@ -164,20 +164,20 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Bandeau | `Base.BoobTube` | 1 | 0.075 |
 | Bandeau - Small | `Base.BoobTubeSmall` | 1 | 0.0525 |
 | Banjo | `Base.Banjo` | 3 | 3.45 |
-| Barbecue Sauce | `Base.BBQSauce` | 0.2 | 0.825 |
-| Barbecue Starter Fluid | `Base.BBQStarterFluid` | 0.5 | 1.27 |
-| Barbed Wire | `Base.BarbedWire` | 1 | 1.5 |
-| Barbed Wire Bundle | `Base.BarbedWireStack` | 10 | 18.1 |
-| Barbell | `Base.BarBell` | 6 | 29.4 |
-| Barbell | `Base.BarBell_Forged` | 6 | 29.4 |
+| Barbecue Sauce | `Base.BBQSauce` | 0.2 | 0.25 |
+| Barbecue Starter Fluid | `Base.BBQStarterFluid` | 0.5 | 0.625 |
+| Barbed Wire | `Base.BarbedWire` | 1 | 1.25 |
+| Barbed Wire Bundle | `Base.BarbedWireStack` | 10 | 12.5 |
+| Barbell | `Base.BarBell` | 6 | 7.5 |
+| Barbell | `Base.BarBell_Forged` | 6 | 7.5 |
 | Barley Seeds | `Base.BarleySeed` | 0.02 | 0.0075 |
-| Barley Sheaf | `Base.BarleySheaf` | 1 | 1.5 |
+| Barley Sheaf | `Base.BarleySheaf` | 1 | 1.25 |
 | Barley Sheaf (Dried) | `Base.BarleySheafDried` | 1 | 1.05 |
-| Base.FruitSaladClay | `Base.FruitSaladClay` | 0.7 | 0.9 |
-| Base.HotDrinkCopper | `Base.HotDrinkCopper` | 0.5 | 0.9 |
-| Base.HotDrinkGold | `Base.HotDrinkGold` | 0.5 | 0.975 |
-| Base.HotDrinkMetal | `Base.HotDrinkMetal` | 0.5 | 0.63 |
-| Base.HotDrinkSilver | `Base.HotDrinkSilver` | 0.5 | 0.975 |
+| Base.FruitSaladClay | `Base.FruitSaladClay` | 0.7 | 0.875 |
+| Base.HotDrinkCopper | `Base.HotDrinkCopper` | 0.5 | 0.625 |
+| Base.HotDrinkGold | `Base.HotDrinkGold` | 0.5 | 0.625 |
+| Base.HotDrinkMetal | `Base.HotDrinkMetal` | 0.5 | 0.625 |
+| Base.HotDrinkSilver | `Base.HotDrinkSilver` | 0.5 | 0.625 |
 | Base.HotDrinkTumbler | `Base.HotDrinkTumbler` | 0.5 | 0.6 |
 | Baseball | `Base.Baseball` | 0.5 | 0.217 |
 | Baseball Bat | `Base.BaseballBat` | 2 | 1.35 |
@@ -266,24 +266,24 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Basket | `Base.Bag_BirthdayBasket` | 1.5 | 0.75 |
 | Basketball | `Base.Basketball` | 1 | 1.08 |
 | Basting Brush | `Base.BastingBrush` | 0.3 | 0.09 |
-| Bath Towel | `Base.BathTowel` | 0.3 | 0.75 |
-| Bath Towel (Wet) | `Base.BathTowelWet` | 0.5 | 0.75 |
-| Bathrobe | `Base.LongCoat_Bathrobe` | 1 | 1.35 |
+| Bath Towel | `Base.BathTowel` | 0.3 | 0.375 |
+| Bath Towel (Wet) | `Base.BathTowelWet` | 0.5 | 0.375 |
+| Bathrobe | `Base.LongCoat_Bathrobe` | 1 | 1.25 |
 | Battery | `Base.Battery` | 0.1 | 0.105 |
 | Batting Helmet | `Base.Hat_BaseballHelmet` | 1 | 0.6 |
 | Batting Helmet - Kentucky | `Base.Hat_BaseballHelmet_KY` | 1 | 0.6 |
 | Batting Helmet - Riverside Rangers | `Base.Hat_BaseballHelmet_Rangers` | 1 | 0.6 |
 | Batting Helmet - Z Hurricanes | `Base.Hat_BaseballHelmet_Z` | 1 | 0.6 |
 | Beanie | `Base.Hat_Beany` | 0.5 | 0.12 |
-| Beef | `Base.Beef` | 0.5 | 0.675 |
+| Beef | `Base.Beef` | 0.5 | 0.625 |
 | Beef Jerky | `Base.BeefJerky` | 0.2 | 0.15 |
 | Beef Patty | `Base.MeatPatty` | 0.3 | 0.165 |
-| Beer Bottle | `Base.BeerEmpty` | 0.1 | 0.3 |
+| Beer Bottle | `Base.BeerEmpty` | 0.1 | 0.125 |
 | Beer Can | `Base.BeerCanEmpty` | 0.1 | 0.0525 |
-| Bell | `Base.Bell` | 0.1 | 0.225 |
-| Bell Pepper | `Base.BellPepper` | 0.2 | 0.3 |
+| Bell | `Base.Bell` | 0.1 | 0.125 |
+| Bell Pepper | `Base.BellPepper` | 0.2 | 0.25 |
 | Bell Pepper Seeds | `Base.BellPepperSeed` | 0.02 | 0.003 |
-| Bellows | `Base.Bellows` | 1 | 1.5 |
+| Bellows | `Base.Bellows` | 1 | 1.25 |
 | Belt | `Base.Belt2` | 0.2 | 0.225 |
 | Bench Anvil | `Base.BenchAnvil` | 20 | 22.5 |
 | Beret | `Base.Hat_Beret` | 0.5 | 0.15 |
@@ -300,30 +300,30 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Berries | `Base.WinterBerry` | 0.1 | 0.075 |
 | Beta Blockers | `Base.PillsBeta` | 0.2 | 0.06 |
 | Bicycle Helmet | `Base.Hat_BicycleHelmet` | 1 | 0.42 |
-| Big Hiking Backpack | `Base.Bag_BigHikingBag` | 1.5 | 3.3 |
-| Big Hiking Backpack | `Base.Bag_BigHikingBag_Travel` | 1.5 | 3.3 |
+| Big Hiking Backpack | `Base.Bag_BigHikingBag` | 1.5 | 1.88 |
+| Big Hiking Backpack | `Base.Bag_BigHikingBag_Travel` | 1.5 | 1.88 |
 | Big Retro Sunglasses | `Base.Glasses_JackieO` | 0.1 | 0.045 |
 | Big Spiffo | `Base.SpiffoBig` | 5 | 3.75 |
 | Bikini | `Base.Bikini_Pattern01` | 0.2 | 0.09 |
 | Bikini | `Base.Bikini_TINT` | 0.2 | 0.09 |
-| Biohazard Container | `Base.Bag_ProtectiveCaseBulkyHazard` | 1 | 9 |
+| Biohazard Container | `Base.Bag_ProtectiveCaseBulkyHazard` | 1 | 1.25 |
 | Birthday Card | `Base.Card_Birthday` | 0.2 | 0.0225 |
 | Biscuit | `Base.Biscuit` | 0.1 | 0.09 |
 | Biscuits | `Base.Muffintray_Biscuit` | 1.5 | 1.22 |
-| Black Beans | `Base.Blackbeans` | 0.1 | 0.255 |
+| Black Beans | `Base.Blackbeans` | 0.1 | 0.125 |
 | Black Beans (Dried) | `Base.DriedBlackBeans` | 2 | 0.69 |
 | Black Crappie | `Base.BlackCrappie` | 0.4 | 0.45 |
 | Black Denim Fabric Roll | `Base.FabricRoll_DenimBlack` | 10 | 7.35 |
 | Black Football Jersey | `Base.Football_Jersey_Black` | 1 | 0.45 |
 | Black Forest Cake Slice | `Base.CakeBlackForest` | 0.2 | 0.18 |
-| Black Pig Hide (Furred) | `Base.PigLeather_Black_Fur` | 3 | 7.5 |
-| Black Pig Hide (Unprocessed) | `Base.PigLeather_Black_Full` | 3 | 9 |
-| Black Pig Leather (Furred, Wet) | `Base.PigLeather_Black_Fur_Tan_Wet` | 3 | 4.5 |
-| Black Pig Leather Half (Furred) | `Base.PigLeather_Black_Fur_Tan_Small` | 1 | 1.8 |
+| Black Pig Hide (Furred) | `Base.PigLeather_Black_Fur` | 3 | 3.75 |
+| Black Pig Hide (Unprocessed) | `Base.PigLeather_Black_Full` | 3 | 3.75 |
+| Black Pig Leather (Furred, Wet) | `Base.PigLeather_Black_Fur_Tan_Wet` | 3 | 3.75 |
+| Black Pig Leather Half (Furred) | `Base.PigLeather_Black_Fur_Tan_Small` | 1 | 1.25 |
 | Black Piglet Hide (Furred) | `Base.PigletLeather_Black_Fur` | 1 | 1.2 |
-| Black Piglet Hide (Unprocessed) | `Base.PigletLeather_Black_Full` | 1 | 1.5 |
+| Black Piglet Hide (Unprocessed) | `Base.PigletLeather_Black_Full` | 1 | 1.25 |
 | Black Piglet Leather (Tanned, Furred, Wet) | `Base.PigletLeather_Black_Fur_Tan_Wet` | 1 | 0.75 |
-| Black Robe | `Base.BlackRobe` | 1 | 1.5 |
+| Black Robe | `Base.BlackRobe` | 1 | 1.25 |
 | Black Sage | `Base.BlackSage` | 0.1 | 0.045 |
 | Black Sage (Dried) | `Base.BlackSageDried` | 0.1 | 0.012 |
 | Black Sage Seeds | `Base.BlackSageSeed` | 0.02 | 0.003 |
@@ -332,21 +332,21 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Blacksmithing I: "Elementary Forge Practice" | `Base.BookBlacksmith1` | 1 | 0.45 |
 | Blacksmithing II: "General Purpose Blacksmithing" | `Base.BookBlacksmith2` | 1 | 0.45 |
 | Blacksmithing III: "Old West Smiths and Their Secrets" | `Base.BookBlacksmith3` | 1 | 0.9 |
-| Blacksmithing IV: "Really Hard Steel Co. Workers Handbook" | `Base.BookBlacksmith4` | 1 | 1.35 |
-| Blacksmithing V: "The Complete Encyclopedia of Metallurgy" | `Base.BookBlacksmith5` | 1 | 1.35 |
+| Blacksmithing IV: "Really Hard Steel Co. Workers Handbook" | `Base.BookBlacksmith4` | 1 | 1.25 |
+| Blacksmithing V: "The Complete Encyclopedia of Metallurgy" | `Base.BookBlacksmith5` | 1 | 1.25 |
 | Blank Key | `Base.Key_Blank` | 0.05 | 0.012 |
 | Bleach | `Base.Bleach` | 0.2 | 0.09 |
-| Block Mace | `Base.BlockMace` | 2.5 | 3.75 |
+| Block Mace | `Base.BlockMace` | 2.5 | 3.12 |
 | Block Maul | `Base.BlockMaul` | 4 | 4.95 |
 | Blower Fan | `Base.BlowerFan` | 5 | 4.5 |
-| Blue Catfish | `Base.BlueCatfish` | 0.4 | 7.5 |
+| Blue Catfish | `Base.BlueCatfish` | 0.4 | 0.5 |
 | Blue Denim Fabric Roll | `Base.FabricRoll_DenimBlue` | 10 | 7.35 |
 | Blue LSU Football Jersey | `Base.Football_Jersey_Blue` | 1 | 0.45 |
 | Blueberry Pie Slice | `Base.PieBlueberry` | 0.5 | 0.195 |
 | Bluegill | `Base.Bluegill` | 0.4 | 0.3 |
 | Blunt Bone Knife | `Base.DullBoneKnife` | 0.25 | 0.12 |
-| Boar Head | `Base.Pig_Boar_Head_Black` | 1.4 | 18 |
-| Boar Head | `Base.Pig_Boar_Head_Pink` | 1.4 | 18 |
+| Boar Head | `Base.Pig_Boar_Head_Black` | 1.4 | 1.75 |
+| Boar Head | `Base.Pig_Boar_Head_Pink` | 1.4 | 1.75 |
 | Bobber | `Base.Bobber` | 0.1 | 0.015 |
 | Bolt Cutters | `Base.BoltCutters` | 4 | 3 |
 | Bone Body Armor | `Base.Cuirass_Bone` | 4 | 3.75 |
@@ -368,20 +368,20 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Bone Shoulder Armor | `Base.Shoulderpad_Bone_L` | 1 | 0.75 |
 | Bone Shoulder Armor | `Base.Shoulderpad_Bone_R` | 1 | 0.75 |
 | Bone Spoon | `Base.Spoon_Bone` | 0.25 | 0.0225 |
-| Bone Thigh Armor | `Base.ThighBone_L` | 1 | 1.5 |
-| Bone Thigh Armor | `Base.ThighBone_R` | 1 | 1.5 |
+| Bone Thigh Armor | `Base.ThighBone_L` | 1 | 1.25 |
+| Bone Thigh Armor | `Base.ThighBone_R` | 1 | 1.25 |
 | Bone War Hatchet | `Base.Hatchet_Bone` | 1.5 | 1.05 |
 | Bone War Hatchet Head | `Base.HatchetHead_Bone` | 0.5 | 0.3 |
 | Bone Whistle | `Base.Whistle_Bone` | 0.3 | 0.015 |
 | Book | `Base.Book` | 1 | 1.05 |
 | Book | `Base.Book_AdventureNonFiction` | 1 | 1.05 |
-| Book | `Base.Book_Art` | 1 | 1.8 |
+| Book | `Base.Book_Art` | 1 | 1.25 |
 | Book | `Base.Book_Baseball` | 1 | 1.05 |
-| Book | `Base.Book_Bible` | 1 | 1.5 |
+| Book | `Base.Book_Bible` | 1 | 1.25 |
 | Book | `Base.Book_Biography` | 1 | 1.05 |
 | Book | `Base.Book_Business` | 1 | 1.05 |
 | Book | `Base.Book_Childs` | 1 | 0.45 |
-| Book | `Base.Book_Cinema` | 1 | 1.8 |
+| Book | `Base.Book_Cinema` | 1 | 1.25 |
 | Book | `Base.Book_Classic` | 1 | 1.05 |
 | Book | `Base.Book_ClassicFiction` | 1 | 1.05 |
 | Book | `Base.Book_ClassicNonfiction` | 1 | 1.05 |
@@ -389,10 +389,10 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Book | `Base.Book_CrimeFiction` | 1 | 1.05 |
 | Book | `Base.Book_Fantasy` | 1 | 1.05 |
 | Book | `Base.Book_Farming` | 1 | 1.05 |
-| Book | `Base.Book_Fashion` | 1 | 1.8 |
+| Book | `Base.Book_Fashion` | 1 | 1.25 |
 | Book | `Base.Book_Fiction` | 1 | 1.05 |
 | Book | `Base.Book_GeneralNonFiction` | 1 | 1.05 |
-| Book | `Base.Book_GeneralReference` | 1 | 2.25 |
+| Book | `Base.Book_GeneralReference` | 1 | 1.25 |
 | Book | `Base.Book_Golf` | 1 | 1.05 |
 | Book | `Base.Book_History` | 1 | 1.05 |
 | Book | `Base.Book_Horror` | 1 | 1.05 |
@@ -412,7 +412,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Book | `Base.Book_Rich` | 1 | 1.05 |
 | Book | `Base.Book_Romance` | 1 | 1.05 |
 | Book | `Base.Book_SadNonFiction` | 1 | 1.05 |
-| Book | `Base.Book_SchoolTextbook` | 1 | 1.8 |
+| Book | `Base.Book_SchoolTextbook` | 1 | 1.25 |
 | Book | `Base.Book_SciFi` | 1 | 1.05 |
 | Book | `Base.Book_Science` | 1 | 1.05 |
 | Book | `Base.Book_Sports` | 1 | 1.05 |
@@ -432,27 +432,27 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Boonie Hat | `Base.Hat_BonnieHat_MiliusCamo` | 0.5 | 0.15 |
 | Boonie Hat | `Base.Hat_BonnieHat_OliveDrab` | 0.5 | 0.15 |
 | Boonie Hat | `Base.Hat_BonnieHat_TigerStripeCamo` | 0.5 | 0.15 |
-| Boots | `Base.Shoes_BlackBoots` | 1 | 1.95 |
+| Boots | `Base.Shoes_BlackBoots` | 1 | 1.25 |
 | Boris The Badger | `Base.BorisBadger` | 0.8 | 0.6 |
-| Bottle | `Base.BottleCrafted` | 0.1 | 0.75 |
-| Bottle | `Base.JuiceCranberry` | 0.1 | 0.15 |
-| Bottle | `Base.JuiceFruitpunch` | 0.1 | 0.15 |
-| Bottle | `Base.JuiceGrape` | 0.1 | 0.15 |
-| Bottle | `Base.JuiceLemon` | 0.1 | 0.15 |
-| Bottle | `Base.JuiceOrange` | 0.1 | 0.15 |
-| Bottle | `Base.JuiceTomato` | 0.1 | 0.15 |
-| Bottle | `Base.MilkBottle` | 0.1 | 0.75 |
-| Bottle | `Base.PopBottleRare` | 0.1 | 0.3 |
-| Bottle | `Base.SimpleSyrup` | 0.1 | 0.75 |
+| Bottle | `Base.BottleCrafted` | 0.1 | 0.125 |
+| Bottle | `Base.JuiceCranberry` | 0.1 | 0.125 |
+| Bottle | `Base.JuiceFruitpunch` | 0.1 | 0.125 |
+| Bottle | `Base.JuiceGrape` | 0.1 | 0.125 |
+| Bottle | `Base.JuiceLemon` | 0.1 | 0.125 |
+| Bottle | `Base.JuiceOrange` | 0.1 | 0.125 |
+| Bottle | `Base.JuiceTomato` | 0.1 | 0.125 |
+| Bottle | `Base.MilkBottle` | 0.1 | 0.125 |
+| Bottle | `Base.PopBottleRare` | 0.1 | 0.125 |
+| Bottle | `Base.SimpleSyrup` | 0.1 | 0.125 |
 | Bottle of American Light Lager | `Base.BeerBottle` | 0.4 | 0.3 |
-| Bottle of Chardonnay | `Base.Wine` | 0.3 | 0.75 |
-| Bottle of Chardonnay | `Base.Wine2` | 0.3 | 0.75 |
+| Bottle of Chardonnay | `Base.Wine` | 0.3 | 0.375 |
+| Bottle of Chardonnay | `Base.Wine2` | 0.3 | 0.375 |
 | Bottle of Disinfectant | `Base.Disinfectant` | 0.2 | 0.0825 |
 | Bottle of Fine Red Wine | `Base.WineAged` | 1 | 0.975 |
-| Bottle of Hair Dye | `Base.HairDyeCommon` | 0.1 | 0.15 |
-| Bottle of Hair Dye | `Base.HairDyeRare` | 0.1 | 0.15 |
-| Bottle of Hair Dye | `Base.HairDyeUncommon` | 0.1 | 0.15 |
-| Bottle of Whiskey | `Base.Whiskey` | 0.7 | 0.9 |
+| Bottle of Hair Dye | `Base.HairDyeCommon` | 0.1 | 0.125 |
+| Bottle of Hair Dye | `Base.HairDyeRare` | 0.1 | 0.125 |
+| Bottle of Hair Dye | `Base.HairDyeUncommon` | 0.1 | 0.125 |
+| Bottle of Whiskey | `Base.Whiskey` | 0.7 | 0.875 |
 | Bottle Opener | `Base.BottleOpener` | 0.2 | 0.075 |
 | Bow Tie | `Base.Tie_BowTieFull` | 1 | 0.03 |
 | Bow Tie - Clip-on | `Base.Tie_BowTieWorn` | 0.1 | 0.03 |
@@ -472,8 +472,8 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Bowl of Stew | `Base.StewBowl` | 1 | 0.825 |
 | Bowl of Stew | `Base.StewBowlClay` | 1 | 0.9 |
 | Bowling Ball Bag | `Base.Bag_BowlingBallBag` | 1 | 0.9 |
-| Bowling Pin | `Base.BowlingPin` | 1 | 2.25 |
-| Bowling Pin with Nails | `Base.BowlingPin_Nails` | 1 | 2.33 |
+| Bowling Pin | `Base.BowlingPin` | 1 | 1.25 |
+| Bowling Pin with Nails | `Base.BowlingPin_Nails` | 1 | 1.25 |
 | Bowling Shirt - Blue | `Base.Shirt_Bowling_Blue` | 1 | 0.375 |
 | Bowling Shirt - Brown | `Base.Shirt_Bowling_Brown` | 1 | 0.375 |
 | Bowling Shirt - Green | `Base.Shirt_Bowling_Green` | 1 | 0.375 |
@@ -484,12 +484,12 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Bowtie | `Base.Animal_BowtieGold` | 0.5 | 0.0225 |
 | Bowtie | `Base.Animal_BowtieGreen` | 0.5 | 0.0225 |
 | Bowtie | `Base.Animal_BowtieRed` | 0.5 | 0.0225 |
-| Box of .30-30 Box (Vanilla) | `Base.3030Box` | 0.6 | 0.833 |
-| Box of .308 Winchester Box (Vanilla) | `Base.308Box` | 0.6 | 0.802 |
-| Box of .357 Magnum Box (Vanilla) | `Base.Bullets357Box` | 1 | 1.26 |
-| Box of .38 Special Box (Vanilla) | `Base.Bullets38Box` | 0.8 | 1.19 |
+| Box of .30-30 Box (Vanilla) | `Base.3030Box` | 0.6 | 0.75 |
+| Box of .308 Winchester Box (Vanilla) | `Base.308Box` | 0.6 | 0.75 |
+| Box of .357 Magnum Box (Vanilla) | `Base.Bullets357Box` | 1 | 1.25 |
+| Box of .38 Special Box (Vanilla) | `Base.Bullets38Box` | 0.8 | 1 |
 | Box of .44 Magnum Box (Vanilla) | `Base.Bullets44Box` | 1.2 | 0.802 |
-| Box of .45 ACP Box (Vanilla) | `Base.Bullets45Box` | 1 | 1.64 |
+| Box of .45 ACP Box (Vanilla) | `Base.Bullets45Box` | 1 | 1.25 |
 | Box of 12 Gauge Box (Vanilla) | `Base.ShotgunShellsBox` | 1.5 | 1.62 |
 | Box of 5.56x45mm Box (Vanilla) | `Base.556Box` | 0.5 | 0.413 |
 | Box of 9x19mm Box (Vanilla) | `Base.Bullets9mmBox` | 0.8 | 0.975 |
@@ -497,7 +497,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Box of Adhesive Tape | `Base.AdhesiveTapeBox` | 3 | 1.52 |
 | Box of Antibiotics | `Base.AntibioticsBox` | 1 | 0.87 |
 | Box of Bandages | `Base.BandageBox` | 1 | 0.435 |
-| Box of Batteries | `Base.BatteryBox` | 1 | 1.34 |
+| Box of Batteries | `Base.BatteryBox` | 1 | 1.25 |
 | Box of Candles | `Base.CandleBox` | 1 | 0.975 |
 | Box of Canned Beans | `Base.TinnedBeans_Box` | 4 | 4.46 |
 | Box of Canned Carrots | `Base.CannedCarrots_Box` | 4 | 4.46 |
@@ -520,13 +520,13 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Box of Canned Vegetable Soup | `Base.TinnedSoup_Box` | 4 | 4.46 |
 | Box of Capgun Caps | `Base.CapGunCapBox` | 0.2 | 0.09 |
 | Box of Chocolates | `Base.Chocolate_HeartBox` | 0.5 | 0.375 |
-| Box of Cold Packs | `Base.ColdpackBox` | 1.5 | 1.95 |
+| Box of Cold Packs | `Base.ColdpackBox` | 1.5 | 1.88 |
 | Box of Cotton Balls | `Base.CottonBallsBox` | 1 | 0.69 |
 | Box of Dented Unlabeled Cans of Food | `Base.DentedCan_Box` | 4 | 4.46 |
-| Box of Duct Tape | `Base.DuctTapeBox` | 5 | 6.45 |
+| Box of Duct Tape | `Base.DuctTapeBox` | 5 | 6.25 |
 | Box of Fishing Hooks | `Base.FishingHookBox` | 0.3 | 0.09 |
 | Box of Garbage Bags | `Base.Garbagebag_box` | 1 | 1.12 |
-| Box of Jars | `Base.BoxOfJars` | 1.5 | 3.6 |
+| Box of Jars | `Base.BoxOfJars` | 1.5 | 1.88 |
 | Box of Light Bulbs | `Base.LightBulbBox` | 1 | 0.39 |
 | Box of Mac and Cheese | `Base.Macandcheese_Box` | 2.5 | 2.29 |
 | Box of Nails | `Base.NailsBox` | 2 | 0.825 |
@@ -539,15 +539,15 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Box of Water Ration Cans | `Base.WaterRationCan_Box` | 4 | 3.83 |
 | Box Trap | `Base.TrapBox` | 5 | 4.5 |
 | Boxed Chardonnay | `Base.WineBox` | 0.2 | 0.15 |
-| Boxed Chardonnay | `Base.WineRed_Boxed` | 6.5 | 14.2 |
-| Boxed Chardonnay | `Base.WineWhite_Boxed` | 6.5 | 14.2 |
+| Boxed Chardonnay | `Base.WineRed_Boxed` | 6.5 | 8.12 |
+| Boxed Chardonnay | `Base.WineWhite_Boxed` | 6.5 | 8.12 |
 | Boxers | `Base.Boxers_Hearts` | 0.2 | 0.12 |
 | Boxers | `Base.Boxers_RedStripes` | 0.2 | 0.12 |
 | Boxers | `Base.Boxers_Silk_Black` | 0.2 | 0.09 |
 | Boxers | `Base.Boxers_Silk_Red` | 0.2 | 0.09 |
 | Boxers | `Base.Boxers_White` | 0.2 | 0.12 |
-| Boxing Gloves | `Base.Gloves_BoxingBlue` | 0.1 | 1.27 |
-| Boxing Gloves | `Base.Gloves_BoxingRed` | 0.1 | 1.27 |
+| Boxing Gloves | `Base.Gloves_BoxingBlue` | 0.1 | 0.125 |
+| Boxing Gloves | `Base.Gloves_BoxingRed` | 0.1 | 0.125 |
 | Boxing Head Gear | `Base.Hat_BoxingBlue` | 1 | 0.6 |
 | Boxing Head Gear | `Base.Hat_BoxingRed` | 1 | 0.6 |
 | Boxing Shorts | `Base.Shorts_BoxingBlue` | 1 | 0.3 |
@@ -567,28 +567,28 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Bra - Strapless | `Base.Bra_Strapless_RedSpots` | 0.2 | 0.105 |
 | Bra - Strapless | `Base.Bra_Strapless_White` | 0.2 | 0.105 |
 | Bra - Strapless Hide | `Base.Bra_Strapless_Hide` | 0.2 | 0.162 |
-| Brake - Old (*) | `Base.OldBrake1` | 3 | 7 |
-| Brake - Old (*) | `Base.OldBrake2` | 3 | 7 |
-| Brake - Old (*) | `Base.OldBrake3` | 3 | 7 |
-| Brake - Performance (*) | `Base.ModernBrake1` | 3 | 9 |
-| Brake - Performance (*) | `Base.ModernBrake2` | 3 | 9 |
-| Brake - Performance (*) | `Base.ModernBrake3` | 3 | 9 |
-| Brake - Regular (*) | `Base.NormalBrake1` | 3 | 7.5 |
-| Brake - Regular (*) | `Base.NormalBrake2` | 3 | 7.5 |
-| Brake - Regular (*) | `Base.NormalBrake3` | 3 | 7.5 |
-| Brake Disc Scrap Metal Weapon | `Base.ScrapWeapon_Brake` | 4 | 8.1 |
-| Brandy | `Base.Brandy` | 0.5 | 0.9 |
+| Brake - Old (*) | `Base.OldBrake1` | 3 | 3.75 |
+| Brake - Old (*) | `Base.OldBrake2` | 3 | 3.75 |
+| Brake - Old (*) | `Base.OldBrake3` | 3 | 3.75 |
+| Brake - Performance (*) | `Base.ModernBrake1` | 3 | 3.75 |
+| Brake - Performance (*) | `Base.ModernBrake2` | 3 | 3.75 |
+| Brake - Performance (*) | `Base.ModernBrake3` | 3 | 3.75 |
+| Brake - Regular (*) | `Base.NormalBrake1` | 3 | 3.75 |
+| Brake - Regular (*) | `Base.NormalBrake2` | 3 | 3.75 |
+| Brake - Regular (*) | `Base.NormalBrake3` | 3 | 3.75 |
+| Brake Disc Scrap Metal Weapon | `Base.ScrapWeapon_Brake` | 4 | 5 |
+| Brandy | `Base.Brandy` | 0.5 | 0.625 |
 | Brass Nameplate | `Base.BrassNameplate` | 1 | 0.225 |
 | Brass Needle | `Base.Needle_Brass` | 0.01 | 0.0015 |
-| Brass Scrap | `Base.BrassScrap` | 0.5 | 0.75 |
-| Bread | `Base.Bread` | 0.3 | 0.75 |
-| Bread | `Base.BreadDough` | 0.3 | 0.825 |
+| Brass Scrap | `Base.BrassScrap` | 0.5 | 0.625 |
+| Bread | `Base.Bread` | 0.3 | 0.375 |
+| Bread | `Base.BreadDough` | 0.3 | 0.375 |
 | Bread Knife | `Base.BreadKnife` | 1 | 0.225 |
 | Bread Slices | `Base.BreadSlices` | 0.1 | 0.09 |
-| Brick | `Base.ClayBrick` | 0.3 | 3.75 |
-| Brick Toys | `Base.Bricktoys` | 0.1 | 0.375 |
-| Briefcase | `Base.Briefcase` | 1.5 | 2.4 |
-| Briefcase | `Base.Briefcase_Money` | 1.5 | 2.4 |
+| Brick | `Base.ClayBrick` | 0.3 | 0.375 |
+| Brick Toys | `Base.Bricktoys` | 0.1 | 0.125 |
+| Briefcase | `Base.Briefcase` | 1.5 | 1.88 |
+| Briefcase | `Base.Briefcase_Money` | 1.5 | 1.88 |
 | Briefs | `Base.Briefs_AnimalPrints` | 0.2 | 0.105 |
 | Briefs | `Base.Briefs_White` | 0.2 | 0.105 |
 | Briefs - Burlap | `Base.Briefs_Burlap` | 0.2 | 0.0405 |
@@ -598,7 +598,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Briefs - Rag | `Base.Briefs_Rag` | 0.2 | 0.0225 |
 | Briefs - Tarp | `Base.Briefs_Tarp` | 0.2 | 0.0225 |
 | Broadleaf Plantain Seeds | `Base.BroadleafPlantainSeed` | 0.02 | 0.003 |
-| Broccoli | `Base.Broccoli` | 0.2 | 0.45 |
+| Broccoli | `Base.Broccoli` | 0.2 | 0.25 |
 | Broccoli Seeds | `Base.BroccoliSeed` | 0.02 | 0.003 |
 | Brochure | `Base.Brochure` | 0.1 | 0.0075 |
 | Broken Acoustic Guitar Neck | `Base.GuitarAcousticNeck_Broken` | 1.5 | 0.525 |
@@ -619,7 +619,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Broken Large Handle | `Base.LongHandle_Broken` | 1 | 0.6 |
 | Broken Large Handle with Nails | `Base.LongHandle_Broken_Nails` | 1 | 0.675 |
 | Broken Long Stick | `Base.LongStick_Broken` | 1.5 | 0.75 |
-| Broken Plank | `Base.Plank_Broken` | 1 | 1.65 |
+| Broken Plank | `Base.Plank_Broken` | 1 | 1.25 |
 | Broken Plank with Nails | `Base.Plank_Broken_Nails` | 1 | 0.975 |
 | Broken Scrap Metal Sword | `Base.Sword_Scrap_Broken` | 2 | 0.75 |
 | Broken Simple Sword | `Base.CrudeSword_Broken` | 1.5 | 0.75 |
@@ -635,47 +635,47 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Bronze Sports Medal | `Base.Medal_Bronze` | 0.3 | 0.09 |
 | Broom | `Base.Broom` | 2 | 0.9 |
 | Broom with Barbed-Wire | `Base.Broom_BarbedWire` | 2 | 1.05 |
-| Brown Sugar | `Base.SugarBrown` | 0.6 | 1.42 |
+| Brown Sugar | `Base.SugarBrown` | 0.6 | 0.75 |
 | Brussels Sprouts | `Base.BrusselSprouts` | 0.6 | 0.42 |
-| Bucket | `Base.Bucket` | 1 | 1.65 |
-| Bucket | `Base.BucketEmpty` | 1 | 1.65 |
-| Bucket | `Base.BucketForged` | 1 | 2.1 |
+| Bucket | `Base.Bucket` | 1 | 1.25 |
+| Bucket | `Base.BucketEmpty` | 1 | 1.25 |
+| Bucket | `Base.BucketForged` | 1 | 1.25 |
 | Bucket Hat | `Base.Hat_BucketHat` | 0.5 | 0.12 |
 | Bucket Maul - Metal Handle | `Base.BucketMace_Metal` | 10 | 8.1 |
 | Bucket Maul - Wood Handle | `Base.BucketMace_Wood` | 10 | 6.75 |
-| Bucket of Clay Cement | `Base.BucketClayCement` | 10 | 29.1 |
-| Bucket of Concrete | `Base.BucketConcreteFull` | 10 | 33.2 |
-| Bucket of Plaster | `Base.BucketPlasterFull` | 10 | 22 |
-| Bucket of Soup | `Base.BucketOfSoup` | 3 | 13.5 |
-| Bucket of Stew | `Base.BucketOfStew` | 3 | 13.5 |
-| Bucket of Wallpaper Paste | `Base.BucketWallpaperPaste` | 10 | 16.8 |
+| Bucket of Clay Cement | `Base.BucketClayCement` | 10 | 12.5 |
+| Bucket of Concrete | `Base.BucketConcreteFull` | 10 | 12.5 |
+| Bucket of Plaster | `Base.BucketPlasterFull` | 10 | 12.5 |
+| Bucket of Soup | `Base.BucketOfSoup` | 3 | 3.75 |
+| Bucket of Stew | `Base.BucketOfStew` | 3 | 3.75 |
+| Bucket of Wallpaper Paste | `Base.BucketWallpaperPaste` | 10 | 12.5 |
 | Buckle | `Base.Buckle` | 0.1 | 0.045 |
-| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo` | 1 | 9 |
-| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_308` | 1 | 9 |
-| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_38` | 1 | 9 |
-| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_44` | 1 | 9 |
-| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_45` | 1 | 9 |
-| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_556` | 1 | 9 |
-| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_9mm` | 1 | 9 |
-| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_Hunting` | 1 | 9 |
-| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_ShotgunShells` | 1 | 9 |
-| Bulky Military Container | `Base.Bag_ProtectiveCaseBulkyMilitary` | 1 | 9 |
-| Bulky Military Container | `Base.Bag_ProtectiveCaseBulkyMilitary_HAMRadio2` | 1 | 9 |
-| Bulky Military Container | `Base.Bag_ProtectiveCaseBulky_Survivalist` | 1 | 9 |
-| Bulky Protective Container | `Base.Bag_ProtectiveCaseBulky` | 1 | 9 |
-| Bulky Protective Container | `Base.Bag_ProtectiveCaseBulky_Audio` | 1 | 9 |
-| Bulky Protective Container | `Base.Bag_ProtectiveCaseBulky_HAMRadio1` | 1 | 9 |
-| Bulky Protective Container | `Base.Bag_ProtectiveCaseBulky_SCBA` | 1 | 9 |
-| Bull Head | `Base.Bull_Head_Angus` | 2 | 37.6 |
-| Bull Head | `Base.Bull_Head_Holstein` | 2 | 37.6 |
-| Bull Head | `Base.Bull_Head_Simmental` | 2 | 37.6 |
-| Bull Skull | `Base.Bull_Skull` | 0.8 | 6 |
+| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo` | 1 | 1.25 |
+| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_308` | 1 | 1.25 |
+| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_38` | 1 | 1.25 |
+| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_44` | 1 | 1.25 |
+| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_45` | 1 | 1.25 |
+| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_556` | 1 | 1.25 |
+| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_9mm` | 1 | 1.25 |
+| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_Hunting` | 1 | 1.25 |
+| Bulky Ammo Container | `Base.Bag_ProtectiveCaseBulkyAmmo_ShotgunShells` | 1 | 1.25 |
+| Bulky Military Container | `Base.Bag_ProtectiveCaseBulkyMilitary` | 1 | 1.25 |
+| Bulky Military Container | `Base.Bag_ProtectiveCaseBulkyMilitary_HAMRadio2` | 1 | 1.25 |
+| Bulky Military Container | `Base.Bag_ProtectiveCaseBulky_Survivalist` | 1 | 1.25 |
+| Bulky Protective Container | `Base.Bag_ProtectiveCaseBulky` | 1 | 1.25 |
+| Bulky Protective Container | `Base.Bag_ProtectiveCaseBulky_Audio` | 1 | 1.25 |
+| Bulky Protective Container | `Base.Bag_ProtectiveCaseBulky_HAMRadio1` | 1 | 1.25 |
+| Bulky Protective Container | `Base.Bag_ProtectiveCaseBulky_SCBA` | 1 | 1.25 |
+| Bull Head | `Base.Bull_Head_Angus` | 2 | 2.5 |
+| Bull Head | `Base.Bull_Head_Holstein` | 2 | 2.5 |
+| Bull Head | `Base.Bull_Head_Simmental` | 2 | 2.5 |
+| Bull Skull | `Base.Bull_Skull` | 0.8 | 1 |
 | Bulletproof Vest - Civilian | `Base.Vest_BulletCivilian` | 5 | 3 |
 | Bulletproof Vest - Military | `Base.Vest_BulletArmy` | 5 | 6 |
 | Bulletproof Vest - Military | `Base.Vest_BulletDesert` | 5 | 6 |
 | Bulletproof Vest - Military | `Base.Vest_BulletOliveDrab` | 5 | 6 |
 | Bulletproof Vest - Police | `Base.Vest_BulletPolice` | 5 | 3.9 |
-| Bulletproof Vest - SWAT | `Base.Vest_BulletSWAT` | 5 | 9.75 |
+| Bulletproof Vest - SWAT | `Base.Vest_BulletSWAT` | 5 | 6.25 |
 | Bulletproof Vest Forearm Armor | `Base.Vambrace_BodyArmour_Left` | 1 | 0.45 |
 | Bulletproof Vest Forearm Armor | `Base.Vambrace_BodyArmour_Left_Army` | 1 | 0.45 |
 | Bulletproof Vest Forearm Armor | `Base.Vambrace_BodyArmour_Left_Civ` | 1 | 0.45 |
@@ -711,8 +711,8 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Bullets Bandolier | `Base.AmmoStrap_Bullets_308` | 1 | 0.3 |
 | Bunny Ears | `Base.Hat_BunnyEarsBlack` | 0.3 | 0.09 |
 | Bunny Ears | `Base.Hat_BunnyEarsWhite` | 0.3 | 0.09 |
-| Bunny Suit | `Base.BunnySuitBlack` | 0.1 | 0.375 |
-| Bunny Suit | `Base.BunnySuitPink` | 0.1 | 0.375 |
+| Bunny Suit | `Base.BunnySuitBlack` | 0.1 | 0.125 |
+| Bunny Suit | `Base.BunnySuitPink` | 0.1 | 0.125 |
 | Bunny Tail | `Base.BunnyTail` | 1 | 0.045 |
 | Burger | `Base.Burger` | 0.3 | 0.375 |
 | Burger | `Base.BurgerRecipe` | 0.3 | 0.375 |
@@ -720,41 +720,41 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Burlap Footwraps | `Base.Shoes_BurlapWrap` | 0.2 | 0.081 |
 | Burlap Handwraps | `Base.Gloves_BurlapWrap` | 0.2 | 0.0405 |
 | Burlap Headsack | `Base.Hat_HeadSack_Burlap` | 1 | 0.121 |
-| Burlap Headwrap (Fully Closed) | `Base.Hat_ShemaghFull_Burlap` | 0.3 | 0.405 |
-| Burlap Headwrap (Open Face) | `Base.Hat_ShemaghFace_Burlap` | 0.3 | 0.405 |
+| Burlap Headwrap (Fully Closed) | `Base.Hat_ShemaghFull_Burlap` | 0.3 | 0.375 |
+| Burlap Headwrap (Open Face) | `Base.Hat_ShemaghFace_Burlap` | 0.3 | 0.375 |
 | Burlap Neck Guard | `Base.Gorget_Burlap` | 0.2 | 0.048 |
 | Burlap Piece | `Base.BurlapPiece` | 0.5 | 0.225 |
-| Burrito | `Base.BurritoRecipe` | 0.1 | 0.18 |
+| Burrito | `Base.BurritoRecipe` | 0.1 | 0.125 |
 | Business Card | `Base.BusinessCard` | 0.05 | 0.003 |
 | Business Card | `Base.BusinessCard_Nolans` | 0.05 | 0.003 |
 | Business Card | `Base.BusinessCard_Personal` | 0.05 | 0.003 |
 | Butchering I: "Butchering Basics" | `Base.BookButchering1` | 1 | 0.45 |
 | Butchering II: "From Chuck to Shank" | `Base.BookButchering2` | 1 | 0.45 |
 | Butchering III: "Hunter's Guide to Butchering" | `Base.BookButchering3` | 1 | 0.9 |
-| Butchering IV: "Master Butcher's Complete Guide" | `Base.BookButchering4` | 1 | 1.35 |
-| Butchering V: "The Ergonomics of Tools in Meat Cutting Operations" | `Base.BookButchering5` | 1 | 1.35 |
+| Butchering IV: "Master Butcher's Complete Guide" | `Base.BookButchering4` | 1 | 1.25 |
+| Butchering V: "The Ergonomics of Tools in Meat Cutting Operations" | `Base.BookButchering5` | 1 | 1.25 |
 | Butter | `Base.Butter` | 0.3 | 0.375 |
 | Butter Knife | `Base.ButterKnife` | 0.25 | 0.06 |
 | Butterchunkers Bar | `Base.Chocolate_Butterchunkers` | 0.2 | 0.075 |
 | Butterfly Knife | `Base.KnifeButterfly` | 0.3 | 0.18 |
 | Button | `Base.Button` | 0.1 | 0.003 |
-| Cabbage | `Base.Cabbage` | 0.2 | 1.5 |
+| Cabbage | `Base.Cabbage` | 0.2 | 0.25 |
 | Cabbage Roll | `Base.CabbageRoll` | 0.3 | 0.225 |
 | Cabbage Seeds | `Base.CabbageSeed` | 0.02 | 0.003 |
 | Caffeine Pills | `Base.PillsVitamins` | 0.2 | 0.06 |
 | Cage Trap | `Base.TrapCage` | 5 | 6 |
-| Cake | `Base.CakeRaw` | 0.5 | 2.25 |
-| Cake Batter | `Base.CakeBatter` | 0.3 | 1.35 |
-| Cake Preparation | `Base.CakePrep` | 0.5 | 2.25 |
+| Cake | `Base.CakeRaw` | 0.5 | 1.25 |
+| Cake Batter | `Base.CakeBatter` | 0.3 | 0.375 |
+| Cake Preparation | `Base.CakePrep` | 0.5 | 1.25 |
 | Cake Slice | `Base.CakeSlice` | 0.2 | 0.18 |
 | Calculator | `Base.Calculator` | 0.3 | 0.15 |
-| Calf Head | `Base.Calf_Head_Angus` | 1.2 | 7.5 |
-| Calf Head | `Base.Calf_Head_Holstein` | 1.2 | 7.5 |
-| Calf Head | `Base.Calf_Head_Simmental` | 1.2 | 7.5 |
-| Calf Skull | `Base.Calf_Skull` | 0.5 | 1.05 |
-| Calfhide Coat | `Base.JacketLong_AngusCalfHide` | 2 | 3.6 |
-| Calfhide Coat | `Base.JacketLong_HolsteinCalfHide` | 2 | 3.6 |
-| Calfhide Coat | `Base.JacketLong_SimmentalCalfHide` | 2 | 3.6 |
+| Calf Head | `Base.Calf_Head_Angus` | 1.2 | 1.5 |
+| Calf Head | `Base.Calf_Head_Holstein` | 1.2 | 1.5 |
+| Calf Head | `Base.Calf_Head_Simmental` | 1.2 | 1.5 |
+| Calf Skull | `Base.Calf_Skull` | 0.5 | 0.625 |
+| Calfhide Coat | `Base.JacketLong_AngusCalfHide` | 2 | 2.5 |
+| Calfhide Coat | `Base.JacketLong_HolsteinCalfHide` | 2 | 2.5 |
+| Calfhide Coat | `Base.JacketLong_SimmentalCalfHide` | 2 | 2.5 |
 | Calfhide Jacket | `Base.Jacket_AngusCalfHide` | 2 | 2.4 |
 | Calfhide Jacket | `Base.Jacket_HolsteinCalfHide` | 2 | 2.4 |
 | Calfhide Jacket | `Base.Jacket_SimmentalCalfHide` | 2 | 2.4 |
@@ -768,11 +768,11 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Can Opener - Old-Fashioned | `Base.TinOpener_Old` | 0.6 | 0.12 |
 | Can Pipe | `Base.CanPipe` | 0.3 | 0.03 |
 | Can Pipe with Tobacco | `Base.CanPipe_Tobacco` | 0.3 | 0.0675 |
-| Candied Apple | `Base.CandiedApple` | 0.2 | 0.375 |
-| Candied Fruit Slices | `Base.CandyFruitSlices` | 0.1 | 0.3 |
+| Candied Apple | `Base.CandiedApple` | 0.2 | 0.25 |
+| Candied Fruit Slices | `Base.CandyFruitSlices` | 0.1 | 0.125 |
 | Candle | `Base.Candle` | 0.2 | 0.15 |
 | Candy Cane | `Base.Candycane` | 0.2 | 0.0225 |
-| Candy Corn | `Base.CandyCorn` | 0.2 | 0.3 |
+| Candy Corn | `Base.CandyCorn` | 0.2 | 0.25 |
 | Candy Package | `Base.CandyPackage` | 0.6 | 0.75 |
 | Canned Beans | `Base.TinnedBeans` | 0.8 | 0.705 |
 | Canned Beans (Open) | `Base.OpenBeans` | 0.8 | 0.705 |
@@ -814,50 +814,50 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Canned Vegetable Soup (Open) | `Base.TinnedSoupOpen` | 0.8 | 0.705 |
 | Canoe Paddle | `Base.CanoePadel` | 2 | 1.35 |
 | Canoe Paddle - Double-bladed | `Base.CanoePadelX2` | 2.2 | 1.5 |
-| Canteen | `Base.Canteen` | 0.2 | 0.3 |
-| Canteen | `Base.CanteenClay` | 0.2 | 0.6 |
-| Canteen | `Base.CanteenMilitary` | 0.2 | 0.3 |
-| Canteen | `Base.CanteenMilitaryFull` | 0.2 | 0.3 |
-| Capers | `Base.Capers` | 0.1 | 0.3 |
+| Canteen | `Base.Canteen` | 0.2 | 0.25 |
+| Canteen | `Base.CanteenClay` | 0.2 | 0.25 |
+| Canteen | `Base.CanteenMilitary` | 0.2 | 0.25 |
+| Canteen | `Base.CanteenMilitaryFull` | 0.2 | 0.25 |
+| Capers | `Base.Capers` | 0.1 | 0.125 |
 | Capgun Cap | `Base.CapGunCap` | 0.005 | 0.00015 |
-| Car Battery (*) | `Base.CarBattery1` | 5 | 17 |
-| Car Battery (*) | `Base.CarBattery2` | 5 | 17 |
-| Car Battery (*) | `Base.CarBattery3` | 5 | 17 |
-| Car Battery Charger | `Base.CarBatteryCharger` | 2 | 4.5 |
-| Caramel Candies | `Base.CandyCaramels` | 0.1 | 0.3 |
+| Car Battery (*) | `Base.CarBattery1` | 5 | 6.25 |
+| Car Battery (*) | `Base.CarBattery2` | 5 | 6.25 |
+| Car Battery (*) | `Base.CarBattery3` | 5 | 6.25 |
+| Car Battery Charger | `Base.CarBatteryCharger` | 2 | 2.5 |
+| Caramel Candies | `Base.CandyCaramels` | 0.1 | 0.125 |
 | Carpentry Chisel | `Base.CarpentryChisel` | 1 | 0.375 |
 | Carpentry I: "A Guide to Nailing" | `Base.BookCarpentry1` | 1 | 0.45 |
 | Carpentry II: "Carpentry, Woodcraft Style" | `Base.BookCarpentry2` | 1 | 0.45 |
 | Carpentry III: "Hand Crafted Shelving and Storage" | `Base.BookCarpentry3` | 1 | 0.9 |
-| Carpentry IV: "Making Your Own Cabin From Scratch" | `Base.BookCarpentry4` | 1 | 1.35 |
-| Carpentry V: "Site Joinery and Architectural Carpentry" | `Base.BookCarpentry5` | 1 | 1.35 |
+| Carpentry IV: "Making Your Own Cabin From Scratch" | `Base.BookCarpentry4` | 1 | 1.25 |
+| Carpentry V: "Site Joinery and Architectural Carpentry" | `Base.BookCarpentry5` | 1 | 1.25 |
 | Carrot Cake Slice | `Base.CakeCarrot` | 0.2 | 0.18 |
 | Carrot Seeds | `Base.CarrotSeed` | 0.02 | 0.003 |
 | Carrots | `Base.Carrots` | 0.2 | 0.15 |
-| Carton of .30-30 Carton (Vanilla) | `Base.3030Carton` | 6 | 10.2 |
-| Carton of .308 Winchester Carton (Vanilla) | `Base.308Carton` | 6 | 9.86 |
-| Carton of .357 Magnum Carton (Vanilla) | `Base.Bullets357Carton` | 10 | 15.3 |
-| Carton of .38 Special Carton (Vanilla) | `Base.Bullets38Carton` | 8 | 14.4 |
+| Carton of .30-30 Carton (Vanilla) | `Base.3030Carton` | 6 | 7.5 |
+| Carton of .308 Winchester Carton (Vanilla) | `Base.308Carton` | 6 | 7.5 |
+| Carton of .357 Magnum Carton (Vanilla) | `Base.Bullets357Carton` | 10 | 12.5 |
+| Carton of .38 Special Carton (Vanilla) | `Base.Bullets38Carton` | 8 | 10 |
 | Carton of .44 Magnum Carton (Vanilla) | `Base.Bullets44Carton` | 12 | 9.86 |
-| Carton of .45 ACP Carton (Vanilla) | `Base.Bullets45Carton` | 10 | 19.8 |
-| Carton of 12 Gauge Carton (Vanilla) | `Base.ShotgunShellsCarton` | 15 | 19.8 |
+| Carton of .45 ACP Carton (Vanilla) | `Base.Bullets45Carton` | 10 | 12.5 |
+| Carton of 12 Gauge Carton (Vanilla) | `Base.ShotgunShellsCarton` | 15 | 18.8 |
 | Carton of 5.56x45mm Carton (Vanilla) | `Base.556Carton` | 5 | 5.18 |
-| Carton of 9x19mm Carton (Vanilla) | `Base.Bullets9mmCarton` | 8 | 11.9 |
+| Carton of 9x19mm Carton (Vanilla) | `Base.Bullets9mmCarton` | 8 | 10 |
 | Carton of Nails | `Base.NailsCarton` | 20 | 10.3 |
 | Carton of Screws | `Base.ScrewsCarton` | 20 | 9.38 |
-| Carved Bucket | `Base.BucketCarved` | 2 | 4.5 |
-| Carved Bucket of Clay Cement | `Base.BucketCarvedClayCement` | 10 | 30.3 |
-| Carved Bucket of Concrete | `Base.BucketCarvedConcreteFull` | 10 | 34.1 |
-| Carved Bucket of Plaster | `Base.BucketCarvedPlasterFull` | 10 | 23.7 |
-| Carved Bucket of Wallpaper Paste | `Base.BucketCarvedWallpaperPaste` | 10 | 18.5 |
+| Carved Bucket | `Base.BucketCarved` | 2 | 2.5 |
+| Carved Bucket of Clay Cement | `Base.BucketCarvedClayCement` | 10 | 12.5 |
+| Carved Bucket of Concrete | `Base.BucketCarvedConcreteFull` | 10 | 12.5 |
+| Carved Bucket of Plaster | `Base.BucketCarvedPlasterFull` | 10 | 12.5 |
+| Carved Bucket of Wallpaper Paste | `Base.BucketCarvedWallpaperPaste` | 10 | 12.5 |
 | Carving Fork | `Base.CarvingFork2` | 0.5 | 0.18 |
 | Carving I: "Beginners Carving" | `Base.BookCarving1` | 1 | 0.45 |
 | Carving II: "Cool Woodshaping Projects!" | `Base.BookCarving2` | 1 | 0.45 |
 | Carving III: "Grinling Gibbons: His Life and Works" | `Base.BookCarving3` | 1 | 0.9 |
-| Carving IV: "Medieval Wood and Bone Carving Techniques" | `Base.BookCarving4` | 1 | 1.35 |
-| Carving V: "The Art and Process of Natural Material Carving" | `Base.BookCarving5` | 1 | 1.35 |
-| Cashbox | `Base.Cashbox` | 0.5 | 1.5 |
-| Cat Treats | `Base.CatTreats` | 0.1 | 0.135 |
+| Carving IV: "Medieval Wood and Bone Carving Techniques" | `Base.BookCarving4` | 1 | 1.25 |
+| Carving V: "The Art and Process of Natural Material Carving" | `Base.BookCarving5` | 1 | 1.25 |
+| Cashbox | `Base.Cashbox` | 0.5 | 0.625 |
+| Cat Treats | `Base.CatTreats` | 0.1 | 0.125 |
 | Cat-Eye Cosmetic Glasses | `Base.Glasses_Cosmetic_CatsEye` | 0.1 | 0.03 |
 | Cat-Eye Prescription Glasses | `Base.Glasses_CatsEye` | 0.1 | 0.045 |
 | Cat-Eye Sunglasses | `Base.Glasses_CatsEye_Sun` | 0.1 | 0.045 |
@@ -869,33 +869,33 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Caterpillar | `Base.SawflyLarva` | 0.1 | 0.003 |
 | Caterpillar | `Base.SilkMothCaterpillar` | 0.1 | 0.003 |
 | Caterpillar | `Base.SwallowtailCaterpillar` | 0.1 | 0.003 |
-| Cauliflower | `Base.Cauliflower` | 0.2 | 1.05 |
+| Cauliflower | `Base.Cauliflower` | 0.2 | 0.25 |
 | Cauliflower Seeds | `Base.CauliflowerSeed` | 0.02 | 0.003 |
 | CD | `Base.Disc_Retail` | 0.3 | 0.143 |
 | CD Player | `Base.CDplayer` | 0.8 | 0.375 |
 | Centipede | `Base.Centipede` | 0.1 | 0.0015 |
 | Centipede | `Base.Centipede2` | 0.1 | 0.0015 |
-| Ceramic Bar Mold | `Base.ClayBarMold` | 0.3 | 0.75 |
-| Ceramic Blacksmith Anvil Mold | `Base.ClayBlacksmithAnvilMold` | 0.3 | 4.5 |
-| Ceramic Ingot Mold | `Base.ClayIngotMold` | 0.3 | 0.9 |
-| Ceramic Jar | `Base.ClayJar` | 0.3 | 1.8 |
-| Ceramic Mortar and Pestle | `Base.CeramicMortarandPestle` | 0.8 | 1.8 |
-| Ceramic Pot | `Base.ClayPot` | 0.3 | 1.2 |
+| Ceramic Bar Mold | `Base.ClayBarMold` | 0.3 | 0.375 |
+| Ceramic Blacksmith Anvil Mold | `Base.ClayBlacksmithAnvilMold` | 0.3 | 0.375 |
+| Ceramic Ingot Mold | `Base.ClayIngotMold` | 0.3 | 0.375 |
+| Ceramic Jar | `Base.ClayJar` | 0.3 | 0.375 |
+| Ceramic Mortar and Pestle | `Base.CeramicMortarandPestle` | 0.8 | 1 |
+| Ceramic Pot | `Base.ClayPot` | 0.3 | 0.375 |
 | Ceramic Pot Scrubber Frog | `Base.PotScrubberFrog` | 0.5 | 0.18 |
-| Ceramic Sheet Mold | `Base.ClaySheetMold` | 0.3 | 1.2 |
+| Ceramic Sheet Mold | `Base.ClaySheetMold` | 0.3 | 0.375 |
 | Ceramic Teacup | `Base.CeramicTeacup` | 0.2 | 0.18 |
-| Ceramic Tile | `Base.ClayTile` | 0.3 | 1.35 |
-| Cereal - Corn Flakes | `Base.Cereal` | 0.2 | 0.6 |
-| Chainmail Glove - Left | `Base.Chainmail_Hand_L` | 0.3 | 0.6 |
-| Chainmail Glove - Right | `Base.Chainmail_Hand_R` | 0.3 | 0.6 |
+| Ceramic Tile | `Base.ClayTile` | 0.3 | 0.375 |
+| Cereal - Corn Flakes | `Base.Cereal` | 0.2 | 0.25 |
+| Chainmail Glove - Left | `Base.Chainmail_Hand_L` | 0.3 | 0.375 |
+| Chainmail Glove - Right | `Base.Chainmail_Hand_R` | 0.3 | 0.375 |
 | Chair Leg | `Base.ChairLeg` | 1 | 0.75 |
 | Chair Leg with Nails | `Base.ChairLeg_Nails` | 1 | 0.675 |
 | Chamomile | `Base.Chamomile` | 0.1 | 0.045 |
 | Chamomile (Dried) | `Base.ChamomileDried` | 0.1 | 0.0105 |
 | Chamomile Seeds | `Base.ChamomileSeed` | 0.02 | 0.003 |
-| Champagne | `Base.Champagne` | 1 | 1.35 |
+| Champagne | `Base.Champagne` | 1 | 1.25 |
 | Champagne Glass | `Base.GlassChampagne` | 0.2 | 0.18 |
-| Channel Catfish | `Base.ChannelCatfish` | 0.4 | 2.25 |
+| Channel Catfish | `Base.ChannelCatfish` | 0.4 | 0.5 |
 | Charcoal | `Base.Charcoal` | 0.8 | 0.45 |
 | Cheap Red Wine | `Base.WineScrewtop` | 1 | 0.63 |
 | Cheap Sleeping Bag (Packed) | `Base.SleepingBag_Cheap_Blue_Packed` | 3 | 2.1 |
@@ -903,24 +903,24 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Cheap Sleeping Bag (Packed) | `Base.SleepingBag_Cheap_Green_Packed` | 3 | 2.1 |
 | Cheap Sunglasses | `Base.Glasses_SunCheap` | 0.1 | 0.03 |
 | Checkerboard | `Base.CheckerBoard` | 1 | 0.45 |
-| Cheddar Cheese | `Base.Cheese` | 0.2 | 0.345 |
+| Cheddar Cheese | `Base.Cheese` | 0.2 | 0.25 |
 | Cheese Cake Slice | `Base.CakeCheeseCake` | 0.2 | 0.225 |
 | Cheese Cloth | `Base.CheeseCloth` | 0.1 | 0.045 |
 | Cheese Grater | `Base.CheeseGrater` | 1 | 0.45 |
 | Cheese Pizza | `Base.PizzaWhole` | 1.8 | 1.35 |
-| Cheese Powder | `Base.cheese_powdered` | 0.1 | 0.18 |
+| Cheese Powder | `Base.cheese_powdered` | 0.1 | 0.125 |
 | Chef Pants | `Base.Trousers_Chef` | 1 | 0.6 |
 | Chef's Hat | `Base.Hat_ChefHat` | 0.5 | 0.075 |
 | Cherry | `Base.Cherry` | 0.1 | 0.012 |
 | Cherry Pie Slice | `Base.Pie` | 0.5 | 0.195 |
-| Chess Pieces | `Base.ChessBlack` | 0.1 | 0.3 |
-| Chess Pieces | `Base.ChessWhite` | 0.1 | 0.3 |
+| Chess Pieces | `Base.ChessBlack` | 0.1 | 0.125 |
+| Chess Pieces | `Base.ChessWhite` | 0.1 | 0.125 |
 | Chest Rig | `Base.Bag_ChestRig` | 1 | 0.9 |
 | Chewing Tobacco | `Base.TobaccoChewing` | 0.3 | 0.075 |
 | Chick Head | `Base.Chicken_Chick_Head` | 0.4 | 0.0075 |
 | Chick Peas (Dried) | `Base.DriedChickpeas` | 2 | 0.69 |
 | Chick Skull | `Base.Chicken_Chick_Skull` | 0.1 | 0.003 |
-| Chicken (Whole) | `Base.ChickenWhole` | 1.2 | 2.7 |
+| Chicken (Whole) | `Base.ChickenWhole` | 1.2 | 1.5 |
 | Chicken Bouillon Cube | `Base.BouillonCube` | 0.1 | 0.0075 |
 | Chicken Droppings | `Base.Dung_Chicken` | 0.01 | 0.0045 |
 | Chicken Feather | `Base.ChickenFeather` | 0.001 | 0.00045 |
@@ -928,15 +928,15 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Chicken Hat - Jay's | `Base.Hat_Jay` | 1 | 0.9 |
 | Chicken Head | `Base.Chicken_Hen_Brown_Head` | 0.4 | 0.045 |
 | Chicken Head | `Base.Chicken_Hen_White_Head` | 0.4 | 0.045 |
-| Chicken Leg | `Base.Chicken` | 0.3 | 0.45 |
-| Chicken Nuggets | `Base.ChickenNuggets` | 0.2 | 0.375 |
+| Chicken Leg | `Base.Chicken` | 0.3 | 0.375 |
+| Chicken Nuggets | `Base.ChickenNuggets` | 0.2 | 0.25 |
 | Chicken Skull | `Base.Chicken_Hen_Skull` | 0.1 | 0.012 |
 | Chicken Wing | `Base.ChickenWings` | 0.3 | 0.15 |
 | Chinese Takeout Container | `Base.TakeoutBox_Chinese` | 0.3 | 0.075 |
-| Chips - Barbecue | `Base.Crisps2` | 0.2 | 0.6 |
-| Chips - Plain | `Base.Crisps` | 0.2 | 0.6 |
-| Chips - Salt & Vinegar | `Base.Crisps3` | 0.2 | 0.6 |
-| Chips - Sour Cream & Onion | `Base.Crisps4` | 0.2 | 0.6 |
+| Chips - Barbecue | `Base.Crisps2` | 0.2 | 0.25 |
+| Chips - Plain | `Base.Crisps` | 0.2 | 0.25 |
+| Chips - Salt & Vinegar | `Base.Crisps3` | 0.2 | 0.25 |
+| Chips - Sour Cream & Onion | `Base.Crisps4` | 0.2 | 0.25 |
 | Chives | `Base.Chives` | 0.1 | 0.045 |
 | Chives (Dried) | `Base.ChivesDried` | 0.1 | 0.0105 |
 | Chives (Dried) | `Base.Seasoning_Chives` | 0.2 | 0.12 |
@@ -946,11 +946,11 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Chocolate Cake Slice | `Base.CakeChocolate` | 0.2 | 0.18 |
 | Chocolate Candy | `Base.Chocolate_Candy` | 0.1 | 0.015 |
 | Chocolate Chip Cookie | `Base.CookieChocolateChip` | 0.1 | 0.06 |
-| Chocolate Chips | `Base.ChocolateChips` | 0.1 | 0.51 |
+| Chocolate Chips | `Base.ChocolateChips` | 0.1 | 0.125 |
 | Chocolate Cookie | `Base.CookiesChocolate` | 0.1 | 0.06 |
 | Chocolate Donut | `Base.DoughnutChocolate` | 0.1 | 0.105 |
 | Chocolate Milk - Personal-sized | `Base.MilkChocolate_Personalsized` | 0.2 | 0.0405 |
-| Chocolate-Covered Coffee Beans | `Base.ChocolateCoveredCoffeeBeans` | 0.1 | 0.15 |
+| Chocolate-Covered Coffee Beans | `Base.ChocolateCoveredCoffeeBeans` | 0.1 | 0.125 |
 | Choke Tube - Full | `Base.ChokeTubeFull` | 0.1 | 0.06 |
 | Choke Tube - Improved | `Base.ChokeTubeImproved` | 0.1 | 0.06 |
 | Choker | `Base.Necklace_Choker` | 0.1 | 0.0093 |
@@ -970,7 +970,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Christmas Ornament | `Base.ChristmasOrnament_Red2` | 0.5 | 0.045 |
 | Christmas Ornament | `Base.ChristmasOrnament_Red3` | 0.5 | 0.045 |
 | Christmas Wreath | `Base.ChristmasWreath` | 2 | 1.2 |
-| Chum | `Base.Chum` | 0.5 | 0.675 |
+| Chum | `Base.Chum` | 0.5 | 0.625 |
 | Cider | `Base.Cider` | 1 | 0.75 |
 | Cigar | `Base.Cigar` | 0.2 | 0.0225 |
 | Cigar Box | `Base.CigarBox` | 0.5 | 0.45 |
@@ -985,33 +985,33 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Cilantro (Dried) | `Base.CilantroDried` | 0.1 | 0.0105 |
 | Cilantro (Dried) | `Base.Seasoning_Cilantro` | 0.2 | 0.12 |
 | Cilantro Seeds | `Base.CilantroSeed` | 0.02 | 0.003 |
-| Cinnamon | `Base.Cinnamon` | 0.1 | 0.18 |
-| Cinnamon Roll | `Base.CinnamonRoll` | 0.1 | 0.18 |
+| Cinnamon | `Base.Cinnamon` | 0.1 | 0.125 |
+| Cinnamon Roll | `Base.CinnamonRoll` | 0.1 | 0.125 |
 | Circular Sawblade | `Base.CircularSawblade` | 2 | 0.375 |
 | Circular Sawblade Half | `Base.CircularSawblade_Half` | 1 | 0.188 |
 | Claw Hammer | `Base.Hammer` | 1.5 | 0.975 |
 | Claw Hammer | `Base.HammerForged` | 1.5 | 0.975 |
-| Clawhammer Head | `Base.ClawhammerHead` | 0.5 | 0.675 |
-| Clay | `Base.Clay` | 0.3 | 1.5 |
-| Clay Bar Mold (Unfired) | `Base.ClayBarMoldUnfired` | 0.3 | 0.825 |
-| Clay Blacksmith Anvil Mold (Unfired) | `Base.ClayBlacksmithAnvilMoldUnfired` | 0.3 | 4.95 |
+| Clawhammer Head | `Base.ClawhammerHead` | 0.5 | 0.625 |
+| Clay | `Base.Clay` | 0.3 | 0.375 |
+| Clay Bar Mold (Unfired) | `Base.ClayBarMoldUnfired` | 0.3 | 0.375 |
+| Clay Blacksmith Anvil Mold (Unfired) | `Base.ClayBlacksmithAnvilMoldUnfired` | 0.3 | 0.375 |
 | Clay Bowl (Unfired) | `Base.ClayBowlUnfired` | 0.5 | 0.495 |
-| Clay Brick (Unfired) | `Base.ClayBrickUnfired` | 0.3 | 4.35 |
-| Clay Ingot Mold (Unfired) | `Base.ClayIngotMoldUnfired` | 0.3 | 0.99 |
-| Clay Jar (Unfired) | `Base.ClayJarUnfired` | 0.3 | 2.1 |
-| Clay Mortar and Pestle (Unfired) | `Base.CeramicMortarandPestleUnfired` | 0.8 | 1.95 |
-| Clay Mug (Unfired) | `Base.ClayMugUnfired` | 0.2 | 0.525 |
-| Clay Pipe Segment | `Base.ClayPipeSegment` | 0.3 | 2.25 |
-| Clay Pipe Segment (Unfired) | `Base.ClayPipeSegmentUnfired` | 0.3 | 2.55 |
-| Clay Plate (Unfired) | `Base.ClayPlateUnfired` | 0.2 | 0.75 |
-| Clay Pot (Unfired) | `Base.ClayPotUnfired` | 0.3 | 1.35 |
+| Clay Brick (Unfired) | `Base.ClayBrickUnfired` | 0.3 | 0.375 |
+| Clay Ingot Mold (Unfired) | `Base.ClayIngotMoldUnfired` | 0.3 | 0.375 |
+| Clay Jar (Unfired) | `Base.ClayJarUnfired` | 0.3 | 0.375 |
+| Clay Mortar and Pestle (Unfired) | `Base.CeramicMortarandPestleUnfired` | 0.8 | 1 |
+| Clay Mug (Unfired) | `Base.ClayMugUnfired` | 0.2 | 0.25 |
+| Clay Pipe Segment | `Base.ClayPipeSegment` | 0.3 | 0.375 |
+| Clay Pipe Segment (Unfired) | `Base.ClayPipeSegmentUnfired` | 0.3 | 0.375 |
+| Clay Plate (Unfired) | `Base.ClayPlateUnfired` | 0.2 | 0.25 |
+| Clay Pot (Unfired) | `Base.ClayPotUnfired` | 0.3 | 0.375 |
 | Clay Sculpting Tool | `Base.ClayTool` | 0.3 | 0.075 |
-| Clay Sheet Mold (Unfired) | `Base.ClaySheetMoldUnfired` | 0.3 | 1.32 |
-| Clay Shingle | `Base.ClayShingle` | 0.3 | 1.8 |
-| Clay Shingle (Unfired) | `Base.ClayShingleUnfired` | 0.3 | 2.03 |
+| Clay Sheet Mold (Unfired) | `Base.ClaySheetMoldUnfired` | 0.3 | 0.375 |
+| Clay Shingle | `Base.ClayShingle` | 0.3 | 0.375 |
+| Clay Shingle (Unfired) | `Base.ClayShingleUnfired` | 0.3 | 0.375 |
 | Clay Smoking Pipe (Unfired) | `Base.SmokingPipeUnfired` | 0.3 | 0.0675 |
-| Clay Teacup (Unfired) | `Base.CeramicTeacupUnfired` | 0.2 | 0.255 |
-| Clay Tile (Unfired) | `Base.ClayTileUnfired` | 0.3 | 1.5 |
+| Clay Teacup (Unfired) | `Base.CeramicTeacupUnfired` | 0.2 | 0.25 |
+| Clay Tile (Unfired) | `Base.ClayTileUnfired` | 0.3 | 0.375 |
 | Cleaning Liquid | `Base.CleaningLiquid2` | 0.3 | 0.15 |
 | Clipboard | `Base.Clipboard` | 1 | 0.45 |
 | Cloth Gun Case | `Base.Bag_RifleCaseCloth` | 1 | 0.9 |
@@ -1024,7 +1024,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Club Hammer | `Base.ClubHammer` | 2 | 2.1 |
 | Club Hammer | `Base.ClubHammerForged` | 2 | 2.1 |
 | Club Hammer Head | `Base.ClubHammerHead` | 2 | 1.65 |
-| Coat of Plates Body Armor | `Base.Cuirass_CoatOfPlates` | 4 | 12 |
+| Coat of Plates Body Armor | `Base.Cuirass_CoatOfPlates` | 4 | 5 |
 | Cockroach | `Base.Cockroach` | 0.1 | 0.0015 |
 | Cocktail Umbrella | `Base.CocktailUmbrella` | 0.1 | 0.003 |
 | Cocoa Powder | `Base.CocoaPowder` | 1 | 0.42 |
@@ -1044,52 +1044,52 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Common Mallow (Dried) | `Base.CommonMallowDried` | 0.1 | 0.012 |
 | Common Mallow Seeds | `Base.CommonMallowSeed` | 0.02 | 0.003 |
 | Compass | `Base.CompassDirectional` | 0.1 | 0.075 |
-| Compost Bag | `Base.CompostBag` | 5 | 12.8 |
+| Compost Bag | `Base.CompostBag` | 5 | 6.25 |
 | Cone | `Base.Cone` | 0.1 | 0.015 |
-| Cookie Jar | `Base.CookieJar` | 1 | 1.5 |
-| Cookie Jar - Teddy Bear | `Base.CookieJar_Bear` | 1 | 1.5 |
+| Cookie Jar | `Base.CookieJar` | 1 | 1.25 |
+| Cookie Jar - Teddy Bear | `Base.CookieJar_Bear` | 1 | 1.25 |
 | Cooking I: "Better Burger Flipping" | `Base.BookCooking1` | 1 | 0.45 |
 | Cooking II: "Essential Home Cooking Guide" | `Base.BookCooking2` | 1 | 0.45 |
 | Cooking III: "Flavorful Cuisine - 1993 Edition" | `Base.BookCooking3` | 1 | 0.9 |
-| Cooking IV: "Professional Tips from a Master Chef" | `Base.BookCooking4` | 1 | 1.35 |
-| Cooking Pot | `Base.Pot` | 1 | 1.35 |
-| Cooking Pot | `Base.PotForged` | 1 | 1.35 |
+| Cooking IV: "Professional Tips from a Master Chef" | `Base.BookCooking4` | 1 | 1.25 |
+| Cooking Pot | `Base.Pot` | 1 | 1.25 |
+| Cooking Pot | `Base.PotForged` | 1 | 1.25 |
 | Cooking Pot with Rice | `Base.WaterPotForgedRice` | 3 | 3.15 |
 | Cooking Pot with Rice | `Base.WaterPotRice` | 3 | 3.15 |
 | Cooking Pot with Spaghetti | `Base.WaterPotForgedPasta` | 3 | 3.15 |
 | Cooking Pot with Spaghetti | `Base.WaterPotPasta` | 3 | 3.15 |
 | Cooking Recipe Clipping | `Base.RecipeClipping` | 0.1 | 0.003 |
-| Cooking V: "Ruban Vert Gourmet - Complete Cooking Techniques" | `Base.BookCooking5` | 1 | 1.35 |
+| Cooking V: "Ruban Vert Gourmet - Complete Cooking Techniques" | `Base.BookCooking5` | 1 | 1.25 |
 | Cookware Forging Recipe | `Base.CookwareSchematic` | 0.1 | 0.0075 |
-| Cooler | `Base.Cooler` | 1.5 | 5.25 |
-| Cooler | `Base.Cooler_Beer` | 1.5 | 5.25 |
-| Cooler | `Base.Cooler_Meat` | 1.5 | 5.25 |
-| Cooler | `Base.Cooler_Seafood` | 1.5 | 5.25 |
-| Cooler | `Base.Cooler_Soda` | 1.5 | 5.25 |
+| Cooler | `Base.Cooler` | 1.5 | 1.88 |
+| Cooler | `Base.Cooler_Beer` | 1.5 | 1.88 |
+| Cooler | `Base.Cooler_Meat` | 1.5 | 1.88 |
+| Cooler | `Base.Cooler_Seafood` | 1.5 | 1.88 |
+| Cooler | `Base.Cooler_Soda` | 1.5 | 1.88 |
 | Copper Cup | `Base.CopperCup` | 0.5 | 0.45 |
-| Copper Kettle | `Base.Kettle_Copper` | 1 | 1.65 |
+| Copper Kettle | `Base.Kettle_Copper` | 1 | 1.25 |
 | Copper Mask | `Base.Hat_HockeyMask_Copper` | 1 | 0.945 |
 | Copper Ore | `Base.CopperOre` | 40 | 12 |
-| Copper Saucepan | `Base.SaucepanCopper` | 0.7 | 1.2 |
+| Copper Saucepan | `Base.SaucepanCopper` | 0.7 | 0.875 |
 | Copper Saucepan with Rice | `Base.WaterSaucepanRiceCopper` | 3 | 2.1 |
 | Copper Saucepan with Spaghetti | `Base.WaterSaucepanPastaCopper` | 3 | 2.1 |
-| Copper Scrap | `Base.CopperScrap` | 0.5 | 0.75 |
-| Copper Sheet | `Base.CopperSheet` | 2 | 3.3 |
-| Copper Sheet - Small | `Base.SmallCopperSheet` | 0.5 | 0.84 |
+| Copper Scrap | `Base.CopperScrap` | 0.5 | 0.625 |
+| Copper Sheet | `Base.CopperSheet` | 2 | 2.5 |
+| Copper Sheet - Small | `Base.SmallCopperSheet` | 0.5 | 0.625 |
 | Cordless Phone | `Base.CordlessPhone` | 1 | 0.225 |
 | Cork | `Base.Cork` | 0.1 | 0.00525 |
 | Corkscrew | `Base.Corkscrew` | 0.2 | 0.15 |
-| Corn | `Base.Corn` | 0.2 | 0.45 |
+| Corn | `Base.Corn` | 0.2 | 0.25 |
 | Corn (Dried) | `Base.CornSeed` | 0.02 | 0.0075 |
 | Cornbread | `Base.Cornbread` | 0.1 | 0.12 |
-| Corndog | `Base.Corndog` | 0.1 | 0.225 |
+| Corndog | `Base.Corndog` | 0.1 | 0.125 |
 | Cornflour | `Base.Cornflour2` | 2 | 1.38 |
 | Cornmeal | `Base.Cornmeal2` | 2 | 1.38 |
 | Correction Fluid | `Base.CorrectionFluid` | 0.2 | 0.06 |
-| Corset | `Base.Corset` | 0.2 | 0.6 |
-| Corset | `Base.Corset_Black` | 0.2 | 0.6 |
-| Corset | `Base.Corset_Medical` | 0.2 | 0.525 |
-| Corset | `Base.Corset_Red` | 0.2 | 0.6 |
+| Corset | `Base.Corset` | 0.2 | 0.25 |
+| Corset | `Base.Corset_Black` | 0.2 | 0.25 |
+| Corset | `Base.Corset_Medical` | 0.2 | 0.25 |
+| Corset | `Base.Corset_Red` | 0.2 | 0.25 |
 | Cosmetic Glasses | `Base.Glasses_Cosmetic_Normal` | 0.1 | 0.03 |
 | Cosmetic Monocle | `Base.Glasses_Cosmetic_MonocleLeft` | 0.05 | 0.0225 |
 | Cosmetic Monocle | `Base.Glasses_Cosmetic_MonocleRight` | 0.05 | 0.0225 |
@@ -1097,16 +1097,16 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Cotton Balls Doused in Alcohol | `Base.AlcoholedCottonBalls` | 0.1 | 0.06 |
 | Cotton Fabric Roll | `Base.FabricRoll_Cotton` | 10 | 3.3 |
 | Cotton Headsack | `Base.Hat_HeadSack_Cotton` | 1 | 0.0675 |
-| Coveralls | `Base.Boilersuit` | 1 | 1.35 |
-| Coveralls | `Base.Boilersuit_BlueRed` | 1 | 1.35 |
-| Coveralls | `Base.Boilersuit_SWAT` | 1 | 1.35 |
-| Coveralls | `Base.Boilersuit_Yellow` | 1 | 1.35 |
-| Coveralls - Air Force | `Base.Boilersuit_Flying` | 1 | 1.35 |
-| Cow Dung | `Base.Dung_Cow` | 1 | 3 |
-| Cow Head | `Base.Cow_Head_Angus` | 2 | 29.4 |
-| Cow Head | `Base.Cow_Head_Holstein` | 2 | 29.4 |
-| Cow Head | `Base.Cow_Head_Simmental` | 2 | 29.4 |
-| Cow Skull | `Base.Cow_Skull` | 0.8 | 4.5 |
+| Coveralls | `Base.Boilersuit` | 1 | 1.25 |
+| Coveralls | `Base.Boilersuit_BlueRed` | 1 | 1.25 |
+| Coveralls | `Base.Boilersuit_SWAT` | 1 | 1.25 |
+| Coveralls | `Base.Boilersuit_Yellow` | 1 | 1.25 |
+| Coveralls - Air Force | `Base.Boilersuit_Flying` | 1 | 1.25 |
+| Cow Dung | `Base.Dung_Cow` | 1 | 1.25 |
+| Cow Head | `Base.Cow_Head_Angus` | 2 | 2.5 |
+| Cow Head | `Base.Cow_Head_Holstein` | 2 | 2.5 |
+| Cow Head | `Base.Cow_Head_Simmental` | 2 | 2.5 |
+| Cow Skull | `Base.Cow_Skull` | 0.8 | 1 |
 | Cowboy Hat | `Base.Hat_Cowboy` | 1 | 0.6 |
 | Cowboy Hat | `Base.Hat_Cowboy_Black` | 1 | 0.6 |
 | Cowboy Hat | `Base.Hat_Cowboy_White` | 1 | 0.6 |
@@ -1114,14 +1114,14 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Cowboy Hat - Cowhide | `Base.Hat_Cowboy_CowHide` | 1 | 0.675 |
 | Cowboy Hat - Holstein Cowhide | `Base.Hat_Cowboy_Holstein` | 1 | 0.675 |
 | Cowboy Hat - Simmental Cowhide | `Base.Hat_Cowboy_Simmental` | 1 | 0.675 |
-| Cowhide Coat | `Base.JacketLong_AngusHide` | 2 | 4.8 |
-| Cowhide Coat | `Base.JacketLong_CowHide` | 2 | 4.8 |
-| Cowhide Coat | `Base.JacketLong_HolsteinHide` | 2 | 4.8 |
-| Cowhide Coat | `Base.JacketLong_SimmentalHide` | 2 | 4.8 |
-| Cowhide Jacket | `Base.Jacket_AngusHide` | 2 | 3.3 |
-| Cowhide Jacket | `Base.Jacket_CowHide` | 2 | 3.3 |
-| Cowhide Jacket | `Base.Jacket_HolsteinHide` | 2 | 3.3 |
-| Cowhide Jacket | `Base.Jacket_SimmentalHide` | 2 | 3.3 |
+| Cowhide Coat | `Base.JacketLong_AngusHide` | 2 | 2.5 |
+| Cowhide Coat | `Base.JacketLong_CowHide` | 2 | 2.5 |
+| Cowhide Coat | `Base.JacketLong_HolsteinHide` | 2 | 2.5 |
+| Cowhide Coat | `Base.JacketLong_SimmentalHide` | 2 | 2.5 |
+| Cowhide Jacket | `Base.Jacket_AngusHide` | 2 | 2.5 |
+| Cowhide Jacket | `Base.Jacket_CowHide` | 2 | 2.5 |
+| Cowhide Jacket | `Base.Jacket_HolsteinHide` | 2 | 2.5 |
+| Cowhide Jacket | `Base.Jacket_SimmentalHide` | 2 | 2.5 |
 | Cowhide Tank Top | `Base.Vest_AngusHide` | 1 | 0.945 |
 | Cowhide Tank Top | `Base.Vest_HolsteinHide` | 1 | 0.945 |
 | Cowhide Tank Top | `Base.Vest_SimmentalHide` | 1 | 0.945 |
@@ -1149,13 +1149,13 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Crafted Cotton Shirt | `Base.Shirt_Crafted_Cotton` | 1 | 0.27 |
 | Crafted Cotton Shirt - Sleeveless | `Base.Shirt_NoSleeves_Crafted_Cotton` | 1 | 0.18 |
 | Crafted Cotton Teddy Bear | `Base.ToyBear_Crafted_Cotton` | 5 | 0.45 |
-| Crafted Deer Hide Pants | `Base.Trousers_DeerHide` | 1 | 2.29 |
+| Crafted Deer Hide Pants | `Base.Trousers_DeerHide` | 1 | 1.25 |
 | Crafted Denim Knee-length Dress | `Base.Dress_Knees_Crafted_Denim` | 1 | 0.9 |
 | Crafted Denim Knee-length Dress | `Base.Dress_Knees_Crafted_DenimBlack` | 1 | 0.9 |
 | Crafted Denim Knee-length Dress | `Base.Dress_Knees_Crafted_DenimLight` | 1 | 0.9 |
-| Crafted Denim Long Dress | `Base.Dress_Long_Crafted_Denim` | 1 | 1.44 |
-| Crafted Denim Long Dress | `Base.Dress_Long_Crafted_DenimBlack` | 1 | 1.44 |
-| Crafted Denim Long Dress | `Base.Dress_Long_Crafted_DenimLight` | 1 | 1.44 |
+| Crafted Denim Long Dress | `Base.Dress_Long_Crafted_Denim` | 1 | 1.25 |
+| Crafted Denim Long Dress | `Base.Dress_Long_Crafted_DenimBlack` | 1 | 1.25 |
+| Crafted Denim Long Dress | `Base.Dress_Long_Crafted_DenimLight` | 1 | 1.25 |
 | Crafted Denim Long Skirt | `Base.Skirt_Long_Crafted_Denim` | 1 | 0.9 |
 | Crafted Denim Long Skirt | `Base.Skirt_Long_Crafted_DenimBlack` | 1 | 0.9 |
 | Crafted Denim Long Skirt | `Base.Skirt_Long_Crafted_DenimLight` | 1 | 0.9 |
@@ -1169,9 +1169,9 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Crafted Denim Shirt - Sleeveless | `Base.Shirt_NoSleeves_Crafted_Denim` | 1 | 0.48 |
 | Crafted Denim Shirt - Sleeveless | `Base.Shirt_NoSleeves_Crafted_DenimBlack` | 1 | 0.48 |
 | Crafted Denim Shirt - Sleeveless | `Base.Shirt_NoSleeves_Crafted_DenimLight` | 1 | 0.48 |
-| Crafted Fawn Hide Pants | `Base.Trousers_FaunHide` | 1 | 2.29 |
-| Crafted Hide Pants | `Base.Trousers_Hide` | 1 | 2.29 |
-| Crafted Hide Satchel | `Base.Bag_HideSatchel` | 1 | 1.35 |
+| Crafted Fawn Hide Pants | `Base.Trousers_FaunHide` | 1 | 1.25 |
+| Crafted Hide Pants | `Base.Trousers_Hide` | 1 | 1.25 |
+| Crafted Hide Satchel | `Base.Bag_HideSatchel` | 1 | 1.25 |
 | Crafted Jeans | `Base.Trousers_Crafted_Denim` | 1 | 1.02 |
 | Crafted Jeans | `Base.Trousers_Crafted_DenimBlack` | 1 | 1.02 |
 | Crafted Jeans | `Base.Trousers_Crafted_DenimLight` | 1 | 1.02 |
@@ -1179,19 +1179,19 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Crafted Knee-length Denim Skirt | `Base.Skirt_Knees_Crafted_Denim` | 1 | 0.54 |
 | Crafted Knee-length Denim Skirt | `Base.Skirt_Knees_Crafted_DenimBlack` | 1 | 0.54 |
 | Crafted Knee-length Denim Skirt | `Base.Skirt_Knees_Crafted_DenimLight` | 1 | 0.54 |
-| Crafted Leather Pants | `Base.Trousers_LeatherCrafted` | 1 | 2.04 |
-| Crafted Pillow | `Base.Pillow_Crafted` | 1 | 1.8 |
+| Crafted Leather Pants | `Base.Trousers_LeatherCrafted` | 1 | 1.25 |
+| Crafted Pillow | `Base.Pillow_Crafted` | 1 | 1.25 |
 | Crafted Strapless Deer Hide Dress | `Base.Dress_SmallDeerHideStrapless` | 1 | 1.08 |
 | Crafted Strapless Hide Dress | `Base.Dress_SmallHideStrapless` | 1 | 1.08 |
 | Crafted Trigger | `Base.TriggerCrafted` | 0.2 | 0.15 |
-| Crash Helmet | `Base.Hat_CrashHelmet` | 1 | 1.5 |
-| Crash Helmet | `Base.Hat_CrashHelmetFULL` | 1 | 2.25 |
-| Crash Helmet | `Base.Hat_CrashHelmetFULL_Black` | 1 | 2.25 |
-| Crash Helmet - Police | `Base.Hat_CrashHelmet_Police` | 1 | 1.5 |
-| Crash Helmet - Spiked | `Base.Hat_CrashHelmetFULL_Black_Spiked` | 1 | 2.55 |
-| Crash Helmet - Spiked | `Base.Hat_CrashHelmetFULL_Spiked` | 1 | 2.55 |
-| Crash Helmet - USA | `Base.Hat_CrashHelmet_Stars` | 1 | 1.5 |
-| Crate Trap | `Base.TrapCrate` | 5 | 9 |
+| Crash Helmet | `Base.Hat_CrashHelmet` | 1 | 1.25 |
+| Crash Helmet | `Base.Hat_CrashHelmetFULL` | 1 | 1.25 |
+| Crash Helmet | `Base.Hat_CrashHelmetFULL_Black` | 1 | 1.25 |
+| Crash Helmet - Police | `Base.Hat_CrashHelmet_Police` | 1 | 1.25 |
+| Crash Helmet - Spiked | `Base.Hat_CrashHelmetFULL_Black_Spiked` | 1 | 1.25 |
+| Crash Helmet - Spiked | `Base.Hat_CrashHelmetFULL_Spiked` | 1 | 1.25 |
+| Crash Helmet - USA | `Base.Hat_CrashHelmet_Stars` | 1 | 1.25 |
+| Crate Trap | `Base.TrapCrate` | 5 | 6.25 |
 | Crayfish | `Base.Crayfish` | 0.2 | 0.06 |
 | Crayons | `Base.Crayons` | 0.4 | 0.15 |
 | Creamocle | `Base.Creamocle` | 0.2 | 0.135 |
@@ -1203,19 +1203,19 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Croissant | `Base.Croissant` | 0.1 | 0.09 |
 | Crop Top | `Base.Shirt_CropTopNoArmTINT` | 1 | 0.15 |
 | Crop Top - Arms | `Base.Shirt_CropTopTINT` | 1 | 0.225 |
-| Crowbar | `Base.Crowbar` | 2 | 3.45 |
-| Crowbar | `Base.CrowbarForged` | 2 | 3.45 |
-| Crude Bench Vise | `Base.CrudeBenchVise` | 5 | 7.5 |
+| Crowbar | `Base.Crowbar` | 2 | 2.5 |
+| Crowbar | `Base.CrowbarForged` | 2 | 2.5 |
+| Crude Bench Vise | `Base.CrudeBenchVise` | 5 | 6.25 |
 | Crude Leather Footwear | `Base.Shoes_CrudeLeatherFootwear` | 1 | 0.9 |
 | Crude Metal Helmet | `Base.Hat_MetalHelmet` | 2 | 1.8 |
 | Crude Scissors | `Base.ScissorsForged` | 0.5 | 0.225 |
 | Crude Stone Axe | `Base.AxeStone` | 2 | 1.5 |
-| Crystal | `Base.Crystal` | 0.1 | 0.15 |
-| Cucumber | `Base.Cucumber` | 0.3 | 0.45 |
+| Crystal | `Base.Crystal` | 0.1 | 0.125 |
+| Cucumber | `Base.Cucumber` | 0.3 | 0.375 |
 | Cucumber Seeds | `Base.CucumberSeed` | 0.02 | 0.003 |
 | Cudgel - Sheet Metal Reinforced | `Base.Cudgel_ScrapSheet` | 6 | 3.45 |
 | Cudgel with Bone Spikes | `Base.Cudgel_Bone` | 6 | 3.15 |
-| Cudgel with Brake Disc | `Base.Cudgel_Brake` | 6 | 9 |
+| Cudgel with Brake Disc | `Base.Cudgel_Brake` | 6 | 7.5 |
 | Cudgel with Garden Fork Head | `Base.Cudgel_GardenForkHead` | 6 | 4.35 |
 | Cudgel with Nails | `Base.Cudgel_Nails` | 6 | 3.07 |
 | Cudgel with Railspikes | `Base.Cudgel_Railspike` | 6 | 5.03 |
@@ -1225,25 +1225,25 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Cupcake | `Base.Cupcake` | 0.2 | 0.12 |
 | Curacao | `Base.Curacao` | 1 | 0.9 |
 | Cutting Board | `Base.CuttingBoardPlastic` | 1 | 0.9 |
-| Cutting Board | `Base.CuttingBoardWooden` | 1 | 1.5 |
-| Daikon | `Base.Daikon` | 0.2 | 0.6 |
+| Cutting Board | `Base.CuttingBoardWooden` | 1 | 1.25 |
+| Daikon | `Base.Daikon` | 0.2 | 0.25 |
 | Dandelions | `Base.Dandelions` | 0.1 | 0.045 |
 | Dangly Earrings - Diamond | `Base.Earring_Dangly_Diamond` | 0.1 | 0.0075 |
 | Dangly Earrings - Emerald | `Base.Earring_Dangly_Emerald` | 0.1 | 0.0075 |
 | Dangly Earrings - Pearl | `Base.Earring_Dangly_Pearl` | 0.1 | 0.0075 |
 | Dangly Earrings - Ruby | `Base.Earring_Dangly_Ruby` | 0.1 | 0.0075 |
 | Dangly Earrings - Sapphire Stone | `Base.Earring_Dangly_Sapphire` | 0.1 | 0.0075 |
-| Danish | `Base.Danish` | 0.1 | 0.15 |
+| Danish | `Base.Danish` | 0.1 | 0.125 |
 | Dark Blue Denim Fabric Roll | `Base.FabricRoll_DenimDarkBlue` | 10 | 7.35 |
 | Dart | `Base.Dart` | 0.1 | 0.03 |
-| Dead Bird | `Base.DeadBird` | 0.1 | 0.3 |
+| Dead Bird | `Base.DeadBird` | 0.1 | 0.125 |
 | Dead Mouse | `Base.DeadMouse` | 0.05 | 0.03 |
-| Dead Rabbit | `Base.DeadRabbit` | 1 | 1.8 |
-| Dead Rat | `Base.DeadRat` | 0.2 | 0.45 |
-| Dead Squirrel | `Base.DeadSquirrel` | 0.4 | 0.75 |
+| Dead Rabbit | `Base.DeadRabbit` | 1 | 1.25 |
+| Dead Rat | `Base.DeadRat` | 0.2 | 0.25 |
+| Dead Squirrel | `Base.DeadSquirrel` | 0.4 | 0.5 |
 | Deer Droppings | `Base.Dung_Deer` | 0.5 | 0.075 |
-| Deer Hide (Furred) | `Base.DeerLeather_Fur` | 3 | 4.5 |
-| Deer Hide (Unprocessed) | `Base.DeerLeather_Full` | 3 | 5.25 |
+| Deer Hide (Furred) | `Base.DeerLeather_Fur` | 3 | 3.75 |
+| Deer Hide (Unprocessed) | `Base.DeerLeather_Full` | 3 | 3.75 |
 | Deer Hide Tank Top | `Base.Vest_DeerHide` | 1 | 0.945 |
 | Deer Leather (Furred, Wet) | `Base.DeerLeather_Fur_Tan_Wet` | 3 | 2.7 |
 | Deer Leather Half (Furred) | `Base.DeerLeather_Fur_Tan_Small` | 1 | 0.9 |
@@ -1262,8 +1262,8 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Dented Unlabeled Can of Food | `Base.DentedCan` | 0.8 | 0.705 |
 | Deux Bar | `Base.Chocolate_Deux` | 0.2 | 0.075 |
 | Diamond | `Base.Diamond` | 0.001 | 0.00075 |
-| Diary | `Base.Diary1` | 0.3 | 0.45 |
-| Diary | `Base.Diary2` | 0.3 | 0.45 |
+| Diary | `Base.Diary1` | 0.3 | 0.375 |
+| Diary | `Base.Diary2` | 0.3 | 0.375 |
 | Dice | `Base.Dice` | 0.05 | 0.006 |
 | Dice - 10-sided | `Base.Dice_10` | 0.05 | 0.006 |
 | Dice - 12-sided | `Base.Dice_12` | 0.05 | 0.006 |
@@ -1285,9 +1285,9 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Dish Towel (Wet) | `Base.DishClothWet` | 0.3 | 0.15 |
 | Dispenser Bottle | `Base.WaterDispenserBottle` | 2 | 2.4 |
 | Disposable Camera | `Base.CameraDisposable` | 0.5 | 0.15 |
-| Doctor Bag | `Base.Bag_DoctorBag` | 1 | 2.25 |
+| Doctor Bag | `Base.Bag_DoctorBag` | 1 | 1.25 |
 | Document | `Base.OfficialDocument` | 0.1 | 0.03 |
-| Doe Head | `Base.Deer_Doe_Head` | 1.5 | 4.5 |
+| Doe Head | `Base.Deer_Doe_Head` | 1.5 | 1.88 |
 | Dog Chew Toy | `Base.DogChew` | 0.3 | 0.15 |
 | Dog Tag | `Base.DogTag_Pet` | 0.1 | 0.015 |
 | Dog Tag | `Base.DogTag_Pet_Blank` | 0.1 | 0.015 |
@@ -1302,40 +1302,40 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Door Hinge | `Base.Hinge` | 0.5 | 0.15 |
 | Doorknob | `Base.Doorknob` | 1 | 0.525 |
 | Double Barrel Shotgun | `Base.DoubleBarrelShotgun` | 4 | 4.8 |
-| Double Rear Door (*) | `Base.RearCarDoorDouble1` | 20 | 27.8 |
-| Double Rear Door (*) | `Base.RearCarDoorDouble2` | 20 | 27.8 |
-| Double Rear Door (*) | `Base.RearCarDoorDouble3` | 20 | 27.8 |
-| Dough | `Base.Dough` | 0.3 | 0.6 |
+| Double Rear Door (*) | `Base.RearCarDoorDouble1` | 20 | 25 |
+| Double Rear Door (*) | `Base.RearCarDoorDouble2` | 20 | 25 |
+| Double Rear Door (*) | `Base.RearCarDoorDouble3` | 20 | 25 |
+| Dough | `Base.Dough` | 0.3 | 0.375 |
 | Draw Plate | `Base.DrawPlate` | 0.5 | 0.6 |
-| Drawer | `Base.Drawer` | 3 | 4.5 |
+| Drawer | `Base.Drawer` | 3 | 3.75 |
 | Dress | `Base.Dress_Normal` | 1 | 0.6 |
 | Drumstick | `Base.Drumstick` | 0.5 | 0.075 |
 | Dry Cat Food | `Base.CatFoodBag` | 2 | 2.25 |
-| Dry Dog Food | `Base.DogFoodBag` | 2 | 6.75 |
+| Dry Dog Food | `Base.DogFoodBag` | 2 | 2.5 |
 | Dry Ramen Noodles | `Base.Ramen` | 0.2 | 0.135 |
-| Dryer Lint | `Base.DryerLint` | 0.01 | 0.015 |
+| Dryer Lint | `Base.DryerLint` | 0.01 | 0.0125 |
 | Duct Tape | `Base.DuctTape` | 0.5 | 0.525 |
 | Duct Tape Holster | `Base.Holster_DuctTape` | 0.2 | 0.15 |
-| Duffel Bag | `Base.Bag_BaseballBag` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_BreakdownBag` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_BurglarBag` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_DuffelBag` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_DuffelBagTINT` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_FoodCanned` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_FoodSnacks` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_InmateEscapedBag` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_Military` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_MoneyBag` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_ShotgunBag` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_ShotgunDblBag` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_ShotgunDblSawnoffBag` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_ShotgunSawnoffBag` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_TennisBag` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_ToolBag` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_WeaponBag` | 1 | 1.35 |
-| Duffel Bag | `Base.Bag_WorkerBag` | 1 | 1.35 |
-| Dumbbell | `Base.DumbBell` | 5 | 7.5 |
-| Dumbbell | `Base.DumbBell_Forged` | 5 | 7.5 |
+| Duffel Bag | `Base.Bag_BaseballBag` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_BreakdownBag` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_BurglarBag` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_DuffelBag` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_DuffelBagTINT` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_FoodCanned` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_FoodSnacks` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_InmateEscapedBag` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_Military` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_MoneyBag` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_ShotgunBag` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_ShotgunDblBag` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_ShotgunDblSawnoffBag` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_ShotgunSawnoffBag` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_TennisBag` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_ToolBag` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_WeaponBag` | 1 | 1.25 |
+| Duffel Bag | `Base.Bag_WorkerBag` | 1 | 1.25 |
+| Dumbbell | `Base.DumbBell` | 5 | 6.25 |
+| Dumbbell | `Base.DumbBell_Forged` | 5 | 6.25 |
 | Dust Mask | `Base.Hat_DustMask` | 0.2 | 0.015 |
 | Ear Muffs | `Base.Hat_EarMuffs` | 0.3 | 0.12 |
 | Ear Protectors | `Base.Hat_EarMuff_Protectors` | 0.3 | 0.375 |
@@ -1347,14 +1347,14 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Earrings - Ruby | `Base.Earring_Stone_Ruby` | 0.1 | 0.0027 |
 | Earrings - Sapphire Stone | `Base.Earring_Stone_Sapphire` | 0.1 | 0.0027 |
 | Easter Card | `Base.Card_Easter` | 0.2 | 0.0225 |
-| Edamame | `Base.Edamame` | 0.1 | 0.15 |
+| Edamame | `Base.Edamame` | 0.1 | 0.125 |
 | Egg | `Base.Egg` | 0.1 | 0.0855 |
 | Egg (Boiled) | `Base.EggBoiled` | 0.1 | 0.0855 |
 | Egg (Poached) | `Base.EggPoached` | 0.1 | 0.0855 |
-| Egg (Scrambled) | `Base.EggScrambled` | 0.1 | 0.18 |
+| Egg (Scrambled) | `Base.EggScrambled` | 0.1 | 0.125 |
 | Egg Carton | `Base.EggCarton` | 1 | 1.1 |
 | Egg Sushi | `Base.SushiEgg` | 0.1 | 0.0525 |
-| Eggplant | `Base.Eggplant` | 0.2 | 0.6 |
+| Eggplant | `Base.Eggplant` | 0.2 | 0.25 |
 | Elbow Pad | `Base.ElbowPad_Left` | 0.5 | 0.12 |
 | Elbow Pad | `Base.ElbowPad_Left_Leather` | 0.5 | 0.15 |
 | Elbow Pad | `Base.ElbowPad_Left_Military` | 0.5 | 0.18 |
@@ -1369,14 +1369,14 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Elbow Pad | `Base.ElbowPad_Right_TINT` | 0.5 | 0.12 |
 | Elbow Pad | `Base.ElbowPad_Right_Tactical` | 0.5 | 0.18 |
 | Elbow Pad | `Base.ElbowPad_Right_Workman` | 0.5 | 0.15 |
-| Electric Bass | `Base.GuitarElectricBass` | 3.5 | 6 |
-| Electric Guitar | `Base.GuitarElectric` | 2.8 | 5.4 |
+| Electric Bass | `Base.GuitarElectricBass` | 3.5 | 4.38 |
+| Electric Guitar | `Base.GuitarElectric` | 2.8 | 3.5 |
 | Electrical I: "Basic Electronics" | `Base.BookElectrician1` | 1 | 0.45 |
 | Electrical II: "Kentucky AV Guide '93" | `Base.BookElectrician2` | 1 | 0.45 |
 | Electrical III: "Practical Wiring Guide" | `Base.BookElectrician3` | 1 | 0.9 |
-| Electrical IV: "Telecommunications in the 20th Century" | `Base.BookElectrician4` | 1 | 1.35 |
-| Electrical V: "Understanding Integrated Controls for Electronic Systems" | `Base.BookElectrician5` | 1 | 1.35 |
-| Electrical Wire | `Base.ElectricWire` | 0.1 | 0.3 |
+| Electrical IV: "Telecommunications in the 20th Century" | `Base.BookElectrician4` | 1 | 1.25 |
+| Electrical V: "Understanding Integrated Controls for Electronic Systems" | `Base.BookElectrician5` | 1 | 1.25 |
+| Electrical Wire | `Base.ElectricWire` | 0.1 | 0.125 |
 | Emerald | `Base.Emerald` | 0.001 | 0.00075 |
 | Empty Seed Packet - Barley | `Base.BarleyBagSeed_Empty` | 0.02 | 0.003 |
 | Empty Seed Packet - Basil | `Base.BasilBagSeed_Empty` | 0.02 | 0.003 |
@@ -1437,8 +1437,8 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Entrenching Tool | `Base.EntrenchingTool` | 2 | 1.65 |
 | Epoxy | `Base.Epoxy` | 0.5 | 0.15 |
 | Eraser | `Base.Eraser` | 0.1 | 0.03 |
-| Ewe Head | `Base.Sheep_Ewe_Head_Black` | 1.3 | 5.25 |
-| Ewe Head | `Base.Sheep_Ewe_Head_White` | 1.3 | 5.25 |
+| Ewe Head | `Base.Sheep_Ewe_Head_Black` | 1.3 | 1.62 |
+| Ewe Head | `Base.Sheep_Ewe_Head_White` | 1.3 | 1.62 |
 | Explosives Diagram | `Base.ExplosiveSchematic` | 0.1 | 0.0075 |
 | Extinguisher | `Base.Extinguisher` | 10 (empty 5) | 6.45 (empty 3.15) |
 | Eye Makeup | `Base.MakeupEyeshadow` | 0.1 | 0.06 |
@@ -1449,17 +1449,17 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Fancy Shoes | `Base.Shoes_Fancy` | 1 | 1.2 |
 | Fanny Pack | `Base.Bag_FannyPackBack` | 0.2 | 0.225 |
 | Fanny Pack | `Base.Bag_FannyPackFront` | 0.2 | 0.225 |
-| Fawn Head | `Base.Deer_Fawn_Head` | 1 | 1.5 |
+| Fawn Head | `Base.Deer_Fawn_Head` | 1 | 1.25 |
 | Fawn Hide (Furred) | `Base.FawnLeather_Fur` | 1 | 1.2 |
-| Fawn Hide (Unprocessed) | `Base.FawnLeather_Full` | 1 | 1.5 |
+| Fawn Hide (Unprocessed) | `Base.FawnLeather_Full` | 1 | 1.25 |
 | Fawn Hide Bandeau | `Base.Bandeau_FaunHide` | 1 | 0.162 |
 | Fawn Hide Tank Top | `Base.Vest_FawnHide` | 1 | 0.945 |
 | Fawn Leather (Furred, Wet) | `Base.FawnLeather_Fur_Tan_Wet` | 1 | 0.75 |
 | Fawn Skull | `Base.DeerFawn_Skull` | 0.4 | 0.3 |
 | Fedora | `Base.Hat_Fedora` | 0.5 | 0.225 |
 | Fedora | `Base.Hat_Fedora_Delmonte` | 0.5 | 0.225 |
-| Feeding Bottle | `Base.FeedingBottle` | 0.1 | 0.15 |
-| Fertilizer | `Base.Fertilizer` | 5 (empty 0.1) | 7.5 (empty 0.075) |
+| Feeding Bottle | `Base.FeedingBottle` | 0.1 | 0.125 |
+| Fertilizer | `Base.Fertilizer` | 5 (empty 0.1) | 6.25 (empty 0.075) |
 | Fiberglass Tape | `Base.FiberglassTape` | 0.8 | 0.33 |
 | Field Hockey Stick | `Base.FieldHockeyStick` | 1.5 | 0.825 |
 | Field Hockey Stick with Nails | `Base.FieldHockeyStick_Nails` | 1.5 | 0.9 |
@@ -1468,41 +1468,41 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | File | `Base.File` | 1 | 0.375 |
 | Fillet Knife | `Base.KnifeFillet` | 0.7 | 0.15 |
 | Fingerless Gloves | `Base.Gloves_FingerlessGloves` | 0.1 | 0.075 |
-| Fingerless Gloves - Leather | `Base.Gloves_FingerlessLeatherGloves` | 0.1 | 0.15 |
-| Fingerless Gloves - Leather | `Base.Gloves_FingerlessLeatherGloves_Black` | 0.1 | 0.15 |
-| Fingerless Gloves - Leather | `Base.Gloves_FingerlessLeatherGloves_Brown` | 0.1 | 0.15 |
+| Fingerless Gloves - Leather | `Base.Gloves_FingerlessLeatherGloves` | 0.1 | 0.125 |
+| Fingerless Gloves - Leather | `Base.Gloves_FingerlessLeatherGloves_Black` | 0.1 | 0.125 |
+| Fingerless Gloves - Leather | `Base.Gloves_FingerlessLeatherGloves_Brown` | 0.1 | 0.125 |
 | Fingerless Gloves - Metal | `Base.Gloves_MetalArmour` | 1 | 0.675 |
 | Fingerless Gloves - Scrap Metal | `Base.Gloves_MetalScrapArmour` | 1 | 0.825 |
 | Fire Bomb | `Base.FlameTrap` | 1.5 | 1.27 |
-| Fire Bomb with Long-Range Sensor | `Base.FlameTrapSensorV3` | 1.5 | 2.06 |
-| Fire Bomb with Medium-Range Sensor | `Base.FlameTrapSensorV2` | 1.5 | 1.91 |
+| Fire Bomb with Long-Range Sensor | `Base.FlameTrapSensorV3` | 1.5 | 1.88 |
+| Fire Bomb with Medium-Range Sensor | `Base.FlameTrapSensorV2` | 1.5 | 1.88 |
 | Fire Bomb with Short-Range Sensor | `Base.FlameTrapSensorV1` | 1.5 | 1.75 |
-| Fire Bomb with Timer | `Base.FlameTrapTriggered` | 1.5 | 1.91 |
+| Fire Bomb with Timer | `Base.FlameTrapTriggered` | 1.5 | 1.88 |
 | Firecracker - Crafted | `Base.Firecracker_Crafted` | 0.1 | 0.075 |
-| Firecrackers | `Base.Firecracker` | 0.1 | 0.15 |
+| Firecrackers | `Base.Firecracker` | 0.1 | 0.125 |
 | Firefighter Axe | `Base.Axe` | 3 | 3.45 |
-| Firefighter Axe Head | `Base.FireAxeHead` | 2 | 4.05 |
-| Firefighter Helmet | `Base.Hat_Fireman` | 1.5 | 2.25 |
-| Firefighter Jacket | `Base.Jacket_Fireman` | 4 | 5.25 |
+| Firefighter Axe Head | `Base.FireAxeHead` | 2 | 2.5 |
+| Firefighter Helmet | `Base.Hat_Fireman` | 1.5 | 1.88 |
+| Firefighter Jacket | `Base.Jacket_Fireman` | 4 | 5 |
 | Firefighter Pants | `Base.Trousers_Fireman` | 4 | 4.5 |
 | Fireplace Poker | `Base.FireplacePoker` | 1.5 | 1.35 |
 | Firestarting Block | `Base.DryFirestarterBlock` | 0.1 | 0.075 |
-| Firewood Bundle | `Base.FirewoodBundle` | 5 | 9.02 |
+| Firewood Bundle | `Base.FirewoodBundle` | 5 | 6.25 |
 | Firewood with Nails | `Base.Firewood_Nails` | 1.5 | 1.58 |
 | First Aid I: "A Scouts Injury Guide" | `Base.BookFirstAid1` | 1 | 0.45 |
 | First Aid II: "Bandaging and Suturing" | `Base.BookFirstAid2` | 1 | 0.45 |
 | First Aid III: "Emergency Paramedics Manual" | `Base.BookFirstAid3` | 1 | 0.9 |
-| First Aid IV: "Gray's Anatomy of the Human Body" | `Base.BookFirstAid4` | 1 | 1.35 |
+| First Aid IV: "Gray's Anatomy of the Human Body" | `Base.BookFirstAid4` | 1 | 1.25 |
 | First Aid Kit | `Base.FirstAidKit` | 1 | 0.75 |
 | First Aid Kit | `Base.FirstAidKit_New` | 1 | 0.75 |
 | First Aid Kit | `Base.FirstAidKit_NewPro` | 1 | 0.75 |
-| First Aid V: "Surgical Techniques of the Operating Room" | `Base.BookFirstAid5` | 1 | 1.35 |
-| Fish (Fried) | `Base.FishFried` | 0.2 | 0.27 |
+| First Aid V: "Surgical Techniques of the Operating Room" | `Base.BookFirstAid5` | 1 | 1.25 |
+| Fish (Fried) | `Base.FishFried` | 0.2 | 0.25 |
 | Fish Fillet | `Base.FishFillet` | 0.2 | 0.225 |
 | Fish Fingers | `Base.FishFingers` | 0.2 | 0.21 |
-| Fish Guts | `Base.FishGuts` | 0.1 | 0.15 |
+| Fish Guts | `Base.FishGuts` | 0.1 | 0.125 |
 | Fish Roe | `Base.FishRoe` | 0.1 | 0.075 |
-| Fish Roe Sac | `Base.FishRoeSac` | 0.1 | 0.15 |
+| Fish Roe Sac | `Base.FishRoeSac` | 0.1 | 0.125 |
 | Fish Sushi | `Base.SushiFish` | 0.1 | 0.0525 |
 | Fisherman Hat | `Base.Hat_BucketHatFishing` | 0.5 | 0.18 |
 | Fisherman Hat - Rain | `Base.Hat_FishermanRainHat` | 0.5 | 0.225 |
@@ -1511,33 +1511,33 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Fishing I: "Dean's Good Fishing Guide" | `Base.BookFishing1` | 1 | 0.45 |
 | Fishing II: "Fly Fishing, with JR Hartley" | `Base.BookFishing2` | 1 | 0.45 |
 | Fishing III: "Fresh and Saltwater Fishing" | `Base.BookFishing3` | 1 | 0.9 |
-| Fishing IV: "Latest Rod and Net Techniques" | `Base.BookFishing4` | 1 | 1.35 |
+| Fishing IV: "Latest Rod and Net Techniques" | `Base.BookFishing4` | 1 | 1.25 |
 | Fishing Line | `Base.FishingLine` | 0.3 | 0.09 |
-| Fishing Net | `Base.FishingNet` | 1 | 2.25 |
-| Fishing Net (Broken) | `Base.BrokenFishingNet` | 1 | 1.8 |
+| Fishing Net | `Base.FishingNet` | 1 | 1.25 |
+| Fishing Net (Broken) | `Base.BrokenFishingNet` | 1 | 1.25 |
 | Fishing Rod | `Base.FishingRod` | 1 | 0.45 |
 | Fishing Rod without Line | `Base.FishingRodBreak` | 1 | 0.45 |
 | Fishing Satchel | `Base.Bag_Satchel_Fishing` | 1 | 1.05 |
 | Fishing Trash | `Base.FishingTrash` | 0.5 | 0.6 |
-| Fishing V: "The Authoritative Kentucky Fishing Guide" | `Base.BookFishing5` | 1 | 1.35 |
+| Fishing V: "The Authoritative Kentucky Fishing Guide" | `Base.BookFishing5` | 1 | 1.25 |
 | Flashlight | `Base.HandTorch` | 0.5 | 0.375 |
 | Flashlight - Angle Headed | `Base.FlashLight_AngleHead` | 0.5 | 0.525 |
 | Flashlight - Angle Headed | `Base.FlashLight_AngleHead_Army` | 0.5 | 0.525 |
 | Flashlight - Heavy Duty | `Base.Torch` | 1 | 1.05 |
 | Flashlight - Improvised | `Base.Flashlight_Crafted` | 1 | 0.6 |
-| Flask | `Base.Flask` | 0.1 | 0.3 |
-| Flathead Catfish | `Base.FlatheadCatfish` | 0.4 | 9 |
-| Flax | `Base.Flax` | 0.2 | 0.375 |
-| Flax (Dried) | `Base.FlaxDried` | 0.2 | 0.3 |
+| Flask | `Base.Flask` | 0.1 | 0.125 |
+| Flathead Catfish | `Base.FlatheadCatfish` | 0.4 | 0.5 |
+| Flax | `Base.Flax` | 0.2 | 0.25 |
+| Flax (Dried) | `Base.FlaxDried` | 0.2 | 0.25 |
 | Flax (Heckled) | `Base.FlaxHeckled` | 0.2 | 0.09 |
-| Flax (Rippled) | `Base.FlaxRippled` | 0.2 | 0.3 |
+| Flax (Rippled) | `Base.FlaxRippled` | 0.2 | 0.25 |
 | Flax (Scutched) | `Base.FlaxScutched` | 0.2 | 0.12 |
 | Flax Seeds | `Base.FlaxSeed` | 0.02 | 0.003 |
 | Flax Tow | `Base.FlaxTow` | 0.2 | 0.045 |
 | Fleshing Tool | `Base.Fleshing_Tool` | 1 | 0.9 |
 | Flier | `Base.Flier` | 0.1 | 0.0075 |
 | Flier | `Base.Flier_Nolans` | 0.1 | 0.0075 |
-| Flight Case | `Base.Flightcase` | 1 | 6.75 |
+| Flight Case | `Base.Flightcase` | 1 | 1.25 |
 | Flint Nodule | `Base.FlintNodule` | 1 | 0.75 |
 | Flint Saw | `Base.Saw_Flint` | 1 | 0.45 |
 | Flip-flops | `Base.Shoes_FlipFlop` | 1 | 0.375 |
@@ -1546,10 +1546,10 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Flute | `Base.Flute` | 1 | 0.675 |
 | Flute Case | `Base.Bag_FluteCase` | 1 | 0.75 |
 | Football | `Base.Football` | 1 | 0.645 |
-| Football Helmet | `Base.Hat_FootballHelmet` | 1.5 | 2.55 |
-| Football Helmet | `Base.Hat_FootballHelmet_Blue` | 1.5 | 2.55 |
-| Football Helmet | `Base.Hat_FootballHelmet_Red` | 1.5 | 2.55 |
-| Football Helmet | `Base.Hat_FootballHelmet_White` | 1.5 | 2.55 |
+| Football Helmet | `Base.Hat_FootballHelmet` | 1.5 | 1.88 |
+| Football Helmet | `Base.Hat_FootballHelmet_Blue` | 1.5 | 1.88 |
+| Football Helmet | `Base.Hat_FootballHelmet_Red` | 1.5 | 1.88 |
+| Football Helmet | `Base.Hat_FootballHelmet_White` | 1.5 | 1.88 |
 | Football Shoulderpad - Left | `Base.Shoulderpad_Football_L` | 2 | 1.35 |
 | Football Shoulderpad - Right | `Base.Shoulderpad_Football_R` | 2 | 1.35 |
 | Football Shoulderpads | `Base.Shoulderpads_Football` | 4 | 3 |
@@ -1557,8 +1557,8 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Foraging I: "A Feast in the Forest" | `Base.BookForaging1` | 1 | 0.45 |
 | Foraging II: "Dean's Guide to Sticks & Stones" | `Base.BookForaging2` | 1 | 0.45 |
 | Foraging III: "Finding The Treasure in the Trash" | `Base.BookForaging3` | 1 | 0.9 |
-| Foraging IV: "Survival Foraging: How Nature Can Save Your Life" | `Base.BookForaging4` | 1 | 1.35 |
-| Foraging V: "US Park Service Complete Nature Census - Kentucky" | `Base.BookForaging5` | 1 | 1.35 |
+| Foraging IV: "Survival Foraging: How Nature Can Save Your Life" | `Base.BookForaging4` | 1 | 1.25 |
+| Foraging V: "US Park Service Complete Nature Census - Kentucky" | `Base.BookForaging5` | 1 | 1.25 |
 | Forceps | `Base.Forceps_Forged` | 0.1 | 0.12 |
 | Forceps | `Base.SutureNeedleHolder` | 0.3 | 0.15 |
 | Foreman Vest | `Base.Vest_Foreman` | 1 | 0.45 |
@@ -1577,35 +1577,35 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Frame | `Base.Frame` | 1 | 0.9 |
 | Framepack | `Base.Bag_CraftedFramepack_Large2` | 3 | 3.6 |
 | Freddy The Fox | `Base.FreddyFox` | 0.8 | 0.6 |
-| Freshwater Drum | `Base.FreshwaterDrum` | 0.4 | 1.8 |
-| Fried Chicken | `Base.ChickenFried` | 0.1 | 0.225 |
-| Fried Onion Rings | `Base.FriedOnionRings` | 0.1 | 0.15 |
-| Fried Onion Rings | `Base.FriedOnionRingsCraft` | 0.1 | 0.15 |
+| Freshwater Drum | `Base.FreshwaterDrum` | 0.4 | 0.5 |
+| Fried Chicken | `Base.ChickenFried` | 0.1 | 0.125 |
+| Fried Onion Rings | `Base.FriedOnionRings` | 0.1 | 0.125 |
+| Fried Onion Rings | `Base.FriedOnionRingsCraft` | 0.1 | 0.125 |
 | Fried Shrimp | `Base.ShrimpFried` | 0.1 | 0.09 |
 | Fried Shrimp | `Base.ShrimpFriedCraft` | 0.1 | 0.09 |
 | Friendship Bracelet | `Base.Bracelet_LeftFriendshipTINT` | 0.1 | 0.0045 |
 | Friendship Bracelet | `Base.Bracelet_RightFriendshipTINT` | 0.1 | 0.0045 |
-| Fries | `Base.FrenchFries` | 0.2 | 0.42 |
+| Fries | `Base.FrenchFries` | 0.2 | 0.25 |
 | Fries | `Base.Fries` | 0.4 | 0.315 |
 | Frog | `Base.Frog` | 0.4 | 0.3 |
 | Frog Meat | `Base.FrogMeat` | 0.2 | 0.075 |
-| Front Door (*) | `Base.FrontCarDoor1` | 10 | 15 |
-| Front Door (*) | `Base.FrontCarDoor2` | 10 | 15 |
-| Front Door (*) | `Base.FrontCarDoor3` | 10 | 15 |
+| Front Door (*) | `Base.FrontCarDoor1` | 10 | 12.5 |
+| Front Door (*) | `Base.FrontCarDoor2` | 10 | 12.5 |
+| Front Door (*) | `Base.FrontCarDoor3` | 10 | 12.5 |
 | Front Window (*) | `Base.FrontWindow1` | 3 | 2.5 |
 | Front Window (*) | `Base.FrontWindow2` | 3 | 2.5 |
 | Front Window (*) | `Base.FrontWindow3` | 3 | 2.5 |
 | Frosted Donut | `Base.DoughnutFrosted` | 0.1 | 0.105 |
-| Fruit Jam | `Base.JamFruit` | 0.2 | 0.63 |
-| Fruit Muffin | `Base.MuffinFruit` | 0.1 | 0.165 |
+| Fruit Jam | `Base.JamFruit` | 0.2 | 0.25 |
+| Fruit Muffin | `Base.MuffinFruit` | 0.1 | 0.125 |
 | Frying Pan | `Base.Pan` | 1.5 | 1.35 |
 | Frying Pan | `Base.PanForged` | 1.5 | 1.8 |
 | Fudgee Pop | `Base.FudgeePop` | 0.2 | 0.09 |
 | Fudgee Pop (Melted) | `Base.FudgeePop_Melted` | 0.2 | 0.09 |
-| Full Chainmail Sleeve - Left | `Base.Chainmail_SleeveFull_L` | 1 | 1.8 |
-| Full Chainmail Sleeve - Right | `Base.Chainmail_SleeveFull_R` | 1 | 1.8 |
-| Full Metal Forearm Armor | `Base.Vambrace_FullMetal_Left` | 1 | 1.65 |
-| Full Metal Forearm Armor | `Base.Vambrace_FullMetal_Right` | 1 | 1.65 |
+| Full Chainmail Sleeve - Left | `Base.Chainmail_SleeveFull_L` | 1 | 1.25 |
+| Full Chainmail Sleeve - Right | `Base.Chainmail_SleeveFull_R` | 1 | 1.25 |
+| Full Metal Forearm Armor | `Base.Vambrace_FullMetal_Left` | 1 | 1.25 |
+| Full Metal Forearm Armor | `Base.Vambrace_FullMetal_Right` | 1 | 1.25 |
 | Funnel | `Base.Funnel` | 0.3 | 0.075 |
 | Fur Tuft - Gray | `Base.FurTuft_Grey` | 0.1 | 0.003 |
 | Fur Tuft - Light Brown | `Base.FurTuft_Brownlight` | 0.1 | 0.003 |
@@ -1613,9 +1613,9 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Furry Ears | `Base.Hat_FurryEars` | 0.3 | 0.09 |
 | Gaff Hook | `Base.Gaffhook` | 1.5 | 0.9 |
 | Galactic Dairy Bar | `Base.Chocolate_GalacticDairy` | 0.2 | 0.075 |
-| Game Pieces | `Base.GamePieceBlack` | 0.1 | 0.135 |
-| Game Pieces | `Base.GamePieceRed` | 0.1 | 0.135 |
-| Game Pieces | `Base.GamePieceWhite` | 0.1 | 0.135 |
+| Game Pieces | `Base.GamePieceBlack` | 0.1 | 0.125 |
+| Game Pieces | `Base.GamePieceRed` | 0.1 | 0.125 |
+| Game Pieces | `Base.GamePieceWhite` | 0.1 | 0.125 |
 | Garbage Bag | `Base.Bag_TrashBag` | 0.1 | 0.06 |
 | Garbage Bag | `Base.Garbagebag` | 0.1 | 0.06 |
 | Garbage Bag Apron | `Base.Apron_Garbage` | 1 | 0.045 |
@@ -1623,10 +1623,10 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Garbage Bag Headsack | `Base.Hat_HeadSack_Garbage` | 1 | 0.0225 |
 | Garbage Bag Tank Top | `Base.Vest_Garbage` | 1 | 0.0525 |
 | Garden Basket | `Base.Bag_GardenBasket` | 1.5 | 1.2 |
-| Garden Fork | `Base.GardenFork` | 2 | 3.15 |
-| Garden Fork | `Base.GardenFork_Forged` | 2 | 3.15 |
-| Garden Fork Head | `Base.GardenForkHead` | 1 | 1.35 |
-| Garden Fork Head | `Base.GardenForkHead_Forged` | 1 | 1.35 |
+| Garden Fork | `Base.GardenFork` | 2 | 2.5 |
+| Garden Fork | `Base.GardenFork_Forged` | 2 | 2.5 |
+| Garden Fork Head | `Base.GardenForkHead` | 1 | 1.25 |
+| Garden Fork Head | `Base.GardenForkHead_Forged` | 1 | 1.25 |
 | Garden Fork Scrap Metal Weapon | `Base.ScrapWeaponGardenFork` | 4 | 3.45 |
 | Garden Hoe | `Base.GardenHoe` | 2 | 2.1 |
 | Garden Hoe | `Base.GardenHoeForged` | 2 | 2.1 |
@@ -1639,7 +1639,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Gas Can (*) | `Base.PetrolCan` | 1.6 | 1.2 |
 | Gas Mask | `Base.Hat_GasMask` | 1 | 1.2 |
 | Gas Mask (No Filter) | `Base.Hat_GasMask_nofilter` | 1 | 0.75 |
-| Gas Mask Filter | `Base.GasmaskFilter` | 0.3 | 0.45 |
+| Gas Mask Filter | `Base.GasmaskFilter` | 0.3 | 0.375 |
 | Gas Tank - Big (*) | `Base.BigGasTank1` | 15 | 17 |
 | Gas Tank - Big (*) | `Base.BigGasTank2` | 22 | 17 |
 | Gas Tank - Big (*) | `Base.BigGasTank3` | 14 | 17 |
@@ -1655,7 +1655,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Generator - Premium Technologies | `Base.Generator_Yellow` | 40 | 41.5 |
 | Generator - ValuTech | `Base.Generator_Blue` | 40 | 41.5 |
 | Geometry Compass | `Base.CompassGeometry` | 0.2 | 0.045 |
-| Ghillie Suit - Pants | `Base.Ghillie_Trousers` | 1 | 2.25 |
+| Ghillie Suit - Pants | `Base.Ghillie_Trousers` | 1 | 1.25 |
 | Ghillie Suit - Torso | `Base.Ghillie_Top` | 4 | 3 |
 | Gift - Extra Large | `Base.Present_ExtraLarge` | 1 | 1.05 |
 | Gift - Extra Small | `Base.Present_ExtraSmall` | 1 | 0.09 |
@@ -1663,27 +1663,27 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Gift - Medium | `Base.Present_Medium` | 1 | 0.33 |
 | Gift - Small | `Base.Present_Small` | 1 | 0.195 |
 | Gin | `Base.Gin` | 1 | 0.9 |
-| Ginger (Pickled) | `Base.GingerPickled` | 0.1 | 0.225 |
+| Ginger (Pickled) | `Base.GingerPickled` | 0.1 | 0.125 |
 | Ginger Ale | `Base.Pop3` | 0.3 | 0.0525 |
-| Ginger Root | `Base.GingerRoot` | 0.1 | 0.15 |
+| Ginger Root | `Base.GingerRoot` | 0.1 | 0.125 |
 | Gingerbread Man | `Base.Gingerbreadman` | 0.1 | 0.075 |
 | Ginseng | `Base.Ginseng` | 0.1 | 0.06 |
-| Glass Blowing Pipe | `Base.GlassBlowingPipe` | 0.3 | 0.525 |
-| Glass Blowing Pipe (Unfired) | `Base.GlassBlowingPipeUnfired` | 0.3 | 0.6 |
-| Glass Pane | `Base.GlassPanel` | 0.2 | 6.75 |
+| Glass Blowing Pipe | `Base.GlassBlowingPipe` | 0.3 | 0.375 |
+| Glass Blowing Pipe (Unfired) | `Base.GlassBlowingPipeUnfired` | 0.3 | 0.375 |
+| Glass Pane | `Base.GlassPanel` | 0.2 | 0.25 |
 | Glass Shiv | `Base.GlassShiv` | 0.5 | 0.105 |
 | Glassmaking I: "Glass: A History" | `Base.BookGlassmaking1` | 1 | 0.45 |
 | Glassmaking II: "From Sand to Glass: A Journey" | `Base.BookGlassmaking2` | 1 | 0.45 |
 | Glassmaking III: "Laboratory Manual of Glassblowing" | `Base.BookGlassmaking3` | 1 | 0.9 |
-| Glassmaking IV: "Secrets of the Carlow Crystal Makers" | `Base.BookGlassmaking4` | 1 | 1.35 |
-| Glassmaking V: "Venetian Glass: An Electron Microprobe Analysis" | `Base.BookGlassmaking5` | 1 | 1.35 |
-| Glazed Ceramic Jar | `Base.ClayJarGlazed` | 0.3 | 1.88 |
+| Glassmaking IV: "Secrets of the Carlow Crystal Makers" | `Base.BookGlassmaking4` | 1 | 1.25 |
+| Glassmaking V: "Venetian Glass: An Electron Microprobe Analysis" | `Base.BookGlassmaking5` | 1 | 1.25 |
+| Glazed Ceramic Jar | `Base.ClayJarGlazed` | 0.3 | 0.375 |
 | Glitter | `Base.Clitter` | 0.2 | 0.06 |
 | Glove Box (*) | `Base.GloveBox1` | 3 | 1.5 |
 | Glove Box (*) | `Base.GloveBox2` | 4 | 1.5 |
 | Glove Box (*) | `Base.GloveBox3` | 2 | 1.5 |
 | Gloves | `Base.Gloves_WhiteTINT` | 0.1 | 0.12 |
-| Gloves - Hunting Camo | `Base.Gloves_HuntingCamo` | 0.1 | 0.15 |
+| Gloves - Hunting Camo | `Base.Gloves_HuntingCamo` | 0.1 | 0.125 |
 | Glue | `Base.Glue` | 0.5 | 0.18 |
 | Goblet | `Base.Goblet` | 0.5 | 0.375 |
 | Gold Bangle | `Base.Bracelet_BangleLeftGold` | 0.1 | 0.039 |
@@ -1706,12 +1706,12 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Gold Earrings - Small Looped, Top | `Base.Earring_LoopSmall_Gold_Top` | 0.1 | 0.00585 |
 | Gold Earrings - Stud | `Base.Earring_Stud_Gold` | 0.1 | 0.0039 |
 | Gold Fork | `Base.Fork_Gold` | 0.25 | 0.18 |
-| Gold Fragments | `Base.GoldScrap` | 0.05 | 0.075 |
-| Gold Goblet | `Base.Goblet_Gold` | 0.5 | 0.87 |
+| Gold Fragments | `Base.GoldScrap` | 0.05 | 0.0625 |
+| Gold Goblet | `Base.Goblet_Gold` | 0.5 | 0.625 |
 | Gold Ingot | `Base.GoldBar` | 16 | 18.6 |
 | Gold Long Necklace | `Base.NecklaceLong_Gold` | 0.1 | 0.0292 |
 | Gold Long Necklace with Diamond | `Base.NecklaceLong_GoldDiamond` | 0.1 | 0.0292 |
-| Gold Mask | `Base.Hat_HockeyMask_Gold` | 1 | 2.03 |
+| Gold Mask | `Base.Hat_HockeyMask_Gold` | 1 | 1.25 |
 | Gold Necklace | `Base.Necklace_Gold` | 0.1 | 0.0156 |
 | Gold Necklace with Diamond | `Base.Necklace_GoldDiamond` | 0.1 | 0.0156 |
 | Gold Necklace with Ruby Stone | `Base.Necklace_GoldRuby` | 0.1 | 0.0156 |
@@ -1729,58 +1729,58 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Gold Ring with Ruby | `Base.Ring_Left_RingFinger_GoldRuby` | 0.1 | 0.0069 |
 | Gold Ring with Ruby | `Base.Ring_Right_MiddleFinger_GoldRuby` | 0.1 | 0.0069 |
 | Gold Ring with Ruby | `Base.Ring_Right_RingFinger_GoldRuby` | 0.1 | 0.0069 |
-| Gold Sheet | `Base.GoldSheet` | 0.5 | 0.75 |
+| Gold Sheet | `Base.GoldSheet` | 0.5 | 0.625 |
 | Gold Spoon | `Base.Spoon_Gold` | 0.25 | 0.165 |
 | Gold Sports Medal | `Base.Medal_Gold` | 0.3 | 0.09 |
 | Gold Star Boppers | `Base.Hat_GoldStar` | 0.3 | 0.075 |
-| Golf Bag | `Base.Bag_GolfBag` | 1.2 | 5.25 |
-| Golf Bag | `Base.Bag_GolfBag_Melee` | 1.2 | 5.25 |
+| Golf Bag | `Base.Bag_GolfBag` | 1.2 | 1.5 |
+| Golf Bag | `Base.Bag_GolfBag_Melee` | 1.2 | 1.5 |
 | Golf Ball | `Base.GolfBall` | 0.1 | 0.0689 |
 | Golf Cap | `Base.Hat_GolfHat` | 0.3 | 0.135 |
 | Golf Cap | `Base.Hat_GolfHatTINT` | 0.3 | 0.135 |
 | Golf Club | `Base.Golfclub` | 2 | 0.675 |
 | Golf Tee | `Base.GolfTee` | 0.05 | 0.003 |
-| Graham Crackers | `Base.GrahamCrackers` | 0.1 | 0.21 |
+| Graham Crackers | `Base.GrahamCrackers` | 0.1 | 0.125 |
 | Grape Leaves | `Base.GrapeLeaves` | 0.1 | 0.045 |
-| Grapefruit | `Base.Grapefruit` | 0.3 | 0.525 |
-| Grapes | `Base.Grapes` | 0.2 | 0.375 |
+| Grapefruit | `Base.Grapefruit` | 0.3 | 0.375 |
+| Grapes | `Base.Grapes` | 0.2 | 0.25 |
 | Graph Paper | `Base.GraphPaper` | 0.1 | 0.0075 |
 | Grass Cutting | `Base.GrassTuft` | 0.1 | 0.075 |
 | Grasshopper | `Base.Grasshopper` | 0.1 | 0.0015 |
-| Gravy | `Base.Gravy` | 0.2 | 0.495 |
+| Gravy | `Base.Gravy` | 0.2 | 0.25 |
 | Gravy Mix | `Base.GravyMix` | 0.1 | 0.045 |
 | Green Onions | `Base.GreenOnions` | 0.2 | 0.15 |
 | Green Peas | `Base.Greenpeas` | 0.2 | 0.15 |
 | Green Peas (Dried) | `Base.GreenpeasSeed` | 0.02 | 0.0075 |
 | Green Sunfish | `Base.GreenSunfish` | 0.4 | 0.15 |
 | Grenadine | `Base.Grenadine` | 1 | 0.75 |
-| Griddle Pan | `Base.GridlePan` | 1.5 | 2.7 |
-| Grill Brush | `Base.GrillBrush` | 0.3 | 0.45 |
-| Ground Beef | `Base.MincedMeat` | 0.3 | 0.675 |
-| Guacamole | `Base.Guacamole` | 0.1 | 0.15 |
-| Guitar Case | `Base.Guitarcase` | 1 | 8.25 |
+| Griddle Pan | `Base.GridlePan` | 1.5 | 1.88 |
+| Grill Brush | `Base.GrillBrush` | 0.3 | 0.375 |
+| Ground Beef | `Base.MincedMeat` | 0.3 | 0.375 |
+| Guacamole | `Base.Guacamole` | 0.1 | 0.125 |
+| Guitar Case | `Base.Guitarcase` | 1 | 1.25 |
 | Guitar Pick | `Base.GuitarPick` | 0.1 | 0.00075 |
 | Gum - Coolmint | `Base.Gum` | 0.1 | 0.045 |
-| Gummy Bears | `Base.GummyBears` | 0.1 | 0.3 |
-| Gummy Fish Candy | `Base.CandyGummyfish` | 0.1 | 0.3 |
-| Gummy Worms | `Base.GummyWorms` | 0.1 | 0.3 |
-| Gun Case | `Base.Bag_RifleCase` | 1 | 5.4 |
-| Gun Case | `Base.Bag_RifleCase_Police` | 1 | 5.4 |
-| Gun Case | `Base.Bag_RifleCase_Police2` | 1 | 5.4 |
-| Gun Case | `Base.Bag_RifleCase_Police3` | 1 | 5.4 |
-| Gun Case | `Base.Bag_ShotgunCase_Police` | 1 | 5.4 |
-| Gun Case | `Base.RifleCase1` | 1 | 5.4 |
-| Gun Case | `Base.RifleCase2` | 1 | 5.4 |
-| Gun Case | `Base.RifleCase3` | 1 | 5.4 |
-| Gun Case | `Base.RifleCase4` | 1 | 5.4 |
-| Gun Case | `Base.ShotgunCase1` | 1 | 5.4 |
-| Gun Case | `Base.ShotgunCase2` | 1 | 5.4 |
-| Gun Case - Military | `Base.Bag_RifleCaseGreen` | 1 | 5.4 |
-| Gun Case - Military | `Base.Bag_RifleCaseGreen2` | 1 | 5.4 |
-| Gun Case - Military | `Base.Bag_ShotgunCaseGreen` | 1 | 5.4 |
+| Gummy Bears | `Base.GummyBears` | 0.1 | 0.125 |
+| Gummy Fish Candy | `Base.CandyGummyfish` | 0.1 | 0.125 |
+| Gummy Worms | `Base.GummyWorms` | 0.1 | 0.125 |
+| Gun Case | `Base.Bag_RifleCase` | 1 | 1.25 |
+| Gun Case | `Base.Bag_RifleCase_Police` | 1 | 1.25 |
+| Gun Case | `Base.Bag_RifleCase_Police2` | 1 | 1.25 |
+| Gun Case | `Base.Bag_RifleCase_Police3` | 1 | 1.25 |
+| Gun Case | `Base.Bag_ShotgunCase_Police` | 1 | 1.25 |
+| Gun Case | `Base.RifleCase1` | 1 | 1.25 |
+| Gun Case | `Base.RifleCase2` | 1 | 1.25 |
+| Gun Case | `Base.RifleCase3` | 1 | 1.25 |
+| Gun Case | `Base.RifleCase4` | 1 | 1.25 |
+| Gun Case | `Base.ShotgunCase1` | 1 | 1.25 |
+| Gun Case | `Base.ShotgunCase2` | 1 | 1.25 |
+| Gun Case - Military | `Base.Bag_RifleCaseGreen` | 1 | 1.25 |
+| Gun Case - Military | `Base.Bag_RifleCaseGreen2` | 1 | 1.25 |
+| Gun Case - Military | `Base.Bag_ShotgunCaseGreen` | 1 | 1.25 |
 | Gun Light | `Base.GunLight` | 0.2 | 0.18 |
 | Gunny Sack | `Base.Bag_Gunny` | 0.5 | 0.375 |
-| Gunpowder | `Base.GunPowder` | 0.5 (empty 0.01) | 0.42 (empty 0.075) |
+| Gunpowder | `Base.GunPowder` | 0.5 (empty 0.01) | 0.42 (empty 0.0125) |
 | Habanero | `Base.PepperHabanero` | 0.1 | 0.015 |
 | Habanero (Dried) | `Base.PepperHabaneroDried` | 0.1 | 0.0045 |
 | Habanero Seeds | `Base.HabaneroSeed` | 0.02 | 0.003 |
@@ -1815,66 +1815,66 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Hand-drawn Armor Schematic | `Base.ArmorSchematic` | 0.1 | 0.0075 |
 | Handbag | `Base.Handbag` | 1 | 1.2 |
 | Handguard Dagger | `Base.HandguardDagger` | 1 | 0.525 |
-| Handgun Case | `Base.PistolCase1` | 0.5 | 1.35 |
-| Handgun Case | `Base.PistolCase2` | 0.5 | 1.35 |
-| Handgun Case | `Base.PistolCase3` | 0.5 | 1.35 |
-| Handgun Case | `Base.RevolverCase1` | 0.5 | 1.35 |
-| Handgun Case | `Base.RevolverCase2` | 0.5 | 1.35 |
-| Handgun Case | `Base.RevolverCase3` | 0.5 | 1.35 |
+| Handgun Case | `Base.PistolCase1` | 0.5 | 0.625 |
+| Handgun Case | `Base.PistolCase2` | 0.5 | 0.625 |
+| Handgun Case | `Base.PistolCase3` | 0.5 | 0.625 |
+| Handgun Case | `Base.RevolverCase1` | 0.5 | 0.625 |
+| Handgun Case | `Base.RevolverCase2` | 0.5 | 0.625 |
+| Handgun Case | `Base.RevolverCase3` | 0.5 | 0.625 |
 | Handheld Game Console | `Base.VideoGame` | 0.8 | 0.375 |
 | Handiknife | `Base.Handiknife` | 0.4 | 0.18 |
 | Handwritten Letter | `Base.LetterHandwritten` | 0.1 | 0.015 |
 | Hanukkah Card | `Base.Card_Hanukkah` | 0.2 | 0.0225 |
 | Happy Face Pillow | `Base.Pillow_Happyface` | 1 | 0.9 |
-| Hard Candies | `Base.HardCandies` | 0.1 | 0.3 |
+| Hard Candies | `Base.HardCandies` | 0.1 | 0.125 |
 | Hard Hat | `Base.Hat_HardHat` | 1 | 0.6 |
 | Harmonica | `Base.Harmonica` | 0.3 | 0.15 |
-| Hatbox | `Base.Hatbox` | 0.5 | 2.25 |
+| Hatbox | `Base.Hatbox` | 0.5 | 0.625 |
 | Hatchet | `Base.HandAxe` | 1.5 | 1.35 |
 | Hatchet | `Base.HandAxeForged` | 1.5 | 1.35 |
-| Hatchet Head | `Base.HandAxeHead` | 0.5 | 0.675 |
+| Hatchet Head | `Base.HandAxeHead` | 0.5 | 0.625 |
 | Hay | `Base.HayTuft` | 0.1 | 0.075 |
-| Hazmat Suit | `Base.HazmatSuit` | 1 | 3.75 |
+| Hazmat Suit | `Base.HazmatSuit` | 1 | 1.25 |
 | Head Mirror | `Base.Hat_HeadMirrorDOWN` | 0.5 | 0.15 |
 | Head Mirror | `Base.Hat_HeadMirrorUP` | 0.5 | 0.15 |
-| Heading Tool | `Base.HeadingTool` | 0.5 | 0.75 |
+| Heading Tool | `Base.HeadingTool` | 0.5 | 0.625 |
 | Headphones | `Base.Headphones` | 0.3 | 0.375 |
 | Heart Pillow | `Base.Pillow_Heart` | 1 | 0.9 |
-| Heavy Chain | `Base.HeavyChain` | 10 | 15 |
+| Heavy Chain | `Base.HeavyChain` | 10 | 12.5 |
 | Heavy Chain Link | `Base.HeavyChainLink` | 0.5 | 0.3 |
-| Heavy Chain with Hook | `Base.HeavyChain_Hook` | 12.5 | 16.5 |
-| Hemp | `Base.HempBundle` | 1 | 1.5 |
+| Heavy Chain with Hook | `Base.HeavyChain_Hook` | 12.5 | 15.6 |
+| Hemp | `Base.HempBundle` | 1 | 1.25 |
 | Hemp (Dried) | `Base.HempBundleDried` | 1 | 1.05 |
 | Hemp (Scutched) | `Base.HempScutched` | 0.2 | 0.12 |
-| Hemp Dogbane | `Base.Dogbane` | 0.2 | 0.3 |
+| Hemp Dogbane | `Base.Dogbane` | 0.2 | 0.25 |
 | Hemp Seeds | `Base.HempSeed` | 0.02 | 0.003 |
 | Hi His | `Base.HiHis` | 0.2 | 0.12 |
 | Hide Apron | `Base.Apron_Hide` | 1 | 0.81 |
 | Hide Bandeau | `Base.Bandeau_Hide` | 1 | 0.162 |
-| Hide Boots | `Base.Shoes_HideBoots` | 1 | 1.5 |
-| Hide Coat | `Base.JacketLong_Hide` | 2 | 4.05 |
-| Hide Fanny Pack | `Base.Bag_FannyPackBack_Hide` | 0.2 | 0.375 |
-| Hide Fanny Pack | `Base.Bag_FannyPackFront_Hide` | 0.2 | 0.375 |
+| Hide Boots | `Base.Shoes_HideBoots` | 1 | 1.25 |
+| Hide Coat | `Base.JacketLong_Hide` | 2 | 2.5 |
+| Hide Fanny Pack | `Base.Bag_FannyPackBack_Hide` | 0.2 | 0.25 |
+| Hide Fanny Pack | `Base.Bag_FannyPackFront_Hide` | 0.2 | 0.25 |
 | Hide Hat | `Base.Hat_HideHat` | 1 | 0.27 |
 | Hide Headsack | `Base.Hat_HeadSack_Hide` | 1 | 0.405 |
 | Hide Holster | `Base.Holster_Hide` | 0.2 | 0.21 |
-| Hide Hoodie | `Base.Hoodie_Hide_DOWN` | 2 | 2.97 |
-| Hide Hoodie | `Base.Hoodie_Hide_UP` | 2 | 2.97 |
+| Hide Hoodie | `Base.Hoodie_Hide_DOWN` | 2 | 2.5 |
+| Hide Hoodie | `Base.Hoodie_Hide_UP` | 2 | 2.5 |
 | Hide Jacket | `Base.Jacket_Hide` | 2 | 2.43 |
 | Hide Mask | `Base.Hat_HockeyMask_Hide` | 1 | 0.0945 |
-| Hide Robe | `Base.LongCoat_Hide` | 1 | 4.05 |
-| Hide Sack | `Base.Bag_HideSack` | 0.5 | 1.2 |
-| Hide Sleeping Bag (Packed) | `Base.SleepingBag_Hide_Packed` | 4 | 6 |
-| Hide Sling Bag | `Base.Bag_HideSlingBag` | 0.8 | 1.2 |
+| Hide Robe | `Base.LongCoat_Hide` | 1 | 1.25 |
+| Hide Sack | `Base.Bag_HideSack` | 0.5 | 0.625 |
+| Hide Sleeping Bag (Packed) | `Base.SleepingBag_Hide_Packed` | 4 | 5 |
+| Hide Sling Bag | `Base.Bag_HideSlingBag` | 0.8 | 1 |
 | Hide Tank Top | `Base.Vest_Hide` | 1 | 0.945 |
-| Hide Tent (Packed) | `Base.HideTent_Packed` | 4 | 9 |
+| Hide Tent (Packed) | `Base.HideTent_Packed` | 4 | 5 |
 | Hide Wallet | `Base.Wallet_Hide` | 0.2 | 0.12 |
 | High Quality Sleeping Bag (Packed) | `Base.SleepingBag_HighQuality_Brown_Packed` | 3 | 2.7 |
 | High Visibility Vest | `Base.Vest_HighViz` | 1 | 0.225 |
-| High-end Camera | `Base.CameraExpensive` | 0.8 | 1.5 |
-| Hiking Backpack | `Base.Bag_HikingBag_Travel` | 1.2 | 2.25 |
-| Hiking Backpack | `Base.Bag_NormalHikingBag` | 1.2 | 2.25 |
-| Hiking Boots | `Base.Shoes_HikingBoots` | 1 | 2.25 |
+| High-end Camera | `Base.CameraExpensive` | 0.8 | 1 |
+| Hiking Backpack | `Base.Bag_HikingBag_Travel` | 1.2 | 1.5 |
+| Hiking Backpack | `Base.Bag_NormalHikingBag` | 1.2 | 1.5 |
+| Hiking Boots | `Base.Shoes_HikingBoots` | 1 | 1.25 |
 | Hobby Horse | `Base.HobbyHorse` | 2 | 0.9 |
 | Hockey Goalie Shinpad | `Base.Shinpad_HockeyGoalie_L` | 3 | 3.75 |
 | Hockey Goalie Shinpad | `Base.Shinpad_HockeyGoalie_L_Blue` | 3 | 3.75 |
@@ -1887,27 +1887,27 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Hockey Helmet | `Base.Hat_HockeyHelmet` | 1 | 0.675 |
 | Hockey Helmet | `Base.Hat_HockeyHelmet_TINT` | 1 | 0.675 |
 | Hockey Mask | `Base.Hat_HockeyMask` | 1 | 0.3 |
-| Hole Puncher | `Base.HolePuncher` | 0.3 | 0.45 |
+| Hole Puncher | `Base.HolePuncher` | 0.3 | 0.375 |
 | Hologram Skull Sunglasses | `Base.Glasses_Round_HoloSkulls` | 0.1 | 0.045 |
-| Holstein Calf Hide (Furred) | `Base.CalfLeather_Holstein_Fur` | 1 | 6 |
-| Holstein Calf Hide (Unprocessed) | `Base.CalfLeather_Holstein_Full` | 1 | 7.5 |
-| Holstein Calf Leather (Furred, Wet) | `Base.CalfLeather_Holstein_Fur_Tan_Wet` | 1 | 3 |
-| Holstein Hide (Furred) | `Base.CowLeather_Holstein_Fur` | 5 | 33.5 |
-| Holstein Hide (Unprocessed) | `Base.CowLeather_Holstein_Full` | 5 | 37.6 |
-| Holstein Leather (Furred, Wet) | `Base.CowLeather_Holstein_Fur_Tan_Wet` | 5 | 18 |
-| Holstein Leather Half (Furred) | `Base.CowLeather_Holstein_Fur_Tan_Medium` | 3 | 6.75 |
-| Holstein Leather Quarter (Furred) | `Base.CowLeather_Holstein_Fur_Tan_Small` | 1 | 3.3 |
-| Holster | `Base.HolsterSimple` | 0.2 | 0.3 |
-| Holster | `Base.HolsterSimple_Black` | 0.2 | 0.3 |
-| Holster | `Base.HolsterSimple_Brown` | 0.2 | 0.3 |
-| Holster | `Base.HolsterSimple_Green` | 0.2 | 0.3 |
-| Holster - Ankle | `Base.HolsterAnkle` | 0.2 | 0.3 |
-| Holster - Double | `Base.HolsterDouble` | 0.4 | 0.675 |
-| Holster - Shoulder | `Base.HolsterShoulder` | 0.4 | 0.525 |
+| Holstein Calf Hide (Furred) | `Base.CalfLeather_Holstein_Fur` | 1 | 1.25 |
+| Holstein Calf Hide (Unprocessed) | `Base.CalfLeather_Holstein_Full` | 1 | 1.25 |
+| Holstein Calf Leather (Furred, Wet) | `Base.CalfLeather_Holstein_Fur_Tan_Wet` | 1 | 1.25 |
+| Holstein Hide (Furred) | `Base.CowLeather_Holstein_Fur` | 5 | 6.25 |
+| Holstein Hide (Unprocessed) | `Base.CowLeather_Holstein_Full` | 5 | 6.25 |
+| Holstein Leather (Furred, Wet) | `Base.CowLeather_Holstein_Fur_Tan_Wet` | 5 | 6.25 |
+| Holstein Leather Half (Furred) | `Base.CowLeather_Holstein_Fur_Tan_Medium` | 3 | 3.75 |
+| Holstein Leather Quarter (Furred) | `Base.CowLeather_Holstein_Fur_Tan_Small` | 1 | 1.25 |
+| Holster | `Base.HolsterSimple` | 0.2 | 0.25 |
+| Holster | `Base.HolsterSimple_Black` | 0.2 | 0.25 |
+| Holster | `Base.HolsterSimple_Brown` | 0.2 | 0.25 |
+| Holster | `Base.HolsterSimple_Green` | 0.2 | 0.25 |
+| Holster - Ankle | `Base.HolsterAnkle` | 0.2 | 0.25 |
+| Holster - Double | `Base.HolsterDouble` | 0.4 | 0.5 |
+| Holster - Shoulder | `Base.HolsterShoulder` | 0.4 | 0.5 |
 | Home Alarm | `Base.HomeAlarm` | 1 | 0.75 |
-| Hominid Skull Fossil | `Base.Hominid_Skull` | 0.8 | 1.5 |
+| Hominid Skull Fossil | `Base.Hominid_Skull` | 0.8 | 1 |
 | Hominid Skull Fossil Fragment | `Base.Hominid_Skull_Fragment` | 0.2 | 0.15 |
-| Honey | `Base.Honey` | 0.4 | 0.555 |
+| Honey | `Base.Honey` | 0.4 | 0.5 |
 | Hood (*) | `Base.EngineDoor1` | 15 | 13 |
 | Hood (*) | `Base.EngineDoor2` | 15 | 13 |
 | Hood (*) | `Base.EngineDoor3` | 15 | 13 |
@@ -1925,18 +1925,18 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Horn Rimmed Prescription Glasses | `Base.Glasses_Normal_HornRimmed` | 0.1 | 0.045 |
 | Hospital Gown | `Base.HospitalGown` | 1 | 0.375 |
 | Hot Dog | `Base.Hotdog` | 0.3 | 0.195 |
-| Hot Drink | `Base.HotDrink` | 0.5 | 0.75 |
-| Hot Drink | `Base.HotDrinkClay` | 0.5 | 0.75 |
-| Hot Drink | `Base.HotDrinkSpiffo` | 0.5 | 0.825 |
+| Hot Drink | `Base.HotDrink` | 0.5 | 0.625 |
+| Hot Drink | `Base.HotDrinkClay` | 0.5 | 0.625 |
+| Hot Drink | `Base.HotDrinkSpiffo` | 0.5 | 0.625 |
 | Hot Drink | `Base.HotDrinkTea` | 0.5 | 0.33 |
 | Hot Drink | `Base.HotDrinkTeaCeramic` | 0.5 | 0.33 |
-| Hot Drink | `Base.HotDrinkWhite` | 0.5 | 0.75 |
-| Hot Sauce | `Base.Hotsauce` | 0.2 | 0.36 |
+| Hot Drink | `Base.HotDrinkWhite` | 0.5 | 0.625 |
+| Hot Sauce | `Base.Hotsauce` | 0.2 | 0.25 |
 | Hot Water Bottle | `Base.HotWaterBottle` | 0.4 | 0.45 |
 | Hotdog Bun | `Base.BunsHotdog_single` | 0.1 | 0.075 |
 | Hotdog Wiener | `Base.Hotdog_single` | 0.15 | 0.0825 |
 | HottieZ | `Base.HottieZ_New` | 0.5 | 0.3 |
-| Humidor | `Base.Humidor` | 1 | 2.7 |
+| Humidor | `Base.Humidor` | 1 | 1.25 |
 | Hunting Knife | `Base.HuntingKnife` | 1 | 0.375 |
 | Hunting Knife | `Base.HuntingKnifeForged` | 1 | 0.375 |
 | Hunting Knife Blade | `Base.HuntingKnifeBlade` | 1 | 0.15 |
@@ -1952,15 +1952,15 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Hurricane Lantern (Lit) | `Base.Lantern_Hurricane_ForgedLit` | 2 | 1.35 |
 | Hurricane Lantern - Copper | `Base.Lantern_Hurricane_Copper` | 2 | 1.5 |
 | Hurricane Lantern - Copper (Lit) | `Base.Lantern_Hurricane_CopperLit` | 2 | 1.5 |
-| Hurricane Lantern - Gold | `Base.Lantern_Hurricane_Gold` | 2 | 2.7 |
-| Hurricane Lantern - Gold (Lit) | `Base.Lantern_Hurricane_GoldLit` | 2 | 2.7 |
+| Hurricane Lantern - Gold | `Base.Lantern_Hurricane_Gold` | 2 | 2.5 |
+| Hurricane Lantern - Gold (Lit) | `Base.Lantern_Hurricane_GoldLit` | 2 | 2.5 |
 | Hurricane Lantern - Silver | `Base.Lantern_Hurricane_Silver` | 2 | 1.65 |
 | Hurricane Lantern - Silver (Lit) | `Base.Lantern_Hurricane_SilverLit` | 2 | 1.65 |
 | Hydration Pack | `Base.Bag_HydrationBackpack` | 1 | 0.75 |
 | Hydration Pack | `Base.Bag_HydrationBackpack_Camo` | 1 | 0.75 |
 | Ice Axe | `Base.IceAxe` | 2 | 0.9 |
-| Ice Cream - Vanilla | `Base.Icecream` | 0.2 | 0.45 |
-| Ice Cream - Vanilla (Melted) | `Base.IcecreamMelted` | 0.2 | 0.45 |
+| Ice Cream - Vanilla | `Base.Icecream` | 0.2 | 0.25 |
+| Ice Cream - Vanilla (Melted) | `Base.IcecreamMelted` | 0.2 | 0.25 |
 | Ice Cream Cone | `Base.ConeIcecreamToppings` | 0.2 | 0.18 |
 | Ice Cream Sandwich | `Base.IcecreamSandwich` | 0.2 | 0.12 |
 | Ice Cream Sandwich (Melted) | `Base.IcecreamSandwich_Melted` | 0.2 | 0.12 |
@@ -1988,76 +1988,76 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Improvised Poncho | `Base.PonchoTarp` | 1 | 0.338 |
 | Improvised Poncho | `Base.PonchoTarpDOWN` | 1 | 0.338 |
 | Improvised Screwdriver | `Base.Screwdriver_Improvised` | 0.5 | 0.15 |
-| Improvised Tent Kit (Packed) | `Base.ImprovisedTentKit_Packed` | 4 | 5.25 |
-| Improvised Whetstone | `Base.CrudeWhetstone` | 0.5 | 0.75 |
+| Improvised Tent Kit (Packed) | `Base.ImprovisedTentKit_Packed` | 4 | 5 |
+| Improvised Whetstone | `Base.CrudeWhetstone` | 0.5 | 0.625 |
 | Index Card | `Base.IndexCard` | 0.1 | 0.003 |
-| Industrial Dye | `Base.IndustrialDye` | 0.1 | 0.15 |
+| Industrial Dye | `Base.IndustrialDye` | 0.1 | 0.125 |
 | Insect Repellent | `Base.InsectRepellent` | 0.8 | 0.375 |
 | Instant Popcorn | `Base.Popcorn` | 0.3 | 0.15 |
-| Iron Band | `Base.IronBand` | 2 | 3 |
-| Iron Band - Small | `Base.IronBandSmall` | 0.5 | 0.75 |
-| Iron Bar | `Base.IronBar` | 2 | 3 |
-| Iron Bar Half | `Base.IronBarHalf` | 1 | 1.5 |
-| Iron Bar Mold | `Base.IronBarMold` | 6 | 9 |
-| Iron Bar Quarter | `Base.IronBarQuarter` | 0.5 | 0.75 |
-| Iron Block | `Base.IronBlock` | 2 | 3 |
-| Iron Block (Pierced) | `Base.PiercedIronBlock` | 2 | 2.94 |
+| Iron Band | `Base.IronBand` | 2 | 2.5 |
+| Iron Band - Small | `Base.IronBandSmall` | 0.5 | 0.625 |
+| Iron Bar | `Base.IronBar` | 2 | 2.5 |
+| Iron Bar Half | `Base.IronBarHalf` | 1 | 1.25 |
+| Iron Bar Mold | `Base.IronBarMold` | 6 | 7.5 |
+| Iron Bar Quarter | `Base.IronBarQuarter` | 0.5 | 0.625 |
+| Iron Block | `Base.IronBlock` | 2 | 2.5 |
+| Iron Block (Pierced) | `Base.PiercedIronBlock` | 2 | 2.5 |
 | Iron Bloom | `Base.IronBloom` | 20 | 7.5 |
-| Iron Chunk | `Base.IronChunk` | 0.5 | 0.75 |
-| Iron Chunk (Pierced) | `Base.PiercedIronChunk` | 0.5 | 0.735 |
-| Iron Ingot | `Base.IronIngot` | 6 | 9 |
-| Iron Ingot (Pierced) | `Base.PiercedIronIngot` | 6 | 8.85 |
-| Iron Ingot Mold | `Base.IronIngotMold` | 6 | 9 |
+| Iron Chunk | `Base.IronChunk` | 0.5 | 0.625 |
+| Iron Chunk (Pierced) | `Base.PiercedIronChunk` | 0.5 | 0.625 |
+| Iron Ingot | `Base.IronIngot` | 6 | 7.5 |
+| Iron Ingot (Pierced) | `Base.PiercedIronIngot` | 6 | 7.5 |
+| Iron Ingot Mold | `Base.IronIngotMold` | 6 | 7.5 |
 | Iron Ore | `Base.IronOre` | 40 | 13.5 |
-| Iron Piece | `Base.IronPiece` | 0.1 | 0.15 |
-| Iron Pipe | `Base.MetalPipe` | 1.5 | 2.55 |
-| Iron Pipe with Railspike | `Base.MetalPipe_Railspike` | 1.5 | 3.22 |
-| Iron Scrap | `Base.IronScrap` | 0.5 | 0.75 |
-| Jack (*) | `Base.Jack` | 1.5 | 2 |
-| Jack-o'-lantern | `Base.HalloweenPumpkin` | 1 | 4.5 |
+| Iron Piece | `Base.IronPiece` | 0.1 | 0.125 |
+| Iron Pipe | `Base.MetalPipe` | 1.5 | 1.88 |
+| Iron Pipe with Railspike | `Base.MetalPipe_Railspike` | 1.5 | 1.88 |
+| Iron Scrap | `Base.IronScrap` | 0.5 | 0.625 |
+| Jack (*) | `Base.Jack` | 1.5 | 1.88 |
+| Jack-o'-lantern | `Base.HalloweenPumpkin` | 1 | 1.25 |
 | Jacket | `Base.Jacket_WhiteTINT` | 2 | 1.2 |
 | Jacket - Chef | `Base.Jacket_Chef` | 2 | 0.6 |
 | Jacket - Hunting Camo | `Base.Jacket_HuntingCamo` | 2 | 1.2 |
 | Jacket - Navy Blue | `Base.Jacket_NavyBlue` | 2 | 1.2 |
-| Jacket - Varsity | `Base.Jacket_Varsity` | 1 | 1.8 |
+| Jacket - Varsity | `Base.Jacket_Varsity` | 1 | 1.25 |
 | Jacques The Beaver | `Base.JacquesBeaver` | 0.8 | 0.6 |
 | Jalapeno | `Base.PepperJalapeno` | 0.1 | 0.0375 |
 | Jalapeno (Dried) | `Base.PepperJalapenoDried` | 0.1 | 0.0075 |
 | Jalapeno Seeds | `Base.JalapenoSeed` | 0.02 | 0.003 |
-| Jar | `Base.EmptyJar` | 0.2 | 0.525 |
-| Jar | `Base.JarCrafted` | 0.2 | 0.525 |
+| Jar | `Base.EmptyJar` | 0.2 | 0.25 |
+| Jar | `Base.JarCrafted` | 0.2 | 0.25 |
 | Jar Lid | `Base.JarLid` | 0.1 | 0.018 |
-| Jar of Bell Peppers | `Base.CannedBellPepper` | 0.8 | 1.72 |
-| Jar of Bell Peppers (Open) | `Base.CannedBellPepper_Open` | 0.8 | 1.72 |
-| Jar of Broccoli | `Base.CannedBroccoli` | 0.8 | 1.72 |
-| Jar of Broccoli (Open) | `Base.CannedBroccoli_Open` | 0.8 | 1.72 |
-| Jar of Cabbage | `Base.CannedCabbage` | 0.8 | 1.72 |
-| Jar of Cabbage (Open) | `Base.CannedCabbage_Open` | 0.8 | 1.72 |
-| Jar of Carrots | `Base.CannedCarrots` | 0.8 | 1.72 |
-| Jar of Carrots (Open) | `Base.CannedCarrots_Open` | 0.8 | 1.72 |
-| Jar of Eggplants | `Base.CannedEggplant` | 0.8 | 1.72 |
-| Jar of Eggplants (Open) | `Base.CannedEggplant_Open` | 0.8 | 1.72 |
-| Jar of Fish Roe | `Base.CannedRoe` | 0.8 | 1.72 |
-| Jar of Leeks | `Base.CannedLeek` | 0.8 | 1.72 |
-| Jar of Leeks (Open) | `Base.CannedLeek_Open` | 0.8 | 1.72 |
-| Jar of Potatoes | `Base.CannedPotato` | 0.8 | 1.72 |
-| Jar of Potatoes (Open) | `Base.CannedPotato_Open` | 0.8 | 1.72 |
-| Jar of Radishes | `Base.CannedRedRadish` | 0.8 | 1.72 |
-| Jar of Radishes (Open) | `Base.CannedRedRadish_Open` | 0.8 | 1.72 |
-| Jar of Tomatoes | `Base.CannedTomato` | 0.8 | 1.72 |
-| Jar of Tomatoes (Open) | `Base.CannedTomato_Open` | 0.8 | 1.72 |
+| Jar of Bell Peppers | `Base.CannedBellPepper` | 0.8 | 1 |
+| Jar of Bell Peppers (Open) | `Base.CannedBellPepper_Open` | 0.8 | 1 |
+| Jar of Broccoli | `Base.CannedBroccoli` | 0.8 | 1 |
+| Jar of Broccoli (Open) | `Base.CannedBroccoli_Open` | 0.8 | 1 |
+| Jar of Cabbage | `Base.CannedCabbage` | 0.8 | 1 |
+| Jar of Cabbage (Open) | `Base.CannedCabbage_Open` | 0.8 | 1 |
+| Jar of Carrots | `Base.CannedCarrots` | 0.8 | 1 |
+| Jar of Carrots (Open) | `Base.CannedCarrots_Open` | 0.8 | 1 |
+| Jar of Eggplants | `Base.CannedEggplant` | 0.8 | 1 |
+| Jar of Eggplants (Open) | `Base.CannedEggplant_Open` | 0.8 | 1 |
+| Jar of Fish Roe | `Base.CannedRoe` | 0.8 | 1 |
+| Jar of Leeks | `Base.CannedLeek` | 0.8 | 1 |
+| Jar of Leeks (Open) | `Base.CannedLeek_Open` | 0.8 | 1 |
+| Jar of Potatoes | `Base.CannedPotato` | 0.8 | 1 |
+| Jar of Potatoes (Open) | `Base.CannedPotato_Open` | 0.8 | 1 |
+| Jar of Radishes | `Base.CannedRedRadish` | 0.8 | 1 |
+| Jar of Radishes (Open) | `Base.CannedRedRadish_Open` | 0.8 | 1 |
+| Jar of Tomatoes | `Base.CannedTomato` | 0.8 | 1 |
+| Jar of Tomatoes (Open) | `Base.CannedTomato_Open` | 0.8 | 1 |
 | Jawbone Club | `Base.JawboneBovide_Club` | 2 | 1.88 |
 | Jawbone Morningstar | `Base.JawboneBovide_Morningstar` | 4 | 3.9 |
-| Jawbone War Axe | `Base.JawboneBovide_Axe` | 2 | 2.55 |
+| Jawbone War Axe | `Base.JawboneBovide_Axe` | 2 | 2.5 |
 | Jeans | `Base.TrousersMesh_DenimLight` | 1 | 1.05 |
 | Jeans | `Base.Trousers_Denim` | 1 | 1.05 |
-| Jeans - Baggy | `Base.Trousers_JeanBaggy` | 1 | 1.27 |
+| Jeans - Baggy | `Base.Trousers_JeanBaggy` | 1 | 1.25 |
 | Jeans with Patches | `Base.Trousers_Denim_Punk` | 1 | 1.12 |
-| Jeans with Patches - Baggy | `Base.Trousers_JeanBaggy_Punk` | 1 | 1.35 |
+| Jeans with Patches - Baggy | `Base.Trousers_JeanBaggy_Punk` | 1 | 1.25 |
 | Jelly Donut | `Base.DoughnutJelly` | 0.1 | 0.105 |
 | Jelly Roll | `Base.JellyRoll` | 0.1 | 0.09 |
-| Jellybeans | `Base.JellyBeans` | 0.1 | 0.3 |
-| Jerrycan of Gas | `Base.JerryCan` | 4 | 6.75 |
+| Jellybeans | `Base.JellyBeans` | 0.1 | 0.125 |
+| Jerrycan of Gas | `Base.JerryCan` | 4 | 5 |
 | Jets Ice Hockey Jersey | `Base.Ice_Hockey_Jersey_Black` | 1 | 0.75 |
 | Jewelry Box | `Base.JewelleryBox` | 1 | 0.6 |
 | Jewelry Box | `Base.JewelleryBox_Fancy` | 1 | 1.05 |
@@ -2078,24 +2078,24 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Joke Hat - Knife | `Base.Hat_JokeKnife` | 0.3 | 0.15 |
 | Journal | `Base.Journal` | 1 | 0.45 |
 | JS-14 Magazine | `Base.JS14_Clip` | 0.2 | 0.225 |
-| JS-14 Rifle | `Base.JS14_Rifle` | 3.5 | 4.65 |
-| JS-2000 Shotgun | `Base.Shotgun` | 4 | 5.1 |
+| JS-14 Rifle | `Base.JS14_Rifle` | 3.5 | 4.38 |
+| JS-2000 Shotgun | `Base.Shotgun` | 4 | 5 |
 | JS-3T Tactical Shotgun | `Base.JS3T_Shotgun` | 4.5 | 5.1 |
-| Jug of Vinegar | `Base.Vinegar_Jug` | 2 | 5.85 |
+| Jug of Vinegar | `Base.Vinegar_Jug` | 2 | 2.5 |
 | Juice Box | `Base.JuiceBox` | 0.1 | 0.033 |
 | Juice Box | `Base.JuiceBoxApple` | 0.1 | 0.033 |
 | Juice Box | `Base.JuiceBoxFruitpunch` | 0.1 | 0.033 |
 | Juice Box | `Base.JuiceBoxOrange` | 0.1 | 0.033 |
-| Jujubes | `Base.Jujubes` | 0.1 | 0.3 |
+| Jujubes | `Base.Jujubes` | 0.1 | 0.125 |
 | Jumpsuit - Prisoner | `Base.Boilersuit_Prisoner` | 1 | 1.05 |
 | Jumpsuit - Prisoner | `Base.Boilersuit_PrisonerKhaki` | 1 | 1.05 |
-| Kale | `Base.Kale` | 0.2 | 0.375 |
+| Kale | `Base.Kale` | 0.2 | 0.25 |
 | Kale Seeds | `Base.KaleSeed` | 0.02 | 0.003 |
 | Katana | `Base.Katana` | 2 | 1.8 |
 | Katana Blade | `Base.Katana_Blade` | 2 | 1.05 |
 | Katana Blade Shard | `Base.Katana_Shard` | 0.5 | 0.3 |
 | Katana Handle | `Base.Katana_Handle` | 0.5 | 0.45 |
-| Ketchup | `Base.Ketchup` | 0.2 | 0.9 |
+| Ketchup | `Base.Ketchup` | 0.2 | 0.25 |
 | Kettle | `Base.Kettle` | 1 | 1.2 |
 | Kettle Maul - Metal Handle | `Base.KettleMace_Metal` | 6 | 6.9 |
 | Kettle Maul - Wood Handle | `Base.KettleMace_Wood` | 6 | 5.55 |
@@ -2113,10 +2113,10 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Key Ring - Eight Ball | `Base.KeyRing_EightBall` | 0.05 | 0.045 |
 | Key Ring - Forged | `Base.KeyRing_Forged` | 0.05 | 0.045 |
 | Key Ring - Four-Leaf Clover | `Base.KeyRing_Clover` | 0.05 | 0.045 |
-| Key Ring - Gold | `Base.KeyRing_Forged_Gold` | 0.05 | 0.152 |
+| Key Ring - Gold | `Base.KeyRing_Forged_Gold` | 0.05 | 0.0625 |
 | Key Ring - Hotdog | `Base.KeyRing_Hotdog` | 0.05 | 0.045 |
 | Key Ring - Kitty | `Base.KeyRing_Kitty` | 0.05 | 0.045 |
-| Key Ring - Large | `Base.KeyRing_Large` | 0.05 | 0.075 |
+| Key Ring - Large | `Base.KeyRing_Large` | 0.05 | 0.0625 |
 | Key Ring - Nolan's Used Cars | `Base.KeyRing_Nolans` | 0.05 | 0.045 |
 | Key Ring - Panther | `Base.KeyRing_Panther` | 0.05 | 0.045 |
 | Key Ring - Pine Tree | `Base.KeyRing_PineTree` | 0.05 | 0.045 |
@@ -2125,12 +2125,12 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Key Ring - Rainbow Star | `Base.KeyRing_RainbowStar` | 0.05 | 0.045 |
 | Key Ring - Rubber Duck | `Base.KeyRing_RubberDuck` | 0.05 | 0.045 |
 | Key Ring - Sexy | `Base.KeyRing_Sexy` | 0.05 | 0.045 |
-| Key Ring - Silver | `Base.KeyRing_Forged_Silver` | 0.05 | 0.0825 |
+| Key Ring - Silver | `Base.KeyRing_Forged_Silver` | 0.05 | 0.0625 |
 | Key Ring - Spiffos | `Base.KeyRing_Spiffos` | 0.05 | 0.045 |
 | Key Ring - Stinky Face | `Base.KeyRing_StinkyFace` | 0.05 | 0.045 |
 | Key Ring - West Maple Country Club | `Base.KeyRing_WestMaple` | 0.05 | 0.045 |
 | Key Ring Bottle Opener | `Base.BottleOpener_Keychain` | 0.05 | 0.03 |
-| Keytar | `Base.Keytar` | 2 | 5.25 |
+| Keytar | `Base.Keytar` | 2 | 2.5 |
 | Kidney Beans (Dried) | `Base.DriedKidneyBeans` | 2 | 0.69 |
 | Kitchen Knife | `Base.KitchenKnife` | 0.7 | 0.33 |
 | Kitchen Knife | `Base.KitchenKnifeForged` | 0.6 | 0.33 |
@@ -2139,8 +2139,8 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Knapping I: "Flint Knapping 101" | `Base.BookFlintKnapping1` | 1 | 0.45 |
 | Knapping II: "Guide to Kentucky Geology" | `Base.BookFlintKnapping2` | 1 | 0.45 |
 | Knapping III: "Lithic Technology Manual 1993" | `Base.BookFlintKnapping3` | 1 | 0.9 |
-| Knapping IV: "Schmidt Rock Hardness Testing Techniques" | `Base.BookFlintKnapping4` | 1 | 1.35 |
-| Knapping V: "Technological Morphometrics of Clovis Artifacts" | `Base.BookFlintKnapping5` | 1 | 1.35 |
+| Knapping IV: "Schmidt Rock Hardness Testing Techniques" | `Base.BookFlintKnapping4` | 1 | 1.25 |
+| Knapping V: "Technological Morphometrics of Clovis Artifacts" | `Base.BookFlintKnapping5` | 1 | 1.25 |
 | Knee-length Dress | `Base.Dress_Knees` | 1 | 0.6 |
 | Knee-length Skirt | `Base.Skirt_Knees` | 1 | 0.45 |
 | Knee-length Skirt - Deer Hide | `Base.Skirt_Knees_DeerHide` | 1 | 1.22 |
@@ -2166,53 +2166,53 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Knitting Needles - Bone | `Base.KnittingNeedles_Bone` | 0.3 | 0.06 |
 | Knitting Needles - Wood | `Base.KnittingNeedles_Wood` | 0.3 | 0.045 |
 | L92 Carbine | `Base.L92_Carbine` | 3.5 | 4.05 |
-| L94 Rifle | `Base.L94_Rifle` | 3.5 | 4.5 |
-| Lacrosse Stick | `Base.LaCrosseStick` | 0.4 | 0.525 |
+| L94 Rifle | `Base.L94_Rifle` | 3.5 | 4.38 |
+| Lacrosse Stick | `Base.LaCrosseStick` | 0.4 | 0.5 |
 | Ladle | `Base.Ladle` | 0.6 | 0.225 |
 | Ladybug | `Base.Ladybug` | 0.01 | 0.0003 |
-| Lamb Head | `Base.Sheep_Lamb_Head_Black` | 0.8 | 1.8 |
-| Lamb Head | `Base.Sheep_Lamb_Head_White` | 0.8 | 1.8 |
-| Lamb Hide (Furred) | `Base.LambLeather_Fur` | 1 | 1.5 |
-| Lamb Hide (Unprocessed) | `Base.LambLeather_Full` | 1 | 1.8 |
+| Lamb Head | `Base.Sheep_Lamb_Head_Black` | 0.8 | 1 |
+| Lamb Head | `Base.Sheep_Lamb_Head_White` | 0.8 | 1 |
+| Lamb Hide (Furred) | `Base.LambLeather_Fur` | 1 | 1.25 |
+| Lamb Hide (Unprocessed) | `Base.LambLeather_Full` | 1 | 1.25 |
 | Lamb Leather (Furred, Wet) | `Base.LambLeather_Fur_Tan_Wet` | 1 | 0.9 |
-| Landrace Pig Hide (Furred) | `Base.PigLeather_Landrace_Fur` | 3 | 7.5 |
-| Landrace Pig Hide (Unprocessed) | `Base.PigLeather_Landrace_Full` | 3 | 9 |
-| Landrace Pig Leather (Furred, Wet) | `Base.PigLeather_Landrace_Fur_Tan_Wet` | 3 | 4.5 |
-| Landrace Pig Leather Half (Furred) | `Base.PigLeather_Landrace_Fur_Tan_Small` | 1 | 1.8 |
+| Landrace Pig Hide (Furred) | `Base.PigLeather_Landrace_Fur` | 3 | 3.75 |
+| Landrace Pig Hide (Unprocessed) | `Base.PigLeather_Landrace_Full` | 3 | 3.75 |
+| Landrace Pig Leather (Furred, Wet) | `Base.PigLeather_Landrace_Fur_Tan_Wet` | 3 | 3.75 |
+| Landrace Pig Leather Half (Furred) | `Base.PigLeather_Landrace_Fur_Tan_Small` | 1 | 1.25 |
 | Landrace Piglet Hide (Furred) | `Base.PigletLeather_Landrace_Fur` | 1 | 1.2 |
-| Landrace Piglet Hide (Unprocessed) | `Base.PigletLeather_Landrace_Full` | 1 | 1.5 |
+| Landrace Piglet Hide (Unprocessed) | `Base.PigletLeather_Landrace_Full` | 1 | 1.25 |
 | Landrace Piglet Leather (Tanned, Furred, Wet) | `Base.PigletLeather_Landrace_Fur_Tan_Wet` | 1 | 0.75 |
 | Lantern Glass | `Base.LanternGlass` | 1 | 0.225 |
-| Lard | `Base.Lard` | 0.3 | 0.69 |
+| Lard | `Base.Lard` | 0.3 | 0.375 |
 | Large Animal Bone | `Base.LargeAnimalBone` | 2 | 2.25 |
 | Large Bone Bead | `Base.BoneBead_Large` | 0.3 | 0.015 |
 | Large Branch | `Base.LargeBranch` | 6 | 7.5 |
 | Large Ceramic Crucible | `Base.CeramicCrucible` | 5 | 5.25 |
-| Large Ceramic Crucible with Iron | `Base.CeramicCrucible_Iron` | 15 | 26.2 |
-| Large Ceramic Crucible with Steel | `Base.CeramicCrucible_Steel` | 15 | 26.2 |
+| Large Ceramic Crucible with Iron | `Base.CeramicCrucible_Iron` | 15 | 18.8 |
+| Large Ceramic Crucible with Steel | `Base.CeramicCrucible_Steel` | 15 | 18.8 |
 | Large Clay Crucible (Unfired) | `Base.CeramicCrucibleUnfired` | 5 | 5.85 |
 | Large Crystal | `Base.Crystal_Large` | 5 | 3 |
 | Large Framepack | `Base.Bag_CraftedFramepack_Large3` | 4 | 4.5 |
 | Large Handle | `Base.LongHandle` | 2 | 1.2 |
 | Large Handle - Can-Reinforced | `Base.LongHandle_Can` | 2.5 | 1.35 |
-| Large Handle with Brake Disc | `Base.LongHandle_Brake` | 4 | 7.2 |
+| Large Handle with Brake Disc | `Base.LongHandle_Brake` | 4 | 5 |
 | Large Handle with Nails | `Base.LongHandle_Nails` | 2 | 1.27 |
 | Large Handle with Railspike | `Base.LongHandle_Railspike` | 2 | 1.88 |
 | Large Handle with Rake Spikes | `Base.LongHandle_RakeHead` | 2 | 2.1 |
 | Large Handle with Sawblade | `Base.LongHandle_Sawblade` | 2 | 1.65 |
-| Large Hide (Crude) | `Base.Leather_Crude_Large` | 5 | 7.5 |
+| Large Hide (Crude) | `Base.Leather_Crude_Large` | 5 | 6.25 |
 | Large Hook | `Base.LargeHook` | 2 | 0.75 |
 | Large Knife | `Base.LargeKnife` | 1 | 0.45 |
 | Large Knife Blade | `Base.LargeKnifeBlade` | 1 | 0.225 |
 | Large Leather (Crude) | `Base.Leather_Crude_Large_Tan` | 5 | 4.5 |
 | Large Leather (Crude, Wet) | `Base.Leather_Crude_Large_Tan_Wet` | 5 | 6 |
 | Large Meteorite | `Base.LargeMeteorite` | 40 | 37.6 |
-| Large Plank | `Base.LargePlank` | 10 | 15 |
-| Large Smooth Flat Stone | `Base.FlatStone` | 10 | 18 |
+| Large Plank | `Base.LargePlank` | 10 | 12.5 |
+| Large Smooth Flat Stone | `Base.FlatStone` | 10 | 12.5 |
 | Large Stone | `Base.LargeStone` | 40 | 42.6 |
 | Large Stone Axe | `Base.StoneAxeLarge` | 3 | 2.47 |
-| Large Stone Axe Head | `Base.StoneAxeHead` | 1 | 1.8 |
-| Largemouth Bass | `Base.LargemouthBass` | 0.4 | 1.5 |
+| Large Stone Axe Head | `Base.StoneAxeHead` | 1 | 1.25 |
+| Largemouth Bass | `Base.LargemouthBass` | 0.4 | 0.5 |
 | Laser Sight | `Base.Laser` | 0.6 | 0.15 |
 | Latch | `Base.Latch` | 0.5 | 0.15 |
 | Laundry Bag | `Base.Bag_Laundry` | 0.5 | 0.375 |
@@ -2221,30 +2221,30 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Lavender | `Base.Lavender` | 0.1 | 0.045 |
 | Lavender Petals (Dried) | `Base.LavenderPetalsDried` | 0.1 | 0.0105 |
 | Lavender Seeds | `Base.LavenderSeed` | 0.02 | 0.003 |
-| Lead Pipe | `Base.LeadPipe` | 1.5 | 5.4 |
+| Lead Pipe | `Base.LeadPipe` | 1.5 | 1.88 |
 | Leaf Rake | `Base.LeafRake` | 1.5 | 1.35 |
 | Leash | `Base.Leash` | 0.3 | 0.15 |
 | Leather Apron | `Base.Apron_Leather` | 1 | 0.72 |
-| Leather Coat | `Base.JacketLong_Black` | 2 | 2.85 |
-| Leather Coat | `Base.JacketLong_Random` | 2 | 2.85 |
+| Leather Coat | `Base.JacketLong_Black` | 2 | 2.5 |
+| Leather Coat | `Base.JacketLong_Random` | 2 | 2.5 |
 | Leather Codpiece | `Base.Codpiece_Leather` | 0.5 | 0.225 |
 | Leather Forearm Armor | `Base.Vambrace_Leather_Left` | 0.5 | 0.525 |
 | Leather Forearm Armor | `Base.Vambrace_Leather_Right` | 0.5 | 0.525 |
-| Leather Gloves | `Base.Gloves_LeatherGloves` | 0.1 | 0.27 |
-| Leather Gloves | `Base.Gloves_LeatherGlovesBlack` | 0.1 | 0.27 |
-| Leather Gloves | `Base.Gloves_LeatherGlovesBrown` | 0.1 | 0.27 |
+| Leather Gloves | `Base.Gloves_LeatherGloves` | 0.1 | 0.125 |
+| Leather Gloves | `Base.Gloves_LeatherGlovesBlack` | 0.1 | 0.125 |
+| Leather Gloves | `Base.Gloves_LeatherGlovesBrown` | 0.1 | 0.125 |
 | Leather Jacket | `Base.Jacket_Black` | 2 | 2.25 |
 | Leather Jacket | `Base.Jacket_Leather` | 2 | 2.25 |
 | Leather Jacket | `Base.Jacket_LeatherBlack` | 2 | 2.25 |
 | Leather Jacket | `Base.Jacket_LeatherBrown` | 2 | 2.25 |
 | Leather Jacket - Barrel Dogs | `Base.Jacket_LeatherBarrelDogs` | 2 | 2.25 |
 | Leather Jacket - Iron Rodent | `Base.Jacket_LeatherIronRodent` | 2 | 2.25 |
-| Leather Jacket - Punk | `Base.Jacket_Leather_Punk` | 2 | 3 |
+| Leather Jacket - Punk | `Base.Jacket_Leather_Punk` | 2 | 2.5 |
 | Leather Jacket - Wild Racoons | `Base.Jacket_LeatherWildRacoons` | 2 | 2.25 |
 | Leather Neck Guard | `Base.Gorget_Leather` | 0.5 | 0.3 |
-| Leather Pants | `Base.Trousers_LeatherBlack` | 1 | 1.65 |
-| Leather Pants - Skinny | `Base.TrousersMesh_Leather` | 1 | 1.65 |
-| Leather Satchel | `Base.Bag_Satchel_Leather` | 1 | 1.8 |
+| Leather Pants | `Base.Trousers_LeatherBlack` | 1 | 1.25 |
+| Leather Pants - Skinny | `Base.TrousersMesh_Leather` | 1 | 1.25 |
+| Leather Satchel | `Base.Bag_Satchel_Leather` | 1 | 1.25 |
 | Leather Strip Footwraps | `Base.Shoes_LeatherWrap` | 0.2 | 0.24 |
 | Leather Strip Handwraps | `Base.Gloves_LeatherWrap` | 0.2 | 0.12 |
 | Leather Strip Headband | `Base.Hat_LeatherStripTied` | 0.2 | 0.03 |
@@ -2260,19 +2260,19 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Leather Vest with Patches | `Base.Vest_Leather_Biker` | 1 | 1.2 |
 | Leather Vest with Patches | `Base.Vest_Leather_Veteran` | 1 | 1.2 |
 | Leather Water Bag | `Base.Bag_LeatherWaterBag` | 0.3 | 0.375 |
-| Leatherbound Book | `Base.BookFancy_Bible` | 1 | 1.5 |
-| Leatherbound Book | `Base.BookFancy_ClassicFiction` | 1 | 1.5 |
-| Leatherbound Book | `Base.BookFancy_ClassicNonfiction` | 1 | 1.5 |
-| Leatherbound Book | `Base.BookFancy_History` | 1 | 1.5 |
-| Leatherbound Book | `Base.BookFancy_Legal` | 1 | 1.5 |
-| Leatherbound Book | `Base.BookFancy_Medical` | 1 | 1.5 |
-| Leatherbound Book | `Base.BookFancy_MilitaryHistory` | 1 | 1.5 |
-| Leatherbound Book | `Base.BookFancy_Occult` | 1 | 1.5 |
-| Leatherbound Book | `Base.BookFancy_Philosophy` | 1 | 1.5 |
-| Leatherbound Book | `Base.BookFancy_Politics` | 1 | 1.5 |
+| Leatherbound Book | `Base.BookFancy_Bible` | 1 | 1.25 |
+| Leatherbound Book | `Base.BookFancy_ClassicFiction` | 1 | 1.25 |
+| Leatherbound Book | `Base.BookFancy_ClassicNonfiction` | 1 | 1.25 |
+| Leatherbound Book | `Base.BookFancy_History` | 1 | 1.25 |
+| Leatherbound Book | `Base.BookFancy_Legal` | 1 | 1.25 |
+| Leatherbound Book | `Base.BookFancy_Medical` | 1 | 1.25 |
+| Leatherbound Book | `Base.BookFancy_MilitaryHistory` | 1 | 1.25 |
+| Leatherbound Book | `Base.BookFancy_Occult` | 1 | 1.25 |
+| Leatherbound Book | `Base.BookFancy_Philosophy` | 1 | 1.25 |
+| Leatherbound Book | `Base.BookFancy_Politics` | 1 | 1.25 |
 | Leatherbound Book | `Base.HollowFancyBook` | 1 | 0.975 |
 | Leech | `Base.Leech` | 0.1 | 0.0075 |
-| Leek | `Base.Leek` | 0.2 | 0.3 |
+| Leek | `Base.Leek` | 0.2 | 0.25 |
 | Leek Seeds | `Base.LeekSeed` | 0.02 | 0.003 |
 | Legwarmers | `Base.Socks_LegWarmers` | 0.2 | 0.225 |
 | Lemon | `Base.Lemon` | 0.2 | 0.15 |
@@ -2282,11 +2282,11 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Lemongrass | `Base.LemonGrass` | 0.1 | 0.045 |
 | Lentils (Dried) | `Base.DriedLentils` | 2 | 0.69 |
 | Letter Opener | `Base.LetterOpener` | 0.3 | 0.075 |
-| Lettuce | `Base.Lettuce` | 0.2 | 0.75 |
+| Lettuce | `Base.Lettuce` | 0.2 | 0.25 |
 | Lettuce Seeds | `Base.LettuceSeed` | 0.02 | 0.003 |
 | Licorice | `Base.LicoriceBlack` | 0.1 | 0.0525 |
 | Licorice | `Base.LicoriceRed` | 0.1 | 0.0525 |
-| Licorice Allsorts | `Base.Allsorts` | 0.2 | 0.3 |
+| Licorice Allsorts | `Base.Allsorts` | 0.2 | 0.25 |
 | Light Bulb | `Base.LightBulb` | 0.3 | 0.0525 |
 | Light Bulb - Blue | `Base.LightBulbBlue` | 0.3 | 0.0525 |
 | Light Bulb - Cyan | `Base.LightBulbCyan` | 0.3 | 0.0525 |
@@ -2306,24 +2306,24 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Lighter - Improvised Battery | `Base.Lighter_Battery` | 0.1 | 0.12 |
 | Lighter Fluid | `Base.LighterFluid` | 0.2 | 0.225 |
 | Lime | `Base.Lime` | 0.2 | 0.105 |
-| Limestone | `Base.Limestone` | 1 | 1.5 |
+| Limestone | `Base.Limestone` | 1 | 1.25 |
 | Lipstick | `Base.Lipstick` | 0.2 | 0.03 |
 | Lit Candle | `Base.CandleLit` | 0.2 | 0.15 |
 | Little Bait Fish | `Base.BaitFish` | 0.1 | 0.015 |
-| Lobster | `Base.Lobster` | 0.4 | 0.9 |
+| Lobster | `Base.Lobster` | 0.4 | 0.5 |
 | Locket | `Base.Locket` | 0.1 | 0.0225 |
-| Log | `Base.Log` | 9 | 17.2 |
-| Log Stack - Four | `Base.LogStacks4` | 12 | 42.8 |
-| Log Stack - Three | `Base.LogStacks3` | 9 | 39.8 |
-| Log Stack - Two | `Base.LogStacks2` | 6 | 32.6 |
+| Log | `Base.Log` | 9 | 11.2 |
+| Log Stack - Four | `Base.LogStacks4` | 12 | 15 |
+| Log Stack - Three | `Base.LogStacks3` | 9 | 11.2 |
+| Log Stack - Two | `Base.LogStacks2` | 6 | 7.5 |
 | Lollipop | `Base.Lollipop` | 0.1 | 0.0225 |
 | Long Animal Skull Necklace | `Base.NecklaceLong_SkullMammal` | 0.1 | 0.09 |
-| Long Animal Skulls Necklace | `Base.NecklaceLong_SkullMammal_Multi` | 0.1 | 0.225 |
+| Long Animal Skulls Necklace | `Base.NecklaceLong_SkullMammal_Multi` | 0.1 | 0.125 |
 | Long Blade I: "Cool Swords!" | `Base.BookLongBlade1` | 1 | 0.45 |
 | Long Blade II: "Fencing: A History" | `Base.BookLongBlade2` | 1 | 0.45 |
 | Long Blade III: "Old Sword-Play" by Alfred Hutton | `Base.BookLongBlade3` | 1 | 0.9 |
-| Long Blade IV: "The Zettels of Johannes Liechtenauer" | `Base.BookLongBlade4` | 1 | 1.35 |
-| Long Blade V: "Wear Analysis of Selected Medieval Swords" | `Base.BookLongBlade5` | 1 | 1.35 |
+| Long Blade IV: "The Zettels of Johannes Liechtenauer" | `Base.BookLongBlade4` | 1 | 1.25 |
+| Long Blade V: "Wear Analysis of Selected Medieval Swords" | `Base.BookLongBlade5` | 1 | 1.25 |
 | Long Dress | `Base.Dress_Long` | 1 | 0.825 |
 | Long Gloves | `Base.Gloves_LongWomenGloves` | 0.1 | 0.09 |
 | Long Johns | `Base.LongJohns` | 1 | 0.675 |
@@ -2340,7 +2340,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Long Simple Metal Knife | `Base.LongCrudeKnife` | 1 | 0.375 |
 | Long Skirt | `Base.Skirt_Long` | 1 | 0.675 |
 | Long Skirt - Garbage Bag | `Base.Skirt_Long_Garbage` | 1 | 0.113 |
-| Long Skirt - Hide | `Base.Skirt_Long_Hide` | 1 | 2.03 |
+| Long Skirt - Hide | `Base.Skirt_Long_Hide` | 1 | 1.25 |
 | Long Skirt - Tarp | `Base.Skirt_Long_Tarp` | 1 | 0.338 |
 | Long Sleeve T-shirt | `Base.Tshirt_LongSleeve_SuperColor` | 1 | 0.33 |
 | Long Sleeve T-shirt | `Base.Tshirt_WhiteLongSleeve` | 1 | 0.33 |
@@ -2360,23 +2360,23 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Long Teeth Necklace | `Base.NecklaceLong_Teeth` | 0.1 | 0.09 |
 | Loupe | `Base.Loupe` | 0.1 | 0.045 |
 | LSU Ice Hockey Jersey | `Base.Ice_Hockey_Jersey_BlueUni` | 1 | 0.75 |
-| Lug Wrench | `Base.LugWrench` | 1 | 1.5 |
+| Lug Wrench | `Base.LugWrench` | 1 | 1.25 |
 | Lunar New Year Card | `Base.Card_LunarYear` | 0.2 | 0.0225 |
 | Lunchbag | `Base.Lunchbag` | 0.1 | 0.0225 |
 | Lunchbox | `Base.Lunchbox` | 1 | 0.525 |
 | Lunchbox | `Base.Lunchbox2` | 1 | 0.525 |
-| M16 Assault Rifle | `Base.AssaultRifle` | 4 | 5.1 |
+| M16 Assault Rifle | `Base.AssaultRifle` | 4 | 5 |
 | M16 Magazine | `Base.556Clip` | 0.2 | 0.17 |
 | M1911 Auto Magazine | `Base.45Clip` | 0.2 | 0.128 |
 | M1911 Pistol | `Base.Pistol2` | 1.5 | 1.65 |
-| M1A Magazine | `Base.M14Clip` | 0.2 | 0.3 |
-| M1A Rifle | `Base.AssaultRifle2` | 4.5 | 6.3 |
+| M1A Magazine | `Base.M14Clip` | 0.2 | 0.25 |
+| M1A Rifle | `Base.AssaultRifle2` | 4.5 | 5.62 |
 | M9 Magazine | `Base.9mmClip` | 0.2 | 0.135 |
 | M9 Pistol | `Base.Pistol` | 1.5 | 1.42 |
 | Mac and Cheese | `Base.Macandcheese` | 0.5 | 0.345 |
 | Macaroni | `Base.Macaroni` | 2 | 0.69 |
-| Mace | `Base.Mace` | 1.5 | 2.25 |
-| Mace Head | `Base.MaceHead` | 1 | 1.5 |
+| Mace | `Base.Mace` | 1.5 | 1.88 |
+| Mace Head | `Base.MaceHead` | 1 | 1.25 |
 | Machete | `Base.Machete` | 2 | 0.9 |
 | Machete | `Base.MacheteForged` | 2 | 0.9 |
 | Machete Blade | `Base.MacheteBlade` | 2 | 0.675 |
@@ -2433,12 +2433,12 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Magazine | `Base.Magazine_Teens` | 0.5 | 0.3 |
 | Magazine | `Base.Magazine_Teens_New` | 0.5 | 0.3 |
 | Magazine Body Armor | `Base.Cuirass_Magazine` | 4 | 3 |
-| Magazine Limb Armor | `Base.GreaveMagazine_Left` | 0.6 | 0.9 |
-| Magazine Limb Armor | `Base.GreaveMagazine_Right` | 0.6 | 0.9 |
-| Magazine Limb Armor | `Base.ThighMagazine_L` | 0.6 | 0.9 |
-| Magazine Limb Armor | `Base.ThighMagazine_R` | 0.6 | 0.9 |
-| Magazine Limb Armor | `Base.VambraceMagazine_Left` | 0.6 | 0.9 |
-| Magazine Limb Armor | `Base.VambraceMagazine_Right` | 0.6 | 0.9 |
+| Magazine Limb Armor | `Base.GreaveMagazine_Left` | 0.6 | 0.75 |
+| Magazine Limb Armor | `Base.GreaveMagazine_Right` | 0.6 | 0.75 |
+| Magazine Limb Armor | `Base.ThighMagazine_L` | 0.6 | 0.75 |
+| Magazine Limb Armor | `Base.ThighMagazine_R` | 0.6 | 0.75 |
+| Magazine Limb Armor | `Base.VambraceMagazine_Left` | 0.6 | 0.75 |
+| Magazine Limb Armor | `Base.VambraceMagazine_Right` | 0.6 | 0.75 |
 | Magazine: Alpine Explorers | `Base.TailoringMag9` | 0.5 | 0.3 |
 | Magazine: American Bladecraft | `Base.SmithingMag8` | 0.5 | 0.3 |
 | Magazine: American Homesteading | `Base.FarmingMag5` | 0.5 | 0.3 |
@@ -2532,23 +2532,23 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Magazine: Zapper! | `Base.ElectronicsMag1` | 0.5 | 0.3 |
 | Maggots | `Base.Maggots` | 0.01 | 0.003 |
 | Magnesium Firestarter | `Base.MagnesiumFirestarter` | 0.1 | 0.105 |
-| Magnesium Shavings | `Base.MagnesiumShavings` | 0.001 | 0.0015 |
+| Magnesium Shavings | `Base.MagnesiumShavings` | 0.001 | 0.00125 |
 | Magnifying Glass | `Base.MagnifyingGlass` | 0.5 | 0.15 |
 | Magnum | `Base.Revolver_Long` | 2 | 2.1 |
 | Mail | `Base.GenericMail` | 0.1 | 0.03 |
-| Mail Bag | `Base.Bag_Mail` | 0.5 | 1.5 |
+| Mail Bag | `Base.Bag_Mail` | 0.5 | 0.625 |
 | Mail Satchel | `Base.Bag_Satchel_Mail` | 1 | 1.05 |
 | Maintenance I: "Basic Repairs" | `Base.BookMaintenance1` | 1 | 0.45 |
 | Maintenance II: "Better Tools, Made Easy" | `Base.BookMaintenance2` | 1 | 0.45 |
 | Maintenance III: "Home Guide to Tool Repairs" | `Base.BookMaintenance3` | 1 | 0.9 |
-| Maintenance IV: "Maintaining High Grade Tools" | `Base.BookMaintenance4` | 1 | 1.35 |
-| Maintenance V: "Understanding Biomechanics of Tool Use" | `Base.BookMaintenance5` | 1 | 1.35 |
+| Maintenance IV: "Maintaining High Grade Tools" | `Base.BookMaintenance4` | 1 | 1.25 |
+| Maintenance V: "Understanding Biomechanics of Tool Use" | `Base.BookMaintenance5` | 1 | 1.25 |
 | Makeshift Fishing Rod | `Base.CraftedFishingRod` | 1 | 0.6 |
 | Makeshift Ham Radio | `Base.HamRadioMakeShift` | 15 | 7.5 |
 | Makeshift Walkie Talkie | `Base.WalkieTalkieMakeShift` | 5 | 0.9 |
-| Makeup Case | `Base.MakeupCase_Professional` | 1 | 2.25 |
-| Maki | `Base.Maki` | 0.1 | 0.225 |
-| Mango | `Base.Mango` | 0.3 | 0.525 |
+| Makeup Case | `Base.MakeupCase_Professional` | 1 | 1.25 |
+| Maki | `Base.Maki` | 0.1 | 0.125 |
+| Mango | `Base.Mango` | 0.3 | 0.375 |
 | Map | `Base.Map` | 0.2 | 0.045 |
 | Map: Louisville Central | `Base.LouisvilleMap5` | 0.2 | 0.045 |
 | Map: Louisville East | `Base.LouisvilleMap6` | 0.2 | 0.045 |
@@ -2564,40 +2564,40 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Map: Riverside | `Base.RiversideMap` | 0.2 | 0.045 |
 | Map: Rosewood | `Base.RosewoodMap` | 0.2 | 0.045 |
 | Map: West Point | `Base.WestpointMap` | 0.2 | 0.045 |
-| Maple Syrup | `Base.MapleSyrup` | 0.2 | 0.75 |
-| Margarine | `Base.Margarine` | 0.3 | 0.675 |
+| Maple Syrup | `Base.MapleSyrup` | 0.2 | 0.25 |
+| Margarine | `Base.Margarine` | 0.3 | 0.375 |
 | Marigold | `Base.Marigold` | 0.1 | 0.045 |
 | Marigold (Dried) | `Base.MarigoldDried` | 0.1 | 0.0105 |
 | Marigold Seeds | `Base.MarigoldSeed` | 0.02 | 0.003 |
-| Marinara | `Base.Marinara` | 0.2 | 1.42 |
+| Marinara | `Base.Marinara` | 0.2 | 0.25 |
 | Marker - Black | `Base.MarkerBlack` | 0.2 | 0.0225 |
 | Marker - Blue | `Base.MarkerBlue` | 0.2 | 0.0225 |
 | Marker - Green | `Base.MarkerGreen` | 0.2 | 0.0225 |
 | Marker - Red | `Base.MarkerRed` | 0.2 | 0.0225 |
-| Marmalade | `Base.JamMarmalade` | 0.2 | 0.63 |
-| Marshmallows | `Base.Marshmallows` | 0.1 | 0.3 |
+| Marmalade | `Base.JamMarmalade` | 0.2 | 0.25 |
+| Marshmallows | `Base.Marshmallows` | 0.1 | 0.125 |
 | Mason's Chisel | `Base.MasonsChisel` | 1 | 0.6 |
 | Mason's Trowel | `Base.MasonsTrowel` | 1 | 0.675 |
 | Masonry I: "A Bricklayer's Life" | `Base.BookMasonry1` | 1 | 0.45 |
 | Masonry II: "Flooring: Do It Yourself" | `Base.BookMasonry2` | 1 | 0.45 |
 | Masonry III: "Dibnah's Guide to Bricks" | `Base.BookMasonry3` | 1 | 0.9 |
-| Masonry IV: "Secrets of a Professional Mason" | `Base.BookMasonry4` | 1 | 1.35 |
-| Masonry V: "Statistical Analysis of Historic Masonry Constructions" | `Base.BookMasonry5` | 1 | 1.35 |
+| Masonry IV: "Secrets of a Professional Mason" | `Base.BookMasonry4` | 1 | 1.25 |
+| Masonry V: "Statistical Analysis of Historic Masonry Constructions" | `Base.BookMasonry5` | 1 | 1.25 |
 | Matchbook | `Base.Matches` | 0.1 | 0.0225 |
 | Matchbox | `Base.Matchbox` | 0.3 | 0.045 |
-| Mayonnaise | `Base.MayonnaiseFull` | 0.5 | 0.675 |
-| Mayonnaise Bottle | `Base.MayonnaiseEmpty` | 0.1 | 0.225 |
-| Measuring Tape | `Base.MeasuringTape` | 0.2 | 0.375 |
+| Mayonnaise | `Base.MayonnaiseFull` | 0.5 | 0.625 |
+| Mayonnaise Bottle | `Base.MayonnaiseEmpty` | 0.1 | 0.125 |
+| Measuring Tape | `Base.MeasuringTape` | 0.2 | 0.25 |
 | Meat Cleaver | `Base.MeatCleaver` | 1 | 0.825 |
 | Meat Cleaver | `Base.MeatCleaverForged` | 1 | 0.825 |
 | Meat Cleaver Blade | `Base.MeatCleaverBlade` | 1 | 0.6 |
 | Meat Dumpling | `Base.MeatDumpling` | 0.1 | 0.045 |
-| Meat Steam Bun | `Base.MeatSteamBun` | 0.1 | 0.15 |
+| Meat Steam Bun | `Base.MeatSteamBun` | 0.1 | 0.125 |
 | Mechanics I: "Carzone's Repair Guide" | `Base.BookMechanic1` | 1 | 0.45 |
 | Mechanics II: "How Vehicle Engines Work" | `Base.BookMechanic2` | 1 | 0.45 |
 | Mechanics III: "Laine's Repair Manual '93" | `Base.BookMechanic3` | 1 | 0.9 |
-| Mechanics IV: "Long Term Vehicle Maintenance" | `Base.BookMechanic4` | 1 | 1.35 |
-| Mechanics V: "Mastering Automotive Fault Diagnosis Techniques" | `Base.BookMechanic5` | 1 | 1.35 |
+| Mechanics IV: "Long Term Vehicle Maintenance" | `Base.BookMechanic4` | 1 | 1.25 |
+| Mechanics V: "Mastering Automotive Fault Diagnosis Techniques" | `Base.BookMechanic5` | 1 | 1.25 |
 | Medical Coat | `Base.JacketLong_Doctor` | 2 | 0.75 |
 | Medical Satchel | `Base.Bag_Satchel_Medical` | 1 | 1.05 |
 | Medical Scrubs | `Base.Shirt_Scrubs` | 1 | 0.3 |
@@ -2614,34 +2614,34 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Metal Baseball Bat | `Base.BaseballBat_Metal` | 2 | 1.27 |
 | Metal Baseball Bat with Bolts | `Base.BaseballBat_Metal_Bolts` | 2.25 | 1.58 |
 | Metal Baseball Bat with Sawblade | `Base.BaseballBat_Metal_Sawblade` | 2.5 | 1.72 |
-| Metal Body Armor | `Base.Cuirass_Metal` | 4 | 7.5 |
+| Metal Body Armor | `Base.Cuirass_Metal` | 4 | 5 |
 | Metal Codpiece | `Base.Codpiece_Metal` | 1 | 0.75 |
 | Metal Cup | `Base.MetalCup` | 0.5 | 0.18 |
 | Metal Forearm Armor | `Base.Vambrace_Left` | 1 | 1.2 |
 | Metal Forearm Armor | `Base.Vambrace_Right` | 1 | 1.2 |
 | Metal Mask | `Base.Hat_HockeyMask_Metal` | 1 | 1.23 |
 | Metal Neck Guard | `Base.Gorget_Metal` | 1 | 0.9 |
-| Metal Shin Armor | `Base.Greave_Left` | 1 | 1.8 |
-| Metal Shin Armor | `Base.Greave_Right` | 1 | 1.8 |
-| Metal Shoulder Armor | `Base.Shoulderpad_Metal_L` | 1 | 1.5 |
-| Metal Shoulder Armor | `Base.Shoulderpad_Metal_R` | 1 | 1.5 |
+| Metal Shin Armor | `Base.Greave_Left` | 1 | 1.25 |
+| Metal Shin Armor | `Base.Greave_Right` | 1 | 1.25 |
+| Metal Shoulder Armor | `Base.Shoulderpad_Metal_L` | 1 | 1.25 |
+| Metal Shoulder Armor | `Base.Shoulderpad_Metal_R` | 1 | 1.25 |
 | Metal Spearhead | `Base.SpearHead` | 0.5 | 0.3 |
-| Metal Thigh Armor | `Base.ThighMetal_L` | 1 | 2.25 |
-| Metal Thigh Armor | `Base.ThighMetal_R` | 1 | 2.25 |
+| Metal Thigh Armor | `Base.ThighMetal_L` | 1 | 1.25 |
+| Metal Thigh Armor | `Base.ThighMetal_R` | 1 | 1.25 |
 | Metalworking Chisel | `Base.MetalworkingChisel` | 1 | 0.45 |
-| Metalworking Pliers | `Base.MetalworkingPliers` | 0.5 | 0.75 |
+| Metalworking Pliers | `Base.MetalworkingPliers` | 0.5 | 0.625 |
 | Metalworking Punch | `Base.MetalworkingPunch` | 1 | 0.225 |
 | Microphone | `Base.Microphone` | 0.5 | 0.45 |
-| Mildew Spray | `Base.GardeningSprayMilk` | 1 | 1.42 |
-| Military Backpack | `Base.Bag_ALICEpack` | 2 | 3.3 |
-| Military Backpack | `Base.Bag_ALICEpack_Army` | 2 | 3.3 |
-| Military Backpack | `Base.Bag_ALICEpack_DesertCamo` | 2 | 3.3 |
-| Military Backpack | `Base.Bag_SurvivorBag` | 2 | 3.3 |
-| Military Boots | `Base.Shoes_ArmyBoots` | 1 | 2.1 |
-| Military Boots - Desert | `Base.Shoes_ArmyBootsDesert` | 1 | 1.65 |
-| Military Helmet | `Base.Hat_Army` | 1 | 2.25 |
-| Military Helmet | `Base.Hat_ArmyDesert` | 1 | 2.25 |
-| Military Helmet | `Base.Hat_ArmyDesertNew` | 1 | 2.25 |
+| Mildew Spray | `Base.GardeningSprayMilk` | 1 | 1.25 |
+| Military Backpack | `Base.Bag_ALICEpack` | 2 | 2.5 |
+| Military Backpack | `Base.Bag_ALICEpack_Army` | 2 | 2.5 |
+| Military Backpack | `Base.Bag_ALICEpack_DesertCamo` | 2 | 2.5 |
+| Military Backpack | `Base.Bag_SurvivorBag` | 2 | 2.5 |
+| Military Boots | `Base.Shoes_ArmyBoots` | 1 | 1.25 |
+| Military Boots - Desert | `Base.Shoes_ArmyBootsDesert` | 1 | 1.25 |
+| Military Helmet | `Base.Hat_Army` | 1 | 1.25 |
+| Military Helmet | `Base.Hat_ArmyDesert` | 1 | 1.25 |
+| Military Helmet | `Base.Hat_ArmyDesertNew` | 1 | 1.25 |
 | Military Jacket - Desert Camo | `Base.Jacket_ArmyCamoDesert` | 2 | 1.35 |
 | Military Jacket - Desert Camo | `Base.Jacket_ArmyCamoDesertNew` | 2 | 1.35 |
 | Military Jacket - Foreign Camo | `Base.Jacket_ArmyCamoMilius` | 2 | 1.35 |
@@ -2697,19 +2697,19 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Mirror | `Base.Mirror` | 1 | 0.6 |
 | Modjeska | `Base.Modjeska` | 0.1 | 0.045 |
 | Moley The Mole | `Base.MoleyMole` | 0.8 | 0.6 |
-| Molotov Cocktail | `Base.Molotov` | 1.5 | 2.03 |
+| Molotov Cocktail | `Base.Molotov` | 1.5 | 1.88 |
 | Money | `Base.Money` | 0.01 | 0.0015 |
 | Money Bundle | `Base.MoneyBundle` | 0.5 | 0.165 |
 | Mop | `Base.Mop` | 2 | 1.2 |
-| Mortar and Pestle | `Base.MortarPestle` | 0.8 | 1.5 |
+| Mortar and Pestle | `Base.MortarPestle` | 0.8 | 1 |
 | Motion Sensor | `Base.MotionSensor` | 0.3 | 0.15 |
 | Mouse Droppings | `Base.Dung_Mouse` | 0.01 | 0.0003 |
 | Mouse Toy | `Base.CatToy` | 0.2 | 0.0375 |
 | Mouse Trap | `Base.TrapMouse` | 0.3 | 0.03 |
-| MSR700 Rifle | `Base.VarmintRifle` | 4 | 6 |
-| MSR788 Rifle | `Base.HuntingRifle` | 4 | 5.1 |
-| MSR7T Tactical Rifle | `Base.MSR7T_Rifle` | 4.5 | 6.6 |
-| Muffin | `Base.MuffinGeneric` | 0.1 | 0.165 |
+| MSR700 Rifle | `Base.VarmintRifle` | 4 | 5 |
+| MSR788 Rifle | `Base.HuntingRifle` | 4 | 5 |
+| MSR7T Tactical Rifle | `Base.MSR7T_Rifle` | 4.5 | 5.62 |
+| Muffin | `Base.MuffinGeneric` | 0.1 | 0.125 |
 | Muffin Tray | `Base.MuffinTray` | 1 | 0.675 |
 | Muffler - Old (*) | `Base.OldCarMuffler1` | 10 | 8 |
 | Muffler - Old (*) | `Base.OldCarMuffler2` | 10 | 8 |
@@ -2720,10 +2720,10 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Muffler - Regular (*) | `Base.NormalCarMuffler1` | 10 | 7 |
 | Muffler - Regular (*) | `Base.NormalCarMuffler2` | 10 | 7 |
 | Muffler - Regular (*) | `Base.NormalCarMuffler3` | 10 | 7 |
-| Mug | `Base.ClayMug` | 0.2 | 0.45 |
-| Mug | `Base.MugSpiffo` | 0.2 | 0.525 |
-| Mug | `Base.MugWhite` | 0.2 | 0.45 |
-| Mug | `Base.Mugl` | 0.2 | 0.45 |
+| Mug | `Base.ClayMug` | 0.2 | 0.25 |
+| Mug | `Base.MugSpiffo` | 0.2 | 0.25 |
+| Mug | `Base.MugWhite` | 0.2 | 0.25 |
+| Mug | `Base.Mugl` | 0.2 | 0.25 |
 | Multi-Color Pen | `Base.PenMultiColor` | 0.2 | 0.0225 |
 | Multitool | `Base.Multitool` | 0.5 | 0.375 |
 | Mushrooms | `Base.MushroomGeneric1` | 0.2 | 0.15 |
@@ -2733,11 +2733,11 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Mushrooms | `Base.MushroomGeneric5` | 0.2 | 0.15 |
 | Mushrooms | `Base.MushroomGeneric6` | 0.2 | 0.15 |
 | Mushrooms | `Base.MushroomGeneric7` | 0.2 | 0.15 |
-| Mushrooms | `Base.MushroomsButton` | 0.2 | 0.345 |
-| Muskellunge | `Base.Muskellunge` | 0.4 | 7.5 |
-| Mussels | `Base.Mussels` | 0.1 | 0.15 |
-| Mustard | `Base.Mustard` | 0.2 | 0.42 |
-| Nacho Cheese | `Base.Dip_NachoCheese` | 0.2 | 0.825 |
+| Mushrooms | `Base.MushroomsButton` | 0.2 | 0.25 |
+| Muskellunge | `Base.Muskellunge` | 0.4 | 0.5 |
+| Mussels | `Base.Mussels` | 0.1 | 0.125 |
+| Mustard | `Base.Mustard` | 0.2 | 0.25 |
+| Nacho Cheese | `Base.Dip_NachoCheese` | 0.2 | 0.25 |
 | Nails | `Base.Nails` | 0.05 | 0.0075 |
 | Necklace - Crucifix | `Base.Necklace_Crucifix` | 0.1 | 0.0142 |
 | Necklace - Yin and Yang Symbol | `Base.Necklace_YingYang` | 0.1 | 0.018 |
@@ -2752,98 +2752,98 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Newspaper | `Base.Newspaper_Times_New` | 0.5 | 0.375 |
 | Newspaper Hat | `Base.Hat_NewspaperHat` | 0.3 | 0.03 |
 | Nightstick | `Base.Nightstick` | 1.5 | 0.75 |
-| Noise Generator with Long-Range Sensor | `Base.NoiseTrapSensorV3` | 1.5 | 2.06 |
-| Noise Generator with Medium-Range Sensor | `Base.NoiseTrapSensorV2` | 1.5 | 1.91 |
+| Noise Generator with Long-Range Sensor | `Base.NoiseTrapSensorV3` | 1.5 | 1.88 |
+| Noise Generator with Medium-Range Sensor | `Base.NoiseTrapSensorV2` | 1.5 | 1.88 |
 | Noise Generator with Short-Range Sensor | `Base.NoiseTrapSensorV1` | 1.5 | 1.75 |
-| Noise Generator with Timer | `Base.NoiseTrapTriggered` | 1.5 | 1.91 |
+| Noise Generator with Timer | `Base.NoiseTrapTriggered` | 1.5 | 1.88 |
 | Noise Maker | `Base.NoiseTrap` | 1.5 | 1.27 |
 | Notched Plank | `Base.PercedWood` | 3 | 0.45 |
 | Note | `Base.Note` | 0.1 | 0.003 |
 | Notebook | `Base.Notebook` | 0.5 | 0.375 |
 | Notepad | `Base.Notepad` | 0.2 | 0.15 |
-| Novapops Candy | `Base.CandyNovapops` | 0.1 | 0.3 |
+| Novapops Candy | `Base.CandyNovapops` | 0.1 | 0.125 |
 | Novelty Glasses | `Base.Glasses_Groucho` | 0.1 | 0.045 |
 | Novelty X-ray Glasses | `Base.Glasses_Novelty_Xray` | 0.1 | 0.03 |
-| Nuclear Biochemical Mask | `Base.Hat_NBCmask` | 1 | 1.5 |
+| Nuclear Biochemical Mask | `Base.Hat_NBCmask` | 1 | 1.25 |
 | Nuclear Biochemical Mask (No Filter) | `Base.Hat_NBCmask_nofilter` | 1 | 1.05 |
 | Nuts and Bolts | `Base.NutsBolts` | 0.2 | 0.075 |
 | Oatmeal Cookie | `Base.CookiesOatmeal` | 0.1 | 0.06 |
-| Oil Press | `Base.OilPress` | 0.2 | 4.5 |
-| Old Army Helmet | `Base.Hat_ArmyWWII` | 1 | 2.03 |
+| Oil Press | `Base.OilPress` | 0.2 | 0.25 |
+| Old Army Helmet | `Base.Hat_ArmyWWII` | 1 | 1.25 |
 | Old Newspaper | `Base.Newspaper` | 0.5 | 0.375 |
 | Old Photograph | `Base.Photo_VeryOld` | 0.1 | 0.006 |
-| Old Welding Goggles | `Base.Glasses_OldWeldingGoggles` | 0.1 | 0.3 |
-| Olive Oil | `Base.OilOlive` | 0.2 | 1.12 |
-| Olives | `Base.Olives` | 0.1 | 0.375 |
-| Omelette | `Base.EggOmelette` | 0.1 | 0.18 |
+| Old Welding Goggles | `Base.Glasses_OldWeldingGoggles` | 0.1 | 0.125 |
+| Olive Oil | `Base.OilOlive` | 0.2 | 0.25 |
+| Olives | `Base.Olives` | 0.1 | 0.125 |
+| Omelette | `Base.EggOmelette` | 0.1 | 0.125 |
 | Omelette | `Base.OmeletteRecipe` | 0.5 | 1.65 |
-| Omelette | `Base.OmeletteRecipeForged` | 0.5 | 2.1 |
-| Onigiri | `Base.Onigiri` | 0.1 | 0.165 |
+| Omelette | `Base.OmeletteRecipeForged` | 0.5 | 1.88 |
+| Onigiri | `Base.Onigiri` | 0.1 | 0.125 |
 | Onion | `Base.Onion` | 0.2 | 0.225 |
 | Onion (Powdered) | `Base.PowderedOnion` | 0.2 | 0.18 |
 | Onion Seeds | `Base.OnionSeed` | 0.02 | 0.003 |
-| Opened Jar of Fish Roe | `Base.CannedRoe_Open` | 0.8 | 1.72 |
-| Orange | `Base.Orange` | 0.2 | 0.27 |
-| Orange Soda | `Base.PopBottle` | 0.1 | 0.3 |
+| Opened Jar of Fish Roe | `Base.CannedRoe_Open` | 0.8 | 1 |
+| Orange | `Base.Orange` | 0.2 | 0.25 |
+| Orange Soda | `Base.PopBottle` | 0.1 | 0.125 |
 | Oregano | `Base.Oregano` | 0.1 | 0.045 |
 | Oregano (Dried) | `Base.OreganoDried` | 0.1 | 0.0105 |
 | Oregano (Dried) | `Base.Seasoning_Oregano` | 0.2 | 0.12 |
 | Oregano Seeds | `Base.OreganoSeed` | 0.02 | 0.003 |
 | Ouja Board | `Base.OujaBoard` | 1 | 0.6 |
 | Oven Mitt | `Base.OvenMitt` | 0.3 | 0.15 |
-| Overalls | `Base.Dungarees` | 1 | 1.35 |
-| Overalls - Hunting Camo | `Base.Dungarees_HuntingCamo` | 1 | 1.5 |
-| Oxygen Tank | `Base.Oxygen_Tank` | 5 (empty 5) | 6.6 (empty 4.35) |
-| Oysters | `Base.Oysters` | 0.1 | 0.225 |
+| Overalls | `Base.Dungarees` | 1 | 1.25 |
+| Overalls - Hunting Camo | `Base.Dungarees_HuntingCamo` | 1 | 1.25 |
+| Oxygen Tank | `Base.Oxygen_Tank` | 5 (empty 5) | 6.25 (empty 4.35) |
+| Oysters | `Base.Oysters` | 0.1 | 0.125 |
 | Oysters (Fried) | `Base.OystersFried` | 0.1 | 0.12 |
 | P38 Can Opener | `Base.P38` | 0.05 | 0.0045 |
 | Pack Frame | `Base.PackFrame` | 2 | 2.25 |
-| Pack of American Light Lager | `Base.BeerCanPack` | 1.8 | 2.9 |
-| Pack of American Light Lager | `Base.BeerPack` | 1.8 | 4.72 |
+| Pack of American Light Lager | `Base.BeerCanPack` | 1.8 | 2.13 |
+| Pack of American Light Lager | `Base.BeerPack` | 1.8 | 2.25 |
 | Pack of Hamburger Buns | `Base.BunsHamburger` | 0.4 | 0.352 |
 | Pack of Hotdog Buns | `Base.BunsHotdog` | 0.3 | 0.323 |
 | Pack of Hotdogs | `Base.HotdogPack` | 0.6 | 0.352 |
 | Packaged Corn | `Base.CornFrozen` | 0.6 | 0.525 |
 | Packaged Peas | `Base.Peas` | 0.6 | 0.525 |
 | Packaged Vegetables | `Base.MixedVegetables` | 0.6 | 0.525 |
-| Padded Football Pants | `Base.Shorts_FootballPants` | 1 | 1.5 |
-| Padded Football Pants | `Base.Shorts_FootballPants_Black` | 1 | 1.5 |
-| Padded Football Pants | `Base.Shorts_FootballPants_Gold` | 1 | 1.5 |
-| Padded Football Pants | `Base.Shorts_FootballPants_White` | 1 | 1.5 |
-| Padded Ice Hockey Pants | `Base.Shorts_HockeyPants` | 1 | 2.25 |
-| Padded Ice Hockey Pants | `Base.Shorts_HockeyPants_Black` | 1 | 2.25 |
-| Padded Ice Hockey Pants | `Base.Shorts_HockeyPants_Red` | 1 | 2.25 |
-| Padded Ice Hockey Pants | `Base.Shorts_HockeyPants_UniBlue` | 1 | 2.25 |
-| Padded Ice Hockey Pants | `Base.Shorts_HockeyPants_White` | 1 | 2.25 |
+| Padded Football Pants | `Base.Shorts_FootballPants` | 1 | 1.25 |
+| Padded Football Pants | `Base.Shorts_FootballPants_Black` | 1 | 1.25 |
+| Padded Football Pants | `Base.Shorts_FootballPants_Gold` | 1 | 1.25 |
+| Padded Football Pants | `Base.Shorts_FootballPants_White` | 1 | 1.25 |
+| Padded Ice Hockey Pants | `Base.Shorts_HockeyPants` | 1 | 1.25 |
+| Padded Ice Hockey Pants | `Base.Shorts_HockeyPants_Black` | 1 | 1.25 |
+| Padded Ice Hockey Pants | `Base.Shorts_HockeyPants_Red` | 1 | 1.25 |
+| Padded Ice Hockey Pants | `Base.Shorts_HockeyPants_UniBlue` | 1 | 1.25 |
+| Padded Ice Hockey Pants | `Base.Shorts_HockeyPants_White` | 1 | 1.25 |
 | Padded Jacket | `Base.Jacket_Padded` | 3 | 1.8 |
 | Padded Jacket | `Base.Jacket_PaddedDOWN` | 3 | 1.8 |
 | Padded Jacket - Hunting Camo | `Base.Jacket_Padded_HuntingCamo` | 3 | 1.8 |
 | Padded Jacket - Hunting Camo | `Base.Jacket_Padded_HuntingCamoDOWN` | 3 | 1.8 |
-| Padded Pants | `Base.Trousers_Padded` | 1 | 1.35 |
-| Padded Pants - Hunting Camo | `Base.Trousers_Padded_HuntingCamo` | 1 | 1.35 |
-| Paddlefish | `Base.Paddlefish` | 0.4 | 15 |
+| Padded Pants | `Base.Trousers_Padded` | 1 | 1.25 |
+| Padded Pants - Hunting Camo | `Base.Trousers_Padded_HuntingCamo` | 1 | 1.25 |
+| Paddlefish | `Base.Paddlefish` | 0.4 | 0.5 |
 | Padlock | `Base.Padlock` | 0.3 | 0.375 |
 | Padlock Key | `Base.KeyPadlock` | 0.05 | 0.0075 |
 | Pager | `Base.Pager` | 0.1 | 0.12 |
 | Painkillers | `Base.Pills` | 0.2 | 0.06 |
-| Paint - Black | `Base.PaintBlack` | 5 | 7.65 |
-| Paint - Blue | `Base.PaintBlue` | 5 | 7.65 |
-| Paint - Brown | `Base.PaintBrown` | 5 | 7.65 |
-| Paint - Cyan | `Base.PaintCyan` | 5 | 7.65 |
-| Paint - Gray | `Base.PaintGrey` | 5 | 7.65 |
-| Paint - Green | `Base.PaintGreen` | 5 | 7.65 |
-| Paint - Light Blue | `Base.PaintLightBlue` | 5 | 7.65 |
-| Paint - Light Brown | `Base.PaintLightBrown` | 5 | 7.65 |
-| Paint - Orange | `Base.PaintOrange` | 5 | 7.65 |
-| Paint - Pink | `Base.PaintPink` | 5 | 7.65 |
-| Paint - Purple | `Base.PaintPurple` | 5 | 7.65 |
-| Paint - Red | `Base.PaintRed` | 5 | 7.65 |
-| Paint - Turquoise | `Base.PaintTurquoise` | 5 | 7.65 |
-| Paint - White | `Base.PaintWhite` | 5 | 7.65 |
-| Paint - Yellow | `Base.PaintYellow` | 5 | 7.65 |
-| Paint Bucket | `Base.PaintbucketEmpty` | 1 | 1.65 |
+| Paint - Black | `Base.PaintBlack` | 5 | 6.25 |
+| Paint - Blue | `Base.PaintBlue` | 5 | 6.25 |
+| Paint - Brown | `Base.PaintBrown` | 5 | 6.25 |
+| Paint - Cyan | `Base.PaintCyan` | 5 | 6.25 |
+| Paint - Gray | `Base.PaintGrey` | 5 | 6.25 |
+| Paint - Green | `Base.PaintGreen` | 5 | 6.25 |
+| Paint - Light Blue | `Base.PaintLightBlue` | 5 | 6.25 |
+| Paint - Light Brown | `Base.PaintLightBrown` | 5 | 6.25 |
+| Paint - Orange | `Base.PaintOrange` | 5 | 6.25 |
+| Paint - Pink | `Base.PaintPink` | 5 | 6.25 |
+| Paint - Purple | `Base.PaintPurple` | 5 | 6.25 |
+| Paint - Red | `Base.PaintRed` | 5 | 6.25 |
+| Paint - Turquoise | `Base.PaintTurquoise` | 5 | 6.25 |
+| Paint - White | `Base.PaintWhite` | 5 | 6.25 |
+| Paint - Yellow | `Base.PaintYellow` | 5 | 6.25 |
+| Paint Bucket | `Base.PaintbucketEmpty` | 1 | 1.25 |
 | Paintbrush | `Base.Paintbrush` | 0.5 | 0.12 |
-| Pancake Mix | `Base.PancakeMix` | 0.1 | 0.705 |
+| Pancake Mix | `Base.PancakeMix` | 0.1 | 0.125 |
 | Pancake The Hedgehog | `Base.PancakeHedgehog` | 0.8 | 0.6 |
 | Pancakes | `Base.Pancakes` | 0.3 | 0.345 |
 | Pancakes | `Base.PancakesCraft` | 0.3 | 0.375 |
@@ -2869,7 +2869,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Paperback | `Base.Paperback_AdventureNonFiction` | 0.5 | 0.525 |
 | Paperback | `Base.Paperback_Art` | 0.5 | 0.525 |
 | Paperback | `Base.Paperback_Baseball` | 0.5 | 0.525 |
-| Paperback | `Base.Paperback_Bible` | 0.5 | 0.75 |
+| Paperback | `Base.Paperback_Bible` | 0.5 | 0.625 |
 | Paperback | `Base.Paperback_Biography` | 0.5 | 0.525 |
 | Paperback | `Base.Paperback_Business` | 0.5 | 0.525 |
 | Paperback | `Base.Paperback_Childs` | 0.5 | 0.225 |
@@ -2938,10 +2938,10 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Passport | `Base.Passport` | 0.1 | 0.06 |
 | Patrol Revolver | `Base.Revolver` | 1.5 | 1.65 |
 | Peach | `Base.Peach` | 0.2 | 0.225 |
-| Peanut Butter | `Base.PeanutButter` | 0.3 | 0.75 |
+| Peanut Butter | `Base.PeanutButter` | 0.3 | 0.375 |
 | Peanut Butter Granola Bar | `Base.GranolaBar` | 0.2 | 0.063 |
-| Peanuts | `Base.Peanuts` | 0.2 | 0.255 |
-| Pear | `Base.Pear` | 0.2 | 0.27 |
+| Peanuts | `Base.Peanuts` | 0.2 | 0.25 |
+| Pear | `Base.Pear` | 0.2 | 0.25 |
 | Pearl Necklace | `Base.Necklace_Pearl` | 0.1 | 0.03 |
 | Pen - Black | `Base.Pen` | 0.1 | 0.015 |
 | Pen - Blue | `Base.BluePen` | 0.1 | 0.015 |
@@ -2955,23 +2955,23 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Penlight | `Base.PenLight` | 0.2 | 0.075 |
 | Pepper | `Base.Pepper` | 0.2 | 0.18 |
 | Peppermint Candy | `Base.Peppermint` | 0.1 | 0.0075 |
-| Pepperoni | `Base.Pepperoni` | 0.1 | 0.225 |
-| Perfume | `Base.Perfume` | 0.1 | 0.18 |
-| Perogies | `Base.Perogies` | 0.1 | 0.18 |
-| Pest Flies Spray | `Base.GardeningSprayCigarettes` | 1 | 1.42 |
+| Pepperoni | `Base.Pepperoni` | 0.1 | 0.125 |
+| Perfume | `Base.Perfume` | 0.1 | 0.125 |
+| Perogies | `Base.Perogies` | 0.1 | 0.125 |
+| Pest Flies Spray | `Base.GardeningSprayCigarettes` | 1 | 1.25 |
 | Phonebook | `Base.Phonebook` | 2 | 1.5 |
-| Photo Album | `Base.PhotoAlbum` | 0.5 | 1.05 |
-| Photo Album | `Base.PhotoAlbum_Old` | 0.5 | 1.05 |
+| Photo Album | `Base.PhotoAlbum` | 0.5 | 0.625 |
+| Photo Album | `Base.PhotoAlbum_Old` | 0.5 | 0.625 |
 | Photo Book | `Base.PhotoBook` | 1 | 0.75 |
 | Photograph | `Base.Photo` | 0.1 | 0.006 |
 | Photograph | `Base.Photo_Racy` | 0.1 | 0.006 |
 | Photograph | `Base.Photo_Secret` | 0.1 | 0.006 |
 | Photograph of Judge Matt Hass (Autographed) | `Base.Photo_Hass` | 0.1 | 0.015 |
-| Pick Axe Head | `Base.PickAxeHead` | 2 | 3 |
-| Pickaxe | `Base.PickAxe` | 3 | 4.5 |
-| Pickaxe | `Base.PickAxeForged` | 3 | 4.5 |
+| Pick Axe Head | `Base.PickAxeHead` | 2 | 2.5 |
+| Pickaxe | `Base.PickAxe` | 3 | 3.75 |
+| Pickaxe | `Base.PickAxeForged` | 3 | 3.75 |
 | Pickle | `Base.Pickles` | 0.1 | 0.12 |
-| Picnic Basket | `Base.Bag_PicnicBasket` | 1.5 | 2.25 |
+| Picnic Basket | `Base.Bag_PicnicBasket` | 1.5 | 1.88 |
 | Picture Book | `Base.ChildsPictureBook` | 0.5 | 0.45 |
 | Picture of Bob | `Base.BobPic` | 0.5 | 0.45 |
 | Picture of Casey-Jo | `Base.CaseyPic` | 0.5 | 0.45 |
@@ -2981,33 +2981,33 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Picture of James Garcia | `Base.JamesPic` | 0.5 | 0.45 |
 | Picture of Kate | `Base.KatePic` | 0.5 | 0.45 |
 | Picture of Marianne Brown | `Base.MariannePic` | 0.5 | 0.45 |
-| Pie | `Base.PieWholeRaw` | 0.5 | 2.25 |
-| Pie | `Base.PieWholeRawSweet` | 0.5 | 2.25 |
-| Pie Dough | `Base.PieDough` | 0.3 | 0.45 |
-| Pie Preparation | `Base.PiePrep` | 0.5 | 2.25 |
+| Pie | `Base.PieWholeRaw` | 0.5 | 1.25 |
+| Pie | `Base.PieWholeRawSweet` | 0.5 | 1.25 |
+| Pie Dough | `Base.PieDough` | 0.3 | 0.375 |
+| Pie Preparation | `Base.PiePrep` | 0.5 | 1.25 |
 | Pig Dung | `Base.Dung_Pig` | 0.7 | 0.75 |
-| Pig Skull | `Base.Pig_Skull` | 0.5 | 1.8 |
+| Pig Skull | `Base.Pig_Skull` | 0.5 | 0.625 |
 | Pig Tusk | `Base.PigTusk` | 0.1 | 0.12 |
-| Piglet Head | `Base.Pig_Piglet_Head_Black` | 0.8 | 1.8 |
-| Piglet Head | `Base.Pig_Piglet_Head_Pink` | 0.8 | 1.8 |
+| Piglet Head | `Base.Pig_Piglet_Head_Black` | 0.8 | 1 |
+| Piglet Head | `Base.Pig_Piglet_Head_Pink` | 0.8 | 1 |
 | Piglet Skull | `Base.Piglet_Skull` | 0.3 | 0.225 |
 | Pilgrim Hat | `Base.Hat_Pilgrim` | 1 | 0.225 |
 | Pillbug | `Base.Pillbug` | 0.01 | 0.0003 |
-| Pillow | `Base.Pillow` | 1 | 3 |
+| Pillow | `Base.Pillow` | 1 | 1.25 |
 | Pine Cone | `Base.Pinecone` | 0.1 | 0.075 |
-| Pineapple | `Base.Pineapple` | 0.3 | 2.25 |
-| Pipe Bomb with Long-Range Sensor | `Base.PipeBombSensorV3` | 1.5 | 2.28 |
-| Pipe Bomb with Medium-Range Sensor | `Base.PipeBombSensorV2` | 1.5 | 2.13 |
-| Pipe Bomb with Short-Range Sensor | `Base.PipeBombSensorV1` | 1.5 | 1.98 |
-| Pipe Bomb with Timer | `Base.PipeBombTriggered` | 1.5 | 2.13 |
-| Pipe Wrench | `Base.PipeWrench` | 1.5 | 2.4 |
+| Pineapple | `Base.Pineapple` | 0.3 | 0.375 |
+| Pipe Bomb with Long-Range Sensor | `Base.PipeBombSensorV3` | 1.5 | 1.88 |
+| Pipe Bomb with Medium-Range Sensor | `Base.PipeBombSensorV2` | 1.5 | 1.88 |
+| Pipe Bomb with Short-Range Sensor | `Base.PipeBombSensorV1` | 1.5 | 1.88 |
+| Pipe Bomb with Timer | `Base.PipeBombTriggered` | 1.5 | 1.88 |
+| Pipe Wrench | `Base.PipeWrench` | 1.5 | 1.88 |
 | Pirate Hat | `Base.Hat_Pirate` | 1 | 0.3 |
 | Pizza | `Base.PizzaRecipe` | 1.5 | 1.2 |
 | Pizza Cutter | `Base.PizzaCutter` | 0.5 | 0.225 |
 | Plain Muffins | `Base.BakingTray_Muffin` | 1.5 | 1.65 |
 | Plain Muffins | `Base.BakingTray_Muffin_Recipe` | 1.5 | 1.65 |
 | Plank | `Base.Plank` | 3 | 3.38 |
-| Plank with Brake Disc | `Base.Plank_Brake` | 4 | 7.8 |
+| Plank with Brake Disc | `Base.Plank_Brake` | 4 | 5 |
 | Plank with Nails | `Base.Plank_Nails` | 3 | 1.88 |
 | Plank with Saw | `Base.Plank_Saw` | 3 | 2.55 |
 | Plank with Sawblade | `Base.Plank_Sawblade` | 4 | 2.25 |
@@ -3032,18 +3032,18 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Plastic Spoon | `Base.PlasticSpoon` | 0.1 | 0.0045 |
 | Plastic Spork | `Base.Spork` | 0.1 | 0.006 |
 | Plastic Tray | `Base.PlasticTray` | 1 | 0.45 |
-| Plate | `Base.ClayPlate` | 0.2 | 0.6 |
+| Plate | `Base.ClayPlate` | 0.2 | 0.25 |
 | Plate | `Base.Plate` | 1 | 0.675 |
 | Playing Cards | `Base.CardDeck` | 0.2 | 0.143 |
-| Pliers | `Base.Pliers` | 0.3 | 0.45 |
+| Pliers | `Base.Pliers` | 0.3 | 0.375 |
 | Plonkies | `Base.Plonkies` | 0.2 | 0.12 |
 | Plumpabug the Aphid | `Base.Plushabug` | 0.8 | 0.6 |
-| Plunger | `Base.Plunger` | 0.5 | 0.675 |
-| Plunger with Barbed Wire | `Base.Plunger_BarbedWire` | 0.5 | 0.675 |
+| Plunger | `Base.Plunger` | 0.5 | 0.625 |
+| Plunger with Barbed Wire | `Base.Plunger_BarbedWire` | 0.5 | 0.625 |
 | Pocket Knife | `Base.KnifePocket` | 0.3 | 0.12 |
 | Pocketwatch | `Base.Pocketwatch` | 0.2 | 0.18 |
-| Poker Chips | `Base.PokerChips` | 0.2 | 0.33 |
-| Police Duffel Bag | `Base.Bag_Police` | 1 | 1.35 |
+| Poker Chips | `Base.PokerChips` | 0.2 | 0.25 |
+| Police Duffel Bag | `Base.Bag_Police` | 1 | 1.25 |
 | Police Hat - Deputy | `Base.Hat_Police` | 1 | 0.3 |
 | Police Hat - Trooper | `Base.Hat_Police_Grey` | 1 | 0.45 |
 | Police Jacket | `Base.Jacket_Police` | 2 | 1.8 |
@@ -3063,15 +3063,15 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Pop Can | `Base.Pop3Empty` | 0.1 | 0.0525 |
 | Pop Can | `Base.PopEmpty` | 0.1 | 0.0525 |
 | Poppies | `Base.Poppies` | 0.1 | 0.015 |
-| Poppy Bagel | `Base.BagelPoppy` | 0.1 | 0.15 |
+| Poppy Bagel | `Base.BagelPoppy` | 0.1 | 0.125 |
 | Poppy Pods | `Base.PoppyPods` | 0.1 | 0.015 |
 | Poppy Pods (Dried) | `Base.PoppyPodsDried` | 0.1 | 0.0075 |
 | Poppy Seeds | `Base.PoppySeed` | 0.1 | 0.0075 |
 | Popsicle (Melted) | `Base.Popsicle_Melted` | 0.2 | 0.15 |
 | Popsicle - Raspberry | `Base.Popsicle` | 0.2 | 0.15 |
-| Pork | `Base.Pork` | 0.5 | 0.675 |
-| Pork Burrito | `Base.Burrito` | 0.3 | 0.45 |
-| Pork Rinds | `Base.PorkRinds` | 0.1 | 0.375 |
+| Pork | `Base.Pork` | 0.5 | 0.625 |
+| Pork Burrito | `Base.Burrito` | 0.3 | 0.375 |
+| Pork Rinds | `Base.PorkRinds` | 0.1 | 0.125 |
 | Port | `Base.Port` | 1 | 0.75 |
 | Postcard | `Base.Postcard` | 0.1 | 0.003 |
 | Pot of Soup | `Base.PotForgedSoupRecipe` | 3 | 3.15 |
@@ -3079,14 +3079,14 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Pot of Soup | `Base.PotOfSoupRecipe` | 3 | 3.15 |
 | Pot of Stew | `Base.PotForgedStew` | 3 | 3.15 |
 | Pot of Stew | `Base.PotOfStew` | 3 | 3.15 |
-| Potato | `Base.Potato` | 0.2 | 0.3 |
-| Potato Pancakes | `Base.PotatoPancakes` | 0.1 | 0.18 |
+| Potato | `Base.Potato` | 0.2 | 0.25 |
+| Potato Pancakes | `Base.PotatoPancakes` | 0.1 | 0.125 |
 | Potato Seeds | `Base.PotatoSeed` | 0.02 | 0.003 |
 | Pottery I: "Ancient Pottery" | `Base.BookPottery1` | 1 | 0.45 |
 | Pottery II: "Build Your Own Kiln" | `Base.BookPottery2` | 1 | 0.45 |
 | Pottery III: "Glazing Ceramics at Home" | `Base.BookPottery3` | 1 | 0.9 |
-| Pottery IV: "Ming Chinese Masterworks: A Guide" | `Base.BookPottery4` | 1 | 1.35 |
-| Pottery V: "Pyrometamorphic Process of Ceramic Materials" | `Base.BookPottery5` | 1 | 1.35 |
+| Pottery IV: "Ming Chinese Masterworks: A Guide" | `Base.BookPottery4` | 1 | 1.25 |
+| Pottery V: "Pyrometamorphic Process of Ceramic Materials" | `Base.BookPottery5` | 1 | 1.25 |
 | Pouch | `Base.DiceBag` | 0.1 | 0.045 |
 | Pouch | `Base.GemBag` | 0.1 | 0.045 |
 | Pouch | `Base.SeedBag` | 0.1 | 0.045 |
@@ -3096,7 +3096,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Premium Fishing Line | `Base.PremiumFishingLine` | 0.1 | 0.09 |
 | Premium Tech. Walkie Talkie | `Base.WalkieTalkie3` | 1 | 0.375 |
 | Premium Technologies Ham Radio | `Base.HamRadio1` | 15 | 9 |
-| Premium Technologies Television | `Base.TvWideScreen` | 10 | 36.5 |
+| Premium Technologies Television | `Base.TvWideScreen` | 10 | 12.5 |
 | Prescription Aviator Glasses | `Base.Glasses_Prescription_Aviators` | 0.1 | 0.045 |
 | Prescription Glasses | `Base.Glasses_Normal` | 0.1 | 0.045 |
 | Prescription Monocle | `Base.Glasses_MonocleLeft` | 0.05 | 0.0225 |
@@ -3105,7 +3105,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Prescription Shooting Glasses | `Base.Glasses_Prescription_Shooting` | 0.1 | 0.045 |
 | Prescription Sunglasses | `Base.Glasses_Prescription_Sun` | 0.1 | 0.045 |
 | Press Badge | `Base.PressID` | 0.1 | 0.045 |
-| Pretzels | `Base.Pretzel` | 0.1 | 0.225 |
+| Pretzels | `Base.Pretzel` | 0.1 | 0.125 |
 | Priest Shirt | `Base.Shirt_Priest` | 1 | 0.375 |
 | Processed Cheese | `Base.Processedcheese` | 0.1 | 0.03 |
 | Produce Box - Extra Small | `Base.ProduceBox_ExtraSmall` | 1 | 0.09 |
@@ -3113,24 +3113,24 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Produce Box - Medium | `Base.ProduceBox_Medium` | 1 | 0.33 |
 | Produce Box - Small | `Base.ProduceBox_Small` | 1 | 0.195 |
 | Prop Book | `Base.Book_Prop` | 1 | 1.05 |
-| Prop Leatherbound Book | `Base.BookFancy_Prop` | 1 | 1.5 |
+| Prop Leatherbound Book | `Base.BookFancy_Prop` | 1 | 1.25 |
 | Propane Lantern | `Base.Lantern_Propane` | 2 | 2.1 |
-| Propane Lantern Bottle | `Base.Propane_Refill` | 1 | 1.35 |
-| Propane Tank | `Base.PropaneTank` | 10 (empty 5) | 25.2 (empty 11.6) |
-| Protective Case | `Base.Bag_ProtectiveCase` | 1 | 3.75 |
-| Protective Case | `Base.Bag_ProtectiveCase_Survivalist` | 1 | 3.75 |
-| Protective Case | `Base.Bag_ProtectiveCase_Tools` | 1 | 3.75 |
-| Protective Case - Military | `Base.Bag_ProtectiveCaseMilitary_Tools` | 1 | 3.75 |
-| Protective Military Case | `Base.Bag_ProtectiveCaseMilitary` | 1 | 3.75 |
-| Pumpkin | `Base.Pumpkin` | 1 | 6 |
-| Pumpkin Chunks | `Base.PumpkinSmashed` | 0.2 | 0.9 |
+| Propane Lantern Bottle | `Base.Propane_Refill` | 1 | 1.25 |
+| Propane Tank | `Base.PropaneTank` | 10 (empty 5) | 12.5 (empty 6.25) |
+| Protective Case | `Base.Bag_ProtectiveCase` | 1 | 1.25 |
+| Protective Case | `Base.Bag_ProtectiveCase_Survivalist` | 1 | 1.25 |
+| Protective Case | `Base.Bag_ProtectiveCase_Tools` | 1 | 1.25 |
+| Protective Case - Military | `Base.Bag_ProtectiveCaseMilitary_Tools` | 1 | 1.25 |
+| Protective Military Case | `Base.Bag_ProtectiveCaseMilitary` | 1 | 1.25 |
+| Pumpkin | `Base.Pumpkin` | 1 | 1.25 |
+| Pumpkin Chunks | `Base.PumpkinSmashed` | 0.2 | 0.25 |
 | Pumpkin Pie Slice | `Base.PiePumpkin` | 0.5 | 0.195 |
 | Pumpkin Seeds | `Base.PumpkinSeed` | 0.1 | 0.0075 |
-| Pumpkin Slice | `Base.PumpkinSliced` | 0.1 | 0.45 |
+| Pumpkin Slice | `Base.PumpkinSliced` | 0.1 | 0.125 |
 | Purse | `Base.Purse` | 1 | 0.75 |
 | Puzzle Cube | `Base.Cube` | 0.5 | 0.143 |
 | Quagga Cakes | `Base.QuaggaCakes` | 0.2 | 0.12 |
-| Quicklime | `Base.Quicklime` | 0.3 | 0.9 |
+| Quicklime | `Base.Quicklime` | 0.3 | 0.375 |
 | Rabbit Droppings | `Base.Dung_Rabbit` | 0.1 | 0.0075 |
 | Rabbit Head | `Base.Rabbit_Head_Appalachian` | 1 | 0.18 |
 | Rabbit Head | `Base.Rabbit_Head_CottonTail` | 1 | 0.18 |
@@ -3143,7 +3143,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Rabbit Kitten Skull | `Base.Rabbit_KittenSkull` | 0.1 | 0.006 |
 | Rabbit Leather (Furred) | `Base.RabbitLeather_Grey_Fur_Tan` | 1 | 0.075 |
 | Rabbit Leather (Furred, Wet) | `Base.RabbitLeather_Fur_Tan_Wet` | 1 | 0.12 |
-| Rabbit Meat | `Base.Rabbitmeat` | 0.3 | 0.45 |
+| Rabbit Meat | `Base.Rabbitmeat` | 0.3 | 0.375 |
 | Rabbit Skull | `Base.Rabbit_Skull` | 0.1 | 0.0225 |
 | Raccoon Dung | `Base.Dung_Raccoon` | 0.1 | 0.045 |
 | Raccoon Hat | `Base.Hat_Raccoon` | 2 | 0.375 |
@@ -3174,30 +3174,30 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Rag Handwraps | `Base.Gloves_RagWrap` | 0.2 | 0.0225 |
 | Rag Neck Guard | `Base.Gorget_Rag` | 0.2 | 0.027 |
 | Railroad Spike | `Base.RailroadSpike` | 0.5 | 0.6 |
-| Railroad Spike Knife | `Base.RailroadSpikeKnife` | 0.5 | 0.675 |
+| Railroad Spike Knife | `Base.RailroadSpikeKnife` | 0.5 | 0.625 |
 | Railroad Spike Puller | `Base.RailroadSpikePuller` | 6 | 7.5 |
 | Railroad Spike Puller | `Base.RailroadSpikePullerOld` | 6 | 7.5 |
-| Rake | `Base.Rake` | 2 | 2.7 |
+| Rake | `Base.Rake` | 2 | 2.5 |
 | Rake Head | `Base.RakeHead` | 1 | 1.05 |
-| Ram Head | `Base.Sheep_Ram_Head_Black` | 1.3 | 7.5 |
-| Ram Head | `Base.Sheep_Ram_Head_White` | 1.3 | 7.5 |
-| Ram Skull | `Base.Ram_Skull` | 0.5 | 2.25 |
-| Ranch | `Base.Dip_Ranch` | 0.2 | 0.6 |
+| Ram Head | `Base.Sheep_Ram_Head_Black` | 1.3 | 1.62 |
+| Ram Head | `Base.Sheep_Ram_Head_White` | 1.3 | 1.62 |
+| Ram Skull | `Base.Ram_Skull` | 0.5 | 0.625 |
+| Ranch | `Base.Dip_Ranch` | 0.2 | 0.25 |
 | Ranger Hat | `Base.Hat_Ranger` | 1 | 0.45 |
 | Ranger Jacket | `Base.Jacket_Ranger` | 2 | 1.5 |
 | Ranger Pants | `Base.Trousers_Ranger` | 1 | 0.825 |
 | Ranger Shirt | `Base.Shirt_Ranger` | 1 | 0.525 |
 | Raspberry Shortbread Cookie | `Base.CookieJelly` | 0.1 | 0.06 |
 | Rat Droppings | `Base.Dung_Rat` | 0.01 | 0.0003 |
-| Rat King (Dead) | `Base.RatKing` | 1 | 4.5 |
+| Rat King (Dead) | `Base.RatKing` | 1 | 1.25 |
 | Rat Poison | `Base.RatPoison` | 1 | 0.675 |
 | Ratchet Wrench | `Base.Ratchet` | 1 | 0.6 |
-| Raw Wool | `Base.WoolRaw` | 0.1 | 0.225 |
+| Raw Wool | `Base.WoolRaw` | 0.1 | 0.125 |
 | Razor | `Base.Razor` | 0.2 | 0.045 |
 | Reading Glasses | `Base.Glasses_Reading` | 0.1 | 0.03 |
-| Rear Door (*) | `Base.RearCarDoor1` | 10 | 13 |
-| Rear Door (*) | `Base.RearCarDoor2` | 10 | 13 |
-| Rear Door (*) | `Base.RearCarDoor3` | 10 | 13 |
+| Rear Door (*) | `Base.RearCarDoor1` | 10 | 12.5 |
+| Rear Door (*) | `Base.RearCarDoor2` | 10 | 12.5 |
+| Rear Door (*) | `Base.RearCarDoor3` | 10 | 12.5 |
 | Rear Window (*) | `Base.RearWindow1` | 3 | 1.8 |
 | Rear Window (*) | `Base.RearWindow2` | 3 | 1.8 |
 | Rear Window (*) | `Base.RearWindow3` | 3 | 1.8 |
@@ -3206,28 +3206,28 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Rear Windshield (*) | `Base.RearWindshield3` | 8 | 6 |
 | Receipt | `Base.Receipt` | 0.05 | 0.003 |
 | Receiver | `Base.Receiver` | 0.1 | 0.075 |
-| Recoil Pad | `Base.RecoilPad` | 0.1 | 0.3 |
+| Recoil Pad | `Base.RecoilPad` | 0.1 | 0.125 |
 | Red Dot Sight | `Base.RedDot` | 0.4 | 0.3 |
 | Red Velvet Cake Slice | `Base.CakeRedVelvet` | 0.2 | 0.18 |
-| Red Wine (Open) | `Base.Wine2Open` | 0.3 | 0.75 |
+| Red Wine (Open) | `Base.Wine2Open` | 0.3 | 0.375 |
 | Redear Sunfish | `Base.RedearSunfish` | 0.4 | 0.45 |
 | Reflective Sunglasses | `Base.Glasses` | 0.1 | 0.045 |
-| Refried Beans | `Base.RefriedBeans` | 0.2 | 0.705 |
+| Refried Beans | `Base.RefriedBeans` | 0.2 | 0.25 |
 | Reloading I: "Basic Reloading" | `Base.BookReloading1` | 1 | 0.45 |
 | Reloading II: "Dead Man's Click" | `Base.BookReloading2` | 1 | 0.45 |
 | Reloading III: "Jungle Style Reloading" | `Base.BookReloading3` | 1 | 0.9 |
-| Reloading IV: "Strippers, Speedloaders, and Bolt Action" | `Base.BookReloading4` | 1 | 1.35 |
-| Reloading V: "The Ultimate Encyclopedia of Reloading Techniques" | `Base.BookReloading5` | 1 | 1.35 |
+| Reloading IV: "Strippers, Speedloaders, and Bolt Action" | `Base.BookReloading4` | 1 | 1.25 |
+| Reloading V: "The Ultimate Encyclopedia of Reloading Techniques" | `Base.BookReloading5` | 1 | 1.25 |
 | Remote Aerosol Bomb | `Base.AerosolbombRemote` | 1.5 | 1.3 |
 | Remote Controller (Long-Range) | `Base.RemoteCraftedV3` | 0.4 | 0.225 |
 | Remote Controller (Medium-Range) | `Base.RemoteCraftedV2` | 0.4 | 0.225 |
 | Remote Controller (Short-Range) | `Base.RemoteCraftedV1` | 0.4 | 0.225 |
 | Remote Fire Bomb | `Base.FlameTrapRemote` | 1.5 | 1.75 |
 | Remote Noise Generator | `Base.NoiseTrapRemote` | 1.5 | 1.75 |
-| Remote Pipe Bomb | `Base.PipeBombRemote` | 1.5 | 1.98 |
+| Remote Pipe Bomb | `Base.PipeBombRemote` | 1.5 | 1.88 |
 | Remote Smoke Bomb | `Base.SmokeBombRemote` | 1.5 | 1.6 |
 | Remoulade | `Base.RemouladeFull` | 0.5 | 0.6 |
-| Remoulade Bottle | `Base.RemouladeEmpty` | 0.1 | 0.3 |
+| Remoulade Bottle | `Base.RemouladeEmpty` | 0.1 | 0.125 |
 | Respirator Filters | `Base.RespiratorFilters` | 0.3 | 0.15 |
 | Respirator Filters - Recharged | `Base.RespiratorFiltersRecharged` | 0.3 | 0.15 |
 | Retro Gold-Framed Cosmetic Glasses | `Base.Glasses_Cosmetic_70s_Gold` | 0.1 | 0.03 |
@@ -3238,14 +3238,14 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Rice | `Base.RicePot` | 3 | 2.25 |
 | Rice | `Base.RicePotForged` | 3 | 2.25 |
 | Rice Paper | `Base.RicePaper` | 0.1 | 0.006 |
-| Rice Vinegar | `Base.RiceVinegar` | 0.2 | 0.6 |
-| Riding Boots | `Base.Shoes_RidingBoots` | 1 | 3 |
+| Rice Vinegar | `Base.RiceVinegar` | 0.2 | 0.25 |
+| Riding Boots | `Base.Shoes_RidingBoots` | 1 | 1.25 |
 | Riding Helmet | `Base.Hat_RidingHelmet` | 1 | 0.525 |
 | Rigid Shin Pad | `Base.Shinpad_L_Rigid` | 0.5 | 0.3 |
 | Rigid Shin Pad | `Base.Shinpad_R_Rigid` | 0.5 | 0.3 |
-| Riot Helmet | `Base.Hat_RiotHelmet` | 1 | 1.95 |
-| Roast | `Base.PanFriedVegetables2` | 1.3 | 3.75 |
-| Roasting Pan | `Base.RoastingPan` | 1.3 | 2.25 |
+| Riot Helmet | `Base.Hat_RiotHelmet` | 1 | 1.25 |
+| Roast | `Base.PanFriedVegetables2` | 1.3 | 1.62 |
+| Roasting Pan | `Base.RoastingPan` | 1.3 | 1.62 |
 | Rock Candy | `Base.RockCandy` | 0.1 | 0.06 |
 | Rodent Meat | `Base.Smallanimalmeat` | 0.3 | 0.15 |
 | Rolled Cigarette | `Base.CigaretteRolled` | 0.01 | 0.0015 |
@@ -3254,9 +3254,9 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Rooster Head | `Base.Chicken_Rooster_Head_Brown` | 0.2 | 0.06 |
 | Rooster Head | `Base.Chicken_Rooster_Head_White` | 0.2 | 0.06 |
 | Rooster Skull | `Base.Chicken_Rooster_Skull` | 0.1 | 0.015 |
-| Rope | `Base.Rope` | 0.8 | 1.05 |
+| Rope | `Base.Rope` | 0.8 | 1 |
 | Rope Belt | `Base.RopeBelt` | 0.8 | 0.15 |
-| Rope Bundle | `Base.RopeStack` | 8 | 12.7 |
+| Rope Bundle | `Base.RopeStack` | 8 | 10 |
 | Rose Hips | `Base.Rosehips` | 0.1 | 0.045 |
 | Rose Petals (Dried) | `Base.RosePetalsDried` | 0.1 | 0.0105 |
 | Rose Seeds | `Base.RoseSeed` | 0.02 | 0.003 |
@@ -3269,17 +3269,17 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Round Prescription Glasses | `Base.Glasses_Round_Normal` | 0.1 | 0.045 |
 | Round Sunglasses | `Base.Glasses_Round_Shades` | 0.1 | 0.045 |
 | Roy's Peanut Butter Pucks | `Base.Chocolate_RoysPBPucks` | 0.2 | 0.075 |
-| RPG Manual | `Base.RPGmanual` | 0.8 | 1.05 |
+| RPG Manual | `Base.RPGmanual` | 0.8 | 1 |
 | Rubber Band | `Base.RubberBand` | 0.1 | 0.0015 |
-| Rubber Boots | `Base.Shoes_Wellies` | 1 | 2.7 |
+| Rubber Boots | `Base.Shoes_Wellies` | 1 | 1.25 |
 | Rubber Duck | `Base.Rubberducky` | 0.3 | 0.0525 |
-| Rubber Gloves | `Base.Gloves_Dish` | 0.1 | 0.18 |
-| Rubber Hose | `Base.RubberHose` | 0.3 | 0.45 |
+| Rubber Gloves | `Base.Gloves_Dish` | 0.1 | 0.125 |
+| Rubber Hose | `Base.RubberHose` | 0.3 | 0.375 |
 | Rubber Spider | `Base.RubberSpider` | 0.2 | 0.0225 |
 | Ruby | `Base.Ruby` | 0.001 | 0.00075 |
 | Rum | `Base.Rum` | 1 | 0.9 |
 | Rye Seeds | `Base.RyeSeed` | 0.02 | 0.0075 |
-| Rye Sheaf | `Base.RyeSheaf` | 1 | 1.5 |
+| Rye Sheaf | `Base.RyeSheaf` | 1 | 1.25 |
 | Rye Sheaf (Dried) | `Base.RyeSheafDried` | 1 | 1.05 |
 | Sack | `Base.Bag_DeadMice` | 0.5 | 0.375 |
 | Sack | `Base.Bag_DeadRats` | 0.5 | 0.375 |
@@ -3288,10 +3288,10 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Sack | `Base.EmptySandbag` | 0.5 | 0.375 |
 | Sack | `Base.WheatSack` | 0.5 | 0.375 |
 | Sack | `Base.WheatSeedSack` | 0.5 | 0.375 |
-| Sack of Clay | `Base.Claybag` | 2 | 12.3 |
-| Sack of Dirt | `Base.Dirtbag` | 2 | 21 |
-| Sack of Gravel | `Base.Gravelbag` | 2 | 28.2 |
-| Sack of Sand | `Base.Sandbag` | 2 | 26.9 |
+| Sack of Clay | `Base.Claybag` | 2 | 2.5 |
+| Sack of Dirt | `Base.Dirtbag` | 2 | 2.5 |
+| Sack of Gravel | `Base.Gravelbag` | 2 | 2.5 |
+| Sack of Sand | `Base.Sandbag` | 2 | 2.5 |
 | Safety Goggles | `Base.Glasses_SafetyGoggles` | 0.1 | 0.12 |
 | Safety Scissors | `Base.ScissorsBlunt` | 0.2 | 0.075 |
 | Sage | `Base.Sage` | 0.1 | 0.045 |
@@ -3299,16 +3299,16 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Sage (Dried) | `Base.Seasoning_Sage` | 0.2 | 0.12 |
 | Sage Seeds | `Base.SageSeed` | 0.02 | 0.003 |
 | Salad | `Base.FruitSalad` | 0.7 | 0.825 |
-| Salad | `Base.Salad` | 0.5 | 0.675 |
-| Salad | `Base.SaladClay` | 0.5 | 0.75 |
-| Salami | `Base.Salami` | 0.1 | 0.375 |
-| Salami Slices | `Base.SalamiSlice` | 0.02 | 0.03 |
+| Salad | `Base.Salad` | 0.5 | 0.625 |
+| Salad | `Base.SaladClay` | 0.5 | 0.625 |
+| Salami | `Base.Salami` | 0.1 | 0.125 |
+| Salami Slices | `Base.SalamiSlice` | 0.02 | 0.025 |
 | Salmon | `Base.Salmon` | 0.3 | 0.375 |
-| Salsa | `Base.Dip_Salsa` | 0.2 | 0.975 |
-| Salt | `Base.Salt` | 0.2 | 1.17 |
-| Saltine Crackers | `Base.Crackers` | 0.1 | 0.165 |
+| Salsa | `Base.Dip_Salsa` | 0.2 | 0.25 |
+| Salt | `Base.Salt` | 0.2 | 0.25 |
+| Saltine Crackers | `Base.Crackers` | 0.1 | 0.125 |
 | Sandals | `Base.Shoes_Sandals` | 1 | 0.75 |
-| Sandwich | `Base.BaguetteSandwich` | 0.2 | 0.33 |
+| Sandwich | `Base.BaguetteSandwich` | 0.2 | 0.25 |
 | Sandwich | `Base.Sandwich` | 0.2 | 0.225 |
 | Santa Hat | `Base.Hat_SantaHat` | 0.5 | 0.15 |
 | Santa Hat - Green | `Base.Hat_SantaHatGreen` | 0.5 | 0.15 |
@@ -3316,7 +3316,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Santa Jacket - Green | `Base.JacketLong_SantaGreen` | 3 | 1.2 |
 | Santa Suit Pants | `Base.Trousers_Santa` | 1 | 0.6 |
 | Santa Suit Pants - Green | `Base.Trousers_SantaGreen` | 1 | 0.6 |
-| Sapling | `Base.Sapling` | 2 | 3.75 |
+| Sapling | `Base.Sapling` | 2 | 2.5 |
 | Sapphire | `Base.Sapphire` | 0.001 | 0.00075 |
 | Satchel | `Base.Bag_Satchel` | 1 | 1.05 |
 | Satchel | `Base.Bag_SatchelPhoto` | 1 | 1.05 |
@@ -3324,29 +3324,29 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Saucepan | `Base.Saucepan` | 0.7 | 0.75 |
 | Saucepan with Rice | `Base.WaterSaucepanRice` | 3 | 1.65 |
 | Saucepan with Spaghetti | `Base.WaterSaucepanPasta` | 3 | 1.65 |
-| Sauger | `Base.Sauger` | 0.4 | 0.9 |
+| Sauger | `Base.Sauger` | 0.4 | 0.5 |
 | Sausage | `Base.Sausage` | 0.1 | 0.12 |
 | Sawblade Axe | `Base.Axe_Sawblade` | 3 | 1.65 |
 | Sawblade Hatchet | `Base.Axe_Sawblade_Hatchet` | 2 | 1.12 |
-| Sawed-off Double Barrel Shotgun | `Base.DoubleBarrelShotgunSawnoff` | 3 | 4.05 |
-| Sawed-off JS-2000 Shotgun | `Base.ShotgunSawnoff` | 3 | 4.5 |
+| Sawed-off Double Barrel Shotgun | `Base.DoubleBarrelShotgunSawnoff` | 3 | 3.75 |
+| Sawed-off JS-2000 Shotgun | `Base.ShotgunSawnoff` | 3 | 3.75 |
 | Saxophone | `Base.Saxophone` | 3 | 3.45 |
-| Saxophone Case | `Base.Bag_SaxophoneCase` | 1 | 6 |
+| Saxophone Case | `Base.Bag_SaxophoneCase` | 1 | 1.25 |
 | Scalpel | `Base.Scalpel` | 0.3 | 0.045 |
 | Scanner Module | `Base.ScannerModule` | 0.1 | 0.075 |
 | Scarf | `Base.Scarf_StripeBlackWhite` | 0.2 | 0.225 |
 | Scarf | `Base.Scarf_StripeBlueWhite` | 0.2 | 0.225 |
 | Scarf | `Base.Scarf_StripeRedWhite` | 0.2 | 0.225 |
 | Scarf | `Base.Scarf_White` | 0.2 | 0.225 |
-| SCBA | `Base.SCBA` | 6 | 11.9 |
-| SCBA (No Tank) | `Base.SCBA_notank` | 1 | 5.25 |
+| SCBA | `Base.SCBA` | 6 | 7.5 |
+| SCBA (No Tank) | `Base.SCBA_notank` | 1 | 1.25 |
 | Scissors | `Base.Scissors` | 0.5 | 0.15 |
 | Scotch | `Base.Scotch` | 1 | 0.9 |
-| Scout Cookies | `Base.ScoutCookies` | 0.2 | 0.33 |
-| Scrap Electronics | `Base.ElectronicsScrap` | 0.1 | 0.15 |
-| Scrap Metal | `Base.ScrapMetal` | 1 | 1.5 |
+| Scout Cookies | `Base.ScoutCookies` | 0.2 | 0.25 |
+| Scrap Electronics | `Base.ElectronicsScrap` | 0.1 | 0.125 |
+| Scrap Metal | `Base.ScrapMetal` | 1 | 1.25 |
 | Scrap Metal Blade Shard | `Base.Sword_Scrap_Shard` | 0.5 | 0.3 |
-| Scrap Metal Body Armor | `Base.Cuirass_MetalScrap` | 4 | 6 |
+| Scrap Metal Body Armor | `Base.Cuirass_MetalScrap` | 4 | 5 |
 | Scrap Metal Chopper | `Base.Machete_Crude` | 2 | 0.9 |
 | Scrap Metal Cleaver | `Base.MeatCleaver_Scrap` | 2 | 0.9 |
 | Scrap Metal Cleaver-Axe | `Base.Axe_ScrapCleaver` | 3 | 1.5 |
@@ -3356,14 +3356,14 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Scrap Metal Large Knife | `Base.LargeKnife_Scrap` | 1 | 0.45 |
 | Scrap Metal Mask | `Base.Hat_HockeyMask_MetalScrap` | 1 | 1.05 |
 | Scrap Metal Maul | `Base.ScrapMaul` | 6 | 7.2 |
-| Scrap Metal Shin Armor | `Base.GreaveScrap_Left` | 1 | 1.5 |
-| Scrap Metal Shin Armor | `Base.GreaveScrap_Right` | 1 | 1.5 |
+| Scrap Metal Shin Armor | `Base.GreaveScrap_Left` | 1 | 1.25 |
+| Scrap Metal Shin Armor | `Base.GreaveScrap_Right` | 1 | 1.25 |
 | Scrap Metal Shortsword | `Base.ShortSword_Scrap` | 2 | 1.2 |
-| Scrap Metal Shoulder Armor | `Base.Shoulderpad_MetalScrap_L` | 1 | 1.35 |
-| Scrap Metal Shoulder Armor | `Base.Shoulderpad_MetalScrap_R` | 1 | 1.35 |
+| Scrap Metal Shoulder Armor | `Base.Shoulderpad_MetalScrap_L` | 1 | 1.25 |
+| Scrap Metal Shoulder Armor | `Base.Shoulderpad_MetalScrap_R` | 1 | 1.25 |
 | Scrap Metal Sword | `Base.Sword_Scrap` | 3 | 1.65 |
-| Scrap Metal Thigh Armor | `Base.ThighScrapMetal_L` | 1 | 1.95 |
-| Scrap Metal Thigh Armor | `Base.ThighScrapMetal_R` | 1 | 1.95 |
+| Scrap Metal Thigh Armor | `Base.ThighScrapMetal_L` | 1 | 1.25 |
+| Scrap Metal Thigh Armor | `Base.ThighScrapMetal_R` | 1 | 1.25 |
 | Scrap Wood | `Base.UnusableWood` | 1 | 0.45 |
 | Scratch Ticket | `Base.ScratchTicket` | 0.1 | 0.0045 |
 | Scratch Ticket | `Base.ScratchTicket_Winner` | 0.1 | 0.0045 |
@@ -3371,10 +3371,10 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Screwdriver | `Base.Screwdriver` | 0.5 | 0.225 |
 | Screwdriver | `Base.Screwdriver_Old` | 0.5 | 0.225 |
 | Screws | `Base.Screws` | 0.05 | 0.00675 |
-| Scythe | `Base.Scythe` | 2 | 3.3 |
-| Scythe | `Base.ScytheForged` | 2 | 3.3 |
+| Scythe | `Base.Scythe` | 2 | 2.5 |
+| Scythe | `Base.ScytheForged` | 2 | 2.5 |
 | Scythe Blade | `Base.ScytheBlade` | 1 | 1.2 |
-| Seasoning Salt | `Base.SeasoningSalt` | 0.2 | 0.375 |
+| Seasoning Salt | `Base.SeasoningSalt` | 0.2 | 0.25 |
 | Seaweed | `Base.Seaweed` | 0.2 | 0.075 |
 | Security Pass Key Ring | `Base.KeyRing_SecurityPass` | 0.05 | 0.045 |
 | Seed Packet - Barley | `Base.BarleyBagSeed` | 0.1 | 0.042 |
@@ -3441,8 +3441,8 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Server Hat - Fast Food | `Base.Hat_FastFood` | 0.3 | 0.045 |
 | Server Hat - Ice Cream | `Base.Hat_FastFood_IceCream` | 0.3 | 0.045 |
 | Server Hat - Spiffo's | `Base.Hat_FastFood_Spiffo` | 0.3 | 0.045 |
-| Sesame Bagel | `Base.BagelSesame` | 0.1 | 0.15 |
-| Sesame Oil | `Base.SesameOil` | 0.2 | 0.375 |
+| Sesame Bagel | `Base.BagelSesame` | 0.1 | 0.125 |
+| Sesame Oil | `Base.SesameOil` | 0.2 | 0.25 |
 | Set of Aiming Books | `Base.BookAimingSet` | 4 | 4.6 |
 | Set of Animal Care Books | `Base.BookHusbandrySet` | 4 | 4.6 |
 | Set of Blacksmithing Books | `Base.BookBlacksmithSet` | 4 | 4.6 |
@@ -3471,17 +3471,17 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Sewing Pattern | `Base.SewingPattern` | 0.3 | 0.105 |
 | Sharp Bone Fragment | `Base.SharpBoneFragment` | 0.3 | 0.075 |
 | Sharp Flint Flake | `Base.SharpedStone` | 1 | 0.075 |
-| Shears | `Base.SheepShears` | 0.3 | 0.525 |
-| Shears | `Base.SheepShearsForged` | 0.3 | 0.525 |
-| Shears - Electric | `Base.SheepElectricShears` | 0.3 | 1.2 |
+| Shears | `Base.SheepShears` | 0.3 | 0.375 |
+| Shears | `Base.SheepShearsForged` | 0.3 | 0.375 |
+| Shears - Electric | `Base.SheepElectricShears` | 0.3 | 0.375 |
 | Sheep Dung | `Base.Dung_Sheep` | 0.5 | 0.075 |
-| Sheep Hide (Furred) | `Base.SheepLeather_Fur` | 3 | 5.25 |
-| Sheep Hide (Unprocessed) | `Base.SheepLeather_Full` | 3 | 6 |
+| Sheep Hide (Furred) | `Base.SheepLeather_Fur` | 3 | 3.75 |
+| Sheep Hide (Unprocessed) | `Base.SheepLeather_Full` | 3 | 3.75 |
 | Sheep Leather Half (Furred) | `Base.SheepLeather_Fur_Tan_Small` | 1 | 1.2 |
-| Sheep Skull | `Base.Sheep_Skull` | 0.5 | 0.75 |
-| Sheepskin Coat | `Base.JacketLong_SheepSkin` | 2 | 4.5 |
-| Sheepskin Jacket | `Base.Jacket_SheepSkin` | 2 | 3.3 |
-| Sheepskin Pants | `Base.Trousers_SheepSkin` | 2 | 2.7 |
+| Sheep Skull | `Base.Sheep_Skull` | 0.5 | 0.625 |
+| Sheepskin Coat | `Base.JacketLong_SheepSkin` | 2 | 2.5 |
+| Sheepskin Jacket | `Base.Jacket_SheepSkin` | 2 | 2.5 |
+| Sheepskin Pants | `Base.Trousers_SheepSkin` | 2 | 2.5 |
 | Sheepskin Vest | `Base.Vest_SheepSkin` | 2 | 1.8 |
 | Sheet | `Base.Sheet` | 1 | 0.75 |
 | Sheet Metal Scrap | `Base.UnusableMetal` | 1 | 0.45 |
@@ -3507,7 +3507,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Sheriff Deputy Hat | `Base.Hat_Sheriff` | 1 | 0.45 |
 | Sheriff Deputy Jacket | `Base.Jacket_Sheriff` | 2 | 1.8 |
 | Sheriff Deputy Shirt | `Base.Shirt_Sheriff` | 1 | 0.525 |
-| Sheriff Duffel Bag | `Base.Bag_Sheriff` | 1 | 1.35 |
+| Sheriff Duffel Bag | `Base.Bag_Sheriff` | 1 | 1.25 |
 | Sherry | `Base.Sherry` | 1 | 0.75 |
 | Shin Guard | `Base.ShinKneeGuard_L` | 2 | 0.525 |
 | Shin Guard | `Base.ShinKneeGuard_L_Baseball` | 2 | 1.5 |
@@ -3534,9 +3534,9 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Shirt - Z Hurricanes Baseball | `Base.Shirt_Baseball_Z` | 1 | 0.525 |
 | Shiv | `Base.KnifeShiv` | 0.5 | 0.15 |
 | Shoebox | `Base.Shoebox` | 0.5 | 0.195 |
-| Shoes | `Base.Shoes_Black` | 1 | 1.35 |
-| Shoes | `Base.Shoes_Brown` | 1 | 1.35 |
-| Shoes | `Base.Shoes_Random` | 1 | 1.35 |
+| Shoes | `Base.Shoes_Black` | 1 | 1.25 |
+| Shoes | `Base.Shoes_Brown` | 1 | 1.25 |
+| Shoes | `Base.Shoes_Random` | 1 | 1.25 |
 | Shooting Glasses | `Base.Glasses_Shooting` | 0.1 | 0.045 |
 | Short Bat | `Base.ShortBat` | 1.5 | 0.9 |
 | Short Bat - Can-Reinforced | `Base.ShortBat_Can` | 2 | 1.05 |
@@ -3563,7 +3563,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Shortsword | `Base.ShortSword` | 1.5 | 1.35 |
 | Shortsword Blade | `Base.ShortSwordBlade` | 1.5 | 0.9 |
 | Shortsword Blade (No Tang) | `Base.ShortSwordBlade_NoTang` | 1.5 | 0.825 |
-| Shovel | `Base.Shovel2` | 2 | 3.45 |
+| Shovel | `Base.Shovel2` | 2 | 2.5 |
 | Shower Cap | `Base.Hat_ShowerCap` | 0.2 | 0.03 |
 | Shrimp | `Base.Shrimp` | 0.1 | 0.03 |
 | Shrimp Dumpling | `Base.ShrimpDumpling` | 0.1 | 0.0375 |
@@ -3594,7 +3594,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Silver Fork | `Base.Fork_Silver` | 0.25 | 0.105 |
 | Silver Fragments | `Base.SilverScrap` | 0.05 | 0.0405 |
 | Silver Goblet | `Base.Goblet_Silver` | 0.5 | 0.48 |
-| Silver Ingot | `Base.SilverBar` | 8 | 10.2 |
+| Silver Ingot | `Base.SilverBar` | 8 | 10 |
 | Silver Long Necklace | `Base.NecklaceLong_Silver` | 0.1 | 0.0232 |
 | Silver Long Necklace with Diamond | `Base.NecklaceLong_SilverDiamond` | 0.1 | 0.0232 |
 | Silver Long Necklace with Emerald | `Base.NecklaceLong_SilverEmerald` | 0.1 | 0.0232 |
@@ -3617,16 +3617,16 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Silver Sheet | `Base.SilverSheet` | 0.5 | 0.39 |
 | Silver Spoon | `Base.Spoon_Silver` | 0.25 | 0.09 |
 | Silver Sports Medal | `Base.Medal_Silver` | 0.3 | 0.09 |
-| Simmental Calf Hide (Furred) | `Base.CalfLeather_Simmental_Fur` | 1 | 6 |
-| Simmental Calf Hide (Unprocessed) | `Base.CalfLeather_Simmental_Full` | 1 | 7.5 |
-| Simmental Calf Leather (Furred, Wet) | `Base.CalfLeather_Simmental_Fur_Tan_Wet` | 1 | 3 |
-| Simmental Hide (Furred) | `Base.CowLeather_Simmental_Fur` | 5 | 33.5 |
-| Simmental Hide (Unprocessed) | `Base.CowLeather_Simmental_Full` | 5 | 37.6 |
-| Simmental Leather (Furred, Wet) | `Base.CowLeather_Simmental_Fur_Tan_Wet` | 5 | 18 |
-| Simmental Leather Half (Furred) | `Base.CowLeather_Simmental_Fur_Tan_Medium` | 3 | 6.75 |
-| Simmental Leather Quarter (Furred) | `Base.CowLeather_Simmental_Fur_Tan_Small` | 1 | 3.3 |
-| Simple Framepack | `Base.Bag_CraftedFramepack_Large` | 2 | 2.7 |
-| Simple Framepack | `Base.Bag_TarpFramepack_Large` | 2 | 2.7 |
+| Simmental Calf Hide (Furred) | `Base.CalfLeather_Simmental_Fur` | 1 | 1.25 |
+| Simmental Calf Hide (Unprocessed) | `Base.CalfLeather_Simmental_Full` | 1 | 1.25 |
+| Simmental Calf Leather (Furred, Wet) | `Base.CalfLeather_Simmental_Fur_Tan_Wet` | 1 | 1.25 |
+| Simmental Hide (Furred) | `Base.CowLeather_Simmental_Fur` | 5 | 6.25 |
+| Simmental Hide (Unprocessed) | `Base.CowLeather_Simmental_Full` | 5 | 6.25 |
+| Simmental Leather (Furred, Wet) | `Base.CowLeather_Simmental_Fur_Tan_Wet` | 5 | 6.25 |
+| Simmental Leather Half (Furred) | `Base.CowLeather_Simmental_Fur_Tan_Medium` | 3 | 3.75 |
+| Simmental Leather Quarter (Furred) | `Base.CowLeather_Simmental_Fur_Tan_Small` | 1 | 1.25 |
+| Simple Framepack | `Base.Bag_CraftedFramepack_Large` | 2 | 2.5 |
+| Simple Framepack | `Base.Bag_TarpFramepack_Large` | 2 | 2.5 |
 | Simple Metal Blade | `Base.CrudeBlade` | 0.5 | 0.3 |
 | Simple Metal Knife | `Base.CrudeKnife` | 0.7 | 0.225 |
 | Simple Shortsword | `Base.CrudeShortSword` | 1.5 | 0.9 |
@@ -3638,18 +3638,18 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Simple Wood Saw | `Base.CrudeSaw` | 1 | 0.6 |
 | Simple Wooden Tongs | `Base.CrudeWoodenTongs` | 1 | 0.6 |
 | Sinew Thread | `Base.Thread_Sinew` | 0.2 | 0.03 |
-| Ski Goggles | `Base.Glasses_SkiGoggles` | 0.1 | 0.24 |
+| Ski Goggles | `Base.Glasses_SkiGoggles` | 0.1 | 0.125 |
 | Skinned Mouse (Dead) | `Base.DeadMouseSkinned` | 0.05 | 0.0225 |
 | Skinned Mouse Pups (Dead) | `Base.DeadMousePupsSkinned` | 0.03 | 0.0075 |
-| Skinned Rat (Dead) | `Base.DeadRatSkinned` | 0.2 | 0.33 |
+| Skinned Rat (Dead) | `Base.DeadRatSkinned` | 0.2 | 0.25 |
 | Skinned Rat Baby (Dead) | `Base.DeadRatBabySkinned` | 0.12 | 0.045 |
 | Skirt | `Base.Skirt_Normal` | 1 | 0.45 |
 | Skirt - Garbage Bag | `Base.Skirt_Normal_Garbage` | 1 | 0.0825 |
-| Skirt - Hide | `Base.Skirt_Normal_Hide` | 1 | 1.48 |
+| Skirt - Hide | `Base.Skirt_Normal_Hide` | 1 | 1.25 |
 | Skirt - Tarp | `Base.Skirt_Normal_Tarp` | 1 | 0.248 |
-| Sledgehammer | `Base.Sledgehammer` | 6 | 8.1 |
-| Sledgehammer | `Base.Sledgehammer2` | 6 | 8.1 |
-| Sledgehammer | `Base.SledgehammerForged` | 6 | 8.1 |
+| Sledgehammer | `Base.Sledgehammer` | 6 | 7.5 |
+| Sledgehammer | `Base.Sledgehammer2` | 6 | 7.5 |
+| Sledgehammer | `Base.SledgehammerForged` | 6 | 7.5 |
 | Sledgehammer Head | `Base.SledgehammerHead` | 6 | 6.75 |
 | Sleeping Bag (Packed) | `Base.SleepingBag_BluePlaid_Packed` | 3 | 2.7 |
 | Sleeping Bag (Packed) | `Base.SleepingBag_Camo_Packed` | 3 | 2.7 |
@@ -3664,59 +3664,59 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Slug Repellent | `Base.SlugRepellent` | 1 | 0.75 |
 | Small Animal Skull Necklace | `Base.Necklace_SkullSmall` | 0.1 | 0.03 |
 | Small Animal Skulls Necklace | `Base.Necklace_SkullSmall_Multi` | 0.1 | 0.075 |
-| Small Backpack | `Base.Bag_Schoolbag` | 1 | 0.9 |
+| Small Backpack | `Base.Bag_Schoolbag` | 1 | 0.675 |
 | Small Backpack | `Base.Bag_Schoolbag_Kids` | 1 | 0.675 |
 | Small Backpack | `Base.Bag_Schoolbag_Medical` | 1 | 0.675 |
 | Small Backpack | `Base.Bag_Schoolbag_Patches` | 1 | 0.675 |
 | Small Backpack | `Base.Bag_Schoolbag_Travel` | 1 | 0.675 |
 | Small Bird Meat | `Base.Smallbirdmeat` | 0.3 | 0.15 |
 | Small Brush | `Base.Brush` | 0.3 | 0.075 |
-| Small Ceramic Crucible | `Base.CeramicCrucibleSmall` | 0.2 | 1.2 |
-| Small Ceramic Crucible with Iron | `Base.CeramicCrucibleSmall_Iron` | 5.2 | 11.7 |
+| Small Ceramic Crucible | `Base.CeramicCrucibleSmall` | 0.2 | 0.25 |
+| Small Ceramic Crucible with Iron | `Base.CeramicCrucibleSmall_Iron` | 5.2 | 6.5 |
 | Small Ceramic Crucible with Molten Glass | `Base.CeramicCrucibleWithGlass` | 6 | 4.95 |
-| Small Ceramic Crucible with Steel | `Base.CeramicCrucibleSmall_Steel` | 5.2 | 11.7 |
-| Small Clay Crucible (Unfired) | `Base.CeramicCrucibleSmallUnfired` | 0.2 | 1.35 |
+| Small Ceramic Crucible with Steel | `Base.CeramicCrucibleSmall_Steel` | 5.2 | 6.5 |
+| Small Clay Crucible (Unfired) | `Base.CeramicCrucibleSmallUnfired` | 0.2 | 0.25 |
 | Small File Set | `Base.SmallFileSet` | 1 | 0.375 |
 | Small Gold Ingot | `Base.SmallGoldBar` | 2 | 1.5 |
 | Small Hacksaw | `Base.SmallSaw` | 0.7 | 0.375 |
 | Small Hacksaw Blade | `Base.SmallSawblade` | 0.5 | 0.03 |
 | Small Handle | `Base.SmallHandle` | 0.5 | 0.105 |
-| Small Hide (Crude) | `Base.Leather_Crude_Small` | 1 | 1.8 |
+| Small Hide (Crude) | `Base.Leather_Crude_Small` | 1 | 1.25 |
 | Small Knife | `Base.SmallKnife` | 0.5 | 0.15 |
 | Small Leather (Crude) | `Base.Leather_Crude_Small_Tan` | 1 | 1.05 |
-| Small Leather (Crude, Wet) | `Base.Leather_Crude_Small_Tan_Wet` | 1 | 1.5 |
-| Small Leather Backpack | `Base.Bag_CrudeLeatherBag` | 1 | 2.25 |
-| Small Protective Case | `Base.Bag_ProtectiveCaseSmall` | 1 | 1.5 |
-| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Armorer` | 1 | 1.5 |
-| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Electronics` | 1 | 1.5 |
-| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_FirstAid` | 1 | 1.5 |
-| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_KeyCutting` | 1 | 1.5 |
-| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Pistol1` | 1 | 1.5 |
-| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Pistol2` | 1 | 1.5 |
-| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Pistol3` | 1 | 1.5 |
-| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Revolver1` | 1 | 1.5 |
-| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Revolver2` | 1 | 1.5 |
-| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Revolver3` | 1 | 1.5 |
-| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Survivalist` | 1 | 1.5 |
-| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_WalkieTalkie` | 1 | 1.5 |
-| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_WalkieTalkiePolice` | 1 | 1.5 |
-| Small Protective Case - Military | `Base.Bag_ProtectiveCaseSmallMilitary_FirstAid` | 1 | 1.5 |
-| Small Protective Case - Military | `Base.Bag_ProtectiveCaseSmallMilitary_Pistol1` | 1 | 1.5 |
-| Small Protective Case - Military | `Base.Bag_ProtectiveCaseSmallMilitary_WalkieTalkie` | 1 | 1.5 |
-| Small Protective Military Case | `Base.Bag_ProtectiveCaseSmallMilitary` | 1 | 1.5 |
+| Small Leather (Crude, Wet) | `Base.Leather_Crude_Small_Tan_Wet` | 1 | 1.25 |
+| Small Leather Backpack | `Base.Bag_CrudeLeatherBag` | 1 | 1.25 |
+| Small Protective Case | `Base.Bag_ProtectiveCaseSmall` | 1 | 1.25 |
+| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Armorer` | 1 | 1.25 |
+| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Electronics` | 1 | 1.25 |
+| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_FirstAid` | 1 | 1.25 |
+| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_KeyCutting` | 1 | 1.25 |
+| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Pistol1` | 1 | 1.25 |
+| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Pistol2` | 1 | 1.25 |
+| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Pistol3` | 1 | 1.25 |
+| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Revolver1` | 1 | 1.25 |
+| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Revolver2` | 1 | 1.25 |
+| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Revolver3` | 1 | 1.25 |
+| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_Survivalist` | 1 | 1.25 |
+| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_WalkieTalkie` | 1 | 1.25 |
+| Small Protective Case | `Base.Bag_ProtectiveCaseSmall_WalkieTalkiePolice` | 1 | 1.25 |
+| Small Protective Case - Military | `Base.Bag_ProtectiveCaseSmallMilitary_FirstAid` | 1 | 1.25 |
+| Small Protective Case - Military | `Base.Bag_ProtectiveCaseSmallMilitary_Pistol1` | 1 | 1.25 |
+| Small Protective Case - Military | `Base.Bag_ProtectiveCaseSmallMilitary_WalkieTalkie` | 1 | 1.25 |
+| Small Protective Military Case | `Base.Bag_ProtectiveCaseSmallMilitary` | 1 | 1.25 |
 | Small Punch and Chisel Set | `Base.SmallPunchSet` | 1 | 0.45 |
 | Small Silver Ingot | `Base.SmallSilverBar` | 1 | 0.81 |
 | Small Simple Framepack | `Base.Bag_CraftedFramepack_Small` | 1.5 | 1.8 |
 | Small Simple Framepack | `Base.Bag_TarpFramepack_Small` | 1.5 | 1.8 |
-| Small Stone Wheel | `Base.StoneWheelSmall` | 15 | 22.5 |
+| Small Stone Wheel | `Base.StoneWheelSmall` | 15 | 18.8 |
 | Small Tarp Backpack | `Base.Bag_CrudeTarpBag` | 1 | 0.75 |
-| Smallmouth Bass | `Base.SmallmouthBass` | 0.4 | 1.35 |
+| Smallmouth Bass | `Base.SmallmouthBass` | 0.4 | 0.5 |
 | Smashed Bottle | `Base.SmashedBottle` | 1 | 0.225 |
 | Smirkers Bar | `Base.Chocolate_Smirkers` | 0.2 | 0.075 |
 | Smithing Hammer | `Base.SmithingHammer` | 1.5 | 1.8 |
-| Smithing Hammer Head | `Base.SmithingHammerHead` | 0.5 | 1.35 |
+| Smithing Hammer Head | `Base.SmithingHammerHead` | 0.5 | 0.625 |
 | Smoke Bomb | `Base.SmokeBomb` | 1.5 | 1.12 |
-| Smoke Bomb with Long-Range Sensor | `Base.SmokeBombSensorV3` | 1.5 | 1.91 |
+| Smoke Bomb with Long-Range Sensor | `Base.SmokeBombSensorV3` | 1.5 | 1.88 |
 | Smoke Bomb with Medium-Range Sensor | `Base.SmokeBombSensorV2` | 1.5 | 1.75 |
 | Smoke Bomb with Short-Range Sensor | `Base.SmokeBombSensorV1` | 1.5 | 1.6 |
 | Smoke Bomb with Timer | `Base.SmokeBombTriggered` | 1.5 | 1.75 |
@@ -3731,7 +3731,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Sneakers | `Base.Shoes_TrainerTINT` | 1 | 1.05 |
 | SnikSnak Bar | `Base.Chocolate_SnikSnak` | 0.2 | 0.075 |
 | Sno Globes | `Base.SnoGlobes` | 0.2 | 0.12 |
-| Snow Globe | `Base.SnowGlobe` | 0.5 | 1.05 |
+| Snow Globe | `Base.SnowGlobe` | 0.5 | 0.625 |
 | Snow Shovel | `Base.SnowShovel` | 2 | 1.8 |
 | Soap | `Base.Soap2` | 0.2 | 0.15 |
 | Soccer Ball | `Base.SoccerBall` | 1 | 0.84 |
@@ -3745,23 +3745,23 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Soft Shin Pad | `Base.Shinpad_R` | 0.3 | 0.18 |
 | Soft Shin Pad | `Base.Shinpad_R_Blue` | 0.3 | 0.18 |
 | Soft Shin Pad | `Base.Shinpad_R_White` | 0.3 | 0.18 |
-| Sour Cream | `Base.SourCream` | 0.2 | 0.375 |
-| Sow Head | `Base.Pig_Sow_Head_Black` | 1.4 | 13.5 |
-| Sow Head | `Base.Pig_Sow_Head_Pink` | 1.4 | 13.5 |
-| Soy Sauce | `Base.Soysauce` | 0.2 | 0.675 |
-| Soybeans | `Base.Soybeans` | 0.1 | 0.15 |
+| Sour Cream | `Base.SourCream` | 0.2 | 0.25 |
+| Sow Head | `Base.Pig_Sow_Head_Black` | 1.4 | 1.75 |
+| Sow Head | `Base.Pig_Sow_Head_Pink` | 1.4 | 1.75 |
+| Soy Sauce | `Base.Soysauce` | 0.2 | 0.25 |
+| Soybeans | `Base.Soybeans` | 0.1 | 0.125 |
 | Soybeans (Dried) | `Base.SoybeansSeed` | 0.02 | 0.0075 |
-| Spade | `Base.Shovel` | 2 | 2.85 |
-| Spade | `Base.SpadeForged` | 2 | 2.85 |
-| Spade Head | `Base.SpadeHead` | 1 | 1.5 |
-| Spade Head | `Base.SpadeHead_Forged` | 1 | 1.5 |
+| Spade | `Base.Shovel` | 2 | 2.5 |
+| Spade | `Base.SpadeForged` | 2 | 2.5 |
+| Spade Head | `Base.SpadeHead` | 1 | 1.25 |
+| Spade Head | `Base.SpadeHead_Forged` | 1 | 1.25 |
 | Spade Head Scrap Metal Weapon | `Base.ScrapWeaponSpade` | 4 | 3.6 |
 | Spaghetti | `Base.Pasta` | 2 | 0.69 |
 | Spaghetti | `Base.PastaPan` | 3 | 1.2 |
 | Spaghetti | `Base.PastaPanCopper` | 3 | 1.65 |
 | Spaghetti | `Base.PastaPot` | 3 | 2.25 |
 | Spaghetti | `Base.PastaPotForged` | 3 | 2.25 |
-| Spare Engine Parts | `Base.EngineParts` | 1 | 4.5 |
+| Spare Engine Parts | `Base.EngineParts` | 1 | 1.25 |
 | Spatula | `Base.Spatula` | 0.6 | 0.15 |
 | Spear with Bone Head | `Base.Spear_Bone` | 2.4 | 1.5 |
 | Spear with Fighting Knife | `Base.SpearFightingKnife` | 3 | 1.8 |
@@ -3786,20 +3786,20 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Specimen Case - Beetles | `Base.Specimen_Beetles` | 1 | 1.2 |
 | Specimen Case - Butterflies | `Base.Specimen_Butterflies` | 1 | 1.2 |
 | Specimen Case - Insects | `Base.Specimen_Insects` | 1 | 1.2 |
-| Specimen Case - Minerals | `Base.Specimen_Minerals` | 1 | 2.25 |
-| Specimen Jar - Brain | `Base.Specimen_Brain` | 1 | 1.8 |
-| Specimen Jar - Centipedes | `Base.Specimen_Centipedes` | 1 | 1.8 |
-| Specimen Jar - Fetal Calf | `Base.Specimen_FetalCalf` | 1 | 3.75 |
-| Specimen Jar - Fetal Lamb | `Base.Specimen_FetalLamb` | 1 | 3.75 |
-| Specimen Jar - Fetal Piglet | `Base.Specimen_FetalPiglet` | 1 | 3.75 |
-| Specimen Jar - Monkey Head | `Base.Specimen_MonkeyHead` | 1 | 3.75 |
-| Specimen Jar - Octopus | `Base.Specimen_Octopus` | 1 | 1.8 |
-| Specimen Jar - Tapeworm | `Base.Specimen_Tapeworm` | 1 | 1.8 |
+| Specimen Case - Minerals | `Base.Specimen_Minerals` | 1 | 1.25 |
+| Specimen Jar - Brain | `Base.Specimen_Brain` | 1 | 1.25 |
+| Specimen Jar - Centipedes | `Base.Specimen_Centipedes` | 1 | 1.25 |
+| Specimen Jar - Fetal Calf | `Base.Specimen_FetalCalf` | 1 | 1.25 |
+| Specimen Jar - Fetal Lamb | `Base.Specimen_FetalLamb` | 1 | 1.25 |
+| Specimen Jar - Fetal Piglet | `Base.Specimen_FetalPiglet` | 1 | 1.25 |
+| Specimen Jar - Monkey Head | `Base.Specimen_MonkeyHead` | 1 | 1.25 |
+| Specimen Jar - Octopus | `Base.Specimen_Octopus` | 1 | 1.25 |
+| Specimen Jar - Tapeworm | `Base.Specimen_Tapeworm` | 1 | 1.25 |
 | Speeding Ticket | `Base.SpeedingTicket` | 0.1 | 0.003 |
 | Spiffo | `Base.Spiffo` | 0.8 | 0.6 |
 | Spiffo Sleeping Bag (Packed) | `Base.SleepingBag_Spiffo_Packed` | 3 | 1.5 |
-| Spiffo Suit | `Base.SpiffoSuit` | 1 | 6 |
-| Spiffo Suit Head | `Base.Hat_Spiffo` | 1 | 4.5 |
+| Spiffo Suit | `Base.SpiffoSuit` | 1 | 1.25 |
+| Spiffo Suit Head | `Base.Hat_Spiffo` | 1 | 1.25 |
 | Spiffo Suit Tail | `Base.SpiffoTail` | 1 | 0.45 |
 | Spiffo Tie | `Base.Tie_Full_Spiffo` | 0.1 | 0.06 |
 | Spiffo Tie - Clip-on | `Base.Tie_Worn_Spiffo` | 0.1 | 0.06 |
@@ -3814,16 +3814,16 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Spiked Metal Forearm Armor | `Base.VambraceSpike_Right` | 2 | 1.5 |
 | Spiked Metal Shin Armor | `Base.GreaveSpike_Left` | 2 | 2.1 |
 | Spiked Metal Shin Armor | `Base.GreaveSpike_Right` | 2 | 2.1 |
-| Spiked Metal Shoulder Armor | `Base.Shoulderpad_MetalSpike_L` | 1 | 1.8 |
-| Spiked Metal Shoulder Armor | `Base.Shoulderpad_MetalSpike_R` | 1 | 1.8 |
-| Spiked Metal Thigh Armor | `Base.ThighMetalSpike_L` | 2 | 2.55 |
-| Spiked Metal Thigh Armor | `Base.ThighMetalSpike_R` | 2 | 2.55 |
+| Spiked Metal Shoulder Armor | `Base.Shoulderpad_MetalSpike_L` | 1 | 1.25 |
+| Spiked Metal Shoulder Armor | `Base.Shoulderpad_MetalSpike_R` | 1 | 1.25 |
+| Spiked Metal Thigh Armor | `Base.ThighMetalSpike_L` | 2 | 2.5 |
+| Spiked Metal Thigh Armor | `Base.ThighMetalSpike_R` | 2 | 2.5 |
 | Spiked Scrap Metal Forearm Armor | `Base.VambraceSpikeScrap_Left` | 2 | 1.35 |
 | Spiked Scrap Metal Forearm Armor | `Base.VambraceSpikeScrap_Right` | 2 | 1.35 |
 | Spiked Scrap Metal Shin Armor | `Base.GreaveSpikeScrap_Left` | 2 | 1.8 |
 | Spiked Scrap Metal Shin Armor | `Base.GreaveSpikeScrap_Right` | 2 | 1.8 |
-| Spiked Scrap Metal Shoulder Armor | `Base.Shoulderpad_MetalSpikeScrap_L` | 1 | 1.65 |
-| Spiked Scrap Metal Shoulder Armor | `Base.Shoulderpad_MetalSpikeScrap_R` | 1 | 1.65 |
+| Spiked Scrap Metal Shoulder Armor | `Base.Shoulderpad_MetalSpikeScrap_L` | 1 | 1.25 |
+| Spiked Scrap Metal Shoulder Armor | `Base.Shoulderpad_MetalSpikeScrap_R` | 1 | 1.25 |
 | Spiked Scrap Metal Thigh Armor | `Base.ThighScrapMetalSpike_L` | 2 | 2.25 |
 | Spiked Scrap Metal Thigh Armor | `Base.ThighScrapMetalSpike_R` | 2 | 2.25 |
 | Spiked Shin Guard | `Base.ShinKneeGuardSpike_L` | 3 | 0.705 |
@@ -3834,52 +3834,52 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Spiked Shin Guard | `Base.ShinKneeGuardSpike_R_Baseball` | 3 | 1.68 |
 | Spiked Shin Guard | `Base.ShinKneeGuardSpike_R_IceHockey` | 3 | 0.855 |
 | Spiked Shin Guard | `Base.ShinKneeGuardSpike_R_Protective` | 3 | 0.93 |
-| Spinach | `Base.Spinach` | 0.1 | 0.225 |
+| Spinach | `Base.Spinach` | 0.1 | 0.125 |
 | Spinach Seeds | `Base.SpinachSeed` | 0.02 | 0.003 |
 | Splint | `Base.Splint` | 1 | 0.225 |
 | Split Peas (Dried) | `Base.DriedSplitPeas` | 2 | 0.69 |
 | Sponge | `Base.Sponge` | 0.1 | 0.03 |
 | Spoon | `Base.Spoon` | 0.25 | 0.0675 |
 | Sport Pants | `Base.Trousers_Sport` | 1 | 0.6 |
-| Sports Bottle | `Base.Sportsbottle` | 0.1 | 0.165 |
-| Spotted Bass | `Base.SpottedBass` | 0.4 | 0.9 |
+| Sports Bottle | `Base.Sportsbottle` | 0.1 | 0.125 |
+| Spotted Bass | `Base.SpottedBass` | 0.4 | 0.5 |
 | Spring Roll | `Base.Springroll` | 0.1 | 0.105 |
-| Squash | `Base.Squash` | 0.5 | 0.9 |
-| Squid | `Base.Squid` | 0.2 | 0.3 |
-| Squid Calamari | `Base.SquidCalamari` | 0.1 | 0.15 |
+| Squash | `Base.Squash` | 0.5 | 0.625 |
+| Squid | `Base.Squid` | 0.2 | 0.25 |
+| Squid Calamari | `Base.SquidCalamari` | 0.1 | 0.125 |
 | St. Patrick's Day Card | `Base.Card_StPatrick` | 0.2 | 0.0225 |
-| Stag Head | `Base.Deer_Buck_Head` | 1.5 | 6.75 |
-| Stag Skull | `Base.DeerStag_Skull` | 0.6 | 1.8 |
+| Stag Head | `Base.Deer_Buck_Head` | 1.5 | 1.88 |
+| Stag Skull | `Base.DeerStag_Skull` | 0.6 | 0.75 |
 | Stake | `Base.Stake` | 0.5 | 0.45 |
-| Stapler | `Base.Stapler` | 0.3 | 0.45 |
+| Stapler | `Base.Stapler` | 0.3 | 0.375 |
 | Staples | `Base.Staples` | 0.1 | 0.09 |
 | Star Pillow | `Base.Pillow_Star` | 1 | 0.9 |
-| Steak | `Base.Steak` | 0.3 | 0.42 |
+| Steak | `Base.Steak` | 0.3 | 0.375 |
 | Steak Knife | `Base.SteakKnife` | 0.5 | 0.105 |
-| Steel Bar | `Base.SteelBar` | 2 | 3 |
-| Steel Bar Half | `Base.SteelBarHalf` | 1 | 1.5 |
-| Steel Bar Mold | `Base.SteelBarMold` | 6 | 9 |
-| Steel Bar Quarter | `Base.SteelBarQuarter` | 0.5 | 0.75 |
-| Steel Block | `Base.SteelBlock` | 2 | 3 |
-| Steel Block (Pierced) | `Base.PiercedSteelBlock` | 2 | 2.94 |
-| Steel Chunk | `Base.SteelChunk` | 0.5 | 0.75 |
-| Steel Chunk (Pierced) | `Base.PiercedSteelChunk` | 0.5 | 0.735 |
-| Steel Ingot | `Base.SteelIngot` | 6 | 9 |
-| Steel Ingot (Pierced) | `Base.PiercedSteelIngot` | 6 | 8.85 |
-| Steel Ingot Mold | `Base.SteelIngotMold` | 6 | 9 |
-| Steel Piece | `Base.SteelPiece` | 0.1 | 0.15 |
-| Steel Rod | `Base.MetalBar` | 1.5 | 2.25 |
-| Steel Rod Half | `Base.SteelRodHalf` | 0.75 | 1.12 |
-| Steel Rod Quarter | `Base.SteelRodQuarter` | 0.375 | 0.562 |
-| Steel Scrap | `Base.SteelScrap` | 0.5 | 0.75 |
-| Steel Sheet | `Base.SheetMetal` | 2 | 3 |
-| Steel Sheet - Small | `Base.SmallSheetMetal` | 0.5 | 0.75 |
+| Steel Bar | `Base.SteelBar` | 2 | 2.5 |
+| Steel Bar Half | `Base.SteelBarHalf` | 1 | 1.25 |
+| Steel Bar Mold | `Base.SteelBarMold` | 6 | 7.5 |
+| Steel Bar Quarter | `Base.SteelBarQuarter` | 0.5 | 0.625 |
+| Steel Block | `Base.SteelBlock` | 2 | 2.5 |
+| Steel Block (Pierced) | `Base.PiercedSteelBlock` | 2 | 2.5 |
+| Steel Chunk | `Base.SteelChunk` | 0.5 | 0.625 |
+| Steel Chunk (Pierced) | `Base.PiercedSteelChunk` | 0.5 | 0.625 |
+| Steel Ingot | `Base.SteelIngot` | 6 | 7.5 |
+| Steel Ingot (Pierced) | `Base.PiercedSteelIngot` | 6 | 7.5 |
+| Steel Ingot Mold | `Base.SteelIngotMold` | 6 | 7.5 |
+| Steel Piece | `Base.SteelPiece` | 0.1 | 0.125 |
+| Steel Rod | `Base.MetalBar` | 1.5 | 1.88 |
+| Steel Rod Half | `Base.SteelRodHalf` | 0.75 | 0.938 |
+| Steel Rod Quarter | `Base.SteelRodQuarter` | 0.375 | 0.469 |
+| Steel Scrap | `Base.SteelScrap` | 0.5 | 0.625 |
+| Steel Sheet | `Base.SheetMetal` | 2 | 2.5 |
+| Steel Sheet - Small | `Base.SmallSheetMetal` | 0.5 | 0.625 |
 | Steel Wool | `Base.SteelWool` | 0.3 | 0.15 |
 | Stethoscope | `Base.Stethoscope` | 0.3 | 0.225 |
 | Stick Trap | `Base.TrapStick` | 1 | 0.6 |
-| Stir Fry | `Base.GriddlePanFriedVegetables` | 1.5 | 3.3 |
-| Stir Fry | `Base.PanFriedVegetables` | 1.5 | 1.95 |
-| Stir Fry | `Base.PanFriedVegetablesForged` | 1 | 2.4 |
+| Stir Fry | `Base.GriddlePanFriedVegetables` | 1.5 | 1.88 |
+| Stir Fry | `Base.PanFriedVegetables` | 1.5 | 1.88 |
+| Stir Fry | `Base.PanFriedVegetablesForged` | 1 | 1.88 |
 | Stock Certificate | `Base.StockCertificate` | 0.1 | 0.0225 |
 | Stockings - Black | `Base.StockingsBlack` | 0.1 | 0.045 |
 | Stockings - Semi-Transparent | `Base.StockingsBlackSemiTrans` | 0.1 | 0.045 |
@@ -3888,17 +3888,17 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Stone | `Base.Stone2` | 1 | 1.05 |
 | Stone Anvil | `Base.StoneAnvil` | 40 | 41.5 |
 | Stone Blade | `Base.StoneBlade` | 0.5 | 0.225 |
-| Stone Block | `Base.StoneBlock` | 0.3 | 6.75 |
+| Stone Block | `Base.StoneBlock` | 0.3 | 0.375 |
 | Stone Chisel | `Base.StoneChisel` | 1 | 0.525 |
 | Stone Drill | `Base.StoneDrill` | 1 | 0.45 |
 | Stone Hammer | `Base.HammerStone` | 2 | 2.25 |
 | Stone Knife | `Base.FlintKnife` | 0.75 | 0.225 |
-| Stone Mace | `Base.Mace_Stone` | 1.5 | 2.25 |
-| Stone Mace Head | `Base.StoneMaceHead` | 1 | 1.8 |
+| Stone Mace | `Base.Mace_Stone` | 1.5 | 1.88 |
+| Stone Mace Head | `Base.StoneMaceHead` | 1 | 1.25 |
 | Stone Maul | `Base.StoneMaul` | 6 | 5.7 |
-| Stone Maul Head | `Base.StoneMaulHead` | 1 | 3 |
-| Stone Wheel | `Base.StoneWheel` | 20 | 39.1 |
-| Stone-Blade Scythe | `Base.PrimitiveScythe` | 1 | 1.5 |
+| Stone Maul Head | `Base.StoneMaulHead` | 1 | 1.25 |
+| Stone Wheel | `Base.StoneWheel` | 20 | 25 |
+| Stone-Blade Scythe | `Base.PrimitiveScythe` | 1 | 1.25 |
 | Stovepipe Hat | `Base.Hat_Stovepipe` | 1 | 0.45 |
 | Stovepipe Hat | `Base.Hat_Stovepipe_Black` | 1 | 0.45 |
 | Straight Razor | `Base.StraightRazor` | 0.5 | 0.105 |
@@ -3911,17 +3911,17 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Strapped Shoes | `Base.Shoes_Strapped` | 1 | 0.9 |
 | Straw | `Base.Straw2` | 0.1 | 0.00075 |
 | Straw Hat | `Base.Hat_StrawHat` | 1 | 0.15 |
-| Strawberries | `Base.Strewberrie` | 0.1 | 0.225 |
+| Strawberries | `Base.Strewberrie` | 0.1 | 0.125 |
 | Strawberry Cake Slice | `Base.CakeStrawberryShortcake` | 0.2 | 0.18 |
 | Strawberry Seeds | `Base.StrewberrieSeed` | 0.02 | 0.003 |
 | String | `Base.String` | 0.1 | 0.075 |
-| Striped Bass | `Base.StripedBass` | 0.4 | 4.5 |
+| Striped Bass | `Base.StripedBass` | 0.4 | 0.5 |
 | Sturdy Bone Club | `Base.LargeBoneClub` | 2 | 2.25 |
 | Sturdy Bone Club with Spikes | `Base.LargeBoneClub_Spiked` | 2.5 | 2.4 |
-| Sugar Beet | `Base.SugarBeet` | 0.2 | 1.05 |
+| Sugar Beet | `Base.SugarBeet` | 0.2 | 0.25 |
 | Sugar Beet Seeds | `Base.SugarBeetSeed` | 0.02 | 0.003 |
 | Sugar Cookie | `Base.CookiesSugar` | 0.1 | 0.06 |
-| Sugar Cubes | `Base.SugarCubes` | 0.02 | 0.03 |
+| Sugar Cubes | `Base.SugarCubes` | 0.02 | 0.025 |
 | Sugar Packet | `Base.SugarPacket` | 0.005 | 0.006 |
 | Suit Jacket | `Base.Suit_Jacket` | 2 | 1.2 |
 | Suit Jacket | `Base.Suit_JacketTINT` | 2 | 1.2 |
@@ -3930,11 +3930,11 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Suit Pants | `Base.Trousers_SuitTEXTURE` | 1 | 0.9 |
 | Suit Pants | `Base.Trousers_SuitWhite` | 1 | 0.9 |
 | Suit Pants | `Base.Trousers_SuitWhite_White` | 1 | 0.9 |
-| Suitcase | `Base.Suitcase` | 3 | 9.75 |
+| Suitcase | `Base.Suitcase` | 3 | 3.75 |
 | Summer Flower Hat | `Base.Hat_SummerFlowerHat` | 1 | 0.15 |
 | Summer Hat | `Base.Hat_SummerHat` | 1 | 0.15 |
-| Sunflower Head | `Base.SunflowerHead` | 0.2 | 0.6 |
-| Sunflower Head (Dried) | `Base.SunflowerHeadDried` | 0.2 | 0.3 |
+| Sunflower Head | `Base.SunflowerHead` | 0.2 | 0.25 |
+| Sunflower Head (Dried) | `Base.SunflowerHeadDried` | 0.2 | 0.25 |
 | Sunflower Seeds | `Base.SunflowerSeeds` | 0.1 | 0.0075 |
 | Sunglasses | `Base.Glasses_Sun` | 0.1 | 0.045 |
 | Surgical Cap | `Base.Hat_SurgicalCap` | 0.2 | 0.0225 |
@@ -3942,16 +3942,16 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Surgical Mask | `Base.Hat_SurgicalMask` | 0.2 | 0.006 |
 | Survival Magazine Page | `Base.SurvivalSchematic` | 0.1 | 0.0075 |
 | Sushi Knife | `Base.KnifeSushi` | 0.7 | 0.255 |
-| Suspension - Performance (*) | `Base.ModernSuspension1` | 3 | 7 |
-| Suspension - Performance (*) | `Base.ModernSuspension2` | 3 | 7 |
-| Suspension - Performance (*) | `Base.ModernSuspension3` | 3 | 7 |
-| Suspension - Regular (*) | `Base.NormalSuspension1` | 2 | 6 |
-| Suspension - Regular (*) | `Base.NormalSuspension2` | 2 | 6 |
-| Suspension - Regular (*) | `Base.NormalSuspension3` | 2 | 6 |
-| Suspicious Package | `Base.SuspiciousPackage` | 1 | 1.5 |
+| Suspension - Performance (*) | `Base.ModernSuspension1` | 3 | 3.75 |
+| Suspension - Performance (*) | `Base.ModernSuspension2` | 3 | 3.75 |
+| Suspension - Performance (*) | `Base.ModernSuspension3` | 3 | 3.75 |
+| Suspension - Regular (*) | `Base.NormalSuspension1` | 2 | 2.5 |
+| Suspension - Regular (*) | `Base.NormalSuspension2` | 2 | 2.5 |
+| Suspension - Regular (*) | `Base.NormalSuspension3` | 2 | 2.5 |
+| Suspicious Package | `Base.SuspiciousPackage` | 1 | 1.25 |
 | Suture Needle | `Base.SutureNeedle` | 0.1 | 0.003 |
-| SWAT Duffel Bag | `Base.Bag_SWAT` | 1 | 1.35 |
-| SWAT Helmet | `Base.Hat_SWAT` | 1 | 2.25 |
+| SWAT Duffel Bag | `Base.Bag_SWAT` | 1 | 1.25 |
+| SWAT Helmet | `Base.Hat_SWAT` | 1 | 1.25 |
 | Sweatband | `Base.Hat_Sweatband` | 0.1 | 0.045 |
 | Sweater | `Base.Jumper_DiamondPatternTINT` | 1 | 0.675 |
 | Sweater - Round Neck | `Base.Jumper_RoundNeck` | 1 | 0.675 |
@@ -3959,14 +3959,14 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Sweater - V-neck | `Base.Jumper_VNeck` | 1 | 0.6 |
 | Sweater Vest | `Base.Jumper_TankTopDiamondTINT` | 1 | 0.375 |
 | Sweater Vest - V-neck | `Base.Jumper_TankTopTINT` | 1 | 0.375 |
-| Sweet Potato | `Base.SweetPotato` | 0.2 | 0.375 |
+| Sweet Potato | `Base.SweetPotato` | 0.2 | 0.25 |
 | Sweet Potato Seeds | `Base.SweetPotatoSeed` | 0.02 | 0.003 |
-| Swim Trunks | `Base.SwimTrunks_Blue` | 0.1 | 0.255 |
-| Swim Trunks | `Base.SwimTrunks_Green` | 0.1 | 0.255 |
-| Swim Trunks | `Base.SwimTrunks_Red` | 0.1 | 0.255 |
-| Swim Trunks | `Base.SwimTrunks_Yellow` | 0.1 | 0.255 |
+| Swim Trunks | `Base.SwimTrunks_Blue` | 0.1 | 0.125 |
+| Swim Trunks | `Base.SwimTrunks_Green` | 0.1 | 0.125 |
+| Swim Trunks | `Base.SwimTrunks_Red` | 0.1 | 0.125 |
+| Swim Trunks | `Base.SwimTrunks_Yellow` | 0.1 | 0.125 |
 | Swimming Goggles | `Base.Glasses_SwimmingGoggles` | 0.1 | 0.06 |
-| Swimsuit | `Base.Swimsuit_TINT` | 0.1 | 0.18 |
+| Swimsuit | `Base.Swimsuit_TINT` | 0.1 | 0.125 |
 | Switchblade | `Base.SwitchKnife` | 0.3 | 0.15 |
 | Sword | `Base.Sword` | 2 | 1.8 |
 | Sword Blade | `Base.SwordBlade` | 2 | 1.35 |
@@ -4024,12 +4024,12 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Tailoring I: "Basic Clothing Repair" | `Base.BookTailoring1` | 1 | 0.45 |
 | Tailoring II: "From Rags to Royalty: A Sewing Guide" | `Base.BookTailoring2` | 1 | 0.45 |
 | Tailoring III: "Haute Couture Tailoring Methods" | `Base.BookTailoring3` | 1 | 0.9 |
-| Tailoring IV: "Modern Patterns from the Catwalks of Paris" | `Base.BookTailoring4` | 1 | 1.35 |
-| Tailoring V: "Textile Production and Manufacturing Techniques" | `Base.BookTailoring5` | 1 | 1.35 |
+| Tailoring IV: "Modern Patterns from the Catwalks of Paris" | `Base.BookTailoring4` | 1 | 1.25 |
+| Tailoring V: "Textile Production and Manufacturing Techniques" | `Base.BookTailoring5` | 1 | 1.25 |
 | Tank Top | `Base.Vest_DefaultTEXTURE` | 1 | 0.15 |
 | Tank Top | `Base.Vest_DefaultTEXTURE_TINT` | 1 | 0.15 |
-| Tarot Cards | `Base.TarotCardDeck` | 0.2 | 0.3 |
-| Tarp | `Base.Tarp` | 2 | 3 |
+| Tarot Cards | `Base.TarotCardDeck` | 0.2 | 0.25 |
+| Tarp | `Base.Tarp` | 2 | 2.5 |
 | Tarp Apron | `Base.Apron_Tarp` | 1 | 0.135 |
 | Tarp Bandeau | `Base.Bandeau_Tarp` | 1 | 0.027 |
 | Tarp Chest Rig | `Base.Bag_ChestRig_Tarp` | 1 | 0.6 |
@@ -4043,17 +4043,17 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Tarp Sack | `Base.Bag_TarpSack` | 0.5 | 0.45 |
 | Tarp Sling Bag | `Base.Bag_TarpSlingBag` | 0.8 | 0.45 |
 | Tarp Tank Top | `Base.Vest_Tarp` | 1 | 0.157 |
-| Tato Dots | `Base.TatoDots` | 0.2 | 0.45 |
+| Tato Dots | `Base.TatoDots` | 0.2 | 0.25 |
 | Teacup | `Base.Teacup` | 0.2 | 0.18 |
 | Teddy Bear | `Base.ToyBear` | 5 | 0.75 |
 | Teeth Necklace | `Base.Necklace_Teeth` | 0.1 | 0.06 |
 | Tennis Ball | `Base.TennisBall` | 0.3 | 0.087 |
 | Tennis Racket | `Base.TennisRacket` | 1 | 0.45 |
-| Tent (Packed) | `Base.TentBlue_Packed` | 5 | 6.75 |
-| Tent (Packed) | `Base.TentBrown_Packed` | 5 | 6.75 |
-| Tent (Packed) | `Base.TentGreen_Packed` | 5 | 6.75 |
-| Tent (Packed) | `Base.TentYellow_Packed` | 5 | 6.75 |
-| Tent Kit (Packed) | `Base.CampingTentKit2_Packed` | 3 | 4.5 |
+| Tent (Packed) | `Base.TentBlue_Packed` | 5 | 6.25 |
+| Tent (Packed) | `Base.TentBrown_Packed` | 5 | 6.25 |
+| Tent (Packed) | `Base.TentGreen_Packed` | 5 | 6.25 |
+| Tent (Packed) | `Base.TentYellow_Packed` | 5 | 6.25 |
+| Tent Kit (Packed) | `Base.CampingTentKit2_Packed` | 3 | 3.75 |
 | Tequila | `Base.Tequila` | 1 | 0.9 |
 | Termites | `Base.Termites` | 0.01 | 0.00045 |
 | Thigh Guard | `Base.ThighProtective_L` | 1 | 0.6 |
@@ -4102,14 +4102,14 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Tobacco | `Base.Tobacco` | 0.2 | 0.075 |
 | Tobacco (Dried) | `Base.TobaccoDried` | 0.2 | 0.075 |
 | Tobacco Seeds | `Base.TobaccoSeed` | 0.02 | 0.003 |
-| Tofu | `Base.Tofu` | 0.3 | 0.6 |
-| Tofu (Fried) | `Base.TofuFried` | 0.3 | 0.42 |
+| Tofu | `Base.Tofu` | 0.3 | 0.375 |
+| Tofu (Fried) | `Base.TofuFried` | 0.3 | 0.375 |
 | Toilet Brush | `Base.ToiletBrush` | 0.6 | 0.375 |
 | Toilet Paper | `Base.ToiletPaper` | 0.5 | 0.15 |
 | Tomato | `Base.Tomato` | 0.2 | 0.225 |
-| Tomato Paste | `Base.TomatoPaste` | 0.2 | 0.3 |
+| Tomato Paste | `Base.TomatoPaste` | 0.2 | 0.25 |
 | Tomato Seeds | `Base.TomatoSeed` | 0.02 | 0.003 |
-| Tongs | `Base.Tongs` | 1 | 1.8 |
+| Tongs | `Base.Tongs` | 1 | 1.25 |
 | Tongue Depressor | `Base.TongueDepressor` | 0.1 | 0.0045 |
 | Tool Forging Plan | `Base.BSToolsSchematic` | 0.1 | 0.0075 |
 | Tool Roll - Fabric | `Base.ToolRoll_Fabric` | 0.5 | 0.3 |
@@ -4124,8 +4124,8 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Toothbrush Shiv | `Base.Toothbrush_Shiv` | 0.25 | 0.045 |
 | Toothpaste | `Base.Toothpaste` | 0.3 | 0.225 |
 | Tortilla | `Base.Tortilla` | 0.1 | 0.06 |
-| Tortilla Chips | `Base.TortillaChips` | 0.2 | 0.825 |
-| Tortilla Chips | `Base.TortillaChipsBaked` | 0.2 | 0.825 |
+| Tortilla Chips | `Base.TortillaChips` | 0.2 | 0.25 |
+| Tortilla Chips | `Base.TortillaChipsBaked` | 0.2 | 0.25 |
 | Tote Bag | `Base.Bag_Dancer` | 0.5 | 0.375 |
 | Tote Bag | `Base.Tote` | 0.5 | 0.375 |
 | Tote Bag | `Base.Tote_Bags` | 0.5 | 0.375 |
@@ -4139,18 +4139,18 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Tracking I: "Animal Pawprints" | `Base.BookTracking1` | 1 | 0.45 |
 | Tracking II: "Hunting with Hemingway" | `Base.BookTracking2` | 1 | 0.45 |
 | Tracking III: "Long Range Animal Tracking" | `Base.BookTracking3` | 1 | 0.9 |
-| Tracking IV: "The Smell of Ivory: An African Adventure" | `Base.BookTracking4` | 1 | 1.35 |
-| Tracking V: "Understanding Animal Behavior Through Spoor Placement" | `Base.BookTracking5` | 1 | 1.35 |
+| Tracking IV: "The Smell of Ivory: An African Adventure" | `Base.BookTracking4` | 1 | 1.25 |
+| Tracking V: "Understanding Animal Behavior Through Spoor Placement" | `Base.BookTracking5` | 1 | 1.25 |
 | Trailer Trunk (*) | `Base.TrailerTrunk2` | 30 | 29.4 |
 | Trailer Trunk (*) | `Base.TrailerTrunk3` | 30 | 29.4 |
-| Trapper Carbine | `Base.TrapperCarbine` | 3.2 | 4.65 |
+| Trapper Carbine | `Base.TrapperCarbine` | 3.2 | 4 |
 | Trapping I: "Basic Pest Control" | `Base.BookTrapping1` | 1 | 0.45 |
 | Trapping II: "Better Trapping, with Dean" | `Base.BookTrapping2` | 1 | 0.45 |
 | Trapping III: "Park Rangers Wildlife Handbook '93" | `Base.BookTrapping3` | 1 | 0.9 |
-| Trapping IV: "Research on Rodents and Mammals of Kentucky" | `Base.BookTrapping4` | 1 | 1.35 |
-| Trapping V: "The Encyclopedia of Applied Animal Psychology" | `Base.BookTrapping5` | 1 | 1.35 |
+| Trapping IV: "Research on Rodents and Mammals of Kentucky" | `Base.BookTrapping4` | 1 | 1.25 |
+| Trapping V: "The Encyclopedia of Applied Animal Psychology" | `Base.BookTrapping5` | 1 | 1.25 |
 | Trash Goblin | `Base.TrashGoblin` | 0.8 | 0.6 |
-| Trauma Bag | `Base.Bag_MedicalBag` | 1 | 2.1 |
+| Trauma Bag | `Base.Bag_MedicalBag` | 1 | 1.25 |
 | Tree Branch | `Base.TreeBranch2` | 2 | 1.5 |
 | Tree Branch - Can-Reinforced | `Base.TreeBranch_Can` | 2.5 | 1.65 |
 | Tree Branch with Bone Spikes | `Base.TreeBranch_Bone` | 2 | 1.65 |
@@ -4160,8 +4160,8 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Trophy | `Base.TrophyBronze` | 3 | 1.5 |
 | Trophy | `Base.TrophyGold` | 3 | 1.5 |
 | Trophy | `Base.TrophySilver` | 3 | 1.5 |
-| Trumpet | `Base.Trumpet` | 1 | 1.65 |
-| Trumpet Case | `Base.Bag_TrumpetCase` | 1 | 1.8 |
+| Trumpet | `Base.Trumpet` | 1 | 1.25 |
+| Trumpet Case | `Base.Bag_TrumpetCase` | 1 | 1.25 |
 | Trunk - Big (*) | `Base.BigTrunk1` | 40 | 14 |
 | Trunk - Big (*) | `Base.BigTrunk2` | 50 | 14 |
 | Trunk - Big (*) | `Base.BigTrunk3` | 30 | 14 |
@@ -4180,21 +4180,21 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Trunks | `Base.Briefs_SmallTrunks_Blue` | 0.2 | 0.12 |
 | Trunks | `Base.Briefs_SmallTrunks_Red` | 0.2 | 0.12 |
 | Trunks | `Base.Briefs_SmallTrunks_WhiteTINT` | 0.2 | 0.12 |
-| Tumbler | `Base.GlassTumbler` | 0.2 | 0.3 |
+| Tumbler | `Base.GlassTumbler` | 0.2 | 0.25 |
 | Tuning Fork | `Base.TuningFork` | 0.2 | 0.105 |
-| Turkey (Whole) | `Base.TurkeyWhole` | 1.3 | 8.25 |
+| Turkey (Whole) | `Base.TurkeyWhole` | 1.3 | 1.62 |
 | Turkey Dung | `Base.Dung_Turkey` | 0.01 | 0.0075 |
-| Turkey Egg | `Base.TurkeyEgg` | 0.1 | 0.128 |
-| Turkey Feather | `Base.TurkeyFeather` | 0.001 | 0.0015 |
-| Turkey Fillet | `Base.TurkeyFillet` | 0.3 | 0.45 |
+| Turkey Egg | `Base.TurkeyEgg` | 0.1 | 0.125 |
+| Turkey Feather | `Base.TurkeyFeather` | 0.001 | 0.00125 |
+| Turkey Fillet | `Base.TurkeyFillet` | 0.3 | 0.375 |
 | Turkey Head | `Base.Turkey_Hen_Head` | 1 | 0.12 |
-| Turkey Leg | `Base.TurkeyLegs` | 0.3 | 0.75 |
+| Turkey Leg | `Base.TurkeyLegs` | 0.3 | 0.375 |
 | Turkey Poult Head | `Base.Turkey_Poult_Head` | 1 | 0.03 |
 | Turkey Poult Skull | `Base.Turkey_PoultSkull` | 0.1 | 0.0075 |
 | Turkey Skull | `Base.Turkey_Skull` | 0.1 | 0.03 |
 | Turkey Tom Head | `Base.Turkey_Gobbler_Head` | 1 | 0.18 |
-| Turkey Wing | `Base.TurkeyWings` | 0.3 | 0.6 |
-| Turnip | `Base.Turnip` | 0.2 | 0.3 |
+| Turkey Wing | `Base.TurkeyWings` | 0.3 | 0.375 |
+| Turnip | `Base.Turnip` | 0.2 | 0.25 |
 | Turnip Seeds | `Base.TurnipSeed` | 0.02 | 0.003 |
 | Tusk Necklace | `Base.Necklace_BoarTusk` | 0.1 | 0.045 |
 | Tusks Necklace | `Base.Necklace_BoarTusk_Multi` | 0.1 | 0.12 |
@@ -4231,23 +4231,23 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | US ARMY COMM. Manpack Radio | `Base.ManPackRadio` | 15 | 9.3 |
 | US Army Walkie Talkie | `Base.WalkieTalkie5` | 1.5 | 1.35 |
 | Valentine's Card | `Base.Card_Valentine` | 0.2 | 0.0225 |
-| ValuTech Television | `Base.TvBlack` | 10 | 29.4 |
+| ValuTech Television | `Base.TvBlack` | 10 | 12.5 |
 | ValuTech Walkie Talkie | `Base.WalkieTalkie2` | 1 | 0.3 |
-| Vanilla Frosting | `Base.Icing` | 0.1 | 0.75 |
+| Vanilla Frosting | `Base.Icing` | 0.1 | 0.125 |
 | Vanilla Ice Cream Cone | `Base.ConeIcecream` | 0.2 | 0.15 |
 | Vanilla Ice Cream Cone (Melted) | `Base.ConeIcecreamMelted` | 0.2 | 0.15 |
-| Vegetable Oil | `Base.OilVegetable` | 0.2 | 1.46 |
+| Vegetable Oil | `Base.OilVegetable` | 0.2 | 0.25 |
 | Vehicle Key | `Base.CarKey` | 0.05 | 0.03 |
 | Venetian Sunglasses | `Base.Glasses_Venetian` | 0.1 | 0.045 |
-| Venison | `Base.Venison` | 0.5 | 0.675 |
+| Venison | `Base.Venison` | 0.5 | 0.625 |
 | Vermouth | `Base.Vermouth` | 1 | 0.75 |
 | VHS - Home | `Base.VHS_Home` | 0.5 | 0.375 |
 | VHS - Retail | `Base.VHS_Retail` | 0.5 | 0.45 |
-| Vinegar | `Base.Vinegar2` | 0.2 | 0.825 |
+| Vinegar | `Base.Vinegar2` | 0.2 | 0.25 |
 | Violets | `Base.Violets` | 0.1 | 0.015 |
 | Violin | `Base.Violin` | 0.7 | 0.675 |
-| Violin Case | `Base.Bag_ViolinCase` | 1 | 2.85 |
-| Vise Grips | `Base.ViseGrips` | 0.5 | 0.675 |
+| Violin Case | `Base.Bag_ViolinCase` | 1 | 1.25 |
+| Vise Grips | `Base.ViseGrips` | 0.5 | 0.625 |
 | Visor | `Base.Hat_VisorBlack` | 0.3 | 0.075 |
 | Visor | `Base.Hat_VisorRed` | 0.3 | 0.075 |
 | Visor | `Base.Hat_Visor_WhiteTINT` | 0.3 | 0.075 |
@@ -4260,7 +4260,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Wallet | `Base.Wallet` | 0.2 | 0.105 |
 | Wallet | `Base.Wallet_Female` | 0.2 | 0.18 |
 | Wallet | `Base.Wallet_Male` | 0.2 | 0.105 |
-| Walleye | `Base.Walleye` | 0.4 | 2.25 |
+| Walleye | `Base.Walleye` | 0.4 | 0.5 |
 | Wallpaper - Beige Stripe | `Base.Wallpaper_BeigeStripe` | 10 | 1.2 |
 | Wallpaper - Black Floral | `Base.Wallpaper_BlackFloral` | 10 | 1.2 |
 | Wallpaper - Blue Stripe | `Base.Wallpaper_BlueStripe` | 10 | 1.2 |
@@ -4269,61 +4269,61 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Wallpaper - Pink Chevron | `Base.Wallpaper_PinkChevron` | 10 | 1.2 |
 | Wallpaper - Pink Floral | `Base.Wallpaper_PinkFloral` | 10 | 1.2 |
 | Wasabi | `Base.Wasabi` | 0.2 | 0.075 |
-| Water Bottle | `Base.WaterBottle` | 0.1 | 0.15 |
+| Water Bottle | `Base.WaterBottle` | 0.1 | 0.125 |
 | Water Purification Tablets | `Base.WaterPurificationTablets` | 0.2 | 0.075 |
 | Water Ration Can | `Base.WaterRationCan` | 0.8 | 0.6 |
 | Watering Can | `Base.WateredCan` | 2 | 1.5 |
-| Watermelon | `Base.Watermelon` | 3 | 7.5 |
-| Watermelon Chunks | `Base.WatermelonSmashed` | 0.6 | 1.35 |
+| Watermelon | `Base.Watermelon` | 3 | 3.75 |
+| Watermelon Chunks | `Base.WatermelonSmashed` | 0.6 | 0.75 |
 | Watermelon Seeds | `Base.WatermelonSeed` | 0.02 | 0.0075 |
-| Watermelon Slice | `Base.WatermelonSliced` | 0.3 | 0.6 |
-| Wedding Dress | `Base.WeddingDress` | 1 | 3.75 |
+| Watermelon Slice | `Base.WatermelonSliced` | 0.3 | 0.375 |
+| Wedding Dress | `Base.WeddingDress` | 1 | 1.25 |
 | Wedding Veil | `Base.Hat_WeddingVeil` | 0.5 | 0.15 |
 | Welder Mask | `Base.WeldingMask` | 1 | 0.75 |
 | Welding I: "Basics of Welding" | `Base.BookMetalWelding1` | 1 | 0.45 |
 | Welding II: "Building with Metal" | `Base.BookMetalWelding2` | 1 | 0.45 |
 | Welding III: "Machining Metal: The Mass Genfac Guide" | `Base.BookMetalWelding3` | 1 | 0.9 |
-| Welding IV: "Ore to Sheets: A Complete Metalworking Manual" | `Base.BookMetalWelding4` | 1 | 1.35 |
+| Welding IV: "Ore to Sheets: A Complete Metalworking Manual" | `Base.BookMetalWelding4` | 1 | 1.25 |
 | Welding Rods | `Base.WeldingRods` | 1.5 (empty 0.2) | 1.5 (empty 0.15) |
-| Welding Torch | `Base.BlowTorch` | 1 (empty 0.3) | 1.65 (empty 1.05) |
-| Welding V: "Technological Fundamentals of Metal Fabrication" | `Base.BookMetalWelding5` | 1 | 1.35 |
-| Western Boots | `Base.Shoes_CowboyBoots` | 1 | 2.85 |
-| Western Boots | `Base.Shoes_CowboyBoots_Black` | 1 | 2.85 |
-| Western Boots | `Base.Shoes_CowboyBoots_Brown` | 1 | 2.85 |
-| Western Boots - Embroidered | `Base.Shoes_CowboyBoots_Fancy` | 1 | 2.85 |
-| Western Boots - Snakeskin | `Base.Shoes_CowboyBoots_SnakeSkin` | 1 | 2.85 |
-| Western Canteen | `Base.CanteenCowboy` | 0.3 | 0.75 |
+| Welding Torch | `Base.BlowTorch` | 1 (empty 0.3) | 1.25 (empty 0.375) |
+| Welding V: "Technological Fundamentals of Metal Fabrication" | `Base.BookMetalWelding5` | 1 | 1.25 |
+| Western Boots | `Base.Shoes_CowboyBoots` | 1 | 1.25 |
+| Western Boots | `Base.Shoes_CowboyBoots_Black` | 1 | 1.25 |
+| Western Boots | `Base.Shoes_CowboyBoots_Brown` | 1 | 1.25 |
+| Western Boots - Embroidered | `Base.Shoes_CowboyBoots_Fancy` | 1 | 1.25 |
+| Western Boots - Snakeskin | `Base.Shoes_CowboyBoots_SnakeSkin` | 1 | 1.25 |
+| Western Canteen | `Base.CanteenCowboy` | 0.3 | 0.375 |
 | What is Herbology? | `Base.HerbalistMag` | 0.5 | 0.3 |
 | Wheat Seeds | `Base.WheatSeed` | 0.02 | 0.0075 |
-| Wheat Sheaf | `Base.WheatSheaf` | 1 | 1.5 |
+| Wheat Sheaf | `Base.WheatSheaf` | 1 | 1.25 |
 | Wheat Sheaf (Dried) | `Base.WheatSheafDried` | 1 | 1.05 |
 | Whetstone | `Base.Whetstone` | 0.5 | 0.6 |
 | Whisk | `Base.Whisk` | 0.6 | 0.18 |
 | Whistle | `Base.Whistle` | 0.1 | 0.03 |
-| White Bass | `Base.WhiteBass` | 0.4 | 0.75 |
+| White Bass | `Base.WhiteBass` | 0.4 | 0.5 |
 | White Beans (Dried) | `Base.DriedWhiteBeans` | 2 | 0.69 |
 | White Crappie | `Base.WhiteCrappie` | 0.4 | 0.45 |
 | White Football Jersey | `Base.Football_Jersey_White` | 1 | 0.45 |
-| White Sugar | `Base.Sugar` | 0.6 | 1.42 |
-| White Wine (Open) | `Base.WineOpen` | 0.3 | 0.75 |
-| Wild Eggs | `Base.WildEggs` | 0.1 | 0.15 |
+| White Sugar | `Base.Sugar` | 0.6 | 0.75 |
+| White Wine (Open) | `Base.WineOpen` | 0.3 | 0.375 |
+| Wild Eggs | `Base.WildEggs` | 0.1 | 0.125 |
 | Wild Garlic | `Base.WildGarlic2` | 0.1 | 0.045 |
 | Wild Garlic (Dried) | `Base.WildGarlicDried` | 0.1 | 0.012 |
 | Wild Garlic Poultice | `Base.WildGarlicCataplasm` | 0.2 | 0.15 |
 | Wild Garlic Seeds | `Base.WildGarlicSeed` | 0.02 | 0.003 |
-| Windshield (*) | `Base.Windshield1` | 8 | 11 |
-| Windshield (*) | `Base.Windshield2` | 8 | 11 |
-| Windshield (*) | `Base.Windshield3` | 8 | 11 |
+| Windshield (*) | `Base.Windshield1` | 8 | 10 |
+| Windshield (*) | `Base.Windshield2` | 8 | 10 |
+| Windshield (*) | `Base.Windshield3` | 8 | 10 |
 | Wine Glass | `Base.GlassWine` | 0.2 | 0.225 |
 | Winter Hat | `Base.Hat_WinterHat` | 0.5 | 0.18 |
 | Winter Hat - Sheepskin | `Base.Hat_WinterHat_SheepSkin` | 0.5 | 0.525 |
-| Wire | `Base.Wire` | 1 | 1.5 |
-| Wire Bundle | `Base.WireStack` | 10 | 18.1 |
+| Wire | `Base.Wire` | 1 | 1.25 |
+| Wire Bundle | `Base.WireStack` | 10 | 12.5 |
 | Witch Hat | `Base.Hat_Witch` | 1 | 0.3 |
 | Wizard Hat | `Base.Hat_Wizard` | 1 | 0.375 |
-| Wood Axe | `Base.WoodAxe` | 3 | 4.05 |
-| Wood Axe | `Base.WoodAxeForged` | 3 | 4.05 |
-| Wood Axe Head | `Base.WoodAxeHead` | 2 | 2.7 |
+| Wood Axe | `Base.WoodAxe` | 3 | 3.75 |
+| Wood Axe | `Base.WoodAxeForged` | 3 | 3.75 |
+| Wood Axe Head | `Base.WoodAxeHead` | 2 | 2.5 |
 | Wood Charcoal | `Base.CharcoalCrafted` | 0.8 | 0.45 |
 | Wood Clay Sculpting Tool | `Base.ClayTool_Carved` | 0.3 | 0.06 |
 | Wood Glue | `Base.Woodglue` | 1 | 0.42 |
@@ -4331,37 +4331,37 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Wood Mask | `Base.Hat_HockeyMask_Wood` | 1 | 0.51 |
 | Wood Saw | `Base.GardenSaw` | 1 | 0.75 |
 | Wood Splinters | `Base.Splinters` | 0.2 | 0.075 |
-| Wooden Bar Cast Mold | `Base.WoodenBarCastMold` | 0.3 | 0.45 |
-| Wooden Blacksmith Anvil Mold | `Base.WoodenBlacksmithAnvilMold` | 0.3 | 2.25 |
+| Wooden Bar Cast Mold | `Base.WoodenBarCastMold` | 0.3 | 0.375 |
+| Wooden Blacksmith Anvil Mold | `Base.WoodenBlacksmithAnvilMold` | 0.3 | 0.375 |
 | Wooden Body Armor | `Base.Cuirass_Wood` | 4 | 4.5 |
-| Wooden Brick Mold | `Base.WoodenBrickMold` | 0.3 | 0.75 |
+| Wooden Brick Mold | `Base.WoodenBrickMold` | 0.3 | 0.375 |
 | Wooden Bucket | `Base.BucketLargeWood` | 10 | 5.25 |
-| Wooden Bucket | `Base.BucketWood` | 1 | 2.25 |
-| Wooden Crude Bench Vise Parts Mold | `Base.WoodenCrudeBenchVisePartsMold` | 0.3 | 0.75 |
+| Wooden Bucket | `Base.BucketWood` | 1 | 1.25 |
+| Wooden Crude Bench Vise Parts Mold | `Base.WoodenCrudeBenchVisePartsMold` | 0.3 | 0.375 |
 | Wooden Forearm Armor | `Base.VambraceWood_Left` | 1 | 0.6 |
 | Wooden Forearm Armor | `Base.VambraceWood_Right` | 1 | 0.6 |
 | Wooden Fork | `Base.WoodenFork` | 0.1 | 0.075 |
-| Wooden Ingot Cast Mold | `Base.WoodenIngotCastMold` | 0.3 | 0.6 |
+| Wooden Ingot Cast Mold | `Base.WoodenIngotCastMold` | 0.3 | 0.375 |
 | Wooden Mallet | `Base.WoodenMallet` | 1.5 | 0.9 |
 | Wooden Rod | `Base.WoodenStick2` | 2 | 0.675 |
 | Wooden Rod - Can-Reinforced | `Base.WoodenStick_Can` | 2.5 | 0.6 |
 | Wooden Rod with Nails | `Base.WoodenStick_Nails` | 2 | 0.525 |
 | Wooden Shin Armor | `Base.GreaveWood_Left` | 1 | 1.05 |
 | Wooden Shin Armor | `Base.GreaveWood_Right` | 1 | 1.05 |
-| Wooden Shingle Mold | `Base.WoodenShingleMold` | 0.3 | 0.6 |
+| Wooden Shingle Mold | `Base.WoodenShingleMold` | 0.3 | 0.375 |
 | Wooden Shoulder Armor | `Base.Shoulderpad_Wood_L` | 1 | 0.6 |
 | Wooden Shoulder Armor | `Base.Shoulderpad_Wood_R` | 1 | 0.6 |
 | Wooden Spade | `Base.SpadeWood` | 2 | 1.8 |
 | Wooden Spear | `Base.SpearCrafted` | 2 | 1.35 |
 | Wooden Spear (Fire Hardened) | `Base.SpearCraftedFireHardened` | 2 | 1.27 |
 | Wooden Spoon | `Base.WoodenSpoon` | 0.1 | 0.075 |
-| Wooden Thigh Armor | `Base.ThighWood_L` | 1 | 1.35 |
-| Wooden Thigh Armor | `Base.ThighWood_R` | 1 | 1.35 |
-| Wooden Tile Mold | `Base.WoodenTileMold` | 0.3 | 0.75 |
-| Wooden Toolbox | `Base.Toolbox_Wooden` | 1 | 3 |
+| Wooden Thigh Armor | `Base.ThighWood_L` | 1 | 1.25 |
+| Wooden Thigh Armor | `Base.ThighWood_R` | 1 | 1.25 |
+| Wooden Tile Mold | `Base.WoodenTileMold` | 0.3 | 0.375 |
+| Wooden Toolbox | `Base.Toolbox_Wooden` | 1 | 1.25 |
 | Wooden Trowel | `Base.MasonsTrowel_Wood` | 0.5 | 0.3 |
 | Wool Hat | `Base.Hat_WoolyHat` | 0.5 | 0.15 |
-| Work Boots | `Base.Shoes_WorkBoots` | 1 | 3 |
+| Work Boots | `Base.Shoes_WorkBoots` | 1 | 1.25 |
 | Workman Shirt | `Base.Shirt_Workman` | 1 | 0.525 |
 | Worm | `Base.Worm` | 0.01 | 0.006 |
 | Wrench | `Base.Wrench` | 1 | 0.675 |
@@ -4369,17 +4369,17 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Wrist Watch - Classic | `Base.WristWatch_Left_ClassicBrown` | 0.1 | 0.075 |
 | Wrist Watch - Classic | `Base.WristWatch_Right_ClassicBlack` | 0.1 | 0.075 |
 | Wrist Watch - Classic | `Base.WristWatch_Right_ClassicBrown` | 0.1 | 0.075 |
-| Wrist Watch - Gold | `Base.WristWatch_Left_ClassicGold` | 0.1 | 0.135 |
-| Wrist Watch - Gold | `Base.WristWatch_Right_ClassicGold` | 0.1 | 0.135 |
+| Wrist Watch - Gold | `Base.WristWatch_Left_ClassicGold` | 0.1 | 0.125 |
+| Wrist Watch - Gold | `Base.WristWatch_Right_ClassicGold` | 0.1 | 0.125 |
 | Wrist Watch - Luthex | `Base.WristWatch_Left_Expensive` | 0.2 | 0.225 |
 | Wrist Watch - Luthex | `Base.WristWatch_Right_Expensive` | 0.2 | 0.225 |
 | Wrist Watch - Military | `Base.WristWatch_Left_ClassicMilitary` | 0.1 | 0.105 |
 | Wrist Watch - Military | `Base.WristWatch_Right_ClassicMilitary` | 0.1 | 0.105 |
 | x2 Scope | `Base.x2Scope` | 0.3 | 0.375 |
-| x4 Scope | `Base.x4Scope` | 0.4 | 0.525 |
+| x4 Scope | `Base.x4Scope` | 0.4 | 0.5 |
 | x8 Scope | `Base.x8Scope` | 0.8 | 0.9 |
 | Yarn | `Base.Yarn` | 0.3 | 0.15 |
-| Yeast | `Base.Yeast` | 0.2 | 0.255 |
+| Yeast | `Base.Yeast` | 0.2 | 0.25 |
 | Yellow Perch | `Base.YellowPerch` | 0.4 | 0.375 |
 | Yogurt Cup - Vanilla | `Base.Yoghurt` | 0.3 | 0.27 |
 | Yoyo | `Base.Yoyo` | 0.2 | 0.09 |

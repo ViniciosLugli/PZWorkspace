@@ -7,4 +7,4 @@ Weights Lugli - Honest Weight sets for [Jumper Cables](https://steamcommunity.co
 | Item | ID | Game | Honest |
 |---|---|---|---|
 | Improvised Jumper Cables | `Base.ImprovisedJumperCables` | 1 | 1.2 |
-| Jumper Cables | `Base.JumperCables` | 1.5 | 3 |
+| Jumper Cables | `Base.JumperCables` | 1.5 | 1.88 |

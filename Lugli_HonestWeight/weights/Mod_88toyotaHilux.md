@@ -11,20 +11,20 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 88 Toyota Hilux Auto Manual | `Base.88toyotaHiluxMagazine` | 0.5 | 0.3 |
 | 88 Toyota Hilux Back Side Window (*) | `Base.88toyotaHiluxBackSideWindow2` | 4 | 1.8 |
 | 88 Toyota Hilux Back Window Armor (*) | `Base.88toyotaHiluxBackWindowArmor` | 10 | 3.9 |
-| 88 Toyota Hilux Bed Cap (*) | `Base.88toyotaHiluxBedCap2` | 25 | 34.6 |
-| 88 Toyota Hilux Bullbar (*) | `Base.88toyotaHiluxBullbarFrontA` | 12 | 17 |
-| 88 Toyota Hilux Front Bumper (*) | `Base.88toyotaHiluxBumperFront0` | 8 | 13 |
+| 88 Toyota Hilux Bed Cap (*) | `Base.88toyotaHiluxBedCap2` | 25 | 31.2 |
+| 88 Toyota Hilux Bullbar (*) | `Base.88toyotaHiluxBullbarFrontA` | 12 | 15 |
+| 88 Toyota Hilux Front Bumper (*) | `Base.88toyotaHiluxBumperFront0` | 8 | 10 |
 | 88 Toyota Hilux Front Door (*) | `Base.88toyotaHiluxFrontDoor2` | 13 | 15 |
 | 88 Toyota Hilux Front Seat (*) | `Base.88toyotaHiluxSeatFront2` | 14 | 15 |
 | 88 Toyota Hilux Front Side Window (*) | `Base.88toyotaHiluxFrontSideWindow2` | 4 | 2.5 |
 | 88 Toyota Hilux Front Window Armor (*) | `Base.88toyotaHiluxFrontWindowArmor` | 10 | 5.9 |
 | 88 Toyota Hilux Mudflaps (*) | `Base.88toyotaHiluxMudflaps2` | 2 | 1.5 |
-| 88 Toyota Hilux Rear Bullbar (*) | `Base.88toyotaHiluxBullbarRearA` | 10 | 13 |
+| 88 Toyota Hilux Rear Bullbar (*) | `Base.88toyotaHiluxBullbarRearA` | 10 | 12.5 |
 | 88 Toyota Hilux Rear Bumper (*) | `Base.88toyotaHiluxBumperRear0` | 8 | 10 |
-| 88 Toyota Hilux Rear Seat (*) | `Base.88toyotaHiluxSeatRear2` | 4 | 15 |
+| 88 Toyota Hilux Rear Seat (*) | `Base.88toyotaHiluxSeatRear2` | 4 | 5 |
 | 88 Toyota Hilux Rear Windshield (*) | `Base.88toyotaHiluxWindshieldRear2` | 9 | 6 |
 | 88 Toyota Hilux Roofrack (*) | `Base.88toyotaHiluxRoofrack2` | 20 | 12 |
-| 88 Toyota Hilux Side Steps (*) | `Base.88toyotaHiluxSideSteps2` | 3 | 10 |
+| 88 Toyota Hilux Side Steps (*) | `Base.88toyotaHiluxSideSteps2` | 3 | 3.75 |
 | 88 Toyota Hilux Tire (*) | `Base.88toyotaHiluxTire2` | 15 | 10 |
 | 88 Toyota Hilux Trunk Lid (*) | `Base.88toyotaHiluxTrunkDoor2` | 11 | 12 |
 | 88 Toyota Hilux Windshield (*) | `Base.88toyotaHiluxWindshield2` | 9 | 11 |

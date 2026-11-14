@@ -22,7 +22,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 63 VW 1300 Rear Bumper mk2 (*) | `Base.63beetleBumperRear1` | 10 | 7 |
 | 63 VW 1300 Rear Side Window (*) | `Base.63beetleRearSideWindow1` | 4 | 1.3 |
 | 63 VW 1300 Rear Window Armor (*) | `Base.63beetleRearWindowArmor` | 13 | 2.9 |
-| 63 VW 1300 Rear Windshield (*) | `Base.63beetleWindshieldRear1` | 3 | 3.9 |
+| 63 VW 1300 Rear Windshield (*) | `Base.63beetleWindshieldRear1` | 3 | 3.75 |
 | 63 VW 1300 Rear Windshield Armor (*) | `Base.63beetleWindshieldRearArmor` | 10 | 8.8 |
 | 63 VW 1300 Removable Roof (*) | `Base.63beetleHPRoof0` | 25 | 12 |
 | 63 VW 1300 Slick Tire (*) | `Base.63beetleTireSlick3` | 15 | 12 |

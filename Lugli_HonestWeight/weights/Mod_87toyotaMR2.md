@@ -21,13 +21,13 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 87 Toyota MR2 Rear Trunk Lid (*) | `Base.87toyotaMR2RearTrunkDoor3` | 10 | 8 |
 | 87 Toyota MR2 Rear Windshield (*) | `Base.87toyotaMR2RearWindshield3` | 10 | 3.9 |
 | 87 Toyota MR2 Rear Windshield Armor (*) | `Base.87toyotaMR2WindshieldRearArmor` | 13 | 8.8 |
-| 87 Toyota MR2 Reinforced Front Bumper (*) | `Base.87toyotaMR2BumperFrontA` | 10 | 14 |
+| 87 Toyota MR2 Reinforced Front Bumper (*) | `Base.87toyotaMR2BumperFrontA` | 10 | 12.5 |
 | 87 Toyota MR2 Roof Spoiler (*) | `Base.87toyotaMR2RoofSpoiler3` | 10 | 4 |
 | 87 Toyota MR2 Roofrack (*) | `Base.87toyotaMR2Roofrack3` | 10 | 8 |
 | 87 Toyota MR2 Seat (*) | `Base.87toyotaMR2Seat3` | 15 | 12 |
 | 87 Toyota MR2 Sideskirts (*) | `Base.87toyotaMR2Sideskirts3` | 10 | 4 |
 | 87 Toyota MR2 Spoiler (*) | `Base.87toyotaMR2Spoiler3` | 10 | 4 |
-| 87 Toyota MR2 Sunroof (*) | `Base.87toyotaMR2Sunroof3` | 3 | 12 |
+| 87 Toyota MR2 Sunroof (*) | `Base.87toyotaMR2Sunroof3` | 3 | 3.75 |
 | 87 Toyota MR2 Type 1 Tire (*) | `Base.87toyotaMR2TireT13` | 15 | 12 |
 | 87 Toyota MR2 Type 2 Tire (*) | `Base.87toyotaMR2TireT23` | 15 | 12 |
 | 87 Toyota MR2 Window Armor (*) | `Base.87toyotaMR2WindowArmor` | 8 | 4.9 |

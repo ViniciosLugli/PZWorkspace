@@ -10,12 +10,12 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 |---|---|---|---|
 | 89 ISUZU Trooper Auto Manual | `Base.89trooperMagazine` | 0.5 | 0.3 |
 | 89 ISUZU Trooper Back Window Armor (*) | `Base.89trooperBackWindowArmor` | 12 | 3.9 |
-| 89 ISUZU Trooper Bullbar Type 1 (*) | `Base.89trooperBullbarFrontA` | 8 | 17 |
-| 89 ISUZU Trooper Front Bumper (*) | `Base.89trooperBumperFront0` | 10 | 13 |
-| 89 ISUZU Trooper Front Door (*) | `Base.89trooperFrontDoor2` | 10 | 15 |
+| 89 ISUZU Trooper Bullbar Type 1 (*) | `Base.89trooperBullbarFrontA` | 8 | 10 |
+| 89 ISUZU Trooper Front Bumper (*) | `Base.89trooperBumperFront0` | 10 | 12.5 |
+| 89 ISUZU Trooper Front Door (*) | `Base.89trooperFrontDoor2` | 10 | 12.5 |
 | 89 ISUZU Trooper Front Door Armor (*) | `Base.89trooperFrontDoorArmor` | 13 | 15.7 |
 | 89 ISUZU Trooper Mudflaps (*) | `Base.89trooperMudflaps2` | 10 | 1.5 |
-| 89 ISUZU Trooper Rear Door (*) | `Base.89trooperRearDoor2` | 10 | 13 |
+| 89 ISUZU Trooper Rear Door (*) | `Base.89trooperRearDoor2` | 10 | 12.5 |
 | 89 ISUZU Trooper Rear Door Armor (*) | `Base.89trooperRearDoorArmor` | 12 | 13.7 |
 | 89 ISUZU Trooper Rear Windshield (*) | `Base.89trooperRearWindshield2` | 7 | 6 |
 | 89 ISUZU Trooper Rear Windshield Armor (*) | `Base.89trooperWindshieldRearArmor` | 14 | 13.7 |

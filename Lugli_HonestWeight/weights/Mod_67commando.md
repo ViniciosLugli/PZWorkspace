@@ -9,7 +9,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Item | ID | Game | Honest |
 |---|---|---|---|
 | 67 M706 Commando Auto Manual | `Base.67commandoMagazine` | 0.5 | 0.3 |
-| 67 M706 Commando Front Door | `Base.67commandoFrontDoor2` | 13.9 | 41.5 |
-| 67 M706 Commando Hood (*) | `Base.67commandoEngineDoor2` | 9 | 32.9 |
-| 67 M706 Commando Light Guards (*) | `Base.67commandoLightGuards2` | 2 | 5 |
-| 67 M706 Commando Rear Door | `Base.67commandoRearDoor2` | 13.9 | 39.9 |
+| 67 M706 Commando Front Door | `Base.67commandoFrontDoor2` | 13.9 | 17.4 |
+| 67 M706 Commando Hood (*) | `Base.67commandoEngineDoor2` | 9 | 11.2 |
+| 67 M706 Commando Light Guards (*) | `Base.67commandoLightGuards2` | 2 | 2.5 |
+| 67 M706 Commando Rear Door | `Base.67commandoRearDoor2` | 13.9 | 17.4 |

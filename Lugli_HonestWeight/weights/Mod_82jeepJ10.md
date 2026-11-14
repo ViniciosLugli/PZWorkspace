@@ -10,14 +10,14 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 |---|---|---|---|
 | 82 Jeep J10 Auto Manual | `Base.82JeepJ10Magazine` | 0.5 | 0.3 |
 | 82 Jeep J10 Bed Cover (*) | `Base.82JeepJ10BedCover` | 26 | 25 |
-| 82 Jeep J10 Door (*) | `Base.82JeepJ10CarFrontDoor2` | 10 | 22 |
+| 82 Jeep J10 Door (*) | `Base.82JeepJ10CarFrontDoor2` | 10 | 12.5 |
 | 82 Jeep J10 Dorothy (*) | `Base.82JeepJ10Dorothy` | 65 | 40.5 |
-| 82 Jeep J10 Front Bumper (*) | `Base.82JeepJ10BumperFront` | 10 | 22 |
-| 82 Jeep J10 Hood (*) | `Base.82JeepJ10EngineDoor2` | 13 | 18 |
-| 82 Jeep J10 Rear Bumper (*) | `Base.82JeepJ10BumperRear` | 10 | 18 |
+| 82 Jeep J10 Front Bumper (*) | `Base.82JeepJ10BumperFront` | 10 | 12.5 |
+| 82 Jeep J10 Hood (*) | `Base.82JeepJ10EngineDoor2` | 13 | 16.2 |
+| 82 Jeep J10 Rear Bumper (*) | `Base.82JeepJ10BumperRear` | 10 | 12.5 |
 | 82 Jeep J10 Rear Windshield (*) | `Base.82JeepJ10WindshieldRear2` | 7 | 5.2 |
-| 82 Jeep J10 Reinforced Front Bumper (*) | `Base.82JeepJ10BullbarFront` | 10 | 24 |
+| 82 Jeep J10 Reinforced Front Bumper (*) | `Base.82JeepJ10BullbarFront` | 10 | 12.5 |
 | 82 Jeep J10 Side Window (*) | `Base.82JeepJ10WindowSide2` | 3 | 2.9 |
-| 82 Jeep J10 Top Trunk Lid (*) | `Base.82JeepJ10TrunkDoorTop2` | 8 | 22 |
-| 82 Jeep J10 Trunk Lid (*) | `Base.82JeepJ10TrunkDoor2` | 14 | 22 |
-| 82 Jeep J10 Windshield (*) | `Base.82JeepJ10Windshield2` | 9 | 11.7 |
+| 82 Jeep J10 Top Trunk Lid (*) | `Base.82JeepJ10TrunkDoorTop2` | 8 | 10 |
+| 82 Jeep J10 Trunk Lid (*) | `Base.82JeepJ10TrunkDoor2` | 14 | 17.5 |
+| 82 Jeep J10 Windshield (*) | `Base.82JeepJ10Windshield2` | 9 | 11.2 |

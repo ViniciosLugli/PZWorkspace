@@ -9,10 +9,10 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Item | ID | Game | Honest |
 |---|---|---|---|
 | 85 Pontiac Parisienne Auto Manual | `Base.85pontiacParisienneMagazine` | 0.5 | 0.3 |
-| 85 Pontiac Parisienne Front Bumper (*) | `Base.85pontiacParisienneBumperFront0` | 10 | 22 |
-| 85 Pontiac Parisienne Front Seat (*) | `Base.85pontiacParisienneSeatFront1` | 15 | 27.8 |
-| 85 Pontiac Parisienne Hood (*) | `Base.85pontiacParisienneEngineDoor1` | 14 | 20 |
-| 85 Pontiac Parisienne Rear Bumper (*) | `Base.85pontiacParisienneBumperRear0` | 9 | 18 |
-| 85 Pontiac Parisienne Rear Seat (*) | `Base.85pontiacParisienneSeatRear1` | 16 | 22 |
-| 85 Pontiac Parisienne Reinforced Bumper (*) | `Base.85pontiacParisienneBumperFrontA` | 15 | 25 |
-| 85 Pontiac Parisienne Trunk Lid (*) | `Base.85pontiacParisienneTrunkDoor1` | 10 | 18 |
+| 85 Pontiac Parisienne Front Bumper (*) | `Base.85pontiacParisienneBumperFront0` | 10 | 12.5 |
+| 85 Pontiac Parisienne Front Seat (*) | `Base.85pontiacParisienneSeatFront1` | 15 | 18.8 |
+| 85 Pontiac Parisienne Hood (*) | `Base.85pontiacParisienneEngineDoor1` | 14 | 17.5 |
+| 85 Pontiac Parisienne Rear Bumper (*) | `Base.85pontiacParisienneBumperRear0` | 9 | 11.2 |
+| 85 Pontiac Parisienne Rear Seat (*) | `Base.85pontiacParisienneSeatRear1` | 16 | 20 |
+| 85 Pontiac Parisienne Reinforced Bumper (*) | `Base.85pontiacParisienneBumperFrontA` | 15 | 18.8 |
+| 85 Pontiac Parisienne Trunk Lid (*) | `Base.85pontiacParisienneTrunkDoor1` | 10 | 12.5 |

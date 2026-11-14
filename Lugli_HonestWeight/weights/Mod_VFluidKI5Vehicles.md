@@ -8,14 +8,14 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| Bulk Fuel Tank (*) | `VFluidKI5.TankFuelLarge1` | 15 | 44.7 |
-| Bulk Fuel Tank (*) | `VFluidKI5.TankFuelLarge2` | 22 | 44.7 |
-| Bulk Fuel Tank (*) | `VFluidKI5.TankFuelLarge3` | 14 | 44.7 |
-| Bulk Fuel Tank (*) | `VFluidKI5.TankFuelSmall1` | 15 | 42.9 |
-| Bulk Fuel Tank (*) | `VFluidKI5.TankFuelSmall2` | 22 | 42.9 |
-| Bulk Fuel Tank (*) | `VFluidKI5.TankFuelSmall3` | 14 | 42.9 |
-| Water Storage Tank (*) | `VFluidKI5.TankWaterLarge1` | 15 | 32.9 |
-| Water Storage Tank (*) | `VFluidKI5.TankWaterLarge2` | 22 | 32.9 |
-| Water Storage Tank (*) | `VFluidKI5.TankWaterLarge3` | 14 | 32.9 |
-| Water Storage Tank (*) | `VFluidKI5.TankWaterSmall1` | 15 | 22 |
-| Water Storage Tank (*) | `VFluidKI5.TankWaterSmall3` | 14 | 22 |
+| Bulk Fuel Tank (*) | `VFluidKI5.TankFuelLarge1` | 15 | 18.8 |
+| Bulk Fuel Tank (*) | `VFluidKI5.TankFuelLarge2` | 22 | 27.5 |
+| Bulk Fuel Tank (*) | `VFluidKI5.TankFuelLarge3` | 14 | 17.5 |
+| Bulk Fuel Tank (*) | `VFluidKI5.TankFuelSmall1` | 15 | 18.8 |
+| Bulk Fuel Tank (*) | `VFluidKI5.TankFuelSmall2` | 22 | 27.5 |
+| Bulk Fuel Tank (*) | `VFluidKI5.TankFuelSmall3` | 14 | 17.5 |
+| Water Storage Tank (*) | `VFluidKI5.TankWaterLarge1` | 15 | 18.8 |
+| Water Storage Tank (*) | `VFluidKI5.TankWaterLarge2` | 22 | 27.5 |
+| Water Storage Tank (*) | `VFluidKI5.TankWaterLarge3` | 14 | 17.5 |
+| Water Storage Tank (*) | `VFluidKI5.TankWaterSmall1` | 15 | 18.8 |
+| Water Storage Tank (*) | `VFluidKI5.TankWaterSmall3` | 14 | 17.5 |

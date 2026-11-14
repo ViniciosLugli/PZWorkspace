@@ -6,5 +6,5 @@ Weights Lugli - Honest Weight sets for [Tien's Coolers](https://steamcommunity.c
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| Bag of Ice | `TienCoolers.IceBag` | 1.6 | 6.75 |
-| Bag of Ice (Tainted) | `TienCoolers.IceBagTainted` | 1.6 | 6.75 |
+| Bag of Ice | `TienCoolers.IceBag` | 1.6 | 2 |
+| Bag of Ice (Tainted) | `TienCoolers.IceBagTainted` | 1.6 | 2 |

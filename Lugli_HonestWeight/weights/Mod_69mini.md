@@ -15,7 +15,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 69 Mini Front Bumper Type 3 (*) | `Base.69miniBumperFront2` | 18 | 9 |
 | 69 Mini Front Door (*) | `Base.69miniFrontDoor1` | 10 | 12 |
 | 69 Mini Front Door Armor (*) | `Base.69miniFrontDoorArmor` | 12 | 12.7 |
-| 69 Mini Front Seat (*) | `Base.69miniSeatFront1` | 8 | 12 |
+| 69 Mini Front Seat (*) | `Base.69miniSeatFront1` | 8 | 10 |
 | 69 Mini Front Side Window (*) | `Base.69miniSideWindowFront1` | 4 | 2.2 |
 | 69 Mini Hood With Belts (*) | `Base.69miniEngineDoorBelts1` | 10 | 9 |
 | 69 Mini Pitbull Special Hood (*) | `Base.69miniEngineDoorPitbull1` | 12 | 9 |
@@ -34,7 +34,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 69 Mini Windshield Armor (*) | `Base.69miniWindshieldArmor` | 18 | 10.8 |
 | Crate of Tea | `Base.69miniCrateOfTea` | 5 | 4.05 |
 | Crumpet | `Base.69miniCrumpet` | 0.2 | 0.105 |
-| Meatball the Bulldog | `Base.69miniMeatballBulldog` | 0.2 | 0.6 |
-| Rupert Bear | `Base.69miniRupertBear` | 0.3 | 0.6 |
-| Tea Crate | `Base.69miniTeaCrate` | 3.1 | 4.05 |
-| Teddy | `Base.69miniTeddy` | 0.3 | 0.6 |
+| Meatball the Bulldog | `Base.69miniMeatballBulldog` | 0.2 | 0.25 |
+| Rupert Bear | `Base.69miniRupertBear` | 0.3 | 0.375 |
+| Tea Crate | `Base.69miniTeaCrate` | 3.1 | 3.88 |
+| Teddy | `Base.69miniTeddy` | 0.3 | 0.375 |

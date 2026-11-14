@@ -8,7 +8,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| ISO Container Double Door (*) | `Base.IsoContainerDoubleTrunkDoor2` | 20 | 45 |
+| ISO Container Double Door (*) | `Base.IsoContainerDoubleTrunkDoor2` | 20 | 25 |
 | ISO Container Makeshift A Frame (*) | `Base.IsoContainerAframe2` | 16 | 20 |
 | ISO Container Makeshift I Frame (*) | `Base.IsoContainerIframe2` | 22 | 25 |
-| ISO Tank Door (*) | `Base.IsoContainerTankerTrunkDoor2` | 4 | 12 |
+| ISO Tank Door (*) | `Base.IsoContainerTankerTrunkDoor2` | 4 | 5 |

@@ -10,11 +10,11 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 |---|---|---|---|
 | 85 Chevrolet Caprice/Impala Auto Manual | `Base.85chevyCapriceMagazine` | 0.5 | 0.3 |
 | 85 Chevrolet Caprice/Impala Cab Barrier (*) | `Base.85chevyCapriceCabBarrier1` | 10 | 12 |
-| 85 Chevrolet Caprice/Impala Front Bumper (*) | `Base.85chevyCapriceBumperFront0` | 10 | 22 |
-| 85 Chevrolet Caprice/Impala Front Seat (*) | `Base.85chevyCapriceSeatFront1` | 15 | 27.8 |
-| 85 Chevrolet Caprice/Impala Hood (*) | `Base.85chevyCapriceEngineDoor1` | 14 | 20 |
-| 85 Chevrolet Caprice/Impala Rear Bumper (*) | `Base.85chevyCapriceBumperRear0` | 9 | 18 |
+| 85 Chevrolet Caprice/Impala Front Bumper (*) | `Base.85chevyCapriceBumperFront0` | 10 | 12.5 |
+| 85 Chevrolet Caprice/Impala Front Seat (*) | `Base.85chevyCapriceSeatFront1` | 15 | 18.8 |
+| 85 Chevrolet Caprice/Impala Hood (*) | `Base.85chevyCapriceEngineDoor1` | 14 | 17.5 |
+| 85 Chevrolet Caprice/Impala Rear Bumper (*) | `Base.85chevyCapriceBumperRear0` | 9 | 11.2 |
 | 85 Chevrolet Caprice/Impala Rear Push Bumper (*) | `Base.85chevyCapriceBumperRearB` | 12 | 13 |
-| 85 Chevrolet Caprice/Impala Rear Seat (*) | `Base.85chevyCapriceSeatRear1` | 16 | 22 |
-| 85 Chevrolet Caprice/Impala Reinforced Bumper (*) | `Base.85chevyCapriceBumperFrontA` | 15 | 25 |
-| 85 Chevrolet Caprice/Impala Trunk Lid (*) | `Base.85chevyCapriceTrunkDoor1` | 10 | 18 |
+| 85 Chevrolet Caprice/Impala Rear Seat (*) | `Base.85chevyCapriceSeatRear1` | 16 | 20 |
+| 85 Chevrolet Caprice/Impala Reinforced Bumper (*) | `Base.85chevyCapriceBumperFrontA` | 15 | 18.8 |
+| 85 Chevrolet Caprice/Impala Trunk Lid (*) | `Base.85chevyCapriceTrunkDoor1` | 10 | 12.5 |

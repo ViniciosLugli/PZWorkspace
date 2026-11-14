@@ -11,6 +11,6 @@ Weights Lugli - Honest Weight sets for [Dynamic Backpack Upgrades (B41)](https:/
 | Denim Bag Upgrade | `DynamicBackpacks.UpgradeCapacityJean` | 1.2 | 0.48 |
 | Denim Straps Upgrade | `DynamicBackpacks.UpgradeWeightReductionJean` | 0.4 | 0.27 |
 | Leather Bag Upgrade | `DynamicBackpacks.UpgradeCapacityLeather` | 1.2 | 1.35 |
-| Leather Straps Upgrade | `DynamicBackpacks.UpgradeWeightReductionLeather` | 0.4 | 0.525 |
+| Leather Straps Upgrade | `DynamicBackpacks.UpgradeWeightReductionLeather` | 0.4 | 0.5 |
 | Military Bag Upgrade | `DynamicBackpacks.UpgradeCapacityMilitary` | 1.2 | 0.54 |
 | Military Straps Upgrade | `DynamicBackpacks.UpgradeWeightReductionMilitary` | 0.4 | 0.3 |

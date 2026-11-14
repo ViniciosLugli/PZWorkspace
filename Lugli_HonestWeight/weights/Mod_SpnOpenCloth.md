@@ -6,11 +6,11 @@ Weights Lugli - Honest Weight sets for [Spongie's Open Jackets \[VANILLA CLOTHIN
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| Air Force Coveralls | `Base.Boilersuit_FlyingOPEN` | 1 | 1.35 |
-| Air Force Coveralls | `Base.Boilersuit_FlyingTIED` | 1 | 1.35 |
+| Air Force Coveralls | `Base.Boilersuit_FlyingOPEN` | 1 | 1.25 |
+| Air Force Coveralls | `Base.Boilersuit_FlyingTIED` | 1 | 1.25 |
 | Army Pants | `Base.Trousers_ArmyServiceTUCK` | 1 | 0.9 |
-| Baggy Jeans | `Base.Trousers_JeanBaggyTUCK` | 1 | 1.27 |
-| Black Leather Trousers | `Base.Trousers_LeatherBlackTUCK` | 1 | 1.65 |
+| Baggy Jeans | `Base.Trousers_JeanBaggyTUCK` | 1 | 1.25 |
+| Black Leather Trousers | `Base.Trousers_LeatherBlackTUCK` | 1 | 1.25 |
 | Black Trousers | `Base.Trousers_BlackTUCK` | 1 | 0.75 |
 | Bowling Shirt - Blue | `Base.Shirt_Bowling_BlueOPEN` | 1 | 0.375 |
 | Bowling Shirt - Brown | `Base.Shirt_Bowling_BrownOPEN` | 1 | 0.375 |
@@ -20,12 +20,12 @@ Weights Lugli - Honest Weight sets for [Spongie's Open Jackets \[VANILLA CLOTHIN
 | Bowling Shirt - White | `Base.Shirt_Bowling_WhiteOPEN` | 1 | 0.375 |
 | Camo Hunting Vest | `Base.Vest_Hunting_CamoOPEN` | 1 | 0.6 |
 | Chef Pants | `Base.Trousers_ChefTUCK` | 1 | 0.6 |
-| Coveralls | `Base.BoilersuitOPEN` | 1 | 1.35 |
-| Coveralls | `Base.BoilersuitTIED` | 1 | 1.35 |
-| Coveralls | `Base.Boilersuit_BlueRedOPEN` | 1 | 1.35 |
-| Coveralls | `Base.Boilersuit_BlueRedTIED` | 1 | 1.35 |
-| Coveralls | `Base.Boilersuit_YellowOPEN` | 1 | 1.35 |
-| Coveralls | `Base.Boilersuit_YellowTIED` | 1 | 1.35 |
+| Coveralls | `Base.BoilersuitOPEN` | 1 | 1.25 |
+| Coveralls | `Base.BoilersuitTIED` | 1 | 1.25 |
+| Coveralls | `Base.Boilersuit_BlueRedOPEN` | 1 | 1.25 |
+| Coveralls | `Base.Boilersuit_BlueRedTIED` | 1 | 1.25 |
+| Coveralls | `Base.Boilersuit_YellowOPEN` | 1 | 1.25 |
+| Coveralls | `Base.Boilersuit_YellowTIED` | 1 | 1.25 |
 | Firefighter Pants | `Base.Trousers_FiremanTUCK` | 4 | 4.5 |
 | Foreman Vest | `Base.Vest_ForemanOPEN` | 1 | 0.45 |
 | GigaMart Waistcoat | `Base.Vest_Waistcoat_GigaMartOPEN` | 1 | 0.45 |
@@ -41,18 +41,18 @@ Weights Lugli - Honest Weight sets for [Spongie's Open Jackets \[VANILLA CLOTHIN
 | Jacket - Chef | `Base.Jacket_ChefOPEN` | 2 | 0.6 |
 | Jacket - Chef | `Base.Jacket_ChefOPENROLL` | 2 | 0.6 |
 | Jacket - Chef | `Base.Jacket_ChefROLL` | 2 | 0.6 |
-| Jacket - Firefighter | `Base.Jacket_FiremanOPEN` | 4 | 5.25 |
-| Jacket - Firefighter | `Base.Jacket_FiremanOPENROLL` | 4 | 5.25 |
-| Jacket - Firefighter | `Base.Jacket_FiremanROLL` | 4 | 5.25 |
+| Jacket - Firefighter | `Base.Jacket_FiremanOPEN` | 4 | 5 |
+| Jacket - Firefighter | `Base.Jacket_FiremanOPENROLL` | 4 | 5 |
+| Jacket - Firefighter | `Base.Jacket_FiremanROLL` | 4 | 5 |
 | Jacket - Formal | `Base.WeddingJacketOPEN` | 2 | 1.2 |
 | Jacket - Formal | `Base.WeddingJacketOPENROLL` | 2 | 1.2 |
 | Jacket - Formal | `Base.WeddingJacketROLL` | 2 | 1.2 |
 | Jacket - Green Santa Suit | `Base.JacketLong_SantaGreenOPEN` | 3 | 1.2 |
 | Jacket - Green Santa Suit | `Base.JacketLong_SantaGreenOPENROLL` | 3 | 1.2 |
 | Jacket - Green Santa Suit | `Base.JacketLong_SantaGreenROLL` | 3 | 1.2 |
-| Jacket - Military Officer | `Base.Jacket_CoatArmyOPEN` | 1 | 1.65 |
-| Jacket - Military Officer | `Base.Jacket_CoatArmyOPENROLL` | 1 | 1.65 |
-| Jacket - Military Officer | `Base.Jacket_CoatArmyROLL` | 1 | 1.65 |
+| Jacket - Military Officer | `Base.Jacket_CoatArmyOPEN` | 1 | 1.25 |
+| Jacket - Military Officer | `Base.Jacket_CoatArmyOPENROLL` | 1 | 1.25 |
+| Jacket - Military Officer | `Base.Jacket_CoatArmyROLL` | 1 | 1.25 |
 | Jacket - Navy Blue | `Base.Jacket_NavyBlueOPEN` | 2 | 1.2 |
 | Jacket - Navy Blue | `Base.Jacket_NavyBlueOPENROLL` | 2 | 1.2 |
 | Jacket - Navy Blue | `Base.Jacket_NavyBlueROLL` | 2 | 1.2 |
@@ -89,9 +89,9 @@ Weights Lugli - Honest Weight sets for [Spongie's Open Jackets \[VANILLA CLOTHIN
 | Jacket - Suit | `Base.Suit_JacketTINTOPEN` | 2 | 1.2 |
 | Jacket - Suit | `Base.Suit_JacketTINTOPENROLL` | 2 | 1.2 |
 | Jacket - Suit | `Base.Suit_JacketTINTROLL` | 2 | 1.2 |
-| Jacket - Varsity | `Base.Jacket_VarsityOPEN` | 1 | 1.8 |
-| Jacket - Varsity | `Base.Jacket_VarsityOPENROLL` | 1 | 1.8 |
-| Jacket - Varsity | `Base.Jacket_VarsityROLL` | 1 | 1.8 |
+| Jacket - Varsity | `Base.Jacket_VarsityOPEN` | 1 | 1.25 |
+| Jacket - Varsity | `Base.Jacket_VarsityOPENROLL` | 1 | 1.25 |
+| Jacket - Varsity | `Base.Jacket_VarsityROLL` | 1 | 1.25 |
 | Jeans | `Base.TrousersMesh_DenimLightTUCK` | 1 | 1.05 |
 | Jeans | `Base.Trousers_DenimTUCK` | 1 | 1.05 |
 | Jockey Silks - No. 1 | `Base.Shirt_Jockey01OPEN` | 1 | 0.375 |
@@ -112,9 +112,9 @@ Weights Lugli - Honest Weight sets for [Spongie's Open Jackets \[VANILLA CLOTHIN
 | Jockey Silks - No. 6 | `Base.Shirt_Jockey06OPEN` | 1 | 0.375 |
 | Jockey Silks - No. 6 | `Base.Shirt_Jockey06OPENROLL` | 1 | 0.375 |
 | Jockey Silks - No. 6 | `Base.Shirt_Jockey06ROLL` | 1 | 0.375 |
-| Leather Jacket | `Base.JacketLong_RandomOPEN` | 2 | 2.85 |
-| Leather Jacket | `Base.JacketLong_RandomOPENROLL` | 2 | 2.85 |
-| Leather Jacket | `Base.JacketLong_RandomROLL` | 2 | 2.85 |
+| Leather Jacket | `Base.JacketLong_RandomOPEN` | 2 | 2.5 |
+| Leather Jacket | `Base.JacketLong_RandomOPENROLL` | 2 | 2.5 |
+| Leather Jacket | `Base.JacketLong_RandomROLL` | 2 | 2.5 |
 | Leather Jacket | `Base.Jacket_BlackOPEN` | 2 | 2.25 |
 | Leather Jacket | `Base.Jacket_BlackOPENROLL` | 2 | 2.25 |
 | Leather Jacket | `Base.Jacket_BlackROLL` | 2 | 2.25 |
@@ -154,8 +154,8 @@ Weights Lugli - Honest Weight sets for [Spongie's Open Jackets \[VANILLA CLOTHIN
 | Military Urban Camo Pants | `Base.Trousers_CamoUrbanTUCK` | 1 | 0.9 |
 | Navy Blue Trousers | `Base.Trousers_NavyBlueTUCK` | 1 | 0.75 |
 | Orange Hunting Vest | `Base.Vest_Hunting_OrangeOPEN` | 1 | 0.6 |
-| Overalls | `Base.DungareesDOWN` | 1 | 1.35 |
-| Padded Pants | `Base.Trousers_PaddedTUCK` | 1 | 1.35 |
+| Overalls | `Base.DungareesDOWN` | 1 | 1.25 |
+| Padded Pants | `Base.Trousers_PaddedTUCK` | 1 | 1.25 |
 | Pants | `Base.TrousersTUCK` | 1 | 0.75 |
 | Pants | `Base.Trousers_WhiteTINTTUCK` | 1 | 0.75 |
 | Police Deputy Pants | `Base.Trousers_PoliceGreyTUCK` | 1 | 0.825 |

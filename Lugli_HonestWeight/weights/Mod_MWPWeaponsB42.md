@@ -35,7 +35,7 @@ Weights Lugli - Honest Weight sets for [\[B42\] MWPWeapons](https://steamcommuni
 | Finka NKVD Knife | `Base.finka_nkvd_knife` | 0.8 | 0.375 |
 | Fiskar Curved Machete | `Base.fiskarcurvedmachete` | 1.8 | 0.9 |
 | Fiskar Splittingmaul | `Base.fiskarsplittingmaul` | 6 | 5.4 |
-| Gemtord42 Crash Axe | `Base.gemtord42crashaxe` | 1 | 3 |
+| Gemtord42 Crash Axe | `Base.gemtord42crashaxe` | 1 | 1.25 |
 | Gerber Downrange Tomahawk | `Base.gerberdownrangetomahawk` | 1 | 1.12 |
 | Gerber Pack Hatchet | `Base.gerberpackhatchet` | 1 | 0.9 |
 | K25 Jacob Cleaver | `Base.k25_jacob_cleaver` | 1 | 0.825 |
@@ -44,7 +44,7 @@ Weights Lugli - Honest Weight sets for [\[B42\] MWPWeapons](https://steamcommuni
 | Khk Combat Knife | `Base.khkcombatknife` | 0.8 | 0.45 |
 | Korek Machete | `Base.korekmachete` | 1.8 | 0.9 |
 | Louisville Vapor Baseball Bat | `Base.louisvillevaporbaseballbat` | 2 | 1.27 |
-| M48 Naginata | `Base.m48_naginata` | 2 | 2.7 |
+| M48 Naginata | `Base.m48_naginata` | 2 | 2.5 |
 | M48 Tactical Kama | `Base.m48_tactical_kama` | 0.8 | 0.6 |
 | M48 Tactical Warhammer | `Base.m48tacticalwarhammer` | 1.5 | 1.35 |
 | Mtech Stonewashed Tomahawk | `Base.mtech_stonewashed_tomahawk` | 1.3 | 1.12 |
@@ -53,18 +53,18 @@ Weights Lugli - Honest Weight sets for [\[B42\] MWPWeapons](https://steamcommuni
 | North Couloir Ice Axe | `Base.north_couloir_ice_axe` | 1 | 0.825 |
 | Ontario OKC10 Bayonet | `Base.ontariookc10bayonet` | 0.8 | 0.45 |
 | OX Nail Hammer | `Base.oxnailhammer` | 1.5 | 0.975 |
-| OX Trade Sledgehammer | `Base.ox_trade_sledgehammer` | 6 | 8.1 |
+| OX Trade Sledgehammer | `Base.ox_trade_sledgehammer` | 6 | 7.5 |
 | Python Campaxe | `Base.pythoncampaxe` | 3 | 1.8 |
 | Reaper Tac Sickle | `Base.reapertacsickle` | 0.8 | 0.525 |
 | Reapr 11003 Survival Spear | `Base.reapr_11003_survival_spear` | 2.5 | 1.35 |
 | Reaver Cleaver | `Base.reavercleaver` | 3 | 1.5 |
 | Roughneck Axe | `Base.roughneckaxe` | 3 | 3.45 |
-| Roughneck Gorilla Sledgehammer | `Base.roughneckgorillasledgehammer` | 6 | 8.1 |
+| Roughneck Gorilla Sledgehammer | `Base.roughneckgorillasledgehammer` | 6 | 7.5 |
 | Russian AKM Bayonet | `Base.russianakmbayonet` | 0.9 | 0.45 |
-| SOG Bearded Camp Axe | `Base.sogbeardedcampaxe` | 1 | 1.8 |
+| SOG Bearded Camp Axe | `Base.sogbeardedcampaxe` | 1 | 1.25 |
 | SOG Sogfari Tanto Machete | `Base.sogfaritantomachete` | 1.8 | 0.9 |
 | SOG-F19N Elite | `Base.sogf19nelite` | 1 | 1.12 |
-| Sptesnaz Tactical Shovel | `Base.sptesnaztacticalshovel` | 1 | 1.27 |
+| Sptesnaz Tactical Shovel | `Base.sptesnaztacticalshovel` | 1 | 1.25 |
 | Spyderco Hatchet Hawk | `Base.spydercohatchethawk` | 3 | 1.12 |
 | Stanley Fatmax Nailing Hammer | `Base.stanley_fatmax_nailing_hammer` | 1.5 | 0.975 |
 | Synthetic Sword | `Base.syntheticsword` | 1.6 | 1.35 |

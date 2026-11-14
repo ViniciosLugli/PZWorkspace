@@ -6,11 +6,11 @@ Weights Lugli - Honest Weight sets for [Pogo's Clothing Collection](https://stea
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| Bodysuit (Leotard) | `Base.Bodysuit` | 0.1 | 0.15 |
-| Haltertop Bodysuit | `Base.Haltertop_Bodysuit` | 0.1 | 0.15 |
-| Haltertop Bodysuit (High Cut) | `Base.Haltertop_Bodysuit_High` | 0.1 | 0.15 |
-| Long Sleeve Bodysuit | `Base.LongSleeve_Bodysuit` | 0.1 | 0.3 |
-| Long Sleeve Bodysuit (High Cut) | `Base.LongSleeve_Bodysuit_High` | 0.1 | 0.3 |
+| Bodysuit (Leotard) | `Base.Bodysuit` | 0.1 | 0.125 |
+| Haltertop Bodysuit | `Base.Haltertop_Bodysuit` | 0.1 | 0.125 |
+| Haltertop Bodysuit (High Cut) | `Base.Haltertop_Bodysuit_High` | 0.1 | 0.125 |
+| Long Sleeve Bodysuit | `Base.LongSleeve_Bodysuit` | 0.1 | 0.125 |
+| Long Sleeve Bodysuit (High Cut) | `Base.LongSleeve_Bodysuit_High` | 0.1 | 0.125 |
 | Oversized Hoodie | `Base.Big_HoodieDOWN_WhiteTINT` | 1 | 1.2 |
 | Oversized Hoodie | `Base.Big_HoodieDOWN_WhiteTINT_Decal` | 1 | 1.2 |
 | Oversized Hoodie | `Base.Big_HoodieUP_WhiteTINT` | 1 | 1.2 |
@@ -18,10 +18,10 @@ Weights Lugli - Honest Weight sets for [Pogo's Clothing Collection](https://stea
 | Oversized Knitted Sweater | `Base.Big_Knitted_Sweater_WhiteTINT` | 1 | 1.05 |
 | Oversized Sweater | `Base.Big_Sweater_WhiteTINT` | 1 | 0.9 |
 | Oversized Sweater | `Base.Big_Sweater_WhiteTINT_Decal` | 1 | 0.9 |
-| Short Sleeve Bodysuit | `Base.ShortSleeve_Bodysuit` | 0.1 | 0.21 |
-| Short Sleeve Bodysuit (High Cut) | `Base.ShortSleeve_Bodysuit_High` | 0.1 | 0.21 |
-| Sweater Haltertop Bodysuit | `Base.Sweater_Haltertop_Bodysuit` | 0.1 | 0.45 |
-| Sweater Turtleneck Bodysuit | `Base.Sweater_Turtleneck_Bodysuit` | 0.1 | 0.45 |
-| Turtleneck Bodysuit | `Base.Turtleneck_Bodysuit` | 0.1 | 0.3 |
-| Turtleneck Bodysuit (High Cut) | `Base.Turtleneck_Bodysuit_High` | 0.1 | 0.3 |
-| Unitard | `Base.Unitard` | 0.1 | 0.375 |
+| Short Sleeve Bodysuit | `Base.ShortSleeve_Bodysuit` | 0.1 | 0.125 |
+| Short Sleeve Bodysuit (High Cut) | `Base.ShortSleeve_Bodysuit_High` | 0.1 | 0.125 |
+| Sweater Haltertop Bodysuit | `Base.Sweater_Haltertop_Bodysuit` | 0.1 | 0.125 |
+| Sweater Turtleneck Bodysuit | `Base.Sweater_Turtleneck_Bodysuit` | 0.1 | 0.125 |
+| Turtleneck Bodysuit | `Base.Turtleneck_Bodysuit` | 0.1 | 0.125 |
+| Turtleneck Bodysuit (High Cut) | `Base.Turtleneck_Bodysuit_High` | 0.1 | 0.125 |
+| Unitard | `Base.Unitard` | 0.1 | 0.125 |

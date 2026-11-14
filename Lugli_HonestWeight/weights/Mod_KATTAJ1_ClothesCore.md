@@ -6,4 +6,4 @@ Weights Lugli - Honest Weight sets for [KATTAJ1 Clothes Core](https://steamcommu
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| Tactical Flashlight | `Base.KATTAJ1_TacticalFlashlight` | 0.1 | 0.225 |
+| Tactical Flashlight | `Base.KATTAJ1_TacticalFlashlight` | 0.1 | 0.125 |

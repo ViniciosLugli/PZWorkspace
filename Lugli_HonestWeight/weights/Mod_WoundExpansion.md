@@ -7,11 +7,11 @@ Weights Lugli - Honest Weight sets for [Wound Expansion](https://steamcommunity.
 | Item | ID | Game | Honest |
 |---|---|---|---|
 | Arm Sling | `WoundExpansion.WE_Sling` | 0.2 | 0.15 |
-| Blood Bag | `WoundExpansion.WE_BloodBag` | 0.5 | 0.75 |
+| Blood Bag | `WoundExpansion.WE_BloodBag` | 0.5 | 0.625 |
 | Burn Dressing | `WoundExpansion.WE_BurnDressing` | 0.1 | 0.06 |
 | Elastic Bandage | `WoundExpansion.WE_ElasticBandage` | 0.15 | 0.12 |
 | Hemostatic Gauze | `WoundExpansion.WE_HemostaticGauze` | 0.1 | 0.045 |
 | Iodine | `WoundExpansion.WE_Iodine` | 0.2 | 0.15 |
-| Plaster Cast | `WoundExpansion.WE_PlasterCast` | 0.8 | 1.2 |
+| Plaster Cast | `WoundExpansion.WE_PlasterCast` | 0.8 | 1 |
 | Smelling Salts | `WoundExpansion.WE_SmellingSalts` | 0.1 | 0.045 |
 | Surgical Kit | `WoundExpansion.WE_SurgicalKit` | 1 | 0.75 |

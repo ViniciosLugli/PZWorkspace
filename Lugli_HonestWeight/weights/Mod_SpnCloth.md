@@ -6,7 +6,7 @@ Weights Lugli - Honest Weight sets for [Spongie's Clothing](https://steamcommuni
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| Arm Warmers | `Spongie.Gloves_StripedLong` | 0.1 | 0.15 |
+| Arm Warmers | `Spongie.Gloves_StripedLong` | 0.1 | 0.125 |
 | Bomber Jacket | `Spongie.Jacket_Bomber` | 3 | 1.35 |
 | Bomber Jacket | `Spongie.Jacket_BomberOPEN` | 3 | 1.35 |
 | Bomber Jacket | `Spongie.Jacket_BomberOPENROLL` | 3 | 1.35 |
@@ -30,7 +30,7 @@ Weights Lugli - Honest Weight sets for [Spongie's Clothing](https://steamcommuni
 | Jacket - Quilted | `Spongie.Jacket_QuiltedROLL` | 2 | 1.05 |
 | Leather Jacket - Ribbed | `Spongie.Jacket_Ribbed` | 2 | 2.25 |
 | Leather Jacket - Ribbed | `Spongie.Jacket_RibbedOPEN` | 2 | 2.25 |
-| Leggings - Compression | `Spongie.Shorts_SpandexLong` | 0.1 | 0.3 |
+| Leggings - Compression | `Spongie.Shorts_SpandexLong` | 0.1 | 0.125 |
 | Long Sleeve T-shirt - Compression | `Spongie.TShirt_CompressionLong` | 1 | 0.27 |
 | Pea Coat | `Spongie.Jacket_PeaCoat` | 2 | 2.25 |
 | Pea Coat | `Spongie.Jacket_PeaCoat2` | 2 | 2.25 |
@@ -40,7 +40,7 @@ Weights Lugli - Honest Weight sets for [Spongie's Clothing](https://steamcommuni
 | Pea Coat | `Spongie.Jacket_PeaCoatOPEN` | 2 | 2.25 |
 | Pea Coat | `Spongie.Jacket_PeaCoatOPENROLL` | 2 | 2.25 |
 | Pea Coat | `Spongie.Jacket_PeaCoatROLL` | 2 | 2.25 |
-| Police Jacket - Armored | `Spongie.Jacket_PoliceArmor` | 3.5 | 4.5 |
+| Police Jacket - Armored | `Spongie.Jacket_PoliceArmor` | 3.5 | 4.38 |
 | Police Jacket - Armored | `Spongie.Jacket_PoliceArmorLong` | 4 | 4.5 |
 | Shirt - Quilted | `Spongie.Shirt_Quilted` | 1 | 0.675 |
 | Shirt - Quilted | `Spongie.Shirt_QuiltedOPEN` | 1 | 0.675 |
@@ -63,5 +63,5 @@ Weights Lugli - Honest Weight sets for [Spongie's Clothing](https://steamcommuni
 | Vest - Windbreaker | `Spongie.Vest_Waterproof` | 1 | 0.375 |
 | Winter Coat | `Spongie.Jacket_WinterCoat` | 3.5 | 2.7 |
 | Winter Coat | `Spongie.Jacket_WinterCoatDOWN` | 3.5 | 2.7 |
-| Winter Jacket | `Spongie.Jacket_SheepWool` | 2 | 3.3 |
-| Winter Jacket | `Spongie.Jacket_SheepWoolOPEN` | 2 | 3.3 |
+| Winter Jacket | `Spongie.Jacket_SheepWool` | 2 | 2.5 |
+| Winter Jacket | `Spongie.Jacket_SheepWoolOPEN` | 2 | 2.5 |

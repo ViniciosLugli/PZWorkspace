@@ -9,7 +9,7 @@ Weights Lugli - Honest Weight sets for [Bushcraft Gear - Tools](https://steamcom
 | Cheap Survival Knife | `BCGTools.CheapSurvivalKnife` | 0.4 | 0.375 |
 | Cheap Survival Knife Blade | `BCGTools.CheapSurvivalKnifeBlade` | 0.2 | 0.12 |
 | Hand Hatchet | `BCGTools.HandHatchet` | 1.65 | 1.35 |
-| Hand Hatchet Head | `BCGTools.HandHatchetHead` | 0.5 | 0.675 |
+| Hand Hatchet Head | `BCGTools.HandHatchetHead` | 0.5 | 0.625 |
 | Kukri Machete | `BCGTools.KukriMachete` | 2.4 | 0.975 |
 | Kukri Machete Blade Without Tang | `BCGTools.KukriMacheteBlade_NoTang` | 2 | 0.6 |
 | Rancher Machete | `BCGTools.RancherMachete` | 1.5 | 0.9 |
@@ -17,7 +17,7 @@ Weights Lugli - Honest Weight sets for [Bushcraft Gear - Tools](https://steamcom
 | Spear With Cheap Survival Knife | `BCGTools.SpearCheapSurvivalKnife` | 2.1 | 1.72 |
 | Spear With Kukri Machete | `BCGTools.SpearKukriMachete` | 3.5 | 2.25 |
 | Spear With Survival Knife | `BCGTools.SpearSurvivalKnife` | 3 | 1.95 |
-| Splitting Axe | `BCGTools.SplittingAxe` | 1.8 | 4.05 |
-| Splitting Axe Head | `BCGTools.SplittingAxeHead` | 1 | 2.7 |
+| Splitting Axe | `BCGTools.SplittingAxe` | 1.8 | 2.25 |
+| Splitting Axe Head | `BCGTools.SplittingAxeHead` | 1 | 1.25 |
 | Survival Knife | `BCGTools.SurvivalKnife` | 0.7 | 0.6 |
 | Survival Knife Blade | `BCGTools.SurvivalKnifeBlade` | 0.4 | 0.18 |

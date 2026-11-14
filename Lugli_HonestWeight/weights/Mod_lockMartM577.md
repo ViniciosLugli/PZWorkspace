@@ -8,11 +8,11 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| Lock-Mart Industries M577 Front Door (*) | `Base.lockMartM577FrontDoor2` | 16 | 29.4 |
-| Lock-Mart Industries M577 Hood (*) | `Base.lockMartM577EngineDoor2` | 5 | 32.9 |
+| Lock-Mart Industries M577 Front Door (*) | `Base.lockMartM577FrontDoor2` | 16 | 20 |
+| Lock-Mart Industries M577 Hood (*) | `Base.lockMartM577EngineDoor2` | 5 | 6.25 |
 | Lock-Mart Industries M577 Large Seat (*) | `Base.lockMartM577SeatLarge2` | 16 | 15 |
 | Lock-Mart Industries M577 Rear Door (*) | `Base.lockMartM577RearDoor2` | 22 | 25 |
-| Lock-Mart Industries M577 Remote Turret (*) | `Base.lockMartM577Turret2` | 25 | 44.5 |
+| Lock-Mart Industries M577 Remote Turret (*) | `Base.lockMartM577Turret2` | 25 | 31.2 |
 | Lock-Mart Industries M577 Small Seat (*) | `Base.lockMartM577SeatSmall2` | 12 | 15 |
-| Lock-Mart Industries M577 Tire (*) | `Base.lockMartM577Tire2` | 25 | 40.5 |
-| Lock-Mart Industries M577 Windshield (*) | `Base.lockMartM577Windshield2` | 10 | 13 |
+| Lock-Mart Industries M577 Tire (*) | `Base.lockMartM577Tire2` | 25 | 31.2 |
+| Lock-Mart Industries M577 Windshield (*) | `Base.lockMartM577Windshield2` | 10 | 12.5 |

@@ -24,11 +24,13 @@ local M = LugliHonestWeight
 
 M.PART = "Weights"
 -- Row: fullType, fingerprint, fixed, mass, volume, emptyFingerprint, emptyFixed, emptyMass, flags,
--- partModifier. partModifier >= 0 is the pristine WeightModifier of a weapon part: installed, a
--- part adds that to its gun instead of its weight (HandWeapon.getActualWeight), so it is written
--- as the part's own new weight. The script Item has no getter for it, and WeaponPart does not
--- save it (Item.java:1515 copies it into each new instance), so it is written blind.
-M.STRIDE = 10
+-- partModifier, cap, fluid. partModifier >= 0 is the pristine WeightModifier of a weapon part:
+-- installed, a part adds that to its gun instead of its weight (HandWeapon.getActualWeight), so it
+-- is written as the part's own new weight. The script Item has no getter for it, and WeaponPart
+-- does not save it (Item.java:1515 copies it into each new instance), so it is written blind.
+-- capBase x (1 + MaxIncrease / 100) is the most the weight may reach; fluid is a sealed pack's
+-- liquid, already in game units.
+M.STRIDE = 12
 -- Flags are a sum: 1 melee (stamina follows weight), 2 an installed vehicle part, whose weight
 -- is also its vehicle's physics mass in kilograms (BaseVehicle.java:9202), so Scale skips it.
 M.FLAG_MELEE = 1
@@ -48,9 +50,12 @@ local EPS = 0.0005
 local BULK_K = { 0, 0.05, 0.10, 0.15 }
 local BULK_NAME = { "off", "light", "normal", "strict" }
 -- Scale: game weight units per real kilogram. Vanilla weighs everyday goods about 1.5x their
--- real mass for its carry capacity; 1.5 keeps the balance loadouts at 0.87 of vanilla.
+-- real mass for its carry capacity.
 local SCALE_MIN, SCALE_MAX = 1.0, 2.5
-local DEFAULTS = { realism = 100, bulk = 3, scale = 1.5, vanillaStamina = false }
+-- MaxIncrease: the most, in percent, a weight may rise above the game's own. Purely relative,
+-- because a per-item allowance would add up over everything carried in quantity.
+local OVER_MIN, OVER_MAX = 0, 400
+local DEFAULTS = { realism = 100, bulk = 3, scale = 1.5, vanillaStamina = false, over = 25 }
 local INCOMPATIBLE = "TrueWeight"
 local HASH_MOD = 2147483647
 
@@ -73,7 +78,7 @@ end
 
 function M.presets()
     local p = { realism = DEFAULTS.realism, bulk = DEFAULTS.bulk, scale = DEFAULTS.scale,
-        vanillaStamina = DEFAULTS.vanillaStamina }
+        vanillaStamina = DEFAULTS.vanillaStamina, over = DEFAULTS.over }
     local sv = SandboxVars and SandboxVars.LugliHW
     if type(sv) == "table" then
         local r, b, s = tonumber(sv.Realism), tonumber(sv.BulkFloor), tonumber(sv.Scale)
@@ -81,6 +86,8 @@ function M.presets()
         if b ~= nil and BULK_K[b] ~= nil then p.bulk = b end
         if s ~= nil and s >= SCALE_MIN and s <= SCALE_MAX then p.scale = s end
         if type(sv.VanillaStamina) == "boolean" then p.vanillaStamina = sv.VanillaStamina end
+        local o = tonumber(sv.MaxIncrease)
+        if o ~= nil and o >= OVER_MIN and o <= OVER_MAX then p.over = o end
     end
     return p
 end
@@ -96,12 +103,17 @@ function M.carry(w)
     return CARRY_KNEE + span * (1 - math.exp(-(w - CARRY_KNEE) / span))
 end
 
--- honest = carry(scale * max(mass, volume * k)); final = fixed + realism * (honest - fixed)
-function M.target(fixed, mass, vol, r, k, s)
+-- honest = min(carry(scale * max(mass, volume * k) + fluid), cap)
+-- final = min(fixed + realism * (honest - fixed), cap)
+function M.target(fixed, mass, vol, r, k, s, cap, fluid)
     local honest = mass
     local floor = vol * k
     if floor > honest then honest = floor end
-    return fixed + r * (M.carry(s * honest) - fixed)
+    honest = M.carry(s * honest + fluid)
+    if honest > cap then honest = cap end
+    local w = fixed + r * (honest - fixed)
+    if w > cap then w = cap end
+    return w
 end
 
 local function newCounts()
@@ -129,7 +141,8 @@ end
 
 -- Melee stamina per swing and per chop is weight x EnduranceMod (CombatManager.java:1314,
 -- :3985, ISChopTreeAction.lua:100), and HandWeapon reads the script weight live. Real mass
--- therefore changes stamina; with VanillaStamina the mod is rescaled so the product stays.
+-- therefore changes stamina; with VanillaStamina the mod is rescaled so the product stays. A
+-- swing weighs at least 1 (HandWeapon.getEffectiveWeight), so the rescale uses that floor too.
 local function applyStamina(item, ft, stage, w, vanillaStamina, c)
     local cur = item:getEnduranceMod()
     local mine = M.writtenMod[ft]
@@ -142,7 +155,7 @@ local function applyStamina(item, ft, stage, w, vanillaStamina, c)
     end
     local mod = M.pristineMod[ft]
     local p = M.pristine[ft]
-    if vanillaStamina and w > 0 and p > 0 then mod = mod * p / w end
+    if vanillaStamina then mod = mod * math.max(p, 1) / math.max(w, 1) end
     item:setEnduranceMod(mod)
     mod = item:getEnduranceMod()
     M.writtenMod[ft] = mod
@@ -163,7 +176,7 @@ end
 
 -- stage "boot": take the snapshot, check fingerprints, write.
 -- stage "sandbox": rewrite what boot wrote, leaving anything another mod changed since.
-local function applyRow(sm, rows, i, stage, r, k, s, vanillaStamina, c)
+local function applyRow(sm, rows, i, stage, r, k, s, over, vanillaStamina, c)
     local ft = rows[i]
     local item = sm:getItem(ft)
     if item == nil then
@@ -209,7 +222,7 @@ local function applyRow(sm, rows, i, stage, r, k, s, vanillaStamina, c)
     end
     local flags = rows[i + 8]
     if math.floor(flags / M.FLAG_PHYSICS) % 2 == 1 then s = 1 end
-    local w = M.target(rows[i + 2], rows[i + 3], rows[i + 4], r, k, s)
+    local w = M.target(rows[i + 2], rows[i + 3], rows[i + 4], r, k, s, over * rows[i + 10], rows[i + 11])
     item:setActualWeight(w)
     w = item:getActualWeight()
     M.written[ft] = w
@@ -221,7 +234,10 @@ local function applyRow(sm, rows, i, stage, r, k, s, vanillaStamina, c)
         c.hash = mix(c.hash, partModifier)
     end
     if hasEmpty then
-        local e = rows[i + 6] + r * (M.carry(s * rows[i + 7]) - rows[i + 6])
+        local honestE = M.carry(s * rows[i + 7])
+        local capE = over * rows[i + 6]
+        if honestE > capE then honestE = capE end
+        local e = rows[i + 6] + r * (honestE - rows[i + 6])
         if e > w then
             e = w
             c.clamped = c.clamped + 1
@@ -238,7 +254,7 @@ end
 function M.applyAll(stage)
     local p = DEFAULTS
     if stage == "sandbox" then p = M.presets() end
-    local r, k = p.realism / 100, BULK_K[p.bulk]
+    local r, k, over = p.realism / 100, BULK_K[p.bulk], 1 + p.over / 100
     local c = newCounts()
     local sm = ScriptManager.instance
     local sources = activeSources(M.active or {}, c)
@@ -246,10 +262,10 @@ function M.applyAll(stage)
         local rows = sources[s].rows
         c.sources = c.sources + 1
         for i = 1, #rows, M.STRIDE do
-            applyRow(sm, rows, i, stage, r, k, p.scale, p.vanillaStamina, c)
+            applyRow(sm, rows, i, stage, r, k, p.scale, over, p.vanillaStamina, c)
         end
     end
-    c.realism, c.bulk, c.scale = p.realism, BULK_NAME[p.bulk], p.scale
+    c.realism, c.bulk, c.scale, c.over = p.realism, BULK_NAME[p.bulk], p.scale, p.over
     c.stamina = p.vanillaStamina and "vanilla" or "weight"
     M.counts = c
     return c
@@ -259,7 +275,8 @@ function M.countsText(c)
     local text = "data " .. tostring(M.DATA_VERSION) .. ", " .. c.sources .. " source(s), applied "
         .. c.applied .. ", stale " .. c.stale .. ", missing " .. c.missing .. ", yielded "
         .. c.yielded .. ", clamped " .. c.clamped .. ", realism " .. tostring(c.realism)
-        .. " bulk " .. tostring(c.bulk) .. " scale " .. tostring(c.scale) .. " stamina " .. tostring(c.stamina)
+        .. " bulk " .. tostring(c.bulk) .. " scale " .. tostring(c.scale) .. " limit +" .. tostring(c.over) .. "%"
+        .. " stamina " .. tostring(c.stamina)
         .. ", hash " .. tostring(c.hash)
     if c.leftovers > 0 then text = text .. ", " .. c.leftovers .. " leftover data file(s) ignored" end
     return text

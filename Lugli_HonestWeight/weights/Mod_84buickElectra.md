@@ -9,10 +9,10 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Item | ID | Game | Honest |
 |---|---|---|---|
 | 84 Buick Electra Auto Manual | `Base.84buickElectraMagazine` | 0.5 | 0.3 |
-| 84 Buick Electra Front Bumper (*) | `Base.84buickElectraBumperFront0` | 10 | 22 |
-| 84 Buick Electra Front Seat (*) | `Base.84buickElectraSeatFront1` | 15 | 27.8 |
-| 84 Buick Electra Hood (*) | `Base.84buickElectraEngineDoor1` | 15 | 20 |
-| 84 Buick Electra Rear Bumper (*) | `Base.84buickElectraBumperRear0` | 9 | 18 |
-| 84 Buick Electra Rear Seat (*) | `Base.84buickElectraSeatRear1` | 16 | 22 |
-| 84 Buick Electra Reinforced Bumper (*) | `Base.84buickElectraBumperFrontA` | 15 | 25 |
-| 84 Buick Electra Trunk Lid (*) | `Base.84buickElectraTrunkDoor1` | 10 | 18 |
+| 84 Buick Electra Front Bumper (*) | `Base.84buickElectraBumperFront0` | 10 | 12.5 |
+| 84 Buick Electra Front Seat (*) | `Base.84buickElectraSeatFront1` | 15 | 18.8 |
+| 84 Buick Electra Hood (*) | `Base.84buickElectraEngineDoor1` | 15 | 18.8 |
+| 84 Buick Electra Rear Bumper (*) | `Base.84buickElectraBumperRear0` | 9 | 11.2 |
+| 84 Buick Electra Rear Seat (*) | `Base.84buickElectraSeatRear1` | 16 | 20 |
+| 84 Buick Electra Reinforced Bumper (*) | `Base.84buickElectraBumperFrontA` | 15 | 18.8 |
+| 84 Buick Electra Trunk Lid (*) | `Base.84buickElectraTrunkDoor1` | 10 | 12.5 |

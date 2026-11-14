@@ -6,8 +6,8 @@ Weights Lugli - Honest Weight sets for [ALICE Gear](https://steamcommunity.com/s
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| ALICE Canteen | `ALICE.AliceCanteen` | 0.2 | 0.3 |
-| ALICE Medium Field Pack | `ALICE.AliceBackpack` | 1.1 | 3.3 |
+| ALICE Canteen | `ALICE.AliceCanteen` | 0.2 | 0.25 |
+| ALICE Medium Field Pack | `ALICE.AliceBackpack` | 1.1 | 1.38 |
 | ALICE Webbing (2P) | `ALICE.AliceVest2PLoosen` | 1.5 | 1.2 |
 | ALICE Webbing (2P) | `ALICE.AliceVest2PTight` | 1.5 | 1.2 |
 | ALICE Webbing (2P1C1E) | `ALICE.AliceVest2P1C1ELoosen` | 1.87 | 1.35 |
@@ -23,9 +23,9 @@ Weights Lugli - Honest Weight sets for [ALICE Gear](https://steamcommunity.com/s
 | ALICE Webbing (4P1C1H) | `ALICE.AliceVest4P1C1HTight` | 2.99 | 2.03 |
 | ALICE Webbing (4P2C) | `ALICE.AliceVest4P2CLoosen` | 2.56 | 1.8 |
 | ALICE Webbing (4P2C) | `ALICE.AliceVest4P2CTight` | 2.56 | 1.8 |
-| Doff Hood | `ALICE.GasMaskDoff` | 0.2 | 0.3 |
-| Doff Hood | `ALICE.GasMaskDoffLoosen` | 0.2 | 0.3 |
-| Field Pack. Training | `ALICE.AliceFieldpack` | 0.6 | 1.95 |
+| Doff Hood | `ALICE.GasMaskDoff` | 0.2 | 0.25 |
+| Doff Hood | `ALICE.GasMaskDoffLoosen` | 0.2 | 0.25 |
+| Field Pack. Training | `ALICE.AliceFieldpack` | 0.6 | 0.75 |
 | M40 Gas Mask | `ALICE.M40GasMaskNoStraps` | 1 | 1.2 |
 | M40 Gas Mask | `ALICE.M40GasMaskStraps` | 1 | 1.2 |
 | M40 Gas Mask Carrier (Leg) | `ALICE.GasMaskPouchThigh` | 0.6 | 0.45 |

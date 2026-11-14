@@ -12,7 +12,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 92 Jeep Wrangler YJ Bodykit B (*) | `Base.92jeepYJBodykitB2` | 11 | 12 |
 | 92 Jeep Wrangler YJ Family Rollbar (*) | `Base.92jeepYJFamilyRollbar2` | 16 | 20 |
 | 92 Jeep Wrangler YJ Front Bullbar (*) | `Base.92jeepYJBullbarFrontA` | 13 | 12 |
-| 92 Jeep Wrangler YJ Front Door (*) | `Base.92jeepYJFrontDoor2` | 7 | 12 |
+| 92 Jeep Wrangler YJ Front Door (*) | `Base.92jeepYJFrontDoor2` | 7 | 8.75 |
 | 92 Jeep Wrangler YJ Front Seat (*) | `Base.92jeepYJSeatFront2` | 13 | 12 |
 | 92 Jeep Wrangler YJ Front Side Window (*) | `Base.92jeepYJFrontSideWindow2` | 4 | 2.2 |
 | 92 Jeep Wrangler YJ Front Side Window Frame (*) | `Base.92jeepYJFrontSideWindowFrame2` | 4 | 3 |
@@ -27,14 +27,14 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 92 Jeep Wrangler YJ Rear Windshield (*) | `Base.92jeepYJWindshieldRear2` | 10 | 3.9 |
 | 92 Jeep Wrangler YJ Rear Windshield Armor (*) | `Base.92jeepYJWindshieldRearArmor` | 11 | 8.8 |
 | 92 Jeep Wrangler YJ Roofrack (*) | `Base.92jeepYJRoofrack2` | 13 | 8 |
-| 92 Jeep Wrangler YJ Small Front Bumper (*) | `Base.92jeepYJBumperFront1` | 6 | 9 |
+| 92 Jeep Wrangler YJ Small Front Bumper (*) | `Base.92jeepYJBumperFront1` | 6 | 7.5 |
 | 92 Jeep Wrangler YJ Snorkel (*) | `Base.92jeepYJSnorkel2` | 3 | 2 |
 | 92 Jeep Wrangler YJ Soft Top (*) | `Base.92jeepYJSoftTop2` | 15 | 14 |
 | 92 Jeep Wrangler YJ Sport Rollbar (*) | `Base.92jeepYJSportRollbar2` | 13 | 12 |
 | 92 Jeep Wrangler YJ Stock Front Bumper (*) | `Base.92jeepYJBumperFront0` | 8 | 9 |
-| 92 Jeep Wrangler YJ Stock Rear Bumper (*) | `Base.92jeepYJBumperRear0` | 4 | 7 |
-| 92 Jeep Wrangler YJ Trunk Lid (*) | `Base.92jeepYJTrunkDoor2` | 6 | 8 |
-| 92 Jeep Wrangler YJ Winch (*) | `Base.92jeepYJWinch2` | 14 | 27.8 |
+| 92 Jeep Wrangler YJ Stock Rear Bumper (*) | `Base.92jeepYJBumperRear0` | 4 | 5 |
+| 92 Jeep Wrangler YJ Trunk Lid (*) | `Base.92jeepYJTrunkDoor2` | 6 | 7.5 |
+| 92 Jeep Wrangler YJ Winch (*) | `Base.92jeepYJWinch2` | 14 | 17.5 |
 | 92 Jeep Wrangler YJ Windshield (*) | `Base.92jeepYJWindshield2` | 7 | 7.2 |
 | 92 Jeep Wrangler YJ Windshield Armor (*) | `Base.92jeepYJWindshieldArmor` | 12 | 10.8 |
 | 92 Jeep Wrangler YJ Windshield Frame (*) | `Base.92jeepYJWindshieldFrame2` | 8 | 7.2 |

@@ -6,5 +6,5 @@ Weights Lugli - Honest Weight sets for [Two Weapons on Back](https://steamcommun
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| Leather Weapon Sling | `Base.LeatherSling` | 0.03 | 0.225 |
-| Sheet Rope Weapon Sling | `Base.SheetRopeSling` | 0.03 | 0.15 |
+| Leather Weapon Sling | `Base.LeatherSling` | 0.03 | 0.0375 |
+| Sheet Rope Weapon Sling | `Base.SheetRopeSling` | 0.03 | 0.0375 |

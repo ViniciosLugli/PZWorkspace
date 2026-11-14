@@ -10,9 +10,9 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 |---|---|---|---|
 | 88 Chevrolet S10 Auto Manual | `Base.88ChevyS10Magazine` | 0.5 | 0.3 |
 | 88 Chevrolet S10 Bed Cover (*) | `Base.88ChevyS10BedCover` | 21 | 25 |
-| 88 Chevrolet S10 Door (*) | `Base.88ChevyS10CarFrontDoor2` | 10 | 15 |
-| 88 Chevrolet S10 Front Bullbar (*) | `Base.88ChevyS10BullbarFront` | 10 | 17 |
-| 88 Chevrolet S10 Front Bumper (*) | `Base.88ChevyS10BumperFront` | 10 | 13 |
+| 88 Chevrolet S10 Door (*) | `Base.88ChevyS10CarFrontDoor2` | 10 | 12.5 |
+| 88 Chevrolet S10 Front Bullbar (*) | `Base.88ChevyS10BullbarFront` | 10 | 12.5 |
+| 88 Chevrolet S10 Front Bumper (*) | `Base.88ChevyS10BumperFront` | 10 | 12.5 |
 | 88 Chevrolet S10 Rear Windshield (*) | `Base.88ChevyS10WindshieldRear2` | 7 | 6 |
 | 88 Chevrolet S10 Side Window (*) | `Base.88ChevyS10WindowSide2` | 3 | 2.5 |
 | 88 Chevrolet S10 Top Trunk Lid (*) | `Base.88ChevyS10TrunkDoorTop2` | 10 | 12 |

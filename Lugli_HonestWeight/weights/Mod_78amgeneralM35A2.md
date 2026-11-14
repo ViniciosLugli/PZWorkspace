@@ -9,20 +9,20 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Item | ID | Game | Honest |
 |---|---|---|---|
 | 78 AM General M35A2 Auto Manual | `Base.M35A2Magazine` | 0.5 | 0.3 |
-| 78 AM General M35A2 Bumper (*) | `Base.M35A2Bumper1` | 15 | 34.6 |
-| 78 AM General M35A2 Cab Hard Cover (*) | `Base.M35A2HardCover1` | 20 | 39.3 |
-| 78 AM General M35A2 Cab Soft Cover (*) | `Base.M35A2SoftCover2` | 10 | 20 |
-| 78 AM General M35A2 Door (*) | `Base.M35A2Door2` | 12 | 29.4 |
-| 78 AM General M35A2 Door Armor (*) | `Base.M35A2DoorArmor1` | 10 | 19.6 |
-| 78 AM General M35A2 Grille (*) | `Base.M35A2Grille1` | 4 | 10 |
-| 78 AM General M35A2 Hood (*) | `Base.M35A2EngineDoor2` | 15 | 32.9 |
+| 78 AM General M35A2 Bumper (*) | `Base.M35A2Bumper1` | 15 | 18.8 |
+| 78 AM General M35A2 Cab Hard Cover (*) | `Base.M35A2HardCover1` | 20 | 25 |
+| 78 AM General M35A2 Cab Soft Cover (*) | `Base.M35A2SoftCover2` | 10 | 12.5 |
+| 78 AM General M35A2 Door (*) | `Base.M35A2Door2` | 12 | 15 |
+| 78 AM General M35A2 Door Armor (*) | `Base.M35A2DoorArmor1` | 10 | 12.5 |
+| 78 AM General M35A2 Grille (*) | `Base.M35A2Grille1` | 4 | 5 |
+| 78 AM General M35A2 Hood (*) | `Base.M35A2EngineDoor2` | 15 | 18.8 |
 | 78 AM General M35A2 Mudflaps (*) | `Base.M35A2Mudflaps1` | 12 | 8 |
-| 78 AM General M35A2 Muffler (*) | `Base.M35A2Muffler1` | 4 | 20 |
+| 78 AM General M35A2 Muffler (*) | `Base.M35A2Muffler1` | 4 | 5 |
 | 78 AM General M35A2 Side Window (*) | `Base.M35A2SideWindow2` | 4 | 3.5 |
-| 78 AM General M35A2 Stake Construction (*) | `Base.M35A2Stakes1` | 20 | 29.4 |
-| 78 AM General M35A2 Stake Sidewalls (*) | `Base.M35A2Stakes3` | 20 | 29.4 |
-| 78 AM General M35A2 Tailgate (*) | `Base.M35A2tailgate2` | 17 | 29.4 |
+| 78 AM General M35A2 Stake Construction (*) | `Base.M35A2Stakes1` | 20 | 25 |
+| 78 AM General M35A2 Stake Sidewalls (*) | `Base.M35A2Stakes3` | 20 | 25 |
+| 78 AM General M35A2 Tailgate (*) | `Base.M35A2tailgate2` | 17 | 21.2 |
 | 78 AM General M35A2 Tarp Cover (*) | `Base.M35A2Tarp2` | 18 | 10 |
-| 78 AM General M35A2 Windshield (*) | `Base.M35A2Windshield2` | 8 | 13 |
-| 78 AM General M35A2 Windshield Armor (*) | `Base.M35A2WindshieldArmor1` | 15 | 19.6 |
+| 78 AM General M35A2 Windshield (*) | `Base.M35A2Windshield2` | 8 | 10 |
+| 78 AM General M35A2 Windshield Armor (*) | `Base.M35A2WindshieldArmor1` | 15 | 18.8 |
 | 78 AM General M49/M50 Pump Doors (*) | `Base.M49PumpDoor2` | 12 | 8 |

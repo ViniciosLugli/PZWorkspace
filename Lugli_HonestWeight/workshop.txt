@@ -1,6 +1,6 @@
 version=1
 title=Lugli - Honest Weight
-description=Every item weighs what the real object weighs. A T-shirt is a fifteenth of a crowbar, not half of one, and a full propane tank is properly heavy. One Scale for the whole game keeps a typical loadout within about 15% of its usual weight.
+description=Every item weighs what the real object weighs, and never more than 25% above its usual weight. A T-shirt is a tenth of a crowbar, not half of one, while logs, sandbags, stone and ammo stay close to the game's own weight, so building and hauling stay playable.
 description=
 description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_HonestWeight/art/hw-board.gif[/img]
 description=
@@ -13,22 +13,23 @@ description=[tr][td]T-shirt[/td][td]1[/td][td]0.225[/td][/tr]
 description=[tr][td]Canned beans[/td][td]0.8[/td][td]0.705[/td][/tr]
 description=[tr][td]Claw hammer[/td][td]1.5[/td][td]0.975[/td][/tr]
 description=[tr][td]Padded jacket[/td][td]3[/td][td]1.8[/td][/tr]
-description=[tr][td]Crowbar[/td][td]2[/td][td]3.45[/td][/tr]
-description=[tr][td]JS-2000 shotgun[/td][td]4[/td][td]5.1[/td][/tr]
-description=[tr][td]Sledgehammer[/td][td]6[/td][td]8.1[/td][/tr]
-description=[tr][td]Propane tank, full[/td][td]10[/td][td]25.2[/td][/tr]
+description=[tr][td]Crowbar[/td][td]2[/td][td]2.5[/td][/tr]
+description=[tr][td]JS-2000 shotgun[/td][td]4[/td][td]5[/td][/tr]
+description=[tr][td]Sledgehammer[/td][td]6[/td][td]7.5[/td][/tr]
+description=[tr][td]Propane tank, full[/td][td]10[/td][td]12.5[/td][/tr]
 description=[/table]
-description=[i]At the default options. Clothes and small goods get lighter; tools, guns and heavy gear get heavier.[/i]
+description=[i]At the default options. Clothes and small goods get lighter; tools, guns and heavy gear get a little heavier, at most 25%.[/i]
 description=Want to look an item up? [url=https://github.com/ViniciosLugli/PZWorkspace/blob/main/Lugli_HonestWeight/WEIGHTS.md]The full weight list[/url] has every change, vanilla and mod by mod.
 description=
 description=[h1]How it weighs things[/h1]
 description=[list]
 description=[*][b]Real mass, one Scale.[/b] Each item's real weight times the Scale option, 1.5 by default. The proportions between items stay real at any Scale.
 description=[*][b]Bulky things count.[/b] The game has no item volume, so coats, pillows, sleeping bags and empty boxes weigh at least a little per litre they take up. A bag no longer holds a hundred shirts.
-description=[*][b]Always carryable.[/b] Nothing ends up too heavy to pick up, drop or pull off a car. The heaviest real objects ease in toward the game's own heaviest items, like the generator.
+description=[*][b]Never far above the game.[/b] No item weighs more than 25% above its usual weight. Things you carry by the dozen, like bricks, sandbags and ammo, or that are already heavy, like logs and sheet metal, stay playable. Lighter is always allowed.
+description=[*][b]Always carryable.[/b] Nothing ends up too heavy to pick up, drop or pull off a car.
 description=[*][b]Containers and liquids.[/b] Bottles, cans and pots weigh their empty mass; the game adds the liquid on top. Boxes and cartons weigh what they hold plus the packaging.
 description=[*][b]Guns and attachments.[/b] A gun weighs its real unloaded mass, and a scope or suppressor adds its own weight when you mount it.
-description=[*][b]Car parts in true kilograms.[/b] A part's weight is also the car's driving mass, so Scale does not multiply it.
+description=[*][b]Car parts in true kilograms.[/b] A part's weight is also the car's driving mass, so Scale does not multiply it, and the 25% limit keeps it close to what the car was tuned with.
 description=[*][b]Melee stamina follows weight.[/b] A heavier weapon tires you faster, as in the base game. One option puts swing stamina back to the game's values.
 description=[/list]
 description=[h1]Sandbox options[/h1]
@@ -36,6 +37,7 @@ description=[list]
 description=[*][b]Realism[/b], 100%: how far weights move from the game's values toward the real ones. 0 keeps the game's values with only obvious errors fixed.
 description=[*][b]Bulk floor[/b], Normal: Off, Light, Normal or Strict.
 description=[*][b]Scale[/b], 1.5: game weight per real kilogram, 1.0 to 2.5. 1.0 is true kilograms and makes carrying much easier.
+description=[*][b]Max increase[/b], 25%: the most an item may weigh above its usual weight. 0 only makes items lighter, 400 lets nearly every real weight through.
 description=[*][b]Keep the game's swing stamina[/b], Off.
 description=[/list]
 description=[h1]FAQ[/h1]
@@ -49,7 +51,7 @@ description=[*][b]Languages?[/b] English and Brazilian Portuguese.
 description=[/list]
 description=[hr][/hr]
 description=Open source, MIT: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_HonestWeight]github.com/ViniciosLugli/PZWorkspace[/url]
-description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url], and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url].
+description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url].
 description=
 description=Like my mods? Support is never needed and always appreciated: [url=https://ko-fi.com/vinicioslugli]ko-fi.com/vinicioslugli[/url]
 description=[url=https://ko-fi.com/vinicioslugli][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_HonestWeight/art/kofi.png[/img][/url]

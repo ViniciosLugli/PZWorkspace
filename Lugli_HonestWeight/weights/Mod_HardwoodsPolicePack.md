@@ -6,18 +6,18 @@ Weights Lugli - Honest Weight sets for [Hardwoods' Police Pack](https://steamcom
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| KCPD Breaching Sledgehammer | `Base.BreachingHammer` | 4 | 6.75 |
-| KCPD Bulletproof Vest | `Base.93SwatVest` | 5.5 | 9.75 |
-| KCPD Riot Shield | `Base.RiotShield` | 2 | 3.75 |
-| KCPD Swat Gloves | `Base.93SwatGloves` | 0.1 | 0.15 |
-| KCPD Swat Helmet | `Base.93SwatHelmet` | 1 | 2.25 |
+| KCPD Breaching Sledgehammer | `Base.BreachingHammer` | 4 | 5 |
+| KCPD Bulletproof Vest | `Base.93SwatVest` | 5.5 | 6.88 |
+| KCPD Riot Shield | `Base.RiotShield` | 2 | 2.5 |
+| KCPD Swat Gloves | `Base.93SwatGloves` | 0.1 | 0.125 |
+| KCPD Swat Helmet | `Base.93SwatHelmet` | 1 | 1.25 |
 | KCPD Swat Thigh Bag | `Base.93thighbagL` | 1 | 0.6 |
 | KCPD Swat Thigh Bag | `Base.93thighbagR` | 1 | 0.6 |
 | Lowered PASGT Visor | `Base.93VisorLowered` | 0.3 | 0.375 |
 | Mag-Lite Flashlight | `Base.MagliteFlashlight` | 1.8 | 1.5 |
 | Mag-Lite Flashlight (Wielded) | `Base.Maglite` | 1.8 | 1.5 |
-| MK.IV Gas Mask | `Base.RetroGasMask` | 1 | 1.5 |
-| Modern Swat Boots | `Base.93SwatBoots` | 1 | 2.1 |
+| MK.IV Gas Mask | `Base.RetroGasMask` | 1 | 1.25 |
+| Modern Swat Boots | `Base.93SwatBoots` | 1 | 1.25 |
 | Modern Swat ElbowPad | `Base.93ElbowpadLeft` | 0.75 | 0.18 |
 | Modern Swat ElbowPad | `Base.93ElbowpadRight` | 0.75 | 0.18 |
 | Modern Swat Jacket | `Base.93SwatJacket` | 1.2 | 1.35 |
@@ -29,10 +29,10 @@ Weights Lugli - Honest Weight sets for [Hardwoods' Police Pack](https://steamcom
 | Raised PASGT Visor | `Base.93VisorRaised` | 0.3 | 0.375 |
 | Reversed Surplus Swat Cap | `Base.RetroSwatCap_R` | 1 | 0.135 |
 | Surplus Flak Vest | `Base.RetroSwatFlak` | 5.5 | 6 |
-| Surplus Swat Boots | `Base.RetroSwatBoots` | 1 | 2.1 |
+| Surplus Swat Boots | `Base.RetroSwatBoots` | 1 | 1.25 |
 | Surplus Swat Cap | `Base.RetroSwatCap` | 1 | 0.135 |
 | Surplus Swat Cargos | `Base.RetroSwatPants` | 1 | 0.9 |
-| Surplus Swat Jacket | `Base.RetroSwatJacket` | 1 | 1.35 |
+| Surplus Swat Jacket | `Base.RetroSwatJacket` | 1 | 1.25 |
 | Surplus Swat Turtleneck | `Base.RetroSwatTurtleNeck` | 0.75 | 0.45 |
 | Surplus Swat Webbing | `Base.RetroSwatWebbing` | 1.5 | 0.9 |
 | Swat Balaclava | `Base.93SwatBalaclava` | 0.2 | 0.09 |

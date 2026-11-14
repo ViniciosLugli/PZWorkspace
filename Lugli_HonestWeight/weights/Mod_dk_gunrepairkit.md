@@ -6,10 +6,10 @@ Weights Lugli - Honest Weight sets for [Gun Repair Kit](https://steamcommunity.c
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
-| Gun Cleaning Kit | `GunRepairKit.CleaningKitGun` | 0.3 | 0.675 |
-| Gun Oil | `GunRepairKit.GunOil` | 0.1 | 0.18 |
-| Gun Parts | `GunRepairKit.GunParts` | 0.2 | 0.3 |
-| Gun Repair Kit (Advanced) | `GunRepairKit.GunRepairKitAdvanced` | 0.6 | 2.25 |
-| Gun Repair Kit (Basic) | `GunRepairKit.GunRepairKit` | 0.5 | 1.2 |
+| Gun Cleaning Kit | `GunRepairKit.CleaningKitGun` | 0.3 | 0.375 |
+| Gun Oil | `GunRepairKit.GunOil` | 0.1 | 0.125 |
+| Gun Parts | `GunRepairKit.GunParts` | 0.2 | 0.25 |
+| Gun Repair Kit (Advanced) | `GunRepairKit.GunRepairKitAdvanced` | 0.6 | 0.75 |
+| Gun Repair Kit (Basic) | `GunRepairKit.GunRepairKit` | 0.5 | 0.625 |
 | Gunsmith's Advanced Repair Manual | `GunRepairKit.GunRepairMagazine` | 0.5 | 0.525 |
 | Oily Residue | `GunRepairKit.GunOilResidue` | 0.05 | 0.045 |

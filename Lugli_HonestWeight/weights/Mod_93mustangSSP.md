@@ -9,18 +9,18 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Item | ID | Game | Honest |
 |---|---|---|---|
 | 93 Ford Mustang Auto Manual | `Base.93mustangSSPMagazine` | 0.5 | 0.3 |
-| 93 Ford Mustang Cobra R Front Bumper (*) | `Base.93mustangSVTBumperFront3` | 10 | 13 |
-| 93 Ford Mustang Cobra R Spoiler (*) | `Base.93mustangSVTSpoiler2` | 3 | 5 |
+| 93 Ford Mustang Cobra R Front Bumper (*) | `Base.93mustangSVTBumperFront3` | 10 | 12.5 |
+| 93 Ford Mustang Cobra R Spoiler (*) | `Base.93mustangSVTSpoiler2` | 3 | 3.75 |
 | 93 Ford Mustang Cobra R Tire (*) | `Base.93mustangSVTTire3` | 14 | 12 |
-| 93 Ford Mustang Front Door (*) | `Base.93mustangSSPFrontDoor1` | 10 | 15 |
+| 93 Ford Mustang Front Door (*) | `Base.93mustangSSPFrontDoor1` | 10 | 12.5 |
 | 93 Ford Mustang Front Side Window (*) | `Base.93mustangSSPFrontSideWindow1` | 3 | 2.5 |
 | 93 Ford Mustang Front Window Armor (*) | `Base.93mustangSSPFrontWindowArmor` | 8 | 5.9 |
 | 93 Ford Mustang GT Dark Tire (*) | `Base.93mustangGTTireB3` | 14 | 10 |
-| 93 Ford Mustang GT Front Bumper (*) | `Base.93mustangGTBumperFront2` | 10 | 13 |
-| 93 Ford Mustang GT Spoiler (*) | `Base.93mustangGTSpoiler1` | 3 | 5 |
+| 93 Ford Mustang GT Front Bumper (*) | `Base.93mustangGTBumperFront2` | 10 | 12.5 |
+| 93 Ford Mustang GT Spoiler (*) | `Base.93mustangGTSpoiler1` | 3 | 3.75 |
 | 93 Ford Mustang GT Tire (*) | `Base.93mustangGTTire3` | 14 | 12 |
 | 93 Ford Mustang Hatchback Rear Side Window | `Base.93mustangRearSideWindow1` | 3 | 2.7 |
-| 93 Ford Mustang Hatchback Trunk Lid (*) | `Base.93mustangTrunkDoor2` | 9 | 12 |
+| 93 Ford Mustang Hatchback Trunk Lid (*) | `Base.93mustangTrunkDoor2` | 9 | 11.2 |
 | 93 Ford Mustang Large Spoiler (*) | `Base.93mustangSpoiler3` | 4 | 5 |
 | 93 Ford Mustang Mudflaps (*) | `Base.93mustangMudflaps` | 2.5 | 1.5 |
 | 93 Ford Mustang Notchback Rear Side Window (*) | `Base.93mustangSSPRearSideWindow1` | 3 | 1.8 |
@@ -30,7 +30,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 93 Ford Mustang Rear Windshield (*) | `Base.93mustangSSPRearWindshield1` | 10 | 6 |
 | 93 Ford Mustang Rear Windshield Armor (*) | `Base.93mustangSSPWindshieldRearArmor` | 13 | 13.7 |
 | 93 Ford Mustang SSP Dark Tire (*) | `Base.93mustangSSPTireB1` | 15 | 10 |
-| 93 Ford Mustang SSP Front Bumper (*) | `Base.93mustangSSPBumperFront0` | 10 | 13 |
+| 93 Ford Mustang SSP Front Bumper (*) | `Base.93mustangSSPBumperFront0` | 10 | 12.5 |
 | 93 Ford Mustang SSP Push Bumper (*) | `Base.93mustangSSPBumperFront1` | 17 | 13 |
 | 93 Ford Mustang SSP Tire (*) | `Base.93mustangSSPTire1` | 15 | 10 |
 | 93 Ford Mustang Windshield (*) | `Base.93mustangSSPWindshield1` | 9 | 11 |

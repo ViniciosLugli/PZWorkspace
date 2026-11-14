@@ -8,17 +8,17 @@ Weights Lugli - Honest Weight sets for [Hot Brass - Visible Casing Ejection Fram
 |---|---|---|---|
 | .22 Casing | `HBVCEF.22_Casing` | 0.01 | 0.00045 |
 | .223 Casing | `HBVCEF.223_Casing` | 0.015 | 0.0093 |
-| .30-06 Casing | `HBVCEF.3006_Casing` | 0.015 | 0.0188 |
+| .30-06 Casing | `HBVCEF.3006_Casing` | 0.015 | 0.0187 |
 | .30-30 Casing | `HBVCEF.3030_Casing` | 0.015 | 0.0142 |
 | .308 Casing | `HBVCEF.308_Casing` | 0.015 | 0.0175 |
 | .357 Casing | `HBVCEF.357_Casing` | 0.015 | 0.0075 |
 | .38 Special Casing | `HBVCEF.38_Casing` | 0.01 | 0.00585 |
 | .44 Magnum Casing | `HBVCEF.44_Casing` | 0.015 | 0.0105 |
 | .45 Auto Casing | `HBVCEF.45_Casing` | 0.015 | 0.009 |
-| .45-70 Casing | `HBVCEF.4570_Casing` | 0.015 | 0.021 |
+| .45-70 Casing | `HBVCEF.4570_Casing` | 0.015 | 0.0187 |
 | .50AE Casing | `HBVCEF.50_Casing` | 0.015 | 0.0142 |
 | 10x25mm Auto Casing | `HBVCEF.10x25_Casing` | 0.01 | 0.0075 |
-| 2 Bore Casing | `HBVCEF.2Bore_Casing` | 0.1 | 0.15 |
+| 2 Bore Casing | `HBVCEF.2Bore_Casing` | 0.1 | 0.125 |
 | 4.6x30mm Casing | `HBVCEF.46x30_Casing` | 0.02 | 0.0039 |
 | 40mm Casing | `HBVCEF.40mm_Casing` | 0.12 | 0.0675 |
 | 5.45x39mm Casing | `HBVCEF.545x39_Casing` | 0.02 | 0.0078 |

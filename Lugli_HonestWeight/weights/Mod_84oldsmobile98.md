@@ -9,10 +9,10 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Item | ID | Game | Honest |
 |---|---|---|---|
 | 84 Oldsmobile 98 Regency Auto Manual | `Base.84oldsmobile98Magazine` | 0.5 | 0.3 |
-| 84 Oldsmobile 98 Regency Front Bumper (*) | `Base.84oldsmobile98BumperFront0` | 10 | 22 |
-| 84 Oldsmobile 98 Regency Front Seat (*) | `Base.84oldsmobile98SeatFront1` | 15 | 27.8 |
-| 84 Oldsmobile 98 Regency Hood (*) | `Base.84oldsmobile98EngineDoor1` | 15 | 20 |
-| 84 Oldsmobile 98 Regency Rear Bumper (*) | `Base.84oldsmobile98BumperRear0` | 9 | 18 |
-| 84 Oldsmobile 98 Regency Rear Seat (*) | `Base.84oldsmobile98SeatRear1` | 16 | 22 |
-| 84 Oldsmobile 98 Regency Reinforced Bumper (*) | `Base.84oldsmobile98BumperFrontA` | 15 | 25 |
-| 84 Oldsmobile 98 Regency Trunk Lid (*) | `Base.84oldsmobile98TrunkDoor1` | 10 | 18 |
+| 84 Oldsmobile 98 Regency Front Bumper (*) | `Base.84oldsmobile98BumperFront0` | 10 | 12.5 |
+| 84 Oldsmobile 98 Regency Front Seat (*) | `Base.84oldsmobile98SeatFront1` | 15 | 18.8 |
+| 84 Oldsmobile 98 Regency Hood (*) | `Base.84oldsmobile98EngineDoor1` | 15 | 18.8 |
+| 84 Oldsmobile 98 Regency Rear Bumper (*) | `Base.84oldsmobile98BumperRear0` | 9 | 11.2 |
+| 84 Oldsmobile 98 Regency Rear Seat (*) | `Base.84oldsmobile98SeatRear1` | 16 | 20 |
+| 84 Oldsmobile 98 Regency Reinforced Bumper (*) | `Base.84oldsmobile98BumperFrontA` | 15 | 18.8 |
+| 84 Oldsmobile 98 Regency Trunk Lid (*) | `Base.84oldsmobile98TrunkDoor1` | 10 | 12.5 |

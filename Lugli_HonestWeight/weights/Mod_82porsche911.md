@@ -16,16 +16,16 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 82 Porsche 911 Front Window Armor (*) | `Base.82porsche911FrontWindowArmor` | 14 | 4.9 |
 | 82 Porsche 911 Rear Side Window (*) | `Base.82porsche911RearSideWindow3` | 4 | 1.3 |
 | 82 Porsche 911 Rear Window Armor (*) | `Base.82porsche911RearWindowArmor` | 13 | 2.9 |
-| 82 Porsche 911 Rear Windshield (*) | `Base.82porsche911WindshieldRear3` | 3 | 3.9 |
+| 82 Porsche 911 Rear Windshield (*) | `Base.82porsche911WindshieldRear3` | 3 | 3.75 |
 | 82 Porsche 911 Rear Windshield Armor (*) | `Base.82porsche911WindshieldRearArmor` | 10 | 8.8 |
 | 82 Porsche 911 RWB Hood (*) | `Base.82porsche911RWBEngineDoor3` | 13 | 9 |
 | 82 Porsche 911 RWB Rear Bumper (*) | `Base.82porsche911RWBBumperRear1` | 9 | 7 |
-| 82 Porsche 911 RWB Reinforced Front Bumper (*) | `Base.82porsche911RWBBumperFrontA` | 9 | 14 |
+| 82 Porsche 911 RWB Reinforced Front Bumper (*) | `Base.82porsche911RWBBumperFrontA` | 9 | 11.2 |
 | 82 Porsche 911 RWB Spoiler (*) | `Base.82porsche911RWBSpoiler0` | 10 | 4 |
 | 82 Porsche 911 RWB Tire (*) | `Base.82porsche911RWBTire` | 15 | 12 |
 | 82 Porsche 911 SC EU Rear Bumper (*) | `Base.82porsche911SCBumperRear0` | 9 | 7 |
 | 82 Porsche 911 SC Fog Lights (*) | `Base.82porsche911SCfogs` | 1.5 | 1.2 |
-| 82 Porsche 911 SC Reinforced Front Bumper (*) | `Base.82porsche911SCBumperFrontA` | 9 | 14 |
+| 82 Porsche 911 SC Reinforced Front Bumper (*) | `Base.82porsche911SCBumperFrontA` | 9 | 11.2 |
 | 82 Porsche 911 SC Spoiler (*) | `Base.82porsche911SCSpoiler1` | 8 | 4 |
 | 82 Porsche 911 SC Tire (*) | `Base.82porsche911SCTire` | 14 | 12 |
 | 82 Porsche 911 SC US Rear Bumper (*) | `Base.82porsche911SCBumperRear1` | 9 | 7 |

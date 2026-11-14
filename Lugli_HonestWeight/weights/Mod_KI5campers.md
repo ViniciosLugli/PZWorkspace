@@ -17,7 +17,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 54 Airstream Flying Cloud Camper Small Side Window (*) | `Base.54airstreamCamperSmallSideWindow2` | 2.5 | 1.8 |
 | 61 Airstream Bambi Camper Front Windshield (*) | `Base.61airstreamCamperFrontWindshield2` | 11 | 11.7 |
 | 61 Airstream Bambi Camper Large Side Window (*) | `Base.61airstreamCamperLargeSideWindow2` | 10 | 3.9 |
-| 61 Airstream Bambi Camper Rear Windshield (*) | `Base.61airstreamCamperRearWindshield2` | 4 | 5.2 |
+| 61 Airstream Bambi Camper Rear Windshield (*) | `Base.61airstreamCamperRearWindshield2` | 4 | 5 |
 | 61 Airstream Bambi Camper Small Side Window (*) | `Base.61airstreamCamperSmallSideWindow2` | 3 | 1.8 |
 | 61 Airstream Bambi Camper Toolbox Lid (*) | `Base.61airstreamCamperToolboxLid2` | 1.5 | 1.8 |
 | 61 Shasta Camper Front Windshield (*) | `Base.61shastaCamperFrontWindshield2` | 12 | 11.7 |
@@ -31,11 +31,11 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 87 Scamp Camper Rear Bumper (*) | `Base.87ScampCamperBumperRear0` | 7 | 8 |
 | 87 Scamp Camper Rear Side Window (*) | `Base.87ScampCamperRearSideWindow2` | 3 | 1.8 |
 | 87 Scamp Camper Rear Windshield (*) | `Base.87ScampCamperRearWindshield2` | 9 | 5.2 |
-| Camper Mat | `Base.KI5CamperMat` | 1 | 1.5 |
+| Camper Mat | `Base.KI5CamperMat` | 1 | 1.25 |
 | Campers Service Manual | `Base.87ScampCamperMagazine` | 0.5 | 0.3 |
 | Large Camper Window Armor (*) | `Base.KI5CamperWindowArmorLarge0` | 10 | 8.8 |
 | Medium Camper Window Armor (*) | `Base.KI5CamperWindowArmorMedium0` | 7 | 5.9 |
 | Retractable Camper Awning (*) | `Base.KI5CamperAwning` | 15 | 16 |
 | Small Camper Bed (*) | `Base.KI5CamperBed0` | 8 | 10 |
-| Small Camper Seat (*) | `Base.KI5CamperSeat0` | 2 | 6 |
+| Small Camper Seat (*) | `Base.KI5CamperSeat0` | 2 | 2.5 |
 | Small Camper Window Armor (*) | `Base.KI5CamperWindowArmorSmall0` | 4.5 | 3.9 |
