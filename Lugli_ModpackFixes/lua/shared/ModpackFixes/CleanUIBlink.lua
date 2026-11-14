@@ -12,15 +12,13 @@ buttons get a pulsing red overlay drawn over them, clipped to the scrolled butto
 require "ModpackFixes_Status"
 local M = LugliModpackFixes
 
-local PAGE_FILE = "ISUI/ISInventoryPage.lua"
+local PAGE_MARKER = "cleanUIGetContentY"
 local PERIOD_MS = 667
 
+-- A method only CleanUI's own page has; render's file is unreliable since Better Containers wraps it.
 local function cleanUIPage()
     local cls = rawget(_G, "CleanUI_Clean_ISInventoryPage") or ISInventoryPage
-    if type(cls) ~= "table" or type(cls.render) ~= "function" then return nil end
-    local ok, name = pcall(getFilenameOfClosure, cls.render)
-    if not ok or type(name) ~= "string" then return nil end
-    if string.find(name, "CleanUI", 1, true) == nil or string.find(name, PAGE_FILE, 1, true) == nil then return nil end
+    if type(cls) ~= "table" or type(rawget(cls, PAGE_MARKER)) ~= "function" then return nil end
     return cls
 end
 

@@ -23,6 +23,27 @@ option LugliModpackFixes.CleanUIBlink = {
 	translation = LugliModpackFixes_CleanUIBlink,
 }
 
+option LugliModpackFixes.DbuCeiling = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_DbuCeiling,
+}
+
+option LugliModpackFixes.DbuRestore = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_DbuRestore,
+}
+
+option LugliModpackFixes.ExBandolier = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_ExBandolier,
+}
+
 option LugliModpackFixes.FhKeys = {
 	type = boolean,
 	default = true,
@@ -42,6 +63,13 @@ option LugliModpackFixes.HotbarEquip = {
 	default = true,
 	page = LugliModpackFixes,
 	translation = LugliModpackFixes_HotbarEquip,
+}
+
+option LugliModpackFixes.ImpSpawn = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_ImpSpawn,
 }
 
 option LugliModpackFixes.P4Place = {
@@ -100,9 +128,23 @@ option LugliModpackFixes.UsItems = {
 	translation = LugliModpackFixes_UsItems,
 }
 
+option LugliModpackFixes.UsmilSeats = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_UsmilSeats,
+}
+
 option LugliModpackFixes.VehicleLoot = {
 	type = boolean,
 	default = true,
 	page = LugliModpackFixes,
 	translation = LugliModpackFixes_VehicleLoot,
+}
+
+option LugliModpackFixes.VmzLegacy = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_VmzLegacy,
 }
