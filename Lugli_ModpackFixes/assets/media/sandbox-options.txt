@@ -121,6 +121,13 @@ option LugliModpackFixes.P4Place = {
 	translation = LugliModpackFixes_P4Place,
 }
 
+option LugliModpackFixes.ReloadStrap = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_ReloadStrap,
+}
+
 option LugliModpackFixes.SeatView = {
 	type = boolean,
 	default = true,

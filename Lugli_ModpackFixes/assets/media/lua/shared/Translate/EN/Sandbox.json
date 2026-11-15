@@ -34,6 +34,8 @@
     "Sandbox_LugliModpackFixes_NgmSlice_tooltip": "Nick's Generator Manager scans every square around each running generator once a minute, all in one tick, on the server and on each player's game: about 8 ms per generator. This spreads that scan over a few ticks, so bases with generators no longer cause a stall every few seconds. Billing is unchanged.",
     "Sandbox_LugliModpackFixes_P4Place": "Picking Meister: Grab Contents next to Place",
     "Sandbox_LugliModpackFixes_P4Place_tooltip": "Better Item Transfer renames Place Item to Place, so Picking Meister's Grab and Unpack Contents entry moves to the bottom of the menu or is not offered. This puts it back beside Drop and Place. Only active with both mods.",
+    "Sandbox_LugliModpackFixes_ReloadStrap": "Vanilla: no reload or magazine error with a fast-reload item",
+    "Sandbox_LugliModpackFixes_ReloadStrap_tooltip": "With an ALICE belt or chest rig worn (or an ammo case equipped), reloading a shotgun or revolver without an ammo strap, or filling or emptying a magazine while holding anything that is not a weapon, throws an error and skips the reload speed. They work as vanilla means them to. Works beside Reload Those Weapons Again, which fixes only the first. Off while Reload Strap Fix is active.",
     "Sandbox_LugliModpackFixes_SeatView": "Clear Driver View Fix: no seat diagram flash with KI5's seat UI",
     "Sandbox_LugliModpackFixes_SeatView_tooltip": "KI5's seat UI replaces the seat diagram's drawing and drops Clear Driver View Fix's guard, so the diagram can flash when you start driving. This keeps it hidden while you drive with the engine on. Only active with both mods.",
     "Sandbox_LugliModpackFixes_SgKills": "Super Gore: zombies it finishes count as kills",

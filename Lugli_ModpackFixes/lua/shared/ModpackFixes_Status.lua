@@ -274,6 +274,7 @@ function M.installPart(def)
         return
     end
     -- A pin on a mod that is not active guards code that never runs (an `any` part's other half).
+    -- A `vanilla` pin names no active mod, so it is left to the build gate: Lua cannot read game files.
     local pins = def.pins or {}
     for i = 1, #pins do
         local pin = M.pins[pins[i]]

@@ -2,12 +2,13 @@ version=1
 title=Lugli - B42 Modpack Compats & Fixes
 description=Fixes for conflicts between popular Build 42 mods, and for bugs inside some of them.
 description=
-description=[b]No dependencies.[/b] Each fix turns on only when the mods it fixes are active. It first checks their code is still the version it was written for, and after an update it stands down instead of guessing. Every fix has its own switch in the sandbox options.
+description=[b]No dependencies.[/b] Each mod fix turns on only with the mods it fixes. It checks their code is still the version it was written for, and after an update it stands down instead of guessing. Every fix has its own switch in the sandbox options.
 description=
 description=[h1]Combat and zombies[/h1]
 description=[list]
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3833349401]Super Gore[/url]:[/b] zombies it finishes off (a severed head, a burst chest) now count in your zombie kills.
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3833349401]Super Gore[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3783283328]Special Zombies: Tank[/url]:[/b] a Tank no longer dies to almost any hit, or heals when a limb is cut.
+description=[*][b]Vanilla:[/b] wearing an ALICE belt or chest rig, reloads without an ammo strap and filling magazines no longer error.
 description=[/list]
 description=[h1]Hotbar and keys[/h1]
 description=[list]
@@ -46,12 +47,12 @@ description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=38
 description=[/list]
 description=[h1]Questions[/h1]
 description=[list]
-description=[*][b]Load order?[/b] Anywhere after the mods it fixes. The end of the list is simplest.
+description=[*][b]Load order?[/b] Anywhere after the mods it fixes.
 description=[*][b]Can I add it to a running save?[/b] Yes.
-description=[*][b]Is it safe to remove?[/b] Yes. It adds no items or objects, so nothing breaks when it is gone.
+description=[*][b]Is it safe to remove?[/b] Yes. Nothing breaks: it adds no items or objects.
 description=[*][b]Multiplayer?[/b] Install it on the server and on every client.
-description=[*][b]For server admins:[/b] an optional tool, off until you create [i]Lua/serverprof-on.txt[/i] in the server's cache folder, counts what each mod sends to players and writes it to [i]Lua/serverprof-sends.txt[/i] once a minute. Players notice nothing.
-description=[*][b]Did it load?[/b] Your console.txt has a line starting with [i][Lugli/ModpackFixes][/i] that lists every fix and whether it installed, or why it was skipped.
+description=[*][b]For server admins:[/b] an optional tool, off until you create [i]Lua/serverprof-on.txt[/i] in the server's cache folder, counts what each mod sends to players and writes it to [i]Lua/serverprof-sends.txt[/i] once a minute.
+description=[*][b]Did it load?[/b] Your console.txt has a [i][Lugli/ModpackFixes][/i] line listing every fix and whether it installed, or why not.
 description=[/list]
 description=[hr][/hr]
 description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url].

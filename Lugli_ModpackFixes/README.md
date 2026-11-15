@@ -2,7 +2,8 @@
 
 ![Lugli - B42 Modpack Compats & Fixes](art/mpf-preview.gif)
 
-Fixes for conflicts between popular Build 42 mods, and for bugs inside some of them. Not made by,
+Fixes for conflicts between popular Build 42 mods, for bugs inside some of them, and for one vanilla
+bug they run into. Not made by,
 or affiliated with, the authors of those mods. Lua and data only, no jar, no `require=`.
 
 ## How a fix decides to run
@@ -26,6 +27,7 @@ errors while running takes its changes back and leaves the game as it is without
 | HotbarEquip | SwapIt, with Fancy Handwork (`FancyHandworkB42_19`) or H.E.C.U. (`H_E_C_U`) | SwapIt replaces the hotbar's equip step, which drops Fancy Handwork's modifier + hotbar key (take into the off hand) and H.E.C.U.'s hotbar key on helmets and masks (put on, take off). Both come back on top of SwapIt. |
 | BpHotbar | SwapIt and Better Pause (`twistbetterpause`) | Better Pause removes the pause check from the hotbar; SwapIt's copy of that function puts it back, and it always loads later. Hotbar keys work while paused again, with vanilla's other checks. |
 | FhKeys | Fancy Handwork B42.20 (`FancyHandworkB42_19`) | Its key handler throws on every key press on 42.22 and its swap-hands keys do nothing. The handler is replaced with a working one that queues the same action. |
+| ReloadStrap | Vanilla; off while Reload Strap Fix (`ReloadStrapFix`) is active | With an ALICE belt or chest rig worn (or an ammo case equipped), two errors skip the reload speed: reloading a shotgun or revolver without an ammo strap, and filling or emptying a magazine while holding anything that is not a weapon. Both get the speed vanilla's checks mean, and mods that change reload speed (Ultimate Marksman's bows and crossbows) still apply theirs. Works beside Reload Those Weapons Again (`ReloadBackAgain`), which fixes only the first. |
 | SlingStop | Alice's Weapon Sling (`alicesWeaponSling`) | Cancelling a hotbar attach partway (by running, for example) leaves the weapon model on the body but off the hotbar. Vanilla's cleanup runs again before the sling's own stop. |
 | BiiTooltip | Better Item Info (`EURY_ITEMINFO`) and Guns of Marz (`GunsOfMarz`) | Better Item Info resets the item tooltip at world start when Guns of Marz is active, hiding rows other mods add (backpack upgrades, seed seasons, silencer durability). They stay. |
 | P4Place | Better Item Transfer (`BetterItemTransfer`) and Picking Meister (`P4PickingMeister`) | Better Item Transfer renames Place Item to Place, so Picking Meister's Grab and Unpack Contents entry drops to the bottom of the menu or goes missing. It is back beside Drop and Place, which Better Item Transfer keeps together. |

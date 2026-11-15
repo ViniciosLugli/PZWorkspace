@@ -66,4 +66,8 @@ LugliModpackFixes.pins = {
     ["bp.name"] = { mod = "BadlandsPower", file = "media/lua/client/BadlandsPower_Info.lua", anchor = "function BP.displayName(gen)", lines = 8, accept = { 2317586836 } },
     ["bp.bankhead"] = { mod = "BadlandsPower", file = "media/lua/client/BadlandsPower_Info.lua", anchor = "local text = getText(\"IGUI_BLPower_BankCharge\", math.ceil(object:getFuelPercentage())) .. \" <LINE> \"", lines = 2, accept = { 3150668732 } },
     ["bp.bank"] = { mod = "BadlandsPower", file = "media/lua/client/BadlandsPower_Info.lua", anchor = "text = text .. \" <LINE> \" .. getText(\"IGUI_PowerConsumption\") .. \": <LINE> \"", lines = 7, accept = { 868995684 } },
+    ["vanilla.reloadspeed"] = { mod = "vanilla", file = "media/lua/shared/TimedActions/ISReloadWeaponAction.lua", anchor = "function ISReloadWeaponAction.setReloadSpeed(character, rack)", lines = 40, accept = { 1072849747 } },
+    ["um.bowspeed"] = { mod = "UltimateMarksman", file = "media/lua/shared/UMArcheryReloadAnimation.lua", anchor = "ISReloadWeaponAction.UMArcherySetReloadSpeed = ISReloadWeaponAction.setReloadSpeed", lines = 16, accept = { 2618624288 } },
+    ["um.crossbowspeed"] = { mod = "UltimateMarksman", file = "media/lua/shared/TimedActions/UMReloadSpeed.lua", anchor = "local UM_originalSetReloadSpeed = ISReloadWeaponAction.setReloadSpeed", lines = 19, accept = { 3025727265 } },
+    ["rba.reloadspeed"] = { mod = "ReloadBackAgain", file = "media/lua/shared/Fix/ISReloadWeaponFix.lua", anchor = "function ISReloadWeaponAction.setReloadSpeed(character, rack)", lines = 40, accept = { 2408387129 } },
 }
