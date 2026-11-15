@@ -86,6 +86,13 @@ option LugliModpackFixes.NgmInfo = {
 	translation = LugliModpackFixes_NgmInfo,
 }
 
+option LugliModpackFixes.NgmManage = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_NgmManage,
+}
+
 option LugliModpackFixes.NgmNeat = {
 	type = boolean,
 	default = true,

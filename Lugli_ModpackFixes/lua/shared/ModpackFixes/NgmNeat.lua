@@ -17,13 +17,14 @@ local M = LugliModpackFixes
 
 -- IsoGenerator's own "#.####" format, as its base and Total lines print it: "0.013", "1.25", "0".
 -- Java's DecimalFormat gives "#.####" one integer digit, so the leading zero stays.
-local function fmtLh(v)
+function M.fmtLh(v)
     local s = string.format("%.4f", v)
     s = string.gsub(s, "0+$", "")
     s = string.gsub(s, "%.$", "")
     if s == "" then s = "0" end
     return s
 end
+local fmtLh = M.fmtLh
 
 -- One line per appliance Nick bills to this generator, in the engine's number format; nil when
 -- Nick has not billed it yet. The ngm-info part puts the same lines in the Info window text.
