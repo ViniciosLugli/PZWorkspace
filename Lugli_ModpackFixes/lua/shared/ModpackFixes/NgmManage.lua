@@ -32,7 +32,7 @@ end
 
 local NGM_NEEDS = { "read", "poweredObjectsInRange", "isBillable", "classify", "consumption", "objSpec",
                     "resolveOwner", "requestClaim", "requestReturn", "isActive", "fuelMult", "genKey",
-                    "registerGeneratorAt", "requestRegister", "T", "geom" }
+                    "registerGeneratorAt", "requestRegister", "T", "geom", "getOwnerPref" }
 
 local function needUi()
     local need = {
@@ -229,8 +229,10 @@ local function install(ctx)
             if spec then
                 local locked = blocked ~= nil
                     or (enforced and M.ngmSafehouseBlocks(player, NGM.read(function() return obj:getSquare() end)) ~= nil)
+                local pref = enforced and not locked and NGM.getOwnerPref(obj) or nil
                 local rec = { obj = obj, label = label, draw = draw, spec = spec, owned = self:ownedByThis(obj),
-                              locked = locked }
+                              locked = locked,
+                              returnable = not locked and (pref == nil or M.ngmManageBlocks(player, pref.gx, pref.gy, pref.gz) == nil) }
                 if cat == "light" then lights[#lights + 1] = rec else appliances[#appliances + 1] = rec end
                 if rec.owned then
                     ownedCount = ownedCount + 1
@@ -243,10 +245,16 @@ local function install(ctx)
             return a.label < b.label
         end)
 
-        local rows, allSpecs, lightSpecs = {}, {}, {}
+        -- Return all leaves out a claim whose generator the player could not manage: the server refuses it.
+        local rows, allSpecs, lightSpecs, returnSpecs, heldOut = {}, {}, {}, {}, false
+        local function offerReturn(rec)
+            if rec.returnable then returnSpecs[#returnSpecs + 1] = rec.spec
+            elseif not rec.locked then heldOut = true end
+        end
         for i = 1, #appliances do
             local a = appliances[i]
             if not a.locked then allSpecs[#allSpecs + 1] = a.spec end
+            offerReturn(a)
             rows[#rows + 1] = { kind = "appliance", label = a.label, drawStr = fmtLh(a.draw * mult) .. " L/h",
                                 spec = a.spec, owned = a.owned, locked = a.locked }
         end
@@ -258,6 +266,7 @@ local function install(ctx)
                     allSpecs[#allSpecs + 1] = lights[i].spec
                     lightSpecs[#lightSpecs + 1] = lights[i].spec
                 end
+                offerReturn(lights[i])
                 if lights[i].owned then owned = owned + 1 end
             end
             rows[#rows + 1] = { kind = "lightgroup", label = NGM.T("IGUI_NGM_Lights", "Lights (%1/%2)", owned, #lights),
@@ -272,7 +281,9 @@ local function install(ctx)
             end
         end
 
-        self.rows, self.allSpecs, self.lightSpecs, self.active = rows, allSpecs, lightSpecs, active
+        self.rows, self.allSpecs, self.lightSpecs, self.returnSpecs, self.active = rows, allSpecs, lightSpecs, returnSpecs, active
+        self.btnReturn.mpfTip = NGM.T("IGUI_NGM_ReturnAuto", "Return all to auto") .. (heldOut
+            and " " .. tr("IGUI_LugliMPF_NgmReturnHeld", "(not what a generator you cannot manage claimed)") or "")
         local note = blocked == "far" and tr("IGUI_LugliMPF_NgmFar", "Stand within this generator's range to change what it powers.")
             or blocked == "safehouse" and tr("IGUI_LugliMPF_NgmSafehouse", "This generator is in a safehouse you are not allowed in.")
             or nil
@@ -293,10 +304,11 @@ local function install(ctx)
     end
 
     function Panel:syncButtons()
-        local enabled = self.active and #self.allSpecs > 0
-        self.btnClaim.enable, self.btnReturn.enable = enabled, enabled
-        self.btnClaim:setActive(enabled)
-        self.btnReturn:setActive(enabled)
+        local claim = self.active and #self.allSpecs > 0
+        local ret = self.active and #self.returnSpecs > 0
+        self.btnClaim.enable, self.btnReturn.enable = claim, ret
+        self.btnClaim:setActive(claim)
+        self.btnReturn:setActive(ret)
     end
 
     function Panel:fitContent()
@@ -397,8 +409,8 @@ local function install(ctx)
     end
 
     function Panel:onReturn()
-        if #self.allSpecs == 0 then return end
-        NGM.requestReturn(getSpecificPlayer(self.playerNum), self.allSpecs)
+        if #self.returnSpecs == 0 then return end
+        NGM.requestReturn(getSpecificPlayer(self.playerNum), self.returnSpecs)
         self:rebuild()
     end
 
