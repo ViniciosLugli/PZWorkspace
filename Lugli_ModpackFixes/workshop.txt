@@ -2,7 +2,7 @@ version=1
 title=Lugli - B42 Modpack Compats & Fixes
 description=Fixes for conflicts between popular Build 42 mods, and for bugs inside some of them.
 description=
-description=[b]No dependencies.[/b] Each fix turns on only when the mods it fixes are active. It first checks that their code is still the version it was written for, and after an update it stands down instead of guessing. Every fix has its own switch in the sandbox options.
+description=[b]No dependencies.[/b] Each fix turns on only when the mods it fixes are active. It first checks their code is still the version it was written for, and after an update it stands down instead of guessing. Every fix has its own switch in the sandbox options.
 description=
 description=[h1]Combat and zombies[/h1]
 description=[list]
@@ -40,7 +40,7 @@ description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=37
 description=[/list]
 description=[h1]Generators and power[/h1]
 description=[list]
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3794099205]Nick's Generator Manager[/url]:[/b] its once-a-minute power billing no longer freezes the game for a moment per running generator, on servers and in single player. The generator Info window and tooltip print its appliance list like the game's own numbers, and a [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3804093735]Badlands Power[/url] battery bank lists only what it pays for. In multiplayer, only a player within a generator's range, and allowed in its safehouse, can change what it powers.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3794099205]Nick's Generator Manager[/url]:[/b] its once-a-minute power billing no longer freezes the game for a moment per running generator, on servers and in single player. The generator Info window and tooltip print its appliance list like the game's own numbers, and a [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3804093735]Badlands Power[/url] battery bank lists only what it pays for. In multiplayer, only a player in a generator's range, and allowed in its safehouse, can change what it powers.
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3794099205]Nick's Generator Manager[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3723726293]Neat Rocco's UI[/url]:[/b] the generator window lists what that generator pays for, so it adds up to its Total. Manage Power opens in Neat Rocco's style, and no longer stutters twice a second while it is open.
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3804093735]Badlands Power[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3723726293]Neat Rocco's UI[/url]:[/b] the generator window keeps Badlands Power's names, and the battery bank shows its stored charge and its battery details instead of a fuel tank.
 description=[/list]
@@ -49,7 +49,7 @@ description=[list]
 description=[*][b]Load order?[/b] Anywhere after the mods it fixes. The end of the list is simplest.
 description=[*][b]Can I add it to a running save?[/b] Yes.
 description=[*][b]Is it safe to remove?[/b] Yes. It adds no items or objects, so nothing breaks when it is gone.
-description=[*][b]Multiplayer?[/b] Install it on the server and on every client, as with any mod.
+description=[*][b]Multiplayer?[/b] Install it on the server and on every client.
 description=[*][b]For server admins:[/b] an optional tool, off until you create [i]Lua/serverprof-on.txt[/i] in the server's cache folder, counts what each mod sends to players and writes it to [i]Lua/serverprof-sends.txt[/i] once a minute. Players notice nothing.
 description=[*][b]Did it load?[/b] Your console.txt has a line starting with [i][Lugli/ModpackFixes][/i] that lists every fix and whether it installed, or why it was skipped.
 description=[/list]
