@@ -79,6 +79,13 @@ option LugliModpackFixes.ImpSpawn = {
 	translation = LugliModpackFixes_ImpSpawn,
 }
 
+option LugliModpackFixes.NgmClaims = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_NgmClaims,
+}
+
 option LugliModpackFixes.NgmInfo = {
 	type = boolean,
 	default = true,

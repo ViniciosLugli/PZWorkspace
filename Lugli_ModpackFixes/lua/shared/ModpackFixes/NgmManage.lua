@@ -18,10 +18,17 @@ switched on in range shows up within 5 s instead of 0.5 s.
 ]]
 require "ModpackFixes_Status"
 require "ModpackFixes/NgmNeat"
+require "ModpackFixes/NgmClaims"
 local M = LugliModpackFixes
 
 local REFRESH_MS = 500
 local SCAN_MS = 5000
+
+local function tr(key, fallback)
+    local ok, s = pcall(getTextOrNull, key)
+    if ok and type(s) == "string" and s ~= "" then return s end
+    return fallback
+end
 
 local NGM_NEEDS = { "read", "poweredObjectsInRange", "isBillable", "classify", "consumption", "objSpec",
                     "resolveOwner", "requestClaim", "requestReturn", "isActive", "fuelMult", "genKey",
@@ -91,10 +98,15 @@ local function install(ctx)
     function Panel:onClickCollapse() NR_CollapseUtils.onClickCollapse(self) end
     function Panel:_onHeaderHover() NR_CollapseUtils.onHeaderHover(self) end
 
-    local function minHeight()
+    -- The summary line, and the line under it that says why a change would be refused.
+    local function textLines(panel)
+        return panel ~= nil and panel.note ~= nil and 2 or 1
+    end
+
+    local function minHeight(panel)
         local c = NR_Config
-        return c.headerHeight + c.padding + c.lineHeight + c.padding + c.itemHeight * 4 + c.padding
-            + c.actionBarHeight
+        return c.headerHeight + c.padding + c.lineHeight * textLines(panel) + c.padding + c.itemHeight * 4
+            + c.padding + c.actionBarHeight
     end
 
     local function iconButton(panel, x, y, size, icon, tip, onClick)
@@ -131,13 +143,13 @@ local function install(ctx)
         local pad, hh = c.padding, c.headerHeight
         local width = math.max(w or self.width, self.contentMinWidth or 0,
             self.header ~= nil and self.header:getMinimumWidth() or 0)
-        local height = math.max(h or self.height, minHeight())
+        local height = math.max(h or self.height, minHeight(self))
         if self.header ~= nil then
             self.header:setWidth(width)
             self.header:calculateLayout(width, hh)
         end
         self.summaryY = hh + pad
-        local listY = self.summaryY + c.lineHeight + pad
+        local listY = self.summaryY + c.lineHeight * textLines(self) + pad
         local listH = height - listY - pad - c.actionBarHeight
         local sv = self.scrollView
         sv:setX(pad)
@@ -202,6 +214,11 @@ local function install(ctx)
         local active = NGM.isActive(gen)
         local objs = self:objects()
 
+        -- What the server's ngm-claims rule would refuse, so the window does not offer it.
+        local player = getSpecificPlayer(self.playerNum)
+        local enforced = M.ngmClaimsEnforced()
+        local blocked = enforced and M.ngmManageBlocks(player, self.gx, self.gy, self.gz) or nil
+
         local appliances, lights = {}, {}
         local ownedCount, ownedDraw = 0, 0
         for i = 1, #objs do
@@ -210,7 +227,10 @@ local function install(ctx)
             local draw = NGM.consumption(obj)
             local spec = NGM.objSpec(obj)
             if spec then
-                local rec = { obj = obj, label = label, draw = draw, spec = spec, owned = self:ownedByThis(obj) }
+                local locked = blocked ~= nil
+                    or (enforced and M.ngmSafehouseBlocks(player, NGM.read(function() return obj:getSquare() end)) ~= nil)
+                local rec = { obj = obj, label = label, draw = draw, spec = spec, owned = self:ownedByThis(obj),
+                              locked = locked }
                 if cat == "light" then lights[#lights + 1] = rec else appliances[#appliances + 1] = rec end
                 if rec.owned then
                     ownedCount = ownedCount + 1
@@ -226,31 +246,40 @@ local function install(ctx)
         local rows, allSpecs, lightSpecs = {}, {}, {}
         for i = 1, #appliances do
             local a = appliances[i]
-            allSpecs[#allSpecs + 1] = a.spec
+            if not a.locked then allSpecs[#allSpecs + 1] = a.spec end
             rows[#rows + 1] = { kind = "appliance", label = a.label, drawStr = fmtLh(a.draw * mult) .. " L/h",
-                                spec = a.spec, owned = a.owned }
+                                spec = a.spec, owned = a.owned, locked = a.locked }
         end
         if #lights > 0 then
             local total, owned = 0, 0
             for i = 1, #lights do
                 total = total + lights[i].draw
-                allSpecs[#allSpecs + 1] = lights[i].spec
-                lightSpecs[#lightSpecs + 1] = lights[i].spec
+                if not lights[i].locked then
+                    allSpecs[#allSpecs + 1] = lights[i].spec
+                    lightSpecs[#lightSpecs + 1] = lights[i].spec
+                end
                 if lights[i].owned then owned = owned + 1 end
             end
             rows[#rows + 1] = { kind = "lightgroup", label = NGM.T("IGUI_NGM_Lights", "Lights (%1/%2)", owned, #lights),
                                 drawStr = fmtLh(total * mult) .. " L/h", owned = owned == #lights,
-                                expanded = self.lightsExpanded == true }
+                                expanded = self.lightsExpanded == true, locked = #lightSpecs == 0 }
             if self.lightsExpanded then
                 for i = 1, #lights do
                     local l = lights[i]
                     rows[#rows + 1] = { kind = "light", label = l.label, drawStr = fmtLh(l.draw * mult) .. " L/h",
-                                        spec = l.spec, owned = l.owned }
+                                        spec = l.spec, owned = l.owned, locked = l.locked }
                 end
             end
         end
 
         self.rows, self.allSpecs, self.lightSpecs, self.active = rows, allSpecs, lightSpecs, active
+        local note = blocked == "far" and tr("IGUI_LugliMPF_NgmFar", "Stand within this generator's range to change what it powers.")
+            or blocked == "safehouse" and tr("IGUI_LugliMPF_NgmSafehouse", "This generator is in a safehouse you are not allowed in.")
+            or nil
+        if note ~= self.note then
+            self.note = note
+            self:calculateLayout(self.width, self.height)
+        end
         if not active then
             self.summary = NGM.T("IGUI_NGM_HeaderOff", "This generator is off")
         else
@@ -273,7 +302,7 @@ local function install(ctx)
     function Panel:fitContent()
         local tm, font = getTextManager(), NR_UIScale.getBodyFont()
         local box, _, _, textX, pad = geometry()
-        local minW = pad * 2 + tm:MeasureStringX(font, self.summary or "")
+        local minW = pad * 2 + math.max(tm:MeasureStringX(font, self.summary or ""), tm:MeasureStringX(font, self.note or ""))
         for i = 1, #self.rows do
             local d = self.rows[i]
             local w = textX + (d.kind == "light" and box or 0) + tm:MeasureStringX(font, d.label) + pad * 3
@@ -291,8 +320,8 @@ local function install(ctx)
         local box, boxX, discX, textX, pad = geometry()
         local h = rowPanel.height
         local ty, by = math.floor((h - fh) / 2), math.floor((h - box) / 2)
-        local alpha = self.active and 0.9 or 0.5
-        if self.active and rowPanel:isMouseOver() then rowPanel:drawRect(0, 0, rowPanel.width, h - 1, 0.06, 1, 1, 1) end
+        local alpha = (self.active and not d.locked) and 0.9 or 0.5
+        if alpha > 0.5 and rowPanel:isMouseOver() then rowPanel:drawRect(0, 0, rowPanel.width, h - 1, 0.06, 1, 1, 1) end
         rowPanel:drawRectBorder(boxX, by, box, box, alpha, 0.6, 0.6, 0.6)
         if d.owned then
             local sc = NR_Config.selectionColor
@@ -350,7 +379,7 @@ local function install(ctx)
             end
             return
         end
-        if d.spec and self.active then self:toggleOwn({ d.spec }, d.owned) end
+        if d.spec and self.active and not d.locked then self:toggleOwn({ d.spec }, d.owned) end
     end
 
     function Panel:toggleOwn(specs, owned)
@@ -388,6 +417,10 @@ local function install(ctx)
         local font, pad = NR_UIScale.getBodyFont(), NR_Config.padding
         if self.summary then
             self:drawText(self.summary, pad, self.summaryY, 1, 1, 1, self.active and 0.9 or 0.6, font)
+        end
+        if self.note then
+            local bad = getCore():getBadHighlitedColor()
+            self:drawText(self.note, pad, self.summaryY + NR_Config.lineHeight, bad:getR(), bad:getG(), bad:getB(), 1, font)
         end
         local sv = self.scrollView
         if #self.rows == 0 then
