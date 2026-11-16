@@ -768,6 +768,27 @@ SandboxVars = {
     CSP_XPIntermediateBase = 60.0,
     -- Min: 0.00 Max: 500.00 Default: 100.00
     CSP_XPAdvancedBase = 100.0,
+    -- Min: 0 Max: 10 Default: 0
+    CSP_LevelSimple = 0,
+    -- Min: 0 Max: 10 Default: 2
+    CSP_LevelIntermediate = 2,
+    -- Min: 0 Max: 10 Default: 4
+    CSP_LevelAdvanced = 4,
+    CSP_EnableKnapping = true,
+    CSP_EnableCarvingWood = true,
+    CSP_EnableCarvingBone = true,
+    CSP_EnablePotterySurface = true,
+    CSP_EnablePotteryWheel = true,
+    CSP_EnableBlacksmithing = true,
+    CSP_EnableCarpentry = true,
+    CSP_EnableElectronics = true,
+    CSP_EnableGlassmaking = true,
+    CSP_EnableMasonry = true,
+    CSP_EnableMechanics = true,
+    CSP_EnableTailoringSewing = true,
+    CSP_EnableTailoringKnitting = true,
+    CSP_EnableWelding = true,
+    CSP_EnableFirstAid = true,
     -- Min: 0 Max: 100 Default: 10
     HephasVitamins_HealPercent = 10,
     -- Min: 0 Max: 100 Default: 5
@@ -2684,7 +2705,88 @@ SandboxVars = {
         skillsInfluence = 1,
         traitsInfluence = 1,
     },
+    TheyKnew = {
+        -- Min: 0.00 Max: 20.00 Default: 0.30
+        HazmatSpawnChance = 0.3,
+        -- Min: 0.00 Max: 20.00 Default: 0.30
+        ColouredHazmatSpawnChance = 0.3,
+        -- Min: 0.00 Max: 50.00 Default: 2.00
+        MilitaryHazmatChance = 2.0,
+        -- Min: 0.00 Max: 50.00 Default: 8.00
+        LabHazmatChance = 8.0,
+        -- Min: 0 Max: 365 Default: 60
+        HazmatGrowthDays = 60,
+        -- Min: 1.00 Max: 10.00 Default: 3.00
+        HazmatGrowthMax = 3.0,
+        DisguisedCarriers = false,
+        HazmatSenses = 2,
+        -- Min: 0 Max: 100 Default: 100
+        ZomboxivirLootChance = 100,
+        -- Min: 0 Max: 100 Default: 0
+        ZomboxoloneLootChance = 0,
+        -- Min: 0 Max: 100 Default: 0
+        ZomboxycyclineLootChance = 0,
+        -- Min: 0 Max: 100 Default: 25
+        TestKitLootChance = 25,
+        -- Min: 0 Max: 100 Default: 2
+        ZomboxyvaxLootChance = 2,
+        -- Min: 0 Max: 100 Default: 3
+        BackpackLootChance = 3,
+        -- Min: 0 Max: 100 Default: 50
+        WhiteZomboxycyclineChance = 50,
+        -- Min: 0 Max: 100 Default: 50
+        WhiteTestKitChance = 50,
+        -- Min: 0 Max: 100 Default: 5
+        WhiteZomboxivirChance = 5,
+        -- Min: 0 Max: 100 Default: 1
+        WhiteZomboxyvaxChance = 1,
+        -- Min: 0 Max: 100 Default: 50
+        OrangeZomboxoloneChance = 50,
+        -- Min: 0 Max: 100 Default: 25
+        OrangeTestKitChance = 25,
+        -- Min: 0 Max: 100 Default: 40
+        OliveZomboxycyclineChance = 40,
+        -- Min: 0 Max: 100 Default: 25
+        OliveZomboxoloneChance = 25,
+        -- Min: 0 Max: 100 Default: 10
+        OliveZomboxivirChance = 10,
+        ZomboxivirSideEffects = true,
+        -- Min: 0 Max: 168 Default: 24
+        ZomboxivirRecoveryHours = 24,
+        -- Min: 0 Max: 60 Default: 0
+        ZomboxivirShelfLifeDays = 0,
+        ZomboxoloneMode = 1,
+        -- Min: 1 Max: 168 Default: 24
+        ZomboxolonePauseHours = 24,
+        -- Min: 1 Max: 168 Default: 24
+        ZomboxycyclineHours = 24,
+        -- Min: 0 Max: 365 Default: 30
+        ZomboxyvaxDays = 30,
+        -- Min: 0 Max: 720 Default: 0
+        TestKitMoodleHours = 0,
+        -- Min: 0 Max: 100 Default: 15
+        EHRTreatmentChance = 15,
+        -- Min: 0.00 Max: 100.00 Default: 0.00
+        MedicalZomboxivirChance = 0.0,
+        -- Min: 0.00 Max: 100.00 Default: 0.00
+        MedicalZomboxoloneChance = 0.0,
+        -- Min: 0.00 Max: 100.00 Default: 0.00
+        MedicalZomboxycyclineChance = 0.0,
+        -- Min: 0.00 Max: 100.00 Default: 0.00
+        MedicalTestKitChance = 0.0,
+        -- Min: 0.00 Max: 100.00 Default: 0.00
+        MedicalZomboxyvaxChance = 0.0,
+        -- Min: 4 Max: 30 Default: 8
+        SatchelCapacity = 8,
+        -- Min: 0 Max: 95 Default: 80
+        SatchelWeightReduction = 80,
+        -- Min: 0 Max: 100 Default: 0
+        PartialPackChance = 0,
+        -- Min: 1 Max: 10 Default: 1
+        PartialPackMinDoses = 1,
+    },
     LugliModpackFixes = {
+        AuiCleanUI = true,
         BiiTooltip = true,
         BpHotbar = true,
         BpNeat = true,
