@@ -65,7 +65,17 @@ local function payloadBytes(root)
     return bytes, false
 end
 
+-- GameServer.getPlayers reads the UDP engine, which exists only once the server has started: a
+-- send before that (Unseasonal Weather transmits as it loads) reaches nobody, and asking throws a
+-- NullPointerException the engine logs with a stack trace even inside a pcall. Set at file scope,
+-- so a reinstall after the start still knows.
+local serverStarted = false
+if Events and Events.OnServerStarted then
+    Events.OnServerStarted.Add(function() serverStarted = true end)
+end
+
 local function onlineCount()
+    if not serverStarted then return 0 end
     local ok, n = pcall(function() return getOnlinePlayers():size() end)
     return ok and type(n) == "number" and n or 0
 end

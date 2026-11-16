@@ -1,5 +1,7 @@
 {
     "Sandbox_LugliModpackFixes": "Lugli - Modpack Compats & Fixes",
+    "Sandbox_LugliModpackFixes_AuiCleanUI": "Attachments UI: CleanUI look",
+    "Sandbox_LugliModpackFixes_AuiCleanUI_tooltip": "Attachments UI's weapon workbench keeps its own flat look beside CleanUI's windows. This draws the workbench, its part picker, presets and patch editor with CleanUI's title bar, background, border and buttons, at CleanUI's opacity, while CleanUI's clean inventory is on. Only active with both mods.",
     "Sandbox_LugliModpackFixes_BiiTooltip": "Better Item Info: keep other mods' tooltip rows",
     "Sandbox_LugliModpackFixes_BiiTooltip_tooltip": "With Guns of Marz active, Better Item Info resets the item tooltip when a world starts, which hides the rows other mods add, such as backpack upgrades, seed seasons and silencer durability. This keeps them. Only active with Better Item Info and Guns of Marz.",
     "Sandbox_LugliModpackFixes_BpHotbar": "Better Pause: hotbar keys while paused, with SwapIt",

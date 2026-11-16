@@ -2,6 +2,13 @@ VERSION = 1,
 
 /* GENERATED from the parts under lua/shared/ModpackFixes. Never edit. */
 
+option LugliModpackFixes.AuiCleanUI = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_AuiCleanUI,
+}
+
 option LugliModpackFixes.BiiTooltip = {
 	type = boolean,
 	default = true,
