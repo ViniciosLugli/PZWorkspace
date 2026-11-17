@@ -7,11 +7,18 @@ the vehicle mods ship today, and a vehicle with no entry spawns with every conta
   - six burnt wrecks, whose own mods gave them the live vehicle's loot;
   - the seven Ford F350/F450 work trucks (flatbeds, box, dump, wreckers, ambulance), whose own
     loot table SpecLoot does not rebuild at all.
+Two more get an entry whose Normal table SpecLoot never defines (VehicleDistributions.PWRPA,
+VehicleDistributions.VAN63A, the latter defined only in the 63 Type 2 Van file SpecLoot replaces),
+so they spawn empty unless the rarer special-loot roll picks one of their specific tables:
+  - the '49 Power Wagon PA, which its own mod gives the plain Power Wagon's loot;
+  - the '63 Type 2 Van Apocalypse, which its own mod gives a table of vanilla role loot.
 
 What this part changes. Before the engine reads the loot tables, every one of those vehicles that
 still has no entry gets one: a burnt wreck shares its live sibling's entry, as its own mod did, and
 the F450 family gets tables written here from the vanilla role tables (work truck, mechanic,
-construction, ambulance). An entry SpecLoot or anyone else already registered is never touched.
+construction, ambulance). An entry SpecLoot or anyone else already registered is never touched,
+except that an entry still missing its Normal table gets the one its vehicle's own mod gives it,
+keeping its specific tables.
 ]]
 require "ModpackFixes_Status"
 local M = LugliModpackFixes
@@ -53,7 +60,47 @@ local F450 = {
     ["93fordF450ambulance"] = AMBULANCE,
 }
 
-local added = {}
+-- Normal tables as the vehicles' own mods define them (49powerWagon and 63Type2Van, 42.20 files):
+-- a loot table name used whole, or container part ids to table names.
+local HOLLOW = {
+    ["49powerWagonPA"] = "PWR",
+    ["63Type2VanApocalypse"] = {
+        GloveBox = "VAN63GloveBox",
+        VAN63InnerTrunk = "SurvivalistTruckBed",
+        VAN63WeldedRoofrack = "TrunkHeavy",
+        VAN63ToolBoxLeft = "AmbulanceGloveBox",
+        VAN63ToolBoxRight = "MetalWelderGloveBox",
+        VAN63UnderMiddleLeftSeat = "RangerGloveBox",
+        VAN63UnderMiddleRightSeat = "RangerGloveBox",
+    },
+}
+
+local added, filled = {}, {}
+
+local function lootTable(vd, name)
+    local t = vd[name]
+    if type(t) ~= "table" then error("loot table " .. name .. " is missing") end
+    return t
+end
+
+-- Entries that exist but have no Normal table, to the Normal table each gets.
+local function hollowEntries(vd, byVehicle)
+    local out = {}
+    for vehicle, recipe in pairs(HOLLOW) do
+        local entry = byVehicle[vehicle]
+        if type(entry) == "table" and entry.Normal == nil then
+            local normal
+            if type(recipe) == "string" then
+                normal = lootTable(vd, recipe)
+            else
+                normal = {}
+                for part, tableName in pairs(recipe) do normal[part] = lootTable(vd, tableName) end
+            end
+            out[vehicle] = normal
+        end
+    end
+    return out
+end
 
 local function entries()
     local vd = VehicleDistributions
@@ -74,15 +121,20 @@ local function entries()
             out[vehicle] = { Normal = normal }
         end
     end
-    return byVehicle, out
+    return byVehicle, out, hollowEntries(vd, byVehicle)
 end
 
 local function apply()
-    local byVehicle, out = entries()
+    local byVehicle, out, hollow = entries()
     for vehicle, entry in pairs(out) do
         byVehicle[vehicle] = entry
         if byVehicle[vehicle] ~= entry then error("VehicleDistributions rejected " .. vehicle) end
         added[vehicle] = entry
+    end
+    for vehicle, normal in pairs(hollow) do
+        local entry = byVehicle[vehicle]
+        entry.Normal = normal
+        filled[vehicle] = { entry = entry, normal = normal }
     end
 end
 
@@ -91,11 +143,15 @@ local function remove()
     for vehicle, entry in pairs(added) do
         if byVehicle ~= nil and byVehicle[vehicle] == entry then byVehicle[vehicle] = nil end
     end
-    added = {}
+    for _, f in pairs(filled) do
+        if f.entry.Normal == f.normal then f.entry.Normal = nil end
+    end
+    added, filled = {}, {}
 end
 
 local function hasAdded()
     for _ in pairs(added) do return true end
+    for _ in pairs(filled) do return true end
     return false
 end
 
@@ -120,12 +176,12 @@ end
 M.addPart({
     name = "vehicle-loot",
     switch = "VehicleLoot",
-    title = "SpecLoot: loot in burnt wrecks and Ford F450 trucks",
-    tip = "SpecLoot's rewritten loot files leave six burnt wrecks and seven Ford F350/F450 work trucks with empty containers. This gives the wrecks their live vehicle's loot, as their own mods do, and the work trucks vanilla work, mechanic, construction or ambulance loot. Only active with SpecLoot.",
+    title = "SpecLoot: loot in burnt wrecks, Ford F450 trucks and two KI5 variants",
+    tip = "SpecLoot's rewritten loot files leave six burnt wrecks, seven Ford F350/F450 work trucks, the '49 Power Wagon PA and the '63 Type 2 Van Apocalypse with empty containers. This gives the wrecks their live vehicle's loot and the two KI5 variants the loot their own mods give them, and the work trucks vanilla work, mechanic, construction or ambulance loot. Only active with SpecLoot.",
     kind = "compat",
     all = { "SpecLoot" },
     side = "server",
     phase = "boot",
-    pins = { "specloot.f350", "specloot.p19a" },
+    pins = { "specloot.f350", "specloot.p19a", "specloot.pwrpa", "specloot.van63a" },
     install = install,
 })

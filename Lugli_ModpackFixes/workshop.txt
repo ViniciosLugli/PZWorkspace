@@ -7,14 +7,14 @@ description=
 description=[h1]Combat and zombies[/h1]
 description=[list]
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3833349401]Super Gore[/url]:[/b] zombies it finishes off (a severed head, a burst chest) now count as your kills.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3833349401]Super Gore[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3783283328]Special Zombies: Tank[/url]:[/b] a Tank no longer dies to almost any hit, or heals when a limb is cut.
+description=[*][b]Super Gore + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3783283328]Special Zombies: Tank[/url]:[/b] a Tank no longer dies to almost any hit, or heals when a limb is cut.
 description=[*][b]Vanilla:[/b] wearing an ALICE belt or chest rig, reloads without an ammo strap and filling magazines no longer error. This makes [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3837229266]Reload Those Weapons Again[/url] redundant.
 description=[/list]
 description=[h1]Hotbar and keys[/h1]
 description=[list]
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2366717227]SwapIt[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3771638611]Fancy Handwork[/url]:[/b] modifier + hotbar key takes the item into your off hand again.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2366717227]SwapIt[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3737864976]H.E.C.U.[/url]:[/b] the hotbar key puts helmets and masks on and off again.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2366717227]SwapIt[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3696291148]Better Pause[/url]:[/b] hotbar keys work while paused again.
+description=[*][b]SwapIt + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3737864976]H.E.C.U.[/url]:[/b] the hotbar key puts helmets and masks on and off again.
+description=[*][b]SwapIt + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3696291148]Better Pause[/url]:[/b] hotbar keys work while paused again.
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3771638611]Fancy Handwork B42.20[/url]:[/b] the swap-hands keys work, and key presses stop raising errors.
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3775549570]Alice's Weapon Sling[/url]:[/b] cancelling an attach no longer leaves a ghost weapon on your body.
 description=[/list]
@@ -32,7 +32,8 @@ description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=27
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3745718141]Explosives[/url]:[/b] in multiplayer the grenadier zombies' full grenade bandolier really holds its grenades.
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3820938264]'67 Chevy Impala[/url]:[/b] the Impala spawns in the parking lots, traffic jams and junkyards its mod lists it in.
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3171167894]damnlib[/url]:[/b] the seats of its military vehicles can be repaired with duct tape or needle and thread.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3457132019]Specific Loot (KI5)[/url]:[/b] burnt wrecks and Ford F350/F450 work trucks spawn with loot.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3457132019]Specific Loot (KI5)[/url]:[/b] burnt wrecks, F350/F450 work trucks, the Power Wagon PA and the Type 2 Van Apocalypse spawn with loot, and no loot gets stuck in the sealed seats of the LAV-300 or the Step Van SWAT, so you can sit in them again.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3783433804]Nellis Air Force Base[/url]:[/b] in multiplayer its interiors stay powered, a generator carried in no longer refills for free, and you always have a way out, even after a relog or a restart.
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3436499337]Vehicle Military Zones[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3624971238]Yet Another PZ Library[/url]:[/b] its old zone script no longer errors on world load.
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3413150945]More Damaged Objects[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3484263516]Raven Creek[/url]:[/b] street lights, hedges, ladders, fences and signs get their vanilla properties back.
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3342191739]Gyde's Trait Magazines[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3776852122]Extended[/url]:[/b] the Handy magazine gives its four skill levels.
@@ -42,8 +43,8 @@ description=[/list]
 description=[h1]Generators and power[/h1]
 description=[list]
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3794099205]Nick's Generator Manager[/url]:[/b] its once-a-minute billing no longer freezes the game per running generator. The Info window and tooltip print its numbers like the game's own, and a [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3804093735]Badlands Power[/url] battery bank lists only what it pays for. In multiplayer, only a player in range and allowed in its safehouse can change what it powers.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3794099205]Nick's Generator Manager[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3723726293]Neat Rocco's UI[/url]:[/b] the generator window lists what that generator pays for, so it adds up to its Total. Manage Power opens in Neat Rocco's style and no longer stutters while open.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3804093735]Badlands Power[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3723726293]Neat Rocco's UI[/url]:[/b] the generator window keeps Badlands Power's names, and the battery bank shows its charge and batteries instead of a fuel tank.
+description=[*][b]Nick's Generator Manager + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3723726293]Neat Rocco's UI[/url]:[/b] the generator window lists what that generator pays for, so it adds up to its Total. Manage Power opens in Neat Rocco's style and no longer stutters while open.
+description=[*][b]Badlands Power + Neat Rocco's UI:[/b] the generator window keeps Badlands Power's names, and the battery bank shows its charge and batteries instead of a fuel tank.
 description=[/list]
 description=[h1]Questions[/h1]
 description=[list]
