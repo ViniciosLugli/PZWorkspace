@@ -86,4 +86,5 @@ LugliModpackFixes.pins = {
     ["nellis.power"] = { mod = "NellisAFB", file = "media/lua/client/TeleportInterior_Final.lua", anchor = "local function manterGeradoresLigados()", lines = 23, accept = { 815059390 } },
     ["nellis.powerreg"] = { mod = "NellisAFB", file = "media/lua/client/TeleportInterior_Final.lua", anchor = "Events.EveryOneMinute.Add(manterGeradoresLigados)", lines = 2, accept = { 3182347462 } },
     ["nellis.spawn"] = { mod = "NellisAFB", file = "media/maps/Nellis Air Force Base/spawnpoints.lua", anchor = "burgerflipper = {", lines = 2, accept = { 3019960047 } },
+    ["vanilla.beervan"] = { mod = "vanilla", file = "media/lua/server/Vehicles/VehicleDistributions.lua", anchor = "StepVan_Genuine_Beer = { Normal = VehicleDistributions.StepVan_ImportedBeer },", lines = 1, accept = { 2918364841 } },
 }

@@ -86,6 +86,13 @@ option LugliModpackFixes.ImpSpawn = {
 	translation = LugliModpackFixes_ImpSpawn,
 }
 
+option LugliModpackFixes.LootNames = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_LootNames,
+}
+
 option LugliModpackFixes.NellisExit = {
 	type = boolean,
 	default = true,
