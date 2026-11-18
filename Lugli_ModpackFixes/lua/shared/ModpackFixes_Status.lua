@@ -321,6 +321,8 @@ function M.installPart(def)
     def.undos = {}
     local ok, err = pcall(def.install, M.makeCtx(def))
     if ok then
+        -- An install that stood the part down (ctx.standDown) keeps that status.
+        if def.open == true then return end
         def.installed = true
         M.setPart(def.name, true, nil, "ok")
     else

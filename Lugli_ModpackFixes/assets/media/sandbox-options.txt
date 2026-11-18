@@ -79,6 +79,69 @@ option LugliModpackFixes.HotbarEquip = {
 	translation = LugliModpackFixes_HotbarEquip,
 }
 
+option LugliModpackFixes.IdpBags = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_IdpBags,
+}
+
+option LugliModpackFixes.IdpChamber = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_IdpChamber,
+}
+
+option LugliModpackFixes.IdpHide = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_IdpHide,
+}
+
+option LugliModpackFixes.IdpMarz = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_IdpMarz,
+}
+
+option LugliModpackFixes.IdpRadial = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_IdpRadial,
+}
+
+option LugliModpackFixes.IdpRpm = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_IdpRpm,
+}
+
+option LugliModpackFixes.IdpSeeds = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_IdpSeeds,
+}
+
+option LugliModpackFixes.IdpSilencer = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_IdpSilencer,
+}
+
+option LugliModpackFixes.IdpText = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_IdpText,
+}
+
 option LugliModpackFixes.ImpSpawn = {
 	type = boolean,
 	default = true,

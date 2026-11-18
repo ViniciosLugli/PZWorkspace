@@ -1,5 +1,10 @@
 {
     "IGUI_LugliMPF_NgmFar": "Stand within this generator's range to change what it powers.",
     "IGUI_LugliMPF_NgmSafehouse": "This generator is in a safehouse you are not allowed in.",
-    "IGUI_LugliMPF_NgmReturnHeld": "(not what a generator you cannot manage claimed)"
+    "IGUI_LugliMPF_NgmReturnHeld": "(not what a generator you cannot manage claimed)",
+    "IGUI_LugliMPF_IdpDescription": "Details",
+    "IGUI_LugliMPF_IdpBagUpgrades": "Backpack upgrades",
+    "IGUI_LugliMPF_IdpSeason": "Sowing season",
+    "IGUI_LugliMPF_IdpRadial": "Radial menu",
+    "IGUI_LugliMPF_IdpChamber": "Chamber"
 }
