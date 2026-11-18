@@ -11,7 +11,8 @@ option on, those two are gone.
 
 What this part changes. While the vanilla tooltip is hidden, Item Details Panel shows this month's
 status and, with that option on, the bad months, for the seeds Seed Season Indicator would show them
-for (the player knows the plant), in its colours.
+for (the player knows the plant), in a Sowing season group of its main panel, right under its own
+gardening rows: green for a good month, red for a risky or wrong one.
 ]]
 require "ModpackFixes_Status"
 require "ModpackFixes_Idp"
@@ -19,12 +20,13 @@ local M = LugliModpackFixes
 local K = M.idp
 
 local PROVIDER = "LugliModpackFixes.SeedSeason"
-local LABEL_COLOR = { 1.0, 1.0, 0.8, 1.0 }
-local STATUS_COLOR = {
-    best = { 0.2, 0.9, 0.2, 1.0 },
-    inseason = { 0.6, 1.0, 0.6, 1.0 },
-    risk = { 1.0, 1.0, 0.2, 1.0 },
-    outofseason = { 1.0, 0.3, 0.2, 1.0 },
+-- Item Details Panel colours rows by role only, from the player's palette: Seed Season Indicator's
+-- green for a good month, red for a risky or wrong one.
+local STATUS_ROLE = {
+    best = "good",
+    inseason = "good",
+    risk = "bad",
+    outofseason = "bad",
 }
 local STATUS_KEY = {
     best = "IGUI_SSI_TooltipStatus_Best",
@@ -66,26 +68,19 @@ local function collect(item, player, context)
     if props == nil or STATUS_KEY[status] == nil then return nil end
     local enabled = context and context.enabledFields or {}
     local rows = {}
-    if enabled.Heading ~= false then
-        local heading = getText("IGUI_LugliMPF_IdpSeason")
-        rows[#rows + 1] = { id = "Heading", label = heading, value = heading, order = 0,
-            presentation = { kind = "header" } }
-    end
     if enabled.ThisMonth ~= false then
         local month = getGameTime():getMonth() + 1
         rows[#rows + 1] = { id = "ThisMonth",
             label = getText("IGUI_SSI_TooltipThisMonth") .. " (" .. getText("Farming_Month_" .. month) .. ")",
-            value = getText(STATUS_KEY[status]), order = 1,
-            presentation = { kind = "keyvalue", labelColor = LABEL_COLOR, valueColor = STATUS_COLOR[status] } }
+            value = getText(STATUS_KEY[status]), order = 1, role = STATUS_ROLE[status] }
     end
     if enabled.BadMonth ~= false and ssi.optBadMonth:getValue() then
         local bad = props.badMonth
         rows[#rows + 1] = { id = "BadMonth", label = "Bad month",
             value = bad and monthList(bad) or getText("Farming_Tooltip_None"), order = 2,
-            presentation = { kind = "keyvalue", labelColor = LABEL_COLOR,
-                valueColor = bad and STATUS_COLOR.outofseason or LABEL_COLOR } }
+            role = bad and "bad" or "value" }
     end
-    if #rows <= 1 then return nil end
+    if #rows == 0 then return nil end
     return rows
 end
 
@@ -109,11 +104,11 @@ local function install(ctx)
         name = "Seed Season Indicator (Modpack Fixes)",
         description = "Whether a seed can be sown this month and, with Seed Season Indicator's bad month option, its bad months. Only while the vanilla tooltip is hidden.",
         author = "Lugli", modId = "Lugli_ModpackFixes",
-        displayTarget = "independent", order = 85,
+        displayTarget = "main", order = 85,
+        groups = { { id = "Season", labelKey = "IGUI_LugliMPF_IdpSeason", label = "Sowing season", order = 10 } },
         fields = {
-            { id = "Heading", label = "Heading", order = 0 },
-            { id = "ThisMonth", label = "This month", order = 1 },
-            { id = "BadMonth", label = "Bad month", order = 2 },
+            { id = "ThisMonth", label = "This month", groupId = "Season", order = 1 },
+            { id = "BadMonth", label = "Bad month", groupId = "Season", order = 2 },
         },
         supports = function(item, player)
             return item ~= nil and K.vanillaHidden() and seasonData(item, player) ~= nil

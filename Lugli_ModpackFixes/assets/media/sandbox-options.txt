@@ -142,6 +142,13 @@ option LugliModpackFixes.IdpText = {
 	translation = LugliModpackFixes_IdpText,
 }
 
+option LugliModpackFixes.IdpVanilla = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_IdpVanilla,
+}
+
 option LugliModpackFixes.ImpSpawn = {
 	type = boolean,
 	default = true,

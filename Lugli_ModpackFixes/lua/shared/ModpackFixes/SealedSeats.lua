@@ -7,7 +7,7 @@ and the eight crew seats of the '85 Chevy Step Van SWAT answer damnlib's DAMN.Co
 both of which never allow access. The '63 Beetle Buggy keeps the Beetle's inner trunk
 (BTL63InnerTrunk, from the shared BTL63InnerTrunkCompartment template) whose test,
 DAMN.ContainerAccess.TrunkSecondRow, opens it only from rear seat 2 or 3 or from the DoorFrontLeft
-area, and the buggy has two seats and no such area. Items still get in two ways:
+area, and the buggy has no seat part on seat 2 or 3 and no such area. Items still get in two ways:
   - SpecLoot's loot tables (and 63beetle's own, for the buggy) roll loot into every one of them, on the vehicle's first spawn and again
     in its own re-roll a few ticks later (ResetContainers.lua, forceVehicleDistribution).
   - Vanilla's seat shuffle (ISVehicleMenu.moveItemsFromSeat, also used by KI5's seat UI) moves a
@@ -36,10 +36,16 @@ require "ModpackFixes_Status"
 local M = LugliModpackFixes
 
 -- The buggy's inner trunk opens from seat 2 or 3 or from its own area: sealed only while the buggy
--- still has neither, so a 63beetle update that gives it a way in turns this off by itself.
+-- still has neither, so a 63beetle update that gives it a way in turns this off by itself. A seat
+-- counts only with a seat part: the engine seats no one without one (BaseVehicle.enter, 42.22
+-- BaseVehicle.java:2563), and on the owner's pack the buggy lists four passengers but builds only
+-- its two front seats (BTL63Seats2).
 local function noWayIn(part)
     local vehicle, area = part:getVehicle(), part:getArea()
-    return vehicle:getMaxPassengers() <= 2 and (area == nil or vehicle:getScript():getAreaById(area) == nil)
+    for seat = 2, math.min(3, vehicle:getMaxPassengers() - 1) do
+        if vehicle:getPartForSeatContainer(seat) ~= nil then return false end
+    end
+    return area == nil or vehicle:getScript():getAreaById(area) == nil
 end
 
 -- Script name after its module, as the engine names it for the loot tables, to the id prefix the
