@@ -204,7 +204,6 @@ end
 
 local function installOrientation(BA)
     local previous = BA.modelOrientation
-    if type(previous) ~= "function" then error("AttachmentsUI.modelOrientation not found") end
     if M.auiOrientation ~= nil and previous == M.auiOrientation then return end
     stockOrientation = previous
     local function orientation(modelScript)
@@ -229,7 +228,6 @@ end
 
 local function wrapMethod(View, name, make)
     local previous = View[name]
-    if type(previous) ~= "function" then error("BAWeaponView:" .. name .. " not found") end
     local marker = "lugliGreaseOfMarz_" .. name
     if View[marker] ~= nil and previous == View[marker] then return end
     local wrapped = make(previous)
@@ -523,36 +521,53 @@ end
 
 local function gunworks(name)
     local found, module = pcall(require, "WeaponSystems/Utils/" .. name)
-    if not found or type(module) ~= "table" then error("Gunworks " .. name .. " module not reachable") end
-    return module
+    if found and type(module) == "table" then return module end
+    return nil
 end
 
-local function install()
+local VIEW_METHODS = { "loadPatch", "effectiveView", "cacheAnchors", "setEditing", "referenceAnchor" }
+
+local function check()
     local BA = AttachmentsUI
     if type(BA) ~= "table" or type(BA.registerExtension) ~= "function" or type(BA.registerAdapter) ~= "function"
         or type(BA.definition) ~= "function" or type(BA.resolveModelScript) ~= "function"
         or type(BA.definitionCompatible) ~= "function"
         or type(BAWeaponView) ~= "table" then
-        error("AttachmentsUI API not found")
+        return "AttachmentsUI API not found"
     end
-    local Universal = gunworks("UniversalAttachment")
-    local Bayonet = gunworks("Bayonet")
-    local Required = gunworks("RequiredAttachment")
+    if type(BA.modelOrientation) ~= "function" then return "AttachmentsUI.modelOrientation not found" end
+    for i = 1, #VIEW_METHODS do
+        if type(BAWeaponView[VIEW_METHODS[i]]) ~= "function" then return "BAWeaponView:" .. VIEW_METHODS[i] .. " not found" end
+    end
+    local modules = {}
+    for _, name in ipairs({ "UniversalAttachment", "Bayonet", "RequiredAttachment" }) do
+        modules[name] = gunworks(name)
+        if modules[name] == nil then return "Gunworks " .. name .. " module not reachable" end
+    end
+    local Universal, Required, Bayonet = modules.UniversalAttachment, modules.RequiredAttachment, modules.Bayonet
     if type(Universal.GetGenericItemTypes) ~= "function" or type(Universal.GetOutcomes) ~= "function"
         or type(Universal.IsRegisteredOutcome) ~= "function" then
-        error("Gunworks UniversalAttachment API changed")
+        return "Gunworks UniversalAttachment API changed"
     end
     if type(Required.Dependencies) ~= "table" or type(Required.AnyDependencies) ~= "table"
         or type(Required.IsPartInstalledOnWeapon) ~= "function" then
-        error("Gunworks RequiredAttachment API changed")
+        return "Gunworks RequiredAttachment API changed"
     end
     if type(Bayonet.BayonetMountableWeapons) ~= "table" or type(Bayonet.GetSpearTypeFromAttachment) ~= "function" then
-        error("Gunworks Bayonet API changed")
+        return "Gunworks Bayonet API changed"
     end
+    return nil
+end
+
+local function install()
+    local BA = AttachmentsUI
+    local Universal = gunworks("UniversalAttachment")
+    local Bayonet = gunworks("Bayonet")
+    local Required = gunworks("RequiredAttachment")
     installOrientation(BA)
     installView(BA, BAWeaponView)
     BA.registerExtension(ADAPTER_ID, { slots = extraSlots(BA, Universal) })
     BA.registerAdapter(ADAPTER_ID, { hiddenSlot = bayonetHidden(BA, Bayonet, Universal, Required) })
 end
 
-M.addPart("AttachmentsUI", { "SWMG", "GunsOfMarz", "AttachmentsUI" }, install)
+M.addPart("AttachmentsUI", { "SWMG", "GunsOfMarz", "AttachmentsUI" }, install, { check = check })

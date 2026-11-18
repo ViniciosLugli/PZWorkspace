@@ -39,20 +39,29 @@ local function apiMapping(round)
     return nil
 end
 
-local function install()
+local function hotBrass()
     local found, HB = pcall(require, "SpentCasingPhysics/Init")
-    if not found or type(HB) ~= "table" then
-        error("Hot Brass module SpentCasingPhysics/Init not reachable")
+    if found and type(HB) == "table" then return HB end
+    return nil
+end
+
+local function check()
+    if hotBrass() == nil then
+        return "Hot Brass module SpentCasingPhysics/Init not reachable"
     end
     if type(ISReloadWeaponAction) ~= "table" or type(ISReloadWeaponAction.ejectSpentRounds) ~= "function"
         or type(ISReloadWeaponAction.animEvent) ~= "function" then
-        error("ISReloadWeaponAction.ejectSpentRounds or animEvent not found")
+        return "ISReloadWeaponAction.ejectSpentRounds or animEvent not found"
     end
     if type(ISRackFirearm) ~= "table" or type(ISRackFirearm.ejectSpentRounds) ~= "function"
         or type(ISRackFirearm.animEvent) ~= "function" then
-        error("ISRackFirearm.ejectSpentRounds or animEvent not found")
+        return "ISRackFirearm.ejectSpentRounds or animEvent not found"
     end
+    return nil
+end
 
+local function install()
+    local HB = hotBrass()
     local watched, names, aside = {}, {}, {}
     for i = 1, #ROUNDS do
         local mapping = apiMapping(ROUNDS[i])
@@ -155,4 +164,4 @@ local function install()
     M.log("HotBrassCasings: " .. stats.state)
 end
 
-M.addPart("HotBrassCasings", { "HBVCEFb42", "ammomaker", "GunsOfMarz" }, install)
+M.addPart("HotBrassCasings", { "HBVCEFb42", "ammomaker", "GunsOfMarz" }, install, { check = check })

@@ -14,15 +14,24 @@ calling the previous start.
 require "GreaseOfMarz_Status"
 local M = LugliGreaseOfMarz
 
-local function install()
+local function reloadAnim()
     local found, ReloadAnim = pcall(require, "WeaponSystems/Utils/ReloadAnim")
-    if not found or type(ReloadAnim) ~= "table" or type(ReloadAnim.getHandlerForAction) ~= "function" then
-        error("Gunworks ReloadAnim module not reachable")
+    if found and type(ReloadAnim) == "table" and type(ReloadAnim.getHandlerForAction) == "function" then
+        return ReloadAnim
     end
-    if type(ISReloadWeaponAction) ~= "table" or type(ISReloadWeaponAction.start) ~= "function" then
-        error("ISReloadWeaponAction.start not found")
-    end
+    return nil
+end
 
+local function check()
+    if reloadAnim() == nil then return "Gunworks ReloadAnim module not reachable" end
+    if type(ISReloadWeaponAction) ~= "table" or type(ISReloadWeaponAction.start) ~= "function" then
+        return "ISReloadWeaponAction.start not found"
+    end
+    return nil
+end
+
+local function install()
+    local ReloadAnim = reloadAnim()
     local previous = ISReloadWeaponAction.start
     local stats = { repaired = 0 }
     M.reloadStart = stats
@@ -48,4 +57,4 @@ local function install()
     end
 end
 
-M.addPart("ReloadStart", { "SWMG", "UltimateMarksman" }, install)
+M.addPart("ReloadStart", { "SWMG", "UltimateMarksman" }, install, { check = check })

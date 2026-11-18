@@ -28,20 +28,29 @@ local function itemKeyOf(script)
     return ammo and ammo:getItemKey()
 end
 
-local function requireScript(manager, fullType)
+local function scriptOf(manager, fullType)
     local script = manager:getItem(fullType)
-    if script == nil then error(fullType .. " not defined") end
-    return script
+    if script == nil then return nil, fullType .. " not defined" end
+    return script, nil
 end
 
+-- Reads everything before the first write; returns why the rifles cannot be retargeted, or nil.
 local function retarget()
     local manager = ScriptManager.instance
-    local donor = requireScript(manager, DONOR)
-    if itemKeyOf(donor) ~= ROUND then error(DONOR .. " no longer takes " .. ROUND) end
-    if itemKeyOf(requireScript(manager, MAGAZINE)) ~= ROUND then error(MAGAZINE .. " no longer takes " .. ROUND) end
-    requireScript(manager, BOX)
+    local donor, why = scriptOf(manager, DONOR)
+    if why ~= nil then return why end
+    if itemKeyOf(donor) ~= ROUND then return DONOR .. " no longer takes " .. ROUND end
+    local magazine
+    magazine, why = scriptOf(manager, MAGAZINE)
+    if why ~= nil then return why end
+    if itemKeyOf(magazine) ~= ROUND then return MAGAZINE .. " no longer takes " .. ROUND end
+    why = select(2, scriptOf(manager, BOX))
+    if why ~= nil then return why end
     local rifles = {}
-    for i = 1, #RIFLES do rifles[i] = requireScript(manager, RIFLES[i]) end
+    for i = 1, #RIFLES do
+        rifles[i], why = scriptOf(manager, RIFLES[i])
+        if why ~= nil then return why end
+    end
 
     local ammo = donor:getAmmoType()
     for i = 1, #rifles do
@@ -49,28 +58,40 @@ local function retarget()
         rifles[i]:DoParam("MagazineType = " .. MAGAZINE)
         rifles[i]:DoParam("AmmoBox = " .. BOX)
     end
+    return nil
 end
 
+-- Returns the state, or nil and why the part stands down.
 local function decide()
     local replacement = MarzGuns_OnCreate.ComputeVanillaReplacementType
     if replacement("Base.308Bullets") == nil and replacement("Base.M14Clip") == nil then
         return "stock: Guns of Marz converts neither .308 rounds nor M14 magazines in this world"
     end
-    retarget()
+    local why = retarget()
+    if why ~= nil then return nil, why end
     return "retargeted " .. #RIFLES .. " rifles to " .. ROUND .. ", " .. MAGAZINE .. ", " .. BOX
 end
 
-local function onWorldItemsReady()
-    local ok, result = pcall(decide)
+local function onWorldItemsReady(ctx)
+    local ok, result, why = pcall(decide)
+    if ok and why ~= nil then
+        M.headhunter.state = "stood down: " .. why
+        ctx.standDown(why)
+        return
+    end
     M.headhunter.state = ok and result or ("failed: " .. tostring(result))
     M.log("Headhunter: " .. M.headhunter.state)
 end
 
-local function install()
+local function check()
     if type(MarzGuns_OnCreate) ~= "table" or type(MarzGuns_OnCreate.ComputeVanillaReplacementType) ~= "function" then
-        error("Guns of Marz replacer MarzGuns_OnCreate.ComputeVanillaReplacementType not found")
+        return "Guns of Marz replacer MarzGuns_OnCreate.ComputeVanillaReplacementType not found"
     end
-    Events.OnLoadedTileDefinitions.Add(onWorldItemsReady)
+    return nil
 end
 
-M.addPart("Headhunter", { "GunsOfMarz", "UndeadSuvivor" }, install)
+local function install(ctx)
+    Events.OnLoadedTileDefinitions.Add(function() onWorldItemsReady(ctx) end)
+end
+
+M.addPart("Headhunter", { "GunsOfMarz", "UndeadSuvivor" }, install, { check = check })

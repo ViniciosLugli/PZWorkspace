@@ -57,6 +57,15 @@ end
 
 M.keepReloadConstructors()
 
+local function check()
+    for i = 1, #CLASSES do
+        local name = CLASSES[i]
+        if not fromRunAndReload(constructorOf(name)) then return name .. ".new is not Run and Reload's" end
+        if before[name] == nil then return name .. ".new had no constructor before Run and Reload's" end
+    end
+    return nil
+end
+
 -- Everything that can fail runs before the first write, and a rejected write puts every class back,
 -- so the part is either whole or absent.
 local function install()
@@ -65,8 +74,6 @@ local function install()
         local name = CLASSES[i]
         local cls = rawget(_G, name)
         local rrNew, chain = constructorOf(name), before[name]
-        if not fromRunAndReload(rrNew) then error(name .. ".new is not Run and Reload's") end
-        if chain == nil then error(name .. ".new had no constructor before Run and Reload's") end
         local sample = rrNew(cls, nil)
         local flags = {}
         for f = 1, #RR_FLAGS do flags[RR_FLAGS[f]] = sample[RR_FLAGS[f]] end
@@ -99,5 +106,5 @@ local function install()
 end
 
 if not (type(isServer) == "function" and isServer()) then
-    M.addPart("RunAndReload", { "SWMG", "Run and Reload" }, install)
+    M.addPart("RunAndReload", { "SWMG", "Run and Reload" }, install, { check = check })
 end

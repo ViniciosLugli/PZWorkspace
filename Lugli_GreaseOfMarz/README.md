@@ -33,11 +33,13 @@ The console prints one line at boot:
 [Lugli/GreaseOfMarz] loaded [build <date> (<files>)], 6 part(s): AttachmentsUI: installed; Headhunter: installed; HotBrassCasings: installed; LootIndex: installed; ReloadStart: installed; RunAndReload: installed.
 ```
 
-Each fix is `installed`, `skipped: <mod> not active`, or `failed: <reason>`. A failed fix leaves
+Each fix is `installed`, `skipped: <mod> not active`, `tripped: <reason>` (the mod it patches
+changed, so the fix stands down silently), or `failed: <reason>`. A tripped or failed fix leaves
 the game as it would be without this mod. Two more lines follow at world load:
 `[Lugli/GunworksLoot] ... Insert() replaced, self-test passed` and
 `[Lugli/GreaseOfMarz] Headhunter: retargeted ...` (or `stock: ...` when the sandbox leaves the
-vanilla ammo alone).
+vanilla ammo alone, or `Headhunter: stood down for this session: <reason>` when Guns of Marz or
+Undead Survivor changed the items it needs).
 
 ## Licence
 
