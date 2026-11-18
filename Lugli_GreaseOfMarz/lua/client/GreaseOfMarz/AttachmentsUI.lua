@@ -159,6 +159,18 @@ function M.auiFrameKey(modelScript)
     return modelScript:getFullType()
 end
 
+-- Improvised Silencers moves these two muzzle points back onto the barrel at load
+-- (ISIL_MarzGunsCompatibility.lua, ISIL_MARZ_MUZZLE_OFFSETS) and leaves the mesh alone, so the box
+-- measured with Guns of Marz's own muzzle still holds when the muzzle sits at its position instead.
+local MOVED_MUZZLES = {
+    ["MarzGuns.M4A1"] = { 0.3599, 0.0243 },
+    ["MarzGuns.M16A2"] = { 0.4565, 0.0244 },
+}
+
+local function near(y, z, at)
+    return at ~= nil and math.abs(y - at[1]) < 0.0005 and math.abs(z - at[2]) < 0.0005
+end
+
 -- The measured box of one of these models, nil when it has none or the model changed since.
 function M.auiFrame(modelScript)
     if not isOwn(modelScript) then return nil end
@@ -170,7 +182,7 @@ function M.auiFrame(modelScript)
         if frame.muzzle == nil then
             fits = y == nil
         else
-            fits = y ~= nil and math.abs(y - frame.muzzle[1]) < 0.0005 and math.abs(z - frame.muzzle[2]) < 0.0005
+            fits = y ~= nil and (near(y, z, frame.muzzle) or near(y, z, MOVED_MUZZLES[key]))
         end
     end
     if not fits then
