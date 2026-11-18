@@ -1,0 +1,5 @@
+{
+    "IGUI_LugliMPF_NgmFar": "Stand within this generator's range to change what it powers.",
+    "IGUI_LugliMPF_NgmSafehouse": "This generator is in a safehouse you are not allowed in.",
+    "IGUI_LugliMPF_NgmReturnHeld": "(not what a generator you cannot manage claimed)"
+}

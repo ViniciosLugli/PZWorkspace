@@ -54,13 +54,18 @@ local function takesOffHand(chr, item)
     return true
 end
 
-local function install(ctx)
+local function check()
     if type(ISHotbar) ~= "table" or not fromSwapIt(ISHotbar.equipItem) then
-        error("ISHotbar.equipItem is not SwapIt's")
+        return "ISHotbar.equipItem is not SwapIt's"
     end
+    if M.isModActive("FancyHandworkB42_19") and type(isFHModKeyDown) ~= "function" then
+        return "Fancy Handwork's modifier check is missing"
+    end
+end
+
+local function install(ctx)
     local wear = M.isModActive("H_E_C_U")
     local offHand = M.isModActive("FancyHandworkB42_19")
-    if offHand and type(isFHModKeyDown) ~= "function" then error("Fancy Handwork's modifier check is missing") end
     ctx.wrap(ISHotbar, "equipItem", function(callOriginal)
         return function(self, item)
             local chr = self.chr
@@ -92,5 +97,6 @@ M.addPart({
     side = "client",
     phase = "boot",
     pins = { "swapit.equip", "swapit.fhid", "fh.modkey", "hecu.equip" },
+    check = check,
     install = install,
 })
