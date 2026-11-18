@@ -28,13 +28,10 @@ local function allowedIgnoringPause(hotbar)
     return queue == nil or #queue.queue == 0
 end
 
-local function check()
-    if type(ISHotbar) ~= "table" or not fromSwapIt(ISHotbar.isAllowedToActivateSlot) then
-        return "ISHotbar.isAllowedToActivateSlot is not SwapIt's"
-    end
-end
-
 local function install(ctx)
+    if type(ISHotbar) ~= "table" or not fromSwapIt(ISHotbar.isAllowedToActivateSlot) then
+        error("ISHotbar.isAllowedToActivateSlot is not SwapIt's")
+    end
     ctx.wrap(ISHotbar, "isAllowedToActivateSlot", function(callOriginal)
         return function(self)
             if not isGamePaused() then return callOriginal(self) end
@@ -53,6 +50,5 @@ M.addPart({
     side = "client",
     phase = "boot",
     pins = { "swapit.allowed", "bp.allowed" },
-    check = check,
     install = install,
 })

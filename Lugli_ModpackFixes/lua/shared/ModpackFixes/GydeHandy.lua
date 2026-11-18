@@ -13,22 +13,19 @@ require "ModpackFixes_Status"
 local M = LugliModpackFixes
 local MAGAZINE = "Base.HandyMag"
 
-local function check()
+local function install(ctx)
     local extended, base = GydeTraitMagsExtended, GydeTraitMags
     if type(extended) ~= "table" or type(extended.magazineTraits) ~= "table"
         or type(extended.magazineStats) ~= "table" then
-        return "Extended's magazine tables are missing"
+        error("Extended's magazine tables are missing")
     end
     if type(base) ~= "table" or type(base.magazineTraits) ~= "table" then
-        return "the base mod's magazine table is missing"
+        error("the base mod's magazine table is missing")
     end
     if extended.magazineTraits[MAGAZINE] == nil or extended.magazineStats[MAGAZINE] == nil then
-        return "Extended does not handle the Handy magazine"
+        error("Extended does not handle the Handy magazine")
     end
-end
-
-local function install(ctx)
-    local traits = GydeTraitMags.magazineTraits
+    local traits = base.magazineTraits
     local saved = traits[MAGAZINE]
     if saved == nil then return end
     traits[MAGAZINE] = nil
@@ -47,6 +44,5 @@ M.addPart({
     all = { "GydesTraitMagazinesExtended", "GydeTraitMags" },
     side = "client",
     pins = { "gyde.base", "gyde.read", "gyde.handover" },
-    check = check,
     install = install,
 })

@@ -24,14 +24,10 @@ local function driving(character)
     return vehicle ~= nil and vehicle:isEngineRunning() and vehicle:getSeat(character) ~= -1
 end
 
-local function check()
-    if type(ISVehicleSeatUI) ~= "table" or not fromKI5(ISVehicleSeatUI.render) then
-        return "ISVehicleSeatUI.render is not KI5's"
-    end
-    return nil
-end
-
 local function install(ctx)
+    if type(ISVehicleSeatUI) ~= "table" or not fromKI5(ISVehicleSeatUI.render) then
+        error("ISVehicleSeatUI.render is not KI5's")
+    end
     ctx.wrap(ISVehicleSeatUI, "render", function(callOriginal)
         return function(self, ...)
             if driving(self.character) then return end
@@ -50,6 +46,5 @@ M.addPart({
     side = "client",
     phase = "boot",
     pins = { "cdvf.render", "ki5.render" },
-    check = check,
     install = install,
 })

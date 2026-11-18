@@ -12,21 +12,15 @@ Meister reads that label from its own global table on every menu, so nothing is 
 require "ModpackFixes_Status"
 local M = LugliModpackFixes
 
-local function check()
-    local p4 = P4PickingMeister
-    if type(p4) ~= "table" or type(p4.OnFillInventoryObjectContextMenu_Grab) ~= "function" then
-        return "Picking Meister's menu handler is missing"
-    end
-    local stock = getText("ContextMenu_PlaceItemOnGround")
-    if p4.Menu_Vanilla_Place ~= stock then
-        return "Picking Meister no longer anchors on the Place Item label"
-    end
-    return nil
-end
-
 local function install(ctx)
     local p4 = P4PickingMeister
+    if type(p4) ~= "table" or type(p4.OnFillInventoryObjectContextMenu_Grab) ~= "function" then
+        error("Picking Meister's menu handler is missing")
+    end
     local stock, renamed = getText("ContextMenu_PlaceItemOnGround"), getText("IGUI_Place")
+    if p4.Menu_Vanilla_Place ~= stock then
+        error("Picking Meister no longer anchors on the Place Item label")
+    end
     p4.Menu_Vanilla_Place = renamed
     if p4.Menu_Vanilla_Place ~= renamed then error("Picking Meister's table rejected the change") end
     ctx.undo(function()
@@ -44,6 +38,5 @@ M.addPart({
     side = "client",
     phase = "world",
     pins = { "p4.label", "p4.anchor", "bit.place" },
-    check = check,
     install = install,
 })

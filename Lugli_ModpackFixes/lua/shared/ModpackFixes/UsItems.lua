@@ -20,6 +20,12 @@ local M = LugliModpackFixes
 local MASKS = { "UndeadSurvivor.HeadhunterGasmask", "UndeadSurvivor.DeadlyHeadhunterGasmask", "UndeadSurvivor.PrepperMask" }
 local KNIFE = "UndeadSurvivor.StalkerKnife"
 
+local function script(manager, fullType)
+    local item = manager:getItem(fullType)
+    if item == nil then error(fullType .. " is not defined") end
+    return item
+end
+
 local function contains(list, value)
     for i = 0, list:size() - 1 do
         if list:get(i) == value then return true end
@@ -27,41 +33,14 @@ local function contains(list, value)
     return false
 end
 
-local function sharpenInputs(manager)
-    local out = {}
-    local recipes = manager:getAllCraftRecipes()
-    for r = 0, recipes:size() - 1 do
-        local recipe = recipes:get(r)
-        local inputs = recipe:getInputs()
-        for i = 0, inputs:size() - 1 do
-            local input = inputs:get(i)
-            local tags = input:getItemTags()
-            if tags ~= nil and tags:contains(ItemTag.SHARPENABLE) then
-                out[#out + 1] = { recipe = recipe, input = input }
-            end
-        end
-    end
-    return out
-end
-
-local function check()
-    if ItemTag.SHARPENABLE == nil or ItemTag.GAS_MASK == nil then return "ItemTag.SHARPENABLE or GAS_MASK is missing" end
-    local manager = ScriptManager.instance
-    for i = 1, #MASKS do
-        local mask = manager:getItem(MASKS[i])
-        if mask == nil then return MASKS[i] .. " is not defined" end
-        if not mask:hasTag(ItemTag.GAS_MASK) then return MASKS[i] .. " is no longer a gas mask" end
-    end
-    if manager:getItem(KNIFE) == nil then return KNIFE .. " is not defined" end
-    if #sharpenInputs(manager) == 0 then return "no recipe input takes the sharpenable tag" end
-end
-
 local function install(ctx)
     local manager = ScriptManager.instance
     local sharpenable = ItemTag.SHARPENABLE
+    if sharpenable == nil or ItemTag.GAS_MASK == nil then error("ItemTag.SHARPENABLE or GAS_MASK is missing") end
 
     for i = 1, #MASKS do
-        local mask = manager:getItem(MASKS[i])
+        local mask = script(manager, MASKS[i])
+        if not mask:hasTag(ItemTag.GAS_MASK) then error(MASKS[i] .. " is no longer a gas mask") end
         if not mask:isKeepOnDeplete() then
             mask:setKeepOnDeplete(true)
             ctx.undo(function() mask:setKeepOnDeplete(false) end)
@@ -69,27 +48,36 @@ local function install(ctx)
         end
     end
 
-    local knife = manager:getItem(KNIFE)
+    local knife = script(manager, KNIFE)
     if not knife:hasTag(sharpenable) then
         knife:DoParam("Tags = base:sharpenable")
         ctx.undo(function() knife:getTags():remove(sharpenable) end)
         if not knife:hasTag(sharpenable) then error(KNIFE .. " did not take the sharpenable tag") end
     end
-    local targets = sharpenInputs(manager)
-    for t = 1, #targets do
-        local recipe = targets[t].recipe
-        local items = targets[t].input:getPossibleInputItems()
-        if not contains(items, knife) then
-            items:add(knife)
-            ctx.undo(function() items:remove(knife) end)
-            if not contains(items, knife) then error(recipe:getName() .. " did not take " .. KNIFE) end
-        end
-        local used = knife:getUsedInRecipes()
-        if not contains(used, recipe:getName()) then
-            used:add(recipe:getName())
-            ctx.undo(function() used:remove(recipe:getName()) end)
+    local recipes, joined = manager:getAllCraftRecipes(), 0
+    for r = 0, recipes:size() - 1 do
+        local recipe = recipes:get(r)
+        local inputs = recipe:getInputs()
+        for i = 0, inputs:size() - 1 do
+            local input = inputs:get(i)
+            local tags = input:getItemTags()
+            if tags ~= nil and tags:contains(sharpenable) then
+                local items = input:getPossibleInputItems()
+                if not contains(items, knife) then
+                    items:add(knife)
+                    ctx.undo(function() items:remove(knife) end)
+                    if not contains(items, knife) then error(recipe:getName() .. " did not take " .. KNIFE) end
+                end
+                local used = knife:getUsedInRecipes()
+                if not contains(used, recipe:getName()) then
+                    used:add(recipe:getName())
+                    ctx.undo(function() used:remove(recipe:getName()) end)
+                end
+                joined = joined + 1
+            end
         end
     end
+    if joined == 0 then error("no recipe input takes the sharpenable tag") end
 end
 
 M.addPart({
@@ -101,6 +89,5 @@ M.addPart({
     all = { "UndeadSuvivor" },
     side = "both",
     phase = "world",
-    check = check,
     install = install,
 })

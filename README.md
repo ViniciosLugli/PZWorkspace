@@ -15,6 +15,7 @@ versions are on the Workshop; these are the sources behind them.
 | [Lugli_GreaseOfMarz](Lugli_GreaseOfMarz) | Unofficial fixes for the Gunworks and Guns of Marz gun stack: a faster loot pass at world load, the reload props Ultimate Marksman drops, and Headhunter rifles that take Guns of Marz ammo. | [3839186582](https://steamcommunity.com/sharedfiles/filedetails/?id=3839186582) |
 | [Lugli_HonestWeight](Lugli_HonestWeight) | Every item weighs what the real object weighs, times one Scale for the whole game. Clothes and small goods get lighter, tools and guns heavier, and nothing becomes too heavy to carry. | [3839187033](https://steamcommunity.com/sharedfiles/filedetails/?id=3839187033) |
 | [Lugli_ModpackFixes](Lugli_ModpackFixes) | Fixes for conflicts between popular Build 42 mods and for bugs inside some of them: SwapIt with Fancy Handwork, H.E.C.U. and Better Pause, Super Gore with the Special Zombies Tank, loot in Specific Loot's trucks, tile properties under More Damaged Objects and Raven Creek, and more. | [3839187513](https://steamcommunity.com/sharedfiles/filedetails/?id=3839187513) |
+| [Lugli_CrispScreen](Lugli_CrispScreen) | Turns off the slight blur the game puts over the whole screen, with a little sharpening on top. Shader only. | [3841777696](https://steamcommunity.com/sharedfiles/filedetails/?id=3841777696) |
 
 Timing numbers were measured on 42.20.4 with 337 mods: same machine, same save, arms interleaved
 A,B,A,B, every run checked against its own log, the first pair of each campaign discarded as cold.
@@ -30,17 +31,11 @@ Lugli_EmergencyLights  ->  nothing
 Lugli_GreaseOfMarz     ->  nothing; each fix turns on only beside the mods it fixes
 Lugli_HonestWeight     ->  nothing
 Lugli_ModpackFixes     ->  nothing; each fix turns on only beside the mods it fixes
+Lugli_CrispScreen      ->  nothing
 ```
 
 ZombieBuddy is a hard requirement for both Java mods, not a soft one: without it their jars never
 load. Neither declares it in `mod.info`, for the reason below.
-
-## Hosting the collection
-
-[LugliPack_Server](LugliPack_Server) holds the server settings for the
-[LugliPack collection](https://steamcommunity.com/sharedfiles/filedetails/?id=3839272101): the
-`.ini` with its mod list in load order, the sandbox options and the spawn regions, and a short
-setup guide.
 
 ## Layout
 

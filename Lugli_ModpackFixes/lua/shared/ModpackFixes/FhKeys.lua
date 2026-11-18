@@ -45,12 +45,6 @@ local function swapOnKey(key)
     end
 end
 
-local function check()
-    if type(FHSwapHandsAction) ~= "table" or type(FHSwapHandsAction.new) ~= "function" then
-        return "FHSwapHandsAction is missing"
-    end
-end
-
 local function install(ctx)
     local onKey = ctx.guard(swapOnKey)
     ctx.wrap(Events.OnKeyPressed, "Add", function(add)
@@ -58,8 +52,7 @@ local function install(ctx)
             if dropped ~= nil or not fromFancyHandwork(fn) then return add(fn) end
             if FHSwapHandsAction ~= nil then swapAction = FHSwapHandsAction end
             if type(swapAction) ~= "table" or type(swapAction.new) ~= "function" then
-                ctx.standDown("FHSwapHandsAction is missing")
-                return add(fn)
+                error("FHSwapHandsAction is missing")
             end
             dropped = fn
             return add(onKey)
@@ -83,6 +76,5 @@ M.addPart({
     side = "client",
     phase = "boot",
     pins = { "fh.swap", "fh.binds", "fh.handler", "fh.register" },
-    check = check,
     install = install,
 })

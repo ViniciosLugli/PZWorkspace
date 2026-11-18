@@ -1,14 +1,11 @@
 --[[
-KI5 vehicles: nothing ends up in the seats and compartments they never let anyone open.
+KI5 vehicles: nothing ends up in the seats they never let anyone open.
 
 What happens today. Some KI5 vehicles seal seat containers on purpose: every seat of the '84
 Cadillac Gage LAV-300 (APC and FSV, driver's seat included) answers V300.ContainerAccess.BlankSeat,
 and the eight crew seats of the '85 Chevy Step Van SWAT answer damnlib's DAMN.ContainerAccess.NoStorage,
-both of which never allow access. The '63 Beetle Buggy keeps the Beetle's inner trunk
-(BTL63InnerTrunk, from the shared BTL63InnerTrunkCompartment template) whose test,
-DAMN.ContainerAccess.TrunkSecondRow, opens it only from rear seat 2 or 3 or from the DoorFrontLeft
-area, and the buggy has two seats and no such area. Items still get in two ways:
-  - SpecLoot's loot tables (and 63beetle's own, for the buggy) roll loot into every one of them, on the vehicle's first spawn and again
+both of which never allow access. Items still get in two ways:
+  - SpecLoot's loot tables roll loot into every one of them, on the vehicle's first spawn and again
     in its own re-roll a few ticks later (ResetContainers.lua, forceVehicleDistribution).
   - Vanilla's seat shuffle (ISVehicleMenu.moveItemsFromSeat, also used by KI5's seat UI) moves a
     full seat's items into the next seat it can switch to, with no check that the player could ever
@@ -35,21 +32,12 @@ What this part changes.
 require "ModpackFixes_Status"
 local M = LugliModpackFixes
 
--- The buggy's inner trunk opens from seat 2 or 3 or from its own area: sealed only while the buggy
--- still has neither, so a 63beetle update that gives it a way in turns this off by itself.
-local function noWayIn(part)
-    local vehicle, area = part:getVehicle(), part:getArea()
-    return vehicle:getMaxPassengers() <= 2 and (area == nil or vehicle:getScript():getAreaById(area) == nil)
-end
-
 -- Script name after its module, as the engine names it for the loot tables, to the id prefix the
--- vehicle's own template seals, the trunk a sealed part's old contents go to, and, where the seal
--- is not declared outright, the check that it still holds.
+-- vehicle's own seat template seals with a wildcard part, and the trunk a seat's old contents go to.
 local SEALED = {
     ["84gageV300apc"] = { prefix = "Seat", trunk = "V300Trunk" },
     ["84gageV300fsv"] = { prefix = "Seat", trunk = "V300Trunk" },
     ["85chevyStepVanSWAT"] = { prefix = "SeatCrew", trunk = "STP85Trunk1" },
-    ["63beetleBuggy"] = { prefix = "BTL63InnerTrunk", trunk = "BTL63Trunk", holds = noWayIn },
 }
 
 local function scriptType(vehicle)
@@ -58,15 +46,9 @@ local function scriptType(vehicle)
     return (name:gsub("^[^.]*%.", "", 1))
 end
 
-local function sealedId(vehicleType, id)
+local function isSealed(vehicleType, partId)
     local sealed = vehicleType ~= nil and SEALED[vehicleType] or nil
-    if sealed ~= nil and id ~= nil and id:sub(1, #sealed.prefix) == sealed.prefix then return sealed end
-    return nil
-end
-
-local function isSealed(vehicleType, part)
-    local sealed = part ~= nil and sealedId(vehicleType, part:getId()) or nil
-    return sealed ~= nil and (sealed.holds == nil or sealed.holds(part))
+    return sealed ~= nil and partId ~= nil and partId:sub(1, #sealed.prefix) == sealed.prefix
 end
 
 local function itemsOf(container)
@@ -76,11 +58,9 @@ local function itemsOf(container)
     return list
 end
 
--- A roll's items exist only on this side yet, so nothing is sent. The names are checked first: a
--- bag's roll passes an ItemPickerContainer, not an ItemContainer (ItemPickerJava.java:630, 1153).
+-- A roll's items exist only on this side yet, so nothing is sent.
 local function emptyRolledSeat(roomOrVehicle, containerType, container)
-    if sealedId(roomOrVehicle, containerType) == nil then return end
-    if not isSealed(roomOrVehicle, container:getVehiclePart()) or container:isEmpty() then return end
+    if not isSealed(roomOrVehicle, containerType) or container:getVehiclePart() == nil or container:isEmpty() then return end
     local rolled = itemsOf(container)
     for j = 0, rolled:size() - 1 do container:Remove(rolled:get(j)) end
 end
@@ -95,7 +75,7 @@ local function emptyOnLoad(vehicle)
     for i = 0, vehicle:getPartCount() - 1 do
         local part = vehicle:getPartByIndex(i)
         local container = part:getItemContainer()
-        if container ~= nil and isSealed(vehicleType, part) and not container:isEmpty() then
+        if container ~= nil and isSealed(vehicleType, part:getId()) and not container:isEmpty() then
             local moved = itemsOf(container)
             for j = 0, moved:size() - 1 do trunk:AddItem(moved:get(j)) end
             sendRemoveItemsFromContainer(container, moved)
@@ -112,7 +92,7 @@ local function install(ctx)
     if not M.isDedicatedServer() then
         ctx.wrap(ISVehicleMenu, "transferSeatItems", function(original)
             return function(player, vehicle, part, otherPart, ...)
-                if isSealed(scriptType(vehicle), otherPart) then return 0 end
+                if isSealed(scriptType(vehicle), otherPart:getId()) then return 0 end
                 return original(player, vehicle, part, otherPart, ...)
             end
         end)
@@ -122,10 +102,10 @@ end
 M.addPart({
     name = "sealed-seats",
     switch = "SealedSeats",
-    title = "KI5 vehicles: nothing ends up in seats or compartments that cannot be opened",
-    tip = "The LAV-300's seats and the Step Van SWAT's crew seats can never be opened, yet SpecLoot rolls loot into them and moving items between the LAV-300's seats pushes them into the next one, and a seat holding items can never be sat in. The '63 Beetle Buggy's inner trunk cannot be opened either, yet gets loot. Nothing goes into any of them any more, and what is already there is moved to the vehicle's trunk when it loads. Only active with the LAV-300, the '85 Chevy Step Van or the '63 Beetle.",
+    title = "KI5 vehicles: nothing ends up in seats that cannot be opened",
+    tip = "The LAV-300's seats and the Step Van SWAT's crew seats can never be opened, yet SpecLoot rolls loot into them and moving items between the LAV-300's seats pushes them into the next one, and a seat holding items can never be sat in. Nothing goes into those seats any more, and what is already there is moved to the vehicle's trunk when it loads. Only active with the LAV-300 or the '85 Chevy Step Van.",
     kind = "fix",
-    any = { "84gageV300", "85chevyStepVan", "63beetle" },
+    any = { "84gageV300", "85chevyStepVan" },
     side = "both",
     phase = "boot",
     pins = { "v300.apcseats", "v300.fsvseats", "stp85.crewseats" },

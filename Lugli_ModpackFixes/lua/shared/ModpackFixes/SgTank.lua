@@ -19,13 +19,10 @@ local function isTank(target)
     return instanceof(target, "IsoZombie") and target:getModData().SZType == "Tank"
 end
 
-local function check()
-    if type(SuperGore) ~= "table" or type(SuperGore.onWeaponHit) ~= "function" then
-        return "SuperGore.onWeaponHit is missing"
-    end
-end
-
 local function install(ctx)
+    if type(SuperGore) ~= "table" or type(SuperGore.onWeaponHit) ~= "function" then
+        error("SuperGore.onWeaponHit is missing")
+    end
     ctx.wrap(SuperGore, "onWeaponHit", function(callOriginal)
         return function(attacker, target, weapon, damage)
             if isTank(target) then return end
@@ -44,6 +41,5 @@ M.addPart({
     side = "server",
     phase = "world",
     pins = { "sg.gate", "sg.weaponhit", "sg.hitreg", "szt.settle", "szt.buffer" },
-    check = check,
     install = install,
 })

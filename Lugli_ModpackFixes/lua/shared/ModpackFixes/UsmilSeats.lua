@@ -18,9 +18,10 @@ local M = LugliModpackFixes
 local FIXES = { ["Fix USMIL Seat"] = true, ["Fix USMIL Seat 1"] = true }
 local SEATS = { "Seat0", "Seat1front", "Seat1rear", "Seat2" }
 
-local function missingSeats(scripts)
+local function install(ctx)
+    local scripts = getScriptManager()
     local all = scripts:getAllFixing(ArrayList.new())
-    local out = {}
+    local added = {}
     for i = 0, all:size() - 1 do
         local fixing = all:get(i)
         if FIXES[fixing:getName()] then
@@ -28,31 +29,15 @@ local function missingSeats(scripts)
             for s = 1, #SEATS do
                 local wrong, right = "damnCraft." .. SEATS[s], "USMIL." .. SEATS[s]
                 if list:contains(wrong) and not list:contains(right) then
-                    out[#out + 1] = { fixing = fixing, wrong = wrong, right = right }
+                    if scripts:FindItem(right) == nil then error(right .. " is missing") end
+                    if scripts:FindItem(wrong) ~= nil then error(wrong .. " exists: nothing to fix") end
+                    fixing:addRequiredItem(right)
+                    added[#added + 1] = { list = list, item = right }
                 end
             end
         end
     end
-    return out
-end
-
-local function check()
-    local scripts = getScriptManager()
-    local seats = missingSeats(scripts)
-    if #seats == 0 then return "no USMIL seat repair lists a damnCraft seat" end
-    for i = 1, #seats do
-        if scripts:FindItem(seats[i].right) == nil then return seats[i].right .. " is missing" end
-        if scripts:FindItem(seats[i].wrong) ~= nil then return seats[i].wrong .. " exists: nothing to fix" end
-    end
-end
-
-local function install(ctx)
-    local seats = missingSeats(getScriptManager())
-    local added = {}
-    for i = 1, #seats do
-        seats[i].fixing:addRequiredItem(seats[i].right)
-        added[#added + 1] = { list = seats[i].fixing:getRequiredItem(), item = seats[i].right }
-    end
+    if #added == 0 then error("no USMIL seat repair lists a damnCraft seat") end
     ctx.undo(function()
         for i = 1, #added do added[i].list:remove(added[i].item) end
     end)
@@ -68,6 +53,5 @@ M.addPart({
     side = "both",
     phase = "boot",
     pins = { "usmil.seats" },
-    check = check,
     install = install,
 })

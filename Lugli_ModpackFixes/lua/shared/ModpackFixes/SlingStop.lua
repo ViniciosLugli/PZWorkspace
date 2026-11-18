@@ -20,13 +20,10 @@ local function fromSling(fn)
     return ok and type(name) == "string" and string.find(name, SLING_FILE, 1, true) ~= nil
 end
 
-local function check()
-    if type(ISAttachItemHotbar) ~= "table" or not fromSling(ISAttachItemHotbar.stop) then
-        return "ISAttachItemHotbar.stop is not Weapon Sling's"
-    end
-end
-
 local function install(ctx)
+    if type(ISAttachItemHotbar) ~= "table" or not fromSling(ISAttachItemHotbar.stop) then
+        error("ISAttachItemHotbar.stop is not Weapon Sling's")
+    end
     ctx.wrap(ISAttachItemHotbar, "stop", function(callOriginal)
         return function(self, ...)
             local hotbar, item = self.hotbar, self.item
@@ -49,6 +46,5 @@ M.addPart({
     side = "client",
     phase = "boot",
     pins = { "sling.stop", "sling.time" },
-    check = check,
     install = install,
 })

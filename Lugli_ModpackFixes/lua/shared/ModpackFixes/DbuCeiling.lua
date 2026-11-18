@@ -20,13 +20,10 @@ local M = LugliModpackFixes
 
 local ASKED = "LMpfixAskedCapacity"
 
-local function check()
-    if type(DBU) ~= "table" or type(DBU.GetUpgradedStats) ~= "function" or type(DBU.UpdateBag) ~= "function" then
-        return "DBU.GetUpgradedStats or DBU.UpdateBag is missing"
-    end
-end
-
 local function install(ctx)
+    if type(DBU) ~= "table" or type(DBU.GetUpgradedStats) ~= "function" or type(DBU.UpdateBag) ~= "function" then
+        error("DBU.GetUpgradedStats or DBU.UpdateBag is missing")
+    end
     local computed = DBU.GetUpgradedStats
     ctx.wrap(DBU, "GetUpgradedStats", function(callOriginal)
         return function(bag, ...)
@@ -64,6 +61,5 @@ M.addPart({
     side = "both",
     phase = "boot",
     pins = { "dbu.stats", "dbu.update", "dbu.invcheck" },
-    check = check,
     install = install,
 })

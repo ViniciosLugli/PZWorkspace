@@ -2,13 +2,6 @@ VERSION = 1,
 
 /* GENERATED from the parts under lua/shared/ModpackFixes. Never edit. */
 
-option LugliModpackFixes.AuiCleanUI = {
-	type = boolean,
-	default = true,
-	page = LugliModpackFixes,
-	translation = LugliModpackFixes_AuiCleanUI,
-}
-
 option LugliModpackFixes.BiiTooltip = {
 	type = boolean,
 	default = true,
@@ -21,13 +14,6 @@ option LugliModpackFixes.BpHotbar = {
 	default = true,
 	page = LugliModpackFixes,
 	translation = LugliModpackFixes_BpHotbar,
-}
-
-option LugliModpackFixes.BpNeat = {
-	type = boolean,
-	default = true,
-	page = LugliModpackFixes,
-	translation = LugliModpackFixes_BpNeat,
 }
 
 option LugliModpackFixes.CleanUIBlink = {
@@ -86,13 +72,6 @@ option LugliModpackFixes.ImpSpawn = {
 	translation = LugliModpackFixes_ImpSpawn,
 }
 
-option LugliModpackFixes.LootNames = {
-	type = boolean,
-	default = true,
-	page = LugliModpackFixes,
-	translation = LugliModpackFixes_LootNames,
-}
-
 option LugliModpackFixes.NellisExit = {
 	type = boolean,
 	default = true,
@@ -107,53 +86,11 @@ option LugliModpackFixes.NellisPower = {
 	translation = LugliModpackFixes_NellisPower,
 }
 
-option LugliModpackFixes.NgmClaims = {
-	type = boolean,
-	default = true,
-	page = LugliModpackFixes,
-	translation = LugliModpackFixes_NgmClaims,
-}
-
-option LugliModpackFixes.NgmInfo = {
-	type = boolean,
-	default = true,
-	page = LugliModpackFixes,
-	translation = LugliModpackFixes_NgmInfo,
-}
-
-option LugliModpackFixes.NgmManage = {
-	type = boolean,
-	default = true,
-	page = LugliModpackFixes,
-	translation = LugliModpackFixes_NgmManage,
-}
-
-option LugliModpackFixes.NgmNeat = {
-	type = boolean,
-	default = true,
-	page = LugliModpackFixes,
-	translation = LugliModpackFixes_NgmNeat,
-}
-
-option LugliModpackFixes.NgmSlice = {
-	type = boolean,
-	default = true,
-	page = LugliModpackFixes,
-	translation = LugliModpackFixes_NgmSlice,
-}
-
 option LugliModpackFixes.P4Place = {
 	type = boolean,
 	default = true,
 	page = LugliModpackFixes,
 	translation = LugliModpackFixes_P4Place,
-}
-
-option LugliModpackFixes.ReloadStrap = {
-	type = boolean,
-	default = true,
-	page = LugliModpackFixes,
-	translation = LugliModpackFixes_ReloadStrap,
 }
 
 option LugliModpackFixes.SealedSeats = {
@@ -189,13 +126,6 @@ option LugliModpackFixes.SlingStop = {
 	default = true,
 	page = LugliModpackFixes,
 	translation = LugliModpackFixes_SlingStop,
-}
-
-option LugliModpackFixes.SrvProf = {
-	type = boolean,
-	default = true,
-	page = LugliModpackFixes,
-	translation = LugliModpackFixes_SrvProf,
 }
 
 option LugliModpackFixes.TileProps = {

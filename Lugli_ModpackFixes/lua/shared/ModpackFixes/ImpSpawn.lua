@@ -19,32 +19,22 @@ local M = LugliModpackFixes
 
 local DEAD, SEDAN = "Base.67chevyImpala", "Base.67chevyImpalaSedanS"
 
-local function listsDead(def)
-    return type(def) == "table" and type(def.vehicles) == "table" and def.vehicles[DEAD] ~= nil
-end
-
-local function check()
-    if type(VehicleZoneDistribution) ~= "table" then return "VehicleZoneDistribution is missing" end
-    local scripts = getScriptManager()
-    if scripts:getVehicle(DEAD) ~= nil then return DEAD .. " exists: nothing to move" end
-    if scripts:getVehicle(SEDAN) == nil then return SEDAN .. " is missing" end
-    for _, def in pairs(VehicleZoneDistribution) do
-        if listsDead(def) then return nil end
-    end
-    return "no zone lists " .. DEAD
-end
-
 local function install(ctx)
+    if type(VehicleZoneDistribution) ~= "table" then error("VehicleZoneDistribution is missing") end
+    local scripts = getScriptManager()
+    if scripts:getVehicle(DEAD) ~= nil then error(DEAD .. " exists: nothing to move") end
+    if scripts:getVehicle(SEDAN) == nil then error(SEDAN .. " is missing") end
     local moved = {}
-    for _, def in pairs(VehicleZoneDistribution) do
-        if listsDead(def) then
-            local vehicles = def.vehicles
+    for zone, def in pairs(VehicleZoneDistribution) do
+        local vehicles = type(def) == "table" and def.vehicles or nil
+        if type(vehicles) == "table" and vehicles[DEAD] ~= nil then
             local entry, kept = vehicles[DEAD], vehicles[SEDAN] ~= nil
             vehicles[DEAD] = nil
             if not kept then vehicles[SEDAN] = entry end
             moved[#moved + 1] = { vehicles = vehicles, entry = entry, kept = kept }
         end
     end
+    if #moved == 0 then error("no zone lists " .. DEAD) end
     ctx.undo(function()
         for i = 1, #moved do
             local m = moved[i]
@@ -64,6 +54,5 @@ M.addPart({
     side = "server",
     phase = "boot",
     pins = { "imp.spawn" },
-    check = check,
     install = install,
 })

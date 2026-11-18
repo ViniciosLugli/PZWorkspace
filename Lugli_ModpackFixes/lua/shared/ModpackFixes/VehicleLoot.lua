@@ -79,7 +79,7 @@ local added, filled = {}, {}
 
 local function lootTable(vd, name)
     local t = vd[name]
-    if type(t) ~= "table" then return nil, "loot table " .. name .. " is missing" end
+    if type(t) ~= "table" then error("loot table " .. name .. " is missing") end
     return t
 end
 
@@ -89,16 +89,12 @@ local function hollowEntries(vd, byVehicle)
     for vehicle, recipe in pairs(HOLLOW) do
         local entry = byVehicle[vehicle]
         if type(entry) == "table" and entry.Normal == nil then
-            local normal, why
+            local normal
             if type(recipe) == "string" then
-                normal, why = lootTable(vd, recipe)
-                if normal == nil then return nil, why end
+                normal = lootTable(vd, recipe)
             else
                 normal = {}
-                for part, tableName in pairs(recipe) do
-                    normal[part], why = lootTable(vd, tableName)
-                    if normal[part] == nil then return nil, why end
-                end
+                for part, tableName in pairs(recipe) do normal[part] = lootTable(vd, tableName) end
             end
             out[vehicle] = normal
         end
@@ -109,7 +105,7 @@ end
 local function entries()
     local vd = VehicleDistributions
     local byVehicle = type(vd) == "table" and vd[1] or nil
-    if type(byVehicle) ~= "table" then return nil, "VehicleDistributions[1] is missing" end
+    if type(byVehicle) ~= "table" then error("VehicleDistributions[1] is missing") end
     local out = {}
     for burnt, live in pairs(BURNT) do
         if byVehicle[burnt] == nil and type(byVehicle[live]) == "table" then out[burnt] = byVehicle[live] end
@@ -119,22 +115,17 @@ local function entries()
             local normal = {}
             for part, tableName in pairs(parts) do
                 local t = vd[tableName]
-                if type(t) ~= "table" then return nil, "vanilla loot table " .. tableName .. " is missing" end
+                if type(t) ~= "table" then error("vanilla loot table " .. tableName .. " is missing") end
                 normal[part] = t
             end
             out[vehicle] = { Normal = normal }
         end
     end
-    local hollow, why = hollowEntries(vd, byVehicle)
-    if hollow == nil then return nil, why end
-    return { byVehicle = byVehicle, out = out, hollow = hollow }
+    return byVehicle, out, hollowEntries(vd, byVehicle)
 end
 
--- Returns why the part must stand down, having written nothing, or nil once applied.
 local function apply()
-    local plan, why = entries()
-    if plan == nil then return why end
-    local byVehicle, out, hollow = plan.byVehicle, plan.out, plan.hollow
+    local byVehicle, out, hollow = entries()
     for vehicle, entry in pairs(out) do
         byVehicle[vehicle] = entry
         if byVehicle[vehicle] ~= entry then error("VehicleDistributions rejected " .. vehicle) end
@@ -170,26 +161,14 @@ end
 local function reconcile(def)
     local want = M.switchOn(def)
     if want == hasAdded() then return end
-    if want then
-        local why = apply()
-        if why ~= nil then
-            M.standDown(def, why)
-            return
-        end
-    else
-        remove()
-    end
+    if want then apply() else remove() end
     ItemPickerJava.Parse()
 end
 
 -- Loot tables are server Lua, which loads with the world: nothing to check before the merge.
 local function install(ctx)
-    local function onMerge()
-        local why = apply()
-        if why ~= nil then ctx.standDown(why) end
-    end
     ctx.undo(remove)
-    ctx.on("OnPostDistributionMerge", onMerge)
+    ctx.on("OnPostDistributionMerge", apply)
     ctx.at("OnGameStart", function() reconcile(ctx.def) end)
     ctx.at("OnServerStarted", function() reconcile(ctx.def) end)
 end

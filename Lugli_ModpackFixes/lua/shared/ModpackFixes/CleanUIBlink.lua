@@ -49,14 +49,10 @@ local function drawBlink(page)
     end
 end
 
-local function check()
-    local cls = cleanUIPage()
-    if cls == nil then return "ISInventoryPage is not CleanUI's" end
-    if cls.setBlinkingContainer ~= nil then return "CleanUI's inventory page already has setBlinkingContainer" end
-end
-
 local function install(ctx)
     local cls = cleanUIPage()
+    if cls == nil then error("ISInventoryPage is not CleanUI's") end
+    if cls.setBlinkingContainer ~= nil then error("CleanUI's inventory page already has setBlinkingContainer") end
     cls.setBlinkingContainer = function(self, blinking, containerType)
         if not ctx.enabled() then return end
         self.blinkContainer = blinking == true
@@ -82,6 +78,5 @@ M.addPart({
     side = "client",
     phase = "boot",
     pins = { "cleanui.page" },
-    check = check,
     install = install,
 })

@@ -21,18 +21,14 @@ local function fromReset(fn)
     return ok and type(name) == "string" and string.find(name, BII_RESET_FILE, 1, true) ~= nil
 end
 
-local function check()
-    local tooltip = ISToolTipInv
-    if type(tooltip) ~= "table" or type(tooltip.render) ~= "function" then
-        return "ISToolTipInv.render is missing"
-    end
-    if type(EuryTooltipController) ~= "table" or EuryTooltipController.installed ~= true then
-        return "Better Item Info's tooltip controller is not installed"
-    end
-end
-
 local function install(ctx)
     local tooltip = ISToolTipInv
+    if type(tooltip) ~= "table" or type(tooltip.render) ~= "function" then
+        error("ISToolTipInv.render is missing")
+    end
+    if type(EuryTooltipController) ~= "table" or EuryTooltipController.installed ~= true then
+        error("Better Item Info's tooltip controller is not installed")
+    end
     local chain = tooltip.render
     ctx.on("OnGameStart", function()
         local reset = tooltip.render
@@ -55,6 +51,5 @@ M.addPart({
     side = "client",
     phase = "boot",
     pins = { "bii.reset", "bii.install" },
-    check = check,
     install = install,
 })
