@@ -1,0 +1,28 @@
+version=1
+title=Lugli - Crisp Screen
+description=The game puts a slight blur over the whole screen before you see it. This mod turns that off, so you see the game as sharp as it's actually drawn, with a little sharpening on top.
+description=
+description=No dependencies. Enable it and restart the game.
+description=
+description=[h1]Before and after[/h1]
+description=Same save, same moment. Vanilla on the left, this mod on the right, zoomed 2x so you can see the pixels.
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_CrispScreen/art/crisp-room.png[/img]
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_CrispScreen/art/crisp-yard.png[/img]
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_CrispScreen/art/crisp-far.png[/img]
+description=[h1]What it changes[/h1]
+description=Just the blur. Lighting, colours, night, fog and rain stay vanilla, and so do the drunk, short-sighted and night-vision effects. It works at any zoom level.
+description=[h1]FAQ[/h1]
+description=[list]
+description=[*][b]Existing saves?[/b] Add or remove it whenever you like. It only changes how things look.
+description=[*][b]Multiplayer?[/b] Add it to the server's mod list like any other mod.
+description=[*][b]Still looks blurry?[/b] Restart the game after enabling it. If it still does, another mod that changes the same screen shader (ShaderZ, for example) is loading after this one, so keep just one of them.
+description=[*][b]Game updates?[/b] Keep the mod updated. When an update changes the vanilla shader, I rebuild the mod from the new one.
+description=[/list]
+description=Thanks to [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3419026942]ShaderZ by Alree[/url] for finding where the blur comes from. This one is written from scratch on top of the current vanilla shader, which is why the vanilla effects still work.
+description=[hr][/hr]
+description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url].
+description=
+description=Like my mods? Support is never needed and always appreciated: [url=https://ko-fi.com/vinicioslugli]ko-fi.com/vinicioslugli[/url]
+description=[url=https://ko-fi.com/vinicioslugli][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_CrispScreen/art/kofi.png[/img][/url]
+tags=Build 42;Interface;Textures;QoL
+visibility=public
