@@ -22,18 +22,22 @@ local M = LugliModpackFixes
 -- about 1 ms of a 100 ms server tick, and a generator's disc takes about 9 ticks.
 local SQUARES_PER_TICK = 1000
 
-local function install(ctx)
+local function check()
     local NGM = NicksGeneratorManager
     for _, key in ipairs({ "recomputeGenerator", "poweredObjectsInRange", "isBillable", "liveGenerator",
                            "isActive", "geom", "genKey" }) do
         if type(NGM) ~= "table" or type(NGM[key]) ~= "function" then
-            error("Nick's Generator Manager has no " .. key)
+            return "Nick's Generator Manager has no " .. key
         end
     end
     if type(NGM.generators) ~= "table" or type(NGM.targets) ~= "table" then
-        error("Nick's Generator Manager has no generator registry")
+        return "Nick's Generator Manager has no generator registry"
     end
+    return nil
+end
 
+local function install(ctx)
+    local NGM = NicksGeneratorManager
     local queue, queued = {}, {}
     local job = nil
     local serving = nil
@@ -135,5 +139,6 @@ M.addPart({
     side = "both",
     phase = "world",
     pins = { "ngm.scan", "ngm.recompute", "ngm.pass" },
+    check = check,
     install = install,
 })

@@ -61,13 +61,15 @@ local function install(ctx)
     local NGM
     local refused, refusedFrom, lastLog = 0, {}, 0
 
-    local function needNgm()
-        NGM = NicksGeneratorManager
+    local function ngmMissing()
+        local loaded = NicksGeneratorManager
         for _, key in ipairs({ "inRange", "geom", "findObject", "getOwnerPref" }) do
-            if type(NGM) ~= "table" or type(NGM[key]) ~= "function" then
-                error("Nick's Generator Manager has no " .. key)
+            if type(loaded) ~= "table" or type(loaded[key]) ~= "function" then
+                return "Nick's Generator Manager has no " .. key
             end
         end
+        NGM = loaded
+        return nil
     end
 
     local function generatorAt(x, y, z)
@@ -153,7 +155,13 @@ local function install(ctx)
             args.gx, args.objs = nil, {}
             return
         end
-        if NGM == nil then needNgm() end
+        if NGM == nil then
+            local why = ngmMissing()
+            if why ~= nil then
+                ctx.standDown(why)
+                return
+            end
+        end
         if command == "claim" then filterClaim(player, args)
         elseif command == "auto" then filterReturn(player, args)
         elseif command == "register" then filterRegister(player, args) end

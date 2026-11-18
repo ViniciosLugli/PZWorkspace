@@ -77,7 +77,6 @@ local function apply(manager)
             for i = 1, #data.flags do
                 local row = data.flags[i]
                 local flag = IsoFlagType[row[2]]
-                if flag == nil then error("no flag " .. row[2]) end
                 local spr = find(row[1])
                 if spr ~= nil then
                     local props = spr:getProperties()
@@ -94,7 +93,6 @@ local function apply(manager)
             for i = 1, #data.types do
                 local row = data.types[i]
                 local want, stale = IsoObjectType[row[2]], IsoObjectType[row[3]]
-                if want == nil or stale == nil then error("no tile type " .. row[2] .. "/" .. row[3]) end
                 local spr = find(row[1])
                 if spr ~= nil then
                     local cur = spr:getTileType()
@@ -144,6 +142,23 @@ local function apply(manager)
         n.written, n.grids, n.same, n.other, n.missing))
 end
 
+local function check()
+    for _, modId in ipairs(tileMods()) do
+        if M.isModActive(modId) then
+            local data = M.tiles[modId]
+            for i = 1, #data.flags do
+                if IsoFlagType[data.flags[i][2]] == nil then return "no flag " .. data.flags[i][2] end
+            end
+            for i = 1, #data.types do
+                local row = data.types[i]
+                if IsoObjectType[row[2]] == nil or IsoObjectType[row[3]] == nil then
+                    return "no tile type " .. row[2] .. "/" .. row[3]
+                end
+            end
+        end
+    end
+end
+
 local function install(ctx)
     if type(M.tiles) ~= "table" then error("ModpackFixes_Tiles.lua did not load") end
     ctx.undo(restore)
@@ -159,5 +174,6 @@ M.addPart({
     any = tileMods(),
     side = "both",
     phase = "boot",
+    check = check,
     install = install,
 })

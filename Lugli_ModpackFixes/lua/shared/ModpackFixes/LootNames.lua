@@ -89,12 +89,14 @@ end
 local function byVehicle()
     local vd = VehicleDistributions
     local t = type(vd) == "table" and vd[1] or nil
-    if type(t) ~= "table" then error("VehicleDistributions[1] is missing") end
+    if type(t) ~= "table" then return nil, "VehicleDistributions[1] is missing" end
     return t
 end
 
+-- Returns why the part must stand down, having written nothing, or nil once applied.
 local function apply()
-    local entries = byVehicle()
+    local entries, why = byVehicle()
+    if entries == nil then return why end
     verdicts = {}
     for _, entry in pairs(entries) do
         if type(entry) == "table" then
@@ -127,13 +129,25 @@ local function hasApplied() return #renamed > 0 or beer ~= nil end
 local function reconcile(def)
     local want = M.switchOn(def)
     if want == hasApplied() then return end
-    if want then apply() else remove() end
+    if want then
+        local why = apply()
+        if why ~= nil then
+            M.standDown(def, why)
+            return
+        end
+    else
+        remove()
+    end
     ItemPickerJava.Parse()
 end
 
 local function install(ctx)
+    local function onMerge()
+        local why = apply()
+        if why ~= nil then ctx.standDown(why) end
+    end
     ctx.undo(remove)
-    ctx.on("OnPostDistributionMerge", apply)
+    ctx.on("OnPostDistributionMerge", onMerge)
     ctx.at("OnGameStart", function() reconcile(ctx.def) end)
     ctx.at("OnServerStarted", function() reconcile(ctx.def) end)
 end

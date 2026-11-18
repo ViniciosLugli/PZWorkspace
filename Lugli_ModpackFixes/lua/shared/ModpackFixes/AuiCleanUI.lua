@@ -60,22 +60,31 @@ local function opacity(v, default)
     return math.max(0, math.min(1, v))
 end
 
-local function install(ctx)
+local function check()
     local BA = rawget(_G, "AttachmentsUI")
     local bench = rawget(_G, "BAWorkbench")
     local handleClass = rawget(_G, "BAResizeHandle")
     if type(BA) ~= "table" or type(bench) ~= "table" or type(handleClass) ~= "table" then
-        error("Attachments UI's workbench is missing")
+        return "Attachments UI's workbench is missing"
     end
     local isClean = rawget(_G, "CleanUI_isCleanInventoryUIEnabled")
     local bgOpacity = rawget(_G, "CleanUI_getBackgroundOpacity")
     local innerOpacity = rawget(_G, "CleanUI_getContainerBackgroundOpacity")
     if type(isClean) ~= "function" or type(bgOpacity) ~= "function" or type(innerOpacity) ~= "function" then
-        error("CleanUI has no clean-mode or opacity reader")
+        return "CleanUI has no clean-mode or opacity reader"
     end
     if NinePatchTexture == nil or type(NeatTool) ~= "table" or type(NeatTool.ThreePatch) ~= "table" then
-        error("NeatUI Framework's nine- and three-patch drawing is missing")
+        return "NeatUI Framework's nine- and three-patch drawing is missing"
     end
+end
+
+local function install(ctx)
+    local BA = rawget(_G, "AttachmentsUI")
+    local bench = rawget(_G, "BAWorkbench")
+    local handleClass = rawget(_G, "BAResizeHandle")
+    local isClean = rawget(_G, "CleanUI_isCleanInventoryUIEnabled")
+    local bgOpacity = rawget(_G, "CleanUI_getBackgroundOpacity")
+    local innerOpacity = rawget(_G, "CleanUI_getContainerBackgroundOpacity")
 
     local mode = { at = nil, on = false, opacity = DEFAULT_OPACITY, inner = DEFAULT_INNER_OPACITY }
     local function cleanMode()
@@ -239,5 +248,6 @@ M.addPart({
     side = "client",
     phase = "boot",
     pins = { "aui.neat", "aui.head", "aui.render", "cleanui.frame" },
+    check = check,
     install = install,
 })

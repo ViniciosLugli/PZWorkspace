@@ -43,12 +43,13 @@ function M.ngmLines(object)
     return lines
 end
 
-function M.needNgmCache()
+function M.ngmCacheMissing()
     local NGM = NicksGeneratorManager
     if type(NGM) ~= "table" or type(NGM.targets) ~= "table" or type(NGM.genKey) ~= "function"
         or type(NGM.fuelMult) ~= "function" then
-        error("Nick's Generator Manager has no billing cache")
+        return "Nick's Generator Manager has no billing cache"
     end
+    return nil
 end
 
 -- The same lines as the size/get list the panel walks.
@@ -58,9 +59,14 @@ local function breakdown(object)
     return { size = function() return #lines end, get = function(_, i) return lines[i + 1] end }
 end
 
+local function check()
+    local missing = M.ngmCacheMissing()
+    if missing ~= nil then return missing end
+    if type(NR_GeneratorPanel) ~= "table" then return "Neat Rocco's generator panel is missing" end
+    return nil
+end
+
 local function install(ctx)
-    M.needNgmCache()
-    if type(NR_GeneratorPanel) ~= "table" then error("Neat Rocco's generator panel is missing") end
     ctx.wrap(NR_GeneratorPanel, "render", function(callOriginal)
         return function(self, ...)
             local object = self.object
@@ -85,5 +91,6 @@ M.addPart({
     side = "client",
     phase = "boot",
     pins = { "nr.items", "ngm.targets" },
+    check = check,
     install = install,
 })

@@ -58,10 +58,13 @@ local function eachPlayer(fn)
     end
 end
 
-local function install(ctx)
+local function check()
     if type(DBU) ~= "table" or type(DBU.RestoreBagStats) ~= "function" then
-        error("DBU.RestoreBagStats is missing")
+        return "DBU.RestoreBagStats is missing"
     end
+end
+
+local function install(ctx)
     ctx.on("EveryOneMinute", function()
         eachPlayer(function(player) restoreIn(player:getInventory()) end)
     end)
@@ -77,5 +80,6 @@ M.addPart({
     side = "server",
     phase = "world",
     pins = { "dbu.restore" },
+    check = check,
     install = install,
 })

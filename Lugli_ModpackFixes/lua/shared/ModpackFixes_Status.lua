@@ -9,8 +9,15 @@ made it:
   activation  the mods it needs are active, and none of the mods that make it pointless
   switch      the player left its sandbox option on (read lazily, cached once a world is up)
   pins        the code it was written against is still the code on disk (ModpackFixes_Pins.lua)
-  install     the part's own shape checks pass, and each assignment reads back
+  check       the code it patches, as loaded now, has the shape the part needs (def.check)
+  install     each assignment reads back
   runtime     its first error at run time undoes it for the rest of the session
+
+A part that refuses because of another mod or the game, at the pins or the check, stands down
+silently, as "tripped"; code that only finds out after install (an event handler) calls
+ctx.standDown(why) instead. error() is for this mod's own faults only: Kahlua shows the game's error
+box at the throw even inside pcall (KahluaThread.flushErrorMessage), so a part that refused by
+raising would look to the player like a crash.
 
 Lua is rebuilt on every exit to the main menu (IngameState.java:972-1072 on 42.22.2), so a part
 installs once per Lua state and never has to re-assert.
@@ -162,6 +169,16 @@ function M.trip(def, err)
     M.log(def.name .. ": circuit open, part undone for this session: " .. tostring(err))
 end
 
+-- The silent refusal for code that runs after install: what it needs from another mod or the game
+-- is not there. Undone and off for the session like a trip, but recorded as tripped, not as a fault.
+function M.standDown(def, why)
+    if def.open == true then return end
+    def.open = true
+    M.runUndos(def)
+    M.setPart(def.name, false, tostring(why), "pin")
+    M.log(def.name .. ": stood down for this session: " .. tostring(why))
+end
+
 local function pack(...)
     return { n = select("#", ...), ... }
 end
@@ -192,6 +209,10 @@ function M.makeCtx(def)
 
     function ctx.enabled()
         return M.partLive(def)
+    end
+
+    function ctx.standDown(why)
+        M.standDown(def, why)
     end
 
     function ctx.undo(fn)
@@ -282,6 +303,18 @@ function M.installPart(def)
         if pin == nil or M.isModActive(pin.mod) then ok, note = M.checkPin(pins[i]) end
         if not ok then
             M.setPart(def.name, false, note, "pin")
+            return
+        end
+    end
+    -- check() returns nil when the part can install, or why it cannot.
+    if def.check ~= nil then
+        local checked, why = pcall(def.check)
+        if not checked then
+            M.setPart(def.name, false, tostring(why), "bug")
+            return
+        end
+        if why ~= nil then
+            M.setPart(def.name, false, tostring(why), "pin")
             return
         end
     end

@@ -78,7 +78,7 @@ LugliModpackFixes.pins = {
     ["vanilla.reloadspeed"] = { mod = "vanilla", file = "media/lua/shared/TimedActions/ISReloadWeaponAction.lua", anchor = "function ISReloadWeaponAction.setReloadSpeed(character, rack)", lines = 40, accept = { 1072849747 } },
     ["um.bowspeed"] = { mod = "UltimateMarksman", file = "media/lua/shared/UMArcheryReloadAnimation.lua", anchor = "ISReloadWeaponAction.UMArcherySetReloadSpeed = ISReloadWeaponAction.setReloadSpeed", lines = 16, accept = { 2618624288 } },
     ["um.crossbowspeed"] = { mod = "UltimateMarksman", file = "media/lua/shared/TimedActions/UMReloadSpeed.lua", anchor = "local UM_originalSetReloadSpeed = ISReloadWeaponAction.setReloadSpeed", lines = 19, accept = { 3025727265 } },
-    ["rba.reloadspeed"] = { mod = "ReloadBackAgain", file = "media/lua/shared/Fix/ISReloadWeaponFix.lua", anchor = "function ISReloadWeaponAction.setReloadSpeed(character, rack)", lines = 40, accept = { 2408387129 } },
+    ["rba.reloadspeed"] = { mod = "ReloadBackAgain", file = "media/lua/shared/Fix/ISReloadWeaponFix.lua", anchor = "function ISReloadWeaponAction.setReloadSpeed(character, rack)", lines = 40, accept = { 2587200944 } },
     ["nellis.portals"] = { mod = "NellisAFB", file = "media/lua/client/TeleportInterior_Final.lua", anchor = "TeleportInterior.portais = {", lines = 101, accept = { 2163115059 } },
     ["nellis.origin"] = { mod = "NellisAFB", file = "media/lua/client/TeleportInterior_Final.lua", anchor = "local CHAVE_MODDATA = \"AC130_TP_Origem\"", lines = 4, accept = { 1250703914 } },
     ["nellis.enter"] = { mod = "NellisAFB", file = "media/lua/client/TeleportInterior_Final.lua", anchor = "local function onEntrar(player, sq, portal)", lines = 9, accept = { 283262288 } },

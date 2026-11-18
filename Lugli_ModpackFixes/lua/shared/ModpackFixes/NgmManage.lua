@@ -34,7 +34,16 @@ local NGM_NEEDS = { "read", "poweredObjectsInRange", "isBillable", "classify", "
                     "resolveOwner", "requestClaim", "requestReturn", "isActive", "fuelMult", "genKey",
                     "registerGeneratorAt", "requestRegister", "T", "geom", "getOwnerPref" }
 
-local function needUi()
+local function check()
+    local NGM = NicksGeneratorManager
+    local Manage = type(NGM) == "table" and NGM.Manage or nil
+    if type(Manage) ~= "table" or type(Manage.open) ~= "function" or type(Manage.instances) ~= "table" then
+        return "Nick's Generator Manager has no Manage Power window"
+    end
+    for i = 1, #NGM_NEEDS do
+        if type(NGM[NGM_NEEDS[i]]) ~= "function" then return "Nick's Generator Manager has no " .. NGM_NEEDS[i] end
+    end
+    if type(NGM.BASE_DRAW) ~= "number" then return "Nick's Generator Manager has no base draw" end
     local need = {
         { "NR_BasePanel", NR_BasePanel }, { "NR_Config", NR_Config }, { "NR_UIScale", NR_UIScale },
         { "NR_SelectableList", NR_SelectableList }, { "NR_ResizeWidget", NR_ResizeWidget },
@@ -43,8 +52,9 @@ local function needUi()
         { "ISPanelJoypad", ISPanelJoypad }, { "ISPanel", ISPanel },
     }
     for i = 1, #need do
-        if type(need[i][2]) ~= "table" then error("Neat Rocco's UI has no " .. need[i][1]) end
+        if type(need[i][2]) ~= "table" then return "Neat Rocco's UI has no " .. need[i][1] end
     end
+    return nil
 end
 
 -- Checkbox, disclosure arrow and label columns, from the body font Neat Rocco draws with.
@@ -59,15 +69,7 @@ end
 
 local function install(ctx)
     local NGM = NicksGeneratorManager
-    local Manage = type(NGM) == "table" and NGM.Manage or nil
-    if type(Manage) ~= "table" or type(Manage.open) ~= "function" or type(Manage.instances) ~= "table" then
-        error("Nick's Generator Manager has no Manage Power window")
-    end
-    for i = 1, #NGM_NEEDS do
-        if type(NGM[NGM_NEEDS[i]]) ~= "function" then error("Nick's Generator Manager has no " .. NGM_NEEDS[i]) end
-    end
-    if type(NGM.BASE_DRAW) ~= "number" then error("Nick's Generator Manager has no base draw") end
-    needUi()
+    local Manage = NGM.Manage
 
     local fmtLh = M.fmtLh
     local arrowOpen = getTexture("media/ui/NeatRocco/ICON/Icon_ArrowDown.png")
@@ -507,5 +509,6 @@ M.addPart({
     side = "client",
     phase = "boot",
     pins = { "ngm.open", "ngm.rebuild", "ngm.menu", "ngm.echo", "nr.row", "nr.base" },
+    check = check,
     install = install,
 })

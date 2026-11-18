@@ -110,7 +110,7 @@ local function flush(now)
     local fresh = not okRead or reader == nil
     if not fresh then pcall(function() reader:close() end) end
     local writer = getFileWriter(OUT, true, true)
-    if writer == nil then error("cannot write Lua/" .. OUT) end
+    if writer == nil then return "cannot write Lua/" .. OUT end
     if fresh then writer:write(HEADER .. "\n") end
     local epoch = string.format("%d", math.floor(now / 1000))
     local windowMs = string.format("%d", now - windowStart)
@@ -124,13 +124,18 @@ local function flush(now)
     writer:close()
     counts = {}
     windowStart = now
+    return nil
 end
 
+-- Returns why the part must stand down: the server cannot write its own Lua folder.
 local function onTick()
     local now = getTimestampMs()
-    if now - lastCheck < CHECK_MS then return end
+    if now - lastCheck < CHECK_MS then return nil end
     lastCheck = now
-    if active then flush(now) end
+    if active then
+        local why = flush(now)
+        if why ~= nil then return why end
+    end
     local was = active
     active = flagPresent()
     if active and not was then
@@ -142,11 +147,14 @@ local function onTick()
     end
 end
 
-local function install(ctx)
+local function check()
     if type(getFileReader) ~= "function" or type(getFileWriter) ~= "function"
         or type(getTimestampMs) ~= "function" then
-        error("file or clock API missing")
+        return "file or clock API missing"
     end
+end
+
+local function install(ctx)
     -- Varargs, not (a, b, c, d): the engine picks the Java overload by argument count, so a
     -- broadcast passed on with a trailing nil would reach the per-player overload.
     ctx.wrap(_G, "sendServerCommand", function(send)
@@ -178,7 +186,10 @@ local function install(ctx)
     lastCheck = getTimestampMs()
     windowStart = lastCheck
     if active then M.log("srv-prof: counting sends into Lua/" .. OUT) end
-    ctx.on("OnTick", onTick)
+    ctx.on("OnTick", function()
+        local why = onTick()
+        if why ~= nil then ctx.standDown(why) end
+    end)
 end
 
 M.addPart({
@@ -189,5 +200,6 @@ M.addPart({
     kind = "tool",
     side = "server",
     phase = "load",
+    check = check,
     install = install,
 })

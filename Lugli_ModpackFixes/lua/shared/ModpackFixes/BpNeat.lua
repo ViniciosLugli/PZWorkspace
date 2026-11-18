@@ -104,23 +104,26 @@ local function renderBank(self, object, callOriginal, ...)
     self:setHeight(rt:getY() + rt:getHeight() + pad)
 end
 
-local function install(ctx)
+local function check()
     local BP = BadlandsPower
     if type(BP) ~= "table" or type(BP.displayName) ~= "function" or type(BP.isBank) ~= "function" then
-        error("Badlands Power has no generator names")
+        return "Badlands Power has no generator names"
     end
     if type(NR_GeneratorPanel) ~= "table" or type(NR_GeneratorPanel.getWindowTitle) ~= "function"
         or type(NR_GeneratorPanel.render) ~= "function" then
-        error("Neat Rocco's generator panel is missing")
+        return "Neat Rocco's generator panel is missing"
     end
     if type(NR_Config) ~= "table" or type(NR_UIScale) ~= "table" or type(NR_CollapseUtils) ~= "table" then
-        error("Neat Rocco's panel layout is missing")
+        return "Neat Rocco's panel layout is missing"
     end
     if type(ISGeneratorInfoWindow) ~= "table" or type(ISGeneratorInfoWindow.getRichText) ~= "function"
         or type(ISRichTextPanel) ~= "table" then
-        error("the Generator Info text is missing")
+        return "the Generator Info text is missing"
     end
+end
 
+local function install(ctx)
+    local BP = BadlandsPower
     ctx.wrap(NR_GeneratorPanel, "getWindowTitle", function(callOriginal)
         return function(self, ...)
             local object = M.realOf(self.object)
@@ -162,5 +165,6 @@ M.addPart({
     side = "client",
     phase = "boot",
     pins = { "bp.name", "bp.bankhead", "nr.render", "nr.size" },
+    check = check,
     install = install,
 })

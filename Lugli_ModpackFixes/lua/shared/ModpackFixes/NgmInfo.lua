@@ -39,11 +39,16 @@ function M.ngmRichText(object, text)
     return string.sub(text, 1, headEnd) .. table.concat(list) .. string.sub(text, p)
 end
 
-local function install(ctx)
-    M.needNgmCache()
+local function check()
+    local missing = M.ngmCacheMissing()
+    if missing ~= nil then return missing end
     if type(ISGeneratorInfoWindow) ~= "table" or type(ISGeneratorInfoWindow.getRichText) ~= "function" then
-        error("the Generator Info window has no text builder")
+        return "the Generator Info window has no text builder"
     end
+    return nil
+end
+
+local function install(ctx)
     ctx.wrap(ISGeneratorInfoWindow, "getRichText", function(callOriginal)
         return function(object, displayStats, ...)
             local text = callOriginal(object, displayStats, ...)
@@ -63,5 +68,6 @@ M.addPart({
     side = "client",
     phase = "boot",
     pins = { "ngm.targets", "ngm.rich", "bp.bank" },
+    check = check,
     install = install,
 })

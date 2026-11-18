@@ -16,13 +16,16 @@ bleeding out, stay uncounted, as fire deaths are uncounted in vanilla.
 require "ModpackFixes_Status"
 local M = LugliModpackFixes
 
-local function install(ctx)
+local function check()
     if type(SuperGore) ~= "table" or type(SuperGore.hitCut) ~= "function" then
-        error("SuperGore.hitCut is missing")
+        return "SuperGore.hitCut is missing"
     end
     if M.isDedicatedServer() and (type(IsoObjectChange) ~= "table" or IsoObjectChange.ADD_ZOMBIE_KILL == nil) then
-        error("IsoObjectChange.ADD_ZOMBIE_KILL is missing")
+        return "IsoObjectChange.ADD_ZOMBIE_KILL is missing"
     end
+end
+
+local function install(ctx)
     ctx.wrap(SuperGore, "hitCut", function(callOriginal)
         return function(zombie, ax, ay, gun, sharp, attacker, roll)
             if zombie == nil or not instanceof(attacker, "IsoPlayer") or zombie:isDead() then
@@ -48,5 +51,6 @@ M.addPart({
     side = "server",
     phase = "world",
     pins = { "sg.gate", "sg.hitcut", "sg.queue" },
+    check = check,
     install = install,
 })

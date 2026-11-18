@@ -12,16 +12,24 @@ two places before it sets the speed:
   getAmmoType is on every InventoryItem), so filling or emptying a magazine while holding anything
   that is not a weapon (a flashlight, the magazine itself) calls nil (line 95). Filling a magazine
   does not equip it, so whatever the player holds is read.
-Reload Those Weapons Again fixes the first by replacing the function, and not the second.
+Reload Those Weapons Again replaces the function with a copy that fixes the first and, since its
+2026-11-17 update, the second; beside it the part changes nothing the copy does not already give.
 
 What this part changes. Only in those cases, the whole setReloadSpeed chain is called with a view of
 the character: the empty strap slot reads as an item with no name, a held item that is not a weapon
 answers nil for its magazine type, and the vehicle names the view as its driver. Vanilla then takes
 its "no strap" and "not a magazine gun" branches, the result its checks mean, and every mod that
 wraps the function still runs (Ultimate Marksman chains it from its own file before this mod loads,
-so replacing the function would drop its bow and crossbow speeds). The view is handed only to code
-this part knows: vanilla's function, Reload Those Weapons Again's copy of it, and Ultimate
-Marksman's two wrappers.
+so replacing the function would drop its bow and crossbow speeds).
+
+The view is a Lua table, so code that tests the character's class (instanceof) or hands it to Java
+would misread it. It is therefore handed only to code this part knows: vanilla's function, Reload
+Those Weapons Again's copy of it, and Ultimate Marksman's two wrappers. The part installs while
+this mod's shared Lua loads, so every mod that wraps the function later (all client Lua, and shared
+Lua after this mod in the load order) wraps the part and is given the real character, whatever it
+is. Only a wrapper already in place that the part does not know makes it stand down. Reload Those
+Weapons Again replaces the function instead of wrapping it, so when it loads after this mod the part
+waits for boot and wraps its copy.
 ]]
 require "ModpackFixes_Status"
 local M = LugliModpackFixes
@@ -41,16 +49,39 @@ end
 
 -- Ultimate Marksman's crossbow wrapper keeps the function under it in a local, so the walk ends
 -- there; its pinned body only calls that function and reads the character back.
-local function checkChain(fn)
+local function chainProblem(fn)
     for _ = 1, 4 do
         local file = sourceOf(fn)
-        if LAST_FILES[file] then return end
+        if LAST_FILES[file] then return nil end
         if file ~= UM_BOW_FILE then
-            error("setReloadSpeed comes from " .. tostring(file) .. ", which this part does not know")
+            return "setReloadSpeed comes from " .. tostring(file) .. ", which this part does not know"
         end
         fn = ISReloadWeaponAction.UMArcherySetReloadSpeed
     end
-    error("setReloadSpeed chain is longer than this part knows")
+    return "setReloadSpeed chain is longer than this part knows"
+end
+
+local function check()
+    if type(ISReloadWeaponAction) ~= "table" or type(ISReloadWeaponAction.setReloadSpeed) ~= "function" then
+        return "ISReloadWeaponAction.setReloadSpeed is missing"
+    end
+    return chainProblem(ISReloadWeaponAction.setReloadSpeed)
+end
+
+-- Position in the mod list, which is the order mods' Lua loads in (LuaManager loads per mod).
+local function loadIndex(mods, id)
+    for i = 0, mods:size() - 1 do
+        local entry = tostring(mods:get(i))
+        if entry == id or entry == "\\" .. id then return i end
+    end
+    return nil
+end
+
+local function replacedLater()
+    local ok, mods = pcall(getActivatedMods)
+    if not ok or mods == nil then return false end
+    local rba, ours = loadIndex(mods, "ReloadBackAgain"), loadIndex(mods, "Lugli_ModpackFixes")
+    return rba ~= nil and ours ~= nil and rba > ours
 end
 
 local function fastTag(character, tag)
@@ -110,10 +141,6 @@ local function characterView(character, missingStrap, untyped)
 end
 
 local function install(ctx)
-    if type(ISReloadWeaponAction) ~= "table" or type(ISReloadWeaponAction.setReloadSpeed) ~= "function" then
-        error("ISReloadWeaponAction.setReloadSpeed is missing")
-    end
-    checkChain(ISReloadWeaponAction.setReloadSpeed)
     ctx.wrap(ISReloadWeaponAction, "setReloadSpeed", function(callOriginal)
         return function(character, rack)
             local missingStrap, untyped = hazards(character)
@@ -129,11 +156,12 @@ M.addPart({
     name = "reload-strap",
     switch = "ReloadStrap",
     title = "Vanilla: no reload or magazine error with a fast-reload item",
-    tip = "With an ALICE belt or chest rig worn (or an ammo case equipped), reloading a shotgun or revolver without an ammo strap, or filling or emptying a magazine while holding anything that is not a weapon, throws an error and skips the reload speed. They work as vanilla means them to. Works beside Reload Those Weapons Again, which fixes only the first. Off while Reload Strap Fix is active.",
+    tip = "With an ALICE belt or chest rig worn (or an ammo case equipped), reloading a shotgun or revolver without an ammo strap, or filling or emptying a magazine while holding anything that is not a weapon, throws an error and skips the reload speed. They work as vanilla means them to. Works beside Reload Those Weapons Again. Off while Reload Strap Fix is active.",
     kind = "fix",
     none = { "ReloadStrapFix" },
     side = "both",
-    phase = "boot",
+    phase = replacedLater() and "boot" or "load",
     pins = { "vanilla.reloadspeed", "um.bowspeed", "um.crossbowspeed", "rba.reloadspeed" },
+    check = check,
     install = install,
 })
