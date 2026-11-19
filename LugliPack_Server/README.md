@@ -17,18 +17,19 @@ overlap, the one listed first in `Map=` wins.
 
 ## Players: install ZombieBuddy first
 
-The pack includes Java mods (Physical Bullets, Project Real Limbs, Dead Canvas: Trauma), which run
-through [ZombieBuddy](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853). Every
-player needs it, once:
+The pack includes Java mods (Physical Bullets, Dead Canvas: Trauma, Tracer Location Fix and Peek a
+View), which run through
+[ZombieBuddy](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853). Every player
+needs it, once:
 
 1. Subscribe to [ZombieBuddy](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853).
 2. Windows: run the installer (`ZombieBuddyInstaller_*.exe`) from its
    [GitHub releases](https://github.com/zed-0xff/ZombieBuddy/releases/tag/windows_installer) and
    choose **Install or update ZombieBuddy**. macOS and Linux: follow its
    [manual install](https://github.com/zed-0xff/ZombieBuddy/blob/master/doc/Installation.md).
-3. In the main menu's Mods list, enable ZombieBuddy, Physical Bullets, Project Real Limbs and Dead
-   Canvas: Trauma, then restart the game. Mods only turned on by the server load too late for some
-   of their settings.
+3. In the main menu's Mods list, enable ZombieBuddy, Physical Bullets, Dead Canvas: Trauma, Tracer
+   Location Fix and Peek a View, then restart the game. Mods only turned on by the server load too
+   late for some of their settings.
 4. Join. ZombieBuddy asks before loading each Java mod; click **Yes** for these, and choose to
    remember the answer.
 
@@ -44,7 +45,7 @@ The server needs nothing extra: these mods' server side is plain Lua.
    `StartServer64.bat -servername LugliPack` (Windows) or `./start-server.sh -servername LugliPack` (Linux).
    The first start asks you to create the admin password.
 
-The first start downloads about 320 Workshop items and takes a while. If one download fails the
+The first start downloads 324 Workshop items and takes a while. If one download fails the
 server stops booting; start it again and it resumes.
 
 ## Good to know
