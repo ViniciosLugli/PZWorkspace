@@ -22,6 +22,8 @@ drivers without OpenGL 3.3, where the game falls back to that version.
 
 ## Compatibility
 
+- Build 42.20 and newer. The payload ships in `42.20/`, and the vanilla `screen.frag` it is built
+  from has not changed from 42.20 through 42.22.2.
 - Any other mod that replaces `media/shaders/screen.frag` (ShaderZ, for example) conflicts with this
   one. Whichever loads last wins, so keep just one.
 - It only changes how things look and saves nothing, so you can add or remove it from an existing save.
