@@ -13,6 +13,5 @@ function SpawnRegions()
 		{ name = "ARC_LCV2", file = "media/maps/ARC_LCV2/spawnpoints.lua" },
 		{ name = "ARC_Camden County Relocated", file = "media/maps/ARC_Camden County Relocated/spawnpoints.lua" },
 		{ name = "ARC_Kingsmouth North B42", file = "media/maps/ARC_Kingsmouth North B42/spawnpoints.lua" },
-		{ name = "Random Building Spawn", file = "media/maps/Random Building Spawn/spawnpoints.lua" },
 	}
 end
