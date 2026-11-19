@@ -5,6 +5,8 @@ box tucked into the back corner of an attic, a closet, a storage room or a bedro
 out a better haul than the containers around it once you get it open. Every way in costs
 something: time, noise, tool wear, a key you have to find, or the loot itself.
 
+**On the Workshop:** [Lugli - Dead Man's Stash](https://steamcommunity.com/sharedfiles/filedetails/?id=3842379885).
+
 Work in progress. This build has three stash boxes, the **nailed crate**, the **lockbox** and the
 **footlocker**, and two safes, the **dial safe** and the **keypad safe**. Trapped survivor
 holdouts follow, played and tuned before they ship.

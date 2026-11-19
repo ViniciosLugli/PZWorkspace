@@ -37,13 +37,6 @@ Lugli_CrispScreen      ->  nothing
 ZombieBuddy is a hard requirement for both Java mods, not a soft one: without it their jars never
 load. Neither declares it in `mod.info`, for the reason below.
 
-## Hosting the collection
-
-[LugliPack_Server](LugliPack_Server) holds the server settings for the
-[LugliPack collection](https://steamcommunity.com/sharedfiles/filedetails/?id=3839272101): the
-`.ini` with its mod list in load order, the sandbox options and the spawn regions, and a short
-setup guide.
-
 ## Layout
 
 ```
