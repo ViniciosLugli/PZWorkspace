@@ -73,21 +73,48 @@ do
         end
         if t.salt == nil then t.salt = tostring(ZombRand(1, 1000000000)) end
         store = t
-        -- A box from before the numbers (2026-11-19) takes the next one at this load.
-        for _, rec in pairs(t.gates) do
-            if type(rec) == "table" and rec.no == nil then M.numberGate(rec) end
+        -- A box from before the numbers (2026-11-19) takes one at this load.
+        for id, rec in pairs(t.gates) do
+            if type(rec) == "table" and rec.no == nil then M.numberGate(rec, id) end
         end
         return store
     end
 
     --- THE BOX'S NUMBER, shown on it, its key and its notes so a survivor carrying several can
-    --- tell which opens which (user review 2026-11-19): the world's next, once, never reused.
-    function M.numberGate(rec)
+    --- tell which opens which (user review 2026-11-19), and never a sequence: a draw on the gate
+    --- and the world's salt, so the numbers say nothing about how many boxes a world hides or in
+    --- what order they were sealed. Probed forward on a collision, so no two boxes share one, and
+    --- stored on the record, so a reload never changes it. M.NO_FIRST..M.NO_FIRST+M.NO_SPAN is a
+    --- four-digit range, wide enough that a world never wraps.
+    M.NO_FIRST = 1000
+    M.NO_SPAN = 9000
+
+    function M.numberGate(rec, gateId)
         if rec.no ~= nil then return rec.no end
         local s = M.store()
-        s.lastNo = (tonumber(s.lastNo) or 0) + 1
-        rec.no = s.lastNo
-        return rec.no
+        if type(s.nos) ~= "table" then
+            -- A world numbered before this map keeps its numbers, and a new draw avoids them.
+            s.nos = {}
+            for _, other in pairs(s.gates) do
+                if type(other) == "table" and other.no ~= nil then
+                    s.nos[tostring(math.floor(other.no))] = true
+                end
+            end
+        end
+        local offset = M.hash("box|" .. tostring(gateId) .. "|" .. tostring(s.salt)) % M.NO_SPAN
+        local n = nil
+        -- Bounded: a world that ever filled the range leaves the box unnumbered rather than
+        -- spinning here, and it is numbered on the next load instead.
+        for _ = 1, M.NO_SPAN do
+            n = M.NO_FIRST + offset
+            if s.nos[tostring(n)] == nil then break end
+            n = nil
+            offset = (offset + 1) % M.NO_SPAN
+        end
+        if n == nil then return nil end
+        s.nos[tostring(n)] = true
+        rec.no = n
+        return n
     end
     M.addTeardown(PART, function() store = nil end)
 
@@ -230,16 +257,17 @@ do
         local i = obj:getContainerIndex(container)
         if i == nil or i < 0 then return nil end
         local x, y, z = square:getX(), square:getY(), square:getZ()
-        local tier = M.luckyTier(M.gateId(x, y, z, i), M.store().salt, M.tierFor(ctype, roomName))
+        local gid = M.gateId(x, y, z, i)
+        local tier = M.luckyTier(gid, M.store().salt, M.tierFor(ctype, roomName))
         local theme = M.themeFor ~= nil and M.themeFor(roomName, ctype) or "default"
         -- A record is never overwritten: the gate it names would be left with no record at all.
-        if M.store().gates[M.gateId(x, y, z, i)] ~= nil then return nil end
+        if M.store().gates[gid] ~= nil then return nil end
         container:removeAllItems()
         local rec = { x = x, y = y, z = z, i = i, kind = kind, tier = tier, theme = theme, state = "sealed", progress = {} }
         -- A safe's code is minted with its record and lives only there (view never copies it).
-        if M.isSafeKind(kind) then rec.code = M.safeCode(M.gateId(x, y, z, i), M.store().salt) end
-        M.numberGate(rec)
-        M.store().gates[M.gateId(x, y, z, i)] = rec
+        if M.isSafeKind(kind) then rec.code = M.safeCode(gid, M.store().salt) end
+        M.numberGate(rec, gid)
+        M.store().gates[gid] = rec
         M.mirror(obj, rec)
         M.debug(PART, "sealed " .. kind .. " tier " .. tier .. " theme " .. theme .. " at " .. M.gateId(x, y, z, i)
             .. " (" .. tostring(roomName) .. ")")
