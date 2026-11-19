@@ -410,6 +410,10 @@ vec3 screenBlur(in vec3 pixel, in bool shortSight) {
 // overload, and a call to one fails the compile with no log line.
 const float CRISP_SHARPNESS = 0.35;
 
+// 0 shipped, 1 flat magenta (proves the shader runs), 2 plain nearest texel (proves the coordinate
+// mapping), 3 UV as colour (proves vUV). Rebuild and restart the game after changing it.
+const int CRISP_DEBUG = 0;
+
 vec3 crispMin(vec3 a, vec3 b)
 {
 	return mix(a, b, step(b, a));
@@ -427,6 +431,9 @@ vec3 crispTexel(vec2 texel)
 
 vec3 crispSample(vec2 uv)
 {
+	if (CRISP_DEBUG == 1) return vec3(1.0, 0.0, 1.0);
+	if (CRISP_DEBUG == 2) return crispTexel(floor(uv * TextureSize));
+	if (CRISP_DEBUG == 3) return vec3(uv, 0.0);
 	vec2 t = floor(uv * TextureSize);
 	vec3 c = crispTexel(t);
 	vec3 n = crispTexel(t + vec2(0.0, 1.0));
