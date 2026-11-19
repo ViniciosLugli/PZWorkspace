@@ -152,7 +152,7 @@ SandboxVars = {
     -- Also includes weapon attachments. Min: 0.00 Max: 4.00 Default: 1.20
     RangedWeaponLootNew = 0.48,
     -- Loose ammo, boxes and magazines. Min: 0.00 Max: 4.00 Default: 0.60
-    AmmoLootNew = 0.4,
+    AmmoLootNew = 0.5,
     -- Vehicle parts and the tools needed to install them. Min: 0.00 Max: 4.00 Default: 0.60
     MechanicsLootNew = 0.3,
     -- Everything else. Also affects foraging for all items in Town/Road zones. Min: 0.00 Max: 4.00 Default: 0.80
