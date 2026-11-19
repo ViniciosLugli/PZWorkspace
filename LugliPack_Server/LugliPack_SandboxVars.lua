@@ -1413,7 +1413,7 @@ SandboxVars = {
     },
     CocaColaICEFreezer = {
         -- Min: 0 Max: 100 Default: 100
-        Chance = 100,
+        Chance = 35,
     },
     CyesPushDoors = {
         -- Min: 0.00 Max: 2.00 Default: 1.00
@@ -1553,19 +1553,6 @@ SandboxVars = {
         AttachmentsCategoryDivider = false,
         BackpackBackSlot = true,
         BeltSlots = true,
-    },
-    HIC = {
-        MoodleActive = true,
-        -- Min: 0 Max: 100 Default: 15
-        MinimalCondition = 15,
-        -- Min: 1 Max: 10 Default: 2
-        Radius = 2,
-        -- Min: 1 Max: 10 Default: 1
-        SleepRadius = 1,
-        CheckForTraits = true,
-        -- Min: 0 Max: 100 Default: 60
-        TraitCoefficient = 60,
-        ZombieMemory = false,
     },
     ISIL = {
         ExtendedMode = false,
@@ -1707,7 +1694,7 @@ SandboxVars = {
     },
     MonsterBlackFridge = {
         -- Min: 1 Max: 11 Default: 5
-        Distribution = 5,
+        Distribution = 10,
     },
     MWPWeapons = {
         SpawnRate = 3,
@@ -2084,15 +2071,6 @@ SandboxVars = {
         AutoTranslate = false,
         OnlyDirty = false,
         SpecifyPick = false,
-    },
-    RoomOcclusionB42 = {
-        -- Min: 0.00 Max: 1.00 Default: 0.30
-        FadeSeconds = 0.3,
-        -- Min: 0.00 Max: 1.00 Default: 1.00
-        Blackness = 1.0,
-        BridgeEnabled = true,
-        -- Min: 5 Max: 40 Default: 20
-        ScanRadius = 20,
     },
     SaucedCarts = {
         EnableMod = true,
