@@ -341,7 +341,7 @@ SandboxVars = {
     -- 2 = Once
     -- 3 = Sometimes
     -- 4 = Often
-    Helicopter = 2,
+    Helicopter = 3,
     -- How often zombie-attracting metagame events like distant gunshots will occur. Default = Sometimes
     -- 1 = Never
     -- 2 = Sometimes
@@ -385,7 +385,7 @@ SandboxVars = {
     -- 2 = Dark
     -- 3 = Normal
     -- 4 = Bright
-    NightDarkness = 3,
+    NightDarkness = 2,
     -- The time from dusk to dawn. Default = Normal
     -- 1 = Always Night
     -- 2 = Long
@@ -512,7 +512,7 @@ SandboxVars = {
     -- 4 = Sometimes
     -- 5 = Often
     -- 6 = Very Often
-    LockedCar = 4,
+    LockedCar = 5,
     -- How gas-hungry vehicles are. Min: 0.00 Max: 100.00 Default: 1.00
     CarGasConsumption = 1.0,
     -- General condition discovered vehicles will be in. Default = Normal
@@ -521,7 +521,7 @@ SandboxVars = {
     -- 3 = Normal
     -- 4 = High
     -- 5 = Very High
-    CarGeneralCondition = 3,
+    CarGeneralCondition = 2,
     -- The amount of damage dealt to vehicles that crash. Default = Normal
     -- 1 = Very Low
     -- 2 = Low
@@ -829,7 +829,7 @@ SandboxVars = {
         -- 4 = Random
         Speed = 4,
         -- If Random Speed is enabled, this controls what percentage of zombies are Sprinters. Check the "Advanced" box below to use a custom percentage. Min: 0 Max: 100 Default: 0
-        SprinterPercentage = 2,
+        SprinterPercentage = 4,
         -- The damage zombies inflict per attack. Default = Normal
         -- 1 = Superhuman
         -- 2 = Normal
@@ -1493,14 +1493,6 @@ SandboxVars = {
         AutoLockEnabled = true,
         AllowToggleAutoLock = true,
     },
-    BetterItemInfo = {
-        EnableSpoilageInfo = true,
-        EnableNutritionInfo = true,
-        EnableWeaponStats = true,
-        FoodLevelRequirement = true,
-        WeaponLevelRequirement = true,
-        MaintenanceLevelRequirement = true,
-    },
     Explosives = {
         VanillaBallisticsEnabled = false,
         -- Min: 0.01 Max: 5.00 Default: 1.00
@@ -1906,22 +1898,6 @@ SandboxVars = {
         PushCooldownSeconds = 1.0,
         -- Min: 0 Max: 100000 Default: 0
         MaximumPushableWeight = 0,
-    },
-    RainCleansBlood = {
-        -- Min: 10 Max: 2000 Default: 300
-        TilesPerMinuteNearPlayer = 300,
-        -- Min: 0.05 Max: 0.95 Default: 0.25
-        WeatherThreshold = 0.25,
-        AlsoCleanAsh = true,
-        AlsoCleanDroppings = true,
-        AlsoCleanInside = false,
-        AlsoCleanVehicles = true,
-        -- Min: 0.10 Max: 1.00 Default: 0.10
-        VehicleCleanSpeed = 0.1,
-        AlsoCleanClothes = true,
-        -- Min: 1.00 Max: 10.00 Default: 1.00
-        ClothesCleanSpeed = 1.0,
-        AlwaysClean = false,
     },
     RealisticRecipes = {
         Enable_MakeBeefJerky = true,
@@ -2785,6 +2761,1255 @@ SandboxVars = {
         -- Min: 1 Max: 10 Default: 1
         PartialPackMinDoses = 1,
     },
+    ItemDetailsPanel = {
+        ExtraNutrition = true,
+        WeaponDetails = true,
+        WeaponTimings = true,
+        ExactFoodTimes = true,
+        HiddenFoodRisks = true,
+        ContainerContents = true,
+        WeaponEstimates = true,
+        EquipmentEstimates = true,
+        MediaRewards = true,
+        ServerPresetCode = "\"\"",
+        ForceServerPreset = false,
+        AllowPlayerCustomization = true,
+    },
+    ImmersiveSnow = {
+        FootprintsFrom = 1,
+        TireTracks = true,
+        LowEndMode = false,
+        -- Min: 0.50 Max: 168.00 Default: 6.00
+        FootprintHours = 6.0,
+        -- Min: 0.50 Max: 168.00 Default: 6.00
+        ZombieFootprintHours = 6.0,
+        -- Min: 0.00 Max: 50.00 Default: 8.00
+        SnowfallCoverRate = 8.0,
+        -- Min: 10 Max: 10000 Default: 2000
+        MaxFootprints = 2000,
+        -- Min: 5 Max: 60 Default: 25
+        ZombieRadius = 25,
+        AnimalTracks = true,
+        -- Min: 0.50 Max: 168.00 Default: 12.00
+        AnimalTrackHours = 12.0,
+        -- Min: 10 Max: 10000 Default: 1000
+        MaxAnimalTracks = 1000,
+        -- Min: 5 Max: 60 Default: 25
+        AnimalTrackRadius = 25,
+        BarefootPrints = true,
+        BloodyFootprints = true,
+        -- Min: 1 Max: 40 Default: 8
+        BloodyFootprintSteps = 8,
+        BloodyFootprintsNoSnow = true,
+        BloodOnSnow = true,
+        -- Min: 0.50 Max: 168.00 Default: 12.00
+        TireTrackHours = 12.0,
+        -- Min: 20 Max: 20000 Default: 4000
+        MaxTireTracks = 4000,
+        -- Min: 20 Max: 20000 Default: 1500
+        TireTrackSoftLimit = 1500,
+        BloodyTireTracks = true,
+        -- Min: 0.40 Max: 40.00 Default: 2.00
+        BloodyTireTrackTiles = 2.0,
+        VehicleSnow = true,
+        -- Min: 0.25 Max: 24.00 Default: 2.00
+        VehicleSnowHours = 2.0,
+        VehicleSnowIce = true,
+        CharSnow = true,
+        -- Min: 0.10 Max: 24.00 Default: 3.00
+        CharSnowHours = 3.0,
+        -- Min: 0.10 Max: 2.00 Default: 1.50
+        CharSnowMax = 1.5,
+        -- Min: 0.10 Max: 24.00 Default: 1.25
+        CharSnowMeltHours = 1.25,
+        -- Min: 0.10 Max: 24.00 Default: 0.50
+        CharSnowIndoorMeltHours = 0.5,
+        -- Min: 1.00 Max: 500.00 Default: 50.00
+        CharSnowBodyMeltHours = 50.0,
+        -- Min: 0.10 Max: 48.00 Default: 3.00
+        CharSnowRainMeltHours = 3.0,
+        CharItemSnow = true,
+        DarkSnow = false,
+        ZombieSnow = true,
+        -- Min: 0.10 Max: 24.00 Default: 0.50
+        ZombieSnowHours = 0.5,
+        CorpseKeepSnow = false,
+        ColdCorpses = true,
+        SnowWetness = true,
+        -- Min: 0.00 Max: 5.00 Default: 1.00
+        SnowWetnessRate = 1.0,
+        CarriedSnow = true,
+        -- Min: 1 Max: 10 Default: 3
+        CarriedSnowSteps = 3,
+        -- Min: 0.40 Max: 20.00 Default: 3.20
+        CarriedSnowTireTiles = 3.2,
+        -- Min: 0.10 Max: 48.00 Default: 2.00
+        CarriedSnowHours = 2.0,
+        -- Min: 0.02 Max: 24.00 Default: 0.25
+        CarriedSnowMeltHours = 0.25,
+        Breath = true,
+        -- Min: -20.00 Max: 15.00 Default: 7.00
+        BreathMaxTemp = 7.0,
+        -- Min: -40.00 Max: 0.00 Default: -20.00
+        BreathFullTemp = -20.0,
+        -- Min: 0.10 Max: 1.00 Default: 0.85
+        BreathOpacity = 0.85,
+        VehicleHoodMelt = true,
+        -- Min: 0.10 Max: 24.00 Default: 1.00
+        VehicleHoodMeltHours = 1.0,
+        SnowKick = true,
+        -- Min: 0.00 Max: 3.00 Default: 0.40
+        SnowKickRun = 0.4,
+        -- Min: 0.00 Max: 5.00 Default: 1.30
+        SnowKickSprint = 1.3,
+        SnowKickFalls = true,
+        -- Min: 0.10 Max: 3.00 Default: 1.00
+        SnowKickFallAmount = 1.0,
+        SnowKickWheels = true,
+        -- Min: 0.10 Max: 3.00 Default: 0.80
+        SnowKickWheelAmount = 0.8,
+        FrostScreen = true,
+        -- Min: 0.10 Max: 1.00 Default: 0.80
+        FrostScreenOpacity = 0.8,
+        -- Min: 1 Max: 4 Default: 1
+        FrostScreenFromLevel = 1,
+        -- Min: 1.00 Max: 120.00 Default: 12.00
+        FrostScreenComeSeconds = 12.0,
+        -- Min: 1.00 Max: 300.00 Default: 30.00
+        FrostScreenGoSeconds = 30.0,
+        FrostScreenShiver = true,
+        -- Min: 1 Max: 4 Default: 2
+        FrostScreenShiverLevel = 2,
+        VehicleFrost = true,
+        -- Min: 0.25 Max: 24.00 Default: 3.00
+        VehicleFrostHours = 3.0,
+        -- Min: 1.00 Max: 120.00 Default: 10.00
+        VehicleFrostHeaterMinutes = 10.0,
+        -- Min: 0.25 Max: 24.00 Default: 2.50
+        VehicleFrostMeltHours = 2.5,
+        DriftingSnow = true,
+        -- Min: 5.00 Max: 100.00 Default: 25.00
+        DriftingSnowWind = 25.0,
+        -- Min: 0.10 Max: 3.00 Default: 1.00
+        DriftingSnowAmount = 1.0,
+        FireThaw = true,
+        -- Min: 0.25 Max: 24.00 Default: 2.00
+        FireThawHours = 2.0,
+        TrampledPaths = true,
+        -- Min: 3 Max: 100 Default: 12
+        TrampledPathSteps = 12,
+        -- Min: 1.00 Max: 336.00 Default: 48.00
+        TrampledPathHours = 48.0,
+        -- Min: 5 Max: 100 Default: 35
+        SnowDepth = 35,
+        SnowSlowdown = true,
+        -- Min: 0.00 Max: 48.00 Default: 3.00
+        RainWashHours = 3.0,
+        -- Min: 0 Max: 200 Default: 100
+        SnowThickness3D = 100,
+        Snow3DGround = true,
+        Snow3DVehicles = true,
+    },
+    PhysicalBullets = {
+        -- Min: 0.02 Max: 1.00 Default: 0.25
+        BulletSpeed = 0.25,
+        PointBlank = true,
+        -- Min: 0.50 Max: 5.00 Default: 1.85
+        PointBlankRange = 1.85,
+        -- Min: 0.50 Max: 5.00 Default: 2.30
+        PointBlankRangeTwoHanded = 2.3,
+        PointBlankInstantKill = true,
+        -- Min: 0.00 Max: 10.00 Default: 0.40
+        PointBlankBonusDamage = 0.4,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        PointBlankCooldown = 0.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.10
+        PointBlankCooldownSkilled = 0.1,
+        -- Min: 0.00 Max: 5.00 Default: 1.00
+        TrailOpacity = 1.0,
+        -- Min: 0.00 Max: 3.00 Default: 1.00
+        TrailSpiral = 1.0,
+        -- Min: 0.00 Max: 500.00 Default: 50.00
+        TrailFadeDistance = 50.0,
+        ALifeBullets = true,
+        StayWithMeBullets = true,
+        LastOnesStandingBullets = true,
+        RoamingSurvivorsBullets = true,
+        BanditsBullets = true,
+        DamageFromRound = true,
+        -- Min: 0.00 Max: 1.00 Default: 0.05
+        DamageScale = 0.045,
+        PenetrationFromWeapon = false,
+        HitAllTargets = true,
+        CoverPenetration = true,
+        -- Min: 0.00 Max: 5.00 Default: 1.00
+        Spread = 1.0,
+        -- Min: 0.05 Max: 15.00 Default: 1.60
+        ConeAiming0 = 1.6,
+        -- Min: 0.01 Max: 15.00 Default: 0.25
+        ConeAiming10 = 0.25,
+        -- Min: 0.00 Max: 5.00 Default: 0.60
+        RecoilPerShot = 0.6,
+        -- Min: 0.02 Max: 5.00 Default: 0.35
+        RecoilRecovery = 0.35,
+        -- Min: 0.00 Max: 15.00 Default: 4.00
+        RecoilMax = 4.0,
+        -- Min: 0.00 Max: 5.00 Default: 1.00
+        MissSpread = 1.0,
+        -- Min: 1.00 Max: 4.00 Default: 1.50
+        RangeFactor = 1.5,
+        HitWhereBulletLands = true,
+        AimAtFallingBodies = true,
+        -- Min: 0.00 Max: 2.00 Default: 1.00
+        FlybySound = 1.0,
+        MuzzleSmoke = true,
+        -- Min: 1.00 Max: 60.00 Default: 8.00
+        SmokeLinger = 8.0,
+        -- Min: 0.05 Max: 3.00 Default: 1.00
+        SmokeAmount = 1.0,
+        -- Min: 50 Max: 2000 Default: 500
+        SmokeCap = 500,
+        SmokeBulletTrails = true,
+        -- Min: 0.00 Max: 3.00 Default: 1.00
+        ImpactNoise = 1.0,
+    },
+    RealLimbs = {
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        PlayerFallDamage = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        ZombieFallDamage = 1.0,
+        Bodies = true,
+        SafeMode = false,
+        HumanBodies = true,
+        CorpsePose = 1,
+        -- Min: 2 Max: 60 Default: 20
+        CorpseWait = 20,
+        -- Min: 1 Max: 64 Default: 12
+        MaxBodiesPerPlayer = 12,
+        -- Min: 0 Max: 100000 Default: 1000
+        MaxBodies = 1000,
+        -- Min: 10 Max: 200 Default: 70
+        ShareRange = 70,
+        -- Min: 2 Max: 20 Default: 20
+        SendRate = 20,
+        -- Min: 1 Max: 50 Default: 12
+        MaxCorpseMove = 12,
+        -- Min: 10 Max: 200 Default: 40
+        CommandLimit = 40,
+        ServerSettings = false,
+        PlayerSettings = false,
+        SandboxSettings = false,
+        -- Min: 0 Max: 2 Default: 0
+        zombieToughness = 0,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        kickScale = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        torqueScale = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        muscleScale = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        pinScale = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        blood = 1.0,
+        -- Min: 0.00 Max: 1.00 Default: 0.25
+        headshotDrop = 0.25,
+        -- Min: 0.00 Max: 1.00 Default: 0.35
+        dropDeadChance = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.75
+        throes = 0.75,
+        -- Min: 0.00 Max: 1.00 Default: 0.70
+        throesNone = 0.7,
+        -- Min: 0.00 Max: 18.00 Default: 1.80
+        lootWait = 1.8,
+        lootAsTheyFall = true,
+        -- Min: 0.00 Max: 10.00 Default: 0.60
+        intentStagger = 0.6,
+        ownMelee = true,
+        ownShove = true,
+        ownStomp = true,
+        ownPistol = true,
+        ownRifle = true,
+        ownShotgun = true,
+        ownBlasts = true,
+        ownCars = true,
+        ownFalls = true,
+        ownTrips = true,
+        ownBumps = true,
+        ownClimbHits = true,
+        ownClimbKills = true,
+        ownClimbEnd = true,
+        ownCrawlerHits = true,
+        ownCrawlerKills = true,
+        ownEaterHits = true,
+        ownFireDeaths = true,
+        ownOtherDeaths = true,
+        ownNpcs = true,
+        ownLivingHumans = true,
+        ownHumanFalls = true,
+        ownHumans = true,
+        ownForeignHits = true,
+        fenceThump = true,
+        floorTargets = true,
+        knockdownsOnly = false,
+        -- Min: 0.00 Max: 1.00 Default: 0.10
+        carGrabChance = 0.1,
+        -- Min: 0.00 Max: 25.00 Default: 2.50
+        carGrabTime = 2.5,
+        headshotKills = false,
+        fightsBack = false,
+        -- Min: 0.00 Max: 16.00 Default: 1.60
+        fightsBackReach = 1.6,
+        -- Min: 0.00 Max: 10.00 Default: 0.60
+        fightsBackAfter = 0.6,
+        headshotsByPart = true,
+        zombiesAsPeople = false,
+        -- Min: 0.00 Max: 16.00 Default: 1.60
+        rifleKick = 1.6,
+        -- Min: 0.00 Max: 10.00 Default: 0.45
+        pistolKick = 0.45,
+        -- Min: 0.00 Max: 14.00 Default: 1.35
+        pistolStaggerKick = 1.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        pistolLight = 0.8,
+        -- Min: 0.00 Max: 10.00 Default: 1.05
+        pistolHeavy = 1.05,
+        -- Min: 0 Max: 100 Default: 3
+        pistolHitsToStagger = 3,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        pistolWindow = 2.0,
+        -- Min: 0.00 Max: 12.00 Default: 1.20
+        blastStun = 1.2,
+        -- Min: 0.00 Max: 35.00 Default: 3.50
+        blastKick = 3.5,
+        -- Min: 0.00 Max: 19.00 Default: 1.90
+        shotgunKick = 1.9,
+        -- Min: 0.00 Max: 1.00 Default: 0.34
+        pelletShare = 0.34,
+        pelletParts = true,
+        -- Min: 0.00 Max: 14.00 Default: 1.35
+        meleeKick = 1.35,
+        -- Min: 0.00 Max: 13.00 Default: 1.30
+        meleeOneHanded = 1.3,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        meleeTwoHanded = 1.0,
+        -- Min: 0.00 Max: 18.00 Default: 1.75
+        shoveKick = 1.75,
+        -- Min: 0.00 Max: 30.00 Default: 3.00
+        shoveMaxSpeed = 3.0,
+        -- Min: 0.00 Max: 12.00 Default: 1.20
+        stompKick = 1.2,
+        -- Min: -10.00 Max: 10.00 Default: -1.00
+        kickStamina = -1.0,
+        -- Min: 0.00 Max: 26.00 Default: 2.60
+        playerKick = 2.6,
+        -- Min: 0.00 Max: 10.00 Default: 0.40
+        kickChargeTime = 0.4,
+        -- Min: 0.00 Max: 10.00 Default: 0.60
+        kickTapPower = 0.6,
+        -- Min: 0.00 Max: 12.00 Default: 1.15
+        kickFullPower = 1.15,
+        -- Min: 0.00 Max: 10.00 Default: 0.70
+        kickTapStamina = 0.7,
+        -- Min: 0.00 Max: 13.00 Default: 1.30
+        kickFullStamina = 1.3,
+        kickByAddon = true,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        kickChargeSlow = 0.8,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        critMultiplier = 1.5,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        meleeSideSign = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.65
+        meleeHold = 0.65,
+        -- Min: 0.00 Max: 10.00 Default: 0.20
+        handBackHold = 0.2,
+        -- Min: -10.00 Max: 10.00 Default: -1.00
+        meleeStun = -1.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        meleeStunForce = 0.5,
+        -- Min: 0.00 Max: 1.00 Default: 0.50
+        meleeWeakest = 0.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        meleeStunTime = 0.8,
+        -- Min: 0.00 Max: 600.00 Default: 60.00
+        meleeStunPush = 60.0,
+        meleeFlinch = true,
+        -- Min: 0.00 Max: 400.00 Default: 40.00
+        meleeFlinchPush = 40.0,
+        -- Min: 0.00 Max: 25.00 Default: 2.50
+        knockdownKick = 2.5,
+        -- Min: 0.00 Max: 17.00 Default: 1.70
+        killThrow = 1.7,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        killThrowNear = 2.0,
+        -- Min: 0.00 Max: 60.00 Default: 6.00
+        killThrowFar = 6.0,
+        -- Min: 0.00 Max: 30.00 Default: 3.00
+        killThrowSpeed = 3.0,
+        -- Min: 0.00 Max: 1.00 Default: 1.00
+        killArmsCarry = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.15
+        blastLegsGive = 0.15,
+        -- Min: 0.00 Max: 1.00 Default: 0.00
+        killThrowUp = 0.0,
+        -- Min: 0.00 Max: 30.00 Default: 3.00
+        legTrip = 3.0,
+        -- Min: 0.00 Max: 1.00 Default: 0.50
+        legShotWalksOn = 0.5,
+        -- Min: 0.00 Max: 18.00 Default: 1.80
+        sprintFrom = 1.8,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        sprintSteady = 0.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.10
+        buckleDrop = 0.1,
+        -- Min: 0.00 Max: 340.00 Default: 34.00
+        pushPerKick = 34.0,
+        -- Min: 0.00 Max: 240.00 Default: 24.00
+        meleePush = 24.0,
+        -- Min: 0.00 Max: 400.00 Default: 40.00
+        shovePush = 40.0,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        hurtPerKick = 1.5,
+        -- Min: 0.00 Max: 30.00 Default: 3.00
+        hurtFade = 3.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.12
+        hipLag = 0.12,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        unpinPerKick = 1.0,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        pinRegain = 1.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        pinReach = 0.5,
+        -- Min: 0.00 Max: 1.00 Default: 0.50
+        shoulderShare = 0.5,
+        -- Min: 0.00 Max: 40.00 Default: 4.00
+        spinPerKick = 4.0,
+        -- Min: 0.00 Max: 150.00 Default: 15.00
+        spinStiffness = 15.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.35
+        foldPerKick = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        foldAngle = 1.0,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        foldFade = 1.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.06
+        foldRise = 0.06,
+        -- Min: 0.00 Max: 10.00 Default: 0.25
+        recoilPerKick = 0.25,
+        -- Min: 0.00 Max: 10.00 Default: 0.60
+        recoilMax = 0.6,
+        -- Min: 0.00 Max: 10.00 Default: 0.08
+        recoilPeak = 0.08,
+        -- Min: 0.00 Max: 10.00 Default: 0.15
+        braceDelay = 0.15,
+        -- Min: 0.00 Max: 10.00 Default: 0.75
+        braceTrunk = 0.75,
+        -- Min: 0.00 Max: 100.00 Default: 10.00
+        braceRate = 10.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.35
+        legHitDamage = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.85
+        limpBelow = 0.85,
+        -- Min: 0.00 Max: 10.00 Default: 0.08
+        limpDip = 0.08,
+        -- Min: 0.00 Max: 10.00 Default: 0.35
+        armHitDamage = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.25
+        danglingBelow = 0.25,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        neckHitDamage = 0.3,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        lollingBelow = 0.5,
+        -- Min: 0.00 Max: 1.00 Default: 0.35
+        headPush = 0.35,
+        -- Min: 0.00 Max: 90.00 Default: 9.00
+        headSnap = 9.0,
+        -- Min: 0.00 Max: 1.00 Default: 0.00
+        headRoundTurn = 0.0,
+        -- Min: 0.00 Max: 220.00 Default: 22.00
+        headSnapKill = 22.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.08
+        headSnapTime = 0.08,
+        -- Min: 0.00 Max: 1.00 Default: 0.50
+        headBlowTake = 0.5,
+        -- Min: 0.00 Max: 50.00 Default: 5.00
+        neckTurnMax = 5.0,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        neckSteadyTime = 1.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        neckHold = 0.8,
+        -- Min: 0.00 Max: 10.00 Default: 0.25
+        headBlowDown = 0.25,
+        -- Min: 0.00 Max: 10.00 Default: 0.08
+        headLeads = 0.08,
+        -- Min: 0.00 Max: 1.00 Default: 0.35
+        headShare = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        rippleFollow = 0.8,
+        -- Min: 0.00 Max: 10.00 Default: 0.40
+        headHold = 0.4,
+        -- Min: 0.00 Max: 10.00 Default: 0.40
+        deadNeckHold = 0.4,
+        -- Min: 0.00 Max: 40.00 Default: 4.00
+        deadNeckThick = 4.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.05
+        headshotNeck = 0.05,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        lightsOutAbove = 0.8,
+        -- Min: 0.00 Max: 10.00 Default: 0.40
+        bonkSlack = 0.4,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        bonkFold = 0.8,
+        -- Min: 0.00 Max: 10.00 Default: 0.20
+        bonkLegs = 0.2,
+        -- Min: 0.00 Max: 10.00 Default: 0.25
+        rippleMin = 0.25,
+        -- Min: 0.00 Max: 10.00 Default: 0.45
+        rippleMax = 0.45,
+        -- Min: 0.00 Max: 10.00 Default: 0.00
+        deadHoldFollow = 0.0,
+        -- Min: 0.00 Max: 1.00 Default: 1.00
+        faceStillChance = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        facePlank = 0.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.70
+        facePlankHold = 0.7,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        facePitch = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.15
+        headshotStandMin = 0.15,
+        -- Min: 0.00 Max: 10.00 Default: 0.60
+        headshotStandMax = 0.6,
+        -- Min: 0.00 Max: 10.00 Default: 0.10
+        dripEvery = 0.1,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        bleedTime = 1.0,
+        -- Min: 0.00 Max: 1.00 Default: 0.20
+        fencing = 0.2,
+        -- Min: 0.00 Max: 10.00 Default: 0.35
+        fenceStrength = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.75
+        staggerAbove = 0.75,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        hipHeight = 0.8,
+        -- Min: 0.00 Max: 11.00 Default: 1.10
+        pendulum = 1.1,
+        -- Min: 0.00 Max: 98.00 Default: 9.80
+        gravity = 9.8,
+        -- Min: 0.00 Max: 220.00 Default: 22.00
+        muscle = 22.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.15
+        muscleSat = 0.15,
+        -- Min: 0.00 Max: 12.00 Default: 1.20
+        damping = 1.2,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        returnDamping = 1.0,
+        -- Min: 0.00 Max: 800.00 Default: 80.00
+        swayStiffness = 80.0,
+        -- Min: 0.00 Max: 12.00 Default: 1.20
+        swayDamping = 1.2,
+        -- Min: 0.00 Max: 10.00 Default: 0.18
+        stepAt = 0.18,
+        -- Min: 0.00 Max: 10.00 Default: 0.77
+        stepSpeed = 0.77,
+        -- Min: 0.00 Max: 10.00 Default: 0.00
+        stepOver = 0.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.11
+        stepSide = 0.11,
+        -- Min: 0.00 Max: 10.00 Default: 0.00
+        stepSideSpeed = 0.0,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        runStepFrom = 1.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.10
+        runStepReach = 0.1,
+        -- Min: 0.00 Max: 1.00 Default: 0.35
+        sideFirst = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.12
+        footGap = 0.12,
+        -- Min: 0.00 Max: 10.00 Default: 0.20
+        stepAhead = 0.2,
+        -- Min: 0.00 Max: 10.00 Default: 0.40
+        stepLegShare = 0.4,
+        -- Min: 0.00 Max: 10.00 Default: 0.25
+        stepLift = 0.25,
+        -- Min: 0.00 Max: 10.00 Default: 0.15
+        stepLiftMax = 0.15,
+        -- Min: 0.00 Max: 10.00 Default: 0.00
+        stepDip = 0.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.15
+        hipsSink = 0.15,
+        -- Min: 0.00 Max: 1.00 Default: 0.99
+        legStraight = 0.99,
+        legs2 = true,
+        -- Min: 0.00 Max: 10.00 Default: 0.05
+        stepEaseMin = 0.05,
+        -- Min: 0.00 Max: 1.00 Default: 0.10
+        stepEase = 0.1,
+        ledgeReach = true,
+        -- Min: 0.00 Max: 10.00 Default: 0.90
+        stepDownMax = 0.9,
+        -- Min: 0.00 Max: 1.00 Default: 0.03
+        legSoft = 0.03,
+        -- Min: 0.00 Max: 1.00 Default: 0.35
+        sideSit = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.62
+        stride = 0.62,
+        -- Min: 0.00 Max: 10.00 Default: 0.36
+        stepTime = 0.36,
+        -- Min: 0.00 Max: 1.00 Default: 0.80
+        stepBrake = 0.8,
+        -- Min: 0.00 Max: 10.00 Default: 0.10
+        kneeTopple = 0.1,
+        -- Min: 0.00 Max: 10.00 Default: 0.12
+        stepReaction = 0.12,
+        -- Min: 0.00 Max: 10.00 Default: 0.00
+        stepReachSpeed = 0.0,
+        -- Min: 0.00 Max: 1.00 Default: 0.35
+        stanceTurn = 0.35,
+        -- Min: 0.00 Max: 1.00 Default: 0.70
+        stanceShoulders = 0.7,
+        -- Min: 0.00 Max: 1.00 Default: 0.05
+        tripChance = 0.05,
+        -- Min: 0.00 Max: 10.00 Default: 0.10
+        tripOnBodies = 0.1,
+        -- Min: 0.00 Max: 10.00 Default: 0.10
+        runnerTrips = 0.1,
+        -- Min: 0.00 Max: 100.00 Default: 10.00
+        tripEvery = 10.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        tripFootSpeed = 0.5,
+        -- Min: 0.00 Max: 12.00 Default: 1.20
+        tripPitch = 1.2,
+        -- Min: 0.00 Max: 1.00 Default: 0.60
+        tripStep = 0.6,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        tallFenceTop = 2.0,
+        -- Min: 0.00 Max: 200.00 Default: 20.00
+        sitFrom = 20.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.20
+        sitDepth = 0.2,
+        -- Min: 0.00 Max: 10.00 Default: 0.60
+        fallLean = 0.6,
+        -- Min: 0.00 Max: 10.00 Default: 0.35
+        loseBalanceAt = 0.35,
+        -- Min: 0.00 Max: 12.00 Default: 1.20
+        doomTime = 1.2,
+        -- Min: 0.00 Max: 1.00 Default: 0.35
+        doomGrip = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.10
+        doomSink = 0.1,
+        -- Min: 0.00 Max: 1.00 Default: 0.30
+        carryMomentum = 0.3,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        sweepSpeed = 0.8,
+        -- Min: 0.00 Max: 10.00 Default: 0.12
+        kneeGive = 0.12,
+        -- Min: 0.00 Max: 10.00 Default: 0.45
+        settleTime = 0.45,
+        -- Min: 0.00 Max: 10.00 Default: 0.20
+        footFlat = 0.2,
+        wallSlump = true,
+        -- Min: 0.00 Max: 10.00 Default: 0.60
+        wallSlumpLegs = 0.6,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        slumpHips = 0.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.40
+        slumpKnees = 0.4,
+        -- Min: 0.00 Max: 10.00 Default: 0.25
+        slumpLean = 0.25,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        slumpHold = 0.5,
+        -- Min: 0.00 Max: 1.00 Default: 0.40
+        wallBounce = 0.4,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        wallBounceFrom = 0.3,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        wallBounceKick = 2.0,
+        -- Min: 0.00 Max: 34.00 Default: 3.40
+        dazeMin = 3.4,
+        -- Min: 0.00 Max: 60.00 Default: 6.00
+        dazeMax = 6.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        dazeDecay = 0.3,
+        -- Min: 0.00 Max: 80.00 Default: 8.00
+        carryMax = 8.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.90
+        wallSlam = 0.9,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        bodySlam = 1.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        bumpAbove = 0.8,
+        -- Min: 0.00 Max: 1.00 Default: 0.40
+        bumpShare = 0.4,
+        ownArms = true,
+        -- Min: 0.00 Max: 10.00 Default: 0.12
+        armHang = 0.12,
+        -- Min: 0.00 Max: 1.00 Default: 0.35
+        armSwing = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.20
+        armOut = 0.2,
+        -- Min: 0.00 Max: 1.00 Default: 0.60
+        reachNone = 0.6,
+        -- Min: 0.00 Max: 1.00 Default: 0.15
+        reachBoth = 0.15,
+        -- Min: 0.00 Max: 40.00 Default: 4.00
+        reachFrom = 4.0,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        reachFull = 1.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        reachYaw = 0.5,
+        -- Min: 0.00 Max: 30.00 Default: 3.00
+        reachTurn = 3.0,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        armWorldHang = 1.0,
+        -- Min: 0.00 Max: 30.00 Default: 3.00
+        armFrameSmooth = 3.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.70
+        reachUpMin = 0.7,
+        -- Min: 0.00 Max: 13.00 Default: 1.30
+        backToFight = 1.3,
+        -- Min: 0.00 Max: 12.00 Default: 1.20
+        reachAfterHit = 1.2,
+        -- Min: 0.00 Max: 1.00 Default: 0.20
+        reachKeep = 0.2,
+        -- Min: 0.00 Max: 24.00 Default: 2.40
+        reachHigh = 2.4,
+        -- Min: 0.00 Max: 11.00 Default: 1.10
+        reachUpMax = 1.1,
+        -- Min: 0.00 Max: 200.00 Default: 20.00
+        armsRange = 20.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.90
+        gazeStrength = 0.9,
+        -- Min: 0.00 Max: 60.00 Default: 6.00
+        intentRange = 6.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.70
+        intentReach = 0.7,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        intentStrength = 0.3,
+        -- Min: 0.00 Max: 10.00 Default: 0.05
+        intentSides = 0.05,
+        -- Min: 0.00 Max: 10.00 Default: 0.25
+        staggerLean = 0.25,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        staggerCalm = 2.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        calmBack = 0.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        staggerArm = 0.3,
+        -- Min: 0.00 Max: 25.00 Default: 2.50
+        staggerArmDamping = 2.5,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        armHeft = 2.0,
+        -- Min: 0.00 Max: 30.00 Default: 3.00
+        takeOverUp = 3.0,
+        -- Min: 0.00 Max: 80.00 Default: 8.00
+        takeOverSide = 8.0,
+        -- Min: 0.00 Max: 25.00 Default: 2.50
+        armTakeOver = 2.5,
+        -- Min: 0.00 Max: 40.00 Default: 4.00
+        flailRate = 4.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.45
+        flailStrength = 0.45,
+        -- Min: 0.00 Max: 10.00 Default: 0.65
+        braceStrength = 0.65,
+        -- Min: 0.00 Max: 10.00 Default: 0.60
+        leanStrength = 0.6,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        fallLegs = 0.3,
+        -- Min: 0.00 Max: 10.00 Default: 0.90
+        sitKnees = 0.9,
+        -- Min: 0.00 Max: 13.00 Default: 1.30
+        squatKnees = 1.3,
+        -- Min: 0.00 Max: 10.00 Default: 0.60
+        squatHips = 0.6,
+        -- Min: 0.00 Max: 10.00 Default: 0.35
+        squatTime = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.35
+        landHold = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        landHips = 0.5,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        releaseSpread = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.00
+        ledgeHelp = 0.0,
+        -- Min: 0.00 Max: 25.00 Default: 2.50
+        ledgeLift = 2.5,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        ledgeRaise = 2.0,
+        -- Min: 0.00 Max: 12.00 Default: 1.20
+        ledgeAcross = 1.2,
+        -- Min: 0.00 Max: 1.00 Default: 0.30
+        ledgeBend = 0.3,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        ledgeTime = 2.0,
+        -- Min: 0.00 Max: 12.00 Default: 1.20
+        ledgeArch = 1.2,
+        -- Min: 0.00 Max: 10.00 Default: 0.70
+        ledgeArmsUp = 0.7,
+        -- Min: 0.00 Max: 10.00 Default: 0.15
+        ledgeUpTo = 0.15,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        fallFree = 0.8,
+        -- Min: 0.00 Max: 40.00 Default: 4.00
+        fallLethal = 4.0,
+        -- Min: 0.00 Max: 24.00 Default: 2.40
+        fallDamage = 2.4,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        fallTakeover = 0.3,
+        -- Min: 0.00 Max: 1.00 Default: 0.50
+        fallCripples = 0.5,
+        -- Min: 0.00 Max: 25.00 Default: 2.50
+        carKnock = 2.5,
+        -- Min: 0.00 Max: 1.00 Default: 0.25
+        carLift = 0.25,
+        -- Min: 0.00 Max: 10.00 Default: 0.12
+        carWrapAfter = 0.12,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        carHoldMax = 1.0,
+        carGoesOn = true,
+        -- Min: 0 Max: 100 Default: 2
+        thudsMore = 2,
+        -- Min: 0.00 Max: 22.00 Default: 2.20
+        thudHeavy = 2.2,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        thudAbove = 0.8,
+        -- Min: 0.00 Max: 1.00 Default: 0.50
+        dust = 0.5,
+        -- Min: 0.00 Max: 22.00 Default: 2.20
+        dustAbove = 2.2,
+        -- Min: 0.00 Max: 1.00 Default: 0.30
+        legsFirstChance = 0.3,
+        -- Min: 0.00 Max: 10.00 Default: 0.25
+        legsGiveMin = 0.25,
+        -- Min: 0.00 Max: 10.00 Default: 0.55
+        legsGiveMax = 0.55,
+        -- Min: 0.00 Max: 10.00 Default: 0.00
+        kneelPause = 0.0,
+        -- Min: 0.00 Max: 120.00 Default: 12.00
+        kneelFold = 12.0,
+        -- Min: 0.00 Max: 1.00 Default: 0.40
+        kneelBack = 0.4,
+        -- Min: 0.00 Max: 1.00 Default: 0.35
+        kneelSide = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        deathThroesMin = 0.3,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        deathThroesMax = 0.8,
+        -- Min: 0.00 Max: 10.00 Default: 0.75
+        slumpTime = 0.75,
+        -- Min: 0.00 Max: 10.00 Default: 0.60
+        slumpLegs = 0.6,
+        -- Min: 0.00 Max: 10.00 Default: 0.35
+        slumpTrunk = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.00
+        kneeBuckle = 0.0,
+        -- Min: 0.00 Max: 1.00 Default: 0.00
+        writheChance = 0.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.40
+        writheMin = 0.4,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        writheMax = 1.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.90
+        writheStrength = 0.9,
+        hitTheDying = true,
+        -- Min: 0.00 Max: 10.00 Default: 0.60
+        fireLegsMin = 0.6,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        fireLegsMax = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        fireFade = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.03
+        deadTone = 0.03,
+        -- Min: 0.00 Max: 10.00 Default: 0.10
+        deadArmForward = 0.1,
+        -- Min: 0.00 Max: 10.00 Default: 0.10
+        deadArmUp = 0.1,
+        -- Min: 0.00 Max: 10.00 Default: 0.20
+        deadArmHold = 0.2,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        deadThick = 2.0,
+        floorDeathStill = true,
+        capArmsDown = false,
+        restAnchors = true,
+        -- Min: 0.00 Max: 10.00 Default: 0.02
+        anchorRelease = 0.02,
+        -- Min: 0.00 Max: 10.00 Default: 0.01
+        anchorGap = 0.01,
+        -- Min: 0.00 Max: 10.00 Default: 0.90
+        floorFriction = 0.9,
+        -- Min: 0.00 Max: 1.00 Default: 0.25
+        selfFriction = 0.25,
+        -- Min: 0.00 Max: 10.00 Default: 0.15
+        selfSlip = 0.15,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        stairFriction = 0.5,
+        -- Min: 0.00 Max: 13.00 Default: 1.30
+        stairHold = 1.3,
+        -- Min: 0.00 Max: 10.00 Default: 0.40
+        carFriction = 0.4,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        wallFriction = 0.3,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        headDownSlide = 0.3,
+        -- Min: 0.00 Max: 10.00 Default: 0.60
+        slideOff = 0.6,
+        -- Min: 0.00 Max: 10.00 Default: 0.15
+        slideFriction = 0.15,
+        -- Min: 0.00 Max: 10.00 Default: 0.60
+        stepUpMax = 0.6,
+        -- Min: 0.00 Max: 120.00 Default: 12.00
+        groundGrip = 12.0,
+        -- Min: 0.00 Max: 800.00 Default: 80.00
+        tissue = 80.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.15
+        settleBelow = 0.15,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        settleIn = 1.0,
+        -- Min: 0.00 Max: 40.00 Default: 4.00
+        settleThick = 4.0,
+        -- Min: 0.00 Max: 30.00 Default: 3.00
+        settleDrag = 3.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.40
+        corpseFade = 0.4,
+        -- Min: 0.00 Max: 10.00 Default: 0.10
+        holdGive = 0.1,
+        -- Min: 0.00 Max: 40.00 Default: 4.00
+        holdGiveAir = 4.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        lieLoose = 0.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.25
+        lowerArm = 0.25,
+        -- Min: 0.00 Max: 1.00 Default: 0.90
+        limpTouch = 0.9,
+        -- Min: 0.00 Max: 30.00 Default: 3.00
+        limpGrow = 3.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        lyingLiftMax = 0.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.55
+        crawlHipsBelow = 0.55,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        groundTimeMin = 2.0,
+        -- Min: 0.00 Max: 40.00 Default: 4.00
+        groundTimeMax = 4.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        climbLieMin = 0.3,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        climbLieMax = 0.8,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        climbRiseSpeed = 2.0,
+        -- Min: 0.00 Max: 16.00 Default: 1.60
+        sprinterRiseSpeed = 1.6,
+        -- Min: 0.00 Max: 70.00 Default: 7.00
+        maxHold = 7.0,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        risePace = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        riseSurge = 0.3,
+        -- Min: 0.00 Max: 1.00 Default: 0.50
+        riseFlow = 0.5,
+        -- Min: 0.00 Max: 1.00 Default: 0.70
+        riseLead = 0.7,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        riseHeadSpeed = 1.5,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        riseArmLimit = 2.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.03
+        riseKeyMargin = 0.03,
+        -- Min: 0.00 Max: 10.00 Default: 0.25
+        riseKeyShift = 0.25,
+        -- Min: 0.00 Max: 10.00 Default: 0.35
+        riseOutside = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.25
+        riseWindup = 0.25,
+        -- Min: 0.00 Max: 10.00 Default: 0.20
+        riseFalter = 0.2,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        intentFalter = 0.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.35
+        riseLostAt = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.50
+        riseReachArm = 0.5,
+        -- Min: 0.00 Max: 10.00 Default: 0.07
+        reachDrift = 0.07,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        riseLimpArm = 0.3,
+        -- Min: 0.00 Max: 10.00 Default: 0.35
+        riseHead = 0.35,
+        -- Min: 0.00 Max: 1.00 Default: 0.85
+        riseTouch = 0.85,
+        -- Min: 0.00 Max: 10.00 Default: 0.35
+        handBackBlend = 0.35,
+        partedHandBack = true,
+        noSnapUp = true,
+        lieOnLong = true,
+        -- Min: 0.00 Max: 10.00 Default: 0.15
+        upLag = 0.15,
+        -- Min: 0.00 Max: 60.00 Default: 6.00
+        muscleRegain = 6.0,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        dampingRatio = 1.0,
+        -- Min: 0.00 Max: 25.00 Default: 2.50
+        armDamping = 2.5,
+        -- Min: 0.00 Max: 40.00 Default: 4.00
+        neckInertia = 4.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.40
+        neckShare = 0.4,
+        -- Min: 0.00 Max: 10.00 Default: 0.35
+        shoulderFollow = 0.35,
+        -- Min: 0.00 Max: 10.00 Default: 0.45
+        shoulderMax = 0.45,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        humanStandMin = 1.5,
+        -- Min: 0.00 Max: 35.00 Default: 3.50
+        humanStandMax = 3.5,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        humanFadeMin = 1.5,
+        -- Min: 0.00 Max: 30.00 Default: 3.00
+        humanFadeMax = 3.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        humanHeart = 0.3,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        humanStumble = 0.8,
+        -- Min: 0.00 Max: 10.00 Default: 0.55
+        humanLegs = 0.55,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        foreignKick = 2.0,
+        -- Min: 0.00 Max: 40.00 Default: 4.00
+        leftHold = 4.0,
+        -- Min: 0.00 Max: 300.00 Default: 30.00
+        humanFar = 30.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.80
+        clutchStrength = 0.8,
+        -- Min: 0.00 Max: 10.00 Default: 0.12
+        clutchDelayMin = 0.12,
+        -- Min: 0.00 Max: 10.00 Default: 0.19
+        clutchDelayMax = 0.19,
+        -- Min: 0.00 Max: 10.00 Default: 0.75
+        humanStandTone = 0.75,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        humanPainHunch = 0.3,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        humanLevel = 2.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.12
+        humanLevelFree = 0.12,
+        -- Min: 0.00 Max: 10.00 Default: 0.20
+        humanPainBend = 0.2,
+        -- Min: 0.00 Max: 10.00 Default: 0.85
+        humanSag = 0.85,
+        -- Min: 0.00 Max: 10.00 Default: 0.45
+        humanPainMin = 0.45,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        humanPainMax = 1.5,
+        humanGlances = true,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        humanLegShot = 0.3,
+        -- Min: 0 Max: 120 Default: 12
+        humanStepsMin = 12,
+        -- Min: 0 Max: 200 Default: 20
+        humanStepsMax = 20,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        humanLurch = 0.3,
+        -- Min: 0.00 Max: 10.00 Default: 0.60
+        humanLurchMax = 0.6,
+        clutchElbowDown = true,
+        -- Min: 0.00 Max: 10.00 Default: 0.10
+        deadHandsOver = 0.1,
+        -- Min: 0.00 Max: 10.00 Default: 0.05
+        humanHandsOver = 0.05,
+        -- Min: 0.00 Max: 10.00 Default: 0.00
+        humanGuardDrop = 0.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.25
+        humanTipOut = 0.25,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        humanTipFor = 0.3,
+        humanDazed = true,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        humanDazedMin = 1.5,
+        -- Min: 0.00 Max: 30.00 Default: 3.00
+        humanDazedMax = 3.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.40
+        dazedLetGo = 0.4,
+        -- Min: 0.00 Max: 10.00 Default: 0.04
+        drunkLean = 0.04,
+        -- Min: 0.00 Max: 10.00 Default: 0.90
+        humanLurchRestart = 0.9,
+        -- Min: 0.00 Max: 1.00 Default: 0.60
+        humanLurchChance = 0.6,
+        -- Min: 0.00 Max: 10.00 Default: 0.08
+        humanCrouch = 0.08,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        humanSlide = 2.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.00
+        humanStartleMin = 0.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.00
+        humanStartleMax = 0.0,
+        kneelKeep = true,
+        -- Min: 0.00 Max: 1.00 Default: 0.50
+        humanGroundPain = 0.5,
+        -- Min: 0.00 Max: 1.00 Default: 1.00
+        humanThrownPain = 1.0,
+        keepClothes = true,
+        vanillaCorpse = false,
+        -- Min: 0.00 Max: 10.00 Default: 0.00
+        vanillaCorpseShift = 0.0,
+        corpseKeepsPose = true,
+        oldCorpsePoses = true,
+        corpseOnFurniture = true,
+        downedNoObstacle = true,
+        corpseOnASquare = true,
+        -- Min: 0.00 Max: 1.00 Default: 0.65
+        personStep = 0.65,
+        -- Min: 0.00 Max: 10.00 Default: 0.06
+        personStepReaction = 0.06,
+        -- Min: 0.00 Max: 1.00 Default: 0.80
+        personStepTime = 0.8,
+        -- Min: 0.00 Max: 14.00 Default: 1.40
+        personNerve = 1.4,
+        -- Min: 0 Max: 100 Default: 3
+        personMoreSteps = 3,
+        -- Min: 0.00 Max: 10.00 Default: 0.15
+        personCalm = 0.15,
+        humanRiseOwn = true,
+        -- Min: 0.00 Max: 10.00 Default: 0.75
+        humanRisePace = 0.75,
+        -- Min: 0.00 Max: 10.00 Default: 0.40
+        personGroundMin = 0.4,
+        -- Min: 0.00 Max: 16.00 Default: 1.60
+        personGroundMax = 1.6,
+        -- Min: 0.00 Max: 10.00 Default: 0.45
+        personBlend = 0.45,
+        humanRiseClip = true,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        humanRiseClipPace = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.35
+        humanRiseClipBlend = 0.35,
+        -- Min: 0.00 Max: 1.00 Default: 0.60
+        humanRiseGrit = 0.6,
+        humanHoldFacing = true,
+        -- Min: 0.00 Max: 10.00 Default: 0.45
+        humanArmSlack = 0.45,
+        -- Min: 0.00 Max: 7200.00 Default: 720.00
+        aimTurn = 720.0,
+        -- Min: 0.00 Max: 1.00 Default: 0.20
+        humanArmSlackStrength = 0.2,
+        -- Min: 0.00 Max: 1.00 Default: 0.75
+        groundKick = 0.75,
+        -- Min: 0.00 Max: 40.00 Default: 4.00
+        groundPainMin = 4.0,
+        -- Min: 0.00 Max: 70.00 Default: 7.00
+        groundPainMax = 7.0,
+        humanBackKnees = true,
+        humanGuard = false,
+        -- Min: 0.00 Max: 10.00 Default: 0.60
+        humanArm = 0.6,
+        -- Min: 0.00 Max: 10.00 Default: 0.30
+        humanDeadArm = 0.3,
+        -- Min: 0.00 Max: 1.00 Default: 0.00
+        humanStumbleBack = 0.0,
+        -- Min: 0.00 Max: 1.00 Default: 0.00
+        humanTurnChance = 0.0,
+        -- Min: 0.00 Max: 10.00 Default: 0.40
+        humanTurnRateMin = 0.4,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        humanTurnRateMax = 1.0,
+        -- Min: 0.00 Max: 12.00 Default: 1.20
+        humanTurnMax = 1.2,
+        -- Min: 0.00 Max: 10.00 Default: 0.00
+        humanBurstCap = 0.0,
+        humanThrown = true,
+        -- Min: 0.00 Max: 20.00 Default: 2.00
+        humanThrowKick = 2.0,
+        -- Min: 0 Max: 100 Default: 8
+        humanThrowRounds = 8,
+        humanStagger = true,
+        humanRoundsKnockDown = false,
+        humanVanilla = true,
+        -- Min: 0.00 Max: 10.00 Default: 0.90
+        humanFlinch = 0.9,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        humanBlastDown = 1.5,
+        -- Min: 0.00 Max: 1.00 Default: 0.70
+        humanAimHold = 0.7,
+        -- Min: 0.00 Max: 15.00 Default: 1.50
+        humanFlinchTime = 1.5,
+        humanOwnGetUp = true,
+        -- Min: 0.00 Max: 1.00 Default: 0.30
+        humanNeckShare = 0.3,
+        humanVoice = true,
+        -- Min: 0.00 Max: 25.00 Default: 2.50
+        humanMoanMin = 2.5,
+        -- Min: 0.00 Max: 60.00 Default: 6.00
+        humanMoanMax = 6.0,
+        -- Min: 0.00 Max: 1.00 Default: 0.75
+        humanAgain = 0.75,
+        netSendsDrawn = true,
+        netAskServer = true,
+        -- Min: 0.00 Max: 7000.00 Default: 700.00
+        netDeathGrace = 700.0,
+        -- Min: 0.00 Max: 1.00 Default: 0.50
+        ghostAhead = 0.5,
+        netRestPose = true,
+        npcWindowDrops = true,
+        alifeHold = true,
+        -- Min: 0.00 Max: 30.00 Default: 3.00
+        viewpointDrips = 3.0,
+        -- Min: 0.00 Max: 40.00 Default: 4.00
+        bloodFxDrips = 4.0,
+        viewpointSkeletons = true,
+        biteDefendShove = true,
+        sentientClimbs = true,
+        pauseHoldsSelfCheck = true,
+        headlessDies = true,
+        headlessDrops = true,
+        visceral = true,
+        ballisticsHitDying = true,
+        -- Min: 0.00 Max: 1.00 Default: 0.05
+        cutWeight = 0.05,
+        monstersCryOfFear = false,
+        monstersSilentHill = false,
+        monstersMutants = false,
+        monstersOther = false,
+        parkourHits = true,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        parkourDropKick = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        parkourKick = 1.0,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        parkourOther = 1.0,
+        modShots = true,
+        sttRounds = true,
+        cancelledHits = true,
+        crossedPeople = true,
+        modShotsLegs = true,
+        efzRounds = true,
+        dropKickHits = true,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        dropKickPush = 1.0,
+        addonBodies = true,
+    },
+    DeadCanvasTrauma = {
+        HeadBursts = 3,
+        BloodyFootprints = true,
+        BloodyTireTracks = true,
+        VehicleBlood = true,
+        FurnitureBlood = true,
+        IgnoreMaxGibLifetime = false,
+        Cleaning = 1,
+        Weathering = 4,
+        IndoorWeathering = 1,
+        RainWashOut = true,
+        DyingShots = true,
+        Grazes = true,
+        -- Min: 500 Max: 50000 Default: 5000
+        ServerMemoryChunks = 5000,
+        -- Min: 20 Max: 1000 Default: 100
+        ServerMemoryMB = 100,
+        -- Min: 0 Max: 500 Default: 50
+        ServerMemoryVehiclesMB = 50,
+        -- Min: 0 Max: 20 Default: 1
+        UploadBudget = 1,
+        BloodSaveWait = 1,
+    },
     LugliModpackFixes = {
         AuiCleanUI = true,
         BiiTooltip = true,
@@ -2797,7 +4022,20 @@ SandboxVars = {
         FhKeys = true,
         GydeHandy = true,
         HotbarEquip = true,
+        IdpBags = true,
+        IdpChamber = true,
+        IdpHide = true,
+        IdpMarz = true,
+        IdpRadial = true,
+        IdpRpm = true,
+        IdpSeeds = true,
+        IdpSilencer = true,
+        IdpText = true,
+        IdpVanilla = true,
         ImpSpawn = true,
+        LootNames = true,
+        NellisExit = true,
+        NellisPower = true,
         NgmClaims = true,
         NgmInfo = true,
         NgmManage = true,
@@ -2805,6 +4043,7 @@ SandboxVars = {
         NgmSlice = true,
         P4Place = true,
         ReloadStrap = true,
+        SealedSeats = true,
         SeatView = true,
         SgKills = true,
         SgTank = true,

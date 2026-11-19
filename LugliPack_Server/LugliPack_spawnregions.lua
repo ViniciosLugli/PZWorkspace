@@ -8,6 +8,11 @@ function SpawnRegions()
 		{ name = "Raven Creek B42", file = "media/maps/Raven Creek B42/spawnpoints.lua" },
 		{ name = "Fort Benning B42", file = "media/maps/Fort Benning B42/spawnpoints.lua" },
 		{ name = "Fort Waterfront B42", file = "media/maps/Fort Waterfront B42/spawnpoints.lua" },
+		{ name = "Dirkerdam Integrated B42", file = "media/maps/Dirkerdam Integrated B42/spawnpoints.lua" },
+		{ name = "ARC_BedfordFalls", file = "media/maps/ARC_BedfordFalls/spawnpoints.lua" },
+		{ name = "ARC_LCV2", file = "media/maps/ARC_LCV2/spawnpoints.lua" },
+		{ name = "ARC_Camden County Relocated", file = "media/maps/ARC_Camden County Relocated/spawnpoints.lua" },
+		{ name = "ARC_Kingsmouth North B42", file = "media/maps/ARC_Kingsmouth North B42/spawnpoints.lua" },
 		{ name = "Random Building Spawn", file = "media/maps/Random Building Spawn/spawnpoints.lua" },
 	}
 end
