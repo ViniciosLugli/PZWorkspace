@@ -1,0 +1,17 @@
+module LugliDMS
+{
+    /* The Locksmith picks a lock without being a burglar (Gates.lua M.ROUTES.pick) and picks and
+     * jimmies in 80% of the time. Its id is registered in media/registries.lua; its icon is
+     * media/ui/Traits/trait_dms_locksmith.png, named by the id's path
+     * (CharacterTraitDefinition.java:43). */
+    character_trait_definition lugli_dms:dms_locksmith
+    {
+        IsProfessionTrait = false,
+        DisabledInMultiplayer = false,
+        CharacterTrait = lugli_dms:dms_locksmith,
+        Cost = 2,
+        UIName = UI_trait_LugliDMS_Locksmith,
+        UIDescription = UI_trait_LugliDMS_LocksmithDesc,
+        MutuallyExclusiveTraits = base:burglar,
+    }
+}

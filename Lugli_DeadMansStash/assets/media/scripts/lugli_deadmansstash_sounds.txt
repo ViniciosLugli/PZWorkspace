@@ -1,0 +1,213 @@
+/* The sounds Lugli - Dead Man's Stash ships. Every clip is a loose OGG under media/sound, cut and
+ * encoded by tools/dms-audio.sh from the CC0 recordings in art/dms-audio/ (SOURCES.md there); a
+ * mod cannot ship an FMOD bank, so `event =` is never an option here.
+ *
+ * EVERY VALUE CARRIES A TRAILING COMMA, INCLUDING THE LAST. ScriptParser.readBlock emits a
+ * value only when it reaches a ',' and returns immediately on '}', so a final key without one
+ * is silently dropped. distanceMin and distanceMax go through Integer.parseInt.
+ *
+ * Names are prefixed because GameSounds keys one flat map on the bare name and ignores the
+ * module, so a later-loading mod with the same name would replace ours. Several clip blocks are
+ * variants of one sound: the engine picks one per play.
+ *
+ * LOUDNESS LIVES IN THE FILES, NOT HERE. The encoder normalises each clip against vanilla clips
+ * decoded from the FMOD banks (dial tick -38 LUFS, pick pin -36, dial contact and keypad key -32,
+ * drill loop -33, keypad accept -28, bolt cut -27, keypad deny -26), so `volume` stays at its
+ * default 1.0 as it does in every vanilla script.
+ *
+ * DISTANCES follow powergrid_sounds.txt: full level inside distanceMin, -6 dB per doubling out to
+ * distanceMax, where FMOD holds the level, so every pair keeps max at ten times min (-20 dB). A
+ * pin or a dial tick is for the survivor at the lock; the drill carries across a building.
+ *
+ * CATEGORY is Object, as vanilla's lock, door and barricade sounds are: every one of these
+ * happens at a lock or a safe.
+ */
+module Base
+{
+    sound LugliDMS_PickPin
+    {
+        category = Object,
+        maxInstancesPerEmitter = 3,
+        clip
+        {
+            file = media/sound/LugliDMS_PickPin1.ogg,
+            distanceMin = 1,
+            distanceMax = 10,
+        }
+        clip
+        {
+            file = media/sound/LugliDMS_PickPin2.ogg,
+            distanceMin = 1,
+            distanceMax = 10,
+        }
+        clip
+        {
+            file = media/sound/LugliDMS_PickPin3.ogg,
+            distanceMin = 1,
+            distanceMax = 10,
+        }
+    }
+
+    sound LugliDMS_DialTick
+    {
+        category = Object,
+        maxInstancesPerEmitter = 3,
+        clip
+        {
+            file = media/sound/LugliDMS_DialTick1.ogg,
+            distanceMin = 1,
+            distanceMax = 10,
+        }
+        clip
+        {
+            file = media/sound/LugliDMS_DialTick2.ogg,
+            distanceMin = 1,
+            distanceMax = 10,
+        }
+        clip
+        {
+            file = media/sound/LugliDMS_DialTick3.ogg,
+            distanceMin = 1,
+            distanceMax = 10,
+        }
+    }
+
+    sound LugliDMS_DialContact
+    {
+        category = Object,
+        maxInstancesPerEmitter = 2,
+        clip
+        {
+            file = media/sound/LugliDMS_DialContact1.ogg,
+            distanceMin = 1,
+            distanceMax = 10,
+        }
+        clip
+        {
+            file = media/sound/LugliDMS_DialContact2.ogg,
+            distanceMin = 1,
+            distanceMax = 10,
+        }
+    }
+
+    sound LugliDMS_KeypadKey
+    {
+        category = Object,
+        maxInstancesPerEmitter = 3,
+        clip
+        {
+            file = media/sound/LugliDMS_KeypadKey1.ogg,
+            distanceMin = 1,
+            distanceMax = 10,
+        }
+        clip
+        {
+            file = media/sound/LugliDMS_KeypadKey2.ogg,
+            distanceMin = 1,
+            distanceMax = 10,
+        }
+    }
+
+    sound LugliDMS_KeypadAccept
+    {
+        category = Object,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliDMS_KeypadAccept.ogg,
+            distanceMin = 2,
+            distanceMax = 20,
+        }
+    }
+
+    sound LugliDMS_KeypadDeny
+    {
+        category = Object,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliDMS_KeypadDeny.ogg,
+            distanceMin = 2,
+            distanceMax = 20,
+        }
+    }
+
+    /* The drill runs for the whole session, so it loops; stopping the action stops it. Loud
+     * for all of it: full level across the room, held at -20 dB from thirty squares out. */
+    sound LugliDMS_HandDrill
+    {
+        category = Object,
+        loop = true,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliDMS_HandDrill.ogg,
+            distanceMin = 3,
+            distanceMax = 30,
+        }
+    }
+
+    /* The torch runs for the whole session without a gap, unlike vanilla's BlowTorch bursts. */
+    sound LugliDMS_TorchLoop
+    {
+        category = Object,
+        loop = true,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliDMS_TorchLoop.ogg,
+            distanceMin = 2,
+            distanceMax = 20,
+        }
+    }
+
+    /* The drill let go: easing off when the bit runs hot, or stalling when it is not. */
+    sound LugliDMS_DrillEase
+    {
+        category = Object,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliDMS_DrillEase.ogg,
+            distanceMin = 3,
+            distanceMax = 30,
+        }
+    }
+
+    /* The torch shut off: stopping to let the seam cool, or cutting out when it was not. */
+    sound LugliDMS_TorchOff
+    {
+        category = Object,
+        maxInstancesPerEmitter = 1,
+        clip
+        {
+            file = media/sound/LugliDMS_TorchOff.ogg,
+            distanceMin = 2,
+            distanceMax = 20,
+        }
+    }
+
+    sound LugliDMS_BoltCut
+    {
+        category = Object,
+        maxInstancesPerEmitter = 2,
+        clip
+        {
+            file = media/sound/LugliDMS_BoltCut1.ogg,
+            distanceMin = 2,
+            distanceMax = 20,
+        }
+        clip
+        {
+            file = media/sound/LugliDMS_BoltCut2.ogg,
+            distanceMin = 2,
+            distanceMax = 20,
+        }
+        clip
+        {
+            file = media/sound/LugliDMS_BoltCut3.ogg,
+            distanceMin = 2,
+            distanceMax = 20,
+        }
+    }
+}

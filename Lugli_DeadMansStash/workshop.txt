@@ -1,0 +1,70 @@
+version=1
+title=Lugli - Dead Man's Stash
+description=Adds hidden stashes to the map: nailed crates, lockboxes, footlockers and safes, with better loot than the containers around them. Find the key or the code, pick the lock, or break it open and deal with the noise.
+description=
+description=[hr][/hr]
+description=[h1]Finding one[/h1]
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_DeadMansStash/art/dms-inspect.png[/img]
+description=[list]
+description=[*]About [b]one building in fourteen[/b] hides a stash, a little more often out in the country, a little less in a crowded city block.
+description=[*][b]Click a box[/b] to inspect it and see every way in before you pick one.
+description=[*][b]Keys[/b] are in the same building or on a zombie nearby. [b]Safe codes[/b] are split across notes, each giving part of the code.
+description=[*]Every box has a number, and its key and notes carry the same one, so you never lose track of which key opens which.
+description=[/list]
+description=[hr][/hr]
+description=[h1]Ways in[/h1]
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_DeadMansStash/art/dms-boxes.png[/img]
+description=Quiet ways need a key, a code or a skill. Loud ways are fast, but they draw zombies and can break what is inside.
+description=
+description=[hr][/hr]
+description=[h1]Safes[/h1]
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_DeadMansStash/art/dms-safes.png[/img]
+description=Dial and keypad both work with mouse, keyboard or controller, with the notes you found shown beside the lock. Too many wrong codes lock the safe for a while, and a keypad sounds an alarm.
+description=
+description=[hr][/hr]
+description=[h1]The work[/h1]
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_DeadMansStash/art/dms-work.png[/img]
+description=Walk away from a pry, a drill or a torch and the progress is kept. A drill or torch heats up: ease off when it goes red, or it stops on its own.
+description=
+description=[hr][/hr]
+description=[h1]What is inside[/h1]
+description=[list]
+description=[*][b]Crate:[/b] what its room stores, like tools in a garage or medicine in a pharmacy storeroom.
+description=[*][b]Lockbox:[/b] a handgun and its ammo, medicine, jewelry, smokes.
+description=[*][b]Footlocker:[/b] survival gear, camping kit, ammo. Common out in the country.
+description=[*][b]Safe:[/b] a handgun, ammo, medicine or jewelry. Police and gun store safes lean to guns, pharmacy safes to medicine, bank vaults add gold.
+description=[*][b]Quality:[/b] about six boxes in ten are Ordinary, three Good, one Rich. Bank vault safes are always Rich. Better boxes roll more loot.
+description=[/list]
+description=Loot is rolled when the box opens, so your loot settings still apply.
+description=
+description=[hr][/hr]
+description=[h1]Skills and traits[/h1]
+description=[list]
+description=[*][b]Burglar[/b] can pick stash locks. The new [b]Locksmith[/b] trait (2 points) goes further: it also picks locked house doors, never jams a lock, and listens to a dial better. You can't have both.
+description=[*][b]Keen Hearing[/b] helps with the stethoscope. Deaf characters can't use one.
+description=[*][b]Electrician[/b] can hotwire a keypad at Electrical 2. [b]Welder[/b] can torch a safe without Welding skill.
+description=[*][b]Strength, Carpentry and Nimble[/b] speed up their jobs and gain XP from them.
+description=[/list]
+description=[hr][/hr]
+description=[h1]Compatibility[/h1]
+description=[list]
+description=[*][b]Multiplayer:[/b] fully supported. Install it on the server and every client.
+description=[*][b]Requires[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3508537032]NeatUI Framework[/url].
+description=[*][b]Existing saves:[/b] stashes appear as you explore.
+description=[*][b]Loot mods:[/b] their items can show up in stashes.
+description=[*][b]Map mods tested:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3484263516]Raven Creek[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3486814612]Fort Waterfront[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3490580478]Fort Benning[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3783433804]Nellis Air Force Base[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3818766091]Dirkerdam Integrated[/url].
+description=[/list]
+description=Spawn chances, loot, noise, time and safe lockouts are all sandbox options.
+description=
+description=[hr][/hr]
+description=[h1]Coming later[/h1]
+description=Right now only the dial and the keypad are worked by hand. The other ways in, like picking a lock or prying a lid, run on their own once started. Over time I plan to give more of them a hands-on interaction like those two.
+description=
+description=[hr][/hr]
+description=Open source, MIT: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_DeadMansStash]github.com/ViniciosLugli/PZWorkspace[/url]
+description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url].
+description=
+description=If you want to support my mods, there's a Ko-fi: [url=https://ko-fi.com/vinicioslugli]ko-fi.com/vinicioslugli[/url]
+description=[url=https://ko-fi.com/vinicioslugli][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_DeadMansStash/art/kofi.png[/img][/url]
+tags=Build 42;Realistic;Items;Models;Traits;Multiplayer
+visibility=public

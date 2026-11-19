@@ -1,0 +1,125 @@
+VERSION = 1,
+
+/* Read from Lua as SandboxVars.LugliDMS.<Name>, through LugliDeadMansStash.cfg(). The table of
+ * names, kinds and defaults that this file mirrors is LugliDeadMansStash.SANDBOX in Config.lua.
+ */
+
+option LugliDMS.Enabled = {
+	type = boolean,
+	default = true,
+	page = LugliDMS,
+	translation = LugliDMS_Enabled,
+}
+
+option LugliDMS.StashChance = {
+	type = double,
+	default = 7,
+	min = 0,
+	max = 100,
+	page = LugliDMS,
+	translation = LugliDMS_StashChance,
+}
+
+option LugliDMS.MaxPerBuilding = {
+	type = integer,
+	default = 2,
+	min = 1,
+	max = 10,
+	page = LugliDMS,
+	translation = LugliDMS_MaxPerBuilding,
+}
+
+option LugliDMS.PayoutRolls = {
+	type = integer,
+	default = 0,
+	min = 0,
+	max = 10,
+	page = LugliDMS,
+	translation = LugliDMS_PayoutRolls,
+}
+
+option LugliDMS.BruteDamage = {
+	type = enum,
+	numValues = 4,
+	default = 3,
+	page = LugliDMS,
+	translation = LugliDMS_BruteDamage,
+	valueTranslation = LugliDMS_BruteDamageChoices,
+}
+
+option LugliDMS.NoiseScale = {
+	type = double,
+	default = 1,
+	min = 0,
+	max = 3,
+	page = LugliDMS,
+	translation = LugliDMS_NoiseScale,
+}
+
+option LugliDMS.TimeScale = {
+	type = double,
+	default = 1,
+	min = 0.25,
+	max = 4,
+	page = LugliDMS,
+	translation = LugliDMS_TimeScale,
+}
+
+option LugliDMS.SafeChance = {
+	type = double,
+	default = 10,
+	min = 0,
+	max = 100,
+	page = LugliDMS,
+	translation = LugliDMS_SafeChance,
+}
+
+option LugliDMS.VaultSafeChance = {
+	type = double,
+	default = 60,
+	min = 0,
+	max = 100,
+	page = LugliDMS,
+	translation = LugliDMS_VaultSafeChance,
+}
+
+option LugliDMS.SafeTries = {
+	type = integer,
+	default = 5,
+	min = 1,
+	max = 20,
+	page = LugliDMS,
+	translation = LugliDMS_SafeTries,
+}
+
+option LugliDMS.SafeLockoutHours = {
+	type = double,
+	default = 2,
+	min = 0,
+	max = 48,
+	page = LugliDMS,
+	translation = LugliDMS_SafeLockoutHours,
+}
+
+option LugliDMS.SafeAlarm = {
+	type = boolean,
+	default = true,
+	page = LugliDMS,
+	translation = LugliDMS_SafeAlarm,
+}
+
+option LugliDMS.CluesPerSafe = {
+	type = integer,
+	default = 2,
+	min = 0,
+	max = 3,
+	page = LugliDMS,
+	translation = LugliDMS_CluesPerSafe,
+}
+
+option LugliDMS.DebugLog = {
+	type = boolean,
+	default = false,
+	page = LugliDMS,
+	translation = LugliDMS_DebugLog,
+}

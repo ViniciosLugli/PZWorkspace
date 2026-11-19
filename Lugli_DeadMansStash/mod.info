@@ -1,0 +1,12 @@
+name=Lugli - Dead Man's Stash
+id=Lugli_DeadMansStash
+author=ViniciosLugli
+description=Adds hidden stashes to the map: nailed crates, lockboxes, footlockers, and dial and keypad safes. Each holds better loot than the containers around it and has several ways in: find the key or the code, pick the lock, or break it open and deal with the noise. Needs NeatUI Framework.
+poster=preview.png
+icon=icon.png
+category=features
+require=NeatUI_Framework
+versionMin=42.22
+modversion=0.1.0
+pack=lugli_deadmansstash
+tiledef=lugli_deadmansstash 4174
