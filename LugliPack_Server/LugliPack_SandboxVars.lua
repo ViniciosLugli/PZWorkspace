@@ -150,7 +150,7 @@ SandboxVars = {
     -- Weapons that are not tools in other categories. Min: 0.00 Max: 4.00 Default: 0.60
     WeaponLootNew = 0.3,
     -- Also includes weapon attachments. Min: 0.00 Max: 4.00 Default: 1.20
-    RangedWeaponLootNew = 0.2,
+    RangedWeaponLootNew = 0.48,
     -- Loose ammo, boxes and magazines. Min: 0.00 Max: 4.00 Default: 0.60
     AmmoLootNew = 0.4,
     -- Vehicle parts and the tools needed to install them. Min: 0.00 Max: 4.00 Default: 0.60
@@ -162,7 +162,7 @@ SandboxVars = {
     -- Backpacks and other wearable/equippable containers, eg. cases. Min: 0.00 Max: 4.00 Default: 0.60
     ContainerLootNew = 0.3,
     -- Keys for buildings/cars, key rings, and locks. Min: 0.00 Max: 4.00 Default: 0.40
-    KeyLootNew = 0.1,
+    KeyLootNew = 0.16,
     -- VHS tapes and CDs. Min: 0.00 Max: 4.00 Default: 0.60
     MediaLootNew = 0.3,
     -- Spiffo items, plushies, and other collectible keepsake items eg. Photos. Min: 0.00 Max: 4.00 Default: 0.60
@@ -949,7 +949,7 @@ SandboxVars = {
     },
     ZombieConfig = {
         -- Set by the "Zombie Count" population option, or by a custom number here. Insane = 2.5, Very High = 1.6, High = 1.2, Normal = 0.65, Low = 0.15, None = 0.0. Min: 0.00 Max: 4.00 Default: 0.65
-        PopulationMultiplier = 0.8,
+        PopulationMultiplier = 0.7,
         -- A multiplier for the desired zombie population at the start of the game. Insane = 3.0, Very High = 2.0, High = 1.5, Normal = 1.0, Low = 0.5, None = 0.0. Min: 0.00 Max: 4.00 Default: 1.00
         PopulationStartMultiplier = 1.0,
         -- A multiplier for the desired zombie population on the peak day. Insane = 3.0, Very High = 2.0, High = 1.5, Normal = 1.0, Low = 0.5, None = 0.0. Min: 0.00 Max: 4.00 Default: 1.50
