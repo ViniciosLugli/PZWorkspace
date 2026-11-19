@@ -45,7 +45,7 @@ The server needs nothing extra: these mods' server side is plain Lua.
    `StartServer64.bat -servername LugliPack` (Windows) or `./start-server.sh -servername LugliPack` (Linux).
    The first start asks you to create the admin password.
 
-The first start downloads 324 Workshop items and takes a while. If one download fails the
+The first start downloads 321 Workshop items and takes a while. If one download fails the
 server stops booting; start it again and it resumes.
 
 ## Good to know
