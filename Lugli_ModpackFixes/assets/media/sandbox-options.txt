@@ -51,6 +51,20 @@ option LugliModpackFixes.DbuRestore = {
 	translation = LugliModpackFixes_DbuRestore,
 }
 
+option LugliModpackFixes.DsagNeat = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_DsagNeat,
+}
+
+option LugliModpackFixes.DsagQuiet = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_DsagQuiet,
+}
+
 option LugliModpackFixes.ExBandolier = {
 	type = boolean,
 	default = true,
@@ -112,6 +126,13 @@ option LugliModpackFixes.IdpRadial = {
 	default = true,
 	page = LugliModpackFixes,
 	translation = LugliModpackFixes_IdpRadial,
+}
+
+option LugliModpackFixes.IdpRead = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_IdpRead,
 }
 
 option LugliModpackFixes.IdpRpm = {

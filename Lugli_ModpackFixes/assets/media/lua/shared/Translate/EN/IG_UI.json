@@ -17,6 +17,8 @@
     "IGUI_LugliMPF_IdpXpMultiplier": "XP multiplier",
     "IGUI_LugliMPF_IdpXpLevels": "Levels %1",
     "IGUI_LugliMPF_IdpReadStatus": "Status",
+    "IGUI_LugliMPF_IdpReadTime": "Reading time",
+    "IGUI_LugliMPF_IdpReadLeft": "%1 left",
     "IGUI_LugliMPF_IdpTank": "Tank",
     "IGUI_LugliMPF_IdpMore": "And %1 more",
     "IGUI_LugliMPF_IdpKnownOf": "%1 of %2 known",
