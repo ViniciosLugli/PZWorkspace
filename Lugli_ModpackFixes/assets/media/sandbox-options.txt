@@ -330,3 +330,17 @@ option LugliModpackFixes.VmzLegacy = {
 	page = LugliModpackFixes,
 	translation = LugliModpackFixes_VmzLegacy,
 }
+
+option LugliModpackFixes.ZtcPanic = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_ZtcPanic,
+}
+
+option LugliModpackFixes.ZtcRecord = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_ZtcRecord,
+}

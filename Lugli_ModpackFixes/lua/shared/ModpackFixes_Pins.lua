@@ -118,4 +118,11 @@ LugliModpackFixes.pins = {
     ["gw.rpm"] = { mod = "SWMG", file = "media/lua/shared/WeaponSystems/Utils/RateOfFire.lua", anchor = "function RateOfFire.getWeaponRPM(weapon)", lines = 13, accept = { 133412249 } },
     ["srm.extra"] = { mod = "SmartRadialMenu", file = "media/lua/client/SRMOverlay.lua", anchor = "function ISToolTipInv:render()", lines = 77, accept = { 3687218218 } },
     ["vanilla.beervan"] = { mod = "vanilla", file = "media/lua/server/Vehicles/VehicleDistributions.lua", anchor = "StepVan_Genuine_Beer = { Normal = VehicleDistributions.StepVan_ImportedBeer },", lines = 1, accept = { 2918364841 } },
+    ["ztc.data"] = { mod = "ZeroToChad", file = "media/lua/shared/ZeroToChad/ZTC_Common.lua", anchor = "function ZTC_Common.ensureData(player)", lines = 17, accept = { 2495289975 } },
+    ["ztc.count"] = { mod = "ZeroToChad", file = "media/lua/shared/ZeroToChad/ZTC_Common.lua", anchor = "function ZTC_Common.recognizedKills(player, data)", lines = 12, accept = { 2991960897 } },
+    ["ztc.start"] = { mod = "ZeroToChad", file = "media/lua/server/ZeroToChad/ZTC_Server.lua", anchor = "local function startServerCount(player, data)", lines = 8, accept = { 1954016118 } },
+    ["ztc.report"] = { mod = "ZeroToChad", file = "media/lua/server/ZeroToChad/ZTC_Server.lua", anchor = "local function onClientCommand(module, command, player, args)", lines = 23, accept = { 3544998354 } },
+    ["ztc.reportreg"] = { mod = "ZeroToChad", file = "media/lua/server/ZeroToChad/ZTC_Server.lua", anchor = "Events.OnClientCommand.Add(onClientCommand)", lines = 1, accept = { 847752025 } },
+    ["ztc.cap"] = { mod = "ZeroToChad", file = "media/lua/server/ZeroToChad/ZTC_Server.lua", anchor = "data.capReduction = state.capReduction", lines = 1, accept = { 3566484238 } },
+    ["ztc.clamp"] = { mod = "ZeroToChad", file = "media/lua/client/ZeroToChad/ZTC_Main.lua", anchor = "if not s.cap or s.cap <= 0 or s.desensitized then return end", lines = 7, accept = { 281719334 } },
 }

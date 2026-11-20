@@ -2,49 +2,50 @@ version=1
 title=Lugli - B42 Modpack Compats & Fixes
 description=Fixes for conflicts between popular Build 42 mods, and bugs inside some of them.
 description=
-description=[b]No dependencies.[/b] Each mod fix turns on only with the mods it fixes. If an update changes their code, it stands down instead of guessing. Each fix has a sandbox switch.
+description=[b]No dependencies.[/b] Each fix turns on only with the mods it fixes. If an update changes their code, it stands down instead of guessing. Each fix has a sandbox switch.
 description=
 description=[h1]Combat and zombies[/h1]
 description=[list]
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3833349401]Super Gore[/url]:[/b] zombies it finishes off (a severed head, a burst chest) now count as your kills.
-description=[*][b]Super Gore + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3783283328]Special Zombies: Tank[/url]:[/b] a Tank no longer dies to almost any hit, or heals when a limb is cut.
-description=[*][b]Vanilla:[/b] wearing an ALICE belt or chest rig, reloads without an ammo strap and filling magazines no longer error. This makes [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3837229266]Reload Those Weapons Again[/url] redundant.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3833349401]Super Gore[/url]:[/b] zombies it finishes off (a severed head, a burst chest) now count as your kills.
+description=[*][b]Super Gore + [url=https://steamcommunity.com/workshop/filedetails/?id=3783283328]Special Zombies: Tank[/url]:[/b] a Tank no longer dies to almost any hit, or heals when a limb is cut.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3781428012]Zero to Chad[/url]:[/b] in multiplayer kills keep counting after you change clothes and cannot be faked; the panic cap holds.
+description=[*][b]Vanilla:[/b] wearing an ALICE belt or chest rig, reloads without an ammo strap and filling magazines no longer error. This makes [url=https://steamcommunity.com/workshop/filedetails/?id=3837229266]Reload Those Weapons Again[/url] redundant.
 description=[/list]
 description=[h1]Hotbar and keys[/h1]
 description=[list]
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2366717227]SwapIt[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3771638611]Fancy Handwork[/url]:[/b] modifier + hotbar key takes the item into your off hand again.
-description=[*][b]SwapIt + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3737864976]H.E.C.U.[/url]:[/b] the hotbar key puts helmets and masks on and off again.
-description=[*][b]SwapIt + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3696291148]Better Pause[/url]:[/b] hotbar keys work while paused again.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=2366717227]SwapIt[/url] + [url=https://steamcommunity.com/workshop/filedetails/?id=3771638611]Fancy Handwork[/url]:[/b] modifier + hotbar key takes the item into your off hand again.
+description=[*][b]SwapIt + [url=https://steamcommunity.com/workshop/filedetails/?id=3737864976]H.E.C.U.[/url]:[/b] the hotbar key puts helmets and masks on and off again.
+description=[*][b]SwapIt + [url=https://steamcommunity.com/workshop/filedetails/?id=3696291148]Better Pause[/url]:[/b] hotbar keys work while paused again.
 description=[*][b]Fancy Handwork B42.20:[/b] the swap-hands keys work, and key presses stop raising errors.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3775549570]Alice's Weapon Sling[/url]:[/b] cancelling an attach no longer leaves a ghost weapon on your body.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3775549570]Alice's Weapon Sling[/url]:[/b] cancelling an attach no longer leaves a ghost weapon on your body.
 description=[/list]
 description=[h1]Inventory and menus[/h1]
 description=[list]
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3758971325]Better Item Info[/url] + Guns of Marz, [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3826420021]Item Details Panel[/url]:[/b] the panel becomes the default tooltip and shows what the hidden one did: other mods' rows, clocks, fishing gear, what a book teaches, and Reading time instead of Burn time on books.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3830103302]Better Item Transfer[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3422220305]Picking Meister[/url]:[/b] Grab and Unpack Contents is back beside Drop and Place.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2996978365]Dynamic Backpack Upgrades[/url]:[/b] upgraded bags keep their capacity on a server after a restart, and bags past the 50 limit stop asking to be fixed.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3437629766]CleanUI[/url]:[/b] the vanilla tutorial no longer errors on its container steps, and the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3816324722]Attachments UI[/url] workbench takes CleanUI's look.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781990933]Clear Driver View Fix[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3501302358]Vehicle Seat UI (KI5)[/url]:[/b] the seat diagram no longer flashes when you start driving.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2858201402]Daily Report Journal[/url]:[/b] no longer opens on every new character, and takes the NeatUI look with Neat Rocco's UI.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3758971325]Better Item Info[/url] + Guns of Marz, [url=https://steamcommunity.com/workshop/filedetails/?id=3826420021]Item Details Panel[/url]:[/b] the panel becomes the default tooltip and shows all the hidden one did, and books show their reading time.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3830103302]Better Item Transfer[/url] + [url=https://steamcommunity.com/workshop/filedetails/?id=3422220305]Picking Meister[/url]:[/b] Grab and Unpack Contents is back beside Drop and Place.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=2996978365]Dynamic Backpack Upgrades[/url]:[/b] upgraded bags keep their capacity on a server after a restart, and bags past the 50 limit stop asking to be fixed.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3437629766]CleanUI[/url]:[/b] the vanilla tutorial no longer errors on its container steps, and the [url=https://steamcommunity.com/workshop/filedetails/?id=3816324722]Attachments UI[/url] workbench takes CleanUI's look.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3781990933]Clear Driver View Fix[/url] + [url=https://steamcommunity.com/workshop/filedetails/?id=3501302358]Vehicle Seat UI (KI5)[/url]:[/b] the seat diagram no longer flashes when you start driving.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=2858201402]Daily Report Journal[/url]:[/b] no longer opens on every new character, and takes the NeatUI look with Neat Rocco's UI.
 description=[/list]
 description=[h1]Items, loot and world[/h1]
 description=[list]
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2713921292]Undead Survivor[/url]:[/b] gas masks are kept when you remove the filter, the Stalker knife can be sharpened, and in multiplayer a corpse shows only loot you can take.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3745718141]Explosives[/url]:[/b] in multiplayer the grenadier zombies' full grenade bandolier really holds its grenades.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3820938264]'67 Chevy Impala[/url]:[/b] the Impala spawns where its mod lists it: parking lots, traffic jams, junkyards.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3171167894]damnlib[/url]:[/b] the seats of its military vehicles can be repaired with duct tape or needle and thread.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3457132019]Specific Loot (KI5)[/url]:[/b] burnt wrecks and several trucks and vans spawn with loot, misspelled items spawn, and no loot gets stuck in the Beetle Buggy, LAV-300 or Step Van SWAT.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3783433804]Nellis Air Force Base[/url]:[/b] in multiplayer its interiors stay powered, a generator carried in no longer refills for free, and you always have a way out, even after a relog or a restart.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3436499337]Vehicle Military Zones[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3624971238]Yet Another PZ Library[/url]:[/b] its old zone script no longer errors on world load.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3413150945]More Damaged Objects[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3484263516]Raven Creek[/url]:[/b] street lights, hedges, ladders, fences and signs get their vanilla properties back.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3342191739]Gyde's Trait Magazines[/url] + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3776852122]Extended[/url]:[/b] the Handy magazine gives its four skill levels.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2447729538]Fluffy Hair[/url]:[/b] two hoodies no longer show the hood up when it is down.
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3736837081]Get Up Quick[/url]:[/b] what you hold is hidden while you stand up, as in vanilla.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=2713921292]Undead Survivor[/url]:[/b] gas masks are kept when you remove the filter, the Stalker knife can be sharpened, and in multiplayer a corpse shows only loot you can take.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3745718141]Explosives[/url]:[/b] in multiplayer the grenadier zombies' full grenade bandolier really holds its grenades.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3820938264]'67 Chevy Impala[/url]:[/b] the Impala spawns where its mod lists it: parking lots, traffic jams, junkyards.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3171167894]damnlib[/url]:[/b] its military vehicles' seats can be repaired with duct tape or needle and thread.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3457132019]Specific Loot (KI5)[/url]:[/b] burnt wrecks and several trucks and vans spawn with loot, misspelled items spawn, and no loot gets stuck in the Beetle Buggy, LAV-300 or Step Van SWAT.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3783433804]Nellis Air Force Base[/url]:[/b] in multiplayer its interiors stay powered, a generator carried in no longer refills for free, and you always have a way out, even after a relog or restart.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3436499337]Vehicle Military Zones[/url] + [url=https://steamcommunity.com/workshop/filedetails/?id=3624971238]Yet Another PZ Library[/url]:[/b] its old zone script no longer errors on world load.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3413150945]More Damaged Objects[/url], [url=https://steamcommunity.com/workshop/filedetails/?id=3484263516]Raven Creek[/url]:[/b] street lights, hedges, ladders, fences and signs get their vanilla properties back.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3342191739]Gyde's Trait Magazines[/url] + [url=https://steamcommunity.com/workshop/filedetails/?id=3776852122]Extended[/url]:[/b] the Handy magazine gives its four skill levels.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=2447729538]Fluffy Hair[/url]:[/b] two hoodies no longer show the hood up when it is down.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3736837081]Get Up Quick[/url]:[/b] what you hold is hidden while you stand up, as in vanilla.
 description=[/list]
 description=[h1]Generators and power[/h1]
 description=[list]
-description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3794099205]Nick's Generator Manager[/url]:[/b] its billing no longer freezes the game each minute. Its numbers read like the game's own, a [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3804093735]Badlands Power[/url] battery bank lists only what it pays for, and in multiplayer only a nearby player allowed in its safehouse can change what it powers.
-description=[*][b]Nick's Generator Manager + [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3723726293]Neat Rocco's UI[/url]:[/b] the generator window lists what that generator pays for, adding up to its Total, and Manage Power opens in Neat Rocco's style without stutter.
+description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3794099205]Nick's Generator Manager[/url]:[/b] its billing no longer freezes the game each minute. Its numbers read like the game's own, a [url=https://steamcommunity.com/workshop/filedetails/?id=3804093735]Badlands Power[/url] battery bank lists only what it pays for, and in multiplayer only a nearby player allowed in its safehouse can change what it powers.
+description=[*][b]Nick's Generator Manager + [url=https://steamcommunity.com/workshop/filedetails/?id=3723726293]Neat Rocco's UI[/url]:[/b] the generator window lists what that generator pays for, adding up to its Total, and Manage Power opens in Neat Rocco's style without stutter.
 description=[*][b]Badlands Power + Neat Rocco's UI:[/b] the generator window keeps Badlands Power's names, and the battery bank shows its charge and batteries instead of a fuel tank.
 description=[/list]
 description=[h1]Questions[/h1]
@@ -52,7 +53,7 @@ description=[list]
 description=[*][b]Load order?[/b] Anywhere after the mods it fixes.
 description=[*][b]Add to or remove from a running save?[/b] Yes, it adds no items or objects.
 description=[*][b]Multiplayer?[/b] Install it on the server and on every client.
-description=[*][b]Using Guns of Marz?[/b] Add [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3839186582]Grease of Marz[/url] for its gun fixes.
+description=[*][b]Using Guns of Marz?[/b] Add [url=https://steamcommunity.com/workshop/filedetails/?id=3839186582]Grease of Marz[/url] for its gun fixes.
 description=[*][b]Server admins:[/b] a [i]Lua/serverprof-on.txt[/i] file in the server's cache folder logs what each mod sends to players.
 description=[*][b]Did it load?[/b] A [i][Lugli/ModpackFixes][/i] line in console.txt lists each fix and if it loaded.
 description=[/list]
