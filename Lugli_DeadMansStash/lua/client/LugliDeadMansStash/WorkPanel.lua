@@ -16,14 +16,16 @@
     controller survivor is told the offer over their head instead. It can be dragged, and opens
     where it was last left (Neat.place, kind "work").
 
-    THE ONE CHOICE (Gates.WORK_CHOICES): when the drill is in the red it offers Ease off, and
-    when the torch's seam is near the contents it offers Stop. Either pauses the work (the action
-    holds its clock) and plays the route's `eased` sound, and the count rides on the submit as
-    `choice`, which the authority clamps: it can only spare the drill a wear or lower the burn
-    chance. Mouse: the button; controller: LB, read as a press edge since the panel takes no
-    focus; no key. An offer left `grace` seconds where it could be taken stops the work (the
-    drill overheats, the torch cuts out), its progress kept; with the panel hidden and no
-    controller nothing can take it, so the work runs on hot.
+    THE REST (Gates.WORK_CHOICES): a warm drill offers Ease off, a seam near the contents Stop.
+    Either rests the work (the action holds its clock, the route's `eased` sound plays) for as
+    long as the survivor likes: the drill's heat falls along Gates.coolHeat and the seam earns
+    its cooling, the button reads Resume, and the work goes on by itself once the tool is cool.
+    The rests ride on the release and the submit as `rests`, which the authority replays on its
+    own clock: they can only spare the drill a wear or lower the burn chance. Mouse: the button;
+    controller: LB, read as a press edge since the panel takes no focus; no key. A red drill or a
+    seam near the contents not yet rested `grace` seconds stops the work (the drill overheats,
+    the torch cuts out), its progress kept, the grace running down under the button; with the
+    panel hidden and no controller nothing can take it, so the work runs on hot.
 ]]
 
 require "ISUI/ISPanel"
@@ -107,11 +109,25 @@ do
         return ok and M.finite(t) or nil
     end
 
-    --- 1 at the start of a pause down to 0 at its end; 0 with none running.
-    local function pauseLeft(action)
-        local c = M.WORK_CHOICES[action.routeId]
-        if c == nil or action.workPauseUntil == nil then return 0 end
-        return M.clamp((action.workPauseUntil - nowMs()) / (c.pause * 1000), 0, 1)
+    --- The seconds the rest running now has lasted, 0 with none.
+    local function restNow(action)
+        if action.workRestMs == nil then return 0 end
+        return math.max(0, nowMs() - action.workRestMs) / 1000
+    end
+
+    --- The session's rests, the one running now included as far as it has gone.
+    local function restsSoFar(action)
+        local out = {}
+        for i, r in ipairs(action.workRests or {}) do out[i] = r end
+        if action.workRestMs ~= nil then out[#out + 1] = { at = action.workRestAt or 0, s = restNow(action) } end
+        return out
+    end
+
+    --- The gauge's fill for `heat`: the red zone is the last 10 s before the drill is red.
+    local function gaugeOf(c, heat)
+        local warm = c.heatUp - 10
+        if heat <= warm then return M.clamp(heat / warm, 0, 1) * RED_ZONE end
+        return RED_ZONE + M.clamp((heat - warm) / 10, 0, 1) * (1 - RED_ZONE)
     end
 
     --- What the panel shows of an action now, or nil for a route it does not draw.
@@ -120,25 +136,33 @@ do
         if look == nil then return nil end
         local delta = jobDelta(action)
         local progress = M.workProgress(action.workSaved, delta)
+        local rested = #(action.workRests or {})
         local v = { routeId = action.routeId, look = look, progress = progress, step = M.workStep(look, progress),
-                    choices = math.max(0, M.finite(action.choice) or 0), offer = false }
-        local left = pauseLeft(action)
-        v.pausing = left > 0
+                    rests = rested, offer = false, canRest = false }
+        v.resting = action.workRestMs ~= nil
         local c = M.WORK_CHOICES[action.routeId]
-        if c ~= nil and c.every ~= nil then
-            -- Real seconds, as the authority counts the spells: the action's own clock runs up to
-            -- 1.2x real time (and faster in single player's fast-forward).
-            local work = (M.finite(action.workStart) or 0) + (M.finite(action.workWallMs) or 0) / 1000
-            v.red = M.heatSpells(action.routeId, work) > v.choices
-            local heat = M.clamp((work - M.heatSpells(action.routeId, work) * c.every) / c.every, 0, 1) * RED_ZONE
-            if v.red then heat = 1 end
-            v.heat = math.max(heat, left)
-            v.offer = v.red and not v.pausing and v.choices < c.max
-        elseif c ~= nil and c.from ~= nil then
+        -- Real seconds, as the authority replays them: the action's own clock runs up to 1.2x real
+        -- time (and faster in single player's fast-forward).
+        local work = (M.finite(action.workWallMs) or 0) / 1000
+        local r = c ~= nil and M.workReplay(action.routeId, action.workFrom, restsSoFar(action), work) or nil
+        local room = c ~= nil and not v.resting and rested < c.max and progress < 1
+        if c == nil then
+            v.resting = false
+        elseif c.heatUp ~= nil then
+            v.red = r.heat >= c.heatUp - 0.001
+            v.heat = gaugeOf(c, r.heat)
+            v.cold = r.heat <= c.cold
+            v.canRest = room and not v.cold
+            -- The grace runs for as long as the authority counts the red run: a rest too short to
+            -- take the bit out of the red zone does not end it.
+            v.offer = room and r.run > 0
+        elseif c.from ~= nil then
             v.near = progress >= c.from
-            v.cooled = action.workCooled == true
-            v.glow = v.pausing and (1 - left) or 1
-            v.offer = v.near and not v.cooled and not v.pausing and progress < 1 and v.choices < c.max
+            v.credit = r.credit
+            v.cooled = r.credit >= 1
+            v.glow = 1 - r.credit
+            v.canRest = room and v.near and not v.cooled
+            v.offer = v.canRest and r.credit <= 0
         end
         if look.draw == "dial" then
             local md = M.sealedGateOf(action.obj)
@@ -153,15 +177,33 @@ do
         if name ~= nil then pcall(function() action.character:playSound(name) end) end
     end
 
-    --- Take the offered choice: one more pause, the clock held where it is. False when nothing is
-    --- offered now.
+    --- End the rest running now: it joins the session's rests, the work and its sound go on.
+    local function endRest(action)
+        if action.workRestMs == nil then return end
+        local c = M.WORK_CHOICES[action.routeId]
+        local s = math.min(restNow(action), c.maxRest)
+        if s > 0 then
+            action.workRests = action.workRests or {}
+            action.workRests[#action.workRests + 1] = { at = action.workRestAt or 0, s = s }
+        end
+        -- An offer's grace waits out the rest; one the rest ended is cleared on the next tick.
+        if action.workOfferedMs ~= nil then action.workOfferedMs = action.workOfferedMs + s * 1000 end
+        action.workRestMs, action.workRestAt, action.workHeld = nil, nil, nil
+        pcall(function() action:resound() end)
+    end
+
+    --- The one button: rest now, the clock held where it is, or take the work up again from a
+    --- rest. False when neither can be done now.
     function M.workChoose(action)
         if action == nil or not action.workOn then return false end
+        if action.workRestMs ~= nil then
+            endRest(action)
+            return true
+        end
         local v = M.workView(action)
-        if v == nil or not v.offer then return false end
-        local c = M.WORK_CHOICES[action.routeId]
-        action.choice = v.choices + 1
-        action.workPauseUntil = nowMs() + c.pause * 1000
+        if v == nil or not v.canRest then return false end
+        action.workRestMs = nowMs()
+        action.workRestAt = (M.finite(action.workWallMs) or 0) / 1000
         action.workHeld = clockOf(action)
         pcall(function() action:hush() end)
         cue(action, "eased")
@@ -228,6 +270,7 @@ do
     function M.workChoiceText(action)
         local label = action.routeId == "torch" and M.T("Tooltip_LugliDMS_Work_Stop", "Stop")
             or M.T("Tooltip_LugliDMS_Work_EaseOff", "Ease off")
+        if action.workRestMs ~= nil then label = M.T("Tooltip_LugliDMS_Work_Resume", "Resume") end
         if padOf(action.character) == nil then return label end
         return M.Tf("Tooltip_LugliDMS_Work_Press", "%1 [%2]", label, "LB")
     end
@@ -237,14 +280,14 @@ do
     function M.workInstruction(action)
         local c = M.WORK_CHOICES[action.routeId]
         local pad = padOf(action.character) ~= nil
-        if c ~= nil and c.every ~= nil then
+        if c ~= nil and c.heatUp ~= nil then
             if pad then
                 return M.Tf("Tooltip_LugliDMS_Work_DoEasePad",
                     "Keep at it. When the heat reaches red, press [%1] to ease off, or the drill overheats and stops.", "LB")
             end
             return M.T("Tooltip_LugliDMS_Work_DoEase",
                 "Keep at it. When the heat reaches red, click Ease off, or the drill overheats and stops.")
-        elseif c ~= nil and action.workCooled ~= true then
+        elseif c ~= nil and (M.finite(action.workFrom and action.workFrom.credit) or 0) < 1 then
             if pad then
                 return M.Tf("Tooltip_LugliDMS_Work_DoStopPad",
                     "Near the end, press [%1] to let the seam cool, or the torch cuts out.", "LB")
@@ -264,12 +307,15 @@ do
     function M.workStatus(v)
         local d = v.look.draw
         if d == "drill" then
-            if v.pausing then return M.T("Tooltip_LugliDMS_Work_Easing", "Easing off, letting the bit cool.") end
+            if v.resting then return M.T("Tooltip_LugliDMS_Work_Easing", "Easing off, letting the bit cool.") end
             if v.red then return M.T("Tooltip_LugliDMS_Work_Hot", "The drill is running hot.") end
             return M.Tf("Tooltip_LugliDMS_Work_Depth", "Into the lock plate: %1%", percent(v.progress))
         elseif d == "seam" then
-            if v.pausing then return M.T("Tooltip_LugliDMS_Work_Cooling", "Letting the seam cool.") end
-            if v.near and v.cooled then return M.T("Tooltip_LugliDMS_Work_Cooled", "The seam cooled while you were away.") end
+            if v.resting then return M.T("Tooltip_LugliDMS_Work_Cooling", "Letting the seam cool.") end
+            if v.near and v.cooled then return M.T("Tooltip_LugliDMS_Work_Cooled", "The seam has cooled.") end
+            if v.near and (v.credit or 0) > 0 then
+                return M.T("Tooltip_LugliDMS_Work_CooledSome", "The seam has cooled a little.")
+            end
             if v.near then return M.T("Tooltip_LugliDMS_Work_Near", "The seam is close to what is inside.") end
             return M.Tf("Tooltip_LugliDMS_Work_Seam", "Seam cut: %1%", percent(v.progress))
         elseif d == "nails" then
@@ -320,7 +366,7 @@ do
         put(sc, "Work/Drill_Backdrop", 0, 0)
         local p = M.clamp(v.progress, 0, 1)
         if p > 0 then
-            local jitter = (p < 1 and not v.pausing) and beat(120, 3) * 2 or 0
+            local jitter = (p < 1 and not v.resting) and beat(120, 3) * 2 or 0
             put(sc, "Work/Drill_Chips", DRILL_PLATE[1] - 50, DRILL_AXIS_Y + 8 + jitter)
         end
         local tip = DRILL_PLATE[1] + (DRILL_PLATE[2] - DRILL_PLATE[1]) * p
@@ -345,7 +391,7 @@ do
         cropArt(sc, SEAM_X - cw / 2, SEAM_Y[1], SEAM_X + cw / 2, SEAM_Y[1] + cut, function()
             put(sc, "Work/Seam_Cut", SEAM_X - cw / 2, SEAM_Y[1], alpha)
         end)
-        if v.pausing or p >= 1 then return end
+        if v.resting or p >= 1 then return end
         putIn(sc, "Work/Torch_Tip", SEAM_X - 2, SEAM_Y[1] + cut - 28)
         putIn(sc, "Work/Spark", SEAM_X - 24, SEAM_Y[1] + cut - 23, flicker)
     end
@@ -514,10 +560,19 @@ do
         end
         ty = by + self.bodyH + m.gap + self.lines * m.fh
         local status = N.fit(M.workStatus(v), bw, N.FONT)
-        local c = (v.red or (v.near and not v.pausing)) and N.bad or N.text
+        local c = (v.red or (v.near and not v.resting and not v.cooled)) and N.bad or N.text
         self:drawText(status, bx, ty, c.r, c.g, c.b, 1, N.FONT)
-        self.choiceBtn:setVisible(v.offer == true)
-        if v.offer then self.choiceBtn:setTitle(N.fit(M.workChoiceText(self.action), bw - m.btnPad, N.FONT)) end
+        local shown = v.canRest == true or v.resting == true
+        self.choiceBtn:setVisible(shown)
+        if not shown then return end
+        self.choiceBtn:setTitle(N.fit(M.workChoiceText(self.action), bw - m.btnPad, N.FONT))
+        -- An offer's grace runs down under the button, so the stop it ends in is never a surprise.
+        local left = M.workGraceLeft(self.action)
+        if left ~= nil then
+            local b = self.choiceBtn
+            local h = math.max(2, math.min(m.u(2), m.pad - 1))
+            self:drawRect(b.x, b.y + b.height + 1, b.width * left, h, 0.9, N.bad.r, N.bad.g, N.bad.b)
+        end
     end
 
     -- ---- the action's hooks (Actions.lua) -----------------------------------------------------------
@@ -545,6 +600,23 @@ do
     -- contract as the authority's own record (Gates.workResume).
     local leftWork = setmetatable({}, { __mode = "k" })
 
+    --- Show the panel, unless the option hides it or the survivor is in danger. A panel closed for
+    --- danger comes back once it has passed: for a mouse it is the only way to rest.
+    local function openPanel(action)
+        if action.workPanel ~= nil or not M.workShown() or M.workDanger(action.character) then return end
+        local ui = LugliDMSWorkPanel:new(action)
+        ui:initialise()
+        ui:addToUIManager()
+        action.workPanel = ui
+    end
+
+    --- The share of an offer's grace still left, 1 down to 0, or nil with no offer running.
+    function M.workGraceLeft(action)
+        local c = M.WORK_CHOICES[action.routeId]
+        if c == nil or c.grace == nil or action.workOfferedMs == nil or action.workRestMs ~= nil then return nil end
+        return M.clamp(1 - (nowMs() - action.workOfferedMs) / (c.grace * 1000), 0, 1)
+    end
+
     function M.workOpen(action)
         local look = M.WORK_LOOKS[action.routeId]
         if look == nil or action.workOn then return end
@@ -555,15 +627,11 @@ do
         local left = leftWork[action.obj] and leftWork[action.obj][action.routeId] or nil
         local resume = M.workResume(action.routeId, left or { progress = action.workSaved },
             left and left.at or nil, nowMs())
-        action.workCooled, action.workStart = resume.cooled, resume.heat
+        action.workFrom, action.workRests = resume, {}
         action.workStep = M.workStep(look, action.workSaved)
         action.workWallMs, action.workLastMs = 0, nowMs()
         live[action] = true
-        if not M.workShown() or M.workDanger(action.character) then return end
-        local ui = LugliDMSWorkPanel:new(action)
-        ui:initialise()
-        ui:addToUIManager()
-        action.workPanel = ui
+        openPanel(action)
     end
 
     local OVERHEATED = {
@@ -581,22 +649,24 @@ do
 
     function M.workTick(action)
         if not action.workOn then return end
-        -- The real time worked since the last tick, a pause left out.
+        -- The real time worked since the last tick, a rest left out.
         local t = nowMs()
         local from = action.workLastMs or t
-        if action.workPauseUntil ~= nil then from = math.max(from, action.workPauseUntil) end
+        if action.workRestMs ~= nil then from = math.max(from, t) end
         if t > from then action.workWallMs = (action.workWallMs or 0) + (t - from) end
         action.workLastMs = t
-        if action.workPauseUntil ~= nil then
-            if nowMs() < action.workPauseUntil then
-                if action.workHeld ~= nil then action:setCurrentTime(action.workHeld) end
-            else
-                action.workPauseUntil, action.workHeld = nil, nil
-                pcall(function() action:resound() end)
-            end
-        end
+        local c = M.WORK_CHOICES[action.routeId]
         local v = M.workView(action)
         if v == nil then return end
+        if action.workRestMs ~= nil then
+            -- A rest ends by itself once the tool is cool, or at the longest rest the authority takes.
+            if v.cold or v.cooled or restNow(action) >= c.maxRest then
+                endRest(action)
+                v = M.workView(action)
+            elseif action.workHeld ~= nil then
+                action:setCurrentTime(action.workHeld)
+            end
+        end
         if v.step > (action.workStep or 0) then
             action.workStep = v.step
             cue(action, "step")
@@ -605,15 +675,18 @@ do
         local down = lbDown(pad)
         if down and not action.workPadDown and M.workChoose(action) then v = M.workView(action) end
         action.workPadDown = down
-        if action.workPanel ~= nil and M.workDanger(action.character) then closePanel(action) end
-        local c = M.WORK_CHOICES[action.routeId]
+        if action.workPanel ~= nil and M.workDanger(action.character) then
+            closePanel(action)
+        elseif action.workPanel == nil then
+            openPanel(action)
+        end
         if v.offer and c.grace ~= nil and (action.workPanel ~= nil or pad ~= nil) then
             action.workOfferedMs = action.workOfferedMs or t
             if t - action.workOfferedMs >= c.grace * 1000 then
                 overheat(action)
                 return
             end
-        else
+        elseif not v.resting then
             action.workOfferedMs = nil
         end
         -- With the panel hidden or closed, a controller survivor is told the offer once each time.
@@ -629,16 +702,21 @@ do
 
     function M.workClose(action)
         local c = M.WORK_CHOICES[action.routeId]
-        if action.workOn and c ~= nil and action.obj ~= nil then
-            local progress = M.workProgress(action.workSaved, jobDelta(action))
-            leftWork[action.obj] = leftWork[action.obj] or {}
-            leftWork[action.obj][action.routeId] = {
-                heat = M.heatAfter(action.routeId, action.workStart, (M.finite(action.workWallMs) or 0) / 1000),
-                progress = progress, at = nowMs() }
+        if action.workOn and c ~= nil then
+            -- A rest running now is one the work had: it rides on the release or the submit.
+            endRest(action)
+            if action.obj ~= nil then
+                local progress = M.workProgress(action.workSaved, jobDelta(action))
+                local r = M.workReplay(action.routeId, action.workFrom, action.workRests or {},
+                    (M.finite(action.workWallMs) or 0) / 1000)
+                leftWork[action.obj] = leftWork[action.obj] or {}
+                leftWork[action.obj][action.routeId] = { heat = r.heat, credit = r.credit, progress = progress,
+                    at = nowMs() }
+            end
         end
         live[action] = nil
         action.workOn = false
-        action.workPauseUntil, action.workHeld, action.workOfferedMs = nil, nil, nil
+        action.workRestMs, action.workRestAt, action.workHeld, action.workOfferedMs = nil, nil, nil, nil
         closePanel(action)
     end
 

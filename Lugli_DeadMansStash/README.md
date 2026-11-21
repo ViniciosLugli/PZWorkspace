@@ -36,7 +36,8 @@ Rich.
 
 Right-click a box and pick how to open it, or inspect it first: the window shows its quality, a
 hint of what it holds, any work already done, and every way in with its tool, time and noise. A
-way you cannot take right now stays listed, greyed out, with the reason.
+way you cannot take right now stays listed, greyed out, with the reason. Work that takes a while
+is heard at that range every few seconds for as long as it lasts.
 
 ## The nailed crate
 
@@ -52,7 +53,7 @@ way you cannot take right now stays listed, greyed out, with the reason.
 |---|---|---|---|---|
 | Unlock it with a key | its own key | about 1 s | silent | finding the key |
 | Pick the lock | paperclip or screwdriver | about 15 s | 1 tile | Burglar or Locksmith only; it can fail (below) |
-| Force the lid | crowbar or pry bar | about 6 s | 9 tiles | a few fragile things inside may break |
+| Force the lid | crowbar or pry bar | about 6 s | 9 tiles | tool wear; a few fragile things inside may break |
 | Jimmy the latch | screwdriver | about 30 s | 2 tiles | an Ordinary lockbox only; a better lock is too good to jimmy |
 
 Picking succeeds 30 % of the time at Nimble 0, 7 % more per Nimble level, up to 90 %. A failed
@@ -66,9 +67,9 @@ the key, forcing and jimmying still work.
 |---|---|---|---|---|
 | Unlock it with a key | its own key | about 1 s | silent | finding the key |
 | Cut the padlock | bolt cutters | about 3 s | 3 tiles | tool wear |
-| Snap the padlock | crowbar | about 8 s | 10 tiles | Strength 5 or more; it can fail |
+| Snap the padlock | crowbar | about 8 s | 10 tiles | Strength 4 or more; it can fail |
 
-Snapping succeeds 40 % of the time at Strength 5, 5 % more per level above it. A failed try
+Snapping succeeds 15 % of the time at Strength 4, 40 % at Strength 5 and 5 % more per level above it. A failed try
 loses the work done but never jams, so you can keep trying.
 
 ## The safes
@@ -86,22 +87,27 @@ that safe and the codes you have already tried.
 |---|---|---|---|---|---|
 | Type the code | both | none | as soon as you press OK | silent | finding the notes, and the tries |
 | Listen to the dial | dial | stethoscope | about 15 s a try | silent | a try that hears nothing finds nothing; Deaf cannot |
-| Drill the lock | both | hand drill | about 2 minutes | 10 tiles | the drill wears every session; ease off when the bit runs hot or it wears once more |
-| Torch the door | both | blow torch | about a minute | 6 tiles | Welding 3 or a Welder, propane, and some paper, money and food inside burns; stop to cool and less burns |
-| Hotwire the keypad | keypad | screwdriver and electronics scrap | about 30 s | 2 tiles | Electrical 4 (an Electrician: 2); the scrap is spent, and a miss sets off the alarm and a lockout |
+| Drill the lock | both | hand drill | about 2 minutes | 10 tiles | the drill wears every session; ease off before it stays in the red 6 s or it wears once more |
+| Torch the door | both | blow torch | about a minute | 6 tiles | Welding 3 or a Welder, propane for the part cut, and some paper, money and food inside burns, less with each Welding level over 3; every second stopped near the end burns less |
+| Hotwire the keypad | keypad | screwdriver and electronics scrap | about 30 s | 2 tiles | Electrical 3 (an Electrician: 1), 15 % there and 40 % a level up; the scrap is spent, and a miss sets off the alarm and a lockout |
 | Put a battery in | keypad | a charged battery | about 3 s | silent | a keypad with no power takes no code and cannot be hotwired until it has one |
 
 Listening succeeds 40 % of the time, 5 % more per Nimble level; Keen Hearing adds 15 %, a Burglar
-25 %, Hard of Hearing takes away 30 %. Each success gives you one digit of the code, which the code
+25 %, Hard of Hearing takes away 30 %. Keen Hearing also listens in three quarters of the time,
+Hard of Hearing in twice the time. Each success gives you one digit of the code, which the code
 window keeps. Drilling and torching keep their progress when you put them down; typing, listening
 and hotwiring start over.
 
 While you work, a small panel shows the work: the bit going in and its heat, the seam glowing
 down the door, the dial turning. It never takes the controls, and an option hides it.
 
-Leave a tool alone and it cools: a drill left its 5 s pause starts cold, and a torch seam left
-near the contents its 8 s pause needs no Stop. Taken up again sooner, a drill keeps the heat it
-had, and the torch still asks.
+Tools cool gradually. Ease off or Stop holds the work for as long as you like: Resume takes it up
+again, and it resumes by itself once the drill bit is cold (about 5 s from red) or the seam has
+fully cooled (8 s). A short rest leaves the bit warm, so the red comes back sooner, and every second
+of a torch's stop lowers what burns inside. Walking away cools a tool the same way, so taking it up
+after 2 s keeps most of its heat and after 10 s none. A bar under the button shows how long you
+have before the drill overheats or the torch cuts out. A torch spends propane only for the part of
+the seam it cut.
 
 ## Keys
 
@@ -134,9 +140,10 @@ building. Read one the vanilla way, Read Note; nobody can write on them.
   - picks a stash lock without being a Burglar, and picks and jimmies in 80 % of the time;
   - never jams a lock, and listens to a dial better than a Burglar does (+0.30).
   Burglar and Locksmith exclude each other.
-- **Keen Hearing**, **Hard of Hearing**, **Burglar** and **Locksmith** change how well you listen to a dial; a
-  **Deaf** survivor cannot.
-- An **Electrician** hotwires a keypad at Electrical 2 instead of 4; a **Welder** torches a safe
+- **Keen Hearing**, **Hard of Hearing**, **Burglar** and **Locksmith** change how well you listen to a dial
+  (the two hearing traits also how fast); a **Deaf** survivor cannot. An **Illiterate** survivor
+  cannot read a safe's notes.
+- An **Electrician** hotwires a keypad at Electrical 1 instead of 3; a **Welder** torches a safe
   without the Welding skill and burns half as much of what is inside.
 - Prying, forcing and snapping train Strength, pulling nails trains Carpentry, picking and
   listening train Nimble, hotwiring trains Electrical, torching trains Welding.
@@ -145,7 +152,13 @@ Put the work down halfway and the box stays half opened. A sledge used the vanil
 the box and leaves what was inside on the floor, at brute-force damage. An opened box shows its
 lid off, so you can tell from across the room that someone got there first.
 
-A box cannot be picked up or scrapped, and its haul is rolled once: a sealed box is never refilled.
+A sealed box cannot be picked up or scrapped, and its haul is rolled once: a sealed box is never
+refilled. Once opened and emptied, a box opened through its lock (key, pick, pry, claw, force, cut,
+snap, code, listening or hotwire) can be picked up and placed as ordinary storage, a safe weighing
+25 and needing a hammer. One drilled, torched or smashed open is too wrecked to move or turn.
+Any opened box, wrecked or not, can be taken apart with Disassemble, as vanilla furniture of its
+material is (a hammer for the wooden crate and footlocker, a blow torch and welding mask for the
+metal lockbox and safes), or cleared away with a sledgehammer.
 With loot respawn on, an opened box refills like any other container in its room.
 
 ## What is inside
@@ -175,13 +188,13 @@ time all apply. A category set to None never shows up in a box.
 | Stash chance (%) | 7 | out of every hundred buildings, how many hide a box: up to 1.4 times as often out in the country, down to three quarters as often in a crowded city block, the same overall; 100 is every building; each building is judged once. A richer box is rarer still: a room that would hide one keeps it only 40 % of the time |
 | Stash boxes per building | 2 | a building hides one, and one more per 1,000 tiles of floor plan, up to this; one per room |
 | Payout rolls | 0 | a box rolls one loot list per step of quality (1, 2, 3); each point adds that many again |
-| Brute force damage | Normal | Off, Light, Normal, Heavy. Only Smash it open and Force the lid damage what is inside; forcing does so at Light unless this is Off |
-| Noise multiplier | 1 | 0 is silent |
-| Time multiplier | 1 | scales every way in |
+| Brute force damage | Normal | Off, Light, Normal, Heavy. Only Smash it open, Force the lid and a sledgehammer damage what is inside; forcing does so at Light unless this is Off |
+| Noise multiplier | 1 | every way in, while the work goes on (every 4 s) and when it ends, and a picked door; 0 is silent; a safe's alarm is not scaled |
+| Time multiplier | 1 | scales every way in, and a picked door |
 | Safe chance (%) | 10 | out of every hundred offices, pawn shops and big houses, how many hide a dial safe, judged apart from the stash boxes; at most one per building |
 | Vault safe chance (%) | 60 | out of every hundred banks, police stations, jewelry stores, pharmacies and gun stores, how many keep a keypad safe; more often in the country, less in a crowded city |
 | Safe code tries | 5 | wrong codes a safe takes before it locks you out |
-| Safe lockout (hours) | 2 | in-game hours a keypad refuses every code after too many wrong ones; a dial locks for half as long; 0 is no lockout |
+| Safe lockout (hours) | 2 | in-game hours a keypad refuses every code after too many wrong ones; a dial locks for half as long; never under one in-game minute, even at 0 |
 | Safe alarm | on | a keypad lockout or a failed hotwire sets off a loud alarm |
 | Clues per safe | 2 | notes with a hint to the code, 0 to 3; two together leave 3 to 10 codes to try, and no set gives the whole code |
 | Debug log | off | a console line for every box hidden and opened |
@@ -200,6 +213,12 @@ matter. The boxes are the mod's own tiles, so no map or loot mod changes where t
 proximity-loot mod or crafting from nearby containers sees a sealed box as empty, because its
 haul does not exist until it is opened. Added to an existing save, boxes appear in buildings
 the first time you come near them.
+
+With [Neat Lockpicking](https://steamcommunity.com/sharedfiles/filedetails/?id=3783535220), its
+lockpicks pick stash locks and locked doors, tried before a paperclip: a failed try uses up a
+handmade lockpick and wears a store one down one condition. A store lockpick picks 10 % better,
+each Lockpicking level adds 5 %, and every pick trains Lockpicking. A Locksmith learns Neat's
+lockpick recipe, so Neat's own lockpicking opens to it as to a Burglar.
 
 Map mods tested in game, boxes placed in their own buildings: Raven Creek, Fort Waterfront, Fort
 Benning, Nellis Air Force Base and Dirkerdam Integrated. Rooms a map mod misnames

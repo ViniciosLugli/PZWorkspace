@@ -37,6 +37,8 @@ do
     M.KEYPAD_SHAKE_MS, M.KEYPAD_LIGHT_MS, M.KEYPAD_OPEN_MS = 450, 900, 600
     --- The notes are re-read this often; the most shown, and the tried codes kept, per safe.
     M.KEYPAD_NOTES_MS, M.KEYPAD_NOTES_SHOWN, M.KEYPAD_TRIED_KEPT = 500, 4, 8
+    --- After a reply, how long the safe's tag is left unread, so a late tag cannot undo it.
+    M.KEYPAD_QUIET_MS = 1000
 
     --- How long a key typed from the keyboard shows pressed, and how long the dial takes to turn
     --- one number (four of its 40 frames) when it is not already behind.
@@ -420,16 +422,40 @@ do
 
     -- ---- the reply ----------------------------------------------------------------------------
 
-    --- Hand the code to the caller. True when it was handed.
+    --- Hand the code to the caller. True when the caller took it (onSubmit returned true): only
+    --- then is it the code a reply answers, so a refused second Enter never replaces the first.
     function W:submit()
         if not self:canSubmit() then return false end
         local code = self:code()
+        local ok, taken = pcall(self.onSubmit, code)
+        if not ok then
+            M.defect(PART, "onSubmit failed: " .. tostring(taken))
+            return false
+        end
+        if taken ~= true then return false end
         self.pending = code
         if not self:isDial() then self:flashKey(12) end
         self:sound("submit")
-        local ok, err = pcall(self.onSubmit, code)
-        if not ok then M.defect(PART, "onSubmit failed: " .. tostring(err)) end
         return true
+    end
+
+    --- Take the safe as its tag reads now: tries, power, lockout and digits found change between
+    --- replies, by another survivor or the clock. Closed once it is no longer sealed, unless it
+    --- is this window's own opening, whose green light closes it. A reply's tag can land after
+    --- the reply itself (docs/31 section 7), so the tag is not read again for a moment after one.
+    function W:reread(now)
+        if self.viewOf == nil or self.openedAt ~= nil or now < (self.quietUntil or 0) then return end
+        local ok, view = pcall(self.viewOf)
+        if not ok then
+            M.defect(PART, "viewOf failed: " .. tostring(view))
+            self.viewOf = nil
+            return
+        end
+        if view == nil then
+            self:close()
+            return
+        end
+        if type(view) == "table" then self:setView(view) end
     end
 
     function W:light(c)
@@ -446,6 +472,7 @@ do
             return true
         end
         if outcome ~= "wrong" and outcome ~= "lockout" then return false end
+        self.quietUntil = nowMs() + M.KEYPAD_QUIET_MS
         local tries = M.finite(args.triesLeft)
         if tries ~= nil then
             self.triesLeft = math.max(0, math.floor(tries))
@@ -687,10 +714,21 @@ do
         for i = 1, M.KEYPAD_DIGITS do
             self.slots[i] = artRect(px, y, s, { x = WINDOW_X + (i - 1) * WINDOW_STEP, y = PLATE + WINDOW_GAP, w = WINDOW_W, h = WINDOW_H })
         end
+        -- The buttons span the device, arrows included; a try label too long for the row beside
+        -- Reset (a large font, a long language) takes a row of its own under it, unless the screen
+        -- is too short for one (W:layout sets tryRow false), where the label is cut instead.
         local iy = self.slots[1].y + self.slots[1].h + m.gap
-        local resetW = math.min(math.floor(self.plate.w / 3), measure(self.text.reset) + m.btnPad * 2)
-        self.turnRects.reset = { x = px, y = iy, w = resetW, h = m.btnH }
-        self.submitRect = { x = px + resetW + m.gap, y = iy, w = self.plate.w - resetW - m.gap, h = m.btnH }
+        local resetW = math.min(math.floor(w / 3), measure(self.text.reset) + m.btnPad * 2)
+        local tryW = math.max(measure(self.text.submit), measure(M.Tf("UI_LugliDMS_Dial_TryCode", "Try %1", "0000")))
+            + m.btnPad * 2
+        self.turnRects.reset = { x = x, y = iy, w = resetW, h = m.btnH }
+        if w - resetW - m.gap >= tryW or self.tryRow == false then
+            self.submitRect = { x = x + resetW + m.gap, y = iy, w = w - resetW - m.gap, h = m.btnH }
+        else
+            self.turnRects.reset.w = w
+            iy = iy + m.btnH + m.gap
+            self.submitRect = { x = x, y = iy, w = w, h = m.btnH }
+        end
         return w, iy + m.btnH - y
     end
 
@@ -716,6 +754,7 @@ do
         local sw, sh = getCore():getScreenWidth(), getCore():getScreenHeight()
         local t = texts(self)
         self.text = t
+        self.tryRow = nil
         local full, floor = scales(self)
         local devW = self:layoutDevice(0, 0, full)
         local sideW = math.min(m.sideMax, math.max(m.sideW, measure(t.notes), measure(t.tried), measure(t.tries)))
@@ -762,6 +801,10 @@ do
         devW = self:layoutDevice(0, 0, s)
         local devX = twoCol and m.pad or (m.pad + math.floor((inner - devW) / 2))
         local _, devH = self:layoutDevice(devX, y, s)
+        if y + devH > sh - m.gap - m.hintH - m.pad * 2 then
+            self.tryRow = false
+            _, devH = self:layoutDevice(devX, y, s)
+        end
         self.device = { x = devX, y = y, w = devW, h = devH }
 
         local sideX, sideY = devX + devW + m.colGap, y
@@ -865,13 +908,13 @@ do
         end
     end
 
-    function W:new(player, obj, view, onSubmit)
+    function W:new(player, obj, view, onSubmit, viewOf)
         local o = ISPanelJoypad:new(0, 0, 1, 1)
         setmetatable(o, self)
         self.__index = self
         o.background = false
         o.moveWithMouse = true
-        o.player, o.obj, o.onSubmit = player, obj, onSubmit
+        o.player, o.obj, o.onSubmit, o.viewOf = player, obj, onSubmit, viewOf
         o.playerNum = playerNumOf(player)
         o.m = metrics()
         o.typed, o.focusKey = "", 5
@@ -1243,6 +1286,8 @@ do
         if now >= self.nextNotes then
             self.nextNotes = now + M.KEYPAD_NOTES_MS
             self:readNotes()
+            self:reread(now)
+            if not self:isVisible() then return end
         end
         local sig = signature(self)
         if sig ~= self.sig then
@@ -1283,24 +1328,26 @@ do
 
     --- Show the code window for a safe. `view` carries kind ("dialsafe" or "keypadsafe"),
     --- revealed ("?4??" or nil), triesLeft, lockedFor (game hours, 0 when free) and powered;
-    --- onSubmit(code) gets a four-digit string. One per survivor: asked again for the same safe it
-    --- takes the new view and comes to the front, asked for another it replaces the first. Nil
-    --- for a view that is no safe's or without an onSubmit.
-    function M.openKeypad(player, obj, view, onSubmit)
+    --- onSubmit(code) gets a four-digit string and returns true when it took the try. viewOf(),
+    --- optional, returns the view as the safe reads now, nil once it is no longer sealed. One per
+    --- survivor: asked again for the same safe it takes the new view and comes to the front, asked
+    --- for another it replaces the first. Nil for a view that is no safe's or without an onSubmit.
+    function M.openKeypad(player, obj, view, onSubmit, viewOf)
         if type(view) ~= "table" or M.KEYPAD_KINDS[view.kind] == nil or type(onSubmit) ~= "function" then
             return nil
         end
+        if type(viewOf) ~= "function" then viewOf = nil end
         local num = playerNumOf(player)
         local cur = open[num]
         if cur ~= nil and cur.obj == obj and cur:isVisible() and cur.kind == view.kind then
-            cur.onSubmit = onSubmit
+            cur.onSubmit, cur.viewOf = onSubmit, viewOf
             cur:setView(view)
             cur:bringToTop()
             if padDrives(num) then pcall(setJoypadFocus, num, cur) end
             return cur
         end
         if cur ~= nil then cur:close() end
-        local win = W:new(player, obj, view, onSubmit)
+        local win = W:new(player, obj, view, onSubmit, viewOf)
         win:initialise()
         win:instantiate()
         win:addToUIManager()

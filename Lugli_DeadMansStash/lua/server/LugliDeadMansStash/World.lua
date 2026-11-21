@@ -11,7 +11,9 @@
     THE CLAIM IS THE CLOCK. A route starts with a claim and ends with a submit; the authority
     refuses a submit that comes back sooner than the route takes, and a second survivor starting a
     gate somebody else is working on. Putting the work down records how far it got on the gate's
-    store record, measured on the authority's clock, so a half-pried crate stays half pried.
+    store record, measured on the authority's clock, so a half-pried crate stays half pried. While
+    a claim lasts the work is heard every WORK_NOISE_MS; a claim whose holder died, left, or stood
+    out of reach for CLAIM_AWAY_MS is dropped for nothing, so the gate is free at once.
 
     THE GATE IS ITS STORE RECORD (Gating.lua). Every check and every write below goes to the
     record; the object's tag is only re-mirrored from it, and healed when a client forged it.
@@ -25,16 +27,15 @@
     one is a lockout: a dial for half of SafeLockoutHours and quiet, a keypad for all of it and,
     with SafeAlarm, the alarm. The manipulation reveals one seeded digit a success (revealed),
     a miss is slipped, and a success with MANIPULATE_OPENS_AT found opens the dial. A drill wears
-    on every session and a torch spends its fuel on every session; both keep their progress, and
-    a torch burns paper, money and food in the haul before the clients see it. A tool left alone
-    for its pause has cooled: a torch resumed on a seam left near the contents burns as a stopped
-    one, and a drill resumed cold. One taken up sooner keeps its heat, less what the pause let go
-    (Gates.workResume). A bypass spends
+    on every session and a torch spends the fuel of the work each session did; both keep their
+    progress, and a torch burns paper, money and food in the haul before the clients see it. A
+    tool left alone cools for the time away: a drill keeps a share of its heat, a seam left near
+    the contents earns that time's cooling (Gates.workResume). A bypass spends
     its scrap whatever the roll, and a miss is the alarm and a lockout (failed). A battery powers
-    the keypad for good (powered). The one choice in the work (Gates.WORK_CHOICES) rides on the
-    submit and the release as a count: a finishing drill that went red more often than it was
-    eased wears once more, a torch stopped to cool burns at half the odds, and a pause is never
-    credited as progress. The tag is re-mirrored after every answer, so tries left,
+    the keypad for good (powered). The rests in the work (Gates.WORK_CHOICES) ride on the submit
+    and the release as `rests`: a finishing drill that ran red past its grace wears once more, a
+    cooled seam burns at lower odds, and a rest is never credited as progress. The tag is
+    re-mirrored after every answer, so tries left,
     the lockout, the found digits and the power are on the object between replies. The code
     never leaves the store.
 
@@ -85,6 +86,12 @@ do
     -- Between two resends for one survivor, apart from the routes' limit so a resend never makes
     -- a claim come back busy. The client asks at most once a second.
     M.RESEND_RATE_MS = 500
+    -- Work under way is heard at its route's noise this often, between the claim and the outcome.
+    M.WORK_NOISE_MS = 4000
+    -- A claim's holder out of reach this long has stopped working: the claim is dropped.
+    M.CLAIM_AWAY_MS = 3000
+    -- The shortest lockout, one game minute, whatever SafeLockoutHours says.
+    M.LOCKOUT_FLOOR_HOURS = 1 / 60
 
     local claims = {}
     local lastAt = {}
@@ -118,8 +125,14 @@ do
         return math.floor(v)
     end
 
-    --- The gate a request names, if it exists and the survivor can reach it. nil plus a reason.
-    local function resolve(player, args)
+    --- Is the survivor within M.REACH of the centre of square x,y on floor z?
+    local function inReach(player, x, y, z)
+        local dx, dy = player:getX() - (x + 0.5), player:getY() - (y + 0.5)
+        return math.floor(player:getZ()) == z and dx * dx + dy * dy <= M.REACH * M.REACH
+    end
+
+    --- The gate a request names, if it exists, wherever the survivor is. nil plus a reason.
+    local function locate(args)
         if type(args) ~= "table" then return nil, "IGUI_LugliDMS_Gone" end
         local x, y, z, i = intArg(args.x), intArg(args.y), intArg(args.z), intArg(args.i)
         if x == nil or y == nil or z == nil or i == nil then return nil, "IGUI_LugliDMS_Gone" end
@@ -129,11 +142,16 @@ do
         if M.isMultiplayer() then
             resync[M.gateId(x, y, z, i)] = { x = x, y = y, z = z, i = i, at = now() + M.RESYNC_MS }
         end
-        local pz = math.floor(player:getZ())
-        local dx, dy = player:getX() - (x + 0.5), player:getY() - (y + 0.5)
-        if pz ~= z or dx * dx + dy * dy > M.REACH * M.REACH then return nil, "IGUI_LugliDMS_TooFar" end
         return { obj = obj, container = container, md = md, id = M.gateId(x, y, z, i), x = x, y = y, z = z,
             square = obj:getSquare() }
+    end
+
+    --- The gate a request names, if it exists and the survivor can reach it. nil plus a reason.
+    local function resolve(player, args)
+        local gate, why = locate(args)
+        if gate == nil then return nil, why end
+        if not inReach(player, gate.x, gate.y, gate.z) then return nil, "IGUI_LugliDMS_TooFar" end
+        return gate
     end
 
     local function noise(player, gate, radius)
@@ -151,10 +169,15 @@ do
     end
 
     local function grantXp(player, xp)
-        if type(xp) ~= "table" or addXp == nil or Perks == nil then return end
-        local perk = Perks[xp.perk]
-        if perk == nil or type(xp.amount) ~= "number" or xp.amount <= 0 then return end
-        pcall(addXp, player, perk, xp.amount)
+        if type(xp) ~= "table" then return end
+        M.grantXp(player, xp.perk, xp.amount)
+    end
+
+    --- A route's XP in another perk (the pick's Lockpicking, with Neat Lockpicking), opened or failed.
+    local function grantSkill(player, route, opened)
+        local skill = route ~= nil and route.skill or nil
+        if type(skill) ~= "table" then return end
+        M.grantXp(player, skill.perk, opened and skill.opened or skill.failed)
     end
 
     local function salvage(player, routeId)
@@ -234,6 +257,7 @@ do
             noise(player, gate, route.noise)
             if route.wear then wear(player, route.tool) end
             grantXp(player, route.xp)
+            grantSkill(player, route, true)
         end
         salvage(player, routeId)
         M.debug(PART, nameOf(player) .. " opened " .. gate.id .. " by " .. tostring(routeId) .. ": "
@@ -308,11 +332,12 @@ do
 
     -- ---- the safes -------------------------------------------------------------------------------
 
-    --- Lock a safe out for `hours` game hours from now; its wrong tries start over. Returns the
-    --- world-age hour it ends.
+    --- Lock a safe out for `hours` game hours from now, never under LOCKOUT_FLOOR_HOURS, so even
+    --- SafeLockoutHours 0 cannot be brute-forced back to back; its wrong tries start over. Returns
+    --- the world-age hour it ends.
     local function lockOut(rec, hours)
         rec.tries = 0
-        rec.lockedUntil = (M.worldHours() or 0) + math.max(0, M.finite(hours) or 0)
+        rec.lockedUntil = (M.worldHours() or 0) + math.max(M.LOCKOUT_FLOOR_HOURS, M.finite(hours) or 0)
         return rec.lockedUntil
     end
 
@@ -420,7 +445,8 @@ do
         local untilHour = lockOut(rec, hours)
         if alarm then M.soundAlarm(gate.x, gate.y, gate.z) end
         M.debug(PART, nameOf(player) .. " locked out of " .. gate.id .. (alarm and " (alarm)" or ""))
-        return answer(player, gate, { route = "code", outcome = "lockout", lockedUntil = untilHour, alarm = alarm })
+        return answer(player, gate, { route = "code", outcome = "lockout", lockedUntil = untilHour, alarm = alarm,
+            triesLeft = M.safeTriesLeft(rec) })
     end
 
     --- THE MANIPULATION: a miss slips, a success finds a digit, or opens once enough are found.
@@ -443,16 +469,6 @@ do
         return answer(player, gate, { route = "battery", outcome = "powered" })
     end
 
-    --- A failed roll uses up the tool when Gates.route says so (a pick done with a paperclip).
-    local function spendTool(route)
-        local tool = route.tool
-        if route.spends ~= true or tool == nil then return end
-        local container = tool:getContainer()
-        if container == nil then return end
-        container:Remove(tool)
-        if M.isMultiplayer() then sendRemoveItemFromContainer(container, tool) end
-    end
-
     --- A ROUTE WHOSE ROLL FAILED: no payout, the gate stays sealed, the route's progress starts
     --- over, and a lock that jams may jam for good (mirrored, so the client stops offering the pick).
     local function failGate(player, gate, routeId, route)
@@ -461,7 +477,9 @@ do
         if route.jams and ZombRand(1000) < M.JAM_CHANCE * 1000 then rec.jammed = true end
         noise(player, gate, route.noise)
         if route.wear then wear(player, route.tool) end
-        spendTool(route)
+        -- A failed roll uses up a paperclip or a handmade pick and wears a store lockpick.
+        M.spendPick(route.tool, route.spends)
+        grantSkill(player, route, false)
         local out = { gateId = gate.id, outcome = "failed", route = routeId, jammed = rec.jammed == true }
         -- A route that trips the alarm (a bypass) also locks the keypad out for the full time.
         if route.alarm then
@@ -501,13 +519,69 @@ do
         local resume = M.workResume(args.route, left or {
             progress = gate.md.progress and gate.md.progress[args.route] }, left and left.at or nil, now())
         claims[gate.id] = { user = who, route = args.route, at = now(), seconds = route.seconds,
-            resumes = route.resumes ~= false, cooled = resume.cooled, start = resume.heat,
-            expires = M.isMultiplayer() and (now() + (route.seconds * 2 + 30) * 1000) or nil }
+            resumes = route.resumes ~= false, from = resume,
+            expires = M.isMultiplayer() and (now() + (route.seconds * 2 + 30) * 1000) or nil,
+            player = player, x = gate.x, y = gate.y, z = gate.z, i = intArg(args.i), noise = route.noise,
+            nextNoise = now() + M.WORK_NOISE_MS }
         noise(player, gate, route.noise * 0.5)
     end
 
+    --- The claim's holder as the authority sees them now: nil when dead or no longer connected.
+    local function holderOf(held)
+        local found = nil
+        if M.isMultiplayer() then
+            M.forEachWorldPlayer(function(p)
+                if found == nil and nameOf(p) == held.user then found = p end
+            end)
+        else
+            found = held.player
+        end
+        if found == nil then return nil end
+        local ok, dead = pcall(function() return found:isDead() end)
+        if ok and dead == true then return nil end
+        return found
+    end
+
+    --- EVERY LIVE CLAIM, once a second. Long work is heard for as long as it lasts, not only at
+    --- its claim and its outcome. A claim on a gate that is gone or no longer sealed (a sledge,
+    --- a carry), or whose holder died, left the server, or stood out of reach for CLAIM_AWAY_MS,
+    --- is dropped, so the gate is free at once instead of at its expiry; it earns nothing, since
+    --- only the holder's own release says which of that time was rest.
+    local function tickClaim(id, held, t)
+        local obj, _, md = M.gateAt(held.x, held.y, held.z, held.i)
+        local holder = nil
+        if obj ~= nil and md ~= nil and md.state == "sealed" then holder = holderOf(held) end
+        if holder ~= nil and not inReach(holder, held.x, held.y, held.z) then
+            held.awayAt = held.awayAt or t
+            if t - held.awayAt >= M.CLAIM_AWAY_MS then holder = nil end
+        elseif holder ~= nil then
+            held.awayAt = nil
+        end
+        if holder == nil then
+            claims[id] = nil
+            M.debug(PART, "dropped " .. held.user .. "'s claim on " .. id)
+            return
+        end
+        if (M.finite(held.noise) or 0) > 0 and t >= held.nextNoise then
+            held.nextNoise = t + M.WORK_NOISE_MS
+            noise(holder, held, held.noise)
+        end
+    end
+
+    local function tickClaims()
+        local t = now()
+        for id, held in pairs(claims) do
+            local ok, err = pcall(tickClaim, id, held, t)
+            if not ok then
+                claims[id] = nil
+                M.defect(PART, "claim " .. tostring(id) .. ": " .. tostring(err))
+            end
+        end
+    end
+
+    --- PUTTING THE WORK DOWN, from wherever the holder is now: it records the work up to here.
     local function release(player, args)
-        local gate = resolve(player, args)
+        local gate = locate(args)
         if gate == nil then return end
         local held = claims[gate.id]
         if held == nil or held.user ~= nameOf(player) then return end
@@ -518,51 +592,52 @@ do
         -- A try that starts over (a code, a manipulation, a bypass) keeps nothing.
         if not held.resumes then return end
         local before = gate.md.progress[held.route] or 0
-        -- A pause the client says it took (Gates.WORK_CHOICES) is no work: it can only lower this.
-        local session = M.workSession(held.route, args.choice, (now() - held.at) / 1000, 0, held.start)
+        -- A rest the client says it took (Gates.WORK_CHOICES) is no work: it can only lower this.
+        local session = M.workSession(held.route, args.rests, (now() - held.at) / 1000, 0, held.from)
         local done = session.work / held.seconds
         local after = math.min(M.PROGRESS_CAP, before + (1 - before) * M.clamp(done, 0, 1))
         gate.md.progress[held.route] = after
         local c = M.WORK_CHOICES[held.route]
         if c ~= nil then
             if type(gate.md.workLeft) ~= "table" then gate.md.workLeft = {} end
-            gate.md.workLeft[held.route] = { heat = M.heatAfter(held.route, held.start, session.work),
-                progress = after, at = now() }
+            gate.md.workLeft[held.route] = { heat = session.heat, credit = session.credit, progress = after, at = now() }
         end
         M.syncMirror(gate.obj, gate.md)
-        -- The session cost the tool as a finished one would: the drill wears, the torch burns fuel.
+        -- The session cost the tool: the drill wears once, the torch burns the fuel of the work done.
         local route = routeFor(player, gate.md, held.route, gate.square)
         if route.ok then
             if route.wearsSession then wear(player, route.tool) end
-            if (M.finite(route.fuel) or 0) > 0 then spendFuel(route.tool, route.fuel) end
+            local fuel = M.fuelFor(M.ROUTES[held.route] and M.ROUTES[held.route].fuel, after - before)
+            if fuel > 0 then spendFuel(route.tool, fuel) end
         end
     end
 
     local function submit(player, args)
-        local gate, why = resolve(player, args)
+        local gate, why = locate(args)
         if gate == nil then return refuse(player, nil, why) end
         local held = claims[gate.id]
         local who = nameOf(player)
         if held == nil or held.user ~= who or held.route ~= args.route then
+            if not inReach(player, gate.x, gate.y, gate.z) then return refuse(player, gate, "IGUI_LugliDMS_TooFar") end
             return refuse(player, gate, "IGUI_LugliDMS_NotClaimed")
         end
+        -- The holder's submit ends the claim whatever the answer: the client's try is over either way.
+        claims[gate.id] = nil
+        if not inReach(player, gate.x, gate.y, gate.z) then return refuse(player, gate, "IGUI_LugliDMS_TooFar") end
         if args.route == "code" and not isCode(args.code) then return refuse(player, gate, M.REASON_NO_ROUTE) end
         local exempt = floorExempt(player)
         local elapsed = (now() - held.at) / 1000
         if not exempt and elapsed < held.seconds * M.SUBMIT_FLOOR then
             return refuse(player, gate, "IGUI_LugliDMS_TooSoon")
         end
-        -- THE CHOICE (Gates.WORK_CHOICES), clamped there: honoured only when its pauses were paid
-        -- on this clock over the same floor, and then only a wear less or a lower burn.
-        local session = M.workSession(args.route, args.choice, elapsed,
-            exempt and 0 or held.seconds * M.SUBMIT_FLOOR, held.start)
-        claims[gate.id] = nil
+        -- THE RESTS (Gates.WORK_CHOICES), clamped there: honoured only when they were paid on this
+        -- clock over the same floor, and then only a wear less or a lower burn.
+        local session = M.workSession(args.route, args.rests, elapsed,
+            exempt and 0 or held.seconds * M.SUBMIT_FLOOR, held.from)
         if type(gate.md.workLeft) == "table" then gate.md.workLeft[args.route] = nil end
         local route = routeFor(player, gate.md, args.route, gate.square)
         if not route.ok then return refuse(player, gate, route.reason) end
-        local burnFactor = session.burnFactor
-        if held.cooled then burnFactor = math.min(burnFactor, M.WORK_CHOICES[args.route].burnFactor) end
-        route.burn = (M.finite(route.burn) or 0) * burnFactor
+        route.burn = (M.finite(route.burn) or 0) * session.burnFactor
         if session.hot then
             for _ = 1, M.WORK_CHOICES[args.route].extraWear do wear(player, route.tool) end
         end
@@ -642,8 +717,10 @@ do
             local ok, err = pcall(function()
                 local obj = self.item
                 if obj == nil or obj:getSquare() == nil then return end
-                -- A SAFE TAKES NO SLEDGE, sealed or opened: its only ways in are its routes.
-                if M.isSafeKind(M.kindOfSprite(M.liveSpriteName(obj))) then
+                -- A SEALED SAFE TAKES NO SLEDGE: its only ways in are its routes. Opened, it is
+                -- furniture, and a sledge clears it away like any other.
+                local kind, opened = M.kindOfSprite(M.liveSpriteName(obj))
+                if M.isSafeKind(kind) and not opened then
                     refused = true
                     return
                 end
@@ -703,6 +780,7 @@ do
             end
         end)
         M.addTicker(PART, 1, tickAlarms)
+        M.addTicker(PART, 1, tickClaims)
         M.addTicker(PART, 30, function() M.refreshConfig() end)
         M.addTeardown(PART, function() claims = {}; lastAt = {}; resentAt = {}; resync = {}; alarms = {} end)
         wrapDestroy()

@@ -39,7 +39,7 @@ do
         VaultSafeChance = { kind = "number",  default = 60,  min = 0,    max = 100 },
         -- Wrong codes a safe takes before it locks out.
         SafeTries       = { kind = "number",  default = 5,   min = 1,    max = 20 },
-        -- Game hours a keypad locks out for; a dial locks out for half of it. 0: no lockout.
+        -- Game hours a keypad locks out for; a dial locks out for half of it. Never under a game minute (World.LOCKOUT_FLOOR_HOURS).
         SafeLockoutHours = { kind = "number", default = 2,   min = 0,    max = 48 },
         -- A keypad lockout or a failed bypass sounds the alarm.
         SafeAlarm       = { kind = "boolean", default = true },

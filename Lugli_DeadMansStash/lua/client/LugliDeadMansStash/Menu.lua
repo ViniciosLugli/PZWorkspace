@@ -73,36 +73,7 @@ do
         if key ~= nil then
             text = text .. GOOD .. M.T("Tooltip_LugliDMS_Key", "Key") .. ": " .. key .. " <LINE> "
         end
-        local chance = M.finite(route.chance) or 1
-        if chance < 1 then
-            text = text .. PLAIN .. M.T("Tooltip_LugliDMS_Chance", "Chance") .. ": "
-                .. math.floor(chance * 100 + 0.5) .. "% <LINE> "
-            if route.jams then
-                text = text .. BAD .. M.T("Tooltip_LugliDMS_MayJam", "A failed try can jam the lock") .. " <LINE> "
-            end
-            if route.spends then
-                text = text .. BAD .. M.T("Tooltip_LugliDMS_Spends", "A failed try uses up the paperclip") .. " <LINE> "
-            end
-        end
-        local seconds = math.max(1, math.floor((M.finite(route.seconds) or 0) + 0.5))
-        local unit = seconds == 1 and M.T("Tooltip_LugliDMS_Second", "second") or M.T("Tooltip_LugliDMS_Seconds", "seconds")
-        text = text .. PLAIN .. M.T("Tooltip_LugliDMS_Time", "Time") .. ": " .. seconds .. " " .. unit .. " <LINE> "
-        local noise = M.finite(route.noise) or 0
-        if noise <= 0 then
-            text = text .. PLAIN .. M.T("Tooltip_LugliDMS_Silent", "Makes no noise") .. " <LINE> "
-        else
-            text = text .. PLAIN .. M.Tf("Tooltip_LugliDMS_Noise", "Heard up to %1 tiles away", noise) .. " <LINE> "
-        end
-        if (route.damage or route.brute ~= nil) and (M.finite(M.cfg("BruteDamage")) or 1) > 1 then
-            text = text .. BAD .. M.T("Tooltip_LugliDMS_Damage", "Fragile things inside may break") .. " <LINE> "
-        end
-        if route.alarm then
-            text = text .. BAD .. M.T("Tooltip_LugliDMS_Alarm", "A failed try sets off the alarm and locks it") .. " <LINE> "
-        end
-        if (M.finite(route.burn) or 0) > 0 then
-            text = text .. BAD .. M.T("Tooltip_LugliDMS_Burns", "Paper, money and food inside may burn") .. " <LINE> "
-        end
-        return text
+        return text .. M.routeFactsTip(M.routeFacts(route))
     end
 
     --- THE WHOLE DECISION: the gate, the submenu's title and its entries in order.

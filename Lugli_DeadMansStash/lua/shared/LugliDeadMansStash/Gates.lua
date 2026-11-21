@@ -52,7 +52,13 @@ do
     -- wear: World damages the tool. chance: base + step * (perk - from), capped at max, the odds
     -- the authority's roll opens it; jams: a failed roll jams the lock. A key route takes no tool.
     -- traits: any one of them is required; maxTier and minPerk bound who and what it opens.
-    -- spends: the item full type a failed roll uses up when it is the tool (World.lua spendPick).
+    -- wrecks: the route tears the box open, so it can never be carried away after (Carry.lua);
+    -- every other route undoes or breaks only the lock.
+    -- spends: by item full type, what a failed roll does to the tool when it is one of them: "use"
+    -- uses it up, "wear" takes one condition and uses it up at its last, as Neat Lockpicking's own
+    -- picks do (Gates.spendPick). skill: XP in another perk on an opened and on a failed roll; a
+    -- perk no loaded mod defines trains nothing. chance.perks: odds added per level of each perk;
+    -- chance.tools: odds added by the tool's full type.
     M.ROUTES = {
         pry = {
             seconds = 12, noise = 8, damage = false, wear = true,
@@ -65,7 +71,7 @@ do
             xp = { perk = "Woodwork", amount = 5 },
         },
         smash = {
-            seconds = 4, noise = 12, damage = true, wear = true,
+            seconds = 4, noise = 12, damage = true, wear = true, wrecks = true,
             tools = { "SLEDGEHAMMER", "CHOP_TREE" },
         },
         key = {
@@ -73,13 +79,19 @@ do
         },
         pick = {
             seconds = 15, noise = 1, damage = false, finesse = true, jams = true,
-            items = { "Base.Paperclip" }, tools = { "SCREWDRIVER" }, spends = "Base.Paperclip",
+            -- Neat Lockpicking's store and handmade picks before a paperclip, the screwdriver last.
+            items = { "NeatLockpicking.Lockpick", "NeatLockpicking.HandmadeLockpick", "Base.Paperclip" },
+            tools = { "SCREWDRIVER" },
+            spends = { ["Base.Paperclip"] = "use", ["NeatLockpicking.HandmadeLockpick"] = "use",
+                       ["NeatLockpicking.Lockpick"] = "wear" },
             traits = { "BURGLAR", M.LOCKSMITH_TRAIT },
-            chance = { perk = "Nimble", base = 0.30, from = 0, step = 0.07, max = 0.9 },
+            chance = { perk = "Nimble", base = 0.30, from = 0, step = 0.07, max = 0.9,
+                perks = { Lockpicking = 0.05 }, tools = { ["NeatLockpicking.Lockpick"] = 0.10 } },
             xp = { perk = "Nimble", amount = 4 },
+            skill = { perk = "Lockpicking", opened = 20, failed = 2 },
         },
         force = {
-            seconds = 6, noise = 9, damage = false, brute = "light",
+            seconds = 6, noise = 9, damage = false, brute = "light", wear = true,
             tools = { "CROWBAR", "PRY_BAR" },
             xp = { perk = "Strength", amount = 3 },
         },
@@ -94,8 +106,8 @@ do
         snap = {
             seconds = 8, noise = 10, damage = false,
             tools = { "CROWBAR" },
-            minPerk = { perk = "Strength", level = 5 },
-            chance = { perk = "Strength", base = 0.4, from = 5, step = 0.05, max = 1 },
+            minPerk = { perk = "Strength", level = 4 },
+            chance = { perk = "Strength", entry = 0.15, base = 0.4, from = 5, step = 0.05, max = 1 },
             xp = { perk = "Strength", amount = 3 },
         },
 
@@ -108,6 +120,8 @@ do
         -- odds for its profession. alarm: a failed roll trips the alarm and a lockout.
         -- wearsSession: World wears the tool on every session, a put-down one included.
         -- chance.traits adds per held trait; chance.fromFloor counts levels over minPerk's floor.
+        -- chance.entry: the odds at the floor itself, one level before base; burn.step: what each
+        -- level of burn.perk over burn.from takes off the burn odds.
         -- Half a second: the code was typed in its window, so the submit is only the handle turning
         -- (4 s until 2026-11-19, when the user found the wait after OK strange).
         code = {
@@ -122,24 +136,25 @@ do
         },
         -- The no-skill, no-clue way in, so the slowest, and loud for all of it.
         drill = {
-            seconds = 120, noise = 10, damage = false, wear = true, wearsSession = true,
+            seconds = 120, noise = 10, damage = false, wear = true, wearsSession = true, wrecks = true,
             items = { "Base.HandDrill" }, tools = { "DRILL_METAL" },
         },
         torch = {
-            seconds = 60, noise = 6, damage = false, fuel = 4,
+            seconds = 60, noise = 6, damage = false, fuel = 4, wrecks = true,
             items = { "Base.BlowTorch" }, tools = { "BLOW_TORCH" },
             minPerk = { perk = "MetalWelding", level = 3, profession = "METALWORKER", professionLevel = 0,
                 reason = M.REASON_NEEDS_METALWORKING },
-            burn = { chance = 0.2, profession = "METALWORKER", professionChance = 0.1 },
+            burn = { chance = 0.2, profession = "METALWORKER", professionChance = 0.1,
+                perk = "MetalWelding", from = 3, step = 0.015 },
             xp = { perk = "MetalWelding", amount = 5 },
         },
         bypass = {
             seconds = 30, noise = 2, damage = false, powered = true, lockout = true, fresh = true, alarm = true,
             tools = { "SCREWDRIVER" },
             consumes = { { item = "Base.ElectronicsScrap", reason = M.REASON_NO_SCRAP } },
-            minPerk = { perk = "Electricity", level = 4, profession = "ELECTRICIAN", professionLevel = 2,
+            minPerk = { perk = "Electricity", level = 3, profession = "ELECTRICIAN", professionLevel = 1,
                 reason = M.REASON_NEEDS_ELECTRICITY },
-            chance = { perk = "Electricity", base = 0.40, fromFloor = true, step = 0.10, max = 0.9 },
+            chance = { perk = "Electricity", entry = 0.15, base = 0.40, fromFloor = true, step = 0.10, max = 0.9 },
             xp = { perk = "Electricity", amount = 5 },
         },
         battery = {
@@ -205,6 +220,10 @@ do
     M.BURGLAR_NOISE_FACTOR = 0.7
     -- A Locksmith picks and jimmies in 80% of the time.
     M.LOCKSMITH_FACTOR = 0.8
+    -- Listening at a dial (a `hears` route): a keen ear finds the gates sooner, a dulled one
+    -- has to turn the dial over twice.
+    M.KEEN_HEARING_FACTOR = 0.75
+    M.HARD_OF_HEARING_FACTOR = 2
 
     M.REASON_NOT_SEALED = "IGUI_LugliDMS_NotSealed"
     M.REASON_UNKNOWN_ROUTE = "IGUI_LugliDMS_UnknownRoute"
@@ -258,10 +277,123 @@ do
     --- World.lua's claw salvage reads the same profession test.
     function M.isCarpenter(player) return isProfession(player, "CARPENTER") end
 
+    --- A perk by name: a vanilla Perks field, else one a mod's perks.txt defines (Perks.FromString,
+    --- which answers MAX for a name nothing defines); nil for none.
+    function M.perkOf(name)
+        if Perks == nil or type(name) ~= "string" then return nil end
+        local vanilla = Perks[name]
+        if vanilla ~= nil then return vanilla end
+        if Perks.FromString == nil then return nil end
+        local ok, perk = pcall(Perks.FromString, name)
+        if not ok or perk == nil or perk == Perks.MAX then return nil end
+        return perk
+    end
+
     local function perkLevel(player, name)
-        if Perks == nil or Perks[name] == nil then return 0 end
-        local ok, v = pcall(function() return player:getPerkLevel(Perks[name]) end)
+        local perk = M.perkOf(name)
+        if perk == nil then return 0 end
+        local ok, v = pcall(function() return player:getPerkLevel(perk) end)
         return ok and M.finite(v) or 0
+    end
+
+    --- Give `player` `amount` XP in the perk named `name`; nothing for a perk none defines.
+    function M.grantXp(player, name, amount)
+        local perk = M.perkOf(name)
+        if perk == nil or addXp == nil or type(amount) ~= "number" or amount <= 0 then return end
+        pcall(addXp, player, perk, amount)
+    end
+
+    local function fullTypeOf(item)
+        if item == nil then return nil end
+        local ok, full = pcall(function() return item:getFullType() end)
+        return ok and full or nil
+    end
+
+    --- What a failed roll does to `tool` on a route: "use", "wear" or false.
+    function M.spendKind(def, tool)
+        if def == nil or type(def.spends) ~= "table" then return false end
+        return def.spends[fullTypeOf(tool) or ""] or false
+    end
+
+    --- What a failed roll's halo adds for a spend kind: "" for none.
+    function M.spentText(kind)
+        if kind == "wear" then return " " .. M.T("IGUI_LugliDMS_PickWorn", "The lockpick wears down.") end
+        if kind == "use" then return " " .. M.T("IGUI_LugliDMS_ClipSpent", "The tool is used up.") end
+        return ""
+    end
+
+    --- WHAT A ROUTE'S LIST SAYS OF IT, as data, so the menu, the inspect window and the door pick
+    --- never disagree: whole seconds (at least 1, of the work still to do when `left`), noise in
+    --- tiles, the odds as a whole percent (100 for no roll), and the warnings that apply.
+    function M.routeFacts(route)
+        local chance = M.finite(route.chance) or 1
+        local rolls = chance < 1
+        return {
+            seconds = math.max(1, math.floor((M.finite(route.seconds) or 0) + 0.5)),
+            left = route.resumed == true,
+            noise = math.max(0, M.finite(route.noise) or 0),
+            chance = math.floor(chance * 100 + 0.5),
+            jams = rolls and route.jams == true,
+            spends = rolls and (route.spends == "wear" or route.spends == "use") and route.spends or nil,
+            wrecks = route.wrecks == true,
+            breaks = (route.damage == true or route.brute ~= nil) and (M.finite(M.cfg("BruteDamage")) or 1) > 1,
+            alarm = route.alarm == true,
+            burns = (M.finite(route.burn) or 0) > 0,
+        }
+    end
+
+    --- The facts as the lines of a context-menu tooltip (rich text), for the menu and the door pick.
+    function M.routeFactsTip(f)
+        local PLAIN, BAD = " <RGB:1,1,1> ", " <RGB:0.95,0.6,0.5> "
+        local function line(c, s) return c .. s .. " <LINE> " end
+        local text = ""
+        if f.chance < 100 then
+            text = text .. line(PLAIN, M.T("Tooltip_LugliDMS_Chance", "Chance") .. ": " .. f.chance .. "%")
+        end
+        if f.jams then text = text .. line(BAD, M.T("Tooltip_LugliDMS_MayJam", "A failed try can jam the lock")) end
+        if f.spends == "wear" then
+            text = text .. line(BAD, M.T("Tooltip_LugliDMS_Wears", "A failed try wears the lockpick down"))
+        elseif f.spends == "use" then
+            text = text .. line(BAD, M.T("Tooltip_LugliDMS_Spends", "A failed try uses up the tool"))
+        end
+        if f.wrecks then
+            text = text .. line(BAD, M.T("Tooltip_LugliDMS_Wrecks", "Wrecks the box: it can't be carried away after"))
+        end
+        local unit = f.seconds == 1 and M.T("Tooltip_LugliDMS_Second", "second") or M.T("Tooltip_LugliDMS_Seconds", "seconds")
+        local label = f.left and M.T("Tooltip_LugliDMS_TimeLeft", "Time left") or M.T("Tooltip_LugliDMS_Time", "Time")
+        text = text .. line(PLAIN, label .. ": " .. f.seconds .. " " .. unit)
+        if f.noise <= 0 then
+            text = text .. line(PLAIN, M.T("Tooltip_LugliDMS_Silent", "Makes no noise"))
+        else
+            text = text .. line(PLAIN, M.Tf("Tooltip_LugliDMS_Noise", "Heard up to %1 tiles away", f.noise))
+        end
+        if f.breaks then text = text .. line(BAD, M.T("Tooltip_LugliDMS_Damage", "Fragile things inside may break")) end
+        if f.alarm then
+            text = text .. line(BAD, M.T("Tooltip_LugliDMS_Alarm", "A failed try sets off the alarm and locks it"))
+        end
+        if f.burns then text = text .. line(BAD, M.T("Tooltip_LugliDMS_Burns", "Paper, money and food inside may burn")) end
+        return text
+    end
+
+    --- A failed roll's cost to the tool: "wear" takes one condition; "use", or a worn pick at its
+    --- last, removes it from its container, mirrored to the clients in multiplayer.
+    function M.spendPick(tool, kind)
+        if tool == nil or (kind ~= "use" and kind ~= "wear") then return end
+        if kind == "wear" then
+            local ok, cond = pcall(function() return tool:getCondition() end)
+            cond = ok and M.finite(cond) or 0
+            if cond > 1 then
+                pcall(function() tool:setCondition(cond - 1) end)
+                if M.isMultiplayer() then pcall(function() tool:syncItemFields() end) end
+                return
+            end
+        end
+        local okC, container = pcall(function() return tool:getContainer() end)
+        if not okC or container == nil then return end
+        container:Remove(tool)
+        if M.isMultiplayer() and sendRemoveItemFromContainer ~= nil then
+            pcall(sendRemoveItemFromContainer, container, tool)
+        end
     end
 
     local function notBroken(item) return not item:isBroken() end
@@ -466,6 +598,10 @@ do
             f = f * (1 - w * M.WOODWORK_STEP)
             if M.isCarpenter(player) then f = f * M.CARPENTER_FACTOR end
         end
+        if def.hears then
+            if hasTrait(player, "KEEN_HEARING") then f = f * M.KEEN_HEARING_FACTOR end
+            if hasTrait(player, "HARD_OF_HEARING") then f = f * M.HARD_OF_HEARING_FACTOR end
+        end
         if routeId == "pry" or routeId == "claw" or def.finesse then
             if hasTrait(player, "DEXTROUS") then f = f * M.DEXTROUS_FACTOR end
             if hasTrait(player, "ALL_THUMBS") then f = f * M.ALL_THUMBS_FACTOR end
@@ -486,27 +622,43 @@ do
         return mp.level
     end
 
-    --- The odds the authority's roll opens it: 1 for a route without a chance.
-    local function chanceOf(player, def)
+    --- The odds the authority's roll opens it with `tool`: 1 for a route without a chance.
+    local function chanceOf(player, def, tool)
         local c = def.chance
         if c == nil then return 1 end
         local from = c.from
-        if c.fromFloor then from = perkFloor(player, def.minPerk) end
-        local v = c.base + c.step * (perkLevel(player, c.perk) - from)
+        if c.fromFloor then from = perkFloor(player, def.minPerk) + (c.entry ~= nil and 1 or 0) end
+        local level = perkLevel(player, c.perk)
+        local v = c.base + c.step * (level - from)
+        if c.entry ~= nil and level < from then v = c.entry end
         if c.traits ~= nil then
             for name, add in pairs(c.traits) do
                 if hasTrait(player, name) then v = v + add end
             end
         end
+        if c.perks ~= nil then
+            for name, add in pairs(c.perks) do v = v + add * perkLevel(player, name) end
+        end
+        if c.tools ~= nil then v = v + (c.tools[fullTypeOf(tool) or ""] or 0) end
         return M.clamp(v, 0, c.max)
     end
+
+    -- A route's tool, odds and time factor, for the door pick (Doors.lua) to take as a box's are.
+    function M.findRouteTool(player, routeId)
+        local def = M.ROUTES[routeId]
+        if def == nil then return nil end
+        return (findTool(player, def.tools or {}, def.items or {}))
+    end
+    function M.routeChance(player, routeId, tool) return chanceOf(player, M.ROUTES[routeId], tool) end
+    function M.routeTimeFactor(player, routeId) return timeFactor(player, routeId, M.ROUTES[routeId]) end
 
     --- The odds a torch burns each paper, money and food item, for this player; 0 for any other route.
     local function burnOf(player, def)
         local b = def.burn
         if b == nil then return 0 end
-        if isProfession(player, b.profession) then return b.professionChance end
-        return b.chance
+        local v = isProfession(player, b.profession) and b.professionChance or b.chance
+        if b.perk ~= nil then v = v - b.step * math.max(0, perkLevel(player, b.perk) - b.from) end
+        return math.max(0, v)
     end
 
     --- The items one try uses up, or nil and the refusal for the first one missing.
@@ -561,6 +713,7 @@ do
         end
 
         local tool, key = nil, nil
+        local fuel = M.fuelFor(def.fuel, 1 - savedProgress(md, routeId, def))
         if def.key then
             if keyId ~= nil and not M.isGateKeyId(keyId) then return refuse(routeId, M.REASON_WRONG_KEY) end
             key = findKey(player, keyId)
@@ -571,7 +724,7 @@ do
         elseif def.tools ~= nil or def.items ~= nil then
             local usable = nil
             if def.fuel ~= nil then
-                usable = function(item) return not item:isBroken() and usesOf(item) >= def.fuel end
+                usable = function(item) return not item:isBroken() and usesOf(item) >= fuel end
             end
             local unusable
             tool, unusable = findTool(player, def.tools or {}, def.items or {}, usable)
@@ -587,7 +740,8 @@ do
         if consumes == nil then return refuse(routeId, missing) end
 
         local timeScale = M.finite(M.cfg("TimeScale")) or 1
-        local seconds = def.seconds * timeFactor(player, routeId, def) * timeScale * (1 - savedProgress(md, routeId, def))
+        local saved = savedProgress(md, routeId, def)
+        local seconds = def.seconds * timeFactor(player, routeId, def) * timeScale * (1 - saved)
 
         local noise = def.noise * (M.finite(M.cfg("NoiseScale")) or 1)
         if (routeId == "pry" or routeId == "force") and hasTrait(player, "BURGLAR") then
@@ -596,96 +750,165 @@ do
 
         local xp = nil
         if def.xp ~= nil then xp = { perk = def.xp.perk, amount = def.xp.amount } end
-        local spends = false
-        if def.spends ~= nil and tool ~= nil then
-            local okType, full = pcall(function() return tool:getFullType() end)
-            spends = okType and full == def.spends
-        end
+        local skill = nil
+        if def.skill ~= nil then skill = { perk = def.skill.perk, opened = def.skill.opened, failed = def.skill.failed } end
         return {
-            ok = true, id = routeId, seconds = seconds, noise = math.floor(noise + 0.5),
+            ok = true, id = routeId, seconds = seconds, resumed = saved > 0, noise = math.floor(noise + 0.5),
             damage = def.damage, brute = def.brute, wear = def.wear == true, tool = tool, key = key, xp = xp,
-            chance = chanceOf(player, def), spends = spends,
+            chance = chanceOf(player, def, tool), spends = M.spendKind(def, tool), skill = skill,
             jams = def.jams == true and not hasTrait(player, M.LOCKSMITH_TRAIT),
-            code = def.code == true, resumes = not def.fresh, consumes = consumes, fuel = def.fuel or 0,
+            code = def.code == true, resumes = not def.fresh, consumes = consumes, fuel = fuel,
             burn = burnOf(player, def), alarm = def.alarm == true, wearsSession = def.wearsSession == true,
+            wrecks = def.wrecks == true,
         }
     end
 
-    -- THE ONE CHOICE IN THE WORK (WorkPanel.lua offers it, World.lua honours it). A drill goes red
-    -- every `every` seconds of drilling; easing off pauses it `pause` seconds and keeps the
-    -- finishing session to the drill's one wear, while a finishing session that went red more
-    -- times than it was eased wears it `extraWear` more. A torch's seam reaches the contents at
-    -- `from` of the work; stopping it to cool pauses it `pause` seconds and scales each burn
-    -- chance by `burnFactor`. THE BOUND: the client sends only a count, `max` at most; the
-    -- authority honours it only when its own clock shows every pause paid on top of the submit
-    -- floor, and otherwise counts no choice. A choice can only take a wear away down to the
-    -- route's own one, or halve the burn chance; it never shortens the floor, adds progress or
-    -- opens anything, and a pause is never credited as work. An offer left `grace` seconds where
-    -- the survivor could take it stops the work on the client (WorkPanel.lua), progress kept.
+    -- THE REST IN THE WORK (WorkPanel.lua offers it, World.lua honours it). A drill gathers one
+    -- second of heat a second of drilling, up to `heatUp`, where it is red; at rest, put down or
+    -- walked away from, it cools as hot metal does, heat * exp(-seconds / tau), so a short rest
+    -- leaves it warm and the next red comes sooner. A finishing session that ran red longer than
+    -- `grace` seconds in one run wears it `extraWear` more. A torch's seam reaches the contents at `from`
+    -- of the work; every second it rests, stopped or walked away from near the contents, earns
+    -- 1 / `pause` of the cooling, and full cooling scales each burn chance by `burnFactor`.
+    -- THE BOUND: the client sends its rests, `max` at most, each `maxRest` seconds at most, at
+    -- the work second each began; the authority honours them only when its own clock shows them
+    -- all paid on top of the submit floor, and otherwise counts none. A rest can only take a
+    -- wear away down to the route's own one, or lower the burn chance; it never shortens the
+    -- floor, adds progress or opens anything, and is never credited as work. A red or a near seam
+    -- left `grace` seconds without a rest stops the work on the client, progress kept.
     M.WORK_CHOICES = {
-        drill = { every = 60, pause = 5, max = 8, extraWear = 1, grace = 6 },
-        torch = { from = 0.75, pause = 8, max = 1, burnFactor = 0.5, grace = 6 },
+        drill = { heatUp = 60, tau = 1.67, cold = 3, max = 8, maxRest = 120, extraWear = 1, grace = 6 },
+        torch = { from = 0.75, pause = 8, max = 8, maxRest = 120, burnFactor = 0.5, grace = 6 },
     }
 
-    --- How many times a drill session of `work` seconds went red. The end of the work is no spell.
-    function M.heatSpells(routeId, work)
+    --- The heat a drill keeps after `seconds` at rest. Infinite rest is cold.
+    function M.coolHeat(routeId, heat, seconds)
         local c = M.WORK_CHOICES[routeId]
-        work = M.finite(work)
-        if c == nil or c.every == nil or work == nil or work <= 0 then return 0 end
-        return math.floor((work - 0.001) / c.every)
+        if c == nil or c.tau == nil then return 0 end
+        heat = M.clamp(M.finite(heat) or 0, 0, c.heatUp)
+        if seconds == math.huge then return 0 end
+        return heat * math.exp(-math.max(0, M.finite(seconds) or 0) / c.tau)
     end
 
-    --- A session as the authority counts it, from the count the client claims (`value`), the
-    --- seconds its claim was held (`elapsed`), the seconds of work the floor asks (`floor`, 0
-    --- where the floor is skipped) and the heat a resumed drill `start`ed on: { choices, work,
-    --- hot, burnFactor }. A value that is not a
-    --- whole number in 0..max, more pauses than the session could hold, or pauses that leave the
-    --- work under the floor count as no choice. hot: a drill that went red more often than eased.
-    function M.workSession(routeId, value, elapsed, floor, start)
-        elapsed = math.max(0, M.finite(elapsed) or 0)
+    --- A seam's cooling, 0..1, full within a rounding of it: time measured in ms and divided back
+    --- into seconds must still read as fully cooled.
+    local function creditOf(x)
+        if x > 1 - 1e-9 then return 1 end
+        return x
+    end
+
+    --- Drill `work` seconds from `heat`: the heat it ends on and the seconds of it spent red.
+    local function heatWork(c, heat, work)
+        if c.heatUp == nil then return 0, 0 end
+        work = math.max(0, work)
+        local reach = c.heatUp - heat
+        if work <= reach then return heat + work, 0 end
+        return c.heatUp, work - math.max(0, reach)
+    end
+
+    --- A session replayed from what it started on (`from`: { heat, credit }) through its rests
+    --- ({ at, s }, in work order) to `work` seconds: { heat, red, spell, run, credit }. red: every
+    --- second spent red; spell: the longest red run, which only a rest that took the drill out of
+    --- the gauge's red zone (its last 10 s) ends; run: the red run still going at the end.
+    function M.workReplay(routeId, from, rests, work)
+        local c = M.WORK_CHOICES[routeId]
+        from = type(from) == "table" and from or {}
+        local out = { heat = 0, red = 0, spell = 0, run = 0, credit = 0 }
+        if c == nil then return out end
+        local heat = c.heatUp ~= nil and M.clamp(M.finite(from.heat) or 0, 0, c.heatUp) or 0
+        local credit = M.clamp(M.finite(from.credit) or 0, 0, 1)
+        local red, run, spell, t = 0, 0, 0, 0
+        for i = 1, #rests do
+            local r = rests[i]
+            local add
+            heat, add = heatWork(c, heat, r.at - t)
+            red, run = red + add, run + add
+            spell = math.max(spell, run)
+            heat = M.coolHeat(routeId, heat, r.s)
+            if c.heatUp ~= nil and heat < c.heatUp - 10 then run = 0 end
+            if c.pause ~= nil then credit = credit + r.s / c.pause end
+            t = r.at
+        end
+        local add
+        heat, add = heatWork(c, heat, (M.finite(work) or 0) - t)
+        out.heat, out.red, out.spell, out.run = heat, red + add, math.max(spell, run + add), run + add
+        out.credit = creditOf(credit)
+        return out
+    end
+
+    --- The rests a client claims, as { at, s } in work order, with their total; nil for a list
+    --- that is not one: not a table of tables, more than `max`, a rest out of 0..maxRest, or
+    --- out of order.
+    local function restList(c, rests)
+        if rests == nil then return {}, 0 end
+        if type(rests) ~= "table" then return nil end
+        local out, last, total = {}, 0, 0
+        for i = 1, c.max + 1 do
+            local r = rests[i]
+            if r == nil then break end
+            if i > c.max or type(r) ~= "table" then return nil end
+            local at, s = M.finite(r.at), M.finite(r.s)
+            if at == nil or s == nil or at < last or s <= 0 or s > c.maxRest then return nil end
+            out[i] = { at = at, s = s }
+            last, total = at, total + s
+        end
+        return out, total
+    end
+
+    -- The seconds the client's clock may run ahead of the authority's: a claim and its release or
+    -- submit cross the network with different delays.
+    local REST_SLACK = 0.5
+
+    --- A session as the authority counts it, from the rests the client claims, the seconds its
+    --- claim was held (`elapsed`), the seconds of work the floor asks (`floor`, 0 where the floor
+    --- is skipped) and what the session started on (`from`, Gates.workResume): { rests, work,
+    --- heat, credit, hot, burnFactor }. A list that is not one, or rests that leave the work under
+    --- the floor (less REST_SLACK), count as no rests; a rest past the work there was is moved to
+    --- its end, the least it can cool. hot: a drill red past its grace.
+    function M.workSession(routeId, rests, elapsed, floor, from)
+        elapsed = M.finite(elapsed) or 0
         floor = math.max(0, M.finite(floor) or 0)
         local c = M.WORK_CHOICES[routeId]
-        local n = M.finite(value)
-        if c == nil or n == nil or n ~= math.floor(n) or n < 1 or n > c.max then n = 0 end
-        if start == nil then start = 0 end
-        if n > 0 then
-            local fits = math.floor((start + elapsed + c.pause) / ((c.every or 0) + c.pause))
-            if n > fits or elapsed - n * c.pause < floor then n = 0 end
+        local list, total = {}, 0
+        if c ~= nil then
+            list, total = restList(c, rests)
+            if list == nil or elapsed - total < floor - REST_SLACK then list, total = {}, 0 end
         end
-        local work = elapsed - (c ~= nil and n * c.pause or 0)
-        local out = { choices = n, work = work, hot = false, burnFactor = 1 }
-        if c ~= nil and c.every ~= nil then out.hot = M.heatSpells(routeId, start + work) > n end
-        if c ~= nil and c.burnFactor ~= nil and n > 0 then out.burnFactor = c.burnFactor end
+        local work = math.max(0, elapsed - total)
+        for i = 1, #list do
+            if list[i].at > work then list[i].at = work end
+        end
+        local out = { rests = #list, work = work, heat = 0, credit = 0, hot = false, burnFactor = 1 }
+        if c == nil then return out end
+        local r = M.workReplay(routeId, from, list, work)
+        out.heat, out.credit = r.heat, r.credit
+        if c.heatUp ~= nil then out.hot = r.spell > c.grace end
+        if c.burnFactor ~= nil then out.burnFactor = 1 - (1 - c.burnFactor) * r.credit end
         return out
     end
 
     --- What a session started on saved `saved` work inherits from the one before it, left
-    --- `leftMs` ms ago: { cooled, heat }. A tool left alone for its `pause` has cooled: a torch's
-    --- seam near the contents is cooled without a Stop, and a drill starts cold. One taken up
-    --- again sooner keeps its heat, minus what the pause lets go. leftMs nil: no record, so as
-    --- long as it takes.
+    --- `leftMs` ms ago: { heat, credit }. The drill's heat has cooled for the time away; a seam
+    --- left near the contents has earned that time's cooling on top of what it had. leftMs nil:
+    --- no record, so as long as it takes.
     function M.workResume(routeId, saved, leftMs, nowMs)
         local c = M.WORK_CHOICES[routeId]
         saved = type(saved) == "table" and saved or {}
-        if c == nil then return { cooled = false, heat = 0 } end
+        if c == nil then return { heat = 0, credit = 0 } end
         local left = M.finite(leftMs)
-        local away = left == nil and math.huge or math.max(0, (M.finite(nowMs) or 0) - left)
-        local cooled = away >= c.pause * 1000
-        if c.every ~= nil then
-            if cooled then return { cooled = true, heat = 0 } end
-            return { cooled = false, heat = math.max(0, M.clamp(M.finite(saved.heat) or 0, 0, 3600) - away / 1000) }
-        end
-        local near = (M.finite(saved.progress) or 0) >= c.from
-        return { cooled = cooled and near, heat = 0 }
+        local away = left == nil and math.huge or math.max(0, ((M.finite(nowMs) or 0) - left) / 1000)
+        if c.heatUp ~= nil then return { heat = M.coolHeat(routeId, saved.heat, away), credit = 0 } end
+        if (M.finite(saved.progress) or 0) < c.from then return { heat = 0, credit = 0 } end
+        local had = M.clamp(M.finite(saved.credit) or 0, 0, 1)
+        return { heat = 0, credit = away == math.huge and 1 or creditOf(had + away / c.pause) }
     end
 
-    --- The heat a drill session of `work` seconds with `start` carried in ends on: what is left
-    --- of it after the spells it went through.
-    function M.heatAfter(routeId, start, work)
-        local c = M.WORK_CHOICES[routeId]
-        if c == nil or c.every == nil then return 0 end
-        local heat = (M.finite(start) or 0) + (M.finite(work) or 0)
-        return M.clamp(heat - c.every * M.heatSpells(routeId, heat), 0, 3600)
+    --- The fuel `share` of a route's whole work burns: at least one use for any work at all.
+    function M.fuelFor(fuel, share)
+        fuel = M.finite(fuel) or 0
+        share = M.clamp(M.finite(share) or 0, 0, 1)
+        if fuel <= 0 or share <= 0 then return 0 end
+        return math.max(1, math.ceil(fuel * share - 0.0001))
     end
 
     --- Every route of the gate's kind, in the kind's fixed order. Empty for anything not a gate.
@@ -711,6 +934,24 @@ do
         return true
     end
     M.addHandler(PART, "OnGameBoot", M.linkLocksmith)
+
+    -- Neat Lockpicking opens its own lockpicking to a Burglar or to whoever knows its pick recipe
+    -- (NeatLockpick_Chances.canLockpick), so a Locksmith learns the recipe on entering the world.
+    -- Without Neat the recipe does not exist and nothing is learned.
+    M.NEAT_PICK_RECIPE = "NeatLockpick_CreateLockpick"
+    function M.teachLocksmith(player)
+        if player == nil or not hasTrait(player, M.LOCKSMITH_TRAIT) or getScriptManager == nil then return false end
+        local okR, recipe = pcall(function()
+            local sm = getScriptManager()
+            return sm:getCraftRecipe(M.NEAT_PICK_RECIPE) or sm:getCraftRecipe("Base." .. M.NEAT_PICK_RECIPE)
+        end)
+        if not okR or recipe == nil then return false end
+        local okK, known = pcall(function() return player:isRecipeActuallyKnown(M.NEAT_PICK_RECIPE) end)
+        if not okK or known == true then return false end
+        local okL, learned = pcall(function() return player:learnRecipe(M.NEAT_PICK_RECIPE) end)
+        return okL and learned == true
+    end
+    M.addHandler(PART, "OnCreatePlayer", function(_, player) M.teachLocksmith(player) end)
 
     M.status(PART, true)
 end

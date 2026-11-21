@@ -16,8 +16,9 @@
     the engine never rolls loot into it. A client still loading a neighbouring chunk drops that
     add (AddItemToMapPacket.java:56) and may have been served the chunk without the box, so in
     multiplayer the square is also announced (NET_PLACED): such a client asks for it again once
-    the square is in (Actions.lua), and World.lua resends it. It has no IsMoveAble or CanScrap property, so it cannot be picked up or
-    scrapped: the only ways in are this mod's routes, and a sledge counts as smashing (World.lua).
+    the square is in (Actions.lua), and World.lua resends it. A sealed tile has no IsMoveAble or
+    CanScrap property, so it cannot be picked up or scrapped: the only ways in are this mod's
+    routes, and a sledge counts as smashing (World.lua). An opened one is IsMoveAble (Carry.lua).
 
     EACH ROOM HIDES ONE KIND OF BOX (Spots.kindFor): a crate, a lockbox or a footlocker, each on
     its own tiles with its own container type. A keyed box's key id is assigned before the box

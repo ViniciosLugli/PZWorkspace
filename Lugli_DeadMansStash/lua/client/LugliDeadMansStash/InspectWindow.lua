@@ -166,15 +166,6 @@ do
     end
     M.inspectRouteIcon = routeIcon
 
-    local function wholeSeconds(s)
-        return math.max(1, math.ceil(s))
-    end
-
-    --- The odds the route opens it, as a whole percent: 100 for a route without a roll.
-    local function chancePercent(r)
-        return math.floor((M.finite(r.chance) or 1) * 100 + 0.5)
-    end
-
     --- The lines one route's row says under its name, as { s, c, mark }.
     local function routeLines(r)
         local lines = {}
@@ -184,36 +175,31 @@ do
             elseif r.tool ~= nil then
                 lines[#lines + 1] = { s = M.T("UI_LugliDMS_Tool", "Tool") .. ": " .. toolName(r.tool), c = N.text, mark = "tick" }
             end
-            local seconds = wholeSeconds(r.seconds)
-            if seconds == 1 then
-                lines[#lines + 1] = { s = M.T("UI_LugliDMS_TakesOne", "Takes about 1 second"), c = N.textDim }
+            local f = M.routeFacts(r)
+            local function say(s) lines[#lines + 1] = { s = s, c = N.textDim } end
+            if f.left then
+                say(f.seconds == 1 and M.T("UI_LugliDMS_LeftOne", "About 1 second left")
+                    or M.Tf("UI_LugliDMS_Left", "About %1 seconds left", f.seconds))
             else
-                lines[#lines + 1] = { s = M.Tf("UI_LugliDMS_Takes", "Takes about %1 seconds", seconds), c = N.textDim }
+                say(f.seconds == 1 and M.T("UI_LugliDMS_TakesOne", "Takes about 1 second")
+                    or M.Tf("UI_LugliDMS_Takes", "Takes about %1 seconds", f.seconds))
             end
-            if (M.finite(r.noise) or 0) <= 0 then
-                lines[#lines + 1] = { s = M.T("UI_LugliDMS_Silent", "Makes no noise"), c = N.textDim }
+            if f.noise <= 0 then
+                say(M.T("UI_LugliDMS_Silent", "Makes no noise"))
             else
-                lines[#lines + 1] = { s = M.Tf("UI_LugliDMS_Noise", "Heard up to %1 tiles away", r.noise), c = N.textDim }
+                say(M.Tf("UI_LugliDMS_Noise", "Heard up to %1 tiles away", f.noise))
             end
-            local pct = chancePercent(r)
-            if pct < 100 then
-                lines[#lines + 1] = { s = M.Tf("UI_LugliDMS_Chance", "Chance it gives: %1%", pct), c = N.textDim }
-                if r.jams then
-                    lines[#lines + 1] = { s = M.T("UI_LugliDMS_MayJam", "A failed try can jam the lock."), c = N.textDim }
-                end
-                if r.spends then
-                    lines[#lines + 1] = { s = M.T("UI_LugliDMS_Spends", "A failed try uses up the paperclip."), c = N.textDim }
-                end
+            if f.chance < 100 then say(M.Tf("UI_LugliDMS_Chance", "Chance it gives: %1%", f.chance)) end
+            if f.jams then say(M.T("UI_LugliDMS_MayJam", "A failed try can jam the lock.")) end
+            if f.spends == "wear" then
+                say(M.T("UI_LugliDMS_Wears", "A failed try wears the lockpick down."))
+            elseif f.spends == "use" then
+                say(M.T("UI_LugliDMS_Spends", "A failed try uses up the tool."))
             end
-            if (r.damage or r.brute ~= nil) and (M.finite(M.cfg("BruteDamage")) or 1) > 1 then
-                lines[#lines + 1] = { s = M.T("UI_LugliDMS_MayBreak", "Fragile things inside may break."), c = N.textDim }
-            end
-            if r.alarm then
-                lines[#lines + 1] = { s = M.T("UI_LugliDMS_Alarm", "A failed try sets off the alarm and locks it."), c = N.textDim }
-            end
-            if (M.finite(r.burn) or 0) > 0 then
-                lines[#lines + 1] = { s = M.T("UI_LugliDMS_Burns", "Paper, money and food inside may burn."), c = N.textDim }
-            end
+            if f.wrecks then say(M.T("UI_LugliDMS_Wrecks", "Wrecks the box: it can't be carried away after.")) end
+            if f.breaks then say(M.T("UI_LugliDMS_MayBreak", "Fragile things inside may break.")) end
+            if f.alarm then say(M.T("UI_LugliDMS_Alarm", "A failed try sets off the alarm and locks it.")) end
+            if f.burns then say(M.T("UI_LugliDMS_Burns", "Paper, money and food inside may burn.")) end
             return lines
         end
         if r.reason == M.REASON_NO_TOOL or r.reason == M.REASON_TOOL_BROKEN then
@@ -451,10 +437,10 @@ do
         for _, s in ipairs(self.saved) do parts[#parts + 1] = s.id .. math.floor(s.p * 100 + 0.5) end
         -- The safe's lines as drawn: power, tries, the countdown to the minute, the mask.
         for _, line in ipairs(self.safe) do parts[#parts + 1] = line.s end
+        -- Each route's row as drawn, so a changed fact lays it out again and nothing else does.
         for _, r in ipairs(self.routes) do
-            parts[#parts + 1] = tostring(r.id) .. tostring(r.ok) .. tostring(r.reason)
-                .. (r.ok and (wholeSeconds(r.seconds) .. "/" .. r.noise .. "/" .. chancePercent(r) .. "/"
-                    .. toolName(r.key or r.tool)) or "")
+            parts[#parts + 1] = tostring(r.id) .. tostring(r.ok)
+            for _, line in ipairs(routeLines(r)) do parts[#parts + 1] = line.s end
         end
         return table.concat(parts, "|")
     end
@@ -467,15 +453,18 @@ do
     end
 
     --- Put a button on every route row, labelled Start, lit when the route can be started. The
-    --- controller's choice stays on the same route across a re-read while it can still be started.
+    --- controller's choice stays on the same route across a re-read while the route is still
+    --- listed; a new choice is the first route that can be started, else the first row.
     function LugliDMSInspectWindow:layoutButtons()
         N.placeClose(self.closeBtn, self.width)
         for _, b in ipairs(self.routeBtns or {}) do self.body:removeScrollChild(b) end
         self.routeBtns = {}
-        local can = startable(self)
         local keep = false
-        for _, s in ipairs(can) do if s.id == self.selId then keep = true end end
-        if not keep then self.selId = can[1] ~= nil and can[1].id or nil end
+        for _, s in ipairs(self.spots) do if s.id == self.selId then keep = true end end
+        if not keep then
+            local first = startable(self)[1] or self.spots[1]
+            self.selId = first ~= nil and first.id or nil
+        end
         local pad = padDrives(self.playerNum)
         for _, s in ipairs(self.spots) do
             local b = LugliDMSButton:new(s.x, s.y, s.w, s.h, self.startShown, self, LugliDMSInspectWindow.onStart)
@@ -594,19 +583,20 @@ do
         if target ~= nil then self.body.smoothScrollTargetY = target end
     end
 
-    --- The d-pad walks the routes that can be started; with none it scrolls the body.
+    --- The d-pad walks every route row, greyed ones too, so a reason below the fold can be read;
+    --- A on a greyed one starts nothing. With no rows it scrolls the body.
     function LugliDMSInspectWindow:moveChoice(step)
-        local can = startable(self)
-        if #can == 0 then
+        local rows = self.spots
+        if #rows == 0 then
             self.body:onMouseWheel(step)
             return
         end
         local at = 1
-        for i, s in ipairs(can) do if s.id == self.selId then at = i end end
-        at = M.clamp(at + step, 1, #can)
-        self.selId = can[at].id
+        for i, s in ipairs(rows) do if s.id == self.selId then at = i end end
+        at = M.clamp(at + step, 1, #rows)
+        self.selId = rows[at].id
         for _, b in ipairs(self.routeBtns) do b.joypadFocused = b.routeId == self.selId end
-        self:showSpot(can[at])
+        self:showSpot(rows[at])
     end
 
     function LugliDMSInspectWindow:onJoypadDown(button)

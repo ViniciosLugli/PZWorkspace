@@ -23,8 +23,8 @@
     item is the hand model. A typo is no error anywhere, just a survivor standing still.
 
     THE WORK PANEL (WorkPanel.lua, read at call time: it loads after this file) is opened by
-    start, ticked by update, and closed by stop and perform; its one choice rides on the submit
-    and the release as `choice`, which the authority clamps (Gates.WORK_CHOICES).
+    start, ticked by update, and closed by stop and perform; its rests ride on the submit and the
+    release as `rests`, which the authority replays (Gates.WORK_CHOICES).
 ]]
 
 require "TimedActions/ISBaseTimedAction"
@@ -221,7 +221,7 @@ do
     end
 
     local function hold(gateId, player, action, spends, obj)
-        holders[gateId] = { player = player, action = action, spends = spends == true, obj = obj }
+        holders[gateId] = { player = player, action = action, spends = spends or false, obj = obj }
         lastGateId = gateId
     end
 
@@ -236,7 +236,7 @@ do
     end
 
     --- The words for a roll that did not open it: the alarm and a lockout when it tripped them,
-    --- else the lock holding or jamming, and the paperclip when one was spent.
+    --- else the lock holding or jamming, and the pick when one was spent or worn.
     local function failedText(h, args)
         local text
         if args.alarm == true then
@@ -249,10 +249,7 @@ do
         else
             text = M.T("IGUI_LugliDMS_LockHolds", "The lock holds.")
         end
-        if h.spends then
-            text = text .. " " .. M.T("IGUI_LugliDMS_ClipSpent", "The paperclip is used up.")
-        end
-        return text
+        return text .. M.spentText(h.spends)
     end
 
     --- Every answer from the authority: OnServerCommand in multiplayer, a direct call from
@@ -626,7 +623,7 @@ do
         return nil
     end
 
-    --- Hush the work's sound for a pause (the panel's choice), and bring it back after.
+    --- Hush the work's sound for a rest (the panel's button), and bring it back after.
     function ISLugliDMSRouteAction:hush() stopSound(self) end
     function ISLugliDMSRouteAction:resound()
         local begin = M.routeSound(self.routeId, kindOf(self.obj), "begin")
@@ -635,11 +632,14 @@ do
         end
     end
 
-    --- The wire arguments of this action with its choice count (WorkPanel.lua), when it made one.
-    local function withChoice(self, args)
+    --- The wire arguments of this action with its rests (WorkPanel.lua), when it took any.
+    local function withRests(self, args)
         local out = {}
         for k, v in pairs(args) do out[k] = v end
-        if (M.finite(self.choice) or 0) > 0 then out.choice = self.choice end
+        if type(self.workRests) == "table" and #self.workRests > 0 then
+            out.rests = {}
+            for i, r in ipairs(self.workRests) do out.rests[i] = { at = r.at, s = r.s } end
+        end
         return out
     end
 
@@ -684,7 +684,7 @@ do
         if self.claimSent then
             self.claimSent = false
             if self.gateId ~= nil then holders[self.gateId] = nil end
-            M.send(self.character, M.NET_RELEASE, withChoice(self, self.args))
+            M.send(self.character, M.NET_RELEASE, withRests(self, self.args))
         end
         local why, fallback = self.stoppedBy, self.stoppedFallback
         if why ~= nil then
@@ -700,12 +700,12 @@ do
         if self.claimSent then
             self.claimSent = false
             -- The answer to the submit is spoken to this survivor; the action is over by then. Whether
-            -- a failure spends the paperclip is read now: in single player the authority answers,
+            -- a failure spends or wears the pick is read now: in single player the authority answers,
             -- and removes the clip, inside the send.
             local route = routeOn(self.character, self.obj, M.sealedGateOf(self.obj), self.routeId)
             hold(self.gateId, self.character, nil, route.ok and route.spends, self.obj)
             -- Only the submit carries the typed code; the claim never does.
-            local submit = withChoice(self, self.args)
+            local submit = withRests(self, self.args)
             submit.code = self.code
             M.send(self.character, M.NET_SUBMIT, submit)
         end
@@ -844,7 +844,10 @@ do
             return nil
         end
         return M.openKeypad(player, obj, M.keypadView(md, squareOf(obj)), function(code)
-            M.submitCode(player, obj, code)
+            return M.submitCode(player, obj, code)
+        end, function()
+            local fresh = M.sealedGateOf(obj)
+            return fresh ~= nil and M.keypadView(fresh, squareOf(obj)) or nil
         end)
     end
 

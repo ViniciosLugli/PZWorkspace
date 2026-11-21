@@ -5,9 +5,10 @@
 
     VANILLA HAS NO DOOR PICK, only the crowbar (ISForceOpen.lua, where a Burglar halves the fail
     chance), so this is the Locksmith's alone; a Burglar keeps hotwiring and forcing. It unlocks
-    and never locks. The numbers are the lockbox pick's (Gates.ROUTES.pick), read at call time:
-    the Locksmith's time factor, Nimble odds, a paperclip or a screwdriver, a failed try spending
-    the paperclip, and no jam.
+    and never locks. The numbers are the lockbox pick's, through Gates' own tool, odds and time
+    (findRouteTool, routeChance, routeTimeFactor): Neat Lockpicking's picks, a paperclip or a
+    screwdriver, the Locksmith's and Dextrous' time, Nimble and Lockpicking odds, a failed try
+    using up the pick or wearing a store lockpick (spendPick), and no jam.
 
     WHICH DOOR. An IsoDoor, or an IsoThumpable that is a door, closed and locked, as vanilla's
     force menu judges it (ISWorldObjectContextMenuLogic.canPlayerForceDoor): never force-locked,
@@ -125,33 +126,6 @@ do
         return not (okA and allowed == true)
     end
 
-    local function notBroken(item) return not item:isBroken() end
-
-    --- The pick's tool: an intact item of the pick's listed types first, then of its tags.
-    local function findTool(player, def)
-        local inv = call(player, "getInventory")
-        if inv == nil then return nil end
-        for _, full in ipairs(def.items or {}) do
-            local ok, item = pcall(function() return inv:getFirstTypeEvalRecurse(full, notBroken) end)
-            if ok and item ~= nil then return item end
-        end
-        if ItemTag == nil then return nil end
-        for _, name in ipairs(def.tools or {}) do
-            local tag = ItemTag[name]
-            if tag ~= nil then
-                local ok, item = pcall(function() return inv:getFirstTagEvalRecurse(tag, notBroken) end)
-                if ok and item ~= nil then return item end
-            end
-        end
-        return nil
-    end
-
-    local function nimble(player, perk)
-        if Perks == nil or Perks[perk] == nil then return 0 end
-        local ok, v = pcall(function() return player:getPerkLevel(Perks[perk]) end)
-        return ok and M.finite(v) or 0
-    end
-
     local function within(player, door)
         if IsoGridSquare == nil then return false end
         local ok, v = pcall(IsoGridSquare.isWithinReachOfCharacter, player, door)
@@ -180,14 +154,12 @@ do
         end
         if reach and not within(player, door) then return refuse("IGUI_LugliDMS_TooFar", true) end
         local def = M.ROUTES.pick
-        local tool = findTool(player, def)
+        local tool = M.findRouteTool(player, "pick")
         if tool == nil then return refuse(M.REASON_NO_TOOL, true) end
-        local c = def.chance
-        local chance = M.clamp(c.base + c.step * (nimble(player, c.perk) - c.from), 0, c.max)
-        local seconds = def.seconds * M.LOCKSMITH_FACTOR * (M.finite(M.cfg("TimeScale")) or 1)
+        local seconds = def.seconds * M.routeTimeFactor(player, "pick") * (M.finite(M.cfg("TimeScale")) or 1)
         local noise = math.floor(def.noise * (M.finite(M.cfg("NoiseScale")) or 1) + 0.5)
-        return { ok = true, offered = true, tool = tool, chance = chance, seconds = seconds, noise = noise,
-            spends = call(tool, "getFullType") == def.spends, xp = def.xp }
+        return { ok = true, offered = true, tool = tool, chance = M.routeChance(player, "pick", tool),
+            seconds = seconds, noise = noise, spends = M.spendKind(def, tool), xp = def.xp, skill = def.skill }
     end
 
     --- The first door among the clicked objects, else on their squares, that the menu could offer.
@@ -289,13 +261,6 @@ do
         end
     end
 
-    local function spend(tool)
-        local container = call(tool, "getContainer")
-        if container == nil then return end
-        container:Remove(tool)
-        if M.isMultiplayer() and sendRemoveItemFromContainer ~= nil then sendRemoveItemFromContainer(container, tool) end
-    end
-
     local function floorExempt(player)
         if not M.isMultiplayer() then return true end
         return call(player, "isTimedActionInstant") == true
@@ -338,14 +303,14 @@ do
             pcall(addSound, player, sq:getX(), sq:getY(), sq:getZ(), recheck.noise, recheck.noise)
         end
         if ZombRand(1000) >= recheck.chance * 1000 then
-            if recheck.spends then spend(recheck.tool) end
+            M.spendPick(recheck.tool, recheck.spends)
+            if recheck.skill ~= nil then M.grantXp(player, recheck.skill.perk, recheck.skill.failed) end
             M.debug(PART, nameOf(player) .. " failed to pick the door at " .. id)
             return answer(player, args, "failed", { spent = recheck.spends })
         end
         unlock(door)
-        if addXp ~= nil and Perks ~= nil and Perks[recheck.xp.perk] ~= nil then
-            pcall(addXp, player, Perks[recheck.xp.perk], recheck.xp.amount)
-        end
+        M.grantXp(player, recheck.xp.perk, recheck.xp.amount)
+        if recheck.skill ~= nil then M.grantXp(player, recheck.skill.perk, recheck.skill.opened) end
         M.debug(PART, nameOf(player) .. " picked the door at " .. id)
         answer(player, args, "opened")
     end

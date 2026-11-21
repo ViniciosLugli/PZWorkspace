@@ -72,16 +72,7 @@ do
         local tool = nameOf(check.tool)
         if tool ~= nil then plan.label = label .. " (" .. tool .. ")" end
         local text = GOOD .. M.T("Tooltip_LugliDMS_Tool", "Tool") .. ": " .. tostring(tool) .. " <LINE> "
-        text = text .. PLAIN .. M.T("Tooltip_LugliDMS_Chance", "Chance") .. ": "
-            .. math.floor(check.chance * 100 + 0.5) .. "% <LINE> "
-        if check.spends then
-            text = text .. BAD .. M.T("Tooltip_LugliDMS_Spends", "A failed try uses up the paperclip") .. " <LINE> "
-        end
-        local seconds = math.max(1, math.floor(check.seconds + 0.5))
-        text = text .. PLAIN .. M.T("Tooltip_LugliDMS_Time", "Time") .. ": " .. seconds .. " "
-            .. M.T("Tooltip_LugliDMS_Seconds", "seconds") .. " <LINE> "
-        text = text .. PLAIN .. M.Tf("Tooltip_LugliDMS_Noise", "Heard up to %1 tiles away", check.noise) .. " <LINE> "
-        plan.tipText = text
+        plan.tipText = text .. M.routeFactsTip(M.routeFacts(check))
         return plan
     end
 
@@ -121,7 +112,7 @@ do
             halo(h.player, M.T("IGUI_LugliDMS_DoorPicked", "The lock clicks. The door is unlocked."), true)
         elseif args.outcome == "failed" then
             local text = M.T("IGUI_LugliDMS_LockHolds", "The lock holds.")
-            if args.spent == true then text = text .. " " .. M.T("IGUI_LugliDMS_ClipSpent", "The paperclip is used up.") end
+            text = text .. M.spentText(args.spent)
             halo(h.player, text, false)
         end
     end
