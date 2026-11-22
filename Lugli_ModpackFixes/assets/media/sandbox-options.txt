@@ -170,13 +170,6 @@ option LugliModpackFixes.IdpVanilla = {
 	translation = LugliModpackFixes_IdpVanilla,
 }
 
-option LugliModpackFixes.ImpSpawn = {
-	type = boolean,
-	default = true,
-	page = LugliModpackFixes,
-	translation = LugliModpackFixes_ImpSpawn,
-}
-
 option LugliModpackFixes.LootNames = {
 	type = boolean,
 	default = true,

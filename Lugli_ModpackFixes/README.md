@@ -4,7 +4,9 @@
 
 Fixes for conflicts between popular Build 42 mods, for bugs inside some of them, and for one vanilla
 bug they run into. Not made by,
-or affiliated with, the authors of those mods. Lua and data only, no jar, no `require=`.
+or affiliated with, the authors of those mods. Lua and data only, no jar, no `require=`. Build 42.20
+and newer; the tile-property fix runs on 42.22 and newer only, because its data is read from the
+42.22 tiles.
 
 ## How a fix decides to run
 
@@ -57,7 +59,6 @@ errors while running takes its changes back and leaves the game as it is without
 | GydeHandy | Gyde's Trait Magazines (`GydeTraitMags`) and Extended (`GydesTraitMagazinesExtended`) | With both active, the Handy magazine gives the trait but not the four skill levels Extended adds. Extended handles that magazine, as it intends. |
 | DbuRestore | Dynamic Backpack Upgrades (`LazoloDynamicBackpackUpgrades`) | The game never saves a bag's capacity, and the mod puts upgraded capacity back only from client Lua, so after a server restart or a rejoin the server refuses items past a bag's original capacity while the bag shows the upgraded one. The server puts the recorded capacity back every in-game minute, for every bag its players carry, bags inside bags included. |
 | ExBandolier | Explosives (`Explosives`) | Its full grenade bandolier, worn by its grenadier zombies and found in its loot, becomes an empty bandolier plus grenades only in client Lua, which a dedicated server never runs, and the server is what fills corpses and containers in multiplayer. So on a server the bandolier stays full and holds nothing. The server does the same swap, with the mod's own odds, and tells the clients the full one is gone. |
-| ImpSpawn | '67 Chevy Impala (`67chevyImpala`) | Its spawn list puts a vehicle name it does not define into six parking, traffic and junkyard zones, so the Impala never spawns there, and a roll that lands on that name leaves the spot empty. The sedan takes those entries, with the mod's own chances. |
 | UsmilSeats | damnlib (`damnlib`) | Its two seat repairs (duct tape, needle and thread) name seats that do not exist, so the seats of its military vehicles can never be repaired. Both repairs also accept the real seats, with damnlib's own tools and skills. |
 | NellisPower | Nellis Air Force Base (`NellisAFB`) | Every player's game keeps the generator in each of its 11 aircraft and vehicle interiors fueled and running, so in multiplayer each client sends all of them to the server every in-game minute, and the server's copy is whatever a client last sent. It fills any generator inside, so one carried in comes out full, as often as a player likes. The server does it instead, writing only what changed, and only for the generator each interior came with; one placed there later, the original put back included, is left alone. Clients no longer write generators. |
 | NellisExit | Nellis Air Force Base | Enter remembers where you came from only in your own game. On a server that record is lost on a relog or a server restart, and a player inside an interior is shut in, since Exit then has nowhere to go. The server keeps the record and gives it back; with none known, Exit takes you to Nellis' spawn point. Enter and Exit are otherwise unchanged. |

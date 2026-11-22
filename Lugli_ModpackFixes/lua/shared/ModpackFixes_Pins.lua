@@ -52,7 +52,6 @@ LugliModpackFixes.pins = {
     ["vmz.change"] = { mod = "VMZNEW", file = "media/lua/shared/VMZ/Zones/Change.lua", anchor = "zoneUtils.change(\"Muldraugh, KY\", {", lines = 4, accept = { 538213397 } },
     ["yapz.change"] = { mod = "YAPZLib", file = "media/lua/shared/YAPZLib/VehicleZone.lua", anchor = "vehicleZone.change = function(mapFolder, zoneObjs)", lines = 10, accept = { 3019903216 } },
     ["ex.swap"] = { mod = "Explosives", file = "media/lua/client/InventorySwap.lua", anchor = "Events.OnFillContainer.Add(function(roomName, containerType, container)", lines = 31, accept = { 460423579 } },
-    ["imp.spawn"] = { mod = "67chevyImpala", file = "media/lua/shared/67chevyImpala_SpawnList.lua", anchor = "if VehicleZoneDistribution then", lines = 14, accept = { 2301531944 } },
     ["usmil.seats"] = { mod = "damnlib", file = "media/scripts/USMIL/fixing_USMIL.txt", anchor = "module Base", lines = 19, accept = { 3486112837 } },
     ["ngm.scan"] = { mod = "NicksGeneratorManager", file = "media/lua/shared/NicksGeneratorManager/NGM_Core.lua", anchor = "function NGM.poweredObjectsInRange(gx, gy, gz)", lines = 27, accept = { 533622263 } },
     ["ngm.recompute"] = { mod = "NicksGeneratorManager", file = "media/lua/server/NicksGeneratorManager/NGM_Server.lua", anchor = "function NGM.recomputeGenerator(e)", lines = 39, accept = { 3007977427 } },

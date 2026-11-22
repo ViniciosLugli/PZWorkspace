@@ -143,6 +143,11 @@ local function apply(manager)
 end
 
 local function check()
+    -- An older build's vanilla tiles differ from the ones the rows were read from.
+    if type(M.tilesBuild) ~= "number" then return "ModpackFixes_Tiles.lua names no build" end
+    if getCore():getGameVersion():getInt() < M.tilesBuild then
+        return "tile data is for build " .. M.tilesBuild .. " or later"
+    end
     for _, modId in ipairs(tileMods()) do
         if M.isModActive(modId) then
             local data = M.tiles[modId]

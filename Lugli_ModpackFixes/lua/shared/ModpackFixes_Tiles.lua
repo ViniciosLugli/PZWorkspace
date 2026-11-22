@@ -2,7 +2,9 @@
 -- Per mod: the vanilla keys its copy of a vanilla sprite lost or changed, read by the tile-props part.
 -- props {sprite, key, vanilla value, value under the mod or nil}; flags {sprite, flag};
 -- types {sprite, vanilla type, type under the mod or nil}; grids {w, h, levels, {x, y, z, sprite}...}.
+-- tilesBuild: the build the vanilla values were read from, as GameVersion.getInt().
 require "ModpackFixes_Status"
+LugliModpackFixes.tilesBuild = 42022
 LugliModpackFixes.tiles = {
     ["MoreDamagedObjects"] = {
         props = {

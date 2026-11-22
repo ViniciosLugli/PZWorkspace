@@ -2,7 +2,7 @@ version=1
 title=Lugli - B42 Modpack Compats & Fixes
 description=Fixes for conflicts between popular Build 42 mods, and bugs inside some of them.
 description=
-description=[b]No dependencies.[/b] Each fix turns on only with the mods it fixes. If an update changes their code, it stands down instead of guessing. Each fix has a sandbox switch.
+description=[b]No dependencies.[/b] Build 42.20 or newer. Each fix turns on only with the mods it fixes. If an update changes their code, it stands down instead of guessing. Each fix has a sandbox switch.
 description=
 description=[h1]Combat and zombies[/h1]
 description=[list]
@@ -32,7 +32,6 @@ description=[h1]Items, loot and world[/h1]
 description=[list]
 description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=2713921292]Undead Survivor[/url]:[/b] gas masks are kept when you remove the filter, the Stalker knife can be sharpened, and in multiplayer a corpse shows only loot you can take.
 description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3745718141]Explosives[/url]:[/b] in multiplayer the grenadier zombies' full grenade bandolier really holds its grenades.
-description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3820938264]'67 Chevy Impala[/url]:[/b] the Impala spawns where its mod lists it: parking lots, traffic jams, junkyards.
 description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3171167894]damnlib[/url]:[/b] its military vehicles' seats can be repaired with duct tape or needle and thread.
 description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3457132019]Specific Loot (KI5)[/url]:[/b] burnt wrecks and several trucks and vans spawn with loot, misspelled items spawn, and no loot gets stuck in the Beetle Buggy, LAV-300 or Step Van SWAT.
 description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3783433804]Nellis Air Force Base[/url]:[/b] in multiplayer its interiors stay powered, a generator carried in no longer refills for free, and you always have a way out, even after a relog or restart.
