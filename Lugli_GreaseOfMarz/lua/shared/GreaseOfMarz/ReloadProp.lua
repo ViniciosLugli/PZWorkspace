@@ -20,9 +20,20 @@ the slot:
   send the slot to the server by container and id, which the server resolves to nothing and relays
   as an empty slot to everyone else;
 - Gunworks' client-side magazine prop (Visuals) is bare the same way.
+Every magazine prop is drawn with the hand pose part MagHand derived for the gun, where it has one.
 
-It replaces applyPropEvent, clearOffHandProp, attachReloadMagazine and detachReloadMagazine on
-Gunworks' module table, which is where Gunworks itself calls them. If any of them is missing or no
+Gunworks also sweeps both prop slots on every tick a gun with a part-state profile is held outside a
+reload (PartState.lua reconcilePartsForPlayer). On a client each sweep is two reloadProp commands,
+about 120 a second, which trips the engine's client command limit (PacketsCache) within seconds and
+drops every command after it, the reload's own included: Guns of Tien's SVU, RPK, M249, MDR, SCAR-L
+and Grozas. The server names every prop it sets or clears to its owner, so the sweep asks it to clear
+only while it holds one, once per second at most. Gunworks' one-off clears, an action's end
+(restoreReloadPartState) and its hand prop (clearActionHandProp), are marked and keep the stock
+request, so a prop the server has yet to name when a reload is interrupted is still cleared.
+
+It replaces applyPropEvent, clearOffHandProp, attachReloadMagazine and detachReloadMagazine, and
+wraps restoreReloadPartState and clearActionHandProp, on Gunworks' module table, which is where
+Gunworks itself calls them. If any of them is missing or no
 longer comes from Gunworks' own file, the part stands down at its check and stock Gunworks runs.
 ]]
 require "GreaseOfMarz_Status"
@@ -30,9 +41,12 @@ local M = LugliGreaseOfMarz
 
 local COMMAND_MODULE = "LugliGreaseOfMarz"
 local OWNER_COMMAND = "ownerProp"
+local CLEAR_RESEND_MS = 1000
 local SOURCES = {
     applyPropEvent = "ReloadAnim/Props.lua",
     clearOffHandProp = "ReloadAnim/Props.lua",
+    clearActionHandProp = "ReloadAnim/Props.lua",
+    restoreReloadPartState = "ReloadAnim/PartState.lua",
     attachReloadMagazine = "ReloadAnim/Visuals.lua",
     detachReloadMagazine = "ReloadAnim/Visuals.lua",
 }
@@ -105,6 +119,13 @@ local function install(ctx)
     local held = {}
     local stockClear = ReloadAnim.clearOffHandProp
 
+    -- A magazine prop drawn with the hand pose MagHand derived for the gun, when it has one.
+    local function posed(item, location, gun)
+        if location ~= MAG_SLOT or type(M.magHandModel) ~= "function" then return end
+        local model = M.magHandModel(gun, item)
+        if model then item:setStaticModel(model) end
+    end
+
     local function removeProp(character, location)
         local attached = character:getAttachedItem(location)
         local byChar = held[character]
@@ -124,6 +145,7 @@ local function install(ctx)
         local item = nil
         if itemType and itemType ~= "" then item = instanceItem(itemType) end
         if item then
+            posed(item, location, character:getPrimaryHandItem())
             held[character] = held[character] or {}
             held[character][location] = item
             character:setAttachedItem(location, item)
@@ -161,11 +183,38 @@ local function install(ctx)
         syncHandWeaponFields(character, gun)
     end
 
+    -- The reloading player in multiplayer: whether the server last named a prop in each slot, and
+    -- when this client last asked it to clear them.
+    local owed = {}
+    local clearSentAt = nil
+    -- Inside one of Gunworks' one-off clears (an action ending, its hand prop), which keep the stock
+    -- request: only the per-tick sweep, which calls clearOffHandProp alone, is held back.
+    local oneOff = 0
+    local stock = {}
+
     local function clearOffHandProp(character)
         if not character then return end
-        if onClient() then return stockClear(character) end
-        applyProp(character, MAG_SLOT, "")
-        applyProp(character, HAND_SLOT, "")
+        if not onClient() then
+            applyProp(character, MAG_SLOT, "")
+            applyProp(character, HAND_SLOT, "")
+            return
+        end
+        local now = getTimestampMs()
+        if oneOff == 0 and character == getSpecificPlayer(0) then
+            if not (owed[MAG_SLOT] or owed[HAND_SLOT]) then return end
+            if clearSentAt and now - clearSentAt < CLEAR_RESEND_MS then return end
+        end
+        clearSentAt = now
+        return stockClear(character)
+    end
+
+    local function markedOneOff(name)
+        return function(...)
+            oneOff = oneOff + 1
+            local ok, err = pcall(stock[name], ...)
+            oneOff = oneOff - 1
+            if not ok then error(err, 0) end
+        end
     end
 
     local function attachReloadMagazine(action, handler)
@@ -175,6 +224,7 @@ local function install(ctx)
         local itemType = ReloadAnim.resolveReloadMagItem(action, handler)
         local item = itemType and instanceItem(itemType)
         if not item then return end
+        posed(item, MAG_SLOT, action.gun or action.character:getPrimaryHandItem())
         action.reloadHandlerMagazineItem = item
         hangLocal(action.character, MAG_SLOT, item)
         action.character:resetEquippedHandsModels()
@@ -194,8 +244,9 @@ local function install(ctx)
         clearOffHandProp = clearOffHandProp,
         attachReloadMagazine = attachReloadMagazine,
         detachReloadMagazine = detachReloadMagazine,
+        restoreReloadPartState = markedOneOff("restoreReloadPartState"),
+        clearActionHandProp = markedOneOff("clearActionHandProp"),
     }
-    local stock = {}
     for name, fn in pairs(replacements) do stock[name] = ReloadAnim[name] end
     for name, fn in pairs(replacements) do
         ReloadAnim[name] = fn
@@ -219,9 +270,13 @@ local function install(ctx)
             local items = player:getAttachedItems()
             local current = items:getItem(location)
             if current then items:remove(current) end
-            if type(args.itemType) == "string" and args.itemType ~= "" then
+            local named = type(args.itemType) == "string" and args.itemType ~= ""
+            owed[location] = named
+            if named then
+                clearSentAt = nil
                 local item = instanceItem(args.itemType)
                 if item then
+                    posed(item, location, player:getPrimaryHandItem())
                     items:setItem(location, item)
                     stats.hung = stats.hung + 1
                 end
