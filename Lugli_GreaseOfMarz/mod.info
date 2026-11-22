@@ -5,5 +5,5 @@ description=Unofficial fixes for the Gunworks and Guns of Marz stack: a faster l
 poster=preview.png
 icon=icon.png
 category=features
-versionMin=42.22
+versionMin=42.20
 modversion=0.1.0

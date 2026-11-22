@@ -2,22 +2,17 @@ version=1
 title=Lugli - Grease of Marz (Unofficial)
 description=Unofficial fixes for the Gunworks and Guns of Marz gun stack. Not affiliated with their authors.
 description=
-description=[b]No dependencies.[/b] Each fix runs only when the mods it fixes are active. Load order does not matter.
+description=[b]No dependencies.[/b] Build 42.20 or newer. Each fix runs only when the mods it fixes are active. Load order does not matter.
 description=
 description=[h1]Fixes[/h1]
 description=[list]
 description=[*][b]Faster world load.[/b] Guns of Marz adds its loot through Gunworks, which searches every loot table on each call. This does the same work with an index, checked against the original. Lugli - Fast Loading carries the same fix, so with both it runs once.
 description=[*][b]Reload props with Ultimate Marksman.[/b] Ultimate Marksman skips a Gunworks reload step, so revolvers, shotguns and other guns without a magazine lose the shell holder or speedloader in your off hand. This puts it back.
 description=[*][b]No extra magazine while reloading.[/b] To show a magazine, shell or ramrod in your hand, Gunworks put a real extra one in your inventory for a moment, so a pistol with one magazine listed two. The prop now only sits in your hand and never in your inventory.
-description=[*][b]Multiplayer: Tien guns no longer flood the server.[/b] Holding some Tien guns (the Groza, and by the same code the SVU, RPK, M249, MDR and SCAR-L) sent the server two requests every frame until the game started dropping them all, so reloads and other mods stopped responding. It now asks only when there is a prop to clear.
 description=[*][b]Reloads that stop repeating with Run and Reload.[/b] Run and Reload replaces the reload actions Gunworks uses to tell a reload's steps apart, so lever, bolt and pump guns rack and reload over and over, magazines ignore the ammo type and round count you pick, and in multiplayer a live round gets thrown out. Reloads work step by step again, and you can still reload on the move.
 description=[*][b]Double Deuce casings with Ammo Maker.[/b] With Hot Brass and Ammo Maker on, the Double Deuce dropped no casing, because Ammo Maker has no 2 Bore calibre. It now drops Hot Brass's 2 Bore casing when you open it to reload.
 description=[*][b]Headhunter rifles you can load.[/b] Undead Survivor's Headhunter rifles take .308 rounds and M14 magazines, which Guns of Marz turns into its own. They now take Guns of Marz's 7.62x51 rounds and M14 magazine, only when your sandbox converts that ammo.
 description=[*][b]Attachments UI without patches.[/b] The workbench now offers the Picatinny rail on Guns of Tien's guns, shows every slot a gun takes even when you carry nothing for it (the SCAR-L's muzzle mount, and the Guns of Marz optics, lights, lasers, grips and bipods Guns of Tien's guns take), shows Guns of Marz and Guns of Tien pistols, revolvers and machine pistols the right way up, centres each Guns of Marz and Guns of Tien gun in the view at an even size, draws each slot's line to its rail on the gun, and hides the slots it cannot fill: bayonets (they still attach from the right-click menu), speed loaders (they go in by reloading) and the CAR-15's foregrip, which needs a lower rail the CAR-15 cannot take. Patches you already made keep looking the same.
-description=[*][b]A magazine in your hand on 22 more Marz and Tien guns.[/b] The Uzi family, TMP, MP7, MP5K, TEC-9, Vector, UMP, SCAR, AA-12, SV-98, Groza-2, HK416 .22 and MAC-10 reloaded with an empty hand and never looked empty. They now use Guns of Marz's own reload clips, so the magazine comes out into your hand and goes back in, and it sits where the gun's magazine well is. Reload times follow the new clip.
-description=[*][b]Looted guns show their magazine.[/b] A gun found loaded could look empty and drop nothing into your hand when you ejected it. It now shows its magazine, and ejecting puts it in your hand.
-description=[*][b]Visible Magazine Reloads stays off Gunworks guns.[/b] It means to, but with Complete Vanilla Firearms Expansion on, the Guns of Marz FAL, CAR-15, M14, MP5 and MP5SD reloaded with that pack's models, and the Guns of Tien SV98 and SV99 took its rifle reload. Gunworks now reloads them alone; vanilla guns keep the visible magazine.
-description=[*][b]Gun models with Complete Vanilla Firearms Expansion.[/b] That pack reset every gun it has no model for to its plain one on each reload or attachment change, so the Guns of Tien Vectors, SCAR-H and MP7 kept their iron sights up through a red dot. Gunworks guns now keep their own model.
 description=[/list]
 description=[h1]Works with[/h1]
 description=[list]
@@ -27,8 +22,6 @@ description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=33972
 description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2713921292]Undead Survivor[/url], for the Headhunter fix
 description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3816324722]Attachments UI[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3820183693]Guns of Marz Extension: Guns of Tien[/url], for the workbench fix
 description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3610677934]Hot Brass[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2788256295]Ammo Maker[/url], for the Double Deuce casing fix
-description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3841515530]Visible Magazine Reloads[/url], for the reload model fix
-description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3820580321]Complete Vanilla Firearms Expansion[/url], for the gun model fix
 description=[/list]
 description=[h1]FAQ[/h1]
 description=[list]
