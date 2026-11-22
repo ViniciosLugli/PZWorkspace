@@ -48,6 +48,8 @@ Changes take effect the next time the world loads.
 
 ## Compatibility
 
+- Build 42.20 and newer. An item whose stock weight differs from the one the table was read from is
+  left as it is.
 - **True Weight**: incompatible. Honest Weight replaces it and changes nothing while it is on.
 - A mod that changes a covered item's weight itself wins: Honest Weight leaves any value it did
   not set alone.

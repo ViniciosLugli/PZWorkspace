@@ -5,6 +5,6 @@ description=Every item weighs what the real object weighs, times one Scale for t
 poster=preview.png
 icon=icon.png
 category=features
-versionMin=42.22
+versionMin=42.20
 modversion=1.0.0
 incompatible=TrueWeight

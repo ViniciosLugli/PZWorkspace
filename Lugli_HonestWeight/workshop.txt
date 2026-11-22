@@ -4,7 +4,7 @@ description=Every item weighs what the real object weighs, and never more than 2
 description=
 description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_HonestWeight/art/hw-board.gif[/img]
 description=
-description=[b]No dependencies.[/b] Subscribe, enable, play. Load order does not matter.
+description=[b]No dependencies.[/b] Build 42.20 or newer. Subscribe, enable, play. Load order does not matter.
 description=
 description=[b]Do not use it with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768669395]True Weight[/url].[/b] Honest Weight replaces it and changes nothing while True Weight is on.
 description=
