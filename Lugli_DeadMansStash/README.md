@@ -90,7 +90,7 @@ that safe and the codes you have already tried.
 | Drill the lock | both | hand drill | about 2 minutes | 10 tiles | the drill wears every session; ease off before it stays in the red 6 s or it wears once more |
 | Torch the door | both | blow torch | about a minute | 6 tiles | Welding 3 or a Welder, propane for the part cut, and some paper, money and food inside burns, less with each Welding level over 3; every second stopped near the end burns less |
 | Hotwire the keypad | keypad | screwdriver and electronics scrap | about 30 s | 2 tiles | Electrical 3 (an Electrician: 1), 15 % there and 40 % a level up; the scrap is spent, and a miss sets off the alarm and a lockout |
-| Put a battery in | keypad | a charged battery | about 3 s | silent | a keypad with no power takes no code and cannot be hotwired until it has one |
+| Put a battery in | keypad | a charged battery | about 3 s | silent | a keypad with no power, from the grid or a generator, takes no code and cannot be hotwired until it has one |
 
 Listening succeeds 40 % of the time, 5 % more per Nimble level; Keen Hearing adds 15 %, a Burglar
 25 %, Hard of Hearing takes away 30 %. Keen Hearing also listens in three quarters of the time,
@@ -207,7 +207,8 @@ still gets only what its survivor could do. Two survivors cannot work the same b
 
 ## Compatibility
 
-Requires [NeatUI Framework](https://steamcommunity.com/sharedfiles/filedetails/?id=3508537032),
+Build 42.20 and newer. Before 42.22 the game has no ladders, so only stairs lead to an upper floor's
+box. Requires [NeatUI Framework](https://steamcommunity.com/sharedfiles/filedetails/?id=3508537032),
 which draws the inspect window, the same framework Lugli Power Grid uses. Load order does not
 matter. The boxes are the mod's own tiles, so no map or loot mod changes where they can go. A
 proximity-loot mod or crafting from nearby containers sees a sealed box as empty, because its

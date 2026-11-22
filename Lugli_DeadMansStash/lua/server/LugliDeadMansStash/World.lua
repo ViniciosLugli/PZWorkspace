@@ -730,7 +730,9 @@ do
                     if rec ~= nil and rec.state == "sealed" then sealed[#sealed + 1] = { i = i, rec = rec, container = container } end
                 end
                 if #sealed == 0 then return end
-                if not self.character:isBuildCheat() and not self:hasSledgehammerInRange(self.character, obj) then return end
+                -- Vanilla's own reach check, which a build before 42.21 does not make.
+                if not self.character:isBuildCheat() and self.hasSledgehammerInRange ~= nil
+                    and not self:hasSledgehammerInRange(self.character, obj) then return end
                 if getServerOptions ~= nil and getServerOptions():getBoolean("SledgehammerOnlyInSafehouse") then
                     local role = self.character:getRole()
                     local privileged = role ~= nil and role:hasCapability(Capability.UseBuildCheat)

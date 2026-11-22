@@ -126,16 +126,27 @@ do
         return not (okA and allowed == true)
     end
 
+    -- Before 42.22 the engine has no edge-reach helpers: the door's own square stands in for the
+    -- side the survivor faces.
     local function within(player, door)
         if IsoGridSquare == nil then return false end
-        local ok, v = pcall(IsoGridSquare.isWithinReachOfCharacter, player, door)
-        return ok and v == true
+        if IsoGridSquare.isWithinReachOfCharacter ~= nil then
+            local ok, v = pcall(IsoGridSquare.isWithinReachOfCharacter, player, door)
+            return ok and v == true
+        end
+        local at, sq = call(player, "getCurrentSquare"), call(door, "getSquare")
+        return at ~= nil and sq ~= nil and call(sq, "isAdjacentTo", at) == true
     end
 
     local function sameRoom(player, door)
         if IsoGridSquare == nil then return false end
-        local ok, v = pcall(IsoGridSquare.isCharacterInSameRoom, player, door)
-        return ok and v == true
+        if IsoGridSquare.isCharacterInSameRoom ~= nil then
+            local ok, v = pcall(IsoGridSquare.isCharacterInSameRoom, player, door)
+            return ok and v == true
+        end
+        local at, sq = call(player, "getCurrentSquare"), call(door, "getSquare")
+        local room = at ~= nil and call(at, "getRoom") or nil
+        return room ~= nil and sq ~= nil and call(sq, "getRoom") == room
     end
 
     local function refuse(reason, offered)

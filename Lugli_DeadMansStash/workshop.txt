@@ -51,9 +51,9 @@ description=[hr][/hr]
 description=[h1]Compatibility[/h1]
 description=[list]
 description=[*][b]Multiplayer:[/b] fully supported. Install it on the server and every client.
-description=[*][b]Requires[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3508537032]NeatUI Framework[/url].
+description=[*][b]Requires[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3508537032]NeatUI Framework[/url]. Build 42.20 or newer.
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3783535220]Neat Lockpicking[/url]:[/b] its lockpicks work on stash locks and locked doors, its Lockpicking skill raises your odds and grows as you pick, and a Locksmith can use its lockpicking too.
-description=[*][b]Languages:[/b] English, Brazilian Portuguese, Simplified Chinese, Russian, Spanish, German, French, Polish, Japanese and Korean.
+description=[*][b]Languages:[/b] English, Brazilian Portuguese, Simplified Chinese, Russian, Spanish (Spain, Mexico, Argentina and Chile), German, French, Polish, Japanese and Korean.
 description=[*][b]Existing saves:[/b] stashes appear as you explore.
 description=[*][b]Loot mods:[/b] their items can show up in stashes.
 description=[*][b]Map mods tested:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3484263516]Raven Creek[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3486814612]Fort Waterfront[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3490580478]Fort Benning[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3783433804]Nellis Air Force Base[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3818766091]Dirkerdam Integrated[/url].

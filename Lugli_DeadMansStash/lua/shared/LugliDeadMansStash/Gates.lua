@@ -502,11 +502,11 @@ do
     end
 
     --- Does a keypad have power: a battery was put in (md.powered, from the authority's record),
-    --- or its square has grid electricity. A generator's power is not the grid's.
+    --- or its square has power from the grid (hasGridPower) or a generator (haveElectricity,
+    --- which counts generators only).
     function M.keypadPowered(md, square)
         if type(md) == "table" and md.powered == true then return true end
         if square == nil then return false end
-        -- The grid, or a generator powering the square (haveElectricity is generator only).
         local ok, v = pcall(function() return square:hasGridPower() or square:haveElectricity() end)
         return ok and v == true
     end

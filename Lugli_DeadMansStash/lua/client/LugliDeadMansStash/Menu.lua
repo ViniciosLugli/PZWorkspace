@@ -158,7 +158,10 @@ do
         local speed = UIManager.getSpeedControls ~= nil and UIManager.getSpeedControls() or nil
         if speed ~= nil and speed:getCurrentGameSpeed() == 0 then return false end
         if player:isAiming() or player:isIgnoreContextKey() then return false end
-        if player:isClimbingLadder() or player:isClimbingDownLadder() then return false end
+        -- Ladders, and these two calls, came with 42.22.
+        if player.isClimbingLadder ~= nil and (player:isClimbingLadder() or player:isClimbingDownLadder()) then
+            return false
+        end
         local sq, at = object:getSquare(), player:getCurrentSquare()
         if sq == nil or at == nil or sq:getZ() ~= at:getZ() then return false end
         if sq:DistToProper(player) > M.CLICK_REACH then return false end

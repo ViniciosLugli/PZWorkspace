@@ -299,6 +299,11 @@ do
             and owner:getW() == def:getW() and owner:getH() == def:getH())
     end
 
+    --- Is there a ladder on `sq`? Ladders and IsoGridSquare.getLadder came with 42.22.
+    local function hasLadder(sq)
+        return sq.getLadder ~= nil and sq:getLadder() ~= nil
+    end
+
     --- Do stairs or a ladder climb from `level` to the next floor, in the building or just
     --- outside it in no other building? true, false, or "wait" while none is found and the
     --- building is still streaming.
@@ -307,7 +312,7 @@ do
         for x = def:getX() - STAIRS_MARGIN, def:getX() + def:getW() - 1 + STAIRS_MARGIN do
             for y = def:getY() - STAIRS_MARGIN, def:getY() + def:getH() - 1 + STAIRS_MARGIN do
                 local sq = cell:getGridSquare(x, y, level)
-                if sq ~= nil and (sq:HasStairs() or sq:getLadder() ~= nil) and ownStairs(sq, def) then return true end
+                if sq ~= nil and (sq:HasStairs() or hasLadder(sq)) and ownStairs(sq, def) then return true end
             end
         end
         if not def:isFullyStreamedIn() then return "wait" end
@@ -369,7 +374,7 @@ do
                 local below = cell:getGridSquare(x, y, z - 1)
                 local topN = below ~= nil and below:HasStairTopNorth()
                 local topW = below ~= nil and below:HasStairTopWest()
-                local ladder = below ~= nil and below:getLadder() ~= nil
+                local ladder = below ~= nil and hasLadder(below)
                 if (topN or topW or ladder) and ownStairs(below, def) then
                     if topN then push(x, y - 1) end
                     if topW then push(x - 1, y) end
