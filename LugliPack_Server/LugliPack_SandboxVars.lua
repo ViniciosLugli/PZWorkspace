@@ -353,7 +353,7 @@ SandboxVars = {
     -- 3 = Often
     SleepingEvent = 1,
     -- How much fuel is consumed by generators per in-game hour. Min: 0.00 Max: 100.00 Default: 0.10
-    GeneratorFuelConsumption = 0.1,
+    GeneratorFuelConsumption = 0.5,
     -- The chance of electrical generators spawning on the map. Default = Rare
     -- 1 = None (not recommended)
     -- 2 = Insanely Rare
@@ -2037,7 +2037,7 @@ SandboxVars = {
         EnableCorpseStorage = false,
         ProtectFromWorldCleanup = false,
         -- Min: 0 Max: 500 Default: 100
-        SpawnRate = 100,
+        SpawnRate = 50,
         -- Min: 25 Max: 400 Default: 100
         CapacityMultiplier = 100,
         -- Min: 25 Max: 400 Default: 100
@@ -2045,7 +2045,7 @@ SandboxVars = {
         -- Min: 1 Max: 5 Default: 1
         MaxCartsPerBuilding = 1,
         -- Min: 0 Max: 100 Default: 95
-        WeightReduction = 95,
+        WeightReduction = 75,
         -- Min: 0 Max: 500 Default: 100
         SpeedPenaltyMultiplier = 100,
         -- Min: 25 Max: 400 Default: 100
@@ -3053,9 +3053,11 @@ SandboxVars = {
     },
     LugliModpackFixes = {
         AuiCleanUI = true,
+        BetterPush = true,
         BiiTooltip = true,
         BpHotbar = true,
         BpNeat = true,
+        ButtstrokeSides = true,
         CleanUIBlink = true,
         DbuCeiling = true,
         DbuRestore = true,
