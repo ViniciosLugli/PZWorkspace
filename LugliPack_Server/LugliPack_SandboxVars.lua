@@ -1056,6 +1056,8 @@ SandboxVars = {
         Glassmaking = 1.0,
         -- Min: 0.00 Max: 1000.00 Default: 1.00
         Lockpicking = 1.0,
+        -- Min: 0.00 Max: 1000.00 Default: 1.00
+        Mining = 1.0,
     },
     VFluidLib = {
         -- Min: 2 Max: 40 Default: 6
@@ -1307,11 +1309,17 @@ SandboxVars = {
         ModdedSlotsUpright = true,
         SubsonicRackRule = 2,
         BeltLinks = true,
+        AmmoPartCartons = true,
         FirearmCritRule = 1,
         -- Min: 0 Max: 100 Default: 50
         FirearmCritLead = 50,
         -- Min: 0 Max: 100 Default: 0
         FirearmMinimumDamage = 0,
+        FixedBayonets = false,
+        ExtendLootAreas = false,
+        UpdateSavedParts = true,
+        -- Min: 0 Max: 200 Default: 100
+        GunLootPercent = 100,
     },
     DAMN = {
         AllowPowerChadSpawns = true,
@@ -1406,10 +1414,14 @@ SandboxVars = {
         LogDeaths = true,
     },
     ChevalDeFrise = {
-        -- Min: 1 Max: 99999 Default: 200
+        -- Min: 1 Max: 99999 Default: 300
         WoodBaseHealth = 200,
-        -- Min: 1 Max: 99999 Default: 1000
+        -- Min: 0 Max: 9999 Default: 10
+        WoodScaleHealth = 10,
+        -- Min: 1 Max: 99999 Default: 600
         MetalBaseHealth = 1000,
+        -- Min: 0 Max: 9999 Default: 20
+        MetalScaleHealth = 20,
     },
     CocaColaICEFreezer = {
         -- Min: 0 Max: 100 Default: 100
@@ -1782,54 +1794,6 @@ SandboxVars = {
         flamingwreckage = true,
         leftfordead = true,
     },
-    Collections = {
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        RequiredBooks = 1.0,
-        ComicsSection = false,
-        AnthroComics = true,
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        AnthroComicSpawnRate = 1.0,
-        Manga = true,
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        MangaSpawnRate = 1.0,
-        ContemporaryComics = true,
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        ContemporaryComicsSpawnRate = 1.0,
-        VintageComics = true,
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        VintageComicsSpawnRate = 1.0,
-        ComicBox = true,
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        ComicBoxSpawnRate = 1.0,
-        MedalsSection = false,
-        Medals = true,
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        MedalsSpawnRate = 1.0,
-        MedalsRare = true,
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        MedalsRareSpawnRate = 1.0,
-        MedalsSilly = true,
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        MedalsSillySpawnRate = 1.0,
-        CansSection = false,
-        Cans = true,
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        CansSpawnRate = 1.0,
-        HeadwearSection = false,
-        Helm = true,
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        HelmSpawnRate = 1.0,
-        Hat = true,
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        HatSpawnRate = 1.0,
-        Starship = true,
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        StarshipSpawn = 1.0,
-        UniformSection = false,
-        UniformEnable = true,
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        UniformSpawnRate = 1.0,
-    },
     PompsItems = {
         ZombieLoot = true,
         -- Min: 0.00 Max: 100.00 Default: 1.00
@@ -1854,10 +1818,6 @@ SandboxVars = {
         EnergyDrinkSpawnRate = 1.0,
         -- Min: 0.00 Max: 100.00 Default: 1.00
         LiquorSpawnRate = 1.0,
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        FNAFSpawnRate = 1.0,
-        -- Min: 0.00 Max: 100.00 Default: 1.00
-        FNAFZombieSpawnRate = 1.0,
     },
     ProjectCook = {
         AllowFrozenCooking = false,
@@ -2457,24 +2417,6 @@ SandboxVars = {
         ShowNotifications = true,
         FixVanillaKills = true,
     },
-    MorePlushies = {
-        Loot = 3,
-        CommonPlushies = true,
-        -- Min: 1 Max: 100 Default: 50
-        CommonPlushiesRates = 50,
-        UncommonPlushies = true,
-        -- Min: 1 Max: 100 Default: 40
-        UncommonPlushiesRates = 40,
-        RarePlushies = true,
-        -- Min: 1 Max: 100 Default: 30
-        RarePlushiesRates = 30,
-        VeryRarePlushies = true,
-        -- Min: 1 Max: 100 Default: 15
-        VeryRarePlushiesRates = 15,
-        LocationsToy = true,
-        LocationsGeneral = true,
-        LocationsIncidental = true,
-    },
     HugThePlushie = {
         -- Min: -100.00 Max: 100.00 Default: -2.22
         UnhappinessPerMinute = -2.22,
@@ -2891,22 +2833,11 @@ SandboxVars = {
     PhysicalBullets = {
         -- Min: 0.02 Max: 1.00 Default: 0.25
         BulletSpeed = 0.25,
-        PointBlank = true,
-        -- Min: 0.50 Max: 5.00 Default: 1.85
-        PointBlankRange = 1.85,
-        -- Min: 0.50 Max: 5.00 Default: 2.30
-        PointBlankRangeTwoHanded = 2.3,
-        PointBlankInstantKill = true,
-        -- Min: 0.00 Max: 10.00 Default: 0.40
-        PointBlankBonusDamage = 0.4,
-        -- Min: 0.00 Max: 10.00 Default: 0.50
-        PointBlankCooldown = 0.5,
-        -- Min: 0.00 Max: 10.00 Default: 0.10
-        PointBlankCooldownSkilled = 0.1,
         -- Min: 0.00 Max: 5.00 Default: 1.00
         TrailOpacity = 1.0,
         -- Min: 0.00 Max: 3.00 Default: 1.00
         TrailSpiral = 1.0,
+        SmokyTrails = false,
         -- Min: 0.00 Max: 500.00 Default: 50.00
         TrailFadeDistance = 50.0,
         ALifeBullets = true,
@@ -2937,7 +2868,6 @@ SandboxVars = {
         -- Min: 1.00 Max: 4.00 Default: 1.50
         RangeFactor = 1.5,
         HitWhereBulletLands = true,
-        AimAtFallingBodies = true,
         -- Min: 0.00 Max: 2.00 Default: 1.00
         FlybySound = 1.0,
         MuzzleSmoke = true,
@@ -2947,7 +2877,6 @@ SandboxVars = {
         SmokeAmount = 1.0,
         -- Min: 50 Max: 2000 Default: 500
         SmokeCap = 500,
-        SmokeBulletTrails = true,
         -- Min: 0.00 Max: 3.00 Default: 1.00
         ImpactNoise = 1.0,
     },
@@ -2974,6 +2903,154 @@ SandboxVars = {
         UploadBudget = 1,
         BloodSaveWait = 1,
     },
+    LugliDMS = {
+        Enabled = true,
+        -- Min: 0.00 Max: 100.00 Default: 7.00
+        StashChance = 7.0,
+        -- Min: 1 Max: 10 Default: 2
+        MaxPerBuilding = 2,
+        -- Min: 0 Max: 10 Default: 0
+        PayoutRolls = 0,
+        BruteDamage = 3,
+        -- Min: 0.00 Max: 3.00 Default: 1.00
+        NoiseScale = 1.0,
+        -- Min: 0.25 Max: 4.00 Default: 1.00
+        TimeScale = 1.0,
+        -- Min: 0.00 Max: 100.00 Default: 10.00
+        SafeChance = 10.0,
+        -- Min: 0.00 Max: 100.00 Default: 60.00
+        VaultSafeChance = 60.0,
+        -- Min: 1 Max: 20 Default: 5
+        SafeTries = 5,
+        -- Min: 0.00 Max: 48.00 Default: 2.00
+        SafeLockoutHours = 2.0,
+        SafeAlarm = true,
+        -- Min: 0 Max: 3 Default: 2
+        CluesPerSafe = 2,
+        DebugLog = false,
+    },
+    HydeCoUnderGround = {
+        Sewers = true,
+        Caves = true,
+        Mines = true,
+        DaylightShafts = true,
+        -- Min: 1 Max: 12 Default: 6
+        DaylightRadius = 6,
+        -- Min: 0.00 Max: 1.00 Default: 0.50
+        GreenMurk = 0.5,
+        -- Min: 0.00 Max: 1.00 Default: 0.60
+        UnderAmbient = 0.6,
+        -- Min: 0.00 Max: 720.00 Default: 36.00
+        SporeGrowthHours = 36.0,
+        -- Min: 0.00 Max: 4.00 Default: 1.00
+        SporeSickness = 1.0,
+        -- Min: 0.00 Max: 1.00 Default: 0.35
+        FungalChance = 0.35,
+        -- Min: 0.00 Max: 4.00 Default: 1.00
+        RoomZombies = 1.0,
+        -- Min: 0 Max: 40 Default: 28
+        RatCount = 28,
+        BlastingEnabled = true,
+        -- Min: 2 Max: 16 Default: 8
+        SquaresPerStick = 8,
+        -- Min: 8 Max: 128 Default: 64
+        BlastCap = 64,
+        -- Min: 0.00 Max: 1.00 Default: 0.50
+        BlastSpoil = 0.5,
+        -- Min: 0 Max: 100 Default: 25
+        CoalDustChance = 25,
+        -- Min: 0.00 Max: 10.00 Default: 1.00
+        DecaySpeed = 1.0,
+        AirQuality = true,
+        -- Min: 0.00 Max: 25.00 Default: 12.00
+        UndergroundTemperature = 12.0,
+        -- Min: 1.00 Max: 720.00 Default: 48.00
+        SaltpeterSoakHours = 48.0,
+        -- Min: 1.00 Max: 720.00 Default: 72.00
+        MushroomGrowHours = 72.0,
+        SurfaceMushrooms = false,
+        -- Min: 0.00 Max: 4.00 Default: 1.00
+        BreathingDrain = 1.0,
+        -- Min: 0.00 Max: 4.00 Default: 0.25
+        TankDrainBelowGround = 0.25,
+        -- Min: 0.00 Max: 100.00 Default: 35.00
+        BlastFire = 35.0,
+        SewerMapRevealAll = false,
+        CaveMineMapRevealAll = false,
+        ManholeCrowbar = true,
+        MinerProfession = true,
+        UndergroundTraits = true,
+        PrepareToRemove = false,
+        AddedToExistingWorld = true,
+        SMBStepsLadders = true,
+        -- Min: 0 Max: 10 Default: 5
+        RopeClimbStrength = 5,
+        RealisticClimbing = false,
+        SewerWater = 1,
+        StreetMines = 1,
+    },
+    ButtstrokeOption = {
+        -- Min: 0.00 Max: 200.00 Default: 5.00
+        Damage = 5.0,
+        -- Min: 0.00 Max: 100.00 Default: 0.01
+        EnduranceLost = 0.005,
+        -- Min: 0 Max: 100 Default: 1
+        WeaponConditionLost = 1,
+    },
+    ButtstrokePlus = {
+        -- Min: 0 Max: 40 Default: 5
+        StructureDamage = 5,
+        -- Min: 0 Max: 100 Default: 50
+        PistolFactor = 50,
+        -- Min: 0 Max: 100 Default: 100
+        WindowBreakChance = 100,
+        -- Min: 0.00 Max: 100.00 Default: 0.10
+        ZombieWearMin = 0.1,
+        -- Min: 0.00 Max: 100.00 Default: 0.50
+        ZombieWearMax = 0.5,
+        -- Min: 0.00 Max: 100.00 Default: 0.30
+        StructureWearMin = 0.3,
+        -- Min: 0.00 Max: 100.00 Default: 1.00
+        StructureWearMax = 1.0,
+        -- Min: 1.00 Max: 10.00 Default: 3.00
+        StructureEnduranceFactor = 3.0,
+        FloorStrike = true,
+        -- Min: 0.00 Max: 5.00 Default: 0.60
+        FloorStrikeDamage = 0.6,
+        -- Min: 0 Max: 100 Default: 15
+        FloorStrikeKillChance = 15,
+        FloorStrikeStyle = 2,
+        -- Min: 0.30 Max: 3.00 Default: 0.95
+        FloorStrikeSpeed = 0.95,
+        BehindStrike = true,
+        -- Min: 0 Max: 100 Default: 5
+        BehindKillChance = 5,
+        -- Min: 0.30 Max: 3.00 Default: 0.95
+        BehindSpeed = 0.95,
+        -- Min: 0.30 Max: 3.00 Default: 1.36
+        RifleSpeed = 1.36,
+        -- Min: 0.30 Max: 3.00 Default: 1.05
+        PistolSpeed = 1.05,
+        SkillScaling = true,
+    },
+    BetterPush = {
+        -- Min: 0 Max: 10 Default: 5
+        MinStrengthLevel = 5,
+        -- Min: 0 Max: 10 Default: 10
+        MaxStrengthLevel = 10,
+        -- Min: 0 Max: 100 Default: 5
+        MinChance = 5,
+        -- Min: 0 Max: 100 Default: 30
+        MaxChance = 30,
+        -- Min: 1 Max: 20 Default: 1
+        BetterPushMinZombies = 1,
+        -- Min: 1 Max: 20 Default: 4
+        BetterPushMaxZombies = 4,
+        -- Min: 0.60 Max: 5.00 Default: 0.80
+        BetterPushLineDistance = 0.8,
+        -- Min: 0.60 Max: 5.00 Default: 0.80
+        BetterPushLineWidth = 0.8,
+    },
     LugliModpackFixes = {
         AuiCleanUI = true,
         BiiTooltip = true,
@@ -2982,6 +3059,8 @@ SandboxVars = {
         CleanUIBlink = true,
         DbuCeiling = true,
         DbuRestore = true,
+        DsagNeat = true,
+        DsagQuiet = true,
         ExBandolier = true,
         FhKeys = true,
         GydeHandy = true,
@@ -2991,12 +3070,12 @@ SandboxVars = {
         IdpHide = true,
         IdpMarz = true,
         IdpRadial = true,
+        IdpRead = true,
         IdpRpm = true,
         IdpSeeds = true,
         IdpSilencer = true,
         IdpText = true,
         IdpVanilla = true,
-        ImpSpawn = true,
         LootNames = true,
         NellisExit = true,
         NellisPower = true,
@@ -3019,5 +3098,7 @@ SandboxVars = {
         UsmilSeats = true,
         VehicleLoot = true,
         VmzLegacy = true,
+        ZtcPanic = true,
+        ZtcRecord = true,
     },
 }

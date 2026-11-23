@@ -17,8 +17,8 @@ overlap, the one listed first in `Map=` wins.
 
 ## Players: install ZombieBuddy first
 
-The pack includes Java mods (Physical Bullets, Dead Canvas: Trauma, Tracer Location Fix, Peek a
-View and Lugli Fast Loading), which run through
+The pack includes Java mods (Physical Bullets, Dead Canvas: Trauma, Tracer Location Fix and Peek a
+View), which run through
 [ZombieBuddy](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853). Every player
 needs it, once:
 
@@ -27,14 +27,9 @@ needs it, once:
    [GitHub releases](https://github.com/zed-0xff/ZombieBuddy/releases/tag/windows_installer) and
    choose **Install or update ZombieBuddy**. macOS and Linux: follow its
    [manual install](https://github.com/zed-0xff/ZombieBuddy/blob/master/doc/Installation.md).
-3. In the main menu's Mods list, enable
-   [ZombieBuddy](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853),
-   [Physical Bullets](https://steamcommunity.com/sharedfiles/filedetails/?id=3839695306),
-   [Dead Canvas: Trauma](https://steamcommunity.com/sharedfiles/filedetails/?id=3836680166),
-   [Tracer Location Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3789269879),
-   [Peek a View](https://steamcommunity.com/sharedfiles/filedetails/?id=3710281407) and
-   [Lugli Fast Loading](https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045), then
-   restart the game. Mods only turned on by the server load too late for some of their settings.
+3. In the main menu's Mods list, enable ZombieBuddy, Physical Bullets, Dead Canvas: Trauma, Tracer
+   Location Fix and Peek a View, then restart the game. Mods only turned on by the server load too
+   late for some of their settings.
 4. Join. ZombieBuddy asks before loading each Java mod; click **Yes** for these, and choose to
    remember the answer.
 
