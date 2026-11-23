@@ -83,7 +83,8 @@ local function install(ctx)
         end
     elseif not isClient() and Events.OnEquipPrimary then
         Events.OnEquipPrimary.Add(function(character, item)
-            if character == nil or not character:isLocalPlayer() then return end
+            -- NPC mods such as Living World equip guns on IsoZombie bodies, which have no isLocalPlayer
+            if not instanceof(character, "IsoPlayer") or not character:isLocalPlayer() then return end
             if not restore(item) then return end
             stats.equipped = stats.equipped + 1
             character:resetEquippedHandsModels()
