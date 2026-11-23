@@ -53,6 +53,7 @@ description=[list]
 description=[*][b]Multiplayer:[/b] fully supported. Install it on the server and every client.
 description=[*][b]Requires[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3508537032]NeatUI Framework[/url]. Build 42.20 or newer.
 description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3783535220]Neat Lockpicking[/url]:[/b] its lockpicks work on stash locks and locked doors, its Lockpicking skill raises your odds and grows as you pick, and a Locksmith can use its lockpicking too.
+description=[*][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3809306528]Project Viewpoint[/url]:[/b] fully compatible.
 description=[*][b]Languages:[/b] English, Brazilian Portuguese, Simplified Chinese, Russian, Spanish (Spain, Mexico, Argentina and Chile), German, French, Polish, Japanese and Korean.
 description=[*][b]Existing saves:[/b] stashes appear as you explore.
 description=[*][b]Loot mods:[/b] their items can show up in stashes.

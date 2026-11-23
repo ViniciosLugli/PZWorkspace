@@ -535,6 +535,8 @@ do
     end
 
     function P:prerender()
+        -- Only while there is a choice to click: the work itself never takes the mouse.
+        N.followView(self, self.choiceBtn ~= nil and self.choiceBtn:isVisible())
         local m = self.m
         local v = M.workView(self.action)
         N.window(self, 0, 0, self.width, self.height, m.head)

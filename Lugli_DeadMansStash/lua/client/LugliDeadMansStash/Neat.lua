@@ -577,6 +577,35 @@ do
     end
     M.addTeardown(PART, function() places = nil end)
 
+    -- PROJECT VIEWPOINT (Workshop 3809306528). Its 3D view holds the mouse for looking and frees it
+    -- only for a fixed list of vanilla popups or while a visible window has mouse capture
+    -- (UIManager.isModalVisible, read by viewpoint.FP). So a window here takes capture while that
+    -- view is on, as vanilla's modal dialogs do, and its buttons can be clicked. The iso view never
+    -- captures.
+    local viewpointBroken = false
+    local function viewOn() return Viewpoint.Loot.viewOn() end
+
+    function N.viewpointView()
+        if viewpointBroken or Viewpoint == nil or Viewpoint.Loot == nil or Viewpoint.Loot.viewOn == nil then
+            return false
+        end
+        local ok, on = pcall(viewOn)
+        if not ok then
+            viewpointBroken = true
+            M.defect(PART, "Viewpoint.Loot.viewOn threw, windows no longer free its cursor: " .. tostring(on))
+            return false
+        end
+        return on == true
+    end
+
+    --- From a window's prerender: hold mouse capture exactly while the 3D view is on and `wanted`.
+    function N.followView(el, wanted)
+        local want = wanted ~= false and N.viewpointView()
+        if (el.lugliDMSCaptured == true) == want then return end
+        el.lugliDMSCaptured = want
+        el:setCapture(want)
+    end
+
     --- Ask for every texture once, so the first-call nil of a nine-patch and the load of a plain
     --- texture happen at boot and not on the frame a survivor opens a window.
     local function prime()

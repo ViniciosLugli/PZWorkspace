@@ -221,6 +221,8 @@ handmade lockpick and wears a store one down one condition. A store lockpick pic
 each Lockpicking level adds 5 %, and every pick trains Lockpicking. A Locksmith learns Neat's
 lockpick recipe, so Neat's own lockpicking opens to it as to a Burglar.
 
+Fully compatible with [Project Viewpoint](https://steamcommunity.com/sharedfiles/filedetails/?id=3809306528).
+
 Map mods tested in game, boxes placed in their own buildings: Raven Creek, Fort Waterfront, Fort
 Benning, Nellis Air Force Base and Dirkerdam Integrated. Rooms a map mod misnames
 (`stroge`, `polistorage`, `gunshop` and the like) hide boxes as the room they stand for. Other

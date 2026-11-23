@@ -1272,6 +1272,7 @@ do
     end
 
     function W:prerender()
+        N.followView(self)
         local p = self.player
         local ok, dead = pcall(function() return p:isDead() end)
         if (ok and dead == true) or not M.inspectInReach(p, self.obj) then
