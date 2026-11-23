@@ -27,8 +27,7 @@ N.INTERIORS = {
 }
 
 function N.fromNellis(fn)
-    local ok, name = pcall(getFilenameOfClosure, fn)
-    return ok and type(name) == "string" and string.find(name, N.FILE, 1, true) ~= nil
+    return LugliModpackFixes.closureFrom(fn, N.FILE)
 end
 
 function N.interiorAt(x, y, z)

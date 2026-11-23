@@ -124,4 +124,13 @@ LugliModpackFixes.pins = {
     ["ztc.reportreg"] = { mod = "ZeroToChad", file = "media/lua/server/ZeroToChad/ZTC_Server.lua", anchor = "Events.OnClientCommand.Add(onClientCommand)", lines = 1, accept = { 847752025 } },
     ["ztc.cap"] = { mod = "ZeroToChad", file = "media/lua/server/ZeroToChad/ZTC_Server.lua", anchor = "data.capReduction = state.capReduction", lines = 1, accept = { 3566484238 } },
     ["ztc.clamp"] = { mod = "ZeroToChad", file = "media/lua/client/ZeroToChad/ZTC_Main.lua", anchor = "if not s.cap or s.cap <= 0 or s.desensitized then return end", lines = 7, accept = { 281719334 } },
+    ["bpush.hit"] = { mod = "BetterPush", file = "media/lua/client/BetterPush_Client.lua", anchor = "local function onWeaponHitCharacter(attacker, target, weapon, damageSplit)", lines = 60, accept = { 2826749676 } },
+    ["bpush.hitreg"] = { mod = "BetterPush", file = "media/lua/client/BetterPush_Client.lua", anchor = "Events.OnWeaponHitCharacter.Add(onWeaponHitCharacter)", lines = 1, accept = { 2440692353 } },
+    ["bpush.tickreg"] = { mod = "BetterPush", file = "media/lua/client/BetterPush_Client.lua", anchor = "Events.OnTick.Add(onTick)", lines = 1, accept = { 4123247393 } },
+    ["bpush.server"] = { mod = "BetterPush", file = "media/lua/server/BetterPush_Server.lua", anchor = "local function onClientCommand(module, command, player, args)", lines = 20, accept = { 2015519279 } },
+    ["bpush.servertick"] = { mod = "BetterPush", file = "media/lua/server/BetterPush_Server.lua", anchor = "Events.OnTick.Add(onServerTick)", lines = 1, accept = { 1206452740 } },
+    ["bpush.options"] = { mod = "BetterPush", file = "media/sandbox-options.txt", anchor = "VERSION = 1,", lines = 81, accept = { 1704370953 } },
+    ["bstroke.hit"] = { mod = "Buttstroke", file = "media/lua/server/Buttstroke_Lua/Script.lua", anchor = "local function Buttstroke_HitZombie(zombie, player)", lines = 52, accept = { 2197221401 } },
+    ["bstroke.hitreg"] = { mod = "Buttstroke", file = "media/lua/server/Buttstroke_Lua/Script.lua", anchor = "Events.OnHitZombie.Add(Buttstroke_HitZombie)", lines = 1, accept = { 2995417878 } },
+    ["bstroke.options"] = { mod = "Buttstroke", file = "media/sandbox-options.txt", anchor = "VERSION = 1,", lines = 31, accept = { 4017673530 } },
 }

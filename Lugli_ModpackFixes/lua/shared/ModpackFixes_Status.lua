@@ -53,6 +53,12 @@ function M.isModActive(id)
     return ok and res == true
 end
 
+-- The engine names a closure after the file it was compiled from (LuaManager.getFilenameOfClosure).
+function M.closureFrom(fn, file)
+    local ok, name = pcall(getFilenameOfClosure, fn)
+    return ok and type(name) == "string" and string.find(name, file, 1, true) ~= nil
+end
+
 function M.isDedicatedServer()
     return type(isServer) == "function" and isServer() == true
 end

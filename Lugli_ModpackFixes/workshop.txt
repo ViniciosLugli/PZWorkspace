@@ -9,6 +9,7 @@ description=[list]
 description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3833349401]Super Gore[/url]:[/b] zombies it finishes off (a severed head, a burst chest) now count as your kills.
 description=[*][b]Super Gore + [url=https://steamcommunity.com/workshop/filedetails/?id=3783283328]Special Zombies: Tank[/url]:[/b] a Tank no longer dies to almost any hit, or heals when a limb is cut.
 description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3781428012]Zero to Chad[/url]:[/b] in multiplayer kills keep counting after you change clothes and cannot be faked; the panic cap holds.
+description=[*][b]Better Push, Buttstroke:[/b] in multiplayer the domino push shows for everyone and a gun-stock hit counts once. The push follows the line; neither runs from a car seat.
 description=[*][b]Vanilla:[/b] wearing an ALICE belt or chest rig, reloads without an ammo strap and filling magazines no longer error. This makes [url=https://steamcommunity.com/workshop/filedetails/?id=3837229266]Reload Those Weapons Again[/url] redundant.
 description=[/list]
 description=[h1]Hotbar and keys[/h1]
@@ -16,7 +17,7 @@ description=[list]
 description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=2366717227]SwapIt[/url] + [url=https://steamcommunity.com/workshop/filedetails/?id=3771638611]Fancy Handwork[/url]:[/b] modifier + hotbar key takes the item into your off hand again.
 description=[*][b]SwapIt + [url=https://steamcommunity.com/workshop/filedetails/?id=3737864976]H.E.C.U.[/url]:[/b] the hotbar key puts helmets and masks on and off again.
 description=[*][b]SwapIt + [url=https://steamcommunity.com/workshop/filedetails/?id=3696291148]Better Pause[/url]:[/b] hotbar keys work while paused again.
-description=[*][b]Fancy Handwork B42.20:[/b] the swap-hands keys work, and key presses stop raising errors.
+description=[*][b]Fancy Handwork B42.20:[/b] the swap-hands keys work, and keys stop raising errors.
 description=[*][b][url=https://steamcommunity.com/workshop/filedetails/?id=3775549570]Alice's Weapon Sling[/url]:[/b] cancelling an attach no longer leaves a ghost weapon on your body.
 description=[/list]
 description=[h1]Inventory and menus[/h1]
@@ -50,7 +51,7 @@ description=[/list]
 description=[h1]Questions[/h1]
 description=[list]
 description=[*][b]Load order?[/b] Anywhere after the mods it fixes.
-description=[*][b]Add to or remove from a running save?[/b] Yes, it adds no items or objects.
+description=[*][b]Add or remove mid-save?[/b] Yes, it adds no items or objects.
 description=[*][b]Multiplayer?[/b] Install it on the server and on every client.
 description=[*][b]Using Guns of Marz?[/b] Add [url=https://steamcommunity.com/workshop/filedetails/?id=3839186582]Grease of Marz[/url] for its gun fixes.
 description=[*][b]Server admins:[/b] a [i]Lua/serverprof-on.txt[/i] file in the server's cache folder logs what each mod sends to players.

@@ -9,6 +9,13 @@ option LugliModpackFixes.AuiCleanUI = {
 	translation = LugliModpackFixes_AuiCleanUI,
 }
 
+option LugliModpackFixes.BetterPush = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_BetterPush,
+}
+
 option LugliModpackFixes.BiiTooltip = {
 	type = boolean,
 	default = true,
@@ -28,6 +35,13 @@ option LugliModpackFixes.BpNeat = {
 	default = true,
 	page = LugliModpackFixes,
 	translation = LugliModpackFixes_BpNeat,
+}
+
+option LugliModpackFixes.ButtstrokeSides = {
+	type = boolean,
+	default = true,
+	page = LugliModpackFixes,
+	translation = LugliModpackFixes_ButtstrokeSides,
 }
 
 option LugliModpackFixes.CleanUIBlink = {
