@@ -614,6 +614,16 @@ local function advance()
     end
 end
 
+--- The camera a projectile is drawn through: nil in the iso view, and in perspective the pass's
+--- camera only when it has line of sight to the projectile, else one that draws nothing.
+local function cameraFor(persp, p, dx, dy, dz)
+    if persp == nil then return nil end
+    local seen
+    if p.thrown then seen = M.fxSees(persp, dx, dy, dz) else seen = M.fxSeesSky(persp, dx, dy) end
+    if seen then return persp end
+    return M.FX_UNSEEN
+end
+
 --- Draw every flare. OnPostRender, and NOTHING here may change state.
 local function draw()
     if #live == 0 then return end
@@ -635,7 +645,8 @@ local function draw()
     M.fxAdditive(R, true)
 
     -- THE WHOLE BODY IS GUARDED, and the reason is the line after it rather than the body itself.
-    local vpIdx, vpZoom = M.fxViewport(getPlayer ~= nil and getPlayer() or nil)
+    local viewer = getPlayer ~= nil and getPlayer() or nil
+    local vpIdx, vpZoom, persp = M.fxViewport(viewer)
 
     pcall(function()
     for n = 1, #live do
@@ -648,7 +659,8 @@ local function draw()
         else
             dx, dy, dz = M.aerialRenderPos(p)
         end
-        local hx, hy = M.fxScreen(vpIdx, vpZoom, dx, dy, dz)
+        local cam = cameraFor(persp, p, dx, dy, dz)
+        local hx, hy, hs = M.fxScreen(vpIdx, vpZoom, dx, dy, dz, cam)
 
         -- THE TRAIL IS FIRE TURNING INTO SMOKE, and it is one draw per sample rather than two
         -- passes, because the whole difference between them is colour, size and where they sit.
@@ -664,15 +676,15 @@ local function draw()
                     -- the ground. In z units, so it is a world offset rather than a screen one.
                     local rise = age * (p.thrown and 0.05 or 0.16)
                     local blow = age * 1.4
-                    local sx, sy = M.fxScreen(vpIdx, vpZoom, s.x + p.windX * blow,
-                                                              s.y + p.windY * blow,
-                                                              s.z + rise)
+                    local sx, sy, ts = M.fxScreen(vpIdx, vpZoom, s.x + p.windX * blow,
+                                                                  s.y + p.windY * blow,
+                                                                  s.z + rise, cam)
 
                     -- No zoom division. OnPostRender draws in the WORLD frame, whose space is
                     -- already screen*zoom, so a fixed size scales with the world the way a world
                     local base = p.thrown and 12.0 or 26.0
                     local grow = p.thrown and 1.15 or 2.30
-                    local w = base * (0.55 + grow * (1.0 - k))
+                    local w = base * (0.55 + grow * (1.0 - k)) * ts
 
                     -- hot -> the flare's own colour -> grey. Two straight lerps either side of
                     -- k = 0.72, which is about a third of a second of "still burning" at the
@@ -721,8 +733,8 @@ local function draw()
                     local bx = p.x0 + pf.vx * grow * pf.spin + p.windX * age * 1.2
                     local by = p.y0 + pf.vy * grow * pf.spin + p.windY * age * 1.2
                     local bz = p.z0 + pf.vz * grow
-                    local sx, sy = M.fxScreen(vpIdx, vpZoom, bx, by, bz)
-                    local w = pf.size * (0.45 + 1.55 * grow)
+                    local sx, sy, bs = M.fxScreen(vpIdx, vpZoom, bx, by, bz, cam)
+                    local w = pf.size * (0.45 + 1.55 * grow) * bs
                     -- Lit by the launch at first, then plain grey smoke. Alpha falls off fast so
                     -- the cloud thins rather than fading as one flat shape.
                     local hot = (1.0 - k) * (1.0 - k)
@@ -749,13 +761,13 @@ local function draw()
                         local ex = dx + sp.vx * age
                         local ey = dy + sp.vy * age
                         local ez = dz + sp.vz * age - 0.35 * age * age
-                        local sx, sy = M.fxScreen(vpIdx, vpZoom, ex, ey, ez)
+                        local sx, sy, es = M.fxScreen(vpIdx, vpZoom, ex, ey, ez, cam)
                         -- Hot at birth, cooling to the flare's own colour as it falls out.
                         local hot = 1.0 - k
                         local cr = p.r + (1.0 - p.r) * hot
                         local cg = p.g + (1.0 - p.g) * hot
                         local cb = p.b + (1.0 - p.b) * hot
-                        local w = sp.size * (1.0 - 0.45 * k)
+                        local w = sp.size * (1.0 - 0.45 * k) * es
                         local a = (1.0 - k) * (1.0 - k)
 
                         -- A STREAK, POINTED ALONG ITS OWN VELOCITY. An ember drawn as a dot is a
@@ -763,8 +775,10 @@ local function draw()
                         local bx = dx + sp.vx * (age - 0.09)
                         local by = dy + sp.vy * (age - 0.09)
                         local bz = dz + sp.vz * (age - 0.09) - 0.35 * (age - 0.09) * (age - 0.09)
-                        local tx2, ty2 = M.fxScreen(vpIdx, vpZoom, bx, by, bz)
-                        M.fxBeam(R, streak, sx, sy, tx2, ty2, w * 1.5, cr, cg, cb, a)
+                        local tx2, ty2, ts2 = M.fxScreen(vpIdx, vpZoom, bx, by, bz, cam)
+                        if ts2 > 0.0 then
+                            M.fxBeam(R, streak, sx, sy, tx2, ty2, w * 1.5, cr, cg, cb, a)
+                        end
                         M.fxRect(R, core, sx, sy, w * 0.8, w * 0.8, cr, cg, cb, a)
                     end
                 end
@@ -773,8 +787,8 @@ local function draw()
 
         -- A thrown stick is a small object a few tiles away; a flare is a burning charge in the
         -- sky. Drawing them at one size made whichever was wrong look absurd.
-        local halo = p.thrown and 30.0 or 88.0
-        local head = p.thrown and 11.0 or 26.0
+        local halo = (p.thrown and 30.0 or 88.0) * hs
+        local head = (p.thrown and 11.0 or 26.0) * hs
         if p.thrown then
             halo = halo * p.tumble
             head = head * p.tumble
@@ -797,12 +811,13 @@ local function draw()
             local spin = p.elapsed * p.spin * 0.5 * damp
 
             -- A soft pool of its own colour first, well under the sprite, so it reads as lit
-            -- rather than as a lamp with an item stuck to it.
-            M.fxRect(R, glow, hx, hy, halo, halo, p.r, p.g, p.b, 0.30)
+            -- rather than as a lamp with an item stuck to it. Iso only: Viewpoint's 3D view
+            -- lights the scene around it itself.
+            if persp == nil then M.fxRect(R, glow, hx, hy, halo, halo, p.r, p.g, p.b, 0.30) end
 
             if p.tex ~= nil then
                 M.fxAdditive(R, false)
-                M.fxQuad(R, p.tex, hx, hy, THROWN_SPRITE, THROWN_SPRITE, spin, 1.0, 1.0, 1.0, 1.0)
+                M.fxQuad(R, p.tex, hx, hy, THROWN_SPRITE * hs, THROWN_SPRITE * hs, spin, 1.0, 1.0, 1.0, 1.0)
                 M.fxAdditive(R, true)
             else
                 -- No icon: a small coloured point rather than the old white one, so a missing
@@ -821,10 +836,10 @@ local function draw()
                     -- THE SAME CLOCK AND THE SAME PENDULUM AS THE FLARE UNDERNEATH.
                     local lean = math.sin(since * SWING_RATE * (p.swingRate or 1.0) + 0.6)
                                  * 0.10 * (p.swingDir or 1.0) * ease
-                    local cxw, cyw = M.fxScreen(vpIdx, vpZoom, dx + p.perpX * lean,
-                                                                dy + p.perpY * lean,
-                                                                dz + CHUTE_LIFT)
-                    local cw = CHUTE_SIZE * ease
+                    local cxw, cyw, cs = M.fxScreen(vpIdx, vpZoom, dx + p.perpX * lean,
+                                                                    dy + p.perpY * lean,
+                                                                    dz + CHUTE_LIFT, cam)
+                    local cw = CHUTE_SIZE * ease * cs
 
                     -- NOT ADDITIVE, and that is the whole fix.
                     M.fxAdditive(R, false)
@@ -835,9 +850,11 @@ local function draw()
                     -- The shroud lines, as one thin tapered band. Four would be more correct and,
                     -- at this zoom, would be noise. On the same pass as the canopy: a bright line
                     -- is what made the two read as a balloon on a string.
-                    M.fxTaper(R, ribbon, cxw, cyw, hx, hy, 1.4, 0.7,
-                              0.30 + p.r * 0.55, 0.30 + p.g * 0.55, 0.30 + p.b * 0.55,
-                              0.45 * dim * ease)
+                    if cs > 0.0 and hs > 0.0 then
+                        M.fxTaper(R, ribbon, cxw, cyw, hx, hy, 1.4 * cs, 0.7 * hs,
+                                  0.30 + p.r * 0.55, 0.30 + p.g * 0.55, 0.30 + p.b * 0.55,
+                                  0.45 * dim * ease)
+                    end
                     M.fxAdditive(R, true)
 
                     -- The deployment snap: one expanding ring, because the flare goes from
@@ -845,7 +862,7 @@ local function draw()
                     -- change reads as a hitch.
                     if open < 0.45 then
                         local rk = open / 0.45
-                        local rw = 40.0 + 110.0 * rk
+                        local rw = (40.0 + 110.0 * rk) * cs
                         M.fxQuad(R, ring, cxw, cyw, rw, rw * 0.62, 0.0,
                                  1.0, 1.0, 1.0, (1.0 - rk) * 0.40)
                     end

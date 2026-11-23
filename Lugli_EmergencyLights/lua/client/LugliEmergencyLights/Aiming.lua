@@ -168,6 +168,35 @@ do
         raised = {}
     end
 
+    --- The iso marks below are sprites squashed 2:1 to lie on the ground; under a perspective camera
+    --- the same marks are drawn as real ground circles and arms, at the iso sizes in tiles.
+    local RING_SEGMENTS = 40
+
+    local function drawPerspective(R, band, idx, zoom, persp, cx, cy, cz)
+        local px = M.FX_ISO_PX_PER_TILE
+        if spreadTiles > SPREAD_MIN then
+            local sr = 64.0 * spreadTiles / px
+            M.fxGroundCircle(R, band, idx, zoom, persp, cx, cy, cz, sr, RING_SEGMENTS, 3.0, EDGE_R, EDGE_G, EDGE_B, 0.30)
+            M.fxGroundCircle(R, band, idx, zoom, persp, cx, cy, cz, sr, RING_SEGMENTS, 1.6, RING_R, RING_G, RING_B, 0.22)
+        end
+
+        local rr = 32.0 * RING_TILES / px
+        M.fxGroundCircle(R, band, idx, zoom, persp, cx, cy, cz, rr, RING_SEGMENTS, 4.0, EDGE_R, EDGE_G, EDGE_B, 0.55)
+        M.fxGroundCircle(R, band, idx, zoom, persp, cx, cy, cz, rr, RING_SEGMENTS, 2.0, RING_R, RING_G, RING_B, 0.85)
+
+        -- The cross, its arms along the same ground diagonals the iso screen axes lie on.
+        local arm, gap, t = 9.0 / px, 3.0 / px, 1.6
+        for _, d in ipairs({ { 0.7071, -0.7071 }, { -0.7071, 0.7071 }, { 0.7071, 0.7071 }, { -0.7071, -0.7071 } }) do
+            local ax, ay, as = M.fxScreen(idx, zoom, cx + d[1] * gap, cy + d[2] * gap, cz, persp)
+            local bx, by, bs = M.fxScreen(idx, zoom, cx + d[1] * arm, cy + d[2] * arm, cz, persp)
+            if as > 0.0 and bs > 0.0 then
+                local s = (as + bs) * 0.5
+                M.fxBeam(R, band, ax, ay, bx, by, (t + 2.0) * s, EDGE_R, EDGE_G, EDGE_B, 0.55)
+                M.fxBeam(R, band, ax, ay, bx, by, t * s, RING_R, RING_G, RING_B, 0.90)
+            end
+        end
+    end
+
     --- The ring where the flare will land.
     local function draw()
         if ISCoordConversion == nil or getRenderer == nil or getTexture == nil then return end
@@ -187,10 +216,19 @@ do
         -- square on another level would sit over the roof between them.
         if sq:getZ() ~= math.floor(player:getZ()) then return end
 
-        local aIdx, aZoom = M.fxViewport(player)
-        local sx, sy = M.fxScreen(aIdx, aZoom, sq:getX() + 0.5, sq:getY() + 0.5, sq:getZ())
+        local aIdx, aZoom, persp = M.fxViewport(player)
+        local cx, cy, cz = sq:getX() + 0.5, sq:getY() + 0.5, sq:getZ()
+        local sx, sy = M.fxScreen(aIdx, aZoom, cx, cy, cz, persp)
 
         local R = getRenderer()
+
+        if persp ~= nil then
+            local ok = pcall(drawPerspective, R, band, aIdx, aZoom, persp, cx, cy, cz)
+            if not ok then
+                M.defect(PART, "the aim reticle threw and has been skipped this frame")
+            end
+            return
+        end
 
         -- NOT ADDITIVE. See the palette note: this is an overlay, not a light. Additive was what made
         -- it a white smear on pale ground with no edge to read.
@@ -268,25 +306,10 @@ do
     local C_REACH = { 0.35, 0.85, 1.00 }
 
     --- One world circle, drawn as a ring of dots through the iso projection.
-    local function ring(R, tex, vpIdx, vpZoom, cx, cy, cz, radius, col, alpha)
+    local function ring(R, tex, vpIdx, vpZoom, persp, cx, cy, cz, radius, col, alpha)
         if radius <= 0.0 or radius > MAX_DRAW then return end
-
-        local px, py, fx, fy
-        for i = 0, SEGMENTS do
-            local a = (i / SEGMENTS) * 6.2831853
-            local sx, sy = M.fxScreen(vpIdx, vpZoom,
-                                      cx + math.cos(a) * radius,
-                                      cy + math.sin(a) * radius, cz)
-            if px ~= nil then
-                M.fxTaper(R, tex, px, py, sx, sy, RING_W, RING_W, col[1], col[2], col[3], alpha)
-            else
-                fx, fy = sx, sy
-            end
-            px, py = sx, sy
-        end
-        if fx ~= nil then
-            M.fxTaper(R, tex, px, py, fx, fy, RING_W, RING_W, col[1], col[2], col[3], alpha)
-        end
+        M.fxGroundCircle(R, tex, vpIdx, vpZoom, persp, cx, cy, cz, radius, SEGMENTS, RING_W,
+                         col[1], col[2], col[3], alpha)
     end
 
     --- The ring's label, at its northern edge so several concentric rings do not stack their text.
@@ -294,17 +317,18 @@ do
         getTextManager():DrawString(UIFont.Small, sx, sy, text, col[1], col[2], col[3], 0.95)
     end
 
-    local function label(vpIdx, vpZoom, cx, cy, cz, radius, text, col)
+    local function label(vpIdx, vpZoom, persp, cx, cy, cz, radius, text, col)
         if radius <= 0.0 or radius > MAX_DRAW then return end
         if getTextManager == nil then return end
-        local sx, sy = M.fxScreen(vpIdx, vpZoom, cx, cy - radius, cz)
+        local sx, sy, s = M.fxScreen(vpIdx, vpZoom, cx, cy - radius, cz, persp)
+        if s <= 0.0 then return end
         pcall(drawString, sx + 3, sy - 8, text, col)
     end
 
-    local function ringAndLabel(R, tex, vpIdx, vpZoom, cx, cy, cz, radius, col, text)
+    local function ringAndLabel(R, tex, vpIdx, vpZoom, persp, cx, cy, cz, radius, col, text)
         if type(radius) ~= "number" then return end
-        ring(R, tex, vpIdx, vpZoom, cx, cy, cz, radius, col, 0.90)
-        label(vpIdx, vpZoom, cx, cy, cz, radius, text .. "  " .. tostring(math.floor(radius)), col)
+        ring(R, tex, vpIdx, vpZoom, persp, cx, cy, cz, radius, col, 0.90)
+        label(vpIdx, vpZoom, persp, cx, cy, cz, radius, text .. "  " .. tostring(math.floor(radius)), col)
     end
 
     local function draw()
@@ -318,7 +342,7 @@ do
         local tex = M.fxTex("LugliEL_FXRibbon")
         if tex == nil then return end
 
-        local vpIdx, vpZoom = M.fxViewport(viewer)
+        local vpIdx, vpZoom, persp = M.fxViewport(viewer)
         local R = getRenderer()
 
         -- NOT additive. These are measuring lines, not light, and additive rings over a dark floor
@@ -332,13 +356,13 @@ do
             -- ---- WHAT YOU DO, drawn around you ------------------------------------------------
             -- These are the one-shot noises and the reaches. They have no position of their own until
             -- you act, so your own feet are the only honest place to show them.
-            ringAndLabel(R, tex, vpIdx, vpZoom, px, py, pz, M.cfg("CrackNoise"), C_NOISE, "crack")
-            ringAndLabel(R, tex, vpIdx, vpZoom, px, py, pz, M.cfg("ThrowNoise"), C_NOISE, "landing")
-            ringAndLabel(R, tex, vpIdx, vpZoom, px, py, pz, M.cfg("FlareGunNoise"), C_NOISE, "gun shot")
-            ringAndLabel(R, tex, vpIdx, vpZoom, px, py, pz, M.cfg("AerialNoise"), C_NOISE, "sky flare")
-            ringAndLabel(R, tex, vpIdx, vpZoom, px, py, pz,
+            ringAndLabel(R, tex, vpIdx, vpZoom, persp, px, py, pz, M.cfg("CrackNoise"), C_NOISE, "crack")
+            ringAndLabel(R, tex, vpIdx, vpZoom, persp, px, py, pz, M.cfg("ThrowNoise"), C_NOISE, "landing")
+            ringAndLabel(R, tex, vpIdx, vpZoom, persp, px, py, pz, M.cfg("FlareGunNoise"), C_NOISE, "gun shot")
+            ringAndLabel(R, tex, vpIdx, vpZoom, persp, px, py, pz, M.cfg("AerialNoise"), C_NOISE, "sky flare")
+            ringAndLabel(R, tex, vpIdx, vpZoom, persp, px, py, pz,
                          M.cfg("AerialShotRange"), C_REACH, "gun range")
-            ringAndLabel(R, tex, vpIdx, vpZoom, px, py, pz,
+            ringAndLabel(R, tex, vpIdx, vpZoom, persp, px, py, pz,
                          M.cfg("AerialLightRadius"), C_LIGHT, "sky flare light")
 
             -- How far the thing in your hand would actually go, which is the family's own range and
@@ -349,7 +373,7 @@ do
                     -- is holding. Another player's stick would put a second ring here labelled with
                     -- their reach, which is a number about somebody else drawn around you.
                     if remote then return end
-                    ringAndLabel(R, tex, vpIdx, vpZoom, px, py, pz,
+                    ringAndLabel(R, tex, vpIdx, vpZoom, persp, px, py, pz,
                                  M.throwRange(info.family), C_REACH, "throw")
                 end)
             end
@@ -363,10 +387,10 @@ do
                 local dx, dy = cx - px, cy - py
                 if dx * dx + dy * dy > MAX_DRAW * MAX_DRAW then return end
 
-                ringAndLabel(R, tex, vpIdx, vpZoom, cx, cy, cz, rec.radius, C_LIGHT, "light")
+                ringAndLabel(R, tex, vpIdx, vpZoom, persp, cx, cy, cz, rec.radius, C_LIGHT, "light")
                 -- Only a road flare makes the repeating noise; a glow stick is silent on the ground.
                 if rec.family == "RoadFlare" then
-                    ringAndLabel(R, tex, vpIdx, vpZoom, cx, cy, cz, flareNoise, C_NOISE, "flare noise")
+                    ringAndLabel(R, tex, vpIdx, vpZoom, persp, cx, cy, cz, flareNoise, C_NOISE, "flare noise")
                 end
             end)
         end)

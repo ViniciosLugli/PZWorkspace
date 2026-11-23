@@ -35,12 +35,53 @@ end
 --- in its own mesh, which the engine keeps on the hand bone; modelToWorld above serves the
 --- projectile and the aim, whose positions the mod does own.
 
+-- PROJECT VIEWPOINT (Workshop 3809306528). In its 3D view the mouse sits on the reticle and the iso
+-- camera is not what is on screen, so screenToIso would put the aim near the survivor's feet. The
+-- aim is where the reticle points: its hit on the world, else where its ray meets the survivor's
+-- floor, else straight ahead along it when raised above the horizon (the range clamp below cuts
+-- that to the throw). viewState is the last 3D frame drawn and still reads on after a switch back
+-- to iso; Viewpoint.Loot.viewOn is the live switch (docs/26).
+local RETICLE_FAR = 1000.0
+local vpAimBroken = false
+
+local function reticleState()
+    if Viewpoint.Loot.viewOn() ~= true then return nil end
+    return Viewpoint.Addons.viewState()
+end
+
+local function reticleAim(pz)
+    if vpAimBroken or Viewpoint == nil or Viewpoint.Loot == nil or Viewpoint.Loot.viewOn == nil
+        or Viewpoint.Addons == nil or Viewpoint.Addons.viewState == nil then
+        return nil
+    end
+    local ok, st = pcall(reticleState)
+    if not ok then
+        vpAimBroken = true
+        M.defect(PART, "Viewpoint.Addons.viewState threw, aiming reads the mouse: " .. tostring(st))
+        return nil
+    end
+    if type(st) ~= "table" or type(st.crosshair) ~= "table" then return nil end
+    local hit = st.crosshairHit
+    if type(hit) == "table" and type(hit.x) == "number" and type(hit.y) == "number" then
+        return hit.x, hit.y
+    end
+    local c = st.crosshair
+    if type(c.dx) ~= "number" or type(c.x) ~= "number" then return nil end
+    if c.dz < -1.0e-4 then
+        local t = (pz - c.z) / c.dz
+        if t > 0.0 then return c.x + c.dx * t, c.y + c.dy * t end
+    end
+    local l = math.sqrt(c.dx * c.dx + c.dy * c.dy)
+    if l < 1.0e-4 then return nil end
+    return c.x + c.dx / l * RETICLE_FAR, c.y + c.dy / l * RETICLE_FAR
+end
+
 function M.aimPoint(player, maxRange)
     if player == nil then return nil end
     local px, py, pz = player:getX(), player:getY(), player:getZ()
-    local wx, wy = nil, nil
+    local wx, wy = reticleAim(pz)
 
-    if screenToIsoX ~= nil and getMouseX ~= nil then
+    if wx == nil and screenToIsoX ~= nil and getMouseX ~= nil then
         local ok, ax, ay = pcall(function()
             local n = player:getPlayerNum()
             return screenToIsoX(n, getMouseX(), getMouseY(), pz),

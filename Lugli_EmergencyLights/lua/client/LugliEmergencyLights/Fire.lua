@@ -72,11 +72,13 @@ end
 
 --- Draw one complete flare flame at a screen point.
 local function drawFlame(R, sx, sy, seedA, seedB, cr, cg, cb, life, windX, windY,
-                         core, glow, streak, corona, jx, jy)
+                         core, glow, streak, corona, jx, jy, size, bloom)
     -- The jet axis for THIS flare. Defaulted so a caller with no pose still gets the old upward
     -- plume rather than a zero-length vector and a division by nothing.
     jx = jx or 0.0
     jy = jy or -1.0
+    -- Every size below is authored for the iso view; fxScreen's scale carries it into perspective.
+    size = size or 1.0
     -- ---- THE JET --------------------------------------------------------------------------
     -- Tongues as oriented STREAKS along the jet axis rather than round blobs. A flame has a
     -- direction: it is thrown out of the tube and it tapers as it goes. Round sprites stacked up
@@ -86,10 +88,10 @@ local function drawFlame(R, sx, sy, seedA, seedB, cr, cg, cb, life, windX, windY
         local k = (phase * (1.6 + seed * 1.5) + seed) % 1.0
         -- Spread across the jet, widening as it travels.
         local fan = (seed - 0.5) * 1.5
-        local reach = JET_REACH * (0.35 + 0.65 * k) * life
+        local reach = JET_REACH * (0.35 + 0.65 * k) * life * size
         local tipX = sx + (jx + fan * 0.55 + windX * 0.5) * reach
         local tipY = sy + (jy + windY * 0.5) * reach
-        local w = (11.0 - 6.0 * k) * life
+        local w = (11.0 - 6.0 * k) * life * size
         if w > 0.5 then
             -- Cools along its length: white where it leaves the tube, the flare's own colour by
             -- the time it is spent.
@@ -106,15 +108,19 @@ local function drawFlame(R, sx, sy, seedA, seedB, cr, cg, cb, life, windX, windY
     -- Two frequencies so it never settles into an obvious beat.
     local f = 0.86 + 0.14 * math.sin(phase * 41.0)
                   + 0.06 * math.sin(phase * 97.0 + 1.7)
-    local cw = 6.0 * f * life
+    local cw = 6.0 * f * life * size
 
     -- THE BLOOM IS THE BIGGEST THING HERE AND IT STILL HAS TO FIT THE SCENE. At ten times the core
     -- it was an 85-pixel disc before the glow was added on top, which on a 100-pixel character
     -- reads as a force field rather than as a light. Six is a bloom; ten was a backdrop.
-    if corona ~= nil then
-        M.fxQuad(R, corona, sx, sy, cw * 6.0, cw * 6.0, phase * 0.21, cr, cg, cb, 0.26 * life)
+    -- Iso only: Viewpoint's 3D view lights the ground around the flare itself, and a flat disc
+    -- over that reads as a sticker.
+    if bloom then
+        if corona ~= nil then
+            M.fxQuad(R, corona, sx, sy, cw * 6.0, cw * 6.0, phase * 0.21, cr, cg, cb, 0.26 * life)
+        end
+        M.fxRect(R, glow, sx, sy, cw * 3.0, cw * 3.0, cr, cg, cb, 0.40 * life)
     end
-    M.fxRect(R, glow, sx, sy, cw * 3.0, cw * 3.0, cr, cg, cb, 0.40 * life)
     -- Near white, and small. The one part of a flare that has no colour of its own.
     M.fxRect(R, core, sx, sy, cw * 1.1, cw * 1.1, 1.0, 0.96, 0.90, 0.95 * life)
 end
@@ -136,11 +142,11 @@ local function draw()
     local vz = math.floor(viewer:getZ())
 
     -- The viewport this pass draws into, and the size divisor that goes with it. See fxViewport.
-    local vpIdx, vpZoom = M.fxViewport(viewer)
+    local vpIdx, vpZoom, persp = M.fxViewport(viewer)
 
     -- THE CULL, read once per frame from the camera rather than authored as a tile count.
     local vw, vh = M.fxViewBounds(vpIdx, vpZoom)
-    local reach = M.fxReachTiles(vw, vh)
+    local reach = M.fxReachTiles(vw, vh, persp)
     local reach2 = reach ~= nil and reach * reach or nil
 
     local R = getRenderer()
@@ -148,10 +154,12 @@ local function draw()
     -- Read ONCE. The wind is identical for every flare in the frame, and fetching it per record
     -- cost a closure, a pcall and three engine calls each.
     local windX, windY = 0.0, 0.0
+    local windAX, windAY, windStrength = 0.0, 0.0, 0.0
     if M.windVector ~= nil then
         local okw, ax, ay, kph = pcall(M.windVector)
         if okw and type(ax) == "number" then
             windX, windY = ax * (kph or 0.0) * 0.010, ay * (kph or 0.0) * 0.010
+            windAX, windAY, windStrength = ax, ay, (kph or 0.0) * 0.010
         end
     end
 
@@ -168,15 +176,19 @@ local function draw()
             -- A fired flare's ground record is a near-black carrier that owns the sound; the
             -- burning thing itself is up in the sky and draws its own fire.
             if rec.expiresAt ~= nil then return end
-            if rec.z ~= vz then return end
+            -- In the iso view a flare on another floor would sit over the roof between them; in
+            -- perspective line of sight decides, below.
+            if persp == nil and rec.z ~= vz then return end
 
             local px = rec.fx or (rec.x + 0.5)
             local py = rec.fy or (rec.y + 0.5)
             local dx, dy = px - vx, py - vy
             if reach2 ~= nil and dx * dx + dy * dy > reach2 then return end
 
-            local sx, sy = M.fxScreen(vpIdx, vpZoom, px, py, rec.fz or rec.z)
-            if not M.fxOnScreen(sx, sy, vw, vh, FLAME_MARGIN) then return end
+            local pz = rec.fz or rec.z
+            local sx, sy, size = M.fxScreen(vpIdx, vpZoom, px, py, pz, persp)
+            if size <= 0.0 or not M.fxOnScreen(sx, sy, vw, vh, FLAME_MARGIN * size) then return end
+            if not M.fxSees(persp, rec.x, rec.y, rec.z) then return end
 
             -- Dimmer as it burns down, but never out: a nearly spent flare is a smaller flame,
             -- not a dark one.
@@ -184,9 +196,18 @@ local function draw()
             -- FOLLOWS THE FLARE ON THE GROUND. rec.pitch/rec.yaw are the item's own world
             -- rotations, so a flare that came to rest on its side burns out of its side.
             local jx, jy = M.jetDirection(rec.pitch, rec.yaw)
+            local wx, wy = windX, windY
+            if persp ~= nil then
+                -- The jet and the wind as the camera sees them, from the same world directions.
+                local ax, ay, az = M.axisWorld(rec.pitch, rec.yaw)
+                local pjx, pjy = M.fxScreenDir(persp, px, py, pz, ax, ay, az)
+                jx, jy = pjx or 0.0, pjy or -1.0
+                local pwx, pwy = M.fxScreenDir(persp, px, py, pz, windAX, windAY, 0.0)
+                wx, wy = (pwx or 0.0) * windStrength, (pwy or 0.0) * windStrength
+            end
             drawFlame(R, sx, sy, rec.x, rec.y,
                       rec.rawR or 1.0, rec.rawG or 0.3, rec.rawB or 0.2,
-                      life, windX, windY, core, glow, streak, corona, jx, jy)
+                      life, wx, wy, core, glow, streak, corona, jx, jy, size, persp == nil)
         end)
     end)
 

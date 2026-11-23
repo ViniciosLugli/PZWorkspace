@@ -35,6 +35,7 @@ description=[list]
 description=[*][b]Can I add it to a running save?[/b] Yes. The items appear in containers the game has not generated yet.
 description=[*][b]Is it safe to remove?[/b] Yes. Items you carry go with the mod, as with any item mod.
 description=[*][b]Multiplayer?[/b] Yes, dedicated servers too. The server keeps every light, so all players see it in the same place, and it survives saves and reloads.
+description=[*][b]Does it work with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3809306528]Project Viewpoint[/url]?[/b] Yes, fully compatible.
 description=[*][b]Languages?[/b] English and Brazilian Portuguese.
 description=[/list]
 description=[hr][/hr]

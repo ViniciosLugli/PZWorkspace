@@ -123,6 +123,7 @@ get the frame time back.
   have stripped stay stripped. Safe to remove.
 - The *Explosives* mod also has a handheld road flare. Different module, so no conflict, but the two
   overlap on that one family.
+- Fully compatible with [Project Viewpoint](https://steamcommunity.com/sharedfiles/filedetails/?id=3809306528).
 - English and Brazilian Portuguese, both complete.
 
 ## Credits
