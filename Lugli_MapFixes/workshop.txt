@@ -4,6 +4,8 @@ description=A cleaner world map, minimap and spawn screen for popular Build 42 m
 description=
 description=It only changes how the maps are drawn and presented: the world map, the minimap, and each map's name and text on the spawn screen. No buildings, loot, zones or saves are touched, so you can add or remove it at any time.
 description=
+description=It is not perfect: a few roads still break where two maps meet, and some edges do not line up exactly. But the maps are much nicer to read and play on than before.
+description=
 description=[hr][/hr]
 description=[h1]Spawn screen[/h1]
 description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_MapFixes/art/mapfx-spawn.gif[/img]
@@ -36,7 +38,7 @@ description=[hr][/hr]
 description=[h1]Compatibility[/h1]
 description=[list]
 description=[*][b]Any mix of maps:[/b] use it with all of them or only a few. A map you do not have is skipped, and maps not on the list keep their own look.
-description=[*][b]Old Dirkerdam Map Fix:[/b] this replaces it. If you still have it, unsubscribe it: while it is on, Dirkerdam keeps that fix's drawing.
+description=[*][b]Old [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3821109144]Dirkerdam Map Fix[/url]:[/b] this replaces it. If you still have it, unsubscribe it: while it is on, Dirkerdam keeps that fix's drawing.
 description=[*][b]Multiplayer:[/b] works. Add it to the server's mod list like any other mod; it changes nothing on the server itself.
 description=[*][b]Replacement minimaps:[/b] a mod that builds its own minimap shows the maps' original drawing there. The world map and spawn screen are still fixed.
 description=[*][b]Existing saves:[/b] safe to add or remove at any time.
