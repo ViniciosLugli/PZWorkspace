@@ -1,0 +1,7 @@
+name=Lugli - Map Fixes & Alignment
+id=Lugli_MapFixes
+author=ViniciosLugli
+description=Clean world map, minimap and spawn previews for map mods
+category=features
+versionMin=42.20
+modversion=0.1.0

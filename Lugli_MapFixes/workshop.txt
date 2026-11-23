@@ -1,0 +1,51 @@
+version=1
+title=Lugli - Map Fixes & Alignment
+description=A cleaner world map, minimap and spawn screen for popular Build 42 map mods. Most roads that stopped at a cell edge or between two maps now carry on, the broken road shapes that cut wedges across Dirkerdam and Camden are gone, every map gets its own paper map on the spawn screen, and towns the map never named get their name.
+description=
+description=It only changes how the maps are drawn and presented: the world map, the minimap, and each map's name and text on the spawn screen. No buildings, loot, zones or saves are touched, so you can add or remove it at any time.
+description=
+description=[hr][/hr]
+description=[h1]Spawn screen[/h1]
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_MapFixes/art/mapfx-spawn.gif[/img]
+description=The game shows its own Kentucky map under every region, so a modded map sits on blank paper or on the wrong place. Each map below now has its own paper map in the vanilla style and scale, blended into the vanilla map, and any of the vanilla map's ads or captions it would cut through is cleared away rather than left half covered. The view opens wide enough to show all of them, and picking a map centres on its main town.
+description=
+description=[hr][/hr]
+description=[h1]World map[/h1]
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_MapFixes/art/mapfx-worldmap.gif[/img]
+description=Each map is redrawn from its own tiles: roads, buildings coloured by what they are, parks, forest and water. Most roads that stopped at a cell edge or a map border now carry on, and the misdrawn wedges are cut back to the real road. Vanilla's woods no longer show through a map's towns and fields when you zoom out.
+description=
+description=[hr][/hr]
+description=[h1]Minimap[/h1]
+description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_MapFixes/art/mapfx-minimap.gif[/img]
+description=The minimap uses the same roads, buildings and water, so the two always agree. Like vanilla's, it draws no forest.
+description=
+description=[hr][/hr]
+description=[h1]Maps[/h1]
+description=[list]
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3818766091]Dirkerdam Integrated B42[/url] by Byceicle, with its town names added
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3840538942]Camden County Relocated[/url] by Midgar
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3484263516]Raven Creek B42[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3490580478]Fort Benning B42[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3486814612]Fort Waterfront B42[/url] by BuchoJefe
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3783433804]Nellis Air Force Base[/url] by antony, with its names added
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3717208771]Atlas Underground Complex[/url] by SD JUAN, with its names added
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3840538850]Fort Knox[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3840538889]Bedford Falls[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3840538893]Road to Bedford[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3840538895]Lake Cumberland[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3840538926]Kingsmouth North[/url] by Midgar
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3644794945]Maplewood[/url] by Kyber
+description=[/list]
+description=All credit for the maps goes to their authors. This is an unofficial add-on: it is not made or endorsed by them, and it only redraws their maps from the maps' own files.
+description=
+description=[hr][/hr]
+description=[h1]Compatibility[/h1]
+description=[list]
+description=[*][b]Any mix of maps:[/b] use it with all of them or only a few. A map you do not have is skipped, and maps not on the list keep their own look.
+description=[*][b]Old Dirkerdam Map Fix:[/b] this replaces it. If you still have it, unsubscribe it: while it is on, Dirkerdam keeps that fix's drawing.
+description=[*][b]Multiplayer:[/b] works. Add it to the server's mod list like any other mod; it changes nothing on the server itself.
+description=[*][b]Replacement minimaps:[/b] a mod that builds its own minimap shows the maps' original drawing there. The world map and spawn screen are still fixed.
+description=[*][b]Existing saves:[/b] safe to add or remove at any time.
+description=[/list]
+description=[hr][/hr]
+description=Open source, MIT: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_MapFixes]github.com/ViniciosLugli/PZWorkspace[/url]
+description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url].
+description=
+description=If you want to support my mods, there's a Ko-fi: [url=https://ko-fi.com/vinicioslugli]ko-fi.com/vinicioslugli[/url]
+description=[url=https://ko-fi.com/vinicioslugli][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_MapFixes/art/kofi.png[/img][/url]
+tags=Build 42;Map;Interface;Multiplayer
+visibility=public
