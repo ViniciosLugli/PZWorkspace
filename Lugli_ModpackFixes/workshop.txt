@@ -58,7 +58,7 @@ description=[*][b]Did it load?[/b] A [i][Lugli/ModpackFixes][/i] line in console
 description=[/list]
 description=[hr][/hr]
 description=Using Guns of Marz? Add [url=https://steamcommunity.com/workshop/filedetails/?id=3839186582]Lugli - Grease of Marz[/url] for its gun fixes:
-description=[url=https://steamcommunity.com/workshop/filedetails/?id=3839186582][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_ModpackFixes/art/gm-preview.gif[/img][/url]
+description=[url=https://steamcommunity.com/workshop/filedetails/?id=3839186582][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_ModpackFixes/art/gm-card.gif[/img][/url]
 description=
 description=Like my mods? Support is never needed and always appreciated:
 description=[url=https://ko-fi.com/vinicioslugli][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_ModpackFixes/art/kofi.png[/img][/url]

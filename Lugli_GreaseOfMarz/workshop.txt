@@ -36,7 +36,7 @@ description=[*][b]Visible Magazine Reloads?[/b] Works beside it. Use its current
 description=[/list]
 description=[h1]Recommended[/h1]
 description=[b]Big modpack?[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3839187513]Lugli - B42 Modpack Compats & Fixes[/url] fixes conflicts between other popular Build 42 mods, and bugs inside some of them.
-description=[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3839187513][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_GreaseOfMarz/art/mpf-preview.gif[/img][/url]
+description=[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3839187513][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_GreaseOfMarz/art/mpf-card.gif[/img][/url]
 description=[hr][/hr]
 description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url].
 description=
