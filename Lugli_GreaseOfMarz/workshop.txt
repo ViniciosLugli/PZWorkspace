@@ -33,8 +33,10 @@ description=[list]
 description=[*][b]Existing saves?[/b] Safe to add and to remove.
 description=[*][b]Multiplayer?[/b] Install it on the server and every client.
 description=[*][b]Visible Magazine Reloads?[/b] Works beside it. Use its current version: it leaves Gunworks guns to Gunworks' own reloads.
-description=[*][b]Big modpack?[/b] Add [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3839187513]Lugli - B42 Modpack Compats & Fixes[/url] for fixes between other popular Build 42 mods.
 description=[/list]
+description=[h1]Recommended[/h1]
+description=[b]Big modpack?[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3839187513]Lugli - B42 Modpack Compats & Fixes[/url] fixes conflicts between other popular Build 42 mods, and bugs inside some of them.
+description=[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3839187513][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_GreaseOfMarz/art/mpf-preview.gif[/img][/url]
 description=[hr][/hr]
 description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url].
 description=

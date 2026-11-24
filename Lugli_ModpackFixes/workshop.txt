@@ -53,14 +53,14 @@ description=[list]
 description=[*][b]Load order?[/b] Anywhere after the mods it fixes.
 description=[*][b]Add or remove mid-save?[/b] Yes, it adds no items or objects.
 description=[*][b]Multiplayer?[/b] Install it on the server and on every client.
-description=[*][b]Using Guns of Marz?[/b] Add [url=https://steamcommunity.com/workshop/filedetails/?id=3839186582]Grease of Marz[/url] for its gun fixes.
 description=[*][b]Server admins:[/b] a [i]Lua/serverprof-on.txt[/i] file in the server's cache folder logs what each mod sends to players.
 description=[*][b]Did it load?[/b] A [i][Lugli/ModpackFixes][/i] line in console.txt lists each fix and if it loaded.
 description=[/list]
 description=[hr][/hr]
-description=More from me: [url=https://steamcommunity.com/id/ViniciosLugli/myworkshopfiles/?appid=108600]all my Project Zomboid mods[/url].
+description=Using Guns of Marz? Add [url=https://steamcommunity.com/workshop/filedetails/?id=3839186582]Lugli - Grease of Marz[/url] for its gun fixes:
+description=[url=https://steamcommunity.com/workshop/filedetails/?id=3839186582][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_ModpackFixes/art/gm-preview.gif[/img][/url]
 description=
-description=Like my mods? Support is never needed and always appreciated: [url=https://ko-fi.com/vinicioslugli]ko-fi.com/vinicioslugli[/url]
+description=Like my mods? Support is never needed and always appreciated:
 description=[url=https://ko-fi.com/vinicioslugli][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_ModpackFixes/art/kofi.png[/img][/url]
 tags=Build 42;QoL;WIP
 visibility=public
