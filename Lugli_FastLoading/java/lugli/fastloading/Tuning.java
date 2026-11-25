@@ -50,6 +50,21 @@ public final class Tuning {
         return b;
     }
 
+    public static final long MIN_DEPTH_QUEUE = 64L * 1024 * 1024;
+    public static final long MAX_DEPTH_QUEUE = 512L * 1024 * 1024;
+
+    /**
+     * Memory (heap pixels plus direct staging) that TileDepthLock may hold in decoded depth tiles
+     * still waiting for the render thread, which frees both only when it uploads the tile:
+     * heap/16 in [64 MB, 512 MB].
+     */
+    public static long depthQueueBytes(long maxHeapBytes) {
+        long b = maxHeapBytes / 16;
+        if (b < MIN_DEPTH_QUEUE) return MIN_DEPTH_QUEUE;
+        if (b > MAX_DEPTH_QUEUE) return MAX_DEPTH_QUEUE;
+        return b;
+    }
+
     /**
      * Boot prefetch workers (mod walk, mod info): cores-2 in [1, 8], leaving two cores to the main
      * and render threads. -Dfastloading.iothreads=N overrides it, floored at 1, for a spinning
@@ -65,6 +80,20 @@ public final class Tuning {
     public static final int MAX_IN_FLIGHT = 48;
 
     /**
+     * Asset tasks in flight during a world load. Finished tasks are retired only by the main
+     * thread, and it stalls for seconds at a time there (Lua handlers, the loading thread holding
+     * the event lock), so a shallow window leaves the workers idle with thousands queued. Deep
+     * enough to keep ten workers fed through such a stall; the direct-buffer budget still bounds
+     * the memory the finished-but-unretired tasks hold. -Dfastloading.assetcaploadn=N, floored at
+     * the engine's 16.
+     */
+    public static final int LOAD_IN_FLIGHT = 384;
+
+    public static int loadCap(Integer override) {
+        return override == null ? LOAD_IN_FLIGHT : Math.max(ENGINE_IN_FLIGHT, override);
+    }
+
+    /**
      * Asset tasks in flight: 5 per live asset worker, at most 48 (what the loose-class version
      * measured at, with a pool of 10), never below the engine's own 16. A pool that cannot be read
      * (0 or less) gets the engine's 16. -Dfastloading.assetcapn=N overrides it as given.
@@ -72,17 +101,19 @@ public final class Tuning {
     public static int assetCap(int poolSize, Integer override) {
         if (override != null) return override;
         if (poolSize <= 0) return ENGINE_IN_FLIGHT;
-        return Math.max(ENGINE_IN_FLIGHT, Math.min(MAX_IN_FLIGHT, 5 * poolSize));
+        return Math.max(ENGINE_IN_FLIGHT, (int) Math.min(MAX_IN_FLIGHT, 5L * poolSize));
     }
 
     /**
-     * Asset worker thread priority, 0 meaning leave the JVM default. On 8 cores or fewer the
-     * workers start one below normal so the front end keeps its share; above that there are
-     * cores to spare and they are left alone. -Dfastloading.assetprio=N overrides it, 0 included.
+     * Asset worker thread priority while the main menu is up, 0 meaning leave the JVM default.
+     * One below normal on every core count, so the menu keeps its share: ten workers on 12
+     * threads still outbid it. AssetThrottle applies it at the menu only. -Dfastloading.assetprio=N
+     * overrides it, 0 or less meaning the default and anything above Thread.MAX_PRIORITY clamped
+     * to it, which setPriority would otherwise refuse.
      */
-    public static int workerPriority(int cores, Integer override) {
-        if (override != null) return override;
-        return cores <= 8 ? Thread.NORM_PRIORITY - 1 : 0;
+    public static int workerPriority(Integer override) {
+        if (override != null) return override <= 0 ? 0 : Math.min(Thread.MAX_PRIORITY, override);
+        return Thread.NORM_PRIORITY - 1;
     }
 
     /** The machine and what was derived from it, for the menu handover line. */
@@ -104,8 +135,13 @@ public final class Tuning {
         if (overrideMB <= 0L) {
             return budgetBytes(maxHeapBytes);
         }
-        long b = overrideMB * 1024L * 1024L;
+        long b = mbToBytes(overrideMB);
         return b < MIN_BUDGET ? MIN_BUDGET : b;
+    }
+
+    /** Megabytes to bytes, saturating: a wrapped product would turn a huge override into 64 MB. */
+    private static long mbToBytes(long mb) {
+        return mb > Long.MAX_VALUE >> 20 ? Long.MAX_VALUE : mb << 20;
     }
 
     /**
@@ -154,7 +190,7 @@ public final class Tuning {
         if (overrideMB <= 0L) {
             return loadingBudgetBytes;
         }
-        long b = overrideMB * 1024L * 1024L;
+        long b = mbToBytes(overrideMB);
         if (b < MIN_BUDGET) b = MIN_BUDGET;
         return b > loadingBudgetBytes ? loadingBudgetBytes : b;
     }
@@ -205,6 +241,31 @@ public final class Tuning {
      * live-reload path, so: skip ONLY a recognisable media tree, and never the messaging folder
      * that carries Trigger_*.xml.
      */
+    /**
+     * The PNG Paeth predictor without data-dependent branches. p - a, p - b and p - c reduce to
+     * b - c, a - c and a + b - 2c; the selection is the spec's (a on ties with both, then b).
+     * Exhaustively equal to the engine's PNGDecoder form over all 2^24 inputs (TuningTest).
+     */
+    static int paethPredict(int a, int b, int c) {
+        int pa = Math.abs(b - c);
+        int pb = Math.abs(a - c);
+        int pc = Math.abs(a + b - c - c);
+        int notA = ((pb - pa) | (pc - pa)) >> 31;
+        int bc = b ^ ((b ^ c) & ((pc - pb) >> 31));
+        return a ^ ((a ^ bc) & notA);
+    }
+
+    /** PNGDecoder.unfilterPaeth with paethPredict; index 0 is the row's filter-type byte, as there. */
+    public static void unfilterPaeth(byte[] curLine, byte[] prevLine, int bpp) {
+        int i;
+        for (i = 1; i <= bpp; i++) {
+            curLine[i] += prevLine[i];
+        }
+        for (int n = curLine.length; i < n; i++) {
+            curLine[i] += (byte) paethPredict(curLine[i - bpp] & 255, prevLine[i] & 255, prevLine[i - bpp] & 255);
+        }
+    }
+
     public static boolean isSkippableWatchRoot(String path, char separator) {
         if (path == null || path.isEmpty()) return false;
         // Normalise BOTH separators, not just the platform one. The engine builds paths by

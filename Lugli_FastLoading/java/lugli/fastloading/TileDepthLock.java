@@ -6,8 +6,12 @@ import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 import me.zed_0xff.zombie_buddy.Patch;
+import zombie.GameWindow;
+import zombie.core.opengl.RenderThread;
 import zombie.debug.DebugLog;
 import zombie.tileDepth.TileDepthTextures;
 import zombie.tileDepth.TilesetDepthTexture;
@@ -23,6 +27,13 @@ import zombie.tileDepth.TilesetDepthTexture;
  * map and submits the task in the same loop iteration, so narrowing the lock too far turns one
  * concurrent reader into ten on a plain HashMap mid-resize. A wrong row count builds a
  * wrong-sized tileset, which renders as a depth artefact rather than failing loudly.
+ *
+ * MUST bound the decoded tiles waiting for the render thread. Each tile keeps its float[] and an
+ * RGBA direct buffer until its render items run, and the render thread drains only 10 ms of its queue per frame, so
+ * parallel decoders outrun it: a 367-mod list queued 2.5 GB and died of OutOfMemoryError at 6 GB.
+ * A tileset reserves its worst case before it decodes and releases it from a marker queued behind
+ * its own tiles; a full budget makes the decoder wait on a blocking no-op, which forces the render
+ * thread to drain everything ahead of it.
  */
 @Patch(className = "zombie.tileDepth.TileDepthTextures$LoadTask", methodName = "call")
 public final class TileDepthLock {
@@ -38,6 +49,11 @@ public final class TileDepthLock {
     public static int handled;
     public static boolean announced;
 
+    public static final long QUEUE_BUDGET = Tuning.depthQueueBytes(Runtime.getRuntime().maxMemory());
+    public static final AtomicLong QUEUED = new AtomicLong();
+    public static final AtomicLong PEAK_QUEUED = new AtomicLong();
+    public static final AtomicInteger DRAIN_WAITS = new AtomicInteger();
+
     public static Field fPath;
     public static Field fTextures;
     public static Field fTilesets;
@@ -50,7 +66,61 @@ public final class TileDepthLock {
     public static String status() {
         if (!ON) return "off";
         if (broken) return "DEFECT";
-        return "ok, " + handled + " depth tileset(s) decoded outside the lock";
+        return "ok, " + handled + " depth tileset(s) decoded outside the lock, peak "
+                + (PEAK_QUEUED.get() >> 20) + " of " + (QUEUE_BUDGET >> 20) + " MB awaiting upload, "
+                + DRAIN_WAITS.get() + " drain wait(s)";
+    }
+
+    /** Blocks until bytes fit the budget. One tileset always fits an empty queue, so no task starves. */
+    public static void reserve(long bytes) {
+        for (;;) {
+            long cur = QUEUED.get();
+            if (cur == 0 || cur + bytes <= QUEUE_BUDGET) {
+                if (QUEUED.compareAndSet(cur, cur + bytes)) {
+                    long peak;
+                    while ((peak = PEAK_QUEUED.get()) < cur + bytes) {
+                        if (PEAK_QUEUED.compareAndSet(peak, cur + bytes)) {
+                            if ((cur + bytes) * 4 / QUEUE_BUDGET > peak * 4 / QUEUE_BUDGET) {
+                                DebugLog.log(TAG + " " + ((cur + bytes) >> 20) + " of " + (QUEUE_BUDGET >> 20)
+                                        + " MB of decoded depth tiles awaiting upload");
+                            }
+                            break;
+                        }
+                    }
+                    return;
+                }
+                continue;
+            }
+            if (GameWindow.gameThreadExited || RenderThread.isCloseRequested()) {
+                QUEUED.addAndGet(bytes);
+                return;
+            }
+            if (DRAIN_WAITS.incrementAndGet() == 1) {
+                DebugLog.log(TAG + " upload budget full at " + (cur >> 20)
+                        + " MB: decoders now wait for the render thread to drain");
+            }
+            RenderThread.invokeOnRenderContext(new Release(0L));
+        }
+    }
+
+    /** Queued behind the tileset's own upload lambdas, so it runs after the last of them. */
+    public static void release(long bytes) {
+        RenderThread.queueInvokeOnRenderContext(new Release(bytes));
+    }
+
+    public static final class Release implements Runnable {
+        private final long bytes;
+
+        public Release(long bytes) {
+            this.bytes = bytes;
+        }
+
+        @Override
+        public void run() {
+            if (bytes != 0L) {
+                QUEUED.addAndGet(-bytes);
+            }
+        }
     }
 
     /** Resolve once. Any failure disables the patch rather than half-applying it. */
@@ -126,10 +196,19 @@ public final class TileDepthLock {
                 }
                 TilesetDepthTexture tileset = ctor.newInstance(textures, name, 8, rows, true);
                 if (tileset.fileExists()) {
+                    // Per tile until its render items run: the float[] pixels, plus the RGBA
+                    // direct buffer new Texture(w, h, name, 0) allocates and never uploads, plus
+                    // DepthUpload's staged R8 bytes.
+                    long bytes = (8L + DepthUpload.STAGED_BYTES_PER_PIXEL) * tileset.getWidth() * tileset.getHeight();
+                    reserve(bytes);
+                    DepthUpload.beginLoad();
                     try {
                         tileset.load();
                     } catch (Exception ex) {
                         DebugLog.log(TAG + " load failed for " + name + ": " + ex);
+                    } finally {
+                        DepthUpload.endLoad();
+                        release(bytes);
                     }
                 }
                 store(textures, name, tileset);

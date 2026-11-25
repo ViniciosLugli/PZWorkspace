@@ -9,6 +9,10 @@ Needs [ZombieBuddy](https://steamcommunity.com/sharedfiles/filedetails/?id=36198
 engine patches. Without it only the Lua parts run (the two loot fixes and one options-screen
 fix), and the mod says so in the game log.
 
+**Give the game enough memory:** at least 8 GB on a heavy mod pack (hundreds of mods), 4 to 6 GB
+otherwise. Steam ships about 3 GB; replace the `-Xmx` value in the `vmArgs` of
+`ProjectZomboid64.json` with `-Xmx8g` or `-Xmx6g`, and again after a game update resets it.
+
 **Actively maintained.** The figures below come from one campaign and are not a ceiling. I keep
 this current as Build 42 moves.
 
@@ -18,19 +22,21 @@ this current as Build 42 moves.
 
 | | without | with | delta |
 |---|---|---|---|
-| Vanilla, launch to main menu | 21.2 s | 13.0 s | **-39 %** |
-| Vanilla, world load | 16.0 s | 14.0 s | **-13 %** |
-| Vanilla, launch to playing | 37.2 s | 27.0 s | **-27 %** |
-| 337 mods, launch to main menu | 47.3 s | 32.3 s | **-32 %** |
-| 337 mods, world load | 83.0 s | 58.0 s | **-30 %** |
-| 337 mods, launch to playing | 130.3 s | 90.3 s | **-31 %** |
+| Vanilla, launch to main menu | 26.0 s | 21.2 s | **-19 %** |
+| Vanilla, world load | 30.5 s | 19.1 s | **-37 %** |
+| Vanilla, launch to playing | 56.5 s | 40.3 s | **-29 %** |
+| 360 mods, launch to main menu | 63.6 s | 42.6 s | **-33 %** |
+| 360 mods, world load | 177.3 s | 59.2 s | **-67 %** |
+| 360 mods, launch to playing | 240.9 s | 101.8 s | **-58 %** |
 
-Build 42.20.4, 5 s dwell at the menu, arms interleaved A,B,A,B, every run checked against its own
-log, stock engine with no local-only patches. Four pairs per arm, the first of each discarded as
-cold. Launch-to-playing bands: 35.6-39.0 to 26.3-27.8, and 129.3-130.8 to 87.8-90.9.
+Build 42.22.2, 8 GB heap, 5 s dwell at the menu, arms interleaved A,B,A,B, every run checked
+against its own log, stock engine with no local-only patches, the mod loaded from the mod list as
+a subscriber's is. Four pairs per arm, the first of each discarded as cold. Launch-to-playing
+bands: 55.9-56.5 to 40.2-40.6, and 239.7-241.2 to 101.2-102.3.
 
 Boot and world load in a row come from **the same launches**, so the three rows of a pair add up.
-No total is stacked from two separate campaigns.
+No total is stacked from two separate campaigns. World load here is everything from the main menu
+to playing, the 5 s menu wait and Click to Start included.
 
 It scales with mod count, not map size.
 
@@ -139,8 +145,13 @@ That combination is not supported, because a fault cannot be attributed to one m
 
 **Zed's Better FPS NG specifically.** Checked on 42.20.4 against its 2026-08-27 build: it patches
 **no method this mod patches**, so the two can be installed together. It does retransform three of
-the same engine *classes* -- `GameWindow`, `Model` and `FileSystemImpl`, the last one new in that
+the same engine *classes*: `GameWindow`, `Model` and `FileSystemImpl`, the last one new in that
 build. If you run both and something looks wrong, turn one off before reporting it.
+
+**Project Viewpoint works with it.** Tested together on 42.22.2 against Viewpoint 0.1.7, preloaded
+and not, on a new world and a reloaded save: every patch of both mods applied and neither logged an
+error. Both patch `Model.CreateShader` and `LuaManager.init`, and in those runs both mods reported
+their hooks on those two methods working.
 
 ## Signing
 
@@ -173,7 +184,7 @@ updates the game.
 | `-Dfastloading.menubudget=N` | 0 (off) | direct-buffer megabytes while the menu is up. Measured null on menu responsiveness and slightly worse on world load; try 256 if your menu stutters |
 | `-Dfastloading.assetpoll=N` | 20 | milliseconds between budget re-checks |
 | `-Dfastloading.assetcache=N` | 20 | milliseconds a live-buffer reading stays reusable |
-| `-Dfastloading.assetprio=N` | auto (4 on 8 cores or fewer, else the JVM default) | asset worker thread priority, 1-10; 0 leaves the JVM default |
+| `-Dfastloading.assetprio=N` | 4 | asset worker thread priority while the main menu is up, 1-10; 0 leaves the JVM default. One below normal keeps the menu responsive while textures keep loading behind it; boot and world load always run the workers at normal priority |
 | `-Dfastloading.uploadcap=N` | 0 | how far the render thread may fall behind on uploads while the menu is up; 0 = no limit |
 | `-Dfastloading.assetstats=on` | off | log the gate counters while they move |
 | `-Dfastloading.assetstatsms=N` | 5000 | milliseconds between those lines |
@@ -189,9 +200,22 @@ updates the game.
 | `-Dfastloading.assetcap=off` | on | use the engine's 16-task in-flight asset cap |
 | `-Dfastloading.assetcapn=N` | auto (5 per asset thread, 16 to 48) | how many asset tasks may be in flight when it is on |
 | `-Dfastloading.assetcapms=N` | 600000 | backstop: end the raise this long after it starts, if the menu never reports |
+| `-Dfastloading.assetcapload=off` | on | let only the engine's 16 asset tasks be in flight during the world load |
+| `-Dfastloading.assetcaploadn=N` | 384 | how many asset tasks may be in flight during the world load, at least 16 |
 | `-Dfastloading.querycache=off` | on | ask the render thread again for a capability answer that cannot change |
 | `-Dfastloading.shadercache=off` | on | recompile model shaders every load |
 | `-Dfastloading.tiledepth=off` | on | decode depth tilesets inside the global lock |
+| `-Dfastloading.dxtprep=off` | on | with texture compression on, let the driver compress every texture on the render thread instead of the asset workers |
+| `-Dfastloading.depthupload=off` | on | convert each depth tile for upload on the render thread, as the engine does |
+| `-Dfastloading.luamatch=off` | on | while loading, draw every string pointer of a Lua pattern match from the engine's synchronized pool and hand each one back when the call ends (in play the engine's pool always runs) |
+| `-Dfastloading.pngmask=off` | on | build each PNG's opaque-pixel mask one pixel and one checked call at a time |
+| `-Dfastloading.paeth=off` | on | decode PNG Paeth rows with the engine's branching predictor, the largest cost of a tile pack page |
+| `-Dfastloading.tilejit=off` | on | leave the tile definition reader to the JIT's defaults, under which it runs interpreted for the whole tile pass |
+| `-Dfastloading.metaindex=off` | on | scan the whole building list for each basement, and each cell's room list for each room, as the engine does |
+| `-Dfastloading.vehiclezones=off` | on | compare every vehicle zone with every earlier one, once per map folder, as the engine does |
+| `-Dfastloading.finditem=off` | on | look an unknown item up again once per script module, as the engine does, before giving up |
+| `-Dfastloading.pixelprep=off` | on | premultiply and build mipmaps through the engine's own byte-by-byte loops |
+| `-Dfastloading.dxtprep=verify` | on | also decode every 8th precompressed texture, all its levels, against the pixels it replaces, check every upload for a GL error, and report the score in the dxtprep line |
 | `-Dfastloading.vehtex=off` | on | load vehicle textures during world load |
 | `-Dfastloading.vehtexslice=N` | 32 | vehicle scripts warmed per slice |
 | `-Dfastloading.vehtexinterval=N` | 100 | milliseconds between warm slices |
@@ -212,7 +236,7 @@ updates the game.
 | `-Dfastloading.menucalls=off` | on | rebuild the key-name table every time the options screen opens |
 
 On a **dedicated server** none of these apply: the jar does not load there. The two Lua parts are
-switched from Lua instead -- set `FastLoadingDisableGunIndex = true` or
+switched from Lua instead: set `FastLoadingDisableGunIndex = true` or
 `FastLoadingDisableLootInit = true` from any server Lua file.
 
 ## Layout

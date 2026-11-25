@@ -280,14 +280,28 @@ public class AssetThrottle {
     public static long lastStatsBlockedMs;
 
     /**
-     * Asset workers run below the game thread. Ten decode threads on a six-core part outbid the
-     * front end, and the menu drops frames -- which is what a player feels as a slow options
-     * screen. Priority costs no throughput: while the game thread is idle, as it is through a
-     * loading screen, the workers still get every spare core.
+     * Asset workers run below the front end while the main menu is up, and at normal priority
+     * through boot and world load. At the menu ten decode threads on a six-core part outbid the
+     * menu's render thread and it drops frames; during a load the game's own loading threads are
+     * busy too, and demoted workers lose the cores the asset barrier waits on (docs/18, "Worker
+     * priority at the menu").
      * -Dfastloading.assetprio=N, 1..10, 0 leaves the default. Unset, see Tuning.workerPriority.
      */
     public static final int WORKER_PRIORITY =
-            Tuning.workerPriority(Tuning.HOST.cores, Integer.getInteger("fastloading.assetprio"));
+            Tuning.workerPriority(Integer.getInteger("fastloading.assetprio"));
+
+    /** Every image task starts in enter(), so each worker re-checks its priority per task. */
+    public static void applyWorkerPriority() {
+        if (WORKER_PRIORITY <= 0) return;
+        int want = atMenu() ? WORKER_PRIORITY : Thread.NORM_PRIORITY;
+        Thread self = Thread.currentThread();
+        if (self.getPriority() != want) {
+            try {
+                self.setPriority(want);
+            } catch (Throwable ignored) {
+            }
+        }
+    }
 
     @Patch.OnEnter(skipOn = true)
     public static boolean enter() {
@@ -295,17 +309,7 @@ public class AssetThrottle {
             return false;               // run the engine's own 50 MB / 20 ms wait
         }
         sizePool();
-        // Every image task starts here, so each worker demotes itself on its first one. No
-        // thread factory needed, and it reaches the pool's original threads too.
-        if (WORKER_PRIORITY > 0) {
-            Thread self = Thread.currentThread();
-            if (self.getPriority() != WORKER_PRIORITY) {
-                try {
-                    self.setPriority(WORKER_PRIORITY);
-                } catch (Throwable ignored) {
-                }
-            }
-        }
+        applyWorkerPriority();
         countCall();
         boolean blocked = false;
         long t0 = 0L;

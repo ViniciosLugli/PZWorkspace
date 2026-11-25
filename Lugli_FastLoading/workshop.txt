@@ -1,47 +1,54 @@
 version=1
 title=Lugli - Fast Loading
-description=Removes loading work Project Zomboid does not need to do. Your loot, items and world come out identical, checked before every release.
+description=Makes Project Zomboid load faster by skipping work it does not need to do. Your loot, items and world stay the same, and I check that before each release.
 description=
-description=[b]300+ mods: 130s to 90s to be in the world (-31%), 47s to 32s to the main menu (-32%).[/b]
-description=[b]Vanilla: 37s to 27s to be in the world (-27%).[/b]
+description=[b]With 360 mods:[/b] 241s to 102s to get into the world, and 64s to 43s to reach the main menu.
+description=[b]Without other mods:[/b] 56s to 40s to get into the world.
 description=
 description=[img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_FastLoading/art/proof-chart.png[/img]
-description=[i]Measured on Build 42.20.4 with 337 mods: same machine, same save, runs interleaved.[/i]
+description=[i]Measured on Build 42.22.2 with an 8 GB heap: same machine, same save, runs taken in turns.[/i]
 description=
 description=[h1]Needs [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853]ZombieBuddy[/url][/h1]
-description=Build 42.20 or later. ZombieBuddy does the engine patching. Without it only the loot and options-screen fixes run, and the game log says so.
+description=Build 42.22 or later. ZombieBuddy does the engine patching. Without it only the loot and options-screen fixes run, and the game log says so.
 description=
-description=[h1]What it does[/h1]
+description=[h1]What it changes[/h1]
 description=[list]
-description=[*]Skips the intro logos, which play [i]after[/i] loading has already finished
-description=[*]Shows a real loading screen instead of a frozen window: progress bar, phase and elapsed time
-description=[*]Scans your mod folders on several threads, with the same override order
-description=[*]Decodes textures and tilesets in parallel, and caches compiled shaders
-description=[*]Parses tile geometry in the background
-description=[*]Loads vehicle textures while you sit at the menu, not while you wait to spawn
-description=[*]Builds the loot table once, after every mod has added to it, not once per mod
-description=[*]Speeds up Gunworks loot, if you run that mod
-description=[*]Opens the options screen without the long pause
-description=[*]Sizes itself to your CPU and to the memory the game is given
+description=[*]Skips the intro logos, which only play after loading is already done
+description=[*]Shows a loading screen with a progress bar instead of a frozen window
+description=[*]Reads mod folders, textures and tiles on several threads instead of one
+description=[*]Prepares textures on the loading threads, so the screen keeps drawing
+description=[*]Looks up items, buildings and vehicle zones through an index instead of long lists
+description=[*]Loads vehicle textures while you are at the menu
+description=[*]Builds the loot table once, after every mod has added to it
+description=[*]Speeds up Gunworks loot, if you use that mod
+description=[*]Adjusts itself to your CPU and to the memory the game has
 description=[/list]
-description=Every part can be switched off on its own, and a part that fails its self-check turns itself off.
+description=Each part can be turned off on its own, and a part that fails its own check turns itself off.
 description=
 description=[h1]FAQ[/h1]
 description=[list]
-description=[*][b]ZombieBuddy asks me to approve a Java mod.[/b] Expected. Approve it once and enable the mod.
-description=[*][b]Is it signed?[/b] Yes, and ZombieBuddy's author list names me. A signature proves who built it, not what it does, so the full source is on GitHub.
+description=[*][b]ZombieBuddy asks me to approve a Java mod.[/b] That is normal. Approve it once and enable the mod.
+description=[*][b]Is it signed?[/b] Yes, and ZombieBuddy's author list names me. A signature shows who built it, not what it does, which is why the source is on GitHub.
 description=[*][b]ZombieBuddy says the signature is invalid.[/b] It could not download its author list, which happens when GitHub is blocked. Launch once with a VPN or accelerator on, or open [url=https://cdn.jsdelivr.net/gh/zed-0xff/ZombieBuddy@master/authors.json]this copy of the list[/url] in your browser and save it as authors.json in %USERPROFILE%\.zombie_buddy (paste that into the File Explorer address bar; create the folder if it is missing), then restart the game. The list is signed by ZombieBuddy, so any copy is safe.
-description=[*][b]Where do the switches below go?[/b] In the [b]vmArgs[/b] list of ProjectZomboid64.json in the game folder, not in Steam launch options. A game update resets that file, so add them again after one.
+description=[*][b]How much memory should the game get?[/b] At least 8 GB with hundreds of mods, 4 to 6 GB otherwise. Steam sets about 3 GB. Change the [i]-Xmx[/i] value in ProjectZomboid64.json to [i]-Xmx8g[/i] or [i]-Xmx6g[/i]; the next answer says where that file is. Too little memory can crash a big list while it loads.
+description=[*][b]Where do the switches go?[/b] In the [b]vmArgs[/b] list of ProjectZomboid64.json in the game folder, not in Steam launch options. A game update resets that file, so add them again after one.
 description=[*][b]The loading screen looks different.[/b] That is this mod. Add [i]-Dfastloading.progress=off[/i] for the vanilla screen, or [i]-Dfastloading.warningms=-1[/i] to bring back the photosensitivity notice.
 description=[*][b]I play from a hard disk.[/b] Add [i]-Dfastloading.iothreads=2[/i] so the folder scan seeks less.
+description=[*][b]Does it work with Project Viewpoint?[/b] Yes. I tested them together on Build 42.22.2, on a new world and a reloaded save.
 description=[*][b]Dedicated server?[/b] Only the loot fixes run there. The rest is client side.
-description=[*][b]Add or remove it mid-save?[/b] Yes. It writes nothing to your save or your game folder.
-description=[*][b]Something looks wrong.[/b] Add [i]-Dfastloading.logo=keep -Dfastloading.assets=off[/i] to turn off the parts most likely to cause it. If that fixes it, open an issue on GitHub.
+description=[*][b]Can I add or remove it mid-save?[/b] Yes. It writes nothing to your save or your game folder.
+description=[*][b]Something looks wrong.[/b] Add [i]-Dfastloading.logo=keep -Dfastloading.assets=off[/i] to turn off the parts most likely to cause it. If that fixes it, please open an issue on GitHub.
 description=[/list]
 description=[hr][/hr]
 description=[b]Also by me:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3790863696]Lugli - Optimizations[/url], for frame time once you are in the world.
-description=Source, every switch and the method, MIT: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_FastLoading]github.com/ViniciosLugli/PZWorkspace[/url]
-description=Measured on [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url], the 300+ mod list behind these numbers.
+description=If you run a big mod list, these may help too. Each one only touches the mods it is made for:
+description=[list]
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3839186582]Lugli - Grease of Marz (Unofficial)[/url]: fixes for the Gunworks and Guns of Marz gun stack
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3844822829]Lugli - Map Fixes & Alignment[/url]: a cleaner world map, minimap and spawn screen for popular map mods
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3839187513]Lugli - B42 Modpack Compats & Fixes[/url]: fixes for conflicts between popular Build 42 mods
+description=[/list]
+description=Source, every switch and how it was measured, MIT: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_FastLoading]github.com/ViniciosLugli/PZWorkspace[/url]
+description=The 360-mod numbers come from [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url].
 description=
 description=Like my mods? Support is never needed and always appreciated: [url=https://ko-fi.com/vinicioslugli]ko-fi.com/vinicioslugli[/url]
 description=[url=https://ko-fi.com/vinicioslugli][img]https://raw.githubusercontent.com/ViniciosLugli/PZWorkspace/main/Lugli_FastLoading/art/kofi.png[/img][/url]

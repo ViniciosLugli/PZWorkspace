@@ -236,6 +236,16 @@ public final class BootProgress {
             part(ModWalkPrefetch.TAG, ModWalkPrefetch.status());
             part(TileGeometryPrefetch.TAG, TileGeometryPrefetch.status());
             part(TileDepthLock.TAG, TileDepthLock.status());
+            part(DxtPrep.TAG, DxtPrep.status());
+            part(PixelPrep.TAG, PixelPrep.status());
+            part(ItemLookup.TAG, ItemLookup.status());
+            part(DepthUpload.TAG, DepthUpload.status());
+            part(VehicleZoneDedup.TAG, VehicleZoneDedup.status());
+            part(MetaGridIndex.TAG, MetaGridIndex.status());
+            part(TileJit.TAG, TileJit.status());
+            part(PngPaeth.TAG, PngPaeth.status());
+            part(PngMask.TAG, PngMask.status());
+            part(LuaMatch.TAG, LuaMatch.status());
             part(QueryCache.TAG, QueryCache.status());
             part(LogStatThrottle.TAG, LogStatThrottle.status());
             part(LuaLoadedIndex.TAG, LuaLoadedIndex.status());

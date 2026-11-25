@@ -6,9 +6,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import zombie.GameWindow;
 import zombie.core.logger.ExceptionLogger;
 import zombie.debug.DebugLog;
 import zombie.fileSystem.FileTask;
+import zombie.gameStates.GameState;
 
 /**
  * Raises the asset in-flight cap above the engine's hardcoded 16. -Dfastloading.assetcap=off,
@@ -55,16 +57,24 @@ public final class AssetCap {
     public static volatile boolean off;
 
     /**
-     * BOOT ONLY, and this is a safety scope rather than a tuning choice.
-     *
-     * The entire measured win is in boot (-3.61 s) -- world load did not move -- so ending here
-     * costs nothing and removes every risk outside it. Two engine paths pump this method in a
-     * CANCELLATION spin loop: ImagePyramid.destroy() (:705) cancels its tasks and then spins on
-     * updateAsyncTransactions until they drain, and TilesetImageCreator (:85) does the same shape.
-     * A top-up that keeps feeding the gate during one of those would lengthen the very drain the
-     * loop is waiting on. Nothing about that is worth a second of boot we already have.
+     * Ends the boot scope. Outside boot the raise runs only while GameLoadingState is current:
+     * ImagePyramid.destroy() and TilesetImageCreator pump this method in a cancellation spin loop,
+     * and a top-up there would lengthen the drain that loop waits on. GameLoadingState.enter runs
+     * that drain (WorldMapImages.Reset), which is safe only because GameStateMachine calls
+     * enter() before it sets current, so current is still the previous state during it.
      */
     public static volatile boolean bootDone;
+
+    /** -Dfastloading.assetcapload=off: the engine's 16 in flight during the world load. */
+    public static final boolean LOAD_SCOPE =
+            !"off".equals(System.getProperty("fastloading.assetcapload", "on"));
+
+    /** The world-load window; see Tuning.loadCap. */
+    public static final int LOAD_CAP = Tuning.loadCap(Integer.getInteger("fastloading.assetcaploadn"));
+
+    public static int loadSubmitted;
+    public static int loadRetired;
+    private static boolean loadAnnounced;
 
     /**
      * BACKSTOP. endBoot() is called from BootProgress's advice on MainScreenState.enter, so the
@@ -107,22 +117,58 @@ public final class AssetCap {
         resolved = true;
     }
 
+    /** true once the boot scope has run past MAX_MS without the menu ending it. */
+    private static boolean bootBackstopFired() {
+        long now = System.currentTimeMillis();
+        if (firstTopUpAt == 0L) {
+            firstTopUpAt = now;
+            return false;
+        }
+        if (MAX_MS <= 0L || now - firstTopUpAt <= MAX_MS) {
+            return false;
+        }
+        // The scope never closed. Something upstream did not run; stop rather than run on.
+        bootDone = true;
+        DebugLog.log(TAG + " backstop: boot never ended after " + (MAX_MS / 1000L)
+                     + "s, cap back to " + ENGINE_WINDOW);
+        return true;
+    }
+
+    /** After boot: true while a world load is on screen and LOAD_SCOPE is on; logs each edge. */
+    private static boolean worldLoadScope() {
+        if (!LOAD_SCOPE) {
+            return false;
+        }
+        GameState current = GameWindow.states.current;
+        boolean inLoad = current != null
+                && "zombie.gameStates.GameLoadingState".equals(current.getClass().getName());
+        if (inLoad && !loadAnnounced) {
+            loadAnnounced = true;
+            loadSubmitted = 0;
+            loadRetired = 0;
+            DebugLog.log(TAG + " world-load scope armed, cap " + LOAD_CAP);
+        } else if (!inLoad && loadAnnounced) {
+            loadAnnounced = false;
+            DebugLog.log(TAG + " world load ended: " + loadSubmitted + " extra submit(s), "
+                         + loadRetired + " retired beyond the engine window; cap back to "
+                         + ENGINE_WINDOW);
+        }
+        return inLoad;
+    }
+
     /**
      * Called on the way out of updateAsyncTransactions, after the engine has done its capped pass.
      */
     @SuppressWarnings("unchecked")
     public static void topUp(Object fs) {
-        if (!ON || off || bootDone || fs == null) {
+        if (!ON || off || fs == null) {
             return;
         }
-        long now = System.currentTimeMillis();
-        if (firstTopUpAt == 0L) {
-            firstTopUpAt = now;
-        } else if (MAX_MS > 0L && now - firstTopUpAt > MAX_MS) {
-            // The scope never closed. Something upstream did not run; stop rather than run on.
-            bootDone = true;
-            DebugLog.log(TAG + " backstop: boot never ended after " + (MAX_MS / 1000L)
-                         + "s, cap back to " + ENGINE_WINDOW);
+        final boolean afterBoot = bootDone;
+        if (afterBoot && !worldLoadScope()) {
+            return;
+        }
+        if (!afterBoot && bootBackstopFired()) {
             return;
         }
         try {
@@ -162,19 +208,28 @@ public final class AssetCap {
                     }
                     F_TASK.set(item, null);
                     F_FUTURE.set(item, null);
-                    retiredTail++;
+                    if (afterBoot) {
+                        loadRetired++;
+                    } else {
+                        retiredTail++;
+                    }
                 }
             }
 
             // Then fill the gate the rest of the way.
-            int pool = executor instanceof ThreadPoolExecutor tpe ? tpe.getMaximumPoolSize() : 0;
-            int limit = Tuning.assetCap(pool, CAP_OVERRIDE);
-            // Logged on each change, which is at most twice: the stock pool, then the resized one.
-            if (limit != cap) {
-                DebugLog.log(TAG + " in-flight cap " + ENGINE_WINDOW + " -> " + limit
-                             + " (asset pool " + pool + ")");
+            int limit;
+            if (afterBoot) {
+                limit = LOAD_CAP;
+            } else {
+                int pool = executor instanceof ThreadPoolExecutor tpe ? tpe.getMaximumPoolSize() : 0;
+                limit = Tuning.assetCap(pool, CAP_OVERRIDE);
+                // Logged on each change, which is at most twice: the stock pool, then the resized one.
+                if (limit != cap) {
+                    DebugLog.log(TAG + " in-flight cap " + ENGINE_WINDOW + " -> " + limit
+                                 + " (asset pool " + pool + ")");
+                }
+                cap = limit;
             }
-            cap = limit;
             while (inProgress.size() < limit && !pending.isEmpty()) {
                 Object item = pending.remove(0);
                 FutureTask<Object> f = (FutureTask<Object>) F_FUTURE.get(item);
@@ -190,7 +245,11 @@ public final class AssetCap {
                 }
                 inProgress.add(item);
                 executor.submit(f);
-                submitted++;
+                if (afterBoot) {
+                    loadSubmitted++;
+                } else {
+                    submitted++;
+                }
             }
         } catch (Throwable t) {
             off = true;
@@ -216,6 +275,7 @@ public final class AssetCap {
         if (!ON) return "off";
         if (off) return "DEFECT";
         return "ok, cap " + cap + ", " + submitted + " extra submit(s), "
-               + retiredTail + " retired beyond the engine window";
+               + retiredTail + " retired beyond the engine window"
+               + (LOAD_SCOPE ? ", world-load cap " + LOAD_CAP : "");
     }
 }
