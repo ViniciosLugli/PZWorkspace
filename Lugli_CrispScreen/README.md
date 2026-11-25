@@ -26,6 +26,8 @@ drivers without OpenGL 3.3, where the game falls back to that version.
   from has not changed from 42.20 through 42.22.2.
 - Any other mod that replaces `media/shaders/screen.frag` (ShaderZ, for example) conflicts with this
   one. Whichever loads last wins, so keep just one.
+- Anime Shader is not one of those: it replaces `basicEffect.frag`, the character lighting pass, so
+  the two work together and the order in the mod list does not matter.
 - It only changes how things look and saves nothing, so you can add or remove it from an existing save.
 - Restart the game after enabling or disabling it, since the screen shader is built once per session.
 

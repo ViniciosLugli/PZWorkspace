@@ -8,7 +8,7 @@ versions are on the Workshop; these are the sources behind them.
 
 | mod | what it does | workshop |
 |---|---|---|
-| [Lugli_FastLoading](Lugli_FastLoading) | Cuts loading time. On a 300+ mod list, 47s to 32s to the menu and 130s to 90s to be in the world. On vanilla, 37s to 27s to be in the world. | [3787104045](https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045) |
+| [Lugli_FastLoading](Lugli_FastLoading) | Cuts loading time. On a 300+ mod list, 64s to 43s to the menu and 241s to 102s to be in the world. On vanilla, 56s to 40s to be in the world. | [3787104045](https://steamcommunity.com/sharedfiles/filedetails/?id=3787104045) |
 | [Lugli_Optimizations](Lugli_Optimizations) | Cuts frame time by stopping the engine redrawing what is not moving. In vegetation, -16% at the median and -18% at the 90th percentile. In a city centre, -9% at the 90th and no median gain. | [3790863696](https://steamcommunity.com/sharedfiles/filedetails/?id=3790863696) |
 | [Lugli_Achievements](Lugli_Achievements) | 280+ achievements across thirteen categories, earned by what your survivor actually does. Pure Lua, no effect on how the game plays. | [3793988085](https://steamcommunity.com/sharedfiles/filedetails/?id=3793988085) |
 | [Lugli_EmergencyLights](Lugli_EmergencyLights) | Glow sticks, chem lights, road flares and a flare gun that keep burning where they land. | [3793988563](https://steamcommunity.com/sharedfiles/filedetails/?id=3793988563) |
@@ -18,7 +18,7 @@ versions are on the Workshop; these are the sources behind them.
 | [Lugli_CrispScreen](Lugli_CrispScreen) | Turns off the slight blur the game puts over the whole screen, with a little sharpening on top. Shader only. | [3841777696](https://steamcommunity.com/sharedfiles/filedetails/?id=3841777696) |
 | [Lugli_DeadMansStash](Lugli_DeadMansStash) | Hidden stash boxes, lockboxes, footlockers and safes that need a key, a code or a noisy way in, and pay better than the containers around them. | [3842379885](https://steamcommunity.com/sharedfiles/filedetails/?id=3842379885) |
 
-Timing numbers were measured on 42.20.4 with 337 mods: same machine, same save, arms interleaved
+Fast Loading's numbers were measured on 42.22.2 with 360 mods: same machine, same save, arms interleaved
 A,B,A,B, every run checked against its own log, the first pair of each campaign discarded as cold.
 Numbers move between releases and each mod's README carries the conditions attached to its own.
 

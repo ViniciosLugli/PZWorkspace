@@ -97,8 +97,8 @@ Two further parts ship **off**, and say why:
 
 Every change had to survive the same gate before a line of it was written:
 
-**Nanoseconds saved per operation, measured -- times operations per frame, counted in the running
-game -- against the noise floor.** Below the floor, the arithmetic is the finding and nothing gets
+**Nanoseconds saved per operation, measured, times operations per frame counted in the running
+game, against the noise floor.** Below the floor, the arithmetic is the finding and nothing gets
 built. Each candidate is measured on its own, in more than one scene, because a win in vegetation
 and a null in a city centre are the same part.
 
@@ -134,7 +134,7 @@ one mod or the other. Turn one off before reporting a problem.
 
 **Zed's Better FPS NG specifically.** Checked on 42.20.4 against its 2026-08-27 build: it patches
 **no method this mod patches**, so the two can be installed together. But it retransforms two of the
-same engine *classes* -- `IsoCell` and `IsoChunkMap` -- and a shared class has broken this mod
+same engine *classes*, `IsoCell` and `IsoChunkMap`, and a shared class has broken this mod
 before (`IsoChunkMap`, fixed by installing our advice at premain). It also caches GL and shader
 state in static fields, which is a class of conflict no patch-list comparison can see. If you run
 both and something looks wrong, turn one off before reporting it.
