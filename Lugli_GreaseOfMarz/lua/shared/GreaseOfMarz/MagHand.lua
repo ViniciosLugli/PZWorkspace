@@ -65,7 +65,8 @@ local MOVES = {
         "GunsOfTien.UZI", "GunsOfTien.MINIUZI", "GunsOfTien.MICROUZI", "GunsOfTien.TMP",
         "GunsOfTienPost93.MP7A1", "GunsOfTienPost93.MP7A2" } },
     lugli_gm_fore = { from = "handgun2", load = 1.28, unload = 1.28, guns = {
-        "MarzGuns.MP5K", "MarzGuns.TEC9", "GunsOfTienPost93.VECTOR9", "GunsOfTienPost93.VECTORSDP" } },
+        "MarzGuns.MP5K", "MarzGuns.TEC9", "GunsOfTienPost93.VECTOR9", "GunsOfTienPost93.VECTORSDP",
+        "GunsOfTien.SKORPION", "GunsOfTienPost93.KEDR" } },
     lugli_gm_mp5 = { from = "MP5", load = 1.28, unload = 1.28, guns = {
         "GunsOfTienPost93.UMP45", "GunsOfTienPost93.UMP9", "GunsOfTienPost93.VECTOR45",
         "GunsOfTienPost93.VECTORCRB" } },
