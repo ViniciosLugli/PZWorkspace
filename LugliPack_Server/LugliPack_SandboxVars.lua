@@ -2833,13 +2833,6 @@ SandboxVars = {
     PhysicalBullets = {
         -- Min: 0.02 Max: 1.00 Default: 0.25
         BulletSpeed = 0.25,
-        -- Min: 0.00 Max: 5.00 Default: 1.00
-        TrailOpacity = 1.0,
-        -- Min: 0.00 Max: 3.00 Default: 1.00
-        TrailSpiral = 1.0,
-        SmokyTrails = false,
-        -- Min: 0.00 Max: 500.00 Default: 50.00
-        TrailFadeDistance = 50.0,
         ALifeBullets = true,
         StayWithMeBullets = true,
         LastOnesStandingBullets = true,
@@ -2868,15 +2861,6 @@ SandboxVars = {
         -- Min: 1.00 Max: 4.00 Default: 1.50
         RangeFactor = 1.5,
         HitWhereBulletLands = true,
-        -- Min: 0.00 Max: 2.00 Default: 1.00
-        FlybySound = 1.0,
-        MuzzleSmoke = true,
-        -- Min: 1.00 Max: 60.00 Default: 8.00
-        SmokeLinger = 8.0,
-        -- Min: 0.05 Max: 3.00 Default: 1.00
-        SmokeAmount = 1.0,
-        -- Min: 50 Max: 2000 Default: 500
-        SmokeCap = 500,
         -- Min: 0.00 Max: 3.00 Default: 1.00
         ImpactNoise = 1.0,
     },
@@ -3050,6 +3034,10 @@ SandboxVars = {
         BetterPushLineDistance = 0.8,
         -- Min: 0.60 Max: 5.00 Default: 0.80
         BetterPushLineWidth = 0.8,
+    },
+    LastingScars = {
+        -- Min: 1 Max: 365 Default: 21
+        HealDays = 21,
     },
     LugliModpackFixes = {
         AuiCleanUI = true,
