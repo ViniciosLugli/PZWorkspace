@@ -2,7 +2,7 @@
 -- Source 76chryslerNewYorker: 21 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "76chryslerNewYorker", mod = "76chryslerNewYorker", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "76chryslerNewYorker", mod = "76chryslerNewYorker", version = "880f85a66ee4", rows = {
 "Base.76chryslerNewYorkerBullbarFrontA",10,10,20,0,-1,-1,-1,2,-1,10,0,
 "Base.76chryslerNewYorkerBumperFront0",8,8,22,0,-1,-1,-1,2,-1,8,0,
 "Base.76chryslerNewYorkerBumperRear0",10,10,18,0,-1,-1,-1,2,-1,10,0,

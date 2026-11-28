@@ -2,7 +2,7 @@
 -- Source 91fordLTD: 23 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "91fordLTD", mod = "91fordLTD", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "91fordLTD", mod = "91fordLTD", version = "880f85a66ee4", rows = {
 "Base.91fordLTDBumperFront0",10,10,22,0,-1,-1,-1,2,-1,10,0,
 "Base.91fordLTDBumperFront1",15,15,13,0,-1,-1,-1,2,-1,15,0,
 "Base.91fordLTDBumperRear0",11,11,18,0,-1,-1,-1,2,-1,11,0,

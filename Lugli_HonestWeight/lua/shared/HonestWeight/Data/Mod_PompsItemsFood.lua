@@ -2,7 +2,7 @@
 -- Source PompsItemsFood: 302 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "PompsItemsFood", mod = "PompsItemsFood", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "PompsItemsFood", mod = "PompsItemsFood", version = "880f85a66ee4", rows = {
 "PompsItems.BittersBar",0.2,0.2,0.05,0,-1,-1,-1,0,-1,0.2,0,
 "PompsItems.BittersBrownie",0.2,0.2,0.04,0,-1,-1,-1,0,-1,0.2,0,
 "PompsItems.Brawndo",0.25,0.25,0.03,0.85,-1,-1,-1,0,-1,0.25,0,

@@ -2,7 +2,7 @@
 -- Source Super_Gore_by_mrdocs: 16 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "Super_Gore_by_mrdocs", mod = "Super_Gore_by_mrdocs", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "Super_Gore_by_mrdocs", mod = "Super_Gore_by_mrdocs", version = "880f85a66ee4", rows = {
 "SuperGore.Gore_Arm",2.5,2.5,3.5,0,-1,-1,-1,1,-1,2.5,0,
 "SuperGore.Gore_ArmFore",1,1,1.5,0,-1,-1,-1,1,-1,1,0,
 "SuperGore.Gore_ArmUpper",1.5,1.5,1.9,0,-1,-1,-1,0,-1,1.5,0,

@@ -2,7 +2,7 @@
 -- Source 89volvo200: 48 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "89volvo200", mod = "89volvo200", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "89volvo200", mod = "89volvo200", version = "880f85a66ee4", rows = {
 "Base.89volvo200Magazine",0.5,0.5,0.2,0,-1,-1,-1,0,-1,0.5,0,
 "Base.89volvo200Tire0",10,10,10,0,-1,-1,-1,2,-1,10,0,
 "Base.89volvo200Tire1",11,11,12,0,-1,-1,-1,2,-1,11,0,

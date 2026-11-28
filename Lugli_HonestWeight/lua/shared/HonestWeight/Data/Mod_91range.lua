@@ -2,7 +2,7 @@
 -- Source 91range: 26 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "91range", mod = "91range", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "91range", mod = "91range", version = "880f85a66ee4", rows = {
 "Base.91rangeBullbarFrontA",16,16,24,0,-1,-1,-1,2,-1,16,0,
 "Base.91rangeBullbarRearA",10,10,19,0,-1,-1,-1,2,-1,10,0,
 "Base.91rangeBumperFront0",12,12,22,0,-1,-1,-1,2,-1,12,0,

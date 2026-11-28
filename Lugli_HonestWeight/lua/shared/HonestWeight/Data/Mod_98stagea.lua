@@ -2,7 +2,7 @@
 -- Source 98stagea: 24 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "98stagea", mod = "98stagea", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "98stagea", mod = "98stagea", version = "880f85a66ee4", rows = {
 "Base.98stageaBackSideWindow3",7,7,1.8,0,-1,-1,-1,2,-1,7,0,
 "Base.98stageaBackWindowArmor",9,9,3.9,0,-1,-1,-1,2,-1,9,0,
 "Base.98stageaBullbarFrontA",13,13,17,0,-1,-1,-1,2,-1,13,0,

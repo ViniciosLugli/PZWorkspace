@@ -2,7 +2,7 @@
 -- Source 73nissanGTR: 18 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "73nissanGTR", mod = "73nissanGTR", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "73nissanGTR", mod = "73nissanGTR", version = "880f85a66ee4", rows = {
 "Base.73nissanGTRDoor3",11,11,12,0,-1,-1,-1,2,-1,11,0,
 "Base.73nissanGTREngineDoor3",13,13,9,0,-1,-1,-1,2,-1,13,0,
 "Base.73nissanGTRFrontBullbar",12,12,12,0,-1,-1,-1,2,-1,12,0,

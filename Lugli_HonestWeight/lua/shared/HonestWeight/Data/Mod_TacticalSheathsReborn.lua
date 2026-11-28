@@ -2,7 +2,7 @@
 -- Source TacticalSheathsReborn: 39 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "TacticalSheathsReborn", mod = "TacticalSheathsReborn", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "TacticalSheathsReborn", mod = "TacticalSheathsReborn", version = "880f85a66ee4", rows = {
 "TKS.Forge4Dum",0.5,0.5,0.35,0,-1,-1,-1,0,-1,0.5,0,
 "TKS.KatanaSheath",0.1,0.1,0.45,0,-1,-1,-1,0,-1,0.1,0,
 "TKS.KatanaSheathBlack",0.1,0.1,0.45,0,-1,-1,-1,0,-1,0.1,0,

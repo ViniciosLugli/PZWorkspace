@@ -2,7 +2,7 @@
 -- Source BCGTools: 15 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "BCGTools", mod = "BCGTools", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "BCGTools", mod = "BCGTools", version = "880f85a66ee4", rows = {
 "BCGTools.CheapSurvivalKnife",0.4,0.4,0.25,0,-1,-1,-1,1,-1,0.4,0,
 "BCGTools.CheapSurvivalKnifeBlade",0.2,0.2,0.08,0,-1,-1,-1,0,-1,0.2,0,
 "BCGTools.HandHatchet",1.65,1.65,0.9,0,-1,-1,-1,1,-1,1.65,0,

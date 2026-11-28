@@ -1,0 +1,17 @@
+{
+    "Sandbox_LugliHW": "Lugli - Honest Weight",
+    "Sandbox_LugliHW_Realism": "Realizm (%%)",
+    "Sandbox_LugliHW_Realism_tooltip": "Jak bardzo waga przedmiotów przesuwa się od wartości z gry w stronę prawdziwej wagi. 100 to w pełni prawdziwa waga, 0 zachowuje wartości z gry i poprawia tylko oczywiste błędy, na przykład gdy zepsuty przedmiot waży więcej niż cały. Działa od następnego wczytania świata.",
+    "Sandbox_LugliHW_BulkFloor": "Minimum za objętość",
+    "Sandbox_LugliHW_BulkFloor_tooltip": "Gra nie zna objętości przedmiotów, więc tylko waga powstrzymuje torbę przed pomieszczeniem setek koszul. Lekkie, nieporęczne rzeczy (płaszcze, poduszki, śpiwory, puste pudła) liczą się jako co najmniej tyle kilogramów na każdy litr, który zajmują po spakowaniu, przed Skalą. Działa od następnego wczytania świata.",
+    "Sandbox_LugliHW_BulkFloor_option1": "Wyłączone: tylko prawdziwa waga",
+    "Sandbox_LugliHW_BulkFloor_option2": "Lekkie: 0,05 na litr",
+    "Sandbox_LugliHW_BulkFloor_option3": "Normalne: 0,10 na litr",
+    "Sandbox_LugliHW_BulkFloor_option4": "Surowe: 0,15 na litr",
+    "Sandbox_LugliHW_Scale": "Skala",
+    "Sandbox_LugliHW_Scale_tooltip": "Waga w grze na prawdziwy kilogram. Proporcje między przedmiotami pozostają prawdziwe przy każdej wartości. 1,0 to prawdziwe kilogramy, przez co noszenie jest dużo łatwiejsze niż w grze bez modów. Przy domyślnym 1,5 ubrania i drobne rzeczy stają się lżejsze, a narzędzia i broń nieco cięższe, aż do Maks. wzrostu. Płyny zachowują stałą wagę z gry, 1 na litr. Działa od następnego wczytania świata.",
+    "Sandbox_LugliHW_MaxIncrease": "Maks. wzrost (%%)",
+    "Sandbox_LugliHW_MaxIncrease_tooltip": "O ile procent najwyżej przedmiot może ważyć więcej niż w grze bez modów. Przedmioty noszone w dużych ilościach (kamienie, cegły, kłody, worki z piaskiem, amunicja) lub już ciężkie w grze pozostają grywalne. 0 oznacza, że żaden przedmiot nigdy nie stanie się cięższy, tylko lżejszy. 400 pozwala niemal każdemu przedmiotowi osiągnąć prawdziwą wagę. Działa od następnego wczytania świata.",
+    "Sandbox_LugliHW_VanillaStamina": "Zużycie wytrzymałości jak w grze",
+    "Sandbox_LugliHW_VanillaStamina_tooltip": "Gra używa wagi broni białej do ustalenia wytrzymałości, jaką kosztuje każdy zamach i każde uderzenie siekierą. Wyłączone: wytrzymałość zależy od prawdziwej wagi, więc ciężki młot szybciej męczy, a lekki nóż wolniej. Włączone: każda broń kosztuje tyle samo wytrzymałości na zamach co bez tego moda. Działa od następnego wczytania świata."
+}

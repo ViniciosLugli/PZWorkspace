@@ -2,7 +2,7 @@
 -- Source 82firebird: 21 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "82firebird", mod = "82firebird", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "82firebird", mod = "82firebird", version = "880f85a66ee4", rows = {
 "Base.82firebirdBumperFront0",9,9,13,0,-1,-1,-1,2,-1,9,0,
 "Base.82firebirdBumperFront1",11,11,13,0,-1,-1,-1,2,-1,11,0,
 "Base.82firebirdBumperFrontA",18,18,17,0,-1,-1,-1,2,-1,18,0,

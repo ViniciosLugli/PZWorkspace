@@ -2,7 +2,7 @@
 -- Source cobbM540: 7 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "cobbM540", mod = "cobbM540", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "cobbM540", mod = "cobbM540", version = "880f85a66ee4", rows = {
 "Base.cobbM540Door2",23,23,30,0,-1,-1,-1,2,-1,23,0,
 "Base.cobbM540EngineDoor2",6,6,35,0,-1,-1,-1,2,-1,6,0,
 "Base.cobbM540SeatLarge2",16,16,15,0,-1,-1,-1,2,-1,16,0,

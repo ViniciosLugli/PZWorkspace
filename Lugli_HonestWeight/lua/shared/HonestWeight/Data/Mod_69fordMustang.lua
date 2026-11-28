@@ -2,7 +2,7 @@
 -- Source 69fordMustang: 36 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "69fordMustang", mod = "69fordMustang", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "69fordMustang", mod = "69fordMustang", version = "880f85a66ee4", rows = {
 "Base.69MustangBoxesApoc",18,18,12,0,-1,-1,-1,2,-1,18,0,
 "Base.69MustangCratesApoc",20,20,12,0,-1,-1,-1,2,-1,20,0,
 "Base.69MustangGunHolsterApoc",2,2,1.5,0,-1,-1,-1,2,-1,2,0,

@@ -6,8 +6,9 @@ while logs, sandbags, stone and ammo, which the game already makes heavy or you 
 dozen, stay close to the game's own weight. A typical loadout comes out a little lighter than
 unmodded, because clothes and small goods drop to their real weight.
 
-Covers vanilla and the mods in the LugliPack - B42 collection. Items from any other mod keep
-their own weight. Every weight it changes is listed in [WEIGHTS.md](WEIGHTS.md), source by source.
+Covers vanilla and the mods in the LugliPack - B42 collection. A mod that has left the collection
+keeps its weights, so nothing changes for anyone still running it. Items from any other mod keep their own weight.
+Every weight it changes is listed in [WEIGHTS.md](WEIGHTS.md), source by source.
 
 ## How weights are set
 

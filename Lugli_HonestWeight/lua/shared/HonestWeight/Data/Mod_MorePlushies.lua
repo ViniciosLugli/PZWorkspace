@@ -2,7 +2,7 @@
 -- Source MorePlushies: 83 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "MorePlushies", mod = "MorePlushies", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "MorePlushies", mod = "MorePlushies", version = "880f85a66ee4", rows = {
 "MorePlushies.AlienSpiffoPlushie",0.2,0.2,0.2,4,-1,-1,-1,0,-1,0.2,0,
 "MorePlushies.AxolotlPlushie",0.2,0.2,0.2,4,-1,-1,-1,0,-1,0.2,0,
 "MorePlushies.BatmanPlushie",0.2,0.2,0.2,4,-1,-1,-1,0,-1,0.2,0,

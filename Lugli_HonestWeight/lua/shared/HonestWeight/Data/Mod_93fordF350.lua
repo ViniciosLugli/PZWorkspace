@@ -2,7 +2,7 @@
 -- Source 93fordF350: 49 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "93fordF350", mod = "93fordF350", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "93fordF350", mod = "93fordF350", version = "880f85a66ee4", rows = {
 "Base.93fordF150SideSteps2",2,2,16,0,-1,-1,-1,2,-1,2,0,
 "Base.93fordF150SideStepsLong2",10,10,16,0,-1,-1,-1,2,-1,10,0,
 "Base.93fordF350BedCover2",2,2,9,0,-1,-1,-1,2,-1,2,0,

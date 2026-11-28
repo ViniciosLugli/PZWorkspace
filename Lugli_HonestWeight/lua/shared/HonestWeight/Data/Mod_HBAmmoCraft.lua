@@ -2,7 +2,7 @@
 -- Source HBAmmoCraft: 183 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "HBAmmoCraft", mod = "HBAmmoCraft", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "HBAmmoCraft", mod = "HBAmmoCraft", version = "880f85a66ee4", rows = {
 "HBAC.12Gauge_Pellet",0.002,0.002,0.0035,0,-1,-1,-1,0,-1,0.002,0,
 "HBAC.12Gauge_PelletsBox",0.4,0.4,0.74,0,-1,-1,-1,0,-1,0.4,0,
 "HBAC.12Gauge_Slug_Projectile",0.02,0.02,0.028,0,-1,-1,-1,0,-1,0.02,0,

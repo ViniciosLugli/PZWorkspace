@@ -2,7 +2,7 @@
 -- Source 91fordRanger: 21 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "91fordRanger", mod = "91fordRanger", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "91fordRanger", mod = "91fordRanger", version = "880f85a66ee4", rows = {
 "Base.91fordRangerBackSideWindow2",2,2,1.8,0,-1,-1,-1,2,-1,2,0,
 "Base.91fordRangerBackWindowArmor",10,10,3.9,0,-1,-1,-1,2,-1,10,0,
 "Base.91fordRangerBedCap2",25,25,38,0,-1,-1,-1,2,-1,25,0,

@@ -2,7 +2,7 @@
 -- Source SpnCloth: 61 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "SpnCloth", mod = "SpnCloth", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "SpnCloth", mod = "SpnCloth", version = "880f85a66ee4", rows = {
 "Spongie.Gloves_MilitaryFingerless",0.1,0.1,0.07,0,-1,-1,-1,0,-1,0.1,0,
 "Spongie.Gloves_StripedLong",0.1,0.1,0.1,0,-1,-1,-1,0,-1,0.1,0,
 "Spongie.Jacket_Bomber",3,3,0.9,0,-1,-1,-1,0,-1,3,0,

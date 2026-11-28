@@ -2,7 +2,7 @@
 -- Source 97bushmaster: 20 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "97bushmaster", mod = "97bushmaster", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "97bushmaster", mod = "97bushmaster", version = "880f85a66ee4", rows = {
 "Base.97BushBullbarSAS",20,20,35,0,-1,-1,-1,2,-1,20,0,
 "Base.97BushDoor2",20,20,30,0,-1,-1,-1,2,-1,20,0,
 "Base.97BushEngineDoor2",16,16,35,0,-1,-1,-1,2,-1,16,0,

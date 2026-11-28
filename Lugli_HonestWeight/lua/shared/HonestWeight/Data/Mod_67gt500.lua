@@ -2,7 +2,7 @@
 -- Source 67gt500: 24 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "67gt500", mod = "67gt500", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "67gt500", mod = "67gt500", version = "880f85a66ee4", rows = {
 "Base.67gt500Door3",11,11,15,0,-1,-1,-1,2,-1,11,0,
 "Base.67gt500EngineDoor3",13,13,13,0,-1,-1,-1,2,-1,13,0,
 "Base.67gt500FrontBullbar",12,12,17,0,-1,-1,-1,2,-1,12,0,

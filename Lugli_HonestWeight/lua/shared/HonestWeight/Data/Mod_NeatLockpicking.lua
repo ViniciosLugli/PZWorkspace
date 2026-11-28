@@ -2,7 +2,7 @@
 -- Source NeatLockpicking: 8 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "NeatLockpicking", mod = "NeatLockpicking", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "NeatLockpicking", mod = "NeatLockpicking", version = "880f85a66ee4", rows = {
 "NeatLockpicking.BookLockpicking1",1,1,0.3,0,-1,-1,-1,0,-1,1,0,
 "NeatLockpicking.BookLockpicking2",1,1,0.3,0,-1,-1,-1,0,-1,1,0,
 "NeatLockpicking.BookLockpicking3",1,1,0.6,0,-1,-1,-1,0,-1,1,0,

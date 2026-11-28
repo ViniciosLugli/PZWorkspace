@@ -2,7 +2,7 @@
 -- Source Pogo's Clothes: 19 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "Pogo's Clothes", mod = "Pogo's Clothes", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "Pogo's Clothes", mod = "Pogo's Clothes", version = "880f85a66ee4", rows = {
 "Base.Big_HoodieDOWN_WhiteTINT",1,1,0.8,0,-1,-1,-1,0,-1,1,0,
 "Base.Big_HoodieDOWN_WhiteTINT_Decal",1,1,0.8,0,-1,-1,-1,0,-1,1,0,
 "Base.Big_HoodieUP_WhiteTINT",1,1,0.8,0,-1,-1,-1,0,-1,1,0,

@@ -2,7 +2,7 @@
 -- Source SpnOpenCloth: 219 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "SpnOpenCloth", mod = "SpnOpenCloth", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "SpnOpenCloth", mod = "SpnOpenCloth", version = "880f85a66ee4", rows = {
 "Base.BoilersuitOPEN",1,1,0.9,0,-1,-1,-1,0,-1,1,0,
 "Base.BoilersuitTIED",1,1,0.9,0,-1,-1,-1,0,-1,1,0,
 "Base.Boilersuit_BlueRedOPEN",1,1,0.9,0,-1,-1,-1,0,-1,1,0,

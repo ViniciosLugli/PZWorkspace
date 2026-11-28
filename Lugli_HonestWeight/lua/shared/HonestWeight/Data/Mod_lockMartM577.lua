@@ -2,7 +2,7 @@
 -- Source lockMartM577: 8 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "lockMartM577", mod = "lockMartM577", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "lockMartM577", mod = "lockMartM577", version = "880f85a66ee4", rows = {
 "Base.lockMartM577EngineDoor2",5,5,35,0,-1,-1,-1,2,-1,5,0,
 "Base.lockMartM577FrontDoor2",16,16,30,0,-1,-1,-1,2,-1,16,0,
 "Base.lockMartM577RearDoor2",22,22,25,0,-1,-1,-1,2,-1,22,0,

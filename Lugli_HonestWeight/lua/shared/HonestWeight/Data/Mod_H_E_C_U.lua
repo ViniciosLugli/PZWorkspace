@@ -2,7 +2,7 @@
 -- Source H_E_C_U: 19 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "H_E_C_U", mod = "H_E_C_U", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "H_E_C_U", mod = "H_E_C_U", version = "880f85a66ee4", rows = {
 "D_HECU.HECU_Backpack",2,2,1.5,10,-1,-1,-1,0,-1,2,0,
 "D_HECU.HECU_Balaclava",0.5,0.5,0.06,0,-1,-1,-1,0,-1,0.5,0,
 "D_HECU.HECU_Balaclava_Folded",0.5,0.5,0.06,0,-1,-1,-1,0,-1,0.5,0,

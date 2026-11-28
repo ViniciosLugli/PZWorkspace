@@ -2,7 +2,7 @@
 -- Source 70barracuda: 23 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "70barracuda", mod = "70barracuda", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "70barracuda", mod = "70barracuda", version = "880f85a66ee4", rows = {
 "Base.CUDADoor3",11,11,15,0,-1,-1,-1,2,-1,11,0,
 "Base.CUDADoorArmor",8,8,15.7,0,-1,-1,-1,2,-1,8,0,
 "Base.CUDAEngineDoor",15,15,13,0,-1,-1,-1,2,-1,15,0,

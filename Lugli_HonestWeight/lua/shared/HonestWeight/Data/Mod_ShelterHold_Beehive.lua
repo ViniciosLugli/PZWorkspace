@@ -2,7 +2,7 @@
 -- Source ShelterHold_Beehive: 39 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "ShelterHold_Beehive", mod = "ShelterHold_Beehive", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "ShelterHold_Beehive", mod = "ShelterHold_Beehive", version = "880f85a66ee4", rows = {
 "Hold.BaitHive",5,5,5,0,-1,-1,-1,0,-1,5,0,
 "Hold.BeeKeeperMag",0.5,0.5,0.2,0,-1,-1,-1,0,-1,0.5,0,
 "Hold.Beeswax",0.3,0.3,0.3,0,-1,-1,-1,0,-1,0.3,0,

@@ -1,8 +1,11 @@
 -- GENERATED from the Honest Weight mass tables. Never edit by hand.
--- Source 79camaro: 24 row(s).
+-- Source 79camaro: 27 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "79camaro", mod = "79camaro", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "79camaro", mod = "79camaro", version = "880f85a66ee4", rows = {
+"Base.79camaroAPBumperFrontC",20,20,17,0,-1,-1,-1,2,-1,20,0,
+"Base.79camaroAPEngineDoor3",7.6,7.6,13,0,-1,-1,-1,2,-1,7.6,0,
+"Base.79camaroAPRoofrack3",15,15,12,0,-1,-1,-1,2,-1,15,0,
 "Base.79camaroBumperFront0",9,9,13,0,-1,-1,-1,2,-1,9,0,
 "Base.79camaroBumperFrontA",12,12,19,0,-1,-1,-1,2,-1,12,0,
 "Base.79camaroBumperRear",10,10,10,0,-1,-1,-1,2,-1,10,0,

@@ -2,7 +2,7 @@
 -- Source 87toyotaCorolla: 27 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "87toyotaCorolla", mod = "87toyotaCorolla", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "87toyotaCorolla", mod = "87toyotaCorolla", version = "880f85a66ee4", rows = {
 "Base.87toyotaCorollaAE92BullbarFrontA",13,13,12,0,-1,-1,-1,2,-1,13,0,
 "Base.87toyotaCorollaAE92BumperFront0",6,6,9,0,-1,-1,-1,2,-1,6,0,
 "Base.87toyotaCorollaAE92BumperFront1",7,7,9,0,-1,-1,-1,2,-1,7,0,

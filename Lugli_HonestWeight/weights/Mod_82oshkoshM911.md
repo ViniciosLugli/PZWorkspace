@@ -1,6 +1,6 @@
 # '82 Oshkosh M911
 
-Weights Lugli - Honest Weight sets for ['82 Oshkosh M911](https://steamcommunity.com/sharedfiles/filedetails/?id=2618213077): 21 items. [All sources](../WEIGHTS.md)
+Weights Lugli - Honest Weight sets for ['82 Oshkosh M911](https://steamcommunity.com/sharedfiles/filedetails/?id=2618213077): 25 items. [All sources](../WEIGHTS.md)
 
 **Game** is the weight without Honest Weight. **Honest** is the weight at the default options (Realism 100%, Bulk floor Normal, Scale 1.5), in the game's own units. A container that holds a liquid or is used up shows its empty weight in brackets.
 
@@ -27,5 +27,9 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | M128 Semi Trailer Trunk Doors (*) | `Base.M128TrunkDoor2` | 25 | 31.2 |
 | M129 Semi Trailer Trunk Door (*) | `Base.M129TrunkDoor2` | 14 | 17.5 |
 | M967 Semi Trailer Trunk Lid (*) | `Base.M967TrunkDoor2` | 4 | 5 |
+| Oshkosh Black Hoodie | `Base.HoodieDOWN_OshkoshBlack` | 1 | 0.9 |
+| Oshkosh Black Hoodie | `Base.HoodieUP_OshkoshBlack` | 1 | 0.9 |
 | Oshkosh Black T-Shirt | `Base.TShirt_OshkoshBlack` | 1 | 0.225 |
+| Oshkosh Gray Hoodie | `Base.HoodieDOWN_OshkoshGray` | 1 | 0.9 |
+| Oshkosh Gray Hoodie | `Base.HoodieUP_OshkoshGray` | 1 | 0.9 |
 | Oshkosh Gray T-Shirt | `Base.TShirt_OshkoshGray` | 1 | 0.225 |

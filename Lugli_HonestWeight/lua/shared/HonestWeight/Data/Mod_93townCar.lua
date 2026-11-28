@@ -2,7 +2,7 @@
 -- Source 93townCar: 29 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "93townCar", mod = "93townCar", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "93townCar", mod = "93townCar", version = "880f85a66ee4", rows = {
 "Base.93townCarBullbarFrontA",15,15,20,0,-1,-1,-1,2,-1,15,0,
 "Base.93townCarBullbarFrontB",17,17,20,0,-1,-1,-1,2,-1,17,0,
 "Base.93townCarBullbarFrontC",22,22,20,0,-1,-1,-1,2,-1,22,0,

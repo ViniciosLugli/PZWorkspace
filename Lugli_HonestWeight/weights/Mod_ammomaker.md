@@ -151,7 +151,7 @@ Weights Lugli - Honest Weight sets for [Ammo Maker](https://steamcommunity.com/s
 | Projectile RAR HE | `ammomaker.ammomaker_ProjectileRarHE` | 1.5 | 1.88 |
 | Pyro Filler 12 | `ammomaker.ammomaker_PyroFiller12` | 0.01 | 0.0125 |
 | Pyro Paste | `ammomaker.ammomaker_PyroPaste` | 0.2 | 0.25 |
-| Recycled Brass | `ammomaker.ammomaker_RecBrass` | 0.1 | 0.03 |
+| Recycled Brass | `ammomaker.ammomaker_RecBrass` | 0.1 | 0.00045 |
 | Recycled Plastic | `ammomaker.ammomaker_RecPlastic` | 0.1 | 0.125 |
 | Reloading Press Base | `ammomaker.ammomaker_ReloadingPressBase` | 6 | 7.5 |
 | Reloading Press Black | `ammomaker.ammomaker_ReloadingPressBlack` | 12 | 11.2 |

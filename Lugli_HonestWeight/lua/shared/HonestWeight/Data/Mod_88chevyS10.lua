@@ -2,7 +2,7 @@
 -- Source 88chevyS10: 12 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "88chevyS10", mod = "88chevyS10", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "88chevyS10", mod = "88chevyS10", version = "880f85a66ee4", rows = {
 "Base.88ChevyS10BedCover",21,21,25,0,-1,-1,-1,2,-1,21,0,
 "Base.88ChevyS10BullbarFront",10,10,17,0,-1,-1,-1,2,-1,10,0,
 "Base.88ChevyS10BumperFront",10,10,13,0,-1,-1,-1,2,-1,10,0,

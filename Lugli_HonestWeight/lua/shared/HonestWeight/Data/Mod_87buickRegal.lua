@@ -2,7 +2,7 @@
 -- Source 87buickRegal: 24 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "87buickRegal", mod = "87buickRegal", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "87buickRegal", mod = "87buickRegal", version = "880f85a66ee4", rows = {
 "Base.87buickRegalBullbar",12,12,17,0,-1,-1,-1,2,-1,12,0,
 "Base.87buickRegalBumperFront",6,6,13,0,-1,-1,-1,2,-1,6,0,
 "Base.87buickRegalBumperFrontA",7,7,19,0,-1,-1,-1,2,-1,7,0,

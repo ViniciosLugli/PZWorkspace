@@ -2,7 +2,7 @@
 -- Source HardwoodsTurnoutGear: 10 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "HardwoodsTurnoutGear", mod = "HardwoodsTurnoutGear", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "HardwoodsTurnoutGear", mod = "HardwoodsTurnoutGear", version = "880f85a66ee4", rows = {
 "Base.Firefighter_SCBA",5,5,7.9,0,-1,-1,-1,0,-1,5,0,
 "Base.Halligan",3.2,3.2,3.6,0,-1,-1,-1,1,-1,3.2,0,
 "Base.HeavyFireAxe",4.2,4.2,3.6,0,-1,-1,-1,1,-1,4.2,0,

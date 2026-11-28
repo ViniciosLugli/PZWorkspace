@@ -2,7 +2,7 @@
 -- Source 59meteor: 23 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "59meteor", mod = "59meteor", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "59meteor", mod = "59meteor", version = "880f85a66ee4", rows = {
 "Base.ECTO1Bullbar1",11,11,20,0,-1,-1,-1,2,-1,11,0,
 "Base.ECTO1Bumper1",9,9,22,0,-1,-1,-1,2,-1,9,0,
 "Base.ECTO1BumperA",20,20,25,0,-1,-1,-1,2,-1,20,0,

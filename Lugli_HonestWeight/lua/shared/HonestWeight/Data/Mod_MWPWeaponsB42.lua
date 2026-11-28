@@ -2,7 +2,7 @@
 -- Source MWPWeaponsB42: 73 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "MWPWeaponsB42", mod = "MWPWeaponsB42", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "MWPWeaponsB42", mod = "MWPWeaponsB42", version = "880f85a66ee4", rows = {
 "Base.aitormonterobowieknife",0.8,0.8,0.4,0,-1,-1,-1,1,-1,0.8,0,
 "Base.albtacticalkatana",1.8,1.8,1.2,0,-1,-1,-1,1,-1,1.8,0,
 "Base.aluminiumbaseballbat",2,2,0.85,0,-1,-1,-1,1,-1,2,0,

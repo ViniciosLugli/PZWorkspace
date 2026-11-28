@@ -2,7 +2,7 @@
 -- Source 91lexusLS400: 21 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "91lexusLS400", mod = "91lexusLS400", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "91lexusLS400", mod = "91lexusLS400", version = "880f85a66ee4", rows = {
 "Base.91lexusLS400BullbarFrontA",10,10,17,0,-1,-1,-1,2,-1,10,0,
 "Base.91lexusLS400BumperFront0",8,8,13,0,-1,-1,-1,2,-1,8,0,
 "Base.91lexusLS400BumperFrontA",18,18,19,0,-1,-1,-1,2,-1,18,0,

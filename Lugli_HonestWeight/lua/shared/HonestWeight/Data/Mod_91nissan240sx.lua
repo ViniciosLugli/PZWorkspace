@@ -2,7 +2,7 @@
 -- Source 91nissan240sx: 38 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "91nissan240sx", mod = "91nissan240sx", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "91nissan240sx", mod = "91nissan240sx", version = "880f85a66ee4", rows = {
 "Base.91nissan240sxBullbarFrontA",13,13,12,0,-1,-1,-1,2,-1,13,0,
 "Base.91nissan240sxBumperFront0",6,6,9,0,-1,-1,-1,2,-1,6,0,
 "Base.91nissan240sxBumperFront1",7,7,9,0,-1,-1,-1,2,-1,7,0,

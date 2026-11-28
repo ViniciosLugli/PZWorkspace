@@ -1,10 +1,8 @@
 -- GENERATED from the Honest Weight mass tables. Never edit by hand.
--- Source 70chevelle: 38 row(s).
+-- Source 70chevelle: 36 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "70chevelle", mod = "70chevelle", version = "d126543c0334", rows = {
-"Base.70ChevelleSSTire3",11,11,12,0,-1,-1,-1,2,-1,11,0,
-"Base.70ChevelleTire3",11,11,10,0,-1,-1,-1,2,-1,11,0,
+table.insert(LugliHonestWeight.data, { id = "70chevelle", mod = "70chevelle", version = "880f85a66ee4", rows = {
 "Base.70chevelle454EngineDoor3",8,8,13,0,-1,-1,-1,2,-1,8,0,
 "Base.70chevelleBullbarFrontA",13,13,17,0,-1,-1,-1,2,-1,13,0,
 "Base.70chevelleBumperFront0",6,6,13,0,-1,-1,-1,2,-1,6,0,

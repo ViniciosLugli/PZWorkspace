@@ -2,7 +2,7 @@
 -- Source 93fordTaurus: 33 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "93fordTaurus", mod = "93fordTaurus", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "93fordTaurus", mod = "93fordTaurus", version = "880f85a66ee4", rows = {
 "Base.93fordTaurusBullbarFrontA",15,15,17,0,-1,-1,-1,2,-1,15,0,
 "Base.93fordTaurusBumperFront1",10,10,13,0,-1,-1,-1,2,-1,10,0,
 "Base.93fordTaurusBumperFrontA",10,10,19,0,-1,-1,-1,2,-1,10,0,

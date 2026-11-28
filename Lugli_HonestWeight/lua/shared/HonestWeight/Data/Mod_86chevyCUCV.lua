@@ -2,7 +2,7 @@
 -- Source 86chevyCUCV: 24 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "86chevyCUCV", mod = "86chevyCUCV", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "86chevyCUCV", mod = "86chevyCUCV", version = "880f85a66ee4", rows = {
 "Base.80chevyM1010Tailgate2",17,17,22,0,-1,-1,-1,2,-1,17,0,
 "Base.80chevyM1028Tailgate2",16,16,22,0,-1,-1,-1,2,-1,16,0,
 "Base.80chevyM1031Tailgate2",15,15,22,0,-1,-1,-1,2,-1,15,0,

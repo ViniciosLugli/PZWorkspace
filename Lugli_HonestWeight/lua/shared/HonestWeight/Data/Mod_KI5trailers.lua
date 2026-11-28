@@ -2,7 +2,7 @@
 -- Source KI5trailers: 11 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "KI5trailers", mod = "KI5trailers", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "KI5trailers", mod = "KI5trailers", version = "880f85a66ee4", rows = {
 "Base.KI5trailersDoor2",8,8,12,0,-1,-1,-1,2,-1,8,0,
 "Base.KI5trailersMagazine",0.5,0.5,0.2,0,-1,-1,-1,0,-1,0.5,0,
 "Base.KI5trailersMudflaps2",1.2,1.2,1.2,0,-1,-1,-1,2,-1,1.2,0,

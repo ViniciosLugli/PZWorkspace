@@ -1,0 +1,38 @@
+-- GENERATED from the Honest Weight mass tables. Never edit by hand.
+-- Source 92vwGolfMk2: 32 row(s).
+LugliHonestWeight = LugliHonestWeight or {}
+LugliHonestWeight.data = LugliHonestWeight.data or {}
+table.insert(LugliHonestWeight.data, { id = "92vwGolfMk2", mod = "92vwGolfMk2", version = "880f85a66ee4", rows = {
+"Base.87vwGolfMk2BumperFront0",6,6,9,0,-1,-1,-1,2,-1,6,0,
+"Base.87vwGolfMk2BumperRear0",6,6,7,0,-1,-1,-1,2,-1,6,0,
+"Base.91vwGolfMk2BumperFront2",16,16,14,0,-1,-1,-1,2,-1,16,0,
+"Base.91vwGolfMk2BumperRear2",10,10,10,0,-1,-1,-1,2,-1,10,0,
+"Base.92vwGolfMk2Bullbar",12,12,12,0,-1,-1,-1,2,-1,12,0,
+"Base.92vwGolfMk2BumperFront1",8,8,9,0,-1,-1,-1,2,-1,8,0,
+"Base.92vwGolfMk2BumperRear1",8,8,7,0,-1,-1,-1,2,-1,8,0,
+"Base.92vwGolfMk2EngineDoor1",11,11,9,0,-1,-1,-1,2,-1,11,0,
+"Base.92vwGolfMk2FrontDoor1",10,10,12,0,-1,-1,-1,2,-1,10,0,
+"Base.92vwGolfMk2FrontSideWindow1",5,5,2.2,0,-1,-1,-1,2,-1,5,0,
+"Base.92vwGolfMk2FrontWindowArmor",7,7,4.9,0,-1,-1,-1,2,-1,7,0,
+"Base.92vwGolfMk2GrilleGTI",2.9,2.9,1.3,0,-1,-1,-1,2,-1,2.9,0,
+"Base.92vwGolfMk2GrilleT1",2,2,1,0,-1,-1,-1,2,-1,2,0,
+"Base.92vwGolfMk2GrilleT2",3,3,1.3,0,-1,-1,-1,2,-1,3,0,
+"Base.92vwGolfMk2LongRearSideWindow1",6,6,1.3,0,-1,-1,-1,2,-1,6,0,
+"Base.92vwGolfMk2Magazine",0.5,0.5,0.2,0,-1,-1,-1,0,-1,0.5,0,
+"Base.92vwGolfMk2Mudflaps2",2,2,1.2,0,-1,-1,-1,2,-1,2,0,
+"Base.92vwGolfMk2RearDoor1",10,10,10,0,-1,-1,-1,2,-1,10,0,
+"Base.92vwGolfMk2RearWindowArmor",7,7,2.9,0,-1,-1,-1,2,-1,7,0,
+"Base.92vwGolfMk2RearWindshield1",8,8,3.9,0,-1,-1,-1,2,-1,8,0,
+"Base.92vwGolfMk2SeatFront1",13,13,12,0,-1,-1,-1,2,-1,13,0,
+"Base.92vwGolfMk2SeatRear1",14,14,10,0,-1,-1,-1,2,-1,14,0,
+"Base.92vwGolfMk2ShortRearSideWindow1",6,6,1.3,0,-1,-1,-1,2,-1,6,0,
+"Base.92vwGolfMk2Spoiler3",2.5,2.5,4,0,-1,-1,-1,2,-1,2.5,0,
+"Base.92vwGolfMk2Tire1",11,11,8.5,0,-1,-1,-1,2,-1,11,0,
+"Base.92vwGolfMk2Tire2",12,12,8.5,0,-1,-1,-1,2,-1,12,0,
+"Base.92vwGolfMk2Tire3",10,10,8.5,0,-1,-1,-1,2,-1,10,0,
+"Base.92vwGolfMk2TrunkDoor1",7,7,8,0,-1,-1,-1,2,-1,7,0,
+"Base.92vwGolfMk2TrunkFlap1",2.2,2.2,2,0,-1,-1,-1,2,-1,2.2,0,
+"Base.92vwGolfMk2Windshield1",9,9,7.2,0,-1,-1,-1,2,-1,9,0,
+"Base.92vwGolfMk2WindshieldArmor",13,13,10.8,0,-1,-1,-1,2,-1,13,0,
+"Base.92vwGolfMk2WindshieldRearArmor",12,12,8.8,0,-1,-1,-1,2,-1,12,0,
+} })

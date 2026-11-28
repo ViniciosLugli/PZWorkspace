@@ -2,7 +2,7 @@
 -- Source MoreMapsB42: 9 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "MoreMapsB42", mod = "MoreMapsB42", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "MoreMapsB42", mod = "MoreMapsB42", version = "880f85a66ee4", rows = {
 "Base.BrandenburgMap",0.1,0.1,0.03,0,-1,-1,-1,0,-1,0.1,0,
 "Base.DixieMap",0.1,0.1,0.03,0,-1,-1,-1,0,-1,0.1,0,
 "Base.DoeValleyMap",0.1,0.1,0.03,0,-1,-1,-1,0,-1,0.1,0,

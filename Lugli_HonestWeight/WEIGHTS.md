@@ -1,6 +1,6 @@
 # Lugli - Honest Weight: every weight it changes
 
-11,905 items across the base game and 154 mods. Each source has its own table; open one and use your browser's find to look an item up by name or ID. Items from mods not listed here keep their own weight.
+12,777 items across the base game and 162 mods. Each source has its own table; open one and use your browser's find to look an item up by name or ID. Items from mods not listed here keep their own weight.
 
 **Game** is the weight without Honest Weight. **Honest** is the weight at the default options (Realism 100%, Bulk floor Normal, Scale 1.5), in the game's own units. A container that holds a liquid or is used up shows its empty weight in brackets.
 
@@ -14,6 +14,7 @@
 | ['63 Volkswagen Type 2 Van](https://steamcommunity.com/sharedfiles/filedetails/?id=3041122351) | 30 | [weights/Mod_63Type2Van.md](weights/Mod_63Type2Van.md) |
 | ['65 Pontiac Banshee](https://steamcommunity.com/sharedfiles/filedetails/?id=3566868353) | 18 | [weights/Mod_65banshee.md](weights/Mod_65banshee.md) |
 | ['66 Pontiac LeMans / GTO](https://steamcommunity.com/sharedfiles/filedetails/?id=3447272250) | 19 | [weights/Mod_66pontiacLeMans.md](weights/Mod_66pontiacLeMans.md) |
+| ['67 Chevrolet Impala](https://steamcommunity.com/sharedfiles/filedetails/?id=3820938264) | 19 | [weights/Mod_67chevyImpala.md](weights/Mod_67chevyImpala.md) |
 | ['67 M706 Cadillac Gage Commando V100](https://steamcommunity.com/sharedfiles/filedetails/?id=2478247379) | 5 | [weights/Mod_67commando.md](weights/Mod_67commando.md) |
 | ['67 Shelby GT500 + Eleanor](https://steamcommunity.com/sharedfiles/filedetails/?id=3026723485) | 17 | [weights/Mod_67gt500.md](weights/Mod_67gt500.md) |
 | ['68 Pontiac Firebird](https://steamcommunity.com/sharedfiles/filedetails/?id=3258343790) | 24 | [weights/Mod_68firebird.md](weights/Mod_68firebird.md) |
@@ -21,7 +22,7 @@
 | ['69 Dodge Charger](https://steamcommunity.com/sharedfiles/filedetails/?id=3631989559) | 28 | [weights/Mod_69charger.md](weights/Mod_69charger.md) |
 | ['69 Ford Mustang](https://steamcommunity.com/sharedfiles/filedetails/?id=3756938756) | 30 | [weights/Mod_69fordMustang.md](weights/Mod_69fordMustang.md) |
 | ['69 Mini Mk2](https://steamcommunity.com/sharedfiles/filedetails/?id=2937786633) | 30 | [weights/Mod_69mini.md](weights/Mod_69mini.md) |
-| ['70 Chevrolet Chevelle / El Camino](https://steamcommunity.com/sharedfiles/filedetails/?id=3766571591) | 38 | [weights/Mod_70chevelle.md](weights/Mod_70chevelle.md) |
+| ['70 Chevrolet Chevelle / El Camino](https://steamcommunity.com/sharedfiles/filedetails/?id=3766571591) | 36 | [weights/Mod_70chevelle.md](weights/Mod_70chevelle.md) |
 | ['70 Dodge Challenger](https://steamcommunity.com/sharedfiles/filedetails/?id=2873290424) | 25 | [weights/Mod_70dodge.md](weights/Mod_70dodge.md) |
 | ['70 Ford Escort](https://steamcommunity.com/sharedfiles/filedetails/?id=3670063857) | 24 | [weights/Mod_70fordEscort.md](weights/Mod_70fordEscort.md) |
 | ['70 Plymouth Barracuda](https://steamcommunity.com/sharedfiles/filedetails/?id=2913633066) | 16 | [weights/Mod_70barracuda.md](weights/Mod_70barracuda.md) |
@@ -34,13 +35,14 @@
 | ['77 Pontiac Firebird](https://steamcommunity.com/sharedfiles/filedetails/?id=3346905070) | 21 | [weights/Mod_77firebird.md](weights/Mod_77firebird.md) |
 | ['78 AM General M35 Series Trucks](https://steamcommunity.com/sharedfiles/filedetails/?id=2799152995) | 18 | [weights/Mod_78amgeneralM35A2.md](weights/Mod_78amgeneralM35A2.md) |
 | ['78 Lamborghini Countach](https://steamcommunity.com/sharedfiles/filedetails/?id=3726526329) | 27 | [weights/Mod_78lamboCountach.md](weights/Mod_78lamboCountach.md) |
-| ['79 Chevrolet Camaro](https://steamcommunity.com/sharedfiles/filedetails/?id=3703948448) | 23 | [weights/Mod_79camaro.md](weights/Mod_79camaro.md) |
+| ['79 Chevrolet Camaro](https://steamcommunity.com/sharedfiles/filedetails/?id=3703948448) | 26 | [weights/Mod_79camaro.md](weights/Mod_79camaro.md) |
 | ['80 MAN KAT1](https://steamcommunity.com/sharedfiles/filedetails/?id=3248388837) | 18 | [weights/Mod_80manKat1.md](weights/Mod_80manKat1.md) |
 | ['81 DeLorean DMC-12](https://steamcommunity.com/sharedfiles/filedetails/?id=3253385114) | 17 | [weights/Mod_81deloreanDMC12.md](weights/Mod_81deloreanDMC12.md) |
 | ['82 Jeep J10](https://steamcommunity.com/sharedfiles/filedetails/?id=2886832257) | 13 | [weights/Mod_82jeepJ10.md](weights/Mod_82jeepJ10.md) |
-| ['82 Oshkosh M911](https://steamcommunity.com/sharedfiles/filedetails/?id=2618213077) | 21 | [weights/Mod_82oshkoshM911.md](weights/Mod_82oshkoshM911.md) |
+| ['82 Oshkosh M911](https://steamcommunity.com/sharedfiles/filedetails/?id=2618213077) | 25 | [weights/Mod_82oshkoshM911.md](weights/Mod_82oshkoshM911.md) |
 | ['82 Pontiac Firebird](https://steamcommunity.com/sharedfiles/filedetails/?id=3320947974) | 19 | [weights/Mod_82firebird.md](weights/Mod_82firebird.md) |
 | ['82 Porsche 911](https://steamcommunity.com/sharedfiles/filedetails/?id=3379334330) | 31 | [weights/Mod_82porsche911.md](weights/Mod_82porsche911.md) |
+| ['83 GMC G-Series Vans](https://steamcommunity.com/sharedfiles/filedetails/?id=3799732653) | 19 | [weights/Mod_83gmcGseriesVans.md](weights/Mod_83gmcGseriesVans.md) |
 | ['84 Buick Electra](https://steamcommunity.com/sharedfiles/filedetails/?id=3596903773) | 8 | [weights/Mod_84buickElectra.md](weights/Mod_84buickElectra.md) |
 | ['84 Cadillac DeVille](https://steamcommunity.com/sharedfiles/filedetails/?id=3592777775) | 8 | [weights/Mod_84cadillacDeVille.md](weights/Mod_84cadillacDeVille.md) |
 | ['84 Chevrolet Corvette](https://steamcommunity.com/sharedfiles/filedetails/?id=3684254299) | 18 | [weights/Mod_84corvette.md](weights/Mod_84corvette.md) |
@@ -56,7 +58,7 @@
 | ['86 Ford Econoline E150](https://steamcommunity.com/sharedfiles/filedetails/?id=2870394916) | 49 | [weights/Mod_86fordE150.md](weights/Mod_86fordE150.md) |
 | ['86 Oshkosh P19A + Military Trailers](https://steamcommunity.com/sharedfiles/filedetails/?id=2566953935) | 21 | [weights/Mod_86oshkoshP19A.md](weights/Mod_86oshkoshP19A.md) |
 | ['87 Buick Regal](https://steamcommunity.com/sharedfiles/filedetails/?id=3226885926) | 24 | [weights/Mod_87buickRegal.md](weights/Mod_87buickRegal.md) |
-| ['87 Chevrolet Suburban](https://steamcommunity.com/sharedfiles/filedetails/?id=3196180339) | 16 | [weights/Mod_87chevySuburban.md](weights/Mod_87chevySuburban.md) |
+| ['87 Chevrolet Suburban](https://steamcommunity.com/sharedfiles/filedetails/?id=3196180339) | 17 | [weights/Mod_87chevySuburban.md](weights/Mod_87chevySuburban.md) |
 | ['87 Ford B700/F700 Trucks](https://steamcommunity.com/sharedfiles/filedetails/?id=3110911330) | 50 | [weights/Mod_87fordB700.md](weights/Mod_87fordB700.md) |
 | ['87 Toyota Corolla AE92](https://steamcommunity.com/sharedfiles/filedetails/?id=3779315249) | 23 | [weights/Mod_87toyotaCorolla.md](weights/Mod_87toyotaCorolla.md) |
 | ['87 Toyota MR2](https://steamcommunity.com/sharedfiles/filedetails/?id=3052360250) | 25 | [weights/Mod_87toyotaMR2.md](weights/Mod_87toyotaMR2.md) |
@@ -80,6 +82,7 @@
 | ['92 Ford Crown Victoria Police Interceptor](https://steamcommunity.com/sharedfiles/filedetails/?id=2962175696) | 17 | [weights/Mod_92fordCVPI.md](weights/Mod_92fordCVPI.md) |
 | ['92 Jeep Wrangler YJ](https://steamcommunity.com/sharedfiles/filedetails/?id=3287727378) | 40 | [weights/Mod_92jeepYJ.md](weights/Mod_92jeepYJ.md) |
 | ['92 NISSAN Skyline GT-R (R32)](https://steamcommunity.com/sharedfiles/filedetails/?id=2846036306) | 34 | [weights/Mod_92nissanGTR.md](weights/Mod_92nissanGTR.md) |
+| ['92 Volkswagen Golf Mk2](https://steamcommunity.com/sharedfiles/filedetails/?id=3812024929) | 29 | [weights/Mod_92vwGolfMk2.md](weights/Mod_92vwGolfMk2.md) |
 | ['93 Chevrolet Suburban / Silverado](https://steamcommunity.com/sharedfiles/filedetails/?id=3152529790) | 45 | [weights/Mod_93chevySuburban.md](weights/Mod_93chevySuburban.md) |
 | ['93 Ford CF8000 Elgin Street Sweeper](https://steamcommunity.com/sharedfiles/filedetails/?id=2969343830) | 14 | [weights/Mod_93fordElgin.md](weights/Mod_93fordElgin.md) |
 | ['93 Ford F-Series](https://steamcommunity.com/sharedfiles/filedetails/?id=3073430075) | 48 | [weights/Mod_93fordF350.md](weights/Mod_93fordF350.md) |
@@ -100,6 +103,7 @@
 | [\[B42\] Survival](https://steamcommunity.com/sharedfiles/filedetails/?id=3402516345) | 14 | [weights/Mod_B42Survival.md](weights/Mod_B42Survival.md) |
 | [\[B42\] Tactical Sheaths Reborn \[42.13\]](https://steamcommunity.com/sharedfiles/filedetails/?id=3569158406) | 39 | [weights/Mod_TacticalSheathsReborn.md](weights/Mod_TacticalSheathsReborn.md) |
 | [Badlands Power](https://steamcommunity.com/sharedfiles/filedetails/?id=3804093735) | 5 | [weights/Mod_BadlandsPower.md](weights/Mod_BadlandsPower.md) |
+| [Bedford Falls B42 Private](https://steamcommunity.com/sharedfiles/filedetails/?id=3840538889) | 1 | [weights/Mod_ARC_BedfordFalls_B42.md](weights/Mod_ARC_BedfordFalls_B42.md) |
 | [Bushcraft Gear - Rare Weapons](https://steamcommunity.com/sharedfiles/filedetails/?id=2432621382) | 4 | [weights/Mod_BCGRareWeapons.md](weights/Mod_BCGRareWeapons.md) |
 | [Bushcraft Gear - Tools](https://steamcommunity.com/sharedfiles/filedetails/?id=2423906082) | 15 | [weights/Mod_BCGTools.md](weights/Mod_BCGTools.md) |
 | [Campers!](https://steamcommunity.com/sharedfiles/filedetails/?id=3670064951) | 31 | [weights/Mod_KI5campers.md](weights/Mod_KI5campers.md) |
@@ -108,11 +112,11 @@
 | [Containers!](https://steamcommunity.com/sharedfiles/filedetails/?id=2625625421) | 4 | [weights/Mod_isoContainers.md](weights/Mod_isoContainers.md) |
 | [dustinguished cleaning wipes](https://steamcommunity.com/sharedfiles/filedetails/?id=3755185651) | 2 | [weights/Mod_dustinguished_cleaning_wipes.md](weights/Mod_dustinguished_cleaning_wipes.md) |
 | [Dynamic Backpack Upgrades (B41)](https://steamcommunity.com/sharedfiles/filedetails/?id=2996978365) | 8 | [weights/Mod_LazoloDynamicBackpackUpgrades.md](weights/Mod_LazoloDynamicBackpackUpgrades.md) |
-| [GoM Extension: Guns of Tien](https://steamcommunity.com/sharedfiles/filedetails/?id=3820183693) | 106 | [weights/Mod_GoMExtensionGunsOfTien.md](weights/Mod_GoMExtensionGunsOfTien.md) |
-| [GoM Extension: Guns of Tien - Post-93](https://steamcommunity.com/sharedfiles/filedetails/?id=3820183693) | 78 | [weights/Mod_GoMExtensionGunsOfTienPost93.md](weights/Mod_GoMExtensionGunsOfTienPost93.md) |
+| [GoM Extension: Guns of Tien](https://steamcommunity.com/sharedfiles/filedetails/?id=3820183693) | 321 | [weights/Mod_GoMExtensionGunsOfTien.md](weights/Mod_GoMExtensionGunsOfTien.md) |
+| [GoM Extension: Guns of Tien - Post-93](https://steamcommunity.com/sharedfiles/filedetails/?id=3820183693) | 178 | [weights/Mod_GoMExtensionGunsOfTienPost93.md](weights/Mod_GoMExtensionGunsOfTienPost93.md) |
 | [GRIN Ballistics](https://steamcommunity.com/sharedfiles/filedetails/?id=3748044794) | 49 | [weights/Mod_grinbal.md](weights/Mod_grinbal.md) |
 | [Gun Repair Kit](https://steamcommunity.com/sharedfiles/filedetails/?id=3794209234) | 7 | [weights/Mod_dk_gunrepairkit.md](weights/Mod_dk_gunrepairkit.md) |
-| [Guns of Marz](https://steamcommunity.com/sharedfiles/filedetails/?id=3722134990) | 308 | [weights/Mod_GunsOfMarz.md](weights/Mod_GunsOfMarz.md) |
+| [Guns of Marz](https://steamcommunity.com/sharedfiles/filedetails/?id=3722134990) | 307 | [weights/Mod_GunsOfMarz.md](weights/Mod_GunsOfMarz.md) |
 | [Gunworks-gang](https://steamcommunity.com/sharedfiles/filedetails/?id=3722064198) | 27 | [weights/Mod_SWMG.md](weights/Mod_SWMG.md) |
 | [Gyde's Trait Magazines](https://steamcommunity.com/sharedfiles/filedetails/?id=3342191739) | 13 | [weights/Mod_GydeTraitMags.md](weights/Mod_GydeTraitMags.md) |
 | [Gyde's Trait Magazines Extended](https://steamcommunity.com/sharedfiles/filedetails/?id=3776852122) | 9 | [weights/Mod_GydesTraitMagazinesExtended.md](weights/Mod_GydesTraitMagazinesExtended.md) |
@@ -120,7 +124,8 @@
 | [Hardwoods Heavy-Duty Turnout Gear](https://steamcommunity.com/sharedfiles/filedetails/?id=3671351750) | 10 | [weights/Mod_HardwoodsTurnoutGear.md](weights/Mod_HardwoodsTurnoutGear.md) |
 | [Hardwoods' Police Pack](https://steamcommunity.com/sharedfiles/filedetails/?id=3687353319) | 33 | [weights/Mod_HardwoodsPolicePack.md](weights/Mod_HardwoodsPolicePack.md) |
 | [Hot Brass - Ammo Crafting](https://steamcommunity.com/sharedfiles/filedetails/?id=3610677934) | 141 | [weights/Mod_HBAmmoCraft.md](weights/Mod_HBAmmoCraft.md) |
-| [Hot Brass - Visible Casing Ejection Framework \[B42.15\]](https://steamcommunity.com/sharedfiles/filedetails/?id=3610677934) | 25 | [weights/Mod_HBVCEFb42.md](weights/Mod_HBVCEFb42.md) |
+| [Hot Brass - Visible Casing Ejection Framework \[B42.15\]](https://steamcommunity.com/sharedfiles/filedetails/?id=3610677934) | 26 | [weights/Mod_HBVCEFb42.md](weights/Mod_HBVCEFb42.md) |
+| [HydeCo. Knox Underground!](https://steamcommunity.com/sharedfiles/filedetails/?id=3811471690) | 186 | [weights/Mod_HydeCoUnderGround.md](weights/Mod_HydeCoUnderGround.md) |
 | [Improvised Silencers (Build 42.20 Compatibility)](https://steamcommunity.com/sharedfiles/filedetails/?id=3779164273) | 5 | [weights/Mod_ImprovisedSilencers.md](weights/Mod_ImprovisedSilencers.md) |
 | [\[J&G\] SWAT Uniform](https://steamcommunity.com/sharedfiles/filedetails/?id=3457969588) | 30 | [weights/Mod__J_G__SWAT_Uniform.md](weights/Mod__J_G__SWAT_Uniform.md) |
 | [\[J&G\] T.H.O.R.N. Uniform!](https://steamcommunity.com/sharedfiles/filedetails/?id=3781267190) | 23 | [weights/Mod__J_G__T_H_O_R_N__Uniform_.md](weights/Mod__J_G__T_H_O_R_N__Uniform_.md) |
@@ -129,6 +134,8 @@
 | [KATTAJ1 Clothes Core](https://steamcommunity.com/sharedfiles/filedetails/?id=3470422050) | 1 | [weights/Mod_KATTAJ1_ClothesCore.md](weights/Mod_KATTAJ1_ClothesCore.md) |
 | [Lock-Mart Industries M577](https://steamcommunity.com/sharedfiles/filedetails/?id=3652371248) | 8 | [weights/Mod_lockMartM577.md](weights/Mod_lockMartM577.md) |
 | [Long Term Preservation \[42.20\]](https://steamcommunity.com/sharedfiles/filedetails/?id=3774789651) | 15 | [weights/Mod_SKITTLE_LongTermPreservation4220.md](weights/Mod_SKITTLE_LongTermPreservation4220.md) |
+| [Lugli - Emergency Lights](https://steamcommunity.com/sharedfiles/filedetails/?id=3793988563) | 24 | [weights/Mod_Lugli_EmergencyLights.md](weights/Mod_Lugli_EmergencyLights.md) |
+| [Maplewood](https://steamcommunity.com/sharedfiles/filedetails/?id=3644794945) | 1 | [weights/Mod_Maplewood.md](weights/Mod_Maplewood.md) |
 | [More Maps \[B42\]](https://steamcommunity.com/sharedfiles/filedetails/?id=3390897023) | 9 | [weights/Mod_MoreMapsB42.md](weights/Mod_MoreMapsB42.md) |
 | [More Plushies!](https://steamcommunity.com/sharedfiles/filedetails/?id=2795036124) | 83 | [weights/Mod_MorePlushies.md](weights/Mod_MorePlushies.md) |
 | [Neat Lockpicking](https://steamcommunity.com/sharedfiles/filedetails/?id=3783535220) | 8 | [weights/Mod_NeatLockpicking.md](weights/Mod_NeatLockpicking.md) |
@@ -142,7 +149,8 @@
 | [Spongie's Clothing](https://steamcommunity.com/sharedfiles/filedetails/?id=2684285534) | 59 | [weights/Mod_SpnCloth.md](weights/Mod_SpnCloth.md) |
 | [Spongie's Open Jackets \[VANILLA CLOTHING\]](https://steamcommunity.com/sharedfiles/filedetails/?id=2812326159) | 219 | [weights/Mod_SpnOpenCloth.md](weights/Mod_SpnOpenCloth.md) |
 | [Super Gore (by Mr.DOCS)](https://steamcommunity.com/sharedfiles/filedetails/?id=3833349401) | 16 | [weights/Mod_Super_Gore_by_mrdocs.md](weights/Mod_Super_Gore_by_mrdocs.md) |
-| [that DAMN Library 0.9895b](https://steamcommunity.com/sharedfiles/filedetails/?id=3171167894) | 205 | [weights/Mod_damnlib.md](weights/Mod_damnlib.md) |
+| [that DAMN Library 0.9895b](https://steamcommunity.com/sharedfiles/filedetails/?id=3171167894) | 216 | [weights/Mod_damnlib.md](weights/Mod_damnlib.md) |
+| [They Knew Continued](https://steamcommunity.com/sharedfiles/filedetails/?id=3813362974) | 11 | [weights/Mod_TheyKnewContinued.md](weights/Mod_TheyKnewContinued.md) |
 | [Tien's Coolers](https://steamcommunity.com/sharedfiles/filedetails/?id=3794455791) | 2 | [weights/Mod_TienCoolers.md](weights/Mod_TienCoolers.md) |
 | [Trailers!](https://steamcommunity.com/sharedfiles/filedetails/?id=3330403100) | 9 | [weights/Mod_KI5trailers.md](weights/Mod_KI5trailers.md) |
 | [Two Weapons on Back](https://steamcommunity.com/sharedfiles/filedetails/?id=3778319798) | 2 | [weights/Mod_TwoWeaponsOnBack.md](weights/Mod_TwoWeaponsOnBack.md) |
@@ -151,7 +159,7 @@
 | [Under the Hood \[B42\] \[BETA\]](https://steamcommunity.com/sharedfiles/filedetails/?id=3780938346) | 200 | [weights/Mod_RealisticVehicleMechanics.md](weights/Mod_RealisticVehicleMechanics.md) |
 | [Unseasonal Weather](https://steamcommunity.com/sharedfiles/filedetails/?id=3582891045) | 1 | [weights/Mod_UnseasonalWeather.md](weights/Mod_UnseasonalWeather.md) |
 | [US Military Grenades \[B42\]](https://steamcommunity.com/sharedfiles/filedetails/?id=3745718141) | 24 | [weights/Mod_Explosives.md](weights/Mod_Explosives.md) |
-| [Vanilla Foods Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3577903007) | 2,250 | [weights/Mod_VanillaFoodsExpanded.md](weights/Mod_VanillaFoodsExpanded.md) |
+| [Vanilla Foods Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3577903007) | 2,500 | [weights/Mod_VanillaFoodsExpanded.md](weights/Mod_VanillaFoodsExpanded.md) |
 | [Vanilla Gear Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3401134276) | 51 | [weights/Mod_VanillaGearExpanded.md](weights/Mod_VanillaGearExpanded.md) |
 | [Vanilla Outfits Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3783094058) | 29 | [weights/Mod_VanillaOutfitsExpanded.md](weights/Mod_VanillaOutfitsExpanded.md) |
 | [Vehicle Fluid Logistics Library](https://steamcommunity.com/sharedfiles/filedetails/?id=3791686284) | 3 | [weights/Mod_VFluidLib.md](weights/Mod_VFluidLib.md) |

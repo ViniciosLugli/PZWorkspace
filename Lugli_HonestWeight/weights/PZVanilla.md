@@ -538,7 +538,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Box of Unlabeled Cans of Food | `Base.MysteryCan_Box` | 4 | 4.46 |
 | Box of Water Ration Cans | `Base.WaterRationCan_Box` | 4 | 3.83 |
 | Box Trap | `Base.TrapBox` | 5 | 4.5 |
-| Boxed Chardonnay | `Base.WineBox` | 0.2 | 0.15 |
+| Boxed Chardonnay | `Base.WineBox` | 0.2 | 0.165 |
 | Boxed Chardonnay | `Base.WineRed_Boxed` | 6.5 | 8.12 |
 | Boxed Chardonnay | `Base.WineWhite_Boxed` | 6.5 | 8.12 |
 | Boxers | `Base.Boxers_Hearts` | 0.2 | 0.12 |
@@ -635,6 +635,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Bronze Sports Medal | `Base.Medal_Bronze` | 0.3 | 0.09 |
 | Broom | `Base.Broom` | 2 | 0.9 |
 | Broom with Barbed-Wire | `Base.Broom_BarbedWire` | 2 | 1.05 |
+| Brown Gravy | `Base.Gravy` | 0.4 | 0.5 |
 | Brown Sugar | `Base.SugarBrown` | 0.6 | 0.75 |
 | Brussels Sprouts | `Base.BrusselSprouts` | 0.6 | 0.42 |
 | Bucket | `Base.Bucket` | 1 | 1.25 |
@@ -1653,7 +1654,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Generator - Lectromax | `Base.Generator` | 40 | 41.5 |
 | Generator - Old | `Base.Generator_Old` | 40 | 41.5 |
 | Generator - Premium Technologies | `Base.Generator_Yellow` | 40 | 41.5 |
-| Generator - ValuTech | `Base.Generator_Blue` | 40 | 41.5 |
+| Generator - ValuTech | `Base.Generator_Blue` | 30 | 37.5 |
 | Geometry Compass | `Base.CompassGeometry` | 0.2 | 0.045 |
 | Ghillie Suit - Pants | `Base.Ghillie_Trousers` | 1 | 1.25 |
 | Ghillie Suit - Torso | `Base.Ghillie_Top` | 4 | 3 |
@@ -1747,8 +1748,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Graph Paper | `Base.GraphPaper` | 0.1 | 0.0075 |
 | Grass Cutting | `Base.GrassTuft` | 0.1 | 0.075 |
 | Grasshopper | `Base.Grasshopper` | 0.1 | 0.0015 |
-| Gravy | `Base.Gravy` | 0.2 | 0.25 |
-| Gravy Mix | `Base.GravyMix` | 0.1 | 0.045 |
+| Gravy Mix - Brown | `Base.GravyMix` | 0.1 | 0.045 |
 | Green Onions | `Base.GreenOnions` | 0.2 | 0.15 |
 | Green Peas | `Base.Greenpeas` | 0.2 | 0.15 |
 | Green Peas (Dried) | `Base.GreenpeasSeed` | 0.02 | 0.0075 |
@@ -2524,6 +2524,7 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Magazine: Welder Monthly - June 1993 | `Base.MetalworkMag1` | 0.5 | 0.3 |
 | Magazine: Welder Monthly - March 1993 | `Base.MetalworkMag4` | 0.5 | 0.3 |
 | Magazine: Welder Monthly - May 1993 | `Base.MetalworkMag2` | 0.5 | 0.3 |
+| Magazine: Wilderness Survival | `Base.HerbalistMag` | 0.5 | 0.3 |
 | Magazine: Wildlife Preserve | `Base.HuntingMag3` | 0.5 | 0.3 |
 | Magazine: Woolly Yarns - June 1993 | `Base.KnittingMag1` | 0.5 | 0.3 |
 | Magazine: Woolly Yarns - May 1993 | `Base.KnittingMag2` | 0.5 | 0.3 |
@@ -4293,7 +4294,6 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Western Boots - Embroidered | `Base.Shoes_CowboyBoots_Fancy` | 1 | 1.25 |
 | Western Boots - Snakeskin | `Base.Shoes_CowboyBoots_SnakeSkin` | 1 | 1.25 |
 | Western Canteen | `Base.CanteenCowboy` | 0.3 | 0.375 |
-| What is Herbology? | `Base.HerbalistMag` | 0.5 | 0.3 |
 | Wheat Seeds | `Base.WheatSeed` | 0.02 | 0.0075 |
 | Wheat Sheaf | `Base.WheatSheaf` | 1 | 1.25 |
 | Wheat Sheaf (Dried) | `Base.WheatSheafDried` | 1 | 1.05 |

@@ -2,7 +2,7 @@
 -- Source 70dodge: 28 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "70dodge", mod = "70dodge", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "70dodge", mod = "70dodge", version = "880f85a66ee4", rows = {
 "Base.DG70Door3",10,10,15,0,-1,-1,-1,2,-1,10,0,
 "Base.DG70DoorArmor",8,8,15.7,0,-1,-1,-1,2,-1,8,0,
 "Base.DG70FrontBumper0",10,10,13,0,-1,-1,-1,2,-1,10,0,

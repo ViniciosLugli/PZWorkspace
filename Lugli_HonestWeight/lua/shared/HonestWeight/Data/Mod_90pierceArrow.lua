@@ -2,7 +2,7 @@
 -- Source 90pierceArrow: 23 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "90pierceArrow", mod = "90pierceArrow", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "90pierceArrow", mod = "90pierceArrow", version = "880f85a66ee4", rows = {
 "Base.90pierceArrow4TiresAxle2",22,41.5245,48.05,0,-1,-1,-1,2,-1,22,0,
 "Base.90pierceArrowBumper0",15,15,22,0,-1,-1,-1,2,-1,15,0,
 "Base.90pierceArrowDoubleTires2",19,29.424,24.05,0,-1,-1,-1,2,-1,19,0,

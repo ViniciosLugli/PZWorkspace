@@ -2,7 +2,7 @@
 -- Source VanillaGearExpanded: 51 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "VanillaGearExpanded", mod = "VanillaGearExpanded", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "VanillaGearExpanded", mod = "VanillaGearExpanded", version = "880f85a66ee4", rows = {
 "VGE.Bag_ChestRig_Tactical",1,1,0.6,2.5,-1,-1,-1,0,-1,1,0,
 "VGE.Glasses_TacticalGoggles",0.1,0.1,0.08,0,-1,-1,-1,0,-1,0.1,0,
 "VGE.Gloves_FingerlessTactical",0.1,0.1,0.07,0,-1,-1,-1,0,-1,0.1,0,

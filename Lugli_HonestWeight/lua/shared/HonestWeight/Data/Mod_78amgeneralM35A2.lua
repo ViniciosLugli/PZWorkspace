@@ -2,7 +2,7 @@
 -- Source 78amgeneralM35A2: 18 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "78amgeneralM35A2", mod = "78amgeneralM35A2", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "78amgeneralM35A2", mod = "78amgeneralM35A2", version = "880f85a66ee4", rows = {
 "Base.M35A2Bumper1",15,15,38,0,-1,-1,-1,2,-1,15,0,
 "Base.M35A2Door2",12,12,30,0,-1,-1,-1,2,-1,12,0,
 "Base.M35A2DoorArmor1",10,10,19.6,0,-1,-1,-1,2,-1,10,0,

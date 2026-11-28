@@ -1,6 +1,6 @@
 # that DAMN Library 0.9895b
 
-Weights Lugli - Honest Weight sets for [that DAMN Library 0.9895b](https://steamcommunity.com/sharedfiles/filedetails/?id=3171167894): 205 items. [All sources](../WEIGHTS.md)
+Weights Lugli - Honest Weight sets for [that DAMN Library 0.9895b](https://steamcommunity.com/sharedfiles/filedetails/?id=3171167894): 216 items. [All sources](../WEIGHTS.md)
 
 **Game** is the weight without Honest Weight. **Honest** is the weight at the default options (Realism 100%, Bulk floor Normal, Scale 1.5), in the game's own units. A container that holds a liquid or is used up shows its empty weight in brackets.
 
@@ -22,6 +22,8 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 3rd Gen Chevrolet C/K Series Sun Visor (*) | `Base.3rdGenChevyCKseriesSunVisor2` | 6 | 4 |
 | 3rd Gen Chevrolet C/K Series Windshield (*) | `Base.3rdGenChevyCKseriesWindshield2` | 9 | 11.2 |
 | 63 VW Type 1 Tire (*) | `Base.63vwStockTire1` | 10 | 8.5 |
+| 70 Chevrolet Chevelle SS Tire (*) | `Base.70ChevelleSSTire3` | 11 | 12 |
+| 70 Chevrolet Chevelle Tire (*) | `Base.70ChevelleTire3` | 11 | 10 |
 | 76 Chevrolet K Series Tire (*) | `Base.76chevyKseriesTire2` | 15 | 17 |
 | 80s Chevrolet C/K Series Tire (*) | `Base.80chevyCKseriesTire1` | 14 | 17 |
 | 80s Chevrolet C/K Series Tire (*) | `Base.80chevyCKseriesTire2` | 15 | 17 |
@@ -88,6 +90,15 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | Ford CVPI Rear Windshield Armor (*) | `Base.fordCVPIWindshieldRearArmor` | 18 | 16.7 |
 | Ford CVPI Tire (*) | `Base.fordCVPITire1` | 15 | 12 |
 | Ford CVPI Windshield Armor (*) | `Base.fordCVPIWindshieldArmor` | 15 | 18.8 |
+| GM A-body Bullbar | `Base.70gmAbodyBullbarFrontA` | 13 | 16.2 |
+| GM A-body Front Side Window | `Base.70gmAbodyFrontSideWindow3` | 6 | 3.75 |
+| GM A-body Front Window Armor | `Base.70gmAbodyFrontWindowArmor` | 10 | 8.85 |
+| GM A-body Rear Side Window | `Base.70gmAbodyRearSideWindow3` | 4 | 2.7 |
+| GM A-body Rear Window Armor | `Base.70gmAbodyRearWindowArmor` | 5 | 5.85 |
+| GM A-body Rear Windshield | `Base.70gmAbodyRearWindshield3` | 7 | 8.75 |
+| GM A-body Rear Windshield Armor | `Base.70gmAbodyWindshieldRearArmor` | 12 | 15 |
+| GM A-body Windshield | `Base.70gmAbodyWindshield3` | 9 | 11.2 |
+| GM A-body Windshield Armor | `Base.70gmAbodyWindshieldArmor` | 14 | 17.5 |
 | GM B/C-body Front Bullbar (*) | `Base.85gmBbodyBullbarFrontA` | 11 | 13.8 |
 | GM B/C-body Front Window Metal Armor (*) | `Base.85gmBbodyFrontWindowArmorM` | 8 | 5.5 |
 | GM B/C-body Front Window Wooden Armor (*) | `Base.85gmBbodyFrontWindowArmorW` | 4 | 3.8 |

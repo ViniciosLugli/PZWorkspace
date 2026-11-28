@@ -1,8 +1,8 @@
 -- GENERATED from the Honest Weight mass tables. Never edit by hand.
--- Source damnlib: 215 row(s).
+-- Source damnlib: 226 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "damnlib", mod = "damnlib", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "damnlib", mod = "damnlib", version = "880f85a66ee4", rows = {
 "Base.3rdGenChevyCKseriesBackSideWindow2",6,6,2.1,0,-1,-1,-1,2,-1,6,0,
 "Base.3rdGenChevyCKseriesBumperFront0",8,8,22,0,-1,-1,-1,2,-1,8,0,
 "Base.3rdGenChevyCKseriesBumperFront1",8.5,8.5,22,0,-1,-1,-1,2,-1,8.5,0,
@@ -18,6 +18,17 @@ table.insert(LugliHonestWeight.data, { id = "damnlib", mod = "damnlib", version 
 "Base.3rdGenChevyCKseriesWindshield2",9,9,11.7,0,-1,-1,-1,2,-1,9,0,
 "Base.63vwStockTire1",10,10,8.5,0,-1,-1,-1,2,-1,10,0,
 "Base.69chargerTire3",11,11,12,0,-1,-1,-1,2,-1,11,0,
+"Base.70ChevelleSSTire3",11,11,12,0,-1,-1,-1,2,-1,11,0,
+"Base.70ChevelleTire3",11,11,10,0,-1,-1,-1,2,-1,11,0,
+"Base.70gmAbodyBullbarFrontA",13,13,17,0,-1,-1,-1,0,-1,13,0,
+"Base.70gmAbodyFrontSideWindow3",6,6,2.5,0,-1,-1,-1,0,-1,6,0,
+"Base.70gmAbodyFrontWindowArmor",10,10,5.9,0,-1,-1,-1,0,-1,10,0,
+"Base.70gmAbodyRearSideWindow3",4,4,1.8,0,-1,-1,-1,0,-1,4,0,
+"Base.70gmAbodyRearWindowArmor",5,5,3.9,0,-1,-1,-1,0,-1,5,0,
+"Base.70gmAbodyRearWindshield3",7,7,6,0,-1,-1,-1,0,-1,7,0,
+"Base.70gmAbodyWindshield3",9,9,11,0,-1,-1,-1,0,-1,9,0,
+"Base.70gmAbodyWindshieldArmor",14,14,16.7,0,-1,-1,-1,0,-1,14,0,
+"Base.70gmAbodyWindshieldRearArmor",12,12,13.7,0,-1,-1,-1,0,-1,12,0,
 "Base.75grandPrixR215Tire1",13,13,12,0,-1,-1,-1,2,-1,13,0,
 "Base.75grandPrixR217Tire3",12,12,12,0,-1,-1,-1,2,-1,12,0,
 "Base.76chevyKseriesTire2",15,15,17,0,-1,-1,-1,2,-1,15,0,

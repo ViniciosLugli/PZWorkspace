@@ -1,0 +1,17 @@
+{
+    "Sandbox_LugliHW": "Lugli - Honest Weight",
+    "Sandbox_LugliHW_Realism": "현실성 (%%)",
+    "Sandbox_LugliHW_Realism_tooltip": "아이템 무게가 게임 원래 값에서 실제 무게 쪽으로 얼마나 옮겨 가는지 정한다. 100은 완전히 실제 무게, 0은 게임 값을 유지하며 부서진 아이템이 멀쩡한 것보다 무거운 것 같은 명백한 오류만 고친다. 다음에 월드를 불러올 때 적용된다.",
+    "Sandbox_LugliHW_BulkFloor": "부피 최소 무게",
+    "Sandbox_LugliHW_BulkFloor_tooltip": "게임에는 아이템 부피가 없어서, 가방에 셔츠 수백 벌이 들어가는 것을 막는 것은 무게뿐이다. 부피가 크고 가벼운 물건(코트, 베개, 침낭, 빈 상자)은 챙겼을 때 차지하는 1리터당 최소 이만큼의 킬로그램으로 계산된다(배율 적용 전). 다음에 월드를 불러올 때 적용된다.",
+    "Sandbox_LugliHW_BulkFloor_option1": "끔: 실제 무게만",
+    "Sandbox_LugliHW_BulkFloor_option2": "가벼움: 리터당 0.05",
+    "Sandbox_LugliHW_BulkFloor_option3": "보통: 리터당 0.10",
+    "Sandbox_LugliHW_BulkFloor_option4": "엄격: 리터당 0.15",
+    "Sandbox_LugliHW_Scale": "배율",
+    "Sandbox_LugliHW_Scale_tooltip": "실제 1킬로그램당 게임 내 무게. 어떤 값에서도 아이템 사이의 비율은 실제 그대로 유지된다. 1.0은 실제 킬로그램으로, 바닐라보다 물건을 훨씬 쉽게 들고 다닐 수 있다. 기본값 1.5에서는 옷과 작은 물건이 가벼워지고, 도구와 총은 최대 증가 값까지 약간 무거워진다. 액체는 게임 고정값인 리터당 1을 유지한다. 다음에 월드를 불러올 때 적용된다.",
+    "Sandbox_LugliHW_MaxIncrease": "최대 증가 (%%)",
+    "Sandbox_LugliHW_MaxIncrease_tooltip": "아이템이 바닐라 무게보다 더 무거워질 수 있는 최대치(퍼센트). 많이 들고 다니는 아이템(돌, 벽돌, 통나무, 모래주머니, 탄약)이나 게임에서 이미 무거운 아이템은 플레이할 만한 무게로 유지된다. 0이면 어떤 아이템도 무거워지지 않고 가벼워지기만 한다. 400이면 거의 모든 아이템이 실제 무게에 도달한다. 다음에 월드를 불러올 때 적용된다.",
+    "Sandbox_LugliHW_VanillaStamina": "휘두르기 스태미나는 바닐라대로",
+    "Sandbox_LugliHW_VanillaStamina_tooltip": "게임은 근접 무기의 무게로 휘두를 때와 도끼질할 때마다 드는 스태미나를 정한다. 끔: 스태미나가 실제 무게를 따르므로 무거운 슬레지해머는 더 빨리 지치게 하고 가벼운 칼은 덜 지치게 한다. 켬: 모든 무기가 휘두를 때마다 이 모드가 없을 때와 같은 스태미나를 소모한다. 다음에 월드를 불러올 때 적용된다."
+}

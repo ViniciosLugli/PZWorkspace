@@ -2,7 +2,7 @@
 -- Source SKITTLE_LongTermPreservation4220: 15 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "SKITTLE_LongTermPreservation4220", mod = "SKITTLE_LongTermPreservation4220", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "SKITTLE_LongTermPreservation4220", mod = "SKITTLE_LongTermPreservation4220", version = "880f85a66ee4", rows = {
 "Skittles.CannedBeef",0.8,0.8,1.15,0,-1,-1,-1,0,-1,0.8,0,
 "Skittles.CannedBeef_Open",0.8,0.8,1.15,0,-1,-1,-1,0,-1,0.8,0,
 "Skittles.CannedFish",0.5,0.5,1.15,0,-1,-1,-1,0,-1,0.5,0,

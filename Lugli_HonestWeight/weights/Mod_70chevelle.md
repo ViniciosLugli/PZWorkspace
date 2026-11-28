@@ -1,6 +1,6 @@
 # '70 Chevrolet Chevelle / El Camino
 
-Weights Lugli - Honest Weight sets for ['70 Chevrolet Chevelle / El Camino](https://steamcommunity.com/sharedfiles/filedetails/?id=3766571591): 38 items. [All sources](../WEIGHTS.md)
+Weights Lugli - Honest Weight sets for ['70 Chevrolet Chevelle / El Camino](https://steamcommunity.com/sharedfiles/filedetails/?id=3766571591): 36 items. [All sources](../WEIGHTS.md)
 
 **Game** is the weight without Honest Weight. **Honest** is the weight at the default options (Realism 100%, Bulk floor Normal, Scale 1.5), in the game's own units. A container that holds a liquid or is used up shows its empty weight in brackets.
 
@@ -21,8 +21,6 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 | 70 Chevrolet Chevelle Sedan/Wagon Front Side Window (*) | `Base.70chevelleWagonFrontSideWindow3` | 5 | 2.5 |
 | 70 Chevrolet Chevelle Sedan/Wagon Rear Door (*) | `Base.70chevelleWagonRearDoor3` | 12 | 13 |
 | 70 Chevrolet Chevelle Sedan/Wagon Rear Side Window (*) | `Base.70chevelleWagonRearSideWindow3` | 5 | 1.8 |
-| 70 Chevrolet Chevelle SS Tire (*) | `Base.70ChevelleSSTire3` | 11 | 12 |
-| 70 Chevrolet Chevelle Tire (*) | `Base.70ChevelleTire3` | 11 | 10 |
 | 70 Chevrolet Chevelle Wagon Back Side Window (*) | `Base.70chevelleWagonBackSideWindow3` | 8 | 1.8 |
 | 70 Chevrolet Chevelle Wagon Rear Bumper (*) | `Base.70chevelleWagonBumperRear` | 6 | 7.5 |
 | 70 Chevrolet Chevelle Wagon Roofrack (*) | `Base.70chevelleWagonRoofrack2` | 15 | 12 |

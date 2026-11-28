@@ -2,7 +2,7 @@
 -- Source 69camaro: 22 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "69camaro", mod = "69camaro", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "69camaro", mod = "69camaro", version = "880f85a66ee4", rows = {
 "Base.69camaroDoor3",11,11,15,0,-1,-1,-1,2,-1,11,0,
 "Base.69camaroEngineDoorRS",13,13,13,0,-1,-1,-1,2,-1,13,0,
 "Base.69camaroEngineDoorSS",13,13,13,0,-1,-1,-1,2,-1,13,0,

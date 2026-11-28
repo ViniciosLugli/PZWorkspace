@@ -2,7 +2,7 @@
 -- Source 84oldsmobile98: 8 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "84oldsmobile98", mod = "84oldsmobile98", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "84oldsmobile98", mod = "84oldsmobile98", version = "880f85a66ee4", rows = {
 "Base.84oldsmobile98BumperFront0",10,10,22,0,-1,-1,-1,2,-1,10,0,
 "Base.84oldsmobile98BumperFrontA",15,15,25,0,-1,-1,-1,2,-1,15,0,
 "Base.84oldsmobile98BumperRear0",9,9,18,0,-1,-1,-1,2,-1,9,0,

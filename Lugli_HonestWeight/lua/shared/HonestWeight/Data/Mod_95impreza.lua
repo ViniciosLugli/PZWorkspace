@@ -2,7 +2,7 @@
 -- Source 95impreza: 21 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "95impreza", mod = "95impreza", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "95impreza", mod = "95impreza", version = "880f85a66ee4", rows = {
 "Base.95imprezaBullbarFrontA",10,10,17,0,-1,-1,-1,2,-1,10,0,
 "Base.95imprezaBumperFront0",8,8,13,0,-1,-1,-1,2,-1,8,0,
 "Base.95imprezaBumperFrontA",18,18,19,0,-1,-1,-1,2,-1,18,0,

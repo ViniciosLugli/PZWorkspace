@@ -1,0 +1,17 @@
+{
+    "Sandbox_LugliHW": "Lugli - Honest Weight",
+    "Sandbox_LugliHW_Realism": "リアルさ (%%)",
+    "Sandbox_LugliHW_Realism_tooltip": "アイテムの重量をゲーム本来の値から実際の重さへどれだけ近づけるか。100で完全に実重量、0ではゲームの値を保ち、壊れたアイテムが無傷のものより重いといった明らかな誤りだけを修正する。次にワールドを読み込んだときに反映される。",
+    "Sandbox_LugliHW_BulkFloor": "かさの最低重量",
+    "Sandbox_LugliHW_BulkFloor_tooltip": "ゲームにはアイテムの体積がないため、バッグに何百枚ものシャツが入るのを防げるのは重量だけだ。かさばる軽い物(コート、枕、寝袋、空き箱)は、収納時に占める1リットルあたり少なくともこのキログラム数として扱われる(スケール適用前)。次にワールドを読み込んだときに反映される。",
+    "Sandbox_LugliHW_BulkFloor_option1": "オフ:実重量のみ",
+    "Sandbox_LugliHW_BulkFloor_option2": "軽め:1リットルあたり0.05",
+    "Sandbox_LugliHW_BulkFloor_option3": "標準:1リットルあたり0.10",
+    "Sandbox_LugliHW_BulkFloor_option4": "厳しめ:1リットルあたり0.15",
+    "Sandbox_LugliHW_Scale": "スケール",
+    "Sandbox_LugliHW_Scale_tooltip": "実際の1キログラムあたりのゲーム内重量。どの値でもアイテム同士の比率は現実のまま保たれる。1.0は実際のキログラムで、バニラよりずっと楽に物を運べる。初期値の1.5では衣類や小物が軽くなり、道具や銃は最大増加まで少し重くなる。液体はゲーム固定の1リットルあたり1のまま。次にワールドを読み込んだときに反映される。",
+    "Sandbox_LugliHW_MaxIncrease": "最大増加 (%%)",
+    "Sandbox_LugliHW_MaxIncrease_tooltip": "アイテムがバニラでの重量を上回れる最大値(パーセント)。大量に持ち運ぶアイテム(石、レンガ、丸太、土のう、弾薬)や、ゲームがすでに重くしているアイテムは遊べる重さに保たれる。0ならどのアイテムも重くならず、軽くなるだけ。400ならほぼすべてのアイテムが実重量に届く。次にワールドを読み込んだときに反映される。",
+    "Sandbox_LugliHW_VanillaStamina": "スイングのスタミナはバニラのまま",
+    "Sandbox_LugliHW_VanillaStamina_tooltip": "ゲームは近接武器の重量を、各スイングや斧の一撃で消費するスタミナに使う。オフ:スタミナは実重量に従うため、重いスレッジハンマーはすぐ疲れ、軽いナイフは疲れにくい。オン:どの武器もスイングごとにこのMODなしと同じスタミナを消費する。次にワールドを読み込んだときに反映される。"
+}

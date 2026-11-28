@@ -2,7 +2,7 @@
 -- Source VanillaOutfitsExpanded: 37 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "VanillaOutfitsExpanded", mod = "VanillaOutfitsExpanded", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "VanillaOutfitsExpanded", mod = "VanillaOutfitsExpanded", version = "880f85a66ee4", rows = {
 "VOE.Dress_Belted",1,1,0.4,0,-1,-1,-1,0,-1,1,0,
 "VOE.Dungarees_Short",1,1,0.5,0,-1,-1,-1,0,-1,1,0,
 "VOE.Gloves_Firefighter",0.1,0.1,0.4,0,-1,-1,-1,0,-1,0.1,0,

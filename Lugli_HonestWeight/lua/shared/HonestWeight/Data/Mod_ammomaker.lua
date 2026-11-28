@@ -2,7 +2,7 @@
 -- Source ammomaker: 171 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "ammomaker", mod = "ammomaker", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "ammomaker", mod = "ammomaker", version = "880f85a66ee4", rows = {
 "ammomaker.ammomaker_BagCasingsBottleneckLOld",0.3,0.65,1.385,0,-1,-1,-1,0,-1,0.3,0,
 "ammomaker.ammomaker_BagCasingsBottleneckMOld",0.15,0.35,0.31,0,-1,-1,-1,0,-1,0.15,0,
 "ammomaker.ammomaker_BagCasingsBottleneckMRimOld",0.18,0.375,0.285,0,-1,-1,-1,0,-1,0.18,0,
@@ -148,7 +148,7 @@ table.insert(LugliHonestWeight.data, { id = "ammomaker", mod = "ammomaker", vers
 "ammomaker.ammomaker_ProjectileRarHE",1.5,1.5,2.2,0,-1,-1,-1,0,-1,1.5,0,
 "ammomaker.ammomaker_PyroFiller12",0.01,0.01,0.01,0,-1,-1,-1,0,-1,0.01,0,
 "ammomaker.ammomaker_PyroPaste",0.2,0.2,0.2,0,-1,-1,-1,0,-1,0.2,0,
-"ammomaker.ammomaker_RecBrass",0.1,0.1,0.02,0,-1,-1,-1,0,-1,0.1,0,
+"ammomaker.ammomaker_RecBrass",0.1,0.1,0.0003,0,-1,-1,-1,0,-1,0.1,0,
 "ammomaker.ammomaker_RecPlastic",0.1,0.1,0.1,0,-1,-1,-1,0,-1,0.1,0,
 "ammomaker.ammomaker_ReloadingPressBase",6,6,5,0,-1,-1,-1,0,-1,6,0,
 "ammomaker.ammomaker_ReloadingPressBlack",12,12,7.5,0,-1,-1,-1,0,-1,12,0,

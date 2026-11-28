@@ -2,7 +2,7 @@
 -- Source [J&G] T.H.O.R.N. Uniform!: 23 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "[J&G] T.H.O.R.N. Uniform!", mod = "[J&G] T.H.O.R.N. Uniform!", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "[J&G] T.H.O.R.N. Uniform!", mod = "[J&G] T.H.O.R.N. Uniform!", version = "880f85a66ee4", rows = {
 "Base.THORN_Balaclava",0.1,0.1,0.06,0,-1,-1,-1,0,-1,0.1,0,
 "Base.THORN_Boots",1,1,1.4,0,-1,-1,-1,0,-1,1,0,
 "Base.THORN_ElbowPads",0.5,0.5,0.24,0,-1,-1,-1,0,-1,0.5,0,

@@ -1,0 +1,17 @@
+{
+    "Sandbox_LugliHW": "Lugli - Honest Weight",
+    "Sandbox_LugliHW_Realism": "Realismo (%%)",
+    "Sandbox_LugliHW_Realism_tooltip": "Cuánto se alejan los pesos de los objetos de los valores del juego hacia su peso real. 100 es totalmente real, 0 mantiene los valores del juego y solo corrige errores evidentes, como que un objeto roto pese más que uno entero. Se aplica la próxima vez que se cargue el mundo.",
+    "Sandbox_LugliHW_BulkFloor": "Peso mínimo por volumen",
+    "Sandbox_LugliHW_BulkFloor_tooltip": "El juego no tiene volumen de objetos, así que el peso es lo único que impide que una mochila lleve cientos de poleras. Las cosas voluminosas y livianas (abrigos, almohadas, sacos de dormir, cajas vacías) cuentan como al menos estos kilos por cada litro que ocupan guardadas, antes de la Escala. Se aplica la próxima vez que se cargue el mundo.",
+    "Sandbox_LugliHW_BulkFloor_option1": "Desactivado: solo peso real",
+    "Sandbox_LugliHW_BulkFloor_option2": "Liviano: 0,05 por litro",
+    "Sandbox_LugliHW_BulkFloor_option3": "Normal: 0,10 por litro",
+    "Sandbox_LugliHW_BulkFloor_option4": "Estricto: 0,15 por litro",
+    "Sandbox_LugliHW_Scale": "Escala",
+    "Sandbox_LugliHW_Scale_tooltip": "Peso en el juego por cada kilo real. Las proporciones entre objetos siguen siendo reales con cualquier valor. 1,0 son kilos reales, lo que hace cargar cosas mucho más fácil que en el juego sin mods. Con el valor predeterminado de 1,5, la ropa y los objetos pequeños pesan menos, y las herramientas y armas algo más, hasta el Aumento máximo. Los líquidos mantienen el peso fijo del juego de 1 por litro. Se aplica la próxima vez que se cargue el mundo.",
+    "Sandbox_LugliHW_MaxIncrease": "Aumento máximo (%%)",
+    "Sandbox_LugliHW_MaxIncrease_tooltip": "Lo máximo que puede pesar un objeto por encima de su peso en el juego sin mods, en porcentaje. Los objetos que se llevan en cantidad (piedras, ladrillos, troncos, sacos de arena, munición) o que el juego ya hace pesados siguen siendo jugables. 0 significa que ningún objeto pesa nunca más, solo menos. 400 permite que casi todos los objetos lleguen a su peso real. Se aplica la próxima vez que se cargue el mundo.",
+    "Sandbox_LugliHW_VanillaStamina": "Mantener la resistencia por golpe del juego",
+    "Sandbox_LugliHW_VanillaStamina_tooltip": "El juego usa el peso de un arma cuerpo a cuerpo para la resistencia que cuesta cada golpe y cada hachazo. Desactivado: la resistencia sigue el peso real, así que un combo pesado cansa antes y un cuchillo liviano, menos. Activado: cada arma cuesta la misma resistencia por golpe que sin este mod. Se aplica la próxima vez que se cargue el mundo."
+}

@@ -2,7 +2,7 @@
 -- Source KI5campers: 36 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "KI5campers", mod = "KI5campers", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "KI5campers", mod = "KI5campers", version = "880f85a66ee4", rows = {
 "Base.54airstreamCamperBumperRear0",8.5,8.5,8,0,-1,-1,-1,2,-1,8.5,0,
 "Base.54airstreamCamperDoor2",11,11,12,0,-1,-1,-1,2,-1,11,0,
 "Base.54airstreamCamperDoubleLargeSideWindow2",15,15,7.9,0,-1,-1,-1,2,-1,15,0,

@@ -2,7 +2,7 @@
 -- Source WoundExpansion: 9 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "WoundExpansion", mod = "WoundExpansion", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "WoundExpansion", mod = "WoundExpansion", version = "880f85a66ee4", rows = {
 "WoundExpansion.WE_BloodBag",0.5,0.5,0.5,0,-1,-1,-1,0,-1,0.5,0,
 "WoundExpansion.WE_BurnDressing",0.1,0.1,0.04,0,-1,-1,-1,0,-1,0.1,0,
 "WoundExpansion.WE_ElasticBandage",0.15,0.15,0.08,0,-1,-1,-1,0,-1,0.15,0,

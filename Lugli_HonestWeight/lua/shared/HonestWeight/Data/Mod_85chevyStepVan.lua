@@ -2,7 +2,7 @@
 -- Source 85chevyStepVan: 21 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "85chevyStepVan", mod = "85chevyStepVan", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "85chevyStepVan", mod = "85chevyStepVan", version = "880f85a66ee4", rows = {
 "Base.85chevyStepVanBarrier2",8,8,12,0,-1,-1,-1,2,-1,8,0,
 "Base.85chevyStepVanBullbarFrontA",10,10,35,0,-1,-1,-1,2,-1,10,0,
 "Base.85chevyStepVanBumperFront0",9,9,38,0,-1,-1,-1,2,-1,9,0,

@@ -2,7 +2,7 @@
 -- Source 82porsche911: 36 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "82porsche911", mod = "82porsche911", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "82porsche911", mod = "82porsche911", version = "880f85a66ee4", rows = {
 "Base.82porsche911BullbarFrontA",10,10,12,0,-1,-1,-1,2,-1,10,0,
 "Base.82porsche911Door3",11,11,12,0,-1,-1,-1,2,-1,11,0,
 "Base.82porsche911FrontSeat3",13,13,12,0,-1,-1,-1,2,-1,13,0,

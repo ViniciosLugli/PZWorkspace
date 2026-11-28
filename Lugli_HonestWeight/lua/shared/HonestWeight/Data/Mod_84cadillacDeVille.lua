@@ -2,7 +2,7 @@
 -- Source 84cadillacDeVille: 8 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "84cadillacDeVille", mod = "84cadillacDeVille", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "84cadillacDeVille", mod = "84cadillacDeVille", version = "880f85a66ee4", rows = {
 "Base.84cadillacDeVilleBumperFront0",10,10,22,0,-1,-1,-1,2,-1,10,0,
 "Base.84cadillacDeVilleBumperFrontA",15,15,25,0,-1,-1,-1,2,-1,15,0,
 "Base.84cadillacDeVilleBumperRear0",9,9,18,0,-1,-1,-1,2,-1,9,0,

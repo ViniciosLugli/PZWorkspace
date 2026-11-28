@@ -2,7 +2,7 @@
 -- Source LazoloDynamicBackpackUpgrades: 8 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "LazoloDynamicBackpackUpgrades", mod = "LazoloDynamicBackpackUpgrades", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "LazoloDynamicBackpackUpgrades", mod = "LazoloDynamicBackpackUpgrades", version = "880f85a66ee4", rows = {
 "DynamicBackpacks.UpgradeCapacityCloth",1.2,1.2,0.25,0,-1,-1,-1,0,-1,1.2,0,
 "DynamicBackpacks.UpgradeCapacityJean",1.2,1.2,0.32,0,-1,-1,-1,0,-1,1.2,0,
 "DynamicBackpacks.UpgradeCapacityLeather",1.2,1.2,0.9,0,-1,-1,-1,0,-1,1.2,0,

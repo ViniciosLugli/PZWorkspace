@@ -1,6 +1,6 @@
 # Guns of Marz
 
-Weights Lugli - Honest Weight sets for [Guns of Marz](https://steamcommunity.com/sharedfiles/filedetails/?id=3722134990): 308 items. [All sources](../WEIGHTS.md)
+Weights Lugli - Honest Weight sets for [Guns of Marz](https://steamcommunity.com/sharedfiles/filedetails/?id=3722134990): 307 items. [All sources](../WEIGHTS.md)
 
 **Game** is the weight without Honest Weight. **Honest** is the weight at the default options (Realism 100%, Bulk floor Normal, Scale 1.5), in the game's own units. A container that holds a liquid or is used up shows its empty weight in brackets.
 
@@ -22,11 +22,12 @@ Weights Lugli - Honest Weight sets for [Guns of Marz](https://steamcommunity.com
 | .50 AE 12Rds Magazine | `MarzGuns.50Magazine12_DEAGLE` | 0.12 | 0.15 |
 | .50 AE 8Rds Magazine | `MarzGuns.50Magazine8_DEAGLE` | 0.05 | 0.0625 |
 | .50 AE Box | `MarzGuns.50_Box` | 0.54 | 0.675 |
-| .50 Desert Eagle | `MarzGuns.DEAGLE` | 2 | 2.5 |
+| .50 Desert Eagle Pistol | `MarzGuns.DEAGLE` | 2 | 2.5 |
 | 12 Gauge AA-12 8Rds Magazine | `MarzGuns.12GMagazine8_AA12` | 0.2 | 0.25 |
 | 12 Gauge AA-12 Drum 20Rds Magazine | `MarzGuns.12GMagazine20_AA12` | 0.3 | 0.375 |
 | 12 Gauge Buckshot Box | `MarzGuns.12Gauge_Box_Buckshot` | 0.698 | 0.872 |
 | 12 Gauge Slug Box | `MarzGuns.12Gauge_Box_Slug` | 0.698 | 0.872 |
+| 2-Bore Rifle | `MarzGuns.DOUBLE_DEUCE` | 3 | 3.75 |
 | 40mm Buckshot Box | `MarzGuns.40mm_Box_Buckshot` | 1.44 | 1.8 |
 | 40mm High Explosive Box | `MarzGuns.40mm_Box_HE` | 1.44 | 1.8 |
 | 40mm Incendiary Box | `MarzGuns.40mm_Box_Incendiary` | 1.44 | 1.8 |
@@ -43,6 +44,7 @@ Weights Lugli - Honest Weight sets for [Guns of Marz](https://steamcommunity.com
 | 7.62x51mm Box | `MarzGuns.762x51_Box` | 0.297 | 0.371 |
 | 7.62x54mm Box | `MarzGuns.762x54_Box` | 0.288 | 0.36 |
 | 9x19mm Box | `MarzGuns.9x19_Box` | 0.405 | 0.506 |
+| 9x19mm Family Muzzle Mounting Device | `MarzGuns.Pistol_Muzzle_Mount_Device` | 0.5 | 0.075 |
 | 9x39mm 10Rds Magazine | `MarzGuns.9x39Magazine10` | 0.05 | 0.0625 |
 | 9x39mm 20Rds Magazine | `MarzGuns.9x39Magazine20` | 0.1 | 0.125 |
 | 9x39mm 30Rds Magazine | `MarzGuns.9x39Magazine30` | 0.2 | 0.25 |
@@ -65,17 +67,15 @@ Weights Lugli - Honest Weight sets for [Guns of Marz](https://steamcommunity.com
 | Bakelite 60Rds Extended 5.45x39mm Magazine | `MarzGuns.545x39Magazine60_Bakelite` | 0.25 | 0.312 |
 | BAR 20Rds .30-06 Magazine | `MarzGuns.3006Magazine20_BAR` | 0.2 | 0.25 |
 | BAR Integrated Bipod (Deployed) | `MarzGuns.BAR_Integrated_Bipod_Deployed` | 0.7 | 0.0015 |
-| Benelli M4 Semi-Shotgun | `MarzGuns.BENELLI_M4` | 3.82 | 4.77 |
-| Beretta Burst M93R | `MarzGuns.M93R` | 0.94 | 1.17 |
-| Beretta M92FS | `MarzGuns.M92FS` | 0.9 | 1.12 |
 | Beretta Mounting Rail | `MarzGuns.Beretta_Mount` | 0.2 | 0.18 |
 | Beretta Stock (Deployed) | `MarzGuns.Beretta_Stock_Deployed` | 0.9 | 0.45 |
 | Beretta Stock (Folded) | `MarzGuns.Beretta_Stock_Folded` | 0.9 | 0.45 |
+| BETA CMAG 100Rds 5.56x45mm Magazine | `MarzGuns.556x45Magazine150_STANAG` | 0.55 | 0.688 |
 | Bipod (Deployed) | `MarzGuns.Bipod_Deployed` | 1.3 | 0.75 |
 | Bipod (Folded) | `MarzGuns.Bipod_Folded` | 1.3 | 0.75 |
 | BrightPoint-5 Light | `MarzGuns.BrightPoint-5_Light` | 0.2 | 0.18 |
 | Browning Automatic Rifle | `MarzGuns.BAR` | 5 | 6.25 |
-| Browning Hi-Power | `MarzGuns.HIPOWER` | 0.62 | 0.775 |
+| Camp Carbine | `MarzGuns.CAMP_CARBINE` | 2.2 | 2.75 |
 | CAR-15 Assault Rifle | `MarzGuns.CAR15` | 2.43 | 3.04 |
 | CAR-15 Integrated Stock (Deployed) | `MarzGuns.CAR15_Integrated_Stock_Deployed` | 0.2 | 0.0015 |
 | Carton of .223 Remington Boxes | `MarzGuns.223_Carton` | 1.47 | 1.84 |
@@ -101,10 +101,7 @@ Weights Lugli - Honest Weight sets for [Guns of Marz](https://steamcommunity.com
 | Carton of 7.62x54mm Boxes | `MarzGuns.762x54_Carton` | 2.77 | 3.46 |
 | Carton of 9x19mm Boxes | `MarzGuns.9x19_Carton` | 3.89 | 4.86 |
 | Carton of 9x39mm SP-5 Boxes | `MarzGuns.9x39_Carton` | 1.99 | 2.48 |
-| Colt M1911 | `MarzGuns.M1911` | 1.1 | 1.38 |
 | Colt Mounting Rail | `MarzGuns.Colt_Mount` | 0.2 | 0.18 |
-| Colt Python Revolver | `MarzGuns.PYTHON` | 1.2 | 1.5 |
-| Colt Single Action Revolver | `MarzGuns.COLT_SINGLE` | 1.04 | 1.3 |
 | Crate of .223 Remington Boxes | `MarzGuns.223_Crate` | 4.7 | 5.88 |
 | Crate of .30-06 Springfield Boxes | `MarzGuns.3006_Crate` | 10.5 | 13.1 |
 | Crate of .30-30 Boxes | `MarzGuns.3030_Crate` | 8.29 | 10.4 |
@@ -142,10 +139,10 @@ Weights Lugli - Honest Weight sets for [Guns of Marz](https://steamcommunity.com
 | EXPS1 Sight | `MarzGuns.EXPS1_Sight` | 0.45 | 0.495 |
 | EXPS3 Sight | `MarzGuns.EXPS3_Sight` | 0.45 | 0.495 |
 | FAL 20Rds 7.62x51mm Magazine | `MarzGuns.762x51Magazine20_FAL` | 0.2 | 0.25 |
+| FAL Battle Rifle | `MarzGuns.FAL` | 4.25 | 5.31 |
 | FAMAS Assault Rifle | `MarzGuns.FAMAS` | 3.61 | 4.51 |
-| FN FAL Battle Rifle | `MarzGuns.FAL` | 4.25 | 5.31 |
-| FN FNC Assault Rifle | `MarzGuns.FNC` | 3.8 | 4.75 |
-| FN FNC Integrated Stock (Deployed) | `MarzGuns.FNC_Integrated_Stock_Deployed` | 0.2 | 0.0015 |
+| FNC Assault Rifle | `MarzGuns.FNC` | 3.8 | 4.75 |
+| FNC Integrated Stock (Deployed) | `MarzGuns.FNC_Integrated_Stock_Deployed` | 0.2 | 0.0015 |
 | G3 20Rds 7.62x51mm Magazine | `MarzGuns.762x51Magazine20_G3` | 0.2 | 0.25 |
 | G3 Battle Rifle | `MarzGuns.G3` | 4.1 | 5.12 |
 | G36 30Rds 5.56x45mm Translucent Magazine | `MarzGuns.556x45Magazine30_G36` | 0.15 | 0.18 |
@@ -153,13 +150,11 @@ Weights Lugli - Honest Weight sets for [Guns of Marz](https://steamcommunity.com
 | G36 Integrated Stock (Deployed) | `MarzGuns.G36_Integrated_Stock_Deployed` | 0.2 | 0.0015 |
 | G36C Assault Rifle | `MarzGuns.G36C` | 2.82 | 3.52 |
 | G36C Integrated Stock (Deployed) | `MarzGuns.G36C_Integrated_Stock_Deployed` | 0.2 | 0.0015 |
-| Glock-17 | `MarzGuns.GLOCK17` | 0.9 | 0.938 |
 | Glock-17 17Rds 9x19mm Magazine | `MarzGuns.9x19Magazine17_GLOCK` | 0.05 | 0.0625 |
+| Glock-17 Pistol | `MarzGuns.GLOCK17` | 0.9 | 0.938 |
 | Heavy Pistol Mounting Rail | `MarzGuns.Heavy_Pistol_Rail` | 0.2 | 0.18 |
-| Heckler & Koch USP | `MarzGuns.USP` | 0.74 | 0.925 |
-| Heckler & Koch VP70M | `MarzGuns.VP70M` | 0.82 | 1.02 |
 | Hi-Power 13Rds 9x19mm Magazine | `MarzGuns.9x19Magazine13_HIPOWER` | 0.05 | 0.0625 |
-| Ingram MAC-10 Machine Pistol | `MarzGuns.MAC10` | 2.2 | 2.75 |
+| Hi-Power Pistol | `MarzGuns.HIPOWER` | 0.62 | 0.775 |
 | JS14 Sight | `MarzGuns.JS14_Sight` | 0.44 | 0.525 |
 | Karabiner 98k Bayonet | `MarzGuns.K98_BAYONET` | 1 | 0.6 |
 | Kobra Sight | `MarzGuns.Kobra_Sight` | 0.22 | 0.275 |
@@ -170,7 +165,7 @@ Weights Lugli - Honest Weight sets for [Guns of Marz](https://steamcommunity.com
 | LRX-7 Laser | `MarzGuns.LRX-7_Laser` | 0.6 | 0.15 |
 | LRX12X Scope | `MarzGuns.LRX12X_Scope` | 1.2 | 0.9 |
 | LX Flashhider | `MarzGuns.LX_Flashhider` | 0.9 | 0.15 |
-| M&P Suppressor (9mm Pistols) | `MarzGuns.M&P_Suppressor` | 1.2 | 0.525 |
+| M&P Suppressor (9mm Weapons) | `MarzGuns.M&P_Suppressor` | 0.8 | 0.525 |
 | M1 Bayonet | `MarzGuns.M1_BAYONET` | 1 | 0.375 |
 | M1 Garand Battle Rifle | `MarzGuns.M1_GARAND` | 4.3 | 5.38 |
 | M14 20Rds 7.62x51mm Magazine | `MarzGuns.762x51Magazine20_M14` | 0.2 | 0.25 |
@@ -181,15 +176,17 @@ Weights Lugli - Honest Weight sets for [Guns of Marz](https://steamcommunity.com
 | M16A2 Assault Rifle with M203 | `MarzGuns.M16A2_M203` | 4.7 | 5.88 |
 | M16A3 Assault Rifle | `MarzGuns.M16A3` | 3.4 | 4.25 |
 | M18 Smoke Grenade | `MarzGuns.M18` | 0.54 | 0.675 |
-| M1903 Springfield Bolt Rifle | `MarzGuns.M1903` | 3.9 | 4.88 |
+| M1903 Bolt Rifle | `MarzGuns.M1903` | 3.9 | 4.88 |
 | M1905 Bayonet | `MarzGuns.M1905_BAYONET` | 1 | 0.6 |
 | M1911 7Rds .45 ACP Magazine | `MarzGuns.45Magazine7_M1911` | 0.04 | 0.05 |
+| M1911 Pistol | `MarzGuns.M1911` | 1.1 | 1.38 |
 | M203 Grenade Launcher | `MarzGuns.CAR15_M203_Weapon` | 2.7 | 3.38 |
 | M203 Grenade Launcher | `MarzGuns.M203_Weapon` | 2.7 | 3.38 |
 | M203 Integrated Grenade Launcher | `MarzGuns.CAR15_M203_Integrated` | 0.2 | 0.0015 |
 | M203 Integrated Grenade Launcher | `MarzGuns.M16A2_M203_Integrated` | 0.2 | 0.0015 |
 | M24 Integrated Bipod (Deployed) | `MarzGuns.M24_Integrated_Bipod_Deployed` | 0.7 | 0.0015 |
 | M24 Sniper Rifle | `MarzGuns.M24` | 5.3 | 6.62 |
+| M4 Super 90 Semi-Shotgun | `MarzGuns.BENELLI_M4` | 3.82 | 4.77 |
 | M4A1 Assault Rifle | `MarzGuns.M4A1` | 2.92 | 3.65 |
 | M4A1 Integrated Stock (Deployed) | `MarzGuns.M4A1_Integrated_Stock_Deployed` | 0.2 | 0.0015 |
 | M5 Bayonet | `MarzGuns.M5_BAYONET` | 1 | 0.375 |
@@ -201,87 +198,91 @@ Weights Lugli - Honest Weight sets for [Guns of Marz](https://steamcommunity.com
 | M92FS 15Rds 9x19mm Magazine | `MarzGuns.9x19Magazine15_M92FS` | 0.05 | 0.0625 |
 | M92FS 30Rds 9x19mm Extended Magazine | `MarzGuns.9x19Magazine30_M92FS` | 0.2 | 0.25 |
 | M92FS 50Rds 9x19mm Drum Magazine | `MarzGuns.9x19Magazine50_M92FS` | 0.25 | 0.312 |
+| M92FS Pistol | `MarzGuns.M92FS` | 0.9 | 1.12 |
 | M93R 18Rds 9x19mm Magazine | `MarzGuns.9x19Magazine18_M93R` | 0.1 | 0.125 |
 | M93R 60Rds 9x19mm Extended Magazine | `MarzGuns.9x19Magazine60_M93R` | 0.2 | 0.25 |
+| M93R Pistol | `MarzGuns.M93R` | 0.94 | 1.17 |
 | MAC-10 30Rds .45 ACP Magazine | `MarzGuns.45Magazine30_MAC10` | 0.1 | 0.125 |
 | MAC-10 40Rds .45 ACP Extended Magazine | `MarzGuns.45Magazine40_MAC10` | 0.1 | 0.125 |
+| MAC-10 Machine Pistol | `MarzGuns.MAC10` | 2.2 | 2.75 |
 | MAC10 Integrated Stock (Deployed) | `MarzGuns.MAC10_Integrated_Stock_Deployed` | 0.2 | 0.0015 |
-| Marlin 1895 Rifle | `MarzGuns.M1895` | 3.06 | 3.83 |
-| Marlin Camp Carbine | `MarzGuns.CAMP_CARBINE` | 2.2 | 2.75 |
-| MarzGuns.12Gauge\_Shell\_Buckshot | `MarzGuns.12Gauge_Shell_Buckshot` | 0.031 | 0.0387 |
-| MarzGuns.12Gauge\_Shell\_Slug | `MarzGuns.12Gauge_Shell_Slug` | 0.031 | 0.0387 |
-| MarzGuns.40mm\_Round\_Buckshot | `MarzGuns.40mm_Round_Buckshot` | 0.16 | 0.2 |
 | MarzGuns.556x45\_Bullet\_Overpressured | `MarzGuns.556x45_Bullet_Overpressured` | 0.0085 | 0.0106 |
 | Masterkey Underbarrel Shotgun | `MarzGuns.MASTERKEY_Weapon` | 4 | 5 |
 | Mini-14 Semi-Automatic Rifle | `MarzGuns.MINI_14` | 2.8 | 3.5 |
 | MK2 Foregrip | `MarzGuns.MK2_Foregrip` | 0.3 | 0.15 |
 | MKC Foregrip | `MarzGuns.MKC_Foregrip` | 0.5 | 0.15 |
 | MKI Suppressor (5.56mm Rifles) | `MarzGuns.MKI_Suppressor` | 1 | 0.75 |
+| Model 1873 Rifle | `MarzGuns.W1873` | 3.29 | 4.11 |
+| Model 1873 Short Carbine | `MarzGuns.W1873_CARBINE` | 2.29 | 2.86 |
+| Model 1887 Shotgun | `MarzGuns.W1887` | 3.6 | 4.5 |
+| Model 1894 Rifle | `MarzGuns.W1894` | 2.95 | 3.69 |
+| Model 1895 Rifle | `MarzGuns.M1895` | 3.06 | 3.83 |
+| Model 555 Barrel | `MarzGuns.STEVENS_555_Barrel_Close` | 3 | 2.25 |
+| Model 555 Barrel | `MarzGuns.STEVENS_555_Barrel_Open` | 3 | 2.25 |
+| Model 555 Barrel Sawnoff | `MarzGuns.STEVENS_555_Barrel_Sawnoff_Close` | 1 | 1.25 |
+| Model 555 Barrel Sawnoff | `MarzGuns.STEVENS_555_Barrel_Sawnoff_Open` | 1 | 1.25 |
+| Model 555 Double Barrel Shotgun | `MarzGuns.STEVENS_555` | 2.9 | 2.4 |
+| Model 590 Shotgun | `MarzGuns.MOSSBERG_590` | 2.5 | 3.12 |
+| Model 629 Revolver | `MarzGuns.SW629` | 1.18 | 1.47 |
 | Model 70 Bolt Rifle | `MarzGuns.MODEL_70` | 5.3 | 5.1 |
 | Model 70 Sling | `MarzGuns.Model_70_Sling` | 1 | 0.225 |
+| Model 700 Bolt Rifle | `MarzGuns.REMINGTON_700` | 5.3 | 5.1 |
+| Model 700 Sling | `MarzGuns.Rem700_Sling` | 1 | 0.225 |
+| Model 870 Shotgun | `MarzGuns.REMINGTON_870` | 3.2 | 4 |
 | Mosin-Nagant 5Rds 7.62x54mm Stripper Clip | `MarzGuns.762x54StripperClip5_MOSIN` | 0.05 | 0.0225 |
 | Mosin-Nagant Bolt Rifle | `MarzGuns.MOSIN` | 3.4 | 4.25 |
-| Mossberg 590 Shotgun | `MarzGuns.MOSSBERG_590` | 2.5 | 3.12 |
 | MP-412 Revolver | `MarzGuns.MP412` | 0.9 | 1.12 |
 | MP5 100Rds Drum 9x19mm Magazine | `MarzGuns.9x19Magazine100_MP5` | 0.33 | 0.413 |
 | MP5 20Rds 9x19mm Magazine | `MarzGuns.9x19Magazine20_MP5` | 0.08 | 0.1 |
 | MP5 25Rds 9x19mm Magazine | `MarzGuns.9x19Magazine25_MP5` | 0.1 | 0.125 |
 | MP5 30Rds 9x19mm Magazine | `MarzGuns.9x19Magazine30_MP5` | 0.18 | 0.225 |
 | MP5 Dual 30Rds 9x19mm Magazine | `MarzGuns.9x19Magazine60_MP5` | 0.22 | 0.275 |
+| MP5 Dual 30Rds 9x19mm Magazine | `MarzGuns.9x19Magazine60_MP5_2` | 0.22 | 0.275 |
 | MP5 Integrated Stock (Deployed) | `MarzGuns.MP5_Integrated_Stock_Deployed` | 0.2 | 0.0015 |
 | MP5A2 Submachine Gun | `MarzGuns.MP5A2` | 2 | 2.5 |
 | MP5A3 Submachine Gun | `MarzGuns.MP5` | 2 | 2.5 |
 | MP5K Submachine Gun | `MarzGuns.MP5K` | 1.5 | 1.88 |
 | MP5SD Integrated Stock (Deployed) | `MarzGuns.MP5SD_Integrated_Stock_Deployed` | 0.2 | 0.0015 |
 | MP5SD Submachine Gun | `MarzGuns.MP5SD` | 2.1 | 2.62 |
-| NDR Suppressor (5.56mm Rifles) | `MarzGuns.NDR_Suppressor` | 0.9 | 0.75 |
+| NDR Suppressor (5.56mm Rifles) | `MarzGuns.NDR_Suppressor` | 1 | 0.75 |
 | OKP3 Sight | `MarzGuns.OKP3_Sight` | 0.4 | 0.3 |
 | P226 10Rds 9x19mm Magazine | `MarzGuns.9x19Magazine10_P226` | 0.05 | 0.0625 |
+| P226 Pistol | `MarzGuns.P226` | 0.9 | 1.12 |
 | P45 Suppressor (.45 ACP Weapons) | `MarzGuns.P45_Suppressor` | 0.8 | 0.525 |
-| PBS-1 Suppressor (AK Rifles) | `MarzGuns.PBS-1_Suppressor` | 1.2 | 0.75 |
+| PBS-1 Suppressor (AK Rifles) | `MarzGuns.PBS-1_Suppressor` | 1.1 | 0.75 |
 | Picatinny Rail | `MarzGuns.Picatinny_Rail` | 0.2 | 0.0015 |
 | Picatinny Rail (Down) | `MarzGuns.Picatinny_Rail_Down` | 0.2 | 0.12 |
 | Picatinny Rail (Left) | `MarzGuns.Picatinny_Rail_Left` | 0.2 | 0.12 |
 | Picatinny Rail (Right) | `MarzGuns.Picatinny_Rail_Right` | 0.2 | 0.12 |
 | Picatinny Rail (Up) | `MarzGuns.Picatinny_Rail_Up` | 0.2 | 0.12 |
-| Pistol Family Muzzle Mounting Device | `MarzGuns.Pistol_Muzzle_Mount_Device` | 0.5 | 0.075 |
 | PJ-3 Laser | `MarzGuns.PJ-3_Laser` | 0.6 | 0.15 |
 | PL-4 Sight | `MarzGuns.PL4_Sight` | 0.1 | 0.03 |
 | PM-2 Sight | `MarzGuns.PM2_Sight` | 0.2 | 0.075 |
+| PMAG 60Rds 5.56x45mm Drum Magazine | `MarzGuns.556x45Magazine75_STANAG` | 0.45 | 0.562 |
 | PRL-1 Sight | `MarzGuns.PRL1_Scope` | 0.4 | 0.375 |
 | PS1 Sight | `MarzGuns.PS1_Sight` | 0.15 | 0.03 |
 | PSG-1 5Rds 7.62x51mm Magazine | `MarzGuns.762x51Magazine5_PSG1` | 0.1 | 0.125 |
 | PSG-1 Semi-Automatic Rifle | `MarzGuns.PSG1` | 4.5 | 5.62 |
 | PSO1 Scope | `MarzGuns.PSO1_Scope` | 1.1 | 0.9 |
 | PX1 Laser | `MarzGuns.PX1_Laser` | 0.6 | 0.15 |
+| Python Revolver | `MarzGuns.PYTHON` | 1.2 | 1.5 |
 | Reflex S2 Sight | `MarzGuns.ReflexS2_Sight` | 0.2 | 0.25 |
-| Remington 700 Bolt Rifle | `MarzGuns.REMINGTON_700` | 5.3 | 5.1 |
-| Remington 700 Sling | `MarzGuns.Rem700_Sling` | 1 | 0.225 |
-| Remington 870 Shotgun | `MarzGuns.REMINGTON_870` | 3.2 | 4 |
 | Rhino Revolver | `MarzGuns.RHINO` | 1.1 | 1.2 |
 | Shellholder | `MarzGuns.Shellholder` | 0.7 | 0.15 |
-| Shh9 Suppressor (9mm Pistols) | `MarzGuns.Shh9_Suppressor` | 1.2 | 0.525 |
-| Sig Sauer P226 | `MarzGuns.P226` | 0.9 | 1.12 |
+| Shh9 Suppressor (9mm Weapons) | `MarzGuns.Shh9_Suppressor` | 0.8 | 0.525 |
+| Single Action Revolver | `MarzGuns.COLT_SINGLE` | 1.04 | 1.3 |
 | SKS Bayonet (Deployed) | `MarzGuns.SKS_Bayonet_Deployed` | 0.2 | 0.0015 |
 | SKS Carbine | `MarzGuns.SKS` | 3.85 | 4.81 |
-| Smith & Wesson Model 629 | `MarzGuns.SW629` | 1.18 | 1.47 |
 | Sniper Mounting Rail | `MarzGuns.Sniper_Mount` | 0.2 | 0.18 |
 | SPAS-12 Integrated Stock (Deployed) | `MarzGuns.SPAS12_Integrated_Stock_Deployed` | 0.2 | 0.0015 |
 | SPAS-12 Semi-Shotgun | `MarzGuns.SPAS12` | 4.4 | 5.5 |
 | SR7 Tactical Light | `MarzGuns.SR7_Light` | 0.2 | 0.18 |
+| STANAG 100Rds 5.56x45mm Extended Magazine | `MarzGuns.556x45Magazine100_STANAG` | 0.6 | 0.75 |
 | STANAG 20Rds 5.56x45mm Magazine | `MarzGuns.556x45Magazine20_STANAG` | 0.1 | 0.125 |
 | STANAG 2x30Rds Jungle-Style 5.56x45mm Magazine | `MarzGuns.556x45Magazine60_STANAG` | 0.4 | 0.369 |
+| STANAG 2x30Rds Jungle-Style 5.56x45mm Magazine | `MarzGuns.556x45Magazine60_STANAG_2` | 0.4 | 0.369 |
 | STANAG 30Rds 5.56x45mm Magazine | `MarzGuns.556x45Magazine30_STANAG` | 0.2 | 0.17 |
-| STANAG 60Rds 5.56x45mm Drum Magazine | `MarzGuns.556x45Magazine75_STANAG` | 0.55 | 0.688 |
 | STANAG 60Rds 5.56x45mm Extended Magazine | `MarzGuns.556x45Magazine50_STANAG` | 0.5 | 0.45 |
-| STANAG 75Rds 5.56x45mm Magazine | `MarzGuns.556x45Magazine100_STANAG` | 0.6 | 0.75 |
-| STANAG 90Rds 5.56x45mm Magazine | `MarzGuns.556x45Magazine150_STANAG` | 0.7 | 0.875 |
-| Stevens 555 Barrel | `MarzGuns.STEVENS_555_Barrel_Close` | 3 | 2.25 |
-| Stevens 555 Barrel | `MarzGuns.STEVENS_555_Barrel_Open` | 3 | 2.25 |
-| Stevens 555 Barrel Sawnoff | `MarzGuns.STEVENS_555_Barrel_Sawnoff_Close` | 1 | 1.25 |
-| Stevens 555 Barrel Sawnoff | `MarzGuns.STEVENS_555_Barrel_Sawnoff_Open` | 1 | 1.25 |
-| Stevens 555 Double Barrel Shotgun | `MarzGuns.STEVENS_555` | 2.9 | 2.4 |
-| Stolzer & Son of Kansas 2-Bore Rifle | `MarzGuns.DOUBLE_DEUCE` | 3 | 3.75 |
 | Stub Foregrip | `MarzGuns.Stub_Foregrip` | 0.3 | 0.15 |
 | SVD 10Rds 7.62x54mm Magazine | `MarzGuns.762x54Magazine10_SVD` | 0.15 | 0.188 |
 | SVD Semi-Automatic Rifle | `MarzGuns.SVD` | 4.3 | 5.38 |
@@ -304,13 +305,11 @@ Weights Lugli - Honest Weight sets for [Guns of Marz](https://steamcommunity.com
 | Trix42 Muzzlebreak | `MarzGuns.Trix42_Muzzlebreak` | 1.2 | 0.15 |
 | USP 12Rds .45 ACP Magazine | `MarzGuns.45Magazine12_USP` | 0.05 | 0.0625 |
 | USP 20Rds .45 ACP Magazine | `MarzGuns.45Magazine20_USP` | 0.2 | 0.225 |
+| USP Pistol | `MarzGuns.USP` | 0.74 | 0.925 |
 | VP70M 18Rds 9x19mm Magazine | `MarzGuns.9x19Magazine18_VP70M` | 0.12 | 0.15 |
 | VP70M 30Rds 9x19mm Magazine | `MarzGuns.9x19Magazine30_VP70M` | 0.12 | 0.15 |
+| VP70M Pistol | `MarzGuns.VP70M` | 0.82 | 1.02 |
 | VP70M Stock | `MarzGuns.VP70M_Stock` | 0.9 | 0.45 |
 | Weapon Repair Pack | `MarzGuns.RepairPack` | 1 | 1.2 |
-| Winchester 1873 Rifle | `MarzGuns.W1873` | 3.29 | 4.11 |
-| Winchester 1873 Short Carbine | `MarzGuns.W1873_CARBINE` | 2.29 | 2.86 |
-| Winchester 1887 Shotgun | `MarzGuns.W1887` | 3.6 | 4.5 |
-| Winchester 1894 Rifle | `MarzGuns.W1894` | 2.95 | 3.69 |
 | XM177 Assault Rifle | `MarzGuns.XM177` | 2.43 | 3.04 |
 | XM177 Integrated Stock (Deployed) | `MarzGuns.XM177_Integrated_Stock_Deployed` | 0.2 | 0.0015 |

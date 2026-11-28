@@ -1,8 +1,12 @@
 -- GENERATED from the Honest Weight mass tables. Never edit by hand.
--- Source 82oshkoshM911: 21 row(s).
+-- Source 82oshkoshM911: 25 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "82oshkoshM911", mod = "82oshkoshM911", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "82oshkoshM911", mod = "82oshkoshM911", version = "880f85a66ee4", rows = {
+"Base.HoodieDOWN_OshkoshBlack",1,1,0.6,0,-1,-1,-1,0,-1,1,0,
+"Base.HoodieDOWN_OshkoshGray",1,1,0.6,0,-1,-1,-1,0,-1,1,0,
+"Base.HoodieUP_OshkoshBlack",1,1,0.6,0,-1,-1,-1,0,-1,1,0,
+"Base.HoodieUP_OshkoshGray",1,1,0.6,0,-1,-1,-1,0,-1,1,0,
 "Base.IsoContainerTrunkDoor2",10,10,100,0,-1,-1,-1,2,-1,10,0,
 "Base.M127TrunkDoor2",18,18,30,0,-1,-1,-1,2,-1,18,0,
 "Base.M128TrunkDoor2",25,25,60,0,-1,-1,-1,2,-1,25,0,

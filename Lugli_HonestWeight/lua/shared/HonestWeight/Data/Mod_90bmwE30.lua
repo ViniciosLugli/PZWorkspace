@@ -2,7 +2,7 @@
 -- Source 90bmwE30: 40 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "90bmwE30", mod = "90bmwE30", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "90bmwE30", mod = "90bmwE30", version = "880f85a66ee4", rows = {
 "Base.90bmwE30Bullbar",14,14,17,0,-1,-1,-1,2,-1,14,0,
 "Base.90bmwE30BumperFront",10,10,13,0,-1,-1,-1,2,-1,10,0,
 "Base.90bmwE30BumperFrontA",15,15,19,0,-1,-1,-1,2,-1,15,0,

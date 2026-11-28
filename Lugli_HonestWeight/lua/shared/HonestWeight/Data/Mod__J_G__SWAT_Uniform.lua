@@ -2,7 +2,7 @@
 -- Source [J&G] SWAT Uniform: 30 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "[J&G] SWAT Uniform", mod = "[J&G] SWAT Uniform", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "[J&G] SWAT Uniform", mod = "[J&G] SWAT Uniform", version = "880f85a66ee4", rows = {
 "Base.SWAT_Backpack_Radio_Tight",2,2,1.3,8,-1,-1,-1,0,-1,2,0,
 "Base.SWAT_Balaclava",0.1,0.1,0.06,0,-1,-1,-1,0,-1,0.1,0,
 "Base.SWAT_Boots",1,1,1.4,0,-1,-1,-1,0,-1,1,0,

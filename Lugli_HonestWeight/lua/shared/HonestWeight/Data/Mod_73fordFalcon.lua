@@ -2,7 +2,7 @@
 -- Source 73fordFalcon: 27 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "73fordFalcon", mod = "73fordFalcon", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "73fordFalcon", mod = "73fordFalcon", version = "880f85a66ee4", rows = {
 "Base.73fordFalconBullbarFrontA",13,13,17,0,-1,-1,-1,2,-1,13,0,
 "Base.73fordFalconBumperFront0",6,6,13,0,-1,-1,-1,2,-1,6,0,
 "Base.73fordFalconBumperFrontA",16,16,19,0,-1,-1,-1,2,-1,16,0,

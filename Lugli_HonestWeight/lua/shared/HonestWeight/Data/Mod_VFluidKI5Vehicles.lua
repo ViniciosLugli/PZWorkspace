@@ -2,7 +2,7 @@
 -- Source VFluidKI5Vehicles: 12 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "VFluidKI5Vehicles", mod = "VFluidKI5Vehicles", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "VFluidKI5Vehicles", mod = "VFluidKI5Vehicles", version = "880f85a66ee4", rows = {
 "VFluidKI5.TankFuelLarge1",15,15,110,0,-1,-1,-1,2,-1,15,0,
 "VFluidKI5.TankFuelLarge2",22,22,110,0,-1,-1,-1,2,-1,22,0,
 "VFluidKI5.TankFuelLarge3",14,14,110,0,-1,-1,-1,2,-1,14,0,

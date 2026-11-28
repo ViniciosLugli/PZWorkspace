@@ -2,7 +2,7 @@
 -- Source UltimateMarksman: 44 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "UltimateMarksman", mod = "UltimateMarksman", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "UltimateMarksman", mod = "UltimateMarksman", version = "880f85a66ee4", rows = {
 "UltimateMarksman.ArcheryBook1",1,1,0.3,0,-1,-1,-1,0,-1,1,0,
 "UltimateMarksman.ArcheryBook2",1,1,0.3,0,-1,-1,-1,0,-1,1,0,
 "UltimateMarksman.ArcheryBook3",1,1,0.6,0,-1,-1,-1,0,-1,1,0,

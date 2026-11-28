@@ -1,8 +1,8 @@
 -- GENERATED from the Honest Weight mass tables. Never edit by hand.
--- Source HBVCEFb42: 25 row(s).
+-- Source HBVCEFb42: 26 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "HBVCEFb42", mod = "HBVCEFb42", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "HBVCEFb42", mod = "HBVCEFb42", version = "880f85a66ee4", rows = {
 "HBVCEF.10x25_Casing",0.01,0.01,0.005,0,-1,-1,-1,0,-1,0.01,0,
 "HBVCEF.12Gauge_Hull_Green",0.05,0.05,0.009,0,-1,-1,-1,0,-1,0.05,0,
 "HBVCEF.12Gauge_Hull_Red",0.05,0.05,0.009,0,-1,-1,-1,0,-1,0.05,0,
@@ -13,6 +13,7 @@ table.insert(LugliHonestWeight.data, { id = "HBVCEFb42", mod = "HBVCEFb42", vers
 "HBVCEF.3030_Casing",0.015,0.015,0.0095,0,-1,-1,-1,0,-1,0.015,0,
 "HBVCEF.308_Casing",0.015,0.015,0.0117,0,-1,-1,-1,0,-1,0.015,0,
 "HBVCEF.357_Casing",0.015,0.015,0.005,0,-1,-1,-1,0,-1,0.015,0,
+"HBVCEF.380_Casing",0.015,0.015,0.0032,0,-1,-1,-1,0,-1,0.015,0,
 "HBVCEF.38_Casing",0.01,0.01,0.0039,0,-1,-1,-1,0,-1,0.01,0,
 "HBVCEF.40mm_Casing",0.12,0.12,0.045,0,-1,-1,-1,0,-1,0.12,0,
 "HBVCEF.44_Casing",0.015,0.015,0.007,0,-1,-1,-1,0,-1,0.015,0,

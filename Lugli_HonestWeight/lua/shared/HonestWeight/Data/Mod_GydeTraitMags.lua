@@ -2,7 +2,7 @@
 -- Source GydeTraitMags: 13 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "GydeTraitMags", mod = "GydeTraitMags", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "GydeTraitMags", mod = "GydeTraitMags", version = "880f85a66ee4", rows = {
 "Base.AxeManMag",0.5,0.5,0.2,0,-1,-1,-1,0,-1,0.5,0,
 "Base.BurglarMag",0.5,0.5,0.2,0,-1,-1,-1,0,-1,0.5,0,
 "Base.DextrousMag",0.5,0.5,0.2,0,-1,-1,-1,0,-1,0.5,0,

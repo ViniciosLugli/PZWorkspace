@@ -2,7 +2,7 @@
 -- Source 93chevySuburban: 47 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "93chevySuburban", mod = "93chevySuburban", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "93chevySuburban", mod = "93chevySuburban", version = "880f85a66ee4", rows = {
 "Base.93chevyK3500FlatbedLid2",1,1,4,0,-1,-1,-1,2,-1,1,0,
 "Base.93chevyK3500Tailgate2",12,12,22,0,-1,-1,-1,2,-1,12,0,
 "Base.93chevyK3500WreckerLid2",1,1,4,0,-1,-1,-1,2,-1,1,0,

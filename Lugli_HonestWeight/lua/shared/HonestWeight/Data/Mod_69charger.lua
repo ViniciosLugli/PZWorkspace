@@ -2,7 +2,7 @@
 -- Source 69charger: 29 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "69charger", mod = "69charger", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "69charger", mod = "69charger", version = "880f85a66ee4", rows = {
 "Base.69chargerBullbarFrontA",10,10,17,0,-1,-1,-1,2,-1,10,0,
 "Base.69chargerBumperFront0",6,6,13,0,-1,-1,-1,2,-1,6,0,
 "Base.69chargerBumperFront1",11,11,13,0,-1,-1,-1,2,-1,11,0,

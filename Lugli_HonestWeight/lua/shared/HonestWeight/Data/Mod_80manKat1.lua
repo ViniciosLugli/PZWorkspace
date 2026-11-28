@@ -2,7 +2,7 @@
 -- Source 80manKat1: 18 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "80manKat1", mod = "80manKat1", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "80manKat1", mod = "80manKat1", version = "880f85a66ee4", rows = {
 "Base.80manKat1BullbarFrontA",12,12,35,0,-1,-1,-1,2,-1,12,0,
 "Base.80manKat1BumperFront0",8,8,38,0,-1,-1,-1,2,-1,8,0,
 "Base.80manKat1BumperFrontA",20,20,50,0,-1,-1,-1,2,-1,20,0,

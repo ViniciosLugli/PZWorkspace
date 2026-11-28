@@ -2,7 +2,7 @@
 -- Source 99fordCVPI: 15 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "99fordCVPI", mod = "99fordCVPI", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "99fordCVPI", mod = "99fordCVPI", version = "880f85a66ee4", rows = {
 "Base.99fordCVPIBumperFront0",10,10,22,0,-1,-1,-1,2,-1,10,0,
 "Base.99fordCVPIBumperFront1",15,15,13,0,-1,-1,-1,2,-1,15,0,
 "Base.99fordCVPIBumperRear0",12,12,18,0,-1,-1,-1,2,-1,12,0,

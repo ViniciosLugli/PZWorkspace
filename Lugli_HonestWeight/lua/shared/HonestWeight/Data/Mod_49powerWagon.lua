@@ -2,7 +2,7 @@
 -- Source 49powerWagon: 25 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "49powerWagon", mod = "49powerWagon", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "49powerWagon", mod = "49powerWagon", version = "880f85a66ee4", rows = {
 "Base.49powerWagonApocalypseTire",20,20,24,0,-1,-1,-1,2,-1,20,0,
 "Base.49powerWagonBullbar1",15,15,24,0,-1,-1,-1,2,-1,15,0,
 "Base.49powerWagonBullbar2",15,15,24,0,-1,-1,-1,2,-1,15,0,

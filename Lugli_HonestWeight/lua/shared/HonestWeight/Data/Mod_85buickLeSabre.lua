@@ -2,7 +2,7 @@
 -- Source 85buickLeSabre: 8 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "85buickLeSabre", mod = "85buickLeSabre", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "85buickLeSabre", mod = "85buickLeSabre", version = "880f85a66ee4", rows = {
 "Base.85buickLeSabreBumperFront0",10,10,22,0,-1,-1,-1,2,-1,10,0,
 "Base.85buickLeSabreBumperFrontA",15,15,25,0,-1,-1,-1,2,-1,15,0,
 "Base.85buickLeSabreBumperRear0",9,9,18,0,-1,-1,-1,2,-1,9,0,

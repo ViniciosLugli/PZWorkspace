@@ -1,0 +1,17 @@
+{
+    "Sandbox_LugliHW": "Lugli - Honest Weight",
+    "Sandbox_LugliHW_Realism": "Realismus (%%)",
+    "Sandbox_LugliHW_Realism_tooltip": "Wie weit sich das Gewicht von Gegenständen von den Werten des Spiels hin zu ihrem echten Gewicht verschiebt. 100 ist vollständig echt, 0 behält die Werte des Spiels und behebt nur offensichtliche Fehler, etwa wenn ein kaputter Gegenstand mehr wiegt als ein ganzer. Gilt ab dem nächsten Laden der Welt.",
+    "Sandbox_LugliHW_BulkFloor": "Volumen-Mindestgewicht",
+    "Sandbox_LugliHW_BulkFloor_tooltip": "Das Spiel kennt kein Volumen für Gegenstände, daher hält nur das Gewicht eine Tasche davon ab, Hunderte Hemden zu fassen. Sperrige, leichte Dinge (Mäntel, Kissen, Schlafsäcke, leere Kartons) zählen als mindestens so viele Kilogramm pro Liter, den sie verpackt einnehmen, vor der Skalierung. Gilt ab dem nächsten Laden der Welt.",
+    "Sandbox_LugliHW_BulkFloor_option1": "Aus: nur echtes Gewicht",
+    "Sandbox_LugliHW_BulkFloor_option2": "Leicht: 0,05 pro Liter",
+    "Sandbox_LugliHW_BulkFloor_option3": "Normal: 0,10 pro Liter",
+    "Sandbox_LugliHW_BulkFloor_option4": "Streng: 0,15 pro Liter",
+    "Sandbox_LugliHW_Scale": "Skalierung",
+    "Sandbox_LugliHW_Scale_tooltip": "Spielgewicht pro echtem Kilogramm. Die Verhältnisse zwischen den Gegenständen bleiben bei jedem Wert echt. 1,0 sind echte Kilogramm, womit das Tragen viel leichter wird als im unveränderten Spiel. Beim Standardwert 1,5 werden Kleidung und Kleinkram leichter, Werkzeuge und Waffen etwas schwerer, bis zur Max. Erhöhung. Flüssigkeiten behalten das feste Spielgewicht von 1 pro Liter. Gilt ab dem nächsten Laden der Welt.",
+    "Sandbox_LugliHW_MaxIncrease": "Max. Erhöhung (%%)",
+    "Sandbox_LugliHW_MaxIncrease_tooltip": "Um wie viel Prozent ein Gegenstand höchstens mehr wiegen darf als im unveränderten Spiel. Gegenstände, die man in Mengen trägt (Steine, Ziegel, Baumstämme, Sandsäcke, Munition) oder die das Spiel schon schwer macht, bleiben spielbar. 0 bedeutet, dass kein Gegenstand je schwerer wird, nur leichter. 400 lässt fast jeden Gegenstand sein echtes Gewicht erreichen. Gilt ab dem nächsten Laden der Welt.",
+    "Sandbox_LugliHW_VanillaStamina": "Ausdauer pro Schlag wie im Spiel",
+    "Sandbox_LugliHW_VanillaStamina_tooltip": "Das Spiel nutzt das Gewicht einer Nahkampfwaffe für die Ausdauer, die jeder Schlag und jeder Axthieb kostet. Aus: Die Ausdauer folgt dem echten Gewicht, ein schwerer Vorschlaghammer ermüdet also schneller und ein leichtes Messer langsamer. An: Jede Waffe kostet pro Schlag so viel Ausdauer wie ohne diese Mod. Gilt ab dem nächsten Laden der Welt."
+}

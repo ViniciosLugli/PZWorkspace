@@ -2,7 +2,7 @@
 -- Source HardwoodsPolicePack: 33 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "HardwoodsPolicePack", mod = "HardwoodsPolicePack", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "HardwoodsPolicePack", mod = "HardwoodsPolicePack", version = "880f85a66ee4", rows = {
 "Base.93ElbowpadLeft",0.75,0.75,0.12,0,-1,-1,-1,0,-1,0.75,0,
 "Base.93ElbowpadRight",0.75,0.75,0.12,0,-1,-1,-1,0,-1,0.75,0,
 "Base.93KneepadLeft",0.75,0.75,0.2,0,-1,-1,-1,0,-1,0.75,0,

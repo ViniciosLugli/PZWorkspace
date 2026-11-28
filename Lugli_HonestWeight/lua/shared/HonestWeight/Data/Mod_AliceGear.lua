@@ -2,7 +2,7 @@
 -- Source AliceGear: 28 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "AliceGear", mod = "AliceGear", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "AliceGear", mod = "AliceGear", version = "880f85a66ee4", rows = {
 "ALICE.AliceBackpack",1.1,1.1,2.2,12,-1,-1,-1,0,-1,1.1,0,
 "ALICE.AliceCanteen",0.2,0.2,0.2,1.2,-1,-1,-1,0,-1,0.2,0,
 "ALICE.AliceFieldpack",0.6,0.6,1.3,6,-1,-1,-1,0,-1,0.6,0,

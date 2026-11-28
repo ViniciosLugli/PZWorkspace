@@ -2,7 +2,7 @@
 -- Source 93mustangSSP: 33 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "93mustangSSP", mod = "93mustangSSP", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "93mustangSSP", mod = "93mustangSSP", version = "880f85a66ee4", rows = {
 "Base.93mustangGTBumperFront2",10,10,13,0,-1,-1,-1,2,-1,10,0,
 "Base.93mustangGTBumperRear1",10,10,10,0,-1,-1,-1,2,-1,10,0,
 "Base.93mustangGTSpoiler1",3,3,5,0,-1,-1,-1,2,-1,3,0,

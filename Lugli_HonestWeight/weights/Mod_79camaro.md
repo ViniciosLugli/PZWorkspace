@@ -1,6 +1,6 @@
 # '79 Chevrolet Camaro
 
-Weights Lugli - Honest Weight sets for ['79 Chevrolet Camaro](https://steamcommunity.com/sharedfiles/filedetails/?id=3703948448): 23 items. [All sources](../WEIGHTS.md)
+Weights Lugli - Honest Weight sets for ['79 Chevrolet Camaro](https://steamcommunity.com/sharedfiles/filedetails/?id=3703948448): 26 items. [All sources](../WEIGHTS.md)
 
 **Game** is the weight without Honest Weight. **Honest** is the weight at the default options (Realism 100%, Bulk floor Normal, Scale 1.5), in the game's own units. A container that holds a liquid or is used up shows its empty weight in brackets.
 
@@ -8,6 +8,9 @@ Vehicle parts (*) stay in real kilograms: their weight is also the car's driving
 
 | Item | ID | Game | Honest |
 |---|---|---|---|
+| 79 Chevrolet Camaro Apocalypse Bullbar (*) | `Base.79camaroAPBumperFrontC` | 20 | 17 |
+| 79 Chevrolet Camaro Apocalypse Hood (*) | `Base.79camaroAPEngineDoor3` | 7.6 | 9.5 |
+| 79 Chevrolet Camaro Apocalypse Roofrack (*) | `Base.79camaroAPRoofrack3` | 15 | 12 |
 | 79 Chevrolet Camaro Auto Manual | `Base.79camaroMagazine` | 0.5 | 0.3 |
 | 79 Chevrolet Camaro Front Bumper (*) | `Base.79camaroBumperFront0` | 9 | 11.2 |
 | 79 Chevrolet Camaro Front Door (*) | `Base.79camaroFrontDoor3` | 10 | 12.5 |

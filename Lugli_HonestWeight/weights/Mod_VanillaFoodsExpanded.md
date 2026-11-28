@@ -1,6 +1,6 @@
 # Vanilla Foods Expanded
 
-Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3577903007): 2,250 items. [All sources](../WEIGHTS.md)
+Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3577903007): 2,500 items. [All sources](../WEIGHTS.md)
 
 **Game** is the weight without Honest Weight. **Honest** is the weight at the default options (Realism 100%, Bulk floor Normal, Scale 1.5), in the game's own units. A container that holds a liquid or is used up shows its empty weight in brackets.
 
@@ -17,6 +17,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Apple Butter | `VFX.AppleButter` | 0.2 | 0.25 |
 | Apple Cinnamon Muffin | `VFX.AppleCinnamonMuffin` | 0.1 | 0.125 |
 | Apple Cinnamon Muffin Batter | `VFX.AppleCinnamonMuffinBatter_2` | 0.4 | 0.5 |
+| Apple Cobbler | `VFX.CobblerApple` | 1.2 | 1.5 |
 | Apple Pie | `VFX.WholeFrozenPieApple` | 2.5 | 1.05 |
 | Apple Pie | `VFX.WholePieApple` | 2.5 | 1.88 |
 | Apple Pie Slice | `VFX.SlicePieApple` | 0.5 | 0.195 |
@@ -33,6 +34,8 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Bag of Chocolate Almonds | `VFX.ChocolateAlmonds` | 0.5 | 0.3 |
 | Bag of Chocolate Smooches | `VFX.ChocolateKisses` | 0.5 | 0.3 |
 | Bag of Cola Gummies | `VFX.BagColaGummies` | 0.5 | 0.247 |
+| Bag of Cranberries | `VFX.BagCranberries` | 0.4 | 0.5 |
+| Bag of Fried Onion | `VFX.BagFriedOnion` | 0.2 | 0.25 |
 | Bag of Green Beans | `VFX.BagGreenBeans` | 0.3 | 0.375 |
 | Bag of Gummy Bears | `VFX.BagGummyBears` | 0.5 | 0.625 |
 | Bag of Gummy Fish | `VFX.BagGummyFish` | 0.5 | 0.625 |
@@ -50,6 +53,8 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Bag of Pizza Rolls - Meat Lovers | `VFX.MeatLoversPizzaRoll_Box` | 0.8 | 0.533 |
 | Bag of Pizza Rolls - Pepperoni | `VFX.PepperoniPizzaRoll_Box` | 0.8 | 0.533 |
 | Bag of Pizza Rolls - Supreme | `VFX.SupremePizzaRoll_Box` | 0.8 | 0.533 |
+| Bag of Shredded Coconut | `VFX.BagShreddedCoconut` | 0.2 | 0.25 |
+| Bag of Shredded Hashbrowns | `VFX.BagShreddedHashbrowns` | 1 | 1.25 |
 | Bag of Snow Peas | `VFX.SnowPeas` | 0.2 | 0.25 |
 | Bag of Sour Gummy Bears | `VFX.BagSourGummyBears` | 0.5 | 0.247 |
 | Bag of Sour Gummy Worms | `VFX.BagSourGummyWorms` | 0.5 | 0.247 |
@@ -69,6 +74,8 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Baked Potato | `Base.VFXBakedPotatoEvolved` | 0.6 | 1.62 |
 | Baked Potato | `Base.VFXBakedPotatoPreparation` | 0.6 | 1.62 |
 | Baking Pan of Chicken Pot Pie | `VFX.PanChickenPotPie` | 1.3 | 1.62 |
+| Baking Pan of Monkey Bread | `VFX.PanMonkeyBread` | 1.3 | 1.62 |
+| Baking Pan of Spoon Bread | `VFX.PanSpoonBread` | 1.3 | 1.62 |
 | Baking Powder | `VFX.BakingPowder` | 0.3 | 0.375 |
 | Baking Tray with Cheddar Biscuits | `VFX.CheddarBiscuitPrep` | 0.4 | 0.5 |
 | Baking Tray with Gingerbread Cookies | `VFX.GingerbreadCookieDough` | 1.9 | 1.26 |
@@ -122,6 +129,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Biscuit Mix - Cheddar | `VFX.CheddarBiscuitMix_2` | 0.3 | 0.375 |
 | Biscuit Mix - Homestyle | `VFX.HomestyleBiscuitMix_2` | 0.3 | 0.375 |
 | Black Pudding | `VFX.BlackPudding` | 0.2 | 0.25 |
+| Blackberry Cobbler | `VFX.CobblerBlackberry` | 1.2 | 1.5 |
 | Blackberry Pie | `VFX.WholeFrozenPieBlackberry` | 2.5 | 1.05 |
 | Blackberry Pie | `VFX.WholePieBlackberry` | 2.5 | 1.88 |
 | Blackberry Pie Slice | `VFX.SlicePieBlackberry` | 0.5 | 0.195 |
@@ -170,6 +178,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Bowl of Admiral Chomp | `Base.VFXAdmiralChompBowlEvolved` | 0.8 | 0.705 |
 | Bowl of Admiral Chomp | `VFX.AdmiralChompBowl` | 0.8 | 0.705 |
 | Bowl of Alfredo Pasta | `VFX.PMBowlAlfredo` | 1 | 0.975 |
+| Bowl of Ambrosia | `VFX.BowlAmbrosia` | 0.5 | 0.625 |
 | Bowl of Arborio Rice | `VFX.ArborioRiceBowl` | 1 | 0.825 |
 | Bowl of Banana Cream Pudding | `VFX.BowlBananaCreamPudding` | 0.8 | 0.825 |
 | Bowl of Basmati Rice | `VFX.BasmatiRiceBowl` | 1 | 0.825 |
@@ -178,25 +187,35 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Bowl of Beef Ramen | `VFX.BowlBeefRamen` | 0.5 | 0.625 |
 | Bowl of Beef Ravioli | `VFX.BowlBeefRavioli` | 1 | 0.975 |
 | Bowl of Broccoli and Cheddar Soup | `VFX.BowlBroccoliCheddarSoup` | 1 | 0.825 |
+| Bowl of Brown Gravy | `VFX.BowlBrownGravy` | 0.6 | 0.75 |
 | Bowl of Brown Rice | `VFX.BrownRiceBowl` | 1 | 0.825 |
 | Bowl of Butter Chicken | `VFX.BowlButterChicken` | 0.5 | 0.625 |
 | Bowl of Butterscotch Pudding | `VFX.BowlButterscotchPudding` | 0.8 | 0.825 |
 | Bowl of Chana Masala | `VFX.BowlChanaMasala` | 0.5 | 0.625 |
 | Bowl of Cheddar Broccoli Pasta | `VFX.PMBowlCheddarBroccoli` | 1 | 0.975 |
 | Bowl of Chicken and Mushroom Ravioli | `VFX.BowlChickenMushroomRavioli` | 1 | 0.975 |
+| Bowl of Chicken Gravy | `VFX.BowlChickenGravy` | 0.6 | 0.75 |
 | Bowl of Chicken Noodle Soup | `VFX.BowlChickenNoodleSoup` | 0.5 | 0.625 |
 | Bowl of Chicken Ramen | `Base.VFXBowlChickenRamenEvolved` | 0.5 | 0.625 |
 | Bowl of Chicken Ramen | `VFX.BowlChickenRamen` | 0.5 | 0.625 |
 | Bowl of Chicken Rice | `VFX.RMBowlChicken` | 1 | 0.975 |
+| Bowl of Chicken Stuffing | `VFX.BowlChickenStuffing` | 1 | 0.825 |
 | Bowl of Chili | `Base.VFXBowlChili` | 0.5 | 0.625 |
 | Bowl of Chili Bean Stew | `VFX.BowlChiliBeanStew` | 1 | 0.825 |
 | Bowl of Choco-Roos | `VFX.CocoaPuffsBowl` | 0.8 | 0.705 |
 | Bowl of Chocolate Chip Granola | `VFX.ChocolateChipGranolaBowl` | 0.8 | 0.705 |
+| Bowl of Chocolate Gravy | `VFX.BowlChocolateGravy` | 0.6 | 0.75 |
 | Bowl of Chocolate Mousse | `VFX.BowlChocolateMousse` | 0.8 | 0.825 |
 | Bowl of Clam Chowder | `VFX.BowlClamChowder` | 1 | 0.825 |
+| Bowl of Clear Chowder | `VFX.EvolvedBowlChowderClear` | 0.5 | 0.625 |
+| Bowl of Cobbler with Ice Cream | `VFX.EvolvedBowlCobblerIceCream` | 0.5 | 0.625 |
 | Bowl of Cocoa Puffs | `Base.VFXCocoaPuffsBowlEvolved` | 0.8 | 0.705 |
 | Bowl of Coconut Almond Granola | `VFX.CoconutAlmondGranolaBowl` | 0.8 | 0.705 |
+| Bowl of Coleslaw | `VFX.BowlColeslaw` | 0.5 | 0.625 |
 | Bowl of Corn Flakes | `Base.VFXCornFlakesBowlEvolved` | 0.8 | 0.705 |
+| Bowl of Cornbread Stuffing | `VFX.BowlCornbreadStuffing` | 1 | 0.825 |
+| Bowl of Country Gravy | `VFX.BowlCountryGravy` | 0.6 | 0.75 |
+| Bowl of Cream Chowder | `VFX.EvolvedBowlChowderCream` | 0.5 | 0.625 |
 | Bowl of Creamy Chicken Pasta | `VFX.PMBowlCreamyChicken` | 1 | 0.975 |
 | Bowl of Creamy Pesto Pasta | `VFX.PMBowlCreamyPesto` | 1 | 0.975 |
 | Bowl of Curry | `Base.VFXBowlCurry` | 0.5 | 0.625 |
@@ -211,10 +230,15 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Bowl of Fruit and Nut Granola | `VFX.FruitNutGranolaBowl` | 0.8 | 0.705 |
 | Bowl of Fruity Loops | `Base.VFXFruityLoopsBowlEvolved` | 0.8 | 0.705 |
 | Bowl of Fruity Loops | `VFX.FruityLoopsBowl` | 0.8 | 0.705 |
+| Bowl of Giblet Gravy | `VFX.BowlGibletGravy` | 0.6 | 0.75 |
 | Bowl of Gnocchi | `VFX.GnocchiBowl` | 1 | 0.975 |
+| Bowl of Grandma's Stuffing | `VFX.BowlGrandmasStuffing` | 1.1 | 0.825 |
+| Bowl of Grits | `VFX.EvolvedBowlGrits` | 0.8 | 0.825 |
 | Bowl of Ground Beef Ravioli | `VFX.BowlGroundBeefRavioli` | 1 | 0.975 |
 | Bowl of Ground Beef Tortellini | `VFX.BowlGroundBeefTortellini` | 1 | 0.975 |
+| Bowl of Herb Stuffing | `VFX.BowlHerbStuffing` | 1 | 0.825 |
 | Bowl of Homemade Pasta | `VFX.HomemadePastaBowl` | 1 | 0.975 |
+| Bowl of Homemade Stuffing | `VFX.BowlHomemadeStuffing` | 1 | 0.825 |
 | Bowl of Honey and Oats Granola | `VFX.HoneyOatsGranolaBowl` | 0.8 | 0.705 |
 | Bowl of Honey Oaty O’s | `Base.VFXHoneyOatyOsBowlEvolved` | 0.8 | 0.705 |
 | Bowl of Honey O’s | `VFX.HoneyOatyOsBowl` | 0.8 | 0.705 |
@@ -228,28 +252,39 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Bowl of Macaroni | `VFX.MacaroniBowl` | 1 | 0.975 |
 | Bowl of Macaroni and Cheese Pasta | `VFX.PMBowlMacCheese` | 1 | 0.975 |
 | Bowl of Maple Pecan Granola | `VFX.MaplePecanGranolaBowl` | 0.8 | 0.705 |
+| Bowl of Mashed Potato | `VFX.BowlMashedPotato` | 0.5 | 0.625 |
 | Bowl of Massaman Curry | `VFX.BowlMassamanCurry` | 0.5 | 0.625 |
 | Bowl of Meatloaf | `VFX.BowlMeatloaf` | 1 | 0.825 |
 | Bowl of Minestrone Soup | `VFX.BowlMinestroneSoup` | 1 | 0.825 |
+| Bowl of Mushroom Gravy | `VFX.BowlMushroomGravy` | 0.6 | 0.75 |
 | Bowl of Mushroom Ravioli | `VFX.BowlMushroomRavioli` | 1 | 0.975 |
 | Bowl of Oaty O’s | `Base.VFXOatyOsBowlEvolved` | 0.8 | 0.705 |
 | Bowl of Oaty O’s | `VFX.OatyOsBowl` | 0.8 | 0.705 |
+| Bowl of Onion Gravy | `VFX.BowlOnionGravy` | 0.6 | 0.75 |
 | Bowl of Parmesan Pasta | `VFX.PMBowlParmesan` | 1 | 0.975 |
+| Bowl of Pasta Salad | `VFX.BowlPastaSalad` | 0.5 | 0.625 |
 | Bowl of Pea and Ham Soup | `VFX.BowlPeaAndHamSoup` | 0.5 | 0.625 |
 | Bowl of Pea and Ham Soup | `VFX.BowlPeaHamSoup` | 1 | 0.825 |
 | Bowl of Penne | `VFX.PenneBowl` | 1 | 0.975 |
+| Bowl of Pepper Gravy | `VFX.BowlPepperGravy` | 0.6 | 0.75 |
 | Bowl of Pepper Steak Stew | `VFX.BowlPepperSteakStew` | 1 | 0.825 |
 | Bowl of Peppered Pork Tortellini | `VFX.BowlPepperedPorkTortellini` | 1 | 0.975 |
+| Bowl of Pistachio Delight | `VFX.BowlPistachioDelight` | 0.5 | 0.625 |
 | Bowl of Pistachio Pudding | `VFX.BowlPistachioPudding` | 0.8 | 0.825 |
+| Bowl of Pork Gravy | `VFX.BowlPorkGravy` | 0.6 | 0.75 |
 | Bowl of Pork Ramen | `Base.VFXBowlPorkRamenEvolved` | 0.5 | 0.625 |
 | Bowl of Pork Ramen | `VFX.BowlPorkRamen` | 0.5 | 0.625 |
 | Bowl of Potato and Leek Soup | `VFX.BowlPotatoLeekSoup` | 1 | 0.825 |
+| Bowl of Potato Salad | `VFX.BowlPotatoSalad` | 0.5 | 0.625 |
 | Bowl of Pumpkin Ravioli | `VFX.BowlPumpkinRavioli` | 1 | 0.975 |
 | Bowl of Pumpkin Soup | `VFX.BowlPumpkinSoup` | 0.5 | 0.625 |
 | Bowl of Red Beans and Rice | `VFX.BowlRedBeansAndRice` | 1 | 0.825 |
+| Bowl of Red-Eye Gravy | `VFX.BowlRedEyeGravy` | 0.6 | 0.75 |
 | Bowl of Rice Krisps | `Base.VFXRiceKrispsBowlEvolved` | 0.8 | 0.705 |
 | Bowl of Rice Krisps | `VFX.RiceKrispsBowl` | 0.8 | 0.705 |
 | Bowl of Rice Medley | `VFX.RMBowlMedley` | 1 | 0.975 |
+| Bowl of Sausage Gravy | `VFX.BowlSausageGravy` | 0.6 | 0.75 |
+| Bowl of Sausage Stuffing | `VFX.BowlSausageStuffing` | 1.1 | 0.825 |
 | Bowl of Savory Mince | `VFX.BowlSavoryMince` | 1 | 0.825 |
 | Bowl of Shrimp Ramen | `Base.VFXBowlShrimpRamenEvolved` | 0.5 | 0.625 |
 | Bowl of Shrimp Ramen | `VFX.BowlShrimpRamen` | 0.5 | 0.625 |
@@ -262,12 +297,19 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Bowl of Spinach and Ricotta Ravioli | `VFX.BowlSpinachRicottaRavioli` | 1 | 0.975 |
 | Bowl of Spinach and Ricotta Tortellini | `VFX.BowlSpinachRicottaTortellini` | 1 | 0.975 |
 | Bowl of Spinach Ravioli | `VFX.BowlSpinachRavioli` | 1 | 0.975 |
+| Bowl of Spoon Bread | `VFX.BowlSpoonBread` | 0.5 | 0.625 |
 | Bowl of Steak and Onion Stew | `VFX.BowlSteakOnionStew` | 1 | 0.825 |
 | Bowl of Sweet Potato and Chickpea Curry | `VFX.BowlSweetPotatoChickpeaCurry` | 0.5 | 0.625 |
+| Bowl of Sweet Potato Mash | `VFX.BowlSweetPotatoMash` | 0.5 | 0.625 |
 | Bowl of Thai Green Curry | `VFX.BowlThaiGreenCurry` | 0.5 | 0.625 |
 | Bowl of Three Cheese Ravioli | `VFX.BowlThreeCheeseRavioli` | 1 | 0.975 |
 | Bowl of Tofu Curry | `VFX.BowlTofuCurry` | 0.5 | 0.625 |
+| Bowl of Tomato Chowder | `VFX.EvolvedBowlChowderTomato` | 0.5 | 0.625 |
+| Bowl of Tomato Gravy | `VFX.BowlTomatoGravy` | 0.6 | 0.75 |
 | Bowl of Tomato Soup | `VFX.BowlTomatoSoup` | 0.5 | 0.625 |
+| Bowl of Tuna Salad | `VFX.BowlTunaSalad` | 0.5 | 0.625 |
+| Bowl of Turkey Gravy | `VFX.BowlTurkeyGravy` | 0.6 | 0.75 |
+| Bowl of Turkey Stuffing | `VFX.BowlTurkeyStuffing` | 1 | 0.825 |
 | Bowl of Unlucky Charms | `Base.VFXUnluckyCharmsBowlEvolved` | 0.8 | 0.705 |
 | Bowl of Unlucky Charms | `VFX.UnluckyCharmsBowl` | 0.8 | 0.705 |
 | Bowl of Vanilla Pudding | `VFX.BowlVanillaPudding` | 0.8 | 0.825 |
@@ -294,42 +336,54 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Box of Canned Blackberry Pie Filling | `VFX.CannedBlackberryPieFilling_Box` | 4 | 5 |
 | Box of Canned Blueberry Pie Filling | `VFX.CannedBlueberryPieFilling_Box` | 4 | 5 |
 | Box of Canned Broccoli and Cheddar Soup | `VFX.CannedBroccoliCheddarSoup_Box` | 4 | 3.29 |
+| Box of Canned Brown Gravy | `VFX.CannedBrownGravy_Box` | 2.5 | 3.12 |
 | Box of Canned Cat Food | `VFX.CannedCatFood_Box` | 1.5 | 1.75 |
 | Box of Canned Cherry Pie Filling | `VFX.CannedCherryPieFilling_Box` | 4 | 5 |
 | Box of Canned Chicken | `VFX.CannedChicken_Box` | 1.5 | 1.75 |
+| Box of Canned Chicken Gravy | `VFX.CannedChickenGravy_Box` | 2.5 | 3.12 |
 | Box of Canned Chicken Noodle Soup | `VFX.CannedChickenNoodleSoup_Box` | 4 | 3.29 |
 | Box of Canned Chickpeas | `VFX.CannedChickpeas_Box` | 4 | 4.46 |
 | Box of Canned Chili Bean Stew | `VFX.CannedChiliBeanStew_Box` | 4 | 4.72 |
 | Box of Canned Clam Chowder | `VFX.CannedClamChowder_Box` | 4 | 3.29 |
+| Box of Canned Clams | `VFX.CannedClams_Box` | 2.5 | 2.21 |
+| Box of Canned Collard | `VFX.CannedCollard_Box` | 2.5 | 3.12 |
+| Box of Canned Country Gravy | `VFX.CannedCountryGravy_Box` | 2.5 | 3.12 |
 | Box of Canned Cream Corn | `VFX.CannedCreamCorn_Box` | 4 | 4.46 |
 | Box of Canned Edamame Beans | `VFX.CannedEdamameBeans_Box` | 4 | 4.46 |
 | Box of Canned French Onion Soup | `VFX.CannedFrenchOnionSoup_Box` | 4 | 3.29 |
 | Box of Canned Green Beans | `VFX.CannedGreenBeans_Box` | 4 | 4.46 |
 | Box of Canned Ham | `VFX.CannedHam_Box` | 1.5 | 1.88 |
 | Box of Canned Irish Stew | `VFX.CannedIrishStew_Box` | 4 | 4.72 |
+| Box of Canned Jellied Cranberry Sauce | `VFX.CannedCranberrySauce_Box` | 2.5 | 3.12 |
 | Box of Canned Kidney Beans | `VFX.CannedKidneyBeans_Box` | 4 | 4.46 |
 | Box of Canned Laksa Noodle Soup | `VFX.CannedLaksaNoodleSoup_Box` | 4 | 3.29 |
 | Box of Canned Lemon Cream Pie Filling | `VFX.CannedLemonCreamPieFilling_Box` | 4 | 5 |
 | Box of Canned Lentil Soup | `VFX.CannedLentilSoup_Box` | 4 | 3.29 |
 | Box of Canned Lentils | `VFX.CannedLentils_Box` | 4 | 4.46 |
 | Box of Canned Lychees | `VFX.CannedLychees_Box` | 4 | 4.46 |
+| Box of Canned Mandarin Oranges | `VFX.CannedMandarinOranges_Box` | 2.5 | 3.12 |
 | Box of Canned Mango Slices | `VFX.CannedMangoSlices_Box` | 4 | 4.46 |
 | Box of Canned Meatloaf | `VFX.CannedMeatloaf_Box` | 4 | 4.72 |
 | Box of Canned Minestrone Soup | `VFX.CannedMinestroneSoup_Box` | 4 | 3.29 |
 | Box of Canned Mixed Berry Pie Filling | `VFX.CannedMixedBerryPieFilling_Box` | 4 | 5 |
 | Box of Canned Mixed Vegetable Medley | `VFX.CannedMixedVegetableMedley_Box` | 4 | 4.46 |
+| Box of Canned Mushroom Gravy | `VFX.CannedMushroomGravy_Box` | 2.5 | 3.12 |
 | Box of Canned Mushroom Ravioli | `VFX.CannedMushroomRavioli_Box` | 4 | 4.46 |
+| Box of Canned Onion Gravy | `VFX.CannedOnionGravy_Box` | 2.5 | 3.12 |
 | Box of Canned Passionfruit | `VFX.CannedPassionfruit_Box` | 4 | 4.46 |
 | Box of Canned Pea and Ham Soup | `VFX.CannedPeaHamSoup_Box` | 4 | 3.29 |
 | Box of Canned Peach Pie Filling | `VFX.CannedPeachPieFilling_Box` | 4 | 5 |
 | Box of Canned Pear Slices | `VFX.CannedPearSlices_Box` | 4 | 4.46 |
+| Box of Canned Pepper Gravy | `VFX.CannedPepperGravy_Box` | 2.5 | 3.12 |
 | Box of Canned Pepper Steak Stew | `VFX.CannedPepperSteakStew_Box` | 4 | 4.72 |
+| Box of Canned Pork Gravy | `VFX.CannedPorkGravy_Box` | 2.5 | 3.12 |
 | Box of Canned Potato and Leek Soup | `VFX.CannedPotatoLeekSoup_Box` | 4 | 3.29 |
 | Box of Canned Pumpkin Puree | `VFX.CannedPumpkinPuree_Box` | 4 | 4.46 |
 | Box of Canned Pumpkin Soup | `VFX.CannedPumpkinSoup_Box` | 4 | 3.29 |
 | Box of Canned Raspberry Pie Filling | `VFX.CannedRaspberryPieFilling_Box` | 4 | 5 |
 | Box of Canned Red Beans and Rice | `VFX.CannedRedBeansAndRice_Box` | 4 | 4.72 |
 | Box of Canned Salmon | `VFX.CannedSalmon_Box` | 1.5 | 1.75 |
+| Box of Canned Sausage Gravy | `VFX.CannedSausageGravy_Box` | 2.5 | 3.12 |
 | Box of Canned Savory Mince | `VFX.CannedSavoryMince_Box` | 4 | 4.72 |
 | Box of Canned Sliced Mushroom | `VFX.CannedSlicedMushroom_Box` | 4 | 4.46 |
 | Box of Canned Sloppy Joe | `VFX.CannedSloppyJoe_Box` | 4 | 4.72 |
@@ -341,6 +395,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Box of Canned Strawberry Pie Filling | `VFX.CannedStrawberryPieFilling_Box` | 4 | 5 |
 | Box of Canned Three Bean Mix | `VFX.CannedThreeBeanMix_Box` | 4 | 4.46 |
 | Box of Canned Tomato Soup | `VFX.CannedTomatoSoup_Box` | 4 | 3.29 |
+| Box of Canned Turkey Gravy | `VFX.CannedTurkeyGravy_Box` | 2.5 | 3.12 |
 | Box of Canned Vegetable Stew | `VFX.CannedVegetableStew_Box` | 4 | 4.72 |
 | Box of Canned Vegetarian Chili | `VFX.CannedVegetarianChili_Box` | 4 | 4.72 |
 | Box of Canned White Beans | `VFX.CannedWhiteBeans_Box` | 4 | 4.46 |
@@ -356,6 +411,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Box of Granola Bars - Nutty | `VFX.NuttyGranolaBarBox` | 1 | 0.383 |
 | Box of Granola Bars - Oat | `VFX.OatGranolaBarBox` | 1 | 0.383 |
 | Box of Granola Bars - Peanut Butter | `VFX.PeanutButterGranolaBarBox` | 1 | 0.36 |
+| Box of Instant Mashed Potato | `VFX.BoxInstantMashedPotato` | 0.1 | 0.125 |
 | Box of Malt Balls | `VFX.ChocolateMaltBalls` | 0.1 | 0.125 |
 | Box of Oats n' Cream Pies | `VFX.OatmealCremePiesBox` | 1 | 0.51 |
 | Box of Pop Strudels - Blueberry | `VFX.BlueberryStrudelsBox` | 1 | 0.532 |
@@ -370,6 +426,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Box of Ramen - Pork | `VFX.BoxPorkRamen` | 1.5 | 0.698 |
 | Box of Ramen - Shrimp | `VFX.BoxShrimpRamen` | 1.5 | 0.698 |
 | Box of Ramen - Soy Sauce | `VFX.BoxSoySauceRamen` | 1.5 | 0.698 |
+| Box of Scalloped Potatoes | `VFX.BoxScallopedPotatoes` | 0.3 | 0.225 |
 | Box of Senior Mints | `VFX.ChocolateSeniorMints` | 0.1 | 0.125 |
 | Box of Soup Sachets - Chicken Noodle | `VFX.BoxChickenNoodleSoupSachets` | 0.8 | 0.285 |
 | Box of Soup Sachets - Pea and Ham | `VFX.BoxPeaAndHamSoupSachets` | 0.8 | 0.285 |
@@ -488,13 +545,18 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Canned Blackberry Pie Filling | `VFX.CannedBlackberryPieFilling` | 0.8 | 0.96 |
 | Canned Blueberry Pie Filling | `VFX.CannedBlueberryPieFilling` | 0.8 | 0.96 |
 | Canned Broccoli and Cheddar Soup | `VFX.CannedBroccoliCheddarSoup` | 0.8 | 0.51 |
+| Canned Brown Gravy | `VFX.CannedBrownGravy` | 0.4 | 0.5 |
 | Canned Cat Food | `VFX.CannedCatFood` | 0.3 | 0.255 |
 | Canned Cherry Pie Filling | `VFX.CannedCherryPieFilling` | 0.8 | 0.96 |
 | Canned Chicken | `VFX.CannedChicken` | 0.3 | 0.255 |
+| Canned Chicken Gravy | `VFX.CannedChickenGravy` | 0.4 | 0.5 |
 | Canned Chicken Noodle Soup | `VFX.CannedChickenNoodleSoup` | 0.8 | 0.51 |
 | Canned Chickpeas | `VFX.CannedChickpeas` | 0.8 | 0.705 |
 | Canned Chili Bean Stew | `VFX.CannedChiliBeanStew` | 0.8 | 0.75 |
 | Canned Clam Chowder | `VFX.CannedClamChowder` | 0.8 | 0.51 |
+| Canned Clams | `VFX.CannedClams` | 0.4 | 0.33 |
+| Canned Collard | `VFX.CannedCollard` | 0.4 | 0.5 |
+| Canned Country Gravy | `VFX.CannedCountryGravy` | 0.4 | 0.5 |
 | Canned Cream Corn | `VFX.CannedCreamCorn` | 0.8 | 0.705 |
 | Canned Crickets | `VFX.CannedCrickets` | 0.3 | 0.0945 |
 | Canned Edamame Beans | `VFX.CannedEdamameBeans` | 0.8 | 0.705 |
@@ -502,29 +564,36 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Canned Green Beans | `VFX.CannedGreenBeans` | 0.8 | 0.705 |
 | Canned Ham | `VFX.CannedHam` | 0.3 | 0.375 |
 | Canned Irish Stew | `VFX.CannedIrishStew` | 0.8 | 0.75 |
+| Canned Jellied Cranberry Sauce | `VFX.CannedCranberrySauce` | 0.4 | 0.5 |
 | Canned Kidney Beans | `VFX.CannedKidneyBeans` | 0.8 | 0.705 |
 | Canned Laksa Noodle Soup | `VFX.CannedLaksaNoodleSoup` | 0.8 | 0.51 |
 | Canned Lemon Cream Pie Filling | `VFX.CannedLemonCreamPieFilling` | 0.8 | 0.96 |
 | Canned Lentil Soup | `VFX.CannedLentilSoup` | 0.8 | 0.51 |
 | Canned Lentils | `VFX.CannedLentils` | 0.8 | 0.705 |
 | Canned Lychees | `VFX.CannedLychees` | 0.8 | 0.705 |
+| Canned Mandarin Oranges | `VFX.CannedMandarinOranges` | 0.4 | 0.5 |
 | Canned Mango Slices | `VFX.CannedMangoSlices` | 0.8 | 0.705 |
 | Canned Meatloaf | `VFX.CannedMeatloaf` | 0.8 | 0.75 |
 | Canned Minestrone Soup | `VFX.CannedMinestroneSoup` | 0.8 | 0.51 |
 | Canned Mixed Berry Pie Filling | `VFX.CannedMixedBerryPieFilling` | 0.8 | 0.96 |
 | Canned Mixed Vegetable Medley | `VFX.CannedMixedVegetableMedley` | 0.8 | 0.705 |
+| Canned Mushroom Gravy | `VFX.CannedMushroomGravy` | 0.4 | 0.5 |
 | Canned Mushroom Ravioli | `VFX.CannedMushroomRavioli` | 0.8 | 0.705 |
+| Canned Onion Gravy | `VFX.CannedOnionGravy` | 0.4 | 0.5 |
 | Canned Passionfruit | `VFX.CannedPassionfruit` | 0.8 | 0.705 |
 | Canned Pea and Ham Soup | `VFX.CannedPeaHamSoup` | 0.8 | 0.51 |
 | Canned Peach Pie Filling | `VFX.CannedPeachPieFilling` | 0.8 | 0.96 |
 | Canned Pear Slices | `VFX.CannedPearSlices` | 0.8 | 0.705 |
+| Canned Pepper Gravy | `VFX.CannedPepperGravy` | 0.4 | 0.5 |
 | Canned Pepper Steak Stew | `VFX.CannedPepperSteakStew` | 0.8 | 0.75 |
+| Canned Pork Gravy | `VFX.CannedPorkGravy` | 0.4 | 0.5 |
 | Canned Potato and Leek Soup | `VFX.CannedPotatoLeekSoup` | 0.8 | 0.51 |
 | Canned Pumpkin Puree | `VFX.CannedPumpkinPuree` | 0.8 | 0.705 |
 | Canned Pumpkin Soup | `VFX.CannedPumpkinSoup` | 0.8 | 0.51 |
 | Canned Raspberry Pie Filling | `VFX.CannedRaspberryPieFilling` | 0.8 | 0.96 |
 | Canned Red Beans and Rice | `VFX.CannedRedBeansAndRice` | 0.8 | 0.75 |
 | Canned Salmon | `VFX.CannedSalmon` | 0.3 | 0.255 |
+| Canned Sausage Gravy | `VFX.CannedSausageGravy` | 0.4 | 0.5 |
 | Canned Savory Mince | `VFX.CannedSavoryMince` | 0.8 | 0.75 |
 | Canned Sliced Mushroom | `VFX.CannedSlicedMushroom` | 0.8 | 0.705 |
 | Canned Sloppy Joe | `VFX.CannedSloppyJoe` | 0.8 | 0.75 |
@@ -537,6 +606,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Canned Strawberry Pie Filling | `VFX.CannedStrawberryPieFilling` | 0.8 | 0.96 |
 | Canned Three Bean Mix | `VFX.CannedThreeBeanMix` | 0.8 | 0.705 |
 | Canned Tomato Soup | `VFX.CannedTomatoSoup` | 0.8 | 0.51 |
+| Canned Turkey Gravy | `VFX.CannedTurkeyGravy` | 0.4 | 0.5 |
 | Canned Vegetable Stew | `VFX.CannedVegetableStew` | 0.8 | 0.75 |
 | Canned Vegetarian Chili | `VFX.CannedVegetarianChili` | 0.8 | 0.75 |
 | Canned White Beans | `VFX.CannedWhiteBeans` | 0.8 | 0.705 |
@@ -631,6 +701,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Cashews | `VFX.Cashews` | 0.2 | 0.045 |
 | Casserole | `Base.VFXCasseroleEvolved` | 1.5 | 1.88 |
 | Cayenne Pepper | `VFX.CayennePepper` | 0.2 | 0.18 |
+| Celery | `VFX.Celery` | 0.4 | 0.5 |
 | Celery Salt | `VFX.CelerySalt` | 0.2 | 0.18 |
 | Cereal - Admiral Chomp | `VFX.AdmiralChomp` | 0.3 | 0.375 |
 | Cereal - Choco-Roos | `VFX.CocoaPuffs` | 0.3 | 0.375 |
@@ -662,6 +733,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Cheesemaking Kit - Master | `VFX.CheeseKitMaster` | 2 | 2.1 |
 | Cheesemaking Kit - Swiss | `VFX.CheeseKitSwiss` | 1 | 0.765 |
 | Cheeze-Emz | `VFX.CheezItz` | 0.2 | 0.25 |
+| Cherry Cobbler | `VFX.CobblerCherry` | 1.2 | 1.5 |
 | Cherry Jello Cup | `VFX.CherryJelloCup` | 0.1 | 0.125 |
 | Cherry Pie | `VFX.WholeFrozenPieCherry` | 2.5 | 1.05 |
 | Cherry Pie | `VFX.WholePieCherry` | 2.5 | 1.88 |
@@ -669,6 +741,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Cherry Pop Strudel | `VFX.CherryToasterStrudel` | 0.2 | 0.0825 |
 | Chicken Burrito | `VFX.FrozenChickenBurrito` | 0.4 | 0.225 |
 | Chicken Drumsticks | `VFX.ChickenDrumsticks` | 0.15 | 0.18 |
+| Chicken Gravy | `VFX.GravyBoatChicken` | 0.4 | 0.5 |
 | Chicken Meatball | `VFX.ChickenMeatball` | 0.05 | 0.06 |
 | Chicken Meatball | `VFX.ChickenMeatballHomemade` | 0.05 | 0.06 |
 | Chicken Patty | `VFX.PattyChicken` | 0.3 | 0.165 |
@@ -736,6 +809,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Chocolate Coins | `VFX.ChocolateCoins` | 0.1 | 0.125 |
 | Chocolate Cookie Mix | `VFX.ChocolateCookieMix_2` | 0.3 | 0.375 |
 | Chocolate Frosting | `VFX.ChocolateFrosting` | 0.4 | 0.5 |
+| Chocolate Gravy | `VFX.GravyBoatChocolate` | 0.4 | 0.5 |
 | Chocolate Hazelnut Crustless | `VFX.CHUncrustable` | 0.1 | 0.0975 |
 | Chocolate Ice Cream Cone | `VFX.ChocolateIceCreamCone` | 0.2 | 0.25 |
 | Chocolate Ice Cream Cone (Melted) | `VFX.ChocolateIceCreamConeMelted` | 0.2 | 0.25 |
@@ -748,7 +822,9 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Cinnamon Sugar | `VFX.CinnamonSugar` | 0.2 | 0.18 |
 | Cinnamon Sugar Crustless | `VFX.CSUncrustable` | 0.1 | 0.0975 |
 | Cinnamon Swirl Bread | `VFX.CinnamonSwirlBreadPrep` | 0.5 | 0.625 |
+| Clay Mixing Bowl (Unfired) | `VFX.MixingBowlUnfired` | 1 | 1.25 |
 | Cloves | `VFX.Cloves` | 0.2 | 0.18 |
+| Cobbler | `VFX.EvolvedRoastingPanCobbler` | 1.5 | 1.88 |
 | Cocktail Sauce | `VFX.CocktailSauce` | 0.2 | 0.25 |
 | Coffee Cake | `VFX.CoffeeCake` | 0.2 | 0.093 |
 | Coffee Creamer - Almond | `VFX.CoffeeCreamerAlmond_2` | 0.4 | 0.5 |
@@ -758,6 +834,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Coffee Creamer - Original | `VFX.CoffeeCreamerOriginal_2` | 0.4 | 0.5 |
 | Cola Gummies | `VFX.GummyCola` | 0.1 | 0.045 |
 | Coleslaw Dressing | `VFX.ColeslawDressing` | 0.2 | 0.25 |
+| Collard | `VFX.Collard` | 0.3 | 0.375 |
 | Confetti Cake | `VFX.ConfettiCake` | 0.5 | 0.625 |
 | Confetti Cake | `VFX.ConfettiCakePrep` | 0.5 | 0.625 |
 | Confetti Cake (Candle) | `VFX.ConfettiCakeCandle` | 0.51 | 0.637 |
@@ -801,16 +878,44 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Confetti Cake Slice - Vanilla Frosting | `VFX.ConfettiCakeSliceFrostingVanilla` | 0.2 | 0.18 |
 | Confetti Cake Slice - Vanilla Frosting (Candle) | `VFX.ConfettiCakeSliceFrostingVanillaCandle` | 0.21 | 0.186 |
 | Confetti Frosting | `VFX.ConfettiFrosting` | 0.4 | 0.5 |
+| Container with Ambrosia | `VFX.FoodStorageContainerAmbrosia` | 1 | 1.25 |
+| Container with Ambrosia | `VFX.MetalFoodStorageContainerAmbrosia` | 1 | 1.25 |
+| Container with Apple Cobbler | `VFX.FoodStorageContainerCobblerApple` | 1 | 1.25 |
+| Container with Apple Cobbler | `VFX.MetalFoodStorageContainerCobblerApple` | 1 | 1.25 |
 | Container with Arborio Rice | `VFX.FoodStorageContainerArborioRice` | 1 | 1.25 |
 | Container with Arborio Rice | `VFX.MetalFoodStorageContainerArborioRice` | 1 | 1.25 |
 | Container with Basmati Rice | `VFX.FoodStorageContainerBasmatiRice` | 1 | 1.25 |
 | Container with Basmati Rice | `VFX.MetalFoodStorageContainerBasmatiRice` | 1 | 1.25 |
+| Container with Blackberry Cobbler | `VFX.FoodStorageContainerCobblerBlackberry` | 1 | 1.25 |
+| Container with Blackberry Cobbler | `VFX.MetalFoodStorageContainerCobblerBlackberry` | 1 | 1.25 |
+| Container with Broccoli Cheese Casserole | `VFX.FoodStorageContainerBroccoliCheeseCasserole` | 1 | 1.25 |
+| Container with Broccoli Cheese Casserole | `VFX.MetalFoodStorageContainerBroccoliCheeseCasserole` | 1 | 1.25 |
 | Container with Brown Rice | `VFX.FoodStorageContainerBrownRice` | 1 | 1.25 |
 | Container with Brown Rice | `VFX.MetalFoodStorageContainerBrownRice` | 1 | 1.25 |
+| Container with Candied Yams | `VFX.FoodStorageContainerCandiedYams` | 1 | 1.25 |
+| Container with Candied Yams | `VFX.MetalFoodStorageContainerCandiedYams` | 1 | 1.25 |
 | Container with Casserole | `VFX.FoodStorageContainerCasserole` | 1 | 1.25 |
 | Container with Casserole | `VFX.MetalFoodStorageContainerCasserole` | 1 | 1.25 |
+| Container with Cheesy Potato Casserole | `VFX.FoodStorageContainerCheesyPotatoCasserole` | 1 | 1.25 |
+| Container with Cheesy Potato Casserole | `VFX.MetalFoodStorageContainerCheesyPotatoCasserole` | 1 | 1.25 |
+| Container with Cherry Cobbler | `VFX.FoodStorageContainerCobblerCherry` | 1 | 1.25 |
+| Container with Cherry Cobbler | `VFX.MetalFoodStorageContainerCobblerCherry` | 1 | 1.25 |
 | Container with Chili | `VFX.FoodStorageContainerChili` | 1 | 1.25 |
 | Container with Chili | `VFX.MetalFoodStorageContainerChili` | 1 | 1.25 |
+| Container with Clear Chowder | `VFX.EvolvedFoodStorageContainerChowderClear` | 1 | 1.25 |
+| Container with Clear Chowder | `VFX.EvolvedMetalFoodStorageContainerChowderClear` | 1 | 1.25 |
+| Container with Cobbler | `VFX.EvolvedFoodStorageContainerCobbler` | 1 | 1.25 |
+| Container with Cobbler | `VFX.EvolvedMetalFoodStorageContainerCobbler` | 1 | 1.25 |
+| Container with Coleslaw | `VFX.FoodStorageContainerColeslaw` | 1 | 1.25 |
+| Container with Coleslaw | `VFX.MetalFoodStorageContainerColeslaw` | 1 | 1.25 |
+| Container with Collard Greens | `VFX.FoodStorageContainerCollardGreens` | 1 | 1.25 |
+| Container with Collard Greens | `VFX.MetalFoodStorageContainerCollardGreens` | 1 | 1.25 |
+| Container with Cornbread Dressing | `VFX.FoodStorageContainerCornbreadDressing` | 1 | 1.25 |
+| Container with Cornbread Dressing | `VFX.MetalFoodStorageContainerCornbreadDressing` | 1 | 1.25 |
+| Container with Country Green Beans | `VFX.FoodStorageContainerCountryGreenBeans` | 1 | 1.25 |
+| Container with Country Green Beans | `VFX.MetalFoodStorageContainerCountryGreenBeans` | 1 | 1.25 |
+| Container with Cream Chowder | `VFX.EvolvedFoodStorageContainerChowderCream` | 1 | 1.25 |
+| Container with Cream Chowder | `VFX.EvolvedMetalFoodStorageContainerChowderCream` | 1 | 1.25 |
 | Container with Curry | `VFX.FoodStorageContainerCurry` | 1 | 1.25 |
 | Container with Curry | `VFX.MetalFoodStorageContainerCurry` | 1 | 1.25 |
 | Container with Fettuccine | `VFX.FoodStorageContainerFettuccine` | 1 | 1.25 |
@@ -819,18 +924,34 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Container with Fried Rice | `VFX.MetalFoodStorageContainerFriedRice` | 1 | 1.25 |
 | Container with Fruit Salad | `VFX.FoodStorageContainerFruitSalad` | 1 | 1.25 |
 | Container with Fruit Salad | `VFX.MetalFoodStorageContainerFruitSalad` | 1 | 1.25 |
+| Container with Glazed Carrots | `VFX.FoodStorageContainerGlazedCarrots` | 1 | 1.25 |
+| Container with Glazed Carrots | `VFX.MetalFoodStorageContainerGlazedCarrots` | 1 | 1.25 |
 | Container with Gnocchi | `VFX.FoodStorageContainerGnocchi` | 1 | 1.25 |
 | Container with Gnocchi | `VFX.MetalFoodStorageContainerGnocchi` | 1 | 1.25 |
+| Container with Green Bean Casserole | `VFX.FoodStorageContainerGreenBeanCasserole` | 1 | 1.25 |
+| Container with Green Bean Casserole | `VFX.MetalFoodStorageContainerGreenBeanCasserole` | 1 | 1.25 |
 | Container with Jasmine Rice | `VFX.FoodStorageContainerJasmineRice` | 1 | 1.25 |
 | Container with Jasmine Rice | `VFX.MetalFoodStorageContainerJasmineRice` | 1 | 1.25 |
 | Container with Lasagna | `VFX.FoodStorageContainerLasagna` | 1 | 1.25 |
 | Container with Lasagna | `VFX.MetalFoodStorageContainerLasagna` | 1 | 1.25 |
 | Container with Macaroni | `VFX.FoodStorageContainerMacaroni` | 1 | 1.25 |
 | Container with Macaroni | `VFX.MetalFoodStorageContainerMacaroni` | 1 | 1.25 |
+| Container with Macaroni and Cheese Casserole | `VFX.FoodStorageContainerMacAndCheeseCasserole` | 1 | 1.25 |
+| Container with Macaroni and Cheese Casserole | `VFX.MetalFoodStorageContainerMacAndCheeseCasserole` | 1 | 1.25 |
 | Container with Meatloaf | `VFX.FoodStorageContainerMeatloaf` | 1 | 1.25 |
 | Container with Meatloaf | `VFX.MetalFoodStorageContainerMeatloaf` | 1 | 1.25 |
+| Container with Mixed Fruit Cobbler | `VFX.FoodStorageContainerCobblerMixedFruit` | 1 | 1.25 |
+| Container with Mixed Fruit Cobbler | `VFX.MetalFoodStorageContainerCobblerMixedFruit` | 1 | 1.25 |
+| Container with Pasta Salad | `VFX.FoodStorageContainerPastaSalad` | 1 | 1.25 |
+| Container with Pasta Salad | `VFX.MetalFoodStorageContainerPastaSalad` | 1 | 1.25 |
+| Container with Peach Cobbler | `VFX.FoodStorageContainerCobblerPeach` | 1 | 1.25 |
+| Container with Peach Cobbler | `VFX.MetalFoodStorageContainerCobblerPeach` | 1 | 1.25 |
 | Container with Penne | `VFX.FoodStorageContainerPenne` | 1 | 1.25 |
 | Container with Penne | `VFX.MetalFoodStorageContainerPenne` | 1 | 1.25 |
+| Container with Pistachio Delight | `VFX.FoodStorageContainerPistachioDelight` | 1 | 1.25 |
+| Container with Pistachio Delight | `VFX.MetalFoodStorageContainerPistachioDelight` | 1 | 1.25 |
+| Container with Potato Salad | `VFX.FoodStorageContainerPotatoSalad` | 1 | 1.25 |
+| Container with Potato Salad | `VFX.MetalFoodStorageContainerPotatoSalad` | 1 | 1.25 |
 | Container with Rice | `VFX.FoodStorageContainerRice` | 1 | 1.25 |
 | Container with Rice | `VFX.MetalFoodStorageContainerRice` | 1 | 1.25 |
 | Container with Roasted Vegetables | `VFX.FoodStorageContainerRoastVegetables` | 1 | 1.25 |
@@ -847,6 +968,12 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Container with Stew | `VFX.MetalFoodStorageContainerStew` | 1 | 1.25 |
 | Container with Stir-Fry | `VFX.FoodStorageContainerStirFry` | 1 | 1.25 |
 | Container with Stir-Fry | `VFX.MetalFoodStorageContainerStirFry` | 1 | 1.25 |
+| Container with Sweet Potato Casserole | `VFX.FoodStorageContainerSweetPotatoCasserole` | 1 | 1.25 |
+| Container with Sweet Potato Casserole | `VFX.MetalFoodStorageContainerSweetPotatoCasserole` | 1 | 1.25 |
+| Container with Tomato Chowder | `VFX.EvolvedFoodStorageContainerChowderTomato` | 1 | 1.25 |
+| Container with Tomato Chowder | `VFX.EvolvedMetalFoodStorageContainerChowderTomato` | 1 | 1.25 |
+| Container with Tuna Salad | `VFX.FoodStorageContainerTunaSalad` | 1 | 1.25 |
+| Container with Tuna Salad | `VFX.MetalFoodStorageContainerTunaSalad` | 1 | 1.25 |
 | Cookie Mix - Chocolate Chip | `VFX.ChocolateChipCookieMix_2` | 0.3 | 0.375 |
 | Cookie Mix - Gingerbread | `VFX.GingerbreadCookieMix_2` | 0.3 | 0.375 |
 | Cookie Mix - Peanut Butter | `VFX.PeanutButterCookieMix_2` | 0.3 | 0.375 |
@@ -887,6 +1014,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Copper Saucepan of Creamy Pesto Pasta | `VFX.PMCopperSaucepanCreamyPesto` | 2 | 2.1 |
 | Copper Saucepan of Four Cheese Tortellini | `VFX.CopperSaucepanFourCheeseTortellini` | 3 | 2.1 |
 | Copper Saucepan of Fried Rice | `VFX.RMCopperSaucepanFried` | 2 | 2.1 |
+| Copper Saucepan of Grits | `VFX.EvolvedSaucepanCopperGrits` | 1.5 | 1.88 |
 | Copper Saucepan of Ground Beef Ravioli | `VFX.CopperSaucepanGroundBeefRavioli` | 3 | 2.1 |
 | Copper Saucepan of Ground Beef Tortellini | `VFX.CopperSaucepanGroundBeefTortellini` | 3 | 2.1 |
 | Copper Saucepan of Lobster Ravioli | `VFX.CopperSaucepanLobsterRavioli` | 3 | 2.1 |
@@ -915,7 +1043,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Cottage Cheese - Homemade | `VFX.CottageCheeseHomemade` | 0.4 | 0.5 |
 | Cottage Cheese Preparation | `VFX.CottageCheesePreparationPot` | 2 | 2.5 |
 | Cottage Cheese Preparation | `VFX.CottageCheesePreparationPotForged` | 2 | 2.5 |
-| Cranberry | `VFX.Cranberries` | 0.1 | 0.125 |
+| Country Gravy | `VFX.GravyBoatCountry` | 0.4 | 0.5 |
 | Cranberry Bread | `VFX.CranberryBreadPrep` | 0.5 | 0.625 |
 | Cranberry Juice Box | `VFX.JuiceBoxCranberry` | 0.2 | 0.033 |
 | Cranberry Sauce | `VFX.CranberrySauce` | 0.2 | 0.25 |
@@ -955,8 +1083,10 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Dark Chocolate Bar | `VFX.ChocolateBarDark` | 0.2 | 0.15 |
 | Dead Sourdough Starter | `VFX.DeadSourdoughStarter` | 0.5 | 0.625 |
 | Dead Yeast Starter | `VFX.DeadYeastStarter` | 0.5 | 0.625 |
+| Deviled Egg | `VFX.DeviledEgg` | 0.05 | 0.0525 |
 | Dijon Mustard | `VFX.DijonMustard` | 0.2 | 0.25 |
 | Dill | `VFX.Dill` | 0.2 | 0.18 |
+| Dinner Roll | `VFX.DinnerRoll` | 0.1 | 0.06 |
 | Dip - Bacon & Cheddar | `VFX.BaconCheddarDip` | 0.2 | 0.25 |
 | Dip - Buffalo | `VFX.BuffaloDip` | 0.2 | 0.25 |
 | Dip - French Onion | `VFX.FrenchOnionDip` | 0.2 | 0.25 |
@@ -982,6 +1112,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Duck Breast | `VFX.DuckBreast` | 0.3 | 0.33 |
 | Dumpling Wrappers | `VFX.DumplingWrappers` | 0.1 | 0.125 |
 | Earl Grey Tea Bag | `VFX.EarlGrayTeaBag_2` | 0.1 | 0.003 |
+| Egg (Fried) | `VFX.EggFried` | 0.1 | 0.075 |
 | Egg and Cheese Breakfast Sandwich | `VFX.ECBreakfastSandwich` | 0.2 | 0.21 |
 | Egg Roll | `VFX.FrozenEggRoll` | 0.3 | 0.225 |
 | Empty Beer Bottle | `VFX.BottleBeerEmpty` | 0.4 | 0.3 |
@@ -1011,6 +1142,8 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Fish Bouillon Cube | `VFX.FishBouillonCube` | 0.1 | 0.015 |
 | Fish Meatball | `VFX.MeatballFish` | 0.05 | 0.06 |
 | Fish Patty | `VFX.PattyFish` | 0.3 | 0.165 |
+| Fish Stock | `VFX.EvolvedPotFishStock` | 2 | 2.5 |
+| Fish Stock | `VFX.EvolvedPotForgedFishStock` | 2 | 2.5 |
 | Fizzy Rocks - Blue Raspberry | `VFX.PopRocksBlueRaspberry` | 0.1 | 0.015 |
 | Fizzy Rocks - Cherry | `VFX.PopRocksCherry` | 0.1 | 0.015 |
 | Fizzy Rocks - Cotton Candy | `VFX.PopRocksCottonCandy` | 0.1 | 0.015 |
@@ -1088,6 +1221,14 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Fruit Chew - Watermelon | `VFX.FruitChewWatermelon` | 0.05 | 0.009 |
 | Fruit Punch Sports Drink | `VFX.SportsFruitPunch` | 0.1 | 0.125 |
 | Frybread | `VFX.Frybread` | 0.3 | 0.15 |
+| Frying Pan of Collard Greens | `VFX.FryingPanCollardGreens` | 1.5 | 1.88 |
+| Frying Pan of Collard Greens | `VFX.FryingPanCollardGreensForged` | 1.5 | 1.88 |
+| Frying Pan of Fried Egg | `VFX.FryingPanFriedEgg` | 1.6 | 1.5 |
+| Frying Pan of Fried Egg | `VFX.FryingPanFriedEggForged` | 1.6 | 1.95 |
+| Frying Pan of Scrambled Eggs | `VFX.FryingPanScrambledEggs` | 1.7 | 1.58 |
+| Frying Pan of Scrambled Eggs | `VFX.FryingPanScrambledEggsForged` | 1.7 | 2.03 |
+| Frying Pan of Shredded Hashbrowns | `VFX.FryingPanShreddedHashbrowns` | 2 | 1.95 |
+| Frying Pan of Shredded Hashbrowns | `VFX.FryingPanShreddedHashbrownsForged` | 2 | 2.4 |
 | Fudge | `VFX.Fudge` | 0.1 | 0.045 |
 | Funny Taffy - Banana | `VFX.FunnyTaffyBanana` | 0.1 | 0.045 |
 | Funny Taffy - Blue Raspberry | `VFX.FunnyTaffyBlueRaspberry` | 0.1 | 0.045 |
@@ -1114,6 +1255,8 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Giant Lollipop - Strawberry | `VFX.GiantLollipopStrawberry` | 0.2 | 0.06 |
 | Giant Lollipop - Watermelon | `VFX.GiantLollipopWatermelon` | 0.2 | 0.06 |
 | Giant Lollipop - Wild Berry | `VFX.GiantLollipopWildBerry` | 0.2 | 0.06 |
+| Giblet Gravy | `VFX.GravyBoatGiblet` | 0.4 | 0.5 |
+| Giblets | `VFX.Giblets` | 0.2 | 0.25 |
 | Ginger Tea Bag | `VFX.GingerTeaBag_2` | 0.1 | 0.003 |
 | Gingerbread Cookie | `VFX.CookiesGingerbread` | 0.1 | 0.06 |
 | Gnocchi | `Base.VFXGnocchiPotEvolved` | 3 | 3.15 |
@@ -1132,9 +1275,19 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Grape Sports Drink | `VFX.SportsGrape` | 0.1 | 0.125 |
 | Grapefruit Juice | `VFX.GrapefruitJuice` | 0.1 | 0.125 |
 | Grapefruit Juice Box | `VFX.JuiceBoxGrapefruit` | 0.2 | 0.033 |
+| Gravy Boat | `VFX.GravyBoat` | 0.3 | 0.375 |
+| Gravy Mix - Chicken | `VFX.GravyMixChicken` | 0.1 | 0.045 |
+| Gravy Mix - Country | `VFX.GravyMixCountry` | 0.1 | 0.045 |
+| Gravy Mix - Mushroom | `VFX.GravyMixMushroom` | 0.1 | 0.045 |
+| Gravy Mix - Onion | `VFX.GravyMixOnion` | 0.1 | 0.045 |
+| Gravy Mix - Pepper | `VFX.GravyMixPepper` | 0.1 | 0.045 |
+| Gravy Mix - Pork | `VFX.GravyMixPork` | 0.1 | 0.045 |
+| Gravy Mix - Turkey | `VFX.GravyMixTurkey` | 0.1 | 0.045 |
 | Green Iced Tea | `VFX.IcedTeaGreen` | 0.1 | 0.125 |
 | Green Kiwi | `VFX.GreenKiwi` | 0.1 | 0.125 |
 | Green Tea Bag | `VFX.GreenTeaBag_2` | 0.1 | 0.003 |
+| Grits | `VFX.CanisterGrits` | 0.8 | 1 |
+| Grits | `VFX.HomemadeGrits` | 2 | 1.2 |
 | Ground Bird Meat | `VFX.GroundSmallBird` | 0.3 | 0.375 |
 | Ground Chicken | `VFX.GroundChicken` | 0.3 | 0.375 |
 | Ground Chili | `VFX.GroundChili` | 0.2 | 0.18 |
@@ -1172,11 +1325,14 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Homemade Alfredo Sauce | `VFX.HomemadeAlfredoSauce` | 0.2 | 0.25 |
 | Homemade Basil Pesto Sauce | `VFX.HomemadeBasilPestoSauce` | 0.2 | 0.25 |
 | Homemade Bechamel Sauce | `VFX.HomemadeBechamelSauce` | 0.2 | 0.25 |
+| Homemade Cranberry Sauce | `VFX.HomemadeCranberrySauce` | 0.4 | 0.5 |
 | Homemade Gnocchi | `VFX.HomemadeGnocchi` | 0.3 | 0.375 |
+| Homemade Jellied Cranberry Sauce | `VFX.HomemadeJelliedCranberrySauce` | 0.4 | 0.5 |
 | Homemade Marinara | `VFX.HomemadeMarinara` | 0.2 | 0.25 |
 | Homemade Meat Sauce | `VFX.HomemadeMeatSauce` | 0.2 | 0.25 |
 | Homemade Pasta | `VFX.HomemadePasta` | 0.3 | 0.375 |
 | Homemade Spicy Marinara | `VFX.HomemadeSpicyMarinara` | 0.2 | 0.25 |
+| Homemade Whipped Cream | `VFX.WhippedCreamHomemade` | 0.5 | 0.625 |
 | Homestyle Biscuit | `VFX.HomestyleBiscuit` | 0.1 | 0.09 |
 | Honey Barbecue Sauce | `VFX.HoneyBBQSauce` | 0.2 | 0.25 |
 | Honey BBQ Wing | `VFX.WingHoneyBBQ` | 0.3 | 0.15 |
@@ -1339,9 +1495,14 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Magazine: So Cheesy - February 1993 | `VFX.MagazineDairy4` | 0.5 | 0.3 |
 | Magazine: So Cheesy - March 1993 | `VFX.MagazineDairy5` | 0.5 | 0.3 |
 | Magazine: So Cheesy - May 1993 | `VFX.MagazineDairy7` | 0.5 | 0.3 |
+| Magazine: Southern Holiday Dishes - November 1983 | `VFX.MagazineThanksgiving1` | 0.5 | 0.3 |
+| Magazine: Southern Holiday Dishes - November 1984 | `VFX.MagazineThanksgiving2` | 0.5 | 0.3 |
+| Magazine: Southern Holiday Dishes - November 1985 | `VFX.MagazineThanksgiving3` | 0.5 | 0.3 |
+| Magazine: Southern Holiday Dishes - November 1986 | `VFX.MagazineThanksgiving4` | 0.5 | 0.3 |
+| Magazine: Southern Holiday Dishes - November 1987 | `VFX.MagazineThanksgiving5` | 0.5 | 0.3 |
 | Magazine: Sugary Sweetness | `VFX.MagazineSugar1` | 0.5 | 0.3 |
+| Mandarin Orange | `VFX.MandarinOrange` | 0.2 | 0.135 |
 | Maple Butter | `VFX.MapleButter` | 0.2 | 0.25 |
-| Mashed Potato | `VFX.MashedPotato` | 0.3 | 0.375 |
 | Meat Dumpling | `VFX.HomemadeMeatDumpling` | 0.1 | 0.045 |
 | Meat Lovers Pizza Roll | `VFX.MeatLoversPizzaRoll` | 0.2 | 0.128 |
 | Meat Pie | `VFX.FrozenMeatPie` | 0.4 | 0.3 |
@@ -1360,8 +1521,18 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Mixed Berry Pie | `VFX.WholeFrozenPieMixedBerry` | 2.5 | 1.05 |
 | Mixed Berry Pie | `VFX.WholePieMixedBerry` | 2.5 | 1.88 |
 | Mixed Berry Pie Slice | `VFX.SlicePieMixedBerry` | 0.5 | 0.195 |
+| Mixed Fruit Cobbler | `VFX.CobblerMixedFruit` | 1.2 | 1.5 |
 | Mixed Nuts | `VFX.MixedNuts` | 0.2 | 0.045 |
+| Mixing Bowl | `VFX.MixingBowl` | 1 | 1.2 |
+| Mixing Bowl of Ambrosia | `VFX.MixingBowlAmbrosia` | 2 | 2.5 |
+| Mixing Bowl of Coleslaw | `VFX.MixingBowlColeslaw` | 2 | 2.5 |
+| Mixing Bowl of Pasta Salad | `VFX.MixingBowlPastaSalad` | 2 | 2.5 |
+| Mixing Bowl of Pistachio Delight | `VFX.MixingBowlPistachioDelight` | 2 | 2.5 |
+| Mixing Bowl of Potato Salad | `VFX.MixingBowlPotatoSalad` | 2 | 2.5 |
+| Mixing Bowl of Tuna Salad | `VFX.MixingBowlTunaSalad` | 2 | 2.5 |
 | Molasses | `VFX.Molasses` | 0.6 | 0.75 |
+| Mom's Thanksgiving Recipes | `VFX.MomsThanksgivingRecipes` | 0.5 | 0.525 |
+| Monkey Bread | `VFX.MonkeyBread` | 0.8 | 1 |
 | Mozzarella Cheese | `VFX.MozzarellaCheese` | 0.25 | 0.312 |
 | Mozzarella Cheese - Homemade | `VFX.MozzarellaCheeseHomemade` | 0.3 | 0.345 |
 | Mozzarella Sticks | `VFX.FrozenMozzarellaSticks` | 0.3 | 0.15 |
@@ -1389,6 +1560,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Mug of Tomato Soup | `VFX.MugTomatoSoup_Clay` | 0.8 | 0.825 |
 | Mug of Tomato Soup | `VFX.MugTomatoSoup_Spiffo` | 0.8 | 0.825 |
 | Mug of Tomato Soup | `VFX.MugTomatoSoup_White` | 0.8 | 0.75 |
+| Mushroom Gravy | `VFX.GravyBoatMushroom` | 0.4 | 0.5 |
 | Mustard Powder | `VFX.MustardPowder` | 0.2 | 0.18 |
 | Naan Bread | `VFX.NaanBread` | 0.3 | 0.15 |
 | Nachos | `Base.VFXNachosEvolved` | 0.7 | 1.62 |
@@ -1406,6 +1578,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Oil Sauce Base | `Base.VFXHomemadeSauceOil` | 0.8 | 1 |
 | Old Bay Seasoning | `VFX.OldBaySeasoning` | 0.2 | 0.18 |
 | Onion Flakes | `VFX.OnionFlakes` | 0.2 | 0.18 |
+| Onion Gravy | `VFX.GravyBoatOnion` | 0.4 | 0.5 |
 | Open Can of Coconut Cream | `VFX.CannedCoconutCreamOpen` | 0.8 | 0.645 |
 | Open Can of Coconut Milk | `VFX.CannedCoconutMilkOpen` | 0.8 | 0.645 |
 | Opened Canned Anchovies | `VFX.CannedAnchoviesOpen` | 0.3 | 0.255 |
@@ -1418,42 +1591,54 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Opened Canned Blackberry Pie Filling | `VFX.CannedBlackberryPieFillingOpen` | 0.8 | 0.96 |
 | Opened Canned Blueberry Pie Filling | `VFX.CannedBlueberryPieFillingOpen` | 0.8 | 0.96 |
 | Opened Canned Broccoli and Cheddar Soup | `VFX.CannedBroccoliCheddarSoupOpen` | 0.8 | 0.51 |
+| Opened Canned Brown Gravy | `VFX.CannedBrownGravyOpen` | 0.4 | 0.5 |
 | Opened Canned Cat Food | `VFX.CannedCatFoodOpen` | 0.3 | 0.255 |
 | Opened Canned Cherry Pie Filling | `VFX.CannedCherryPieFillingOpen` | 0.8 | 0.96 |
 | Opened Canned Chicken | `VFX.CannedChickenOpen` | 0.3 | 0.255 |
+| Opened Canned Chicken Gravy | `VFX.CannedChickenGravyOpen` | 0.4 | 0.5 |
 | Opened Canned Chicken Noodle Soup | `VFX.CannedChickenNoodleSoupOpen` | 0.8 | 0.51 |
 | Opened Canned Chickpeas | `VFX.CannedChickpeasOpen` | 0.8 | 0.705 |
 | Opened Canned Chili Bean Stew | `VFX.CannedChiliBeanStewOpen` | 0.8 | 0.75 |
 | Opened Canned Clam Chowder | `VFX.CannedClamChowderOpen` | 0.8 | 0.51 |
+| Opened Canned Clams | `VFX.CannedClamsOpen` | 0.4 | 0.33 |
+| Opened Canned Collard | `VFX.CannedCollardOpen` | 0.4 | 0.5 |
+| Opened Canned Country Gravy | `VFX.CannedCountryGravyOpen` | 0.4 | 0.5 |
 | Opened Canned Cream Corn | `VFX.CannedCreamCornOpen` | 0.8 | 0.705 |
 | Opened Canned Edamame Beans | `VFX.CannedEdamameBeansOpen` | 0.8 | 0.705 |
 | Opened Canned French Onion Soup | `VFX.CannedFrenchOnionSoupOpen` | 0.8 | 0.51 |
 | Opened Canned Green Beans | `VFX.CannedGreenBeansOpen` | 0.8 | 0.705 |
 | Opened Canned Ham | `VFX.CannedHamOpen` | 0.3 | 0.375 |
 | Opened Canned Irish Stew | `VFX.CannedIrishStewOpen` | 0.8 | 0.75 |
+| Opened Canned Jellied Cranberry Sauce | `VFX.CannedCranberrySauceOpen` | 0.4 | 0.5 |
 | Opened Canned Kidney Beans | `VFX.CannedKidneyBeansOpen` | 0.8 | 0.705 |
 | Opened Canned Laksa Noodle Soup | `VFX.CannedLaksaNoodleSoupOpen` | 0.8 | 0.51 |
 | Opened Canned Lemon Cream Pie Filling | `VFX.CannedLemonCreamPieFillingOpen` | 0.8 | 0.96 |
 | Opened Canned Lentil Soup | `VFX.CannedLentilSoupOpen` | 0.8 | 0.51 |
 | Opened Canned Lentils | `VFX.CannedLentilsOpen` | 0.8 | 0.705 |
 | Opened Canned Lychees | `VFX.CannedLycheesOpen` | 0.8 | 0.705 |
+| Opened Canned Mandarin Oranges | `VFX.CannedMandarinOrangesOpen` | 0.4 | 0.5 |
 | Opened Canned Mango Slices | `VFX.CannedMangoSlicesOpen` | 0.8 | 0.705 |
 | Opened Canned Meatloaf | `VFX.CannedMeatloafOpen` | 0.8 | 0.75 |
 | Opened Canned Minestrone Soup | `VFX.CannedMinestroneSoupOpen` | 0.8 | 0.51 |
 | Opened Canned Mixed Berry Pie Filling | `VFX.CannedMixedBerryPieFillingOpen` | 0.8 | 0.96 |
 | Opened Canned Mixed Vegetable Medley | `VFX.CannedMixedVegetableMedleyOpen` | 0.8 | 0.705 |
+| Opened Canned Mushroom Gravy | `VFX.CannedMushroomGravyOpen` | 0.4 | 0.5 |
 | Opened Canned Mushroom Ravioli | `VFX.CannedMushroomRavioliOpen` | 0.8 | 0.705 |
+| Opened Canned Onion Gravy | `VFX.CannedOnionGravyOpen` | 0.4 | 0.5 |
 | Opened Canned Passionfruit | `VFX.CannedPassionfruitOpen` | 0.8 | 0.705 |
 | Opened Canned Pea and Ham Soup | `VFX.CannedPeaHamSoupOpen` | 0.8 | 0.51 |
 | Opened Canned Peach Pie Filling | `VFX.CannedPeachPieFillingOpen` | 0.8 | 0.96 |
 | Opened Canned Pear Slices | `VFX.CannedPearSlicesOpen` | 0.8 | 0.705 |
+| Opened Canned Pepper Gravy | `VFX.CannedPepperGravyOpen` | 0.4 | 0.5 |
 | Opened Canned Pepper Steak Stew | `VFX.CannedPepperSteakStewOpen` | 0.8 | 0.75 |
+| Opened Canned Pork Gravy | `VFX.CannedPorkGravyOpen` | 0.4 | 0.5 |
 | Opened Canned Potato and Leek Soup | `VFX.CannedPotatoLeekSoupOpen` | 0.8 | 0.51 |
 | Opened Canned Pumpkin Puree | `VFX.CannedPumpkinPureeOpen` | 0.8 | 0.705 |
 | Opened Canned Pumpkin Soup | `VFX.CannedPumpkinSoupOpen` | 0.8 | 0.51 |
 | Opened Canned Raspberry Pie Filling | `VFX.CannedRaspberryPieFillingOpen` | 0.8 | 0.96 |
 | Opened Canned Red Beans and Rice | `VFX.CannedRedBeansAndRiceOpen` | 0.8 | 0.75 |
 | Opened Canned Salmon | `VFX.CannedSalmonOpen` | 0.3 | 0.255 |
+| Opened Canned Sausage Gravy | `VFX.CannedSausageGravyOpen` | 0.4 | 0.5 |
 | Opened Canned Savory Mince | `VFX.CannedSavoryMinceOpen` | 0.8 | 0.75 |
 | Opened Canned Sliced Mushroom | `VFX.CannedSlicedMushroomOpen` | 0.8 | 0.705 |
 | Opened Canned Sloppy Joe | `VFX.CannedSloppyJoeOpen` | 0.8 | 0.75 |
@@ -1465,12 +1650,15 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Opened Canned Strawberry Pie Filling | `VFX.CannedStrawberryPieFillingOpen` | 0.8 | 0.96 |
 | Opened Canned Three Bean Mix | `VFX.CannedThreeBeanMixOpen` | 0.8 | 0.705 |
 | Opened Canned Tomato Soup | `VFX.CannedTomatoSoupOpen` | 0.8 | 0.51 |
+| Opened Canned Turkey Gravy | `VFX.CannedTurkeyGravyOpen` | 0.4 | 0.5 |
 | Opened Canned Vegetable Stew | `VFX.CannedVegetableStewOpen` | 0.8 | 0.75 |
 | Opened Canned Vegetarian Chili | `VFX.CannedVegetarianChiliOpen` | 0.8 | 0.75 |
 | Opened Canned White Beans | `VFX.CannedWhiteBeansOpen` | 0.8 | 0.705 |
 | Opened Homemade Alfredo Sauce | `VFX.HomemadeAlfredoSauce_Open` | 0.2 | 0.25 |
 | Opened Homemade Basil Pesto Sauce | `VFX.HomemadeBasilPestoSauce_Open` | 0.2 | 0.25 |
 | Opened Homemade Bechamel Sauce | `VFX.HomemadeBechamelSauce_Open` | 0.2 | 0.25 |
+| Opened Homemade Cranberry Sauce | `VFX.HomemadeCranberrySauce_Open` | 0.4 | 0.5 |
+| Opened Homemade Jellied Cranberry Sauce | `VFX.HomemadeJelliedCranberrySauce_Open` | 0.4 | 0.5 |
 | Opened Homemade Marinara | `VFX.HomemadeMarinara_Open` | 0.2 | 0.25 |
 | Opened Homemade Meat Sauce | `VFX.HomemadeMeatSauce_Open` | 0.2 | 0.25 |
 | Opened Homemade Spicy Marinara | `VFX.HomemadeSpicyMarinara_Open` | 0.2 | 0.25 |
@@ -1626,6 +1814,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Parmesan Cheese Wheel - Homemade (Aging) | `VFX.WheelParmesanCheeseHomemade` | 0.5 | 0.625 |
 | Parmesan Pasta | `VFX.PMParmesan` | 0.5 | 0.27 |
 | Parmesan Whey | `VFX.ParmesanWhey` | 0.2 | 0.25 |
+| Peach Cobbler | `VFX.CobblerPeach` | 1.2 | 1.5 |
 | Peach Iced Tea | `VFX.IcedTeaPeach` | 0.1 | 0.125 |
 | Peach Jello Cup | `VFX.PeachJelloCup` | 0.1 | 0.125 |
 | Peach Pie | `VFX.WholeFrozenPiePeach` | 2.5 | 1.05 |
@@ -1645,6 +1834,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Penne | `Base.VFXPenneSaucepanCopperEvolved` | 3 | 2.1 |
 | Penne | `Base.VFXPenneSaucepanEvolved` | 3 | 1.65 |
 | Penne | `VFX.Penne` | 2 | 0.69 |
+| Pepper Gravy | `VFX.GravyBoatPepper` | 0.4 | 0.5 |
 | Peppermint Tea Bag | `VFX.PeppermintTeaBag_2` | 0.1 | 0.003 |
 | Pepperoni Pizza | `VFX.FrozenPepperoniPizza` | 1.8 | 1.07 |
 | Pepperoni Pizza Roll | `VFX.PepperoniPizzaRoll` | 0.2 | 0.128 |
@@ -1664,26 +1854,45 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Plastic Pitcher with Lemonade Drink Mix | `VFX.LemonadePlasticPitcher` | 0.1 | 0.125 |
 | Plastic Pitcher with Pink Lemonade Drink Mix | `VFX.PinkLemonadePlasticPitcher` | 0.1 | 0.125 |
 | Plastic Pitcher with Sweet Tea Drink Mix | `VFX.SweetTeaPlasticPitcher` | 0.1 | 0.125 |
+| Plate of Apple Cobbler | `VFX.PlateCobblerApple` | 0.9 | 1.25 |
 | Plate of Baked Ziti | `VFX.PlateBakedZiti` | 0.9 | 1.25 |
 | Plate of Bangers and Mash | `VFX.PlateBangersAndMash` | 0.9 | 1.25 |
 | Plate of Beans on Toast | `VFX.PlateBeansOnToast` | 0.9 | 1.25 |
+| Plate of Blackberry Cobbler | `VFX.PlateCobblerBlackberry` | 0.9 | 1.25 |
+| Plate of Broccoli Cheese Casserole | `VFX.PlateBroccoliCheeseCasserole` | 0.9 | 1.25 |
+| Plate of Candied Yams | `VFX.PlateCandiedYams` | 0.9 | 1.25 |
 | Plate of Casserole | `Base.VFXPlateCasserole` | 0.9 | 1.25 |
+| Plate of Cheesy Potato Casserole | `VFX.PlateCheesyPotatoCasserole` | 0.9 | 1.25 |
+| Plate of Cherry Cobbler | `VFX.PlateCobblerCherry` | 0.9 | 1.25 |
 | Plate of Chicken Divan | `VFX.PlateChickenDivan` | 0.9 | 1.25 |
 | Plate of Chicken Pot Pie | `VFX.PlateChickenPotPie` | 0.9 | 1.25 |
+| Plate of Cobbler | `VFX.EvolvedPlateCobbler` | 0.9 | 1.25 |
+| Plate of Collard Greens | `VFX.PlateCollardGreens` | 0.9 | 1.25 |
+| Plate of Cornbread Dressing | `VFX.PlateCornbreadDressing` | 0.9 | 1.25 |
+| Plate of Country Green Beans | `VFX.PlateCountryGreenBeans` | 0.9 | 1.25 |
 | Plate of Enchilada | `Base.VFXPlateEnchilada` | 0.9 | 1.25 |
 | Plate of Fish and Chips | `VFX.PlateFishAndChips` | 0.9 | 1.25 |
 | Plate of Full English Breakfast | `VFX.PlateFullEnglishBreakfast` | 0.9 | 1.25 |
+| Plate of Glazed Carrots | `VFX.PlateGlazedCarrots` | 0.9 | 1.25 |
+| Plate of Green Bean Casserole | `VFX.PlateGreenBeanCasserole` | 0.9 | 1.25 |
 | Plate of Half English Breakfast | `VFX.PlateHalfEnglishBreakfast` | 0.9 | 1.25 |
 | Plate of Lasagna | `Base.VFXPlateLasagna` | 0.9 | 1.25 |
+| Plate of Macaroni and Cheese Casserole | `VFX.PlateMacAndCheeseCasserole` | 0.9 | 1.25 |
 | Plate of Meatloaf | `Base.VFXPlateMeatloaf` | 0.9 | 1.25 |
+| Plate of Mixed Fruit Cobbler | `VFX.PlateCobblerMixedFruit` | 0.9 | 1.25 |
+| Plate of Monkey Bread | `VFX.PlateMonkeyBread` | 0.9 | 1.25 |
 | Plate of Moussaka | `VFX.PlateMoussaka` | 0.9 | 1.25 |
 | Plate of Nachos | `Base.VFXPlateNachos` | 0.9 | 1.25 |
+| Plate of Peach Cobbler | `VFX.PlateCobblerPeach` | 0.9 | 1.25 |
 | Plate of Quiche | `Base.VFXPlateQuiche` | 0.9 | 1.25 |
 | Plate of Salisbury Steak | `VFX.PlateSalisburySteak` | 0.9 | 1.25 |
 | Plate of Sausage and Apple Fry | `VFX.PlateSausageAppleFry` | 0.9 | 1.25 |
 | Plate of Scalloped Potato Bake | `Base.VFXPlateScallopedPotatoBake` | 0.9 | 1.25 |
+| Plate of Scrambled Eggs | `VFX.PlateScrambledEggs` | 0.9 | 1.25 |
 | Plate of Shepherd's Pie | `VFX.PlateShepherdsPie` | 0.9 | 1.25 |
+| Plate of Shredded Hashbrowns | `VFX.PlateShreddedHashbrowns` | 0.9 | 1.25 |
 | Plate of Stuffed Bell Peppers | `VFX.PlateStuffedBellPepper` | 0.9 | 1.25 |
+| Plate of Sweet Potato Casserole | `VFX.PlateSweetPotatoCasserole` | 0.9 | 1.25 |
 | Plate of Tuna Casserole | `VFX.PlateTunaCasserole` | 0.9 | 1.25 |
 | Plum | `VFX.Plum` | 0.1 | 0.105 |
 | Pomegranate | `VFX.Pomegranate` | 0.2 | 0.25 |
@@ -1703,6 +1912,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Popsicle - Tropical | `VFX.TropicalPopsicle` | 0.2 | 0.15 |
 | Popsicle - Tropical (Melted) | `VFX.TropicalPopsicleMelted` | 0.2 | 0.15 |
 | Pork Belly | `VFX.PorkBelly` | 0.3 | 0.375 |
+| Pork Gravy | `VFX.GravyBoatPork` | 0.4 | 0.5 |
 | Pork Meatball | `VFX.PorkMeatball` | 0.05 | 0.06 |
 | Pork Meatball | `VFX.PorkMeatballHomemade` | 0.05 | 0.06 |
 | Pork Patty | `VFX.PattyPork` | 0.3 | 0.165 |
@@ -1715,8 +1925,12 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Pot of Cheddar Cheese Curds | `VFX.CheddarCheeseCurdsPotForged` | 2 | 2.5 |
 | Pot of Chicken and Mushroom Ravioli | `VFX.PotChickenMushroomRavioli` | 3 | 3.15 |
 | Pot of Chicken and Mushroom Ravioli | `VFX.PotForgedChickenMushroomRavioli` | 3 | 3.15 |
+| Pot of Clear Chowder | `VFX.EvolvedPotChowderClear` | 2 | 2.5 |
+| Pot of Clear Chowder | `VFX.EvolvedPotForgedChowderClear` | 2 | 2.5 |
 | Pot of Cottage Cheese Curds | `VFX.CottageCheeseCurdPot` | 2 | 2.5 |
 | Pot of Cottage Cheese Curds | `VFX.CottageCheeseCurdPotForged` | 2 | 2.5 |
+| Pot of Cream Chowder | `VFX.EvolvedPotChowderCream` | 2 | 2.5 |
+| Pot of Cream Chowder | `VFX.EvolvedPotForgedChowderCream` | 2 | 2.5 |
 | Pot of Evaporated Milk | `VFX.EvaporatedMilkPot` | 2 | 2.5 |
 | Pot of Evaporated Milk | `VFX.EvaporatedMilkPotForged` | 2 | 2.5 |
 | Pot of Feta Cheese Curds | `VFX.FetaCheeseCurdsPot` | 2 | 2.5 |
@@ -1737,6 +1951,8 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Pot of Molasses | `VFX.SugarBeetMolassesPotForged` | 3 | 3.15 |
 | Pot of Mozzarella Curds | `VFX.MozzarellaCurdsPot` | 0.4 | 1.25 |
 | Pot of Mozzarella Curds | `VFX.MozzarellaCurdsPotForged` | 0.4 | 1.25 |
+| Pot of Nettle Rennet | `VFX.PotForgedNettleRennet` | 3 | 3.15 |
+| Pot of Nettle Rennet | `VFX.PotNettleRennet` | 3 | 3.15 |
 | Pot of Parmesan Cheese Curds | `VFX.ParmesanCheeseCurdsPot` | 2 | 2.5 |
 | Pot of Parmesan Cheese Curds | `VFX.ParmesanCheeseCurdsPotForged` | 2 | 2.5 |
 | Pot of Peppered Pork Tortellini | `VFX.PotForgedPepperedPorkTortellini` | 3 | 3.15 |
@@ -1755,6 +1971,8 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Pot of Swiss Cheese Curds | `VFX.SwissCheeseCurdsPotForged` | 2 | 2.5 |
 | Pot of Three Cheese Ravioli | `VFX.PotForgedThreeCheeseRavioli` | 3 | 3.15 |
 | Pot of Three Cheese Ravioli | `VFX.PotThreeCheeseRavioli` | 3 | 3.15 |
+| Pot of Tomato Chowder | `VFX.EvolvedPotChowderTomato` | 2 | 2.5 |
+| Pot of Tomato Chowder | `VFX.EvolvedPotForgedChowderTomato` | 2 | 2.5 |
 | Pot of Tomato Paste | `VFX.TomatoPastePot` | 2 | 2.5 |
 | Pot of Tomato Paste | `VFX.TomatoPastePotForged` | 2 | 2.5 |
 | Pot of Tomato Pulp | `VFX.TomatoPulpPot` | 2.5 | 3.12 |
@@ -1859,19 +2077,30 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Red Velvet Cake Slice - Strawberry Frosting (Candle) | `VFX.RedVelvetCakeSliceFrostingStrawberryCandle` | 0.21 | 0.186 |
 | Red Velvet Cake Slice - Vanilla Frosting | `VFX.RedVelvetCakeSliceFrostingVanilla` | 0.2 | 0.18 |
 | Red Velvet Cake Slice - Vanilla Frosting (Candle) | `VFX.RedVelvetCakeSliceFrostingVanillaCandle` | 0.21 | 0.186 |
+| Red-Eye Gravy | `VFX.GravyBoatRedEye` | 0.4 | 0.5 |
 | Rennet | `VFX.Rennet` | 0.5 (empty 0.1) | 0.165 (empty 0.075) |
+| Rennet - Vegetable | `VFX.RennetPlant` | 0.25 (empty 0.05) | 0.312 (empty 0.0625) |
 | Rice Cakes - Apple Cinnamon | `VFX.RiceCakesAppleCinnamon` | 0.2 | 0.25 |
 | Rice Cakes - Cheddar | `VFX.RiceCakesCheddar` | 0.2 | 0.25 |
 | Rice Cakes - Lightly Salted | `VFX.RiceCakesLightlySalted` | 0.2 | 0.25 |
 | Rice Cakes - Ranch | `VFX.RiceCakesRanch` | 0.2 | 0.25 |
 | Rice Medley | `VFX.RMMedley` | 0.5 | 0.27 |
 | Roasting Pan of Baked Ziti | `VFX.TrayBakedZiti` | 1.3 | 1.62 |
+| Roasting Pan of Broccoli Cheese Casserole | `VFX.TrayBroccoliCheeseCasserole` | 1.3 | 1.62 |
+| Roasting Pan of Candied Yams | `VFX.TrayCandiedYams` | 1.3 | 1.62 |
+| Roasting Pan of Cheesy Potato Casserole | `VFX.TrayCheesyPotatoCasserole` | 1.3 | 1.62 |
 | Roasting Pan of Chicken Divan | `VFX.TrayChickenDivan` | 1.3 | 1.62 |
+| Roasting Pan of Cornbread Dressing | `VFX.TrayCornbreadDressing` | 1.3 | 1.62 |
+| Roasting Pan of Country Green Beans | `VFX.TrayCountryGreenBeans` | 1.3 | 1.62 |
+| Roasting Pan of Glazed Carrots | `VFX.TrayGlazedCarrots` | 1.3 | 1.62 |
+| Roasting Pan of Green Bean Casserole | `VFX.TrayGreenBeanCasserole` | 1.3 | 1.62 |
+| Roasting Pan of Macaroni and Cheese Casserole | `VFX.TrayMacAndCheeseCasserole` | 1.3 | 1.62 |
 | Roasting Pan of Moussaka | `VFX.TrayMoussaka` | 1.3 | 1.62 |
 | Roasting Pan of Salisbury Steak | `VFX.TraySalisburySteak` | 1.3 | 1.62 |
 | Roasting Pan of Sausage and Apple Fry | `VFX.TraySausageAppleFry` | 1.3 | 1.62 |
 | Roasting Pan of Shepherd's Pie | `VFX.TrayShepherdsPie` | 1.3 | 1.62 |
 | Roasting Pan of Stuffed Bell Peppers | `VFX.TrayStuffedBellPepper` | 1.3 | 1.62 |
+| Roasting Pan of Sweet Potato Casserole | `VFX.TraySweetPotatoCasserole` | 1.3 | 1.62 |
 | Roasting Pan of Tuna Casserole | `VFX.TrayTunaCasserole` | 1.3 | 1.62 |
 | Rocky Road Ice Cream Cone | `VFX.RockyRoadIceCreamCone` | 0.2 | 0.25 |
 | Rocky Road Ice Cream Cone (Melted) | `VFX.RockyRoadIceCreamConeMelted` | 0.2 | 0.25 |
@@ -1888,6 +2117,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Rye Sourdough Toast | `Base.VFXRyeSourdoughToast` | 0.05 | 0.0625 |
 | Salmon Meatball | `VFX.MeatballSalmon` | 0.05 | 0.06 |
 | Salmon Patty | `VFX.PattySalmon` | 0.3 | 0.165 |
+| Salt Can | `VFX.SaltCan` | 0.5 | 0.625 |
 | Saltwater Taffy | `VFX.SaltwaterTaffy` | 0.1 | 0.045 |
 | Saucepan of Alfredo Pasta | `VFX.PMSaucepanAlfredo` | 2 | 1.65 |
 | Saucepan of Cheddar Broccoli Pasta | `VFX.PMSaucepanCheddarBroccoli` | 2 | 1.65 |
@@ -1897,6 +2127,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Saucepan of Creamy Pesto Pasta | `VFX.PMSaucepanCreamyPesto` | 2 | 1.65 |
 | Saucepan of Four Cheese Tortellini | `VFX.SaucepanFourCheeseTortellini` | 3 | 1.65 |
 | Saucepan of Fried Rice | `VFX.RMSaucepanFried` | 2 | 1.65 |
+| Saucepan of Grits | `VFX.EvolvedSaucepanGrits` | 1.5 | 1.65 |
 | Saucepan of Ground Beef Ravioli | `VFX.SaucepanGroundBeefRavioli` | 3 | 1.65 |
 | Saucepan of Ground Beef Tortellini | `VFX.SaucepanGroundBeefTortellini` | 3 | 1.65 |
 | Saucepan of Lobster Ravioli | `VFX.SaucepanLobsterRavioli` | 3 | 1.65 |
@@ -1918,6 +2149,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Saucepan with Jasmine Rice | `VFX.WaterSaucepanJasmineRice` | 3 | 1.65 |
 | Saucepan with Macaroni | `VFX.WaterSaucepanMacaroni` | 3 | 1.65 |
 | Saucepan with Penne | `VFX.WaterSaucepanPenne` | 3 | 1.65 |
+| Sausage Gravy | `VFX.GravyBoatSausage` | 0.4 | 0.5 |
 | Sausage Hot Dog | `Base.VFXSausagedog` | 0.3 | 0.225 |
 | Sausage Roll | `VFX.FrozenSausageRoll` | 0.3 | 0.15 |
 | Sausage, Egg and Cheese Breakfast Sandwich | `VFX.SECBreakfastSandwich` | 0.2 | 0.21 |
@@ -1934,6 +2166,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Seasoning Mix - Hot Wings | `VFX.SeasoningMixWingsHot` | 0.1 | 0.045 |
 | Seasoning Mix - Ranch Wings | `VFX.SeasoningMixWingsRanch` | 0.1 | 0.045 |
 | Seasoning Mix - Spicy Cajun Wings | `VFX.SeasoningMixWingsSpicyCajun` | 0.1 | 0.045 |
+| Seitan | `VFX.Seitan` | 0.3 | 0.375 |
 | Sesame Bagel Dough | `VFX.SesameBagelDough` | 0.1 | 0.125 |
 | Sesame Seeds | `VFX.SesameSeeds` | 0.1 | 0.125 |
 | Shortbread Cookie Mix | `VFX.ShortbreadCookieMix_2` | 0.3 | 0.375 |
@@ -1948,15 +2181,21 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Slice of Cinnamon Swirl Bread | `VFX.CinnamonSwirlBreadSlice` | 0.1 | 0.125 |
 | Slice of Cranberry Bread | `VFX.CranberryBreadSlice` | 0.1 | 0.125 |
 | Slice of Focaccia | `VFX.FocacciaBreadSlice` | 0.05 | 0.0625 |
+| Slice of Jellied Cranberry Sauce | `VFX.SliceCranberrySauce` | 0.07 | 0.075 |
 | Slice of Milk Bread | `VFX.MilkBreadSlice` | 0.05 | 0.0625 |
 | Slice of Pepperoni Pizza | `VFX.PepperoniPizzaSlice` | 0.3 | 0.165 |
 | Slice of Pumpernickel | `VFX.PumpernickelSlice` | 0.05 | 0.0625 |
 | Slice of Pumpkin Bread | `VFX.PumpkinBreadSlice` | 0.1 | 0.125 |
+| Slice of Roast Chicken | `VFX.SlicedChicken` | 0.15 | 0.128 |
+| Slice of Roast Turkey | `VFX.SlicedTurkey` | 0.1 | 0.125 |
 | Slice of Rye Bread | `VFX.RyeBreadSlice` | 0.05 | 0.0625 |
 | Slice of Rye Sourdough | `VFX.RyeSourdoughSlice` | 0.05 | 0.0625 |
+| Slice of Seitan | `VFX.SlicedSeitan` | 0.03 | 0.0375 |
+| Slice of Seitan Roast | `VFX.SlicedSeitanRoast` | 0.13 | 0.163 |
 | Slice of Sourdough | `VFX.SourdoughSlice` | 0.05 | 0.0625 |
 | Slice of Supreme Pizza | `VFX.SupremePizzaSlice` | 0.3 | 0.165 |
 | Slice of Three Meat Pizza | `VFX.ThreeMeatPizzaSlice` | 0.3 | 0.165 |
+| Slice of Tofu Roast | `VFX.SlicedTofuRoast` | 0.13 | 0.163 |
 | Sliced Potato | `VFX.SlicedPotato` | 0.2 | 0.25 |
 | Small Jar | `VFX.SmallJar` | 0.1 | 0.125 |
 | Small Jar With Lid | `VFX.SmallJarWithLid` | 0.2 | 0.25 |
@@ -1981,6 +2220,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Sourdough Baguette | `VFX.SourdoughBaguette` | 0.25 | 0.312 |
 | Sourdough Breadstick | `VFX.SourdoughBreadstick` | 0.25 | 0.075 |
 | Sourdough Burger | `Base.VFXSourdoughBurger` | 0.3 | 0.375 |
+| Sourdough Dinner Roll | `VFX.SourdoughDinnerRoll` | 0.1 | 0.06 |
 | Sourdough Hamburger Bun | `VFX.SourdoughHamburgerBun` | 0.1 | 0.0825 |
 | Sourdough Hot Dog | `Base.VFXSourdoughHotdog` | 0.3 | 0.195 |
 | Sourdough Hotdog Bun | `VFX.SourdoughHotdogBun` | 0.1 | 0.0825 |
@@ -2104,6 +2344,14 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Strawberry Pop Strudel | `VFX.StrawberryToasterStrudel` | 0.2 | 0.0825 |
 | Strawberry Pudding Cup | `VFX.StrawberryPuddingCup` | 0.1 | 0.125 |
 | Stuffed Bell Pepper | `VFX.StuffedBellPepper` | 0.4 | 0.5 |
+| Stuffed Chicken | `VFX.StuffedChicken` | 1.2 | 1.5 |
+| Stuffed Seitan Roast | `VFX.StuffedSeitanRoast` | 0.8 | 1 |
+| Stuffed Tofu Roast | `VFX.StuffedTofuRoast` | 0.8 | 1 |
+| Stuffed Turkey | `VFX.StuffedTurkey` | 1.3 | 1.62 |
+| Stuffing Mix - Chicken | `VFX.BoxChickenStuffingMix` | 0.3 | 0.285 |
+| Stuffing Mix - Cornbread | `VFX.BoxCornbreadStuffingMix` | 0.3 | 0.285 |
+| Stuffing Mix - Herb | `VFX.BoxHerbStuffingMix` | 0.3 | 0.285 |
+| Stuffing Mix - Turkey | `VFX.BoxTurkeyStuffingMix` | 0.3 | 0.285 |
 | Sugar Beet Sugar | `VFX.SugarBeetSugar` | 0.6 | 0.705 |
 | Sugar Cookie Mix | `VFX.SugarCookieMix_2` | 0.3 | 0.375 |
 | Supreme Pizza | `VFX.FrozenSupremePizza` | 1.8 | 1.07 |
@@ -2125,8 +2373,10 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Tartar Sauce | `VFX.TartarSauce` | 0.2 | 0.25 |
 | Tex-Mex Seasoning | `VFX.TexMexSeasoning` | 0.2 | 0.18 |
 | The Jolly Pub's Recipes | `VFX.JollyPubsRecipes` | 0.5 | 0.625 |
+| Thistle (Dried) | `VFX.ThistleDried` | 0.1 | 0.0105 |
 | Three Meat Pizza | `VFX.FrozenThreeMeatPizza` | 1.8 | 1.07 |
 | Toffee Bites | `VFX.ToffeeBites` | 0.1 | 0.045 |
+| Tomato Gravy | `VFX.GravyBoatTomato` | 0.4 | 0.5 |
 | Tomato Relish | `VFX.TomatoRelish` | 0.2 | 0.25 |
 | Tomato Sauce Base | `Base.VFXHomemadeSauceTomato` | 0.8 | 1 |
 | Tortellini - Four Cheese | `VFX.FourCheeseTortellini` | 0.8 | 0.45 |
@@ -2157,6 +2407,7 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Tub of Frosting - Lemon | `VFX.LemonFrostingTub` | 0.4 | 0.5 |
 | Tub of Frosting - Strawberry | `VFX.StrawberryFrostingTub` | 0.4 | 0.5 |
 | Tub of Frosting - Vanilla | `VFX.VanillaFrostingTub` | 0.4 | 0.5 |
+| Turkey Gravy | `VFX.GravyBoatTurkey` | 0.4 | 0.5 |
 | Turkey Meatball | `VFX.TurkeyMeatball` | 0.05 | 0.06 |
 | Turkey Meatball | `VFX.TurkeyMeatballHomemade` | 0.05 | 0.06 |
 | Turkey Patty | `VFX.PattyTurkey` | 0.3 | 0.165 |
@@ -2184,12 +2435,11 @@ Weights Lugli - Honest Weight sets for [Vanilla Foods Expanded](https://steamcom
 | Venison Patty | `VFX.PattyVenison` | 0.3 | 0.165 |
 | Vinaigrette | `VFX.Vinaigrette` | 0.2 | 0.25 |
 | Vinegar Sauce Base | `Base.VFXHomemadeSauceVinegar` | 0.8 | 1 |
-| Vinegar Starter | `VFX.VinegarStarter` | 1 | 1.25 |
-| Vinegar Starter (Fermenting) | `VFX.VinegarStarterFermenting` | 1 | 1.25 |
 | Waffles | `VFX.HomemadeWaffles` | 0.3 | 0.225 |
 | Walnuts | `VFX.Walnuts` | 0.2 | 0.045 |
 | Wedges | `VFX.Wedges` | 0.4 | 0.15 |
 | Wheat Crisps | `VFX.WheatThins` | 0.2 | 0.25 |
+| Whipped Cream | `VFX.WhippedCream` | 0.4 | 0.375 |
 | White Cherry Sports Drink | `VFX.SportsWhiteCherry` | 0.1 | 0.125 |
 | White Chocolate Bar | `VFX.ChocolateBarWhite` | 0.2 | 0.15 |
 | White Pepper | `VFX.WhitePepper` | 0.2 | 0.18 |

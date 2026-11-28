@@ -2,7 +2,7 @@
 -- Source 90fordF350ambulance: 19 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "90fordF350ambulance", mod = "90fordF350ambulance", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "90fordF350ambulance", mod = "90fordF350ambulance", version = "880f85a66ee4", rows = {
 "Base.90fordF350DoubleTires2",22,27.7858,48.05,0,-1,-1,-1,2,-1,22,0,
 "Base.90fordF350Magazine",0.5,0.5,0.2,0,-1,-1,-1,0,-1,0.5,0,
 "Base.90fordF350Tire2",14,14,24,0,-1,-1,-1,2,-1,14,0,

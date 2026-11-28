@@ -2,7 +2,7 @@
 -- Source 87fordB700: 50 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "87fordB700", mod = "87fordB700", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "87fordB700", mod = "87fordB700", version = "880f85a66ee4", rows = {
 "Base.87fordB700BullbarFrontA",20,20,35,0,-1,-1,-1,2,-1,20,0,
 "Base.87fordB700BumperFront0",10,10,38,0,-1,-1,-1,2,-1,10,0,
 "Base.87fordB700BumperFrontA",12,12,50,0,-1,-1,-1,2,-1,12,0,

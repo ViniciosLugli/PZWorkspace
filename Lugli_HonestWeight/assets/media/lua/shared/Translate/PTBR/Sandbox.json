@@ -1,17 +1,17 @@
 {
     "Sandbox_LugliHW": "Lugli - Honest Weight",
-    "Sandbox_LugliHW_Realism": "Realismo (%)",
-    "Sandbox_LugliHW_Realism_tooltip": "O quanto o peso dos itens sai dos valores do jogo e vai para o peso real. 100 e o peso real, 0 mantem os valores do jogo corrigindo apenas erros obvios, como um item quebrado pesar mais que o inteiro. Vale a partir do proximo carregamento do mundo.",
+    "Sandbox_LugliHW_Realism": "Realismo (%%)",
+    "Sandbox_LugliHW_Realism_tooltip": "O quanto o peso dos itens sai dos valores do jogo e vai para o peso real. 100 é o peso real, 0 mantém os valores do jogo corrigindo apenas erros óbvios, como um item quebrado pesar mais que o inteiro. Vale a partir do próximo carregamento do mundo.",
     "Sandbox_LugliHW_BulkFloor": "Piso de volume",
-    "Sandbox_LugliHW_BulkFloor_tooltip": "O jogo nao tem volume de itens, entao o peso e a unica coisa que impede uma mochila de carregar centenas de camisetas. Coisas volumosas e leves (casacos, travesseiros, sacos de dormir, caixas vazias) contam como pelo menos estes quilos por litro que ocupam guardadas, antes da Escala. Vale a partir do proximo carregamento do mundo.",
-    "Sandbox_LugliHW_BulkFloor_option1": "Desligado: so o peso real",
+    "Sandbox_LugliHW_BulkFloor_tooltip": "O jogo não tem volume de itens, então o peso é a única coisa que impede uma mochila de carregar centenas de camisetas. Coisas volumosas e leves (casacos, travesseiros, sacos de dormir, caixas vazias) contam como pelo menos estes quilos por litro que ocupam guardadas, antes da Escala. Vale a partir do próximo carregamento do mundo.",
+    "Sandbox_LugliHW_BulkFloor_option1": "Desligado: só o peso real",
     "Sandbox_LugliHW_BulkFloor_option2": "Leve: 0,05 por litro",
     "Sandbox_LugliHW_BulkFloor_option3": "Normal: 0,10 por litro",
-    "Sandbox_LugliHW_BulkFloor_option4": "Rigido: 0,15 por litro",
+    "Sandbox_LugliHW_BulkFloor_option4": "Rígido: 0,15 por litro",
     "Sandbox_LugliHW_Scale": "Escala",
-    "Sandbox_LugliHW_Scale_tooltip": "Peso no jogo por quilo real. As proporcoes entre os itens continuam reais em qualquer valor. 1,0 e o quilo real, o que deixa carregar coisas bem mais facil que no jogo sem mods. No padrao 1,5 roupas e coisas pequenas ficam mais leves, e ferramentas e armas um pouco mais pesadas, ate o Aumento maximo. Liquidos mantem o peso fixo do jogo de 1 por litro. Vale a partir do proximo carregamento do mundo.",
-    "Sandbox_LugliHW_MaxIncrease": "Aumento maximo (%)",
-    "Sandbox_LugliHW_MaxIncrease_tooltip": "O maximo que um item pode pesar acima do seu peso no jogo sem mods, em porcentagem. Itens que voce carrega em quantidade (pedras, tijolos, toras, sacos de areia, municao) ou que o jogo ja faz pesados continuam jogaveis. 0 significa que nenhum item fica mais pesado, so mais leve. 400 deixa quase todo item chegar ao peso real. Vale a partir do proximo carregamento do mundo.",
-    "Sandbox_LugliHW_VanillaStamina": "Manter o folego de golpe do jogo",
-    "Sandbox_LugliHW_VanillaStamina_tooltip": "O jogo usa o peso de uma arma corpo a corpo para o folego que cada golpe e cada machadada gastam. Desligado: o folego segue o peso real, entao uma marreta pesada cansa mais rapido e uma faca leve mais devagar. Ligado: cada arma gasta o mesmo folego por golpe que sem este mod. Vale a partir do proximo carregamento do mundo."
+    "Sandbox_LugliHW_Scale_tooltip": "Peso no jogo por quilo real. As proporções entre os itens continuam reais em qualquer valor. 1,0 é o quilo real, o que deixa carregar coisas bem mais fácil que no jogo sem mods. No padrão 1,5, roupas e coisas pequenas ficam mais leves, e ferramentas e armas um pouco mais pesadas, até o Aumento máximo. Líquidos mantêm o peso fixo do jogo de 1 por litro. Vale a partir do próximo carregamento do mundo.",
+    "Sandbox_LugliHW_MaxIncrease": "Aumento máximo (%%)",
+    "Sandbox_LugliHW_MaxIncrease_tooltip": "O máximo que um item pode pesar acima do seu peso no jogo sem mods, em porcentagem. Itens que você carrega em quantidade (pedras, tijolos, toras, sacos de areia, munição) ou que o jogo já deixa pesados continuam jogáveis. 0 significa que nenhum item fica mais pesado, só mais leve. 400 deixa quase todo item chegar ao peso real. Vale a partir do próximo carregamento do mundo.",
+    "Sandbox_LugliHW_VanillaStamina": "Manter o fôlego de golpe do jogo",
+    "Sandbox_LugliHW_VanillaStamina_tooltip": "O jogo usa o peso de uma arma corpo a corpo para o fôlego que cada golpe e cada machadada gastam. Desligado: o fôlego segue o peso real, então uma marreta pesada cansa mais rápido e uma faca leve mais devagar. Ligado: cada arma gasta o mesmo fôlego por golpe que sem este mod. Vale a partir do próximo carregamento do mundo."
 }

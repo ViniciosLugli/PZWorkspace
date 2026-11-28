@@ -2,7 +2,7 @@
 -- Source SWMG: 27 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "SWMG", mod = "SWMG", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "SWMG", mod = "SWMG", version = "880f85a66ee4", rows = {
 "SWMG.12Gauge_Shell_Buckshot",0.031,0.031,0.04,0,-1,-1,-1,0,-1,0.031,0,
 "SWMG.12Gauge_Shell_Slug",0.031,0.031,0.04,0,-1,-1,-1,0,-1,0.031,0,
 "SWMG.223_Bullet",0.0085,0.0085,0.012,0,-1,-1,-1,0,-1,0.0085,0,

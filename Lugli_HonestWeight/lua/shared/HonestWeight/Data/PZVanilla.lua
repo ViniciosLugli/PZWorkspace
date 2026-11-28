@@ -2,7 +2,7 @@
 -- Source pz-vanilla: 4428 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "pz-vanilla", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "pz-vanilla", version = "880f85a66ee4", rows = {
 "Base.3030Box",0.6,1,0.555,0,-1,-1,-1,0,-1,0.6,0,
 "Base.3030Bullets",0.05,0.05,0.026,0,-1,-1,-1,0,-1,0.05,0,
 "Base.3030Carton",6,12,6.81,0,-1,-1,-1,0,-1,6,0,
@@ -1583,7 +1583,7 @@ table.insert(LugliHonestWeight.data, { id = "pz-vanilla", version = "d126543c033
 "Base.Gavel",0.5,0.5,0.25,0,-1,-1,-1,1,-1,0.5,0,
 "Base.GemBag",0.1,0.1,0.03,0,-1,-1,-1,0,-1,0.1,0,
 "Base.Generator",40,40,40,0,-1,-1,-1,0,-1,40,0,
-"Base.Generator_Blue",40,40,40,0,-1,-1,-1,0,-1,40,0,
+"Base.Generator_Blue",30,30,40,0,-1,-1,-1,0,-1,30,0,
 "Base.Generator_Old",40,40,40,0,-1,-1,-1,0,-1,40,0,
 "Base.Generator_Yellow",40,40,40,0,-1,-1,-1,0,-1,40,0,
 "Base.GenericMail",0.1,0.1,0.02,0,-1,-1,-1,0,-1,0.1,0,
@@ -1703,7 +1703,7 @@ table.insert(LugliHonestWeight.data, { id = "pz-vanilla", version = "d126543c033
 "Base.GrassTuft",0.1,0.1,0.05,0,-1,-1,-1,0,-1,0.1,0,
 "Base.Grasshopper",0.1,0.1,0.001,0,-1,-1,-1,0,-1,0.1,0,
 "Base.Gravelbag",2,2,19,0,-1,-1,-1,0,-1,2,0,
-"Base.Gravy",0.2,0.2,0.33,0,-1,-1,-1,0,-1,0.2,0,
+"Base.Gravy",0.4,0.4,0.78,0,-1,-1,-1,0,-1,0.4,0,
 "Base.GravyMix",0.1,0.1,0.03,0,-1,-1,-1,0,-1,0.1,0,
 "Base.GreaveBodyArmour_Left",1,1,0.4,0,-1,-1,-1,0,-1,1,0,
 "Base.GreaveBodyArmour_Left_Army",1,1,0.4,0,-1,-1,-1,0,-1,1,0,
@@ -4371,7 +4371,7 @@ table.insert(LugliHonestWeight.data, { id = "pz-vanilla", version = "d126543c033
 "Base.Wine2",0.3,0.3,0.5,0,-1,-1,-1,0,-1,0.3,0,
 "Base.Wine2Open",0.3,0.3,0.5,0,-1,-1,-1,0,-1,0.3,0,
 "Base.WineAged",1,1,0.65,0,-1,-1,-1,0,-1,1,0,
-"Base.WineBox",0.2,0.2,0.03,1,-1,-1,-1,0,-1,0.2,0,
+"Base.WineBox",0.2,0.2,0.05,1.1,-1,-1,-1,0,-1,0.2,0,
 "Base.WineOpen",0.3,0.3,0.5,0,-1,-1,-1,0,-1,0.3,0,
 "Base.WineRed_Boxed",6.5,7.8,3.5,0,-1,-1,-1,0,-1,6.5,6,
 "Base.WineScrewtop",1,1,0.42,0,-1,-1,-1,0,-1,1,0,

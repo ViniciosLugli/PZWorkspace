@@ -1,0 +1,17 @@
+{
+    "Sandbox_LugliHW": "Lugli - Honest Weight",
+    "Sandbox_LugliHW_Realism": "Réalisme (%%)",
+    "Sandbox_LugliHW_Realism_tooltip": "À quel point le poids des objets passe des valeurs du jeu à leur poids réel. 100 est entièrement réel, 0 garde les valeurs du jeu en corrigeant seulement les erreurs évidentes, comme un objet cassé qui pèse plus qu'un objet intact. Prend effet au prochain chargement du monde.",
+    "Sandbox_LugliHW_BulkFloor": "Plancher d'encombrement",
+    "Sandbox_LugliHW_BulkFloor_tooltip": "Le jeu n'a pas de volume pour les objets, donc seul le poids empêche un sac de contenir des centaines de chemises. Les objets légers et encombrants (manteaux, oreillers, sacs de couchage, cartons vides) comptent pour au moins ce nombre de kilos par litre qu'ils occupent une fois rangés, avant l'Échelle. Prend effet au prochain chargement du monde.",
+    "Sandbox_LugliHW_BulkFloor_option1": "Désactivé : poids réel seul",
+    "Sandbox_LugliHW_BulkFloor_option2": "Léger : 0,05 par litre",
+    "Sandbox_LugliHW_BulkFloor_option3": "Normal : 0,10 par litre",
+    "Sandbox_LugliHW_BulkFloor_option4": "Strict : 0,15 par litre",
+    "Sandbox_LugliHW_Scale": "Échelle",
+    "Sandbox_LugliHW_Scale_tooltip": "Poids en jeu par kilo réel. Les proportions entre les objets restent réelles quelle que soit la valeur. 1,0 correspond aux vrais kilos, ce qui rend le transport bien plus facile que dans le jeu sans mods. À la valeur par défaut de 1,5, les vêtements et les petits objets s'allègent, et les outils et les armes s'alourdissent un peu, jusqu'à l'Augmentation max. Les liquides gardent le poids fixe du jeu de 1 par litre. Prend effet au prochain chargement du monde.",
+    "Sandbox_LugliHW_MaxIncrease": "Augmentation max (%%)",
+    "Sandbox_LugliHW_MaxIncrease_tooltip": "Le surplus maximal, en pourcentage, qu'un objet peut peser par rapport au jeu sans mods. Les objets qu'on porte en quantité (pierres, briques, rondins, sacs de sable, munitions) ou que le jeu rend déjà lourds restent jouables. 0 signifie qu'aucun objet ne s'alourdit jamais, il ne peut que s'alléger. 400 permet à presque tous les objets d'atteindre leur poids réel. Prend effet au prochain chargement du monde.",
+    "Sandbox_LugliHW_VanillaStamina": "Garder l'endurance par coup du jeu",
+    "Sandbox_LugliHW_VanillaStamina_tooltip": "Le jeu utilise le poids d'une arme de mêlée pour l'endurance que coûte chaque coup et chaque coup de hache. Désactivé : l'endurance suit le poids réel, donc une lourde masse fatigue plus vite et un couteau léger moins vite. Activé : chaque arme coûte la même endurance par coup que sans ce mod. Prend effet au prochain chargement du monde."
+}

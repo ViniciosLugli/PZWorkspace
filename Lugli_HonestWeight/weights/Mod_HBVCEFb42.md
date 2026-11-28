@@ -1,6 +1,6 @@
 # Hot Brass - Visible Casing Ejection Framework \[B42.15\]
 
-Weights Lugli - Honest Weight sets for [Hot Brass - Visible Casing Ejection Framework \[B42.15\]](https://steamcommunity.com/sharedfiles/filedetails/?id=3610677934): 25 items. [All sources](../WEIGHTS.md)
+Weights Lugli - Honest Weight sets for [Hot Brass - Visible Casing Ejection Framework \[B42.15\]](https://steamcommunity.com/sharedfiles/filedetails/?id=3610677934): 26 items. [All sources](../WEIGHTS.md)
 
 **Game** is the weight without Honest Weight. **Honest** is the weight at the default options (Realism 100%, Bulk floor Normal, Scale 1.5), in the game's own units. A container that holds a liquid or is used up shows its empty weight in brackets.
 
@@ -13,6 +13,7 @@ Weights Lugli - Honest Weight sets for [Hot Brass - Visible Casing Ejection Fram
 | .308 Casing | `HBVCEF.308_Casing` | 0.015 | 0.0175 |
 | .357 Casing | `HBVCEF.357_Casing` | 0.015 | 0.0075 |
 | .38 Special Casing | `HBVCEF.38_Casing` | 0.01 | 0.00585 |
+| .380 Casing | `HBVCEF.380_Casing` | 0.015 | 0.0048 |
 | .44 Magnum Casing | `HBVCEF.44_Casing` | 0.015 | 0.0105 |
 | .45 Auto Casing | `HBVCEF.45_Casing` | 0.015 | 0.009 |
 | .45-70 Casing | `HBVCEF.4570_Casing` | 0.015 | 0.0187 |

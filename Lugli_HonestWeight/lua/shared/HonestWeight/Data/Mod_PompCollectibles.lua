@@ -2,7 +2,7 @@
 -- Source PompCollectibles: 492 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "PompCollectibles", mod = "PompCollectibles", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "PompCollectibles", mod = "PompCollectibles", version = "880f85a66ee4", rows = {
 "Collections.PC-AlbedoColorSpecial",0.1,0.1,0.06,0,-1,-1,-1,0,-1,0.1,0,
 "Collections.PC-AlbedoColorSpecialDisplay",0.1,0.1,0.08,0,-1,-1,-1,0,-1,0.1,0,
 "Collections.PC-AlbedoIssue0",0.1,0.1,0.06,0,-1,-1,-1,0,-1,0.1,0,

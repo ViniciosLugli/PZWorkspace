@@ -2,7 +2,7 @@
 -- Source 75grandPrix: 22 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "75grandPrix", mod = "75grandPrix", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "75grandPrix", mod = "75grandPrix", version = "880f85a66ee4", rows = {
 "Base.75grandPrixBullbar",14,14,20,0,-1,-1,-1,2,-1,14,0,
 "Base.75grandPrixBumperFront",10,10,22,0,-1,-1,-1,2,-1,10,0,
 "Base.75grandPrixBumperFrontA",15,15,25,0,-1,-1,-1,2,-1,15,0,

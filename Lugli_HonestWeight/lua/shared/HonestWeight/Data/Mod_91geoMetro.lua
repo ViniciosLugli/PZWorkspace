@@ -2,7 +2,7 @@
 -- Source 91geoMetro: 20 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "91geoMetro", mod = "91geoMetro", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "91geoMetro", mod = "91geoMetro", version = "880f85a66ee4", rows = {
 "Base.91geoMetroBumperFront0",10,10,9,0,-1,-1,-1,2,-1,10,0,
 "Base.91geoMetroBumperRear0",10,10,7,0,-1,-1,-1,2,-1,10,0,
 "Base.91geoMetroEngineDoor1",13,13,9,0,-1,-1,-1,2,-1,13,0,

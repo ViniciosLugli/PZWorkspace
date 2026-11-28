@@ -2,7 +2,7 @@
 -- Source alicesWeaponSling: 16 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "alicesWeaponSling", mod = "alicesWeaponSling", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "alicesWeaponSling", mod = "alicesWeaponSling", version = "880f85a66ee4", rows = {
 "AliceSlings.AliceWeaponSling",0.01,0.01,0.15,0,-1,-1,-1,0,-1,0.01,0,
 "AliceSlings.AliceWeaponSlingAlt",0.01,0.01,0.15,0,-1,-1,-1,0,-1,0.01,0,
 "AliceSlings.AliceWeaponSlingAlt2",0.01,0.01,0.15,0,-1,-1,-1,0,-1,0.01,0,

@@ -2,7 +2,7 @@
 -- Source 89defender: 40 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "89defender", mod = "89defender", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "89defender", mod = "89defender", version = "880f85a66ee4", rows = {
 "Base.89defender130Bumperettes0",1,1,4,0,-1,-1,-1,2,-1,1,0,
 "Base.89defender130WindshieldRear2",6,6,5.2,0,-1,-1,-1,2,-1,6,0,
 "Base.89defenderBackSideWindow2",5,5,2.1,0,-1,-1,-1,2,-1,5,0,

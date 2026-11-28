@@ -2,7 +2,7 @@
 -- Source UndeadSuvivor: 83 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "UndeadSuvivor", mod = "UndeadSuvivor", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "UndeadSuvivor", mod = "UndeadSuvivor", version = "880f85a66ee4", rows = {
 "Base.DeadlyHeadhunterRifle",4.5,4.5,4.4,0,-1,-1,-1,0,-1,4.5,0,
 "Base.HeadhunterRifle",4.5,4.5,4.4,0,-1,-1,-1,0,-1,4.5,0,
 "Base.HeadhunterScope",0.8,0.8,0.6,0,-1,-1,-1,0,0.8,0.8,0,

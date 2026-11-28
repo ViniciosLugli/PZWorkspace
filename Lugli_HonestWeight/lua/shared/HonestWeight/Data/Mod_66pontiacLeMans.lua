@@ -2,7 +2,7 @@
 -- Source 66pontiacLeMans: 19 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "66pontiacLeMans", mod = "66pontiacLeMans", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "66pontiacLeMans", mod = "66pontiacLeMans", version = "880f85a66ee4", rows = {
 "Base.66pontiacGTOEngineDoor3",8,8,13,0,-1,-1,-1,2,-1,8,0,
 "Base.66pontiacLeMansBullbarFrontA",13,13,17,0,-1,-1,-1,2,-1,13,0,
 "Base.66pontiacLeMansBumperFront0",6,6,13,0,-1,-1,-1,2,-1,6,0,

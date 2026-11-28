@@ -2,7 +2,7 @@
 -- Source 04vwTouran: 22 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "04vwTouran", mod = "04vwTouran", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "04vwTouran", mod = "04vwTouran", version = "880f85a66ee4", rows = {
 "Base.04vwTouranBackSideWindow1",4,4,1.8,0,-1,-1,-1,2,-1,4,0,
 "Base.04vwTouranBackWindowArmor",13,13,3.9,0,-1,-1,-1,2,-1,13,0,
 "Base.04vwTouranBullbarFrontA",10,10,17,0,-1,-1,-1,2,-1,10,0,

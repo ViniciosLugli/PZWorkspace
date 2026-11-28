@@ -2,7 +2,7 @@
 -- Source 78lamboCountach: 29 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "78lamboCountach", mod = "78lamboCountach", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "78lamboCountach", mod = "78lamboCountach", version = "880f85a66ee4", rows = {
 "Base.78lamboCountachBullbarA",10,10,12,0,-1,-1,-1,2,-1,10,0,
 "Base.78lamboCountachBumperFront",2,2,9,0,-1,-1,-1,2,-1,2,0,
 "Base.78lamboCountachBumperFrontA",12,12,14,0,-1,-1,-1,2,-1,12,0,

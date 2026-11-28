@@ -2,7 +2,7 @@
 -- Source 96saturnSseries: 21 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "96saturnSseries", mod = "96saturnSseries", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "96saturnSseries", mod = "96saturnSseries", version = "880f85a66ee4", rows = {
 "Base.96saturnSBullbarFrontA",10,10,12,0,-1,-1,-1,2,-1,10,0,
 "Base.96saturnSBumperFront0",8,8,9,0,-1,-1,-1,2,-1,8,0,
 "Base.96saturnSBumperFrontA",18,18,14,0,-1,-1,-1,2,-1,18,0,

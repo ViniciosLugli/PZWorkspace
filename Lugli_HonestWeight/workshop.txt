@@ -44,12 +44,12 @@ description=[*][b]Keep the game's swing stamina[/b], Off.
 description=[/list]
 description=[h1]FAQ[/h1]
 description=[list]
-description=[*][b]Which items?[/b] Vanilla, plus the mods in [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url]. Items from any other mod keep their own weight.
+description=[*][b]Which items?[/b] Vanilla, plus the mods in [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3781683109]LugliPack - B42[/url]. A mod that leaves the collection keeps its weights. Items from any other mod keep their own weight.
 description=[*][b]How is it different from [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768669395]True Weight[/url]?[/b] True Weight hand-tunes vanilla items by name, so most modded items keep their old weight. Honest Weight gives vanilla and every LugliPack item its real weight on one scale, counts bulk, and keeps containers and liquids right. Use one or the other, never both.
 description=[*][b]Can I add it to a running save?[/b] Yes. Items take their new weight the next time the world loads. Removing it puts every weight back.
 description=[*][b]Another mod changes a weight?[/b] That mod wins. Honest Weight leaves any value it did not set alone.
 description=[*][b]Multiplayer?[/b] It runs on the server and every client, and the server's options apply to everyone. Not yet tested on a dedicated server, so please report anything odd.
-description=[*][b]Languages?[/b] English and Brazilian Portuguese.
+description=[*][b]Languages?[/b] The sandbox options read in English, Brazilian Portuguese, Spanish (Spain, Argentina, Chile, Mexico), French, German, Polish, Russian, Chinese, Japanese and Korean.
 description=[/list]
 description=[hr][/hr]
 description=Open source, MIT: [url=https://github.com/ViniciosLugli/PZWorkspace/tree/main/Lugli_HonestWeight]github.com/ViniciosLugli/PZWorkspace[/url]

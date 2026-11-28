@@ -2,7 +2,7 @@
 -- Source w_emptycanmodels: 19 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "w_emptycanmodels", mod = "w_emptycanmodels", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "w_emptycanmodels", mod = "w_emptycanmodels", version = "880f85a66ee4", rows = {
 "Base.EmptyCanBeans",0.2,0.2,0.05,0.45,-1,-1,-1,0,-1,0.2,0,
 "Base.EmptyCanBolognese",0.2,0.2,0.05,0.45,-1,-1,-1,0,-1,0.2,0,
 "Base.EmptyCanCarrots",0.2,0.2,0.05,0.45,-1,-1,-1,0,-1,0.2,0,

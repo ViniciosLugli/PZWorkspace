@@ -2,7 +2,7 @@
 -- Source 87toyotaMR2: 27 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "87toyotaMR2", mod = "87toyotaMR2", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "87toyotaMR2", mod = "87toyotaMR2", version = "880f85a66ee4", rows = {
 "Base.87toyotaMR2BullbarFrontA",10,10,12,0,-1,-1,-1,2,-1,10,0,
 "Base.87toyotaMR2BumperFront0",10,10,9,0,-1,-1,-1,2,-1,10,0,
 "Base.87toyotaMR2BumperFrontA",10,10,14,0,-1,-1,-1,2,-1,10,0,

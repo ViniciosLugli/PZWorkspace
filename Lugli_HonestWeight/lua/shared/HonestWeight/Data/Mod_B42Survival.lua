@@ -2,7 +2,7 @@
 -- Source B42Survival: 14 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "B42Survival", mod = "B42Survival", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "B42Survival", mod = "B42Survival", version = "880f85a66ee4", rows = {
 "Base.ButtonWood",0.1,0.1,0.003,0,-1,-1,-1,0,-1,0.1,0,
 "Base.CandleJar",0.2,0.2,0.5,0,-1,-1,-1,0,-1,0.2,0,
 "Base.CandleJarLit",0.2,0.2,0.5,0,-1,-1,-1,0,-1,0.2,0,

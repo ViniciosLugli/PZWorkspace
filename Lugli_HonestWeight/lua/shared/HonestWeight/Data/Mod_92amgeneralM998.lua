@@ -2,7 +2,7 @@
 -- Source 92amgeneralM998: 22 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "92amgeneralM998", mod = "92amgeneralM998", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "92amgeneralM998", mod = "92amgeneralM998", version = "880f85a66ee4", rows = {
 "Base.92amgeneralM998BackCover2",25,25,25,0,-1,-1,-1,2,-1,25,0,
 "Base.92amgeneralM998BullbarA",10,10,24,0,-1,-1,-1,2,-1,10,0,
 "Base.92amgeneralM998BullbarB",15,15,24,0,-1,-1,-1,2,-1,15,0,

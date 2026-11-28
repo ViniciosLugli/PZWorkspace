@@ -2,7 +2,7 @@
 -- Source 96lancerEVO: 22 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "96lancerEVO", mod = "96lancerEVO", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "96lancerEVO", mod = "96lancerEVO", version = "880f85a66ee4", rows = {
 "Base.96lancerEVOBullbarFrontA",10,10,17,0,-1,-1,-1,2,-1,10,0,
 "Base.96lancerEVOBumperFront0",8,8,13,0,-1,-1,-1,2,-1,8,0,
 "Base.96lancerEVOBumperFrontA",18,18,19,0,-1,-1,-1,2,-1,18,0,

@@ -2,7 +2,7 @@
 -- Source 76chevyKseries: 42 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "76chevyKseries", mod = "76chevyKseries", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "76chevyKseries", mod = "76chevyKseries", version = "880f85a66ee4", rows = {
 "Base.76chevyBlazerBedCap2",14,14,40,0,-1,-1,-1,2,-1,14,0,
 "Base.76chevyBlazerTrunkDoor2",10,10,22,0,-1,-1,-1,2,-1,10,0,
 "Base.76chevyCseriesBullbarFrontC",16,16,24,0,-1,-1,-1,2,-1,16,0,

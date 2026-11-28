@@ -2,7 +2,7 @@
 -- Source 84merc: 34 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "84merc", mod = "84merc", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "84merc", mod = "84merc", version = "880f85a66ee4", rows = {
 "Base.W460Bodykit1",10,10,12,0,-1,-1,-1,2,-1,10,0,
 "Base.W460BodykitM",10,10,12,0,-1,-1,-1,2,-1,10,0,
 "Base.W460Bullbar2",13,13,24,0,-1,-1,-1,2,-1,13,0,

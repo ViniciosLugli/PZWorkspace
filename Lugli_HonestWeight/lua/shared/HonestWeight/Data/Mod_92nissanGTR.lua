@@ -2,7 +2,7 @@
 -- Source 92nissanGTR: 38 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "92nissanGTR", mod = "92nissanGTR", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "92nissanGTR", mod = "92nissanGTR", version = "880f85a66ee4", rows = {
 "Base.R32Bumper0",15,15,13,0,-1,-1,-1,2,-1,15,0,
 "Base.R32Bumper1",14,14,13,0,-1,-1,-1,2,-1,14,0,
 "Base.R32Bumper2",13,13,13,0,-1,-1,-1,2,-1,13,0,

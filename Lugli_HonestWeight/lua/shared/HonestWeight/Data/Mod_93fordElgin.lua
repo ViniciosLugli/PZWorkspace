@@ -2,7 +2,7 @@
 -- Source 93fordElgin: 16 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "93fordElgin", mod = "93fordElgin", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "93fordElgin", mod = "93fordElgin", version = "880f85a66ee4", rows = {
 "Base.93fordCF8000Brushes",20,20,20,0,-1,-1,-1,2,-1,20,0,
 "Base.93fordCF8000Bumper0",10,10,38,0,-1,-1,-1,2,-1,10,0,
 "Base.93fordCF8000BumperA",15,15,50,0,-1,-1,-1,2,-1,15,0,

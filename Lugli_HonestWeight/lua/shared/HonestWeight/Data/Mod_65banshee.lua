@@ -2,7 +2,7 @@
 -- Source 65banshee: 20 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "65banshee", mod = "65banshee", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "65banshee", mod = "65banshee", version = "880f85a66ee4", rows = {
 "Base.65bansheeBumperFront0",6,6,13,0,-1,-1,-1,2,-1,6,0,
 "Base.65bansheeBumperFrontA",8,8,19,0,-1,-1,-1,2,-1,8,0,
 "Base.65bansheeBumperRear0",3,3,4,0,-1,-1,-1,2,-1,3,0,

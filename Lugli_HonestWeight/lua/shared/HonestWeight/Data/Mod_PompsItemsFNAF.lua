@@ -2,7 +2,7 @@
 -- Source PompsItemsFNAF: 66 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "PompsItemsFNAF", mod = "PompsItemsFNAF", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "PompsItemsFNAF", mod = "PompsItemsFNAF", version = "880f85a66ee4", rows = {
 "PompsItems_FNAF.PIBalloonBoyPlush",0.3,0.3,0.2,4,-1,-1,-1,0,-1,0.3,0,
 "PompsItems_FNAF.PIBalloraPlushie",0.3,0.3,0.2,4,-1,-1,-1,0,-1,0.3,0,
 "PompsItems_FNAF.PIBlakeBadgerPlushie",0.3,0.3,0.2,4,-1,-1,-1,0,-1,0.3,0,

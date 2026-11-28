@@ -2,7 +2,7 @@
 -- Source 82jeepJ10: 14 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "82jeepJ10", mod = "82jeepJ10", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "82jeepJ10", mod = "82jeepJ10", version = "880f85a66ee4", rows = {
 "Base.82JeepJ10BedCover",26,26,25,0,-1,-1,-1,2,-1,26,0,
 "Base.82JeepJ10BullbarFront",10,10,24,0,-1,-1,-1,2,-1,10,0,
 "Base.82JeepJ10BumperFront",10,10,22,0,-1,-1,-1,2,-1,10,0,

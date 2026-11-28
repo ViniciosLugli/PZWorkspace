@@ -2,7 +2,7 @@
 -- Source RealisticVehicleMechanics: 208 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "RealisticVehicleMechanics", mod = "RealisticVehicleMechanics", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "RealisticVehicleMechanics", mod = "RealisticVehicleMechanics", version = "880f85a66ee4", rows = {
 "RealisticVehicleMechanics.ACCondenser",4,4,3,0,-1,-1,-1,0,-1,4,0,
 "RealisticVehicleMechanics.ACCyclingSwitch",0.1,0.1,0.05,0,-1,-1,-1,0,-1,0.1,0,
 "RealisticVehicleMechanics.ACEvaporator",2.5,2.5,1.2,0,-1,-1,-1,0,-1,2.5,0,

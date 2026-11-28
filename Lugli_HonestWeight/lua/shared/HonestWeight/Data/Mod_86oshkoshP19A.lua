@@ -2,7 +2,7 @@
 -- Source 86oshkoshP19A: 22 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "86oshkoshP19A", mod = "86oshkoshP19A", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "86oshkoshP19A", mod = "86oshkoshP19A", version = "880f85a66ee4", rows = {
 "Base.M1082Mudflaps2",3,3,8,0,-1,-1,-1,2,-1,3,0,
 "Base.M1082Tarp2",3,3,10,0,-1,-1,-1,2,-1,3,0,
 "Base.M1082TrunkDoor2",10,10,30,0,-1,-1,-1,2,-1,10,0,

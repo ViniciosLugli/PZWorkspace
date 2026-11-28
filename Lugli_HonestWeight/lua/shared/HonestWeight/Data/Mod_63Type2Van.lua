@@ -2,7 +2,7 @@
 -- Source 63Type2Van: 33 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "63Type2Van", mod = "63Type2Van", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "63Type2Van", mod = "63Type2Van", version = "880f85a66ee4", rows = {
 "Base.63Type2VanBullbarFrontA",13,13,20,0,-1,-1,-1,2,-1,13,0,
 "Base.63Type2VanBumperFront0",6,6,9,0,-1,-1,-1,2,-1,6,0,
 "Base.63Type2VanBumperFront1",6,6,9,0,-1,-1,-1,2,-1,6,0,

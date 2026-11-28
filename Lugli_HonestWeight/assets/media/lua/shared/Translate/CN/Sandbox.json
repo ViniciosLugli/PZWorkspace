@@ -1,0 +1,17 @@
+{
+    "Sandbox_LugliHW": "Lugli - Honest Weight",
+    "Sandbox_LugliHW_Realism": "真实度 (%%)",
+    "Sandbox_LugliHW_Realism_tooltip": "物品重量从游戏原有数值向真实重量靠拢的程度。100为完全真实,0保留游戏原有数值,只修正明显错误,例如损坏的物品比完好的还重。下次载入世界时生效。",
+    "Sandbox_LugliHW_BulkFloor": "体积重量下限",
+    "Sandbox_LugliHW_BulkFloor_tooltip": "游戏中的物品没有体积,重量是唯一能阻止一个包装下数百件衬衫的因素。轻而占地方的物品(外套、枕头、睡袋、空箱子)按收纳后每占用一升至少计这么多千克,在比例换算之前计算。下次载入世界时生效。",
+    "Sandbox_LugliHW_BulkFloor_option1": "关闭:仅按真实重量",
+    "Sandbox_LugliHW_BulkFloor_option2": "轻度:每升0.05",
+    "Sandbox_LugliHW_BulkFloor_option3": "普通:每升0.10",
+    "Sandbox_LugliHW_BulkFloor_option4": "严格:每升0.15",
+    "Sandbox_LugliHW_Scale": "比例",
+    "Sandbox_LugliHW_Scale_tooltip": "每真实千克对应的游戏重量。无论取何值,物品之间的比例都保持真实。1.0即真实千克,负重会比原版游戏轻松得多。默认值1.5时,衣物和小物件变轻,工具和枪械略微变重,上限为最大增幅。液体保持游戏固定的每升1。下次载入世界时生效。",
+    "Sandbox_LugliHW_MaxIncrease": "最大增幅 (%%)",
+    "Sandbox_LugliHW_MaxIncrease_tooltip": "任何物品比原版游戏中的重量最多可增加的百分比。经常大量携带的物品(石头、砖块、原木、沙袋、弹药)或游戏本就设定得很重的物品仍然可玩。0表示任何物品都不会变重,只会变轻。400让几乎所有物品都能达到真实重量。下次载入世界时生效。",
+    "Sandbox_LugliHW_VanillaStamina": "保留原版挥击耐力消耗",
+    "Sandbox_LugliHW_VanillaStamina_tooltip": "游戏用近战武器的重量计算每次挥击和每次斧劈消耗的耐力。关闭:耐力消耗按真实重量计算,沉重的大锤更快让人疲惫,轻巧的小刀则更慢。开启:每把武器每次挥击消耗的耐力与未安装此模组时相同。下次载入世界时生效。"
+}

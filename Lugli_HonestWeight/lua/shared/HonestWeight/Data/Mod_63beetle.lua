@@ -2,7 +2,7 @@
 -- Source 63beetle: 27 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "63beetle", mod = "63beetle", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "63beetle", mod = "63beetle", version = "880f85a66ee4", rows = {
 "Base.63beetleBodykit0",13,13,12,0,-1,-1,-1,2,-1,13,0,
 "Base.63beetleBuggySpoiler0",11,11,4,0,-1,-1,-1,2,-1,11,0,
 "Base.63beetleBumperFront0",10,10,9,0,-1,-1,-1,2,-1,10,0,

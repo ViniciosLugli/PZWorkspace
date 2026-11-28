@@ -2,7 +2,7 @@
 -- Source 81deloreanDMC12: 18 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "81deloreanDMC12", mod = "81deloreanDMC12", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "81deloreanDMC12", mod = "81deloreanDMC12", version = "880f85a66ee4", rows = {
 "Base.81deloreanDMC12Bullbar",12,12,12,0,-1,-1,-1,2,-1,12,0,
 "Base.81deloreanDMC12BumperFront",3,3,9,0,-1,-1,-1,2,-1,3,0,
 "Base.81deloreanDMC12BumperFrontA",15,15,14,0,-1,-1,-1,2,-1,15,0,

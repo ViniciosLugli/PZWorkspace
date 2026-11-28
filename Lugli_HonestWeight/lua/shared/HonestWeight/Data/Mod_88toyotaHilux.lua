@@ -2,7 +2,7 @@
 -- Source 88toyotaHilux: 24 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "88toyotaHilux", mod = "88toyotaHilux", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "88toyotaHilux", mod = "88toyotaHilux", version = "880f85a66ee4", rows = {
 "Base.88toyotaHiluxBackSideWindow2",4,4,1.8,0,-1,-1,-1,2,-1,4,0,
 "Base.88toyotaHiluxBackWindowArmor",10,10,3.9,0,-1,-1,-1,2,-1,10,0,
 "Base.88toyotaHiluxBedCap2",25,25,38,0,-1,-1,-1,2,-1,25,0,

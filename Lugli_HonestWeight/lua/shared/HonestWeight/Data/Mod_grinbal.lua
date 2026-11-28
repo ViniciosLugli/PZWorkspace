@@ -2,7 +2,7 @@
 -- Source grinbal: 49 row(s).
 LugliHonestWeight = LugliHonestWeight or {}
 LugliHonestWeight.data = LugliHonestWeight.data or {}
-table.insert(LugliHonestWeight.data, { id = "grinbal", mod = "grinbal", version = "d126543c0334", rows = {
+table.insert(LugliHonestWeight.data, { id = "grinbal", mod = "grinbal", version = "880f85a66ee4", rows = {
 "GRIN.bala_black",0.1,0.1,0.06,0,-1,-1,-1,0,-1,0.1,0,
 "GRIN.grin_argentina",0.3,0.3,0.3,0,-1,-1,-1,0,-1,0.3,0,
 "GRIN.grin_argentina_lift",0.3,0.3,0.3,0,-1,-1,-1,0,-1,0.3,0,
