@@ -2844,6 +2844,7 @@ SandboxVars = {
         PenetrationFromWeapon = false,
         HitAllTargets = true,
         CoverPenetration = true,
+        Ricochets = true,
         -- Min: 0.00 Max: 5.00 Default: 1.00
         Spread = 1.0,
         -- Min: 0.05 Max: 15.00 Default: 1.60
